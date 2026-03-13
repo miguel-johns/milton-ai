@@ -130,10 +130,18 @@ function TrustStats() {
                   <stop offset="0%" stopColor={COLORS.emerald} stopOpacity="0.2" />
                   <stop offset="100%" stopColor={COLORS.emerald} stopOpacity="0" />
                 </linearGradient>
+                <linearGradient id="lineGlow" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stopColor={COLORS.emerald} stopOpacity="0" />
+                  <stop offset="40%" stopColor={COLORS.emerald} stopOpacity="0" />
+                  <stop offset="50%" stopColor={COLORS.emerald} stopOpacity="0.6" />
+                  <stop offset="60%" stopColor={COLORS.emerald} stopOpacity="0" />
+                  <stop offset="100%" stopColor={COLORS.emerald} stopOpacity="0" />
+                </linearGradient>
               </defs>
               <path d="M0,44 C20,42 30,38 50,36 C70,34 80,30 100,25 C120,20 130,18 150,14 C170,10 180,6 200,4 L200,48 L0,48 Z" fill="url(#lineGrad)" />
               <path d="M0,44 C20,42 30,38 50,36 C70,34 80,30 100,25 C120,20 130,18 150,14 C170,10 180,6 200,4" fill="none" stroke={COLORS.emerald} strokeWidth="2" strokeLinecap="round" />
-              <circle cx="200" cy="4" r="3" fill={COLORS.emerald} />
+              <path d="M0,44 C20,42 30,38 50,36 C70,34 80,30 100,25 C120,20 130,18 150,14 C170,10 180,6 200,4" fill="none" stroke="url(#lineGlow)" strokeWidth="4" strokeLinecap="round" style={{ animation: "lineShimmer 3s ease-in-out infinite" }} />
+              <circle cx="200" cy="4" r="3" fill={COLORS.emerald} style={{ animation: "linePulse 2.5s ease-in-out infinite" }} />
             </svg>
           </div>
         </div>
@@ -2748,6 +2756,8 @@ export default function MiltonSite() {
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
             @keyframes barWave { 0%, 100% { transform: scaleY(1); opacity: 1; } 50% { transform: scaleY(0.94); opacity: 0.88; } }
+            @keyframes lineShimmer { 0% { stroke-dasharray: 0 300; stroke-dashoffset: 0; } 50% { stroke-dasharray: 60 300; stroke-dashoffset: -120; } 100% { stroke-dasharray: 0 300; stroke-dashoffset: -300; } }
+            @keyframes linePulse { 0%, 100% { opacity: 1; r: 3; } 50% { opacity: 0.7; r: 4; } }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         @keyframes growBar { 0% { width: 0%; } 100% { width: inherit; } }
         @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
