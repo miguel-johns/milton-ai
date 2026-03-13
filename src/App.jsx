@@ -91,18 +91,19 @@ function TrustStats() {
               <div style={{ fontSize: "clamp(40px, 5vw, 56px)", fontWeight: 800, color: "white", fontFamily: "'DM Sans', sans-serif", letterSpacing: -2, lineHeight: 1 }}>100+</div>
               <div style={{ fontSize: 15, color: "rgba(255,255,255,.45)", fontFamily: "'DM Sans', sans-serif", marginTop: 6 }}>Active Coaches</div>
             </div>
-            <div style={{ padding: "6px 12px", borderRadius: 8, background: `${COLORS.emerald}18`, display: "flex", alignItems: "center", gap: 4 }}>
-              <TrendingUp size={12} color={COLORS.emerald} strokeWidth={2.5} />
-              <span style={{ fontSize: 12, fontWeight: 700, color: COLORS.emerald, fontFamily: "'DM Sans', sans-serif" }}>+24%</span>
-            </div>
-          </div>
-          {/* Mini bar chart */}
+<div style={{ padding: "8px", borderRadius: 8, background: `${COLORS.emerald}18`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+  <UserCheck size={16} color={COLORS.emerald} strokeWidth={2.5} />
+  </div>
+  </div>
+  {/* Mini bar chart */}
           <div style={{ display: "flex", alignItems: "flex-end", gap: 3, height: 48, marginTop: "auto" }}>
             {[28, 35, 32, 45, 42, 55, 52, 60, 58, 68, 72, 80, 78, 85, 90, 100].map((h, i) => (
               <div key={i} style={{
                 flex: 1, height: `${h}%`, borderRadius: 3,
-                background: i >= 14 ? COLORS.emerald : `rgba(255,255,255,.12)`,
-                animation: `growBar 1.2s ease ${i * 0.04}s both`,
+                background: `linear-gradient(to top, ${COLORS.emerald}, ${COLORS.emerald}cc)`,
+                animation: `barWave 2.5s ease-in-out ${i * 0.12}s infinite`,
+                transformOrigin: "bottom",
+                boxShadow: `0 0 8px ${COLORS.emerald}40`,
               }} />
             ))}
           </div>
@@ -115,12 +116,11 @@ function TrustStats() {
               <div style={{ fontSize: "clamp(40px, 5vw, 56px)", fontWeight: 800, color: "white", fontFamily: "'DM Sans', sans-serif", letterSpacing: -2, lineHeight: 1 }}>1,000+</div>
               <div style={{ fontSize: 15, color: "rgba(255,255,255,.45)", fontFamily: "'DM Sans', sans-serif", marginTop: 6 }}>Connected Members</div>
             </div>
-            <div style={{ padding: "6px 12px", borderRadius: 8, background: `${COLORS.emerald}18`, display: "flex", alignItems: "center", gap: 4 }}>
-              <TrendingUp size={12} color={COLORS.emerald} strokeWidth={2.5} />
-              <span style={{ fontSize: 12, fontWeight: 700, color: COLORS.emerald, fontFamily: "'DM Sans', sans-serif" }}>+38%</span>
-            </div>
-          </div>
-          {/* Rising line chart */}
+<div style={{ padding: "8px", borderRadius: 8, background: `${COLORS.emerald}18`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+  <Users size={16} color={COLORS.emerald} strokeWidth={2.5} />
+  </div>
+  </div>
+  {/* Rising line chart */}
           <div style={{ height: 48, marginTop: "auto", position: "relative" }}>
             <svg viewBox="0 0 200 48" style={{ width: "100%", height: "100%" }} preserveAspectRatio="none">
               <defs>
@@ -128,10 +128,18 @@ function TrustStats() {
                   <stop offset="0%" stopColor={COLORS.emerald} stopOpacity="0.2" />
                   <stop offset="100%" stopColor={COLORS.emerald} stopOpacity="0" />
                 </linearGradient>
+                <linearGradient id="lineGlow" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stopColor={COLORS.emerald} stopOpacity="0" />
+                  <stop offset="40%" stopColor={COLORS.emerald} stopOpacity="0" />
+                  <stop offset="50%" stopColor={COLORS.emerald} stopOpacity="0.6" />
+                  <stop offset="60%" stopColor={COLORS.emerald} stopOpacity="0" />
+                  <stop offset="100%" stopColor={COLORS.emerald} stopOpacity="0" />
+                </linearGradient>
               </defs>
               <path d="M0,44 C20,42 30,38 50,36 C70,34 80,30 100,25 C120,20 130,18 150,14 C170,10 180,6 200,4 L200,48 L0,48 Z" fill="url(#lineGrad)" />
               <path d="M0,44 C20,42 30,38 50,36 C70,34 80,30 100,25 C120,20 130,18 150,14 C170,10 180,6 200,4" fill="none" stroke={COLORS.emerald} strokeWidth="2" strokeLinecap="round" />
-              <circle cx="200" cy="4" r="3" fill={COLORS.emerald} />
+              <path d="M0,44 C20,42 30,38 50,36 C70,34 80,30 100,25 C120,20 130,18 150,14 C170,10 180,6 200,4" fill="none" stroke="url(#lineGlow)" strokeWidth="4" strokeLinecap="round" style={{ animation: "lineShimmer 3s ease-in-out infinite" }} />
+              <circle cx="200" cy="4" r="3" fill={COLORS.emerald} style={{ animation: "linePulse 2.5s ease-in-out infinite" }} />
             </svg>
           </div>
         </div>
@@ -143,12 +151,11 @@ function TrustStats() {
               <div style={{ fontSize: "clamp(40px, 5vw, 56px)", fontWeight: 800, color: "white", fontFamily: "'DM Sans', sans-serif", letterSpacing: -2, lineHeight: 1 }}>100k+</div>
               <div style={{ fontSize: 15, color: "rgba(255,255,255,.45)", fontFamily: "'DM Sans', sans-serif", marginTop: 6 }}>Total Engagements</div>
             </div>
-            <div style={{ padding: "6px 12px", borderRadius: 8, background: `${COLORS.emerald}18`, display: "flex", alignItems: "center", gap: 4 }}>
-              <Zap size={12} color={COLORS.emerald} strokeWidth={2.5} />
-              <span style={{ fontSize: 12, fontWeight: 700, color: COLORS.emerald, fontFamily: "'DM Sans', sans-serif" }}>Live</span>
-            </div>
-          </div>
-          {/* Activity dot grid */}
+<div style={{ padding: "8px", borderRadius: 8, background: `${COLORS.emerald}18`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+  <MessageSquare size={16} color={COLORS.emerald} strokeWidth={2.5} />
+  </div>
+  </div>
+  {/* Activity dot grid */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(16, 1fr)", gap: 3, marginTop: "auto" }}>
             {Array.from({ length: 48 }).map((_, i) => {
               const intensity = Math.random();
@@ -2745,6 +2752,9 @@ export default function MiltonSite() {
         body { background: #fafcfd; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
+            @keyframes barWave { 0%, 100% { transform: scaleY(1); opacity: 1; } 50% { transform: scaleY(0.94); opacity: 0.88; } }
+            @keyframes lineShimmer { 0% { stroke-dasharray: 0 300; stroke-dashoffset: 0; } 50% { stroke-dasharray: 60 300; stroke-dashoffset: -120; } 100% { stroke-dasharray: 0 300; stroke-dashoffset: -300; } }
+            @keyframes linePulse { 0%, 100% { opacity: 1; r: 3; } 50% { opacity: 0.7; r: 4; } }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         @keyframes growBar { 0% { width: 0%; } 100% { width: inherit; } }
         @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
@@ -2999,7 +3009,7 @@ export default function MiltonSite() {
         </div>
       </Section>
 
-      {/* ─── STEP 3: THE COACH PORTAL ─── */}
+      {/* ─── STEP 3: THE COACH PORTAL ─��─ */}
       <Section style={{ padding: "clamp(80px, 10vw, 140px) clamp(20px, 4vw, 48px)", background: "white" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", display: "flex", alignItems: "center", gap: "clamp(40px, 6vw, 80px)", flexWrap: "wrap" }}>
           <div style={{ flex: "1 1 440px", minWidth: 0 }}>
