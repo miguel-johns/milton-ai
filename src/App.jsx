@@ -965,8 +965,9 @@ function EcosystemSection() {
     { num: "01", icon: BarChart3, title: "Team Performance Scoring", desc: "Track protocol adherence, client outcomes, and session consistency per trainer — automatically. Coach your coaches with data, not guesswork.", visual: (
       <div style={{
         width: "100%", aspectRatio: "4/3", borderRadius: 24,
-        background: `linear-gradient(160deg, ${COLORS.mint}08, white 40%, ${COLORS.emerald}04)`,
-        border: `1px solid ${COLORS.emerald}12`,
+        background: "#ffffff",
+        boxShadow: "0 8px 32px rgba(8,69,94,.12), 0 2px 8px rgba(8,69,94,.06)",
+        border: "1px solid rgba(255,255,255,.8)",
         padding: "clamp(24px, 3vw, 36px)", display: "flex", flexDirection: "column",
       }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 16 }}>
@@ -1018,8 +1019,9 @@ function EcosystemSection() {
     { num: "02", icon: Eye, title: "Churn Risk Detection", desc: "Spot at-risk members weeks before they cancel. Milton monitors engagement patterns and builds recovery plans your trainers can act on immediately.", visual: (
       <div style={{
         width: "100%", aspectRatio: "4/3", borderRadius: 24,
-        background: `linear-gradient(160deg, ${COLORS.mint}08, white 40%, ${COLORS.emerald}04)`,
-        border: `1px solid ${COLORS.emerald}12`,
+        background: "#ffffff",
+        boxShadow: "0 8px 32px rgba(8,69,94,.12), 0 2px 8px rgba(8,69,94,.06)",
+        border: "1px solid rgba(255,255,255,.8)",
         padding: "clamp(24px, 3vw, 36px)", display: "flex", flexDirection: "column",
       }}>
         <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#9ab5c0", fontFamily: "'DM Sans', sans-serif" }}>Retention Alert</div>
@@ -1069,8 +1071,9 @@ function EcosystemSection() {
     { num: "03", icon: TrendingUp, title: "Revenue Intelligence", desc: "See exactly how nutrition programs, PT upsells, and challenges drive per-member lifetime value. Turn coaching into a measurable revenue line.", visual: (
       <div style={{
         width: "100%", aspectRatio: "4/3", borderRadius: 24,
-        background: `linear-gradient(160deg, ${COLORS.mint}08, white 40%, ${COLORS.emerald}04)`,
-        border: `1px solid ${COLORS.emerald}12`,
+        background: "#ffffff",
+        boxShadow: "0 8px 32px rgba(8,69,94,.12), 0 2px 8px rgba(8,69,94,.06)",
+        border: "1px solid rgba(255,255,255,.8)",
         padding: "clamp(24px, 3vw, 36px)", display: "flex", flexDirection: "column",
       }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 6 }}>
@@ -1137,8 +1140,9 @@ function EcosystemSection() {
     { num: "01", icon: ClipboardList, title: "Morning Coaching Queue", desc: "Every trainer opens Milton and immediately sees their priority-ranked client list — at-risk flags, milestone celebrations, reports ready to send. No more guessing who needs attention. Your team starts every day prepared.", visual: (
       <div style={{
         width: "100%", aspectRatio: "4/3", borderRadius: 24,
-        background: `linear-gradient(160deg, ${COLORS.mint}08, white 40%, ${COLORS.emerald}04)`,
-        border: `1px solid ${COLORS.emerald}12`,
+        background: "#ffffff",
+        boxShadow: "0 8px 32px rgba(8,69,94,.12), 0 2px 8px rgba(8,69,94,.06)",
+        border: "1px solid rgba(255,255,255,.8)",
         padding: "clamp(24px, 3vw, 36px)", display: "flex", flexDirection: "column",
       }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
@@ -1175,8 +1179,9 @@ function EcosystemSection() {
     { num: "02", icon: Send, title: "AI-Drafted Check-Ins", desc: "Milton drafts personalized messages for each trainer based on their clients' data and your coaching methodology. A member stopped logging? The check-in is already written. Your coaches review, edit, and send in seconds — 10x the outreach in half the time.", visual: (
       <div style={{
         width: "100%", aspectRatio: "4/3", borderRadius: 24,
-        background: `linear-gradient(160deg, ${COLORS.mint}08, white 40%, ${COLORS.emerald}04)`,
-        border: `1px solid ${COLORS.emerald}12`,
+        background: "#ffffff",
+        boxShadow: "0 8px 32px rgba(8,69,94,.12), 0 2px 8px rgba(8,69,94,.06)",
+        border: "1px solid rgba(255,255,255,.8)",
         padding: "clamp(24px, 3vw, 36px)", display: "flex", flexDirection: "column",
       }}>
         <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#9ab5c0", fontFamily: "'DM Sans', sans-serif", marginBottom: 4 }}>AI-Drafted Message</div>
@@ -1216,8 +1221,9 @@ function EcosystemSection() {
     { num: "03", icon: BarChart3, title: "Instant Progress Reports", desc: "Client reports that used to take your trainers 20 minutes now take 20 seconds. Milton auto-generates visual reports with trends, scores, and predictions — branded to your gym and ready to share. More professionalism, less admin.", visual: (
       <div style={{
         width: "100%", aspectRatio: "4/3", borderRadius: 24,
-        background: `linear-gradient(160deg, ${COLORS.mint}08, white 40%, ${COLORS.emerald}04)`,
-        border: `1px solid ${COLORS.emerald}12`,
+        background: "#ffffff",
+        boxShadow: "0 8px 32px rgba(8,69,94,.12), 0 2px 8px rgba(8,69,94,.06)",
+        border: "1px solid rgba(255,255,255,.8)",
         padding: "clamp(24px, 3vw, 36px)", display: "flex", flexDirection: "column",
       }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 16 }}>
@@ -1320,8 +1326,9 @@ function EcosystemSection() {
     { num: "02", icon: LineChart, title: "Transformation Tracking", desc: "Every member gets a real-time view of their progress — consistency scores, weight trends, and predicted goal dates. When members can see their transformation happening, they stay longer and refer more.", visual: (
       <div style={{
         width: "100%", aspectRatio: "4/3", borderRadius: 24,
-        background: `linear-gradient(160deg, ${COLORS.mint}08, white 40%, ${COLORS.emerald}04)`,
-        border: `1px solid ${COLORS.emerald}12`,
+        background: "#ffffff",
+        boxShadow: "0 8px 32px rgba(8,69,94,.12), 0 2px 8px rgba(8,69,94,.06)",
+        border: "1px solid rgba(255,255,255,.8)",
         padding: "clamp(24px, 3vw, 36px)", display: "flex", flexDirection: "column",
       }}>
         {/* Header */}
@@ -1436,8 +1443,9 @@ function EcosystemSection() {
     { num: "03", icon: MessageSquare, title: "Omni-Channel Support", desc: "Your members engage with their coach however they prefer — text message, the Milton app, push notifications to their wearable, email, or in-person. Milton meets them where they already are, so adoption is effortless and engagement stays high.", visual: (
       <div style={{
         width: "100%", aspectRatio: "4/3", borderRadius: 24,
-        background: `linear-gradient(160deg, ${COLORS.mint}08, white 40%, ${COLORS.emerald}04)`,
-        border: `1px solid ${COLORS.emerald}12`,
+        background: "#ffffff",
+        boxShadow: "0 8px 32px rgba(8,69,94,.12), 0 2px 8px rgba(8,69,94,.06)",
+        border: "1px solid rgba(255,255,255,.8)",
         padding: "clamp(24px, 3vw, 36px)", display: "flex", flexDirection: "column", alignItems: "center",
       }}>
         <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", color: "#9ab5c0", fontFamily: "'DM Sans', sans-serif", marginBottom: 6 }}>Engage Anywhere</div>
