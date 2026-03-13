@@ -1280,8 +1280,9 @@ function EcosystemSection() {
   const integrationsVisual = (
     <div style={{
       width: "100%", aspectRatio: "4/3", borderRadius: 24,
-      background: `linear-gradient(160deg, ${COLORS.mint}08, white 40%, ${COLORS.emerald}04)`,
-      border: `1px solid ${COLORS.emerald}12`,
+      background: "#ffffff",
+      boxShadow: "0 12px 40px rgba(8,69,94,.15), 0 4px 12px rgba(8,69,94,.08)",
+      border: "1px solid rgba(2,98,120,.08)",
       display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
       padding: "clamp(24px, 3vw, 40px)",
     }}>
@@ -1644,7 +1645,7 @@ const ARTICLES = [
   },
 ];
 
-/* ─── Insights Page ─��─ */
+/* ─── Insights Page �����─ */
 function InsightsPage({ onNavigate }) {
   return (
     <div style={{ paddingTop: 100 }}>
