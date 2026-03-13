@@ -766,7 +766,7 @@ function CoPilotSection() {
         return (
           <Section style={{
             padding: "clamp(80px, 10vw, 140px) clamp(20px, 4vw, 48px)",
-            background: `radial-gradient(ellipse at 30% 50%, ${COLORS.emerald}05, transparent 60%), #fafcfd`,
+            background: `linear-gradient(135deg, ${COLORS.mint}12 0%, ${COLORS.teal}10 50%, ${COLORS.emerald}08 100%)`,
           }}>
             <div style={{ maxWidth: 1280, margin: "0 auto", display: "flex", gap: "clamp(40px, 6vw, 80px)", flexWrap: "wrap", alignItems: "start" }}>
 
@@ -839,14 +839,8 @@ function CoPilotSection() {
                           transition: "all 0.5s cubic-bezier(.16,1,.3,1)",
                           paddingBottom: isOpen ? 24 : 0,
                         }}>
-                          <div style={{ 
-                            background: `linear-gradient(145deg, ${COLORS.teal}08, ${COLORS.mint}12)`,
-                            borderRadius: 24, padding: "clamp(12px, 2vw, 16px)", marginTop: 8,
-                            border: `1px solid ${COLORS.teal}10`,
-                          }}>
-                            <div style={{ ...lc, padding: "clamp(16px, 2.5vw, 24px)" }}>
-                              {item.visual}
-                            </div>
+                          <div style={{ ...lc, padding: "clamp(16px, 2.5vw, 24px)", marginTop: 8 }}>
+                            {item.visual}
                           </div>
                         </div>
                       </div>
@@ -856,12 +850,7 @@ function CoPilotSection() {
               </div>
 
               {/* Right: Active visual (desktop only) — offset down to align with accordion */}
-              <div className="accordion-visual-desktop" style={{ 
-                flex: "1 1 460px", minWidth: 0, position: "sticky", top: 100, marginTop: 80,
-                background: `linear-gradient(145deg, ${COLORS.teal}08, ${COLORS.mint}12)`,
-                borderRadius: 32, padding: "clamp(16px, 2vw, 24px)",
-                border: `1px solid ${COLORS.teal}10`,
-              }}>
+              <div className="accordion-visual-desktop" style={{ flex: "1 1 460px", minWidth: 0, position: "sticky", top: 100, marginTop: 80 }}>
                 {items.map((item, i) => (
                   <div key={i} style={{
                     display: openIdx === i ? "block" : "none",
@@ -2780,7 +2769,7 @@ export default function MiltonSite() {
       <section style={{
         minHeight: "100vh", display: "flex", alignItems: "center",
         padding: "140px 48px 80px",
-        background: `radial-gradient(ellipse at 80% 20%, ${COLORS.emerald}08, transparent 50%), radial-gradient(ellipse at 20% 80%, ${COLORS.teal}06, transparent 50%), #fafcfd`,
+        background: `linear-gradient(135deg, ${COLORS.teal}12 0%, ${COLORS.mint}15 50%, ${COLORS.emerald}10 100%)`,
         position: "relative", overflow: "hidden",
       }}>
         {/* Subtle grid */}
@@ -2835,12 +2824,7 @@ export default function MiltonSite() {
               </button>
             </div>
           </div>
-          <div style={{ 
-            flex: "1 1 440px", display: "flex", justifyContent: "center", animation: "fadeUp 1s ease 0.4s both",
-            background: `linear-gradient(145deg, ${COLORS.teal}08, ${COLORS.mint}12)`,
-            borderRadius: 32, padding: "clamp(20px, 3vw, 32px)",
-            border: `1px solid ${COLORS.teal}10`,
-          }}>
+<div style={{ flex: "1 1 440px", display: "flex", justifyContent: "center", animation: "fadeUp 1s ease 0.4s both" }}>
             <FloatingVisual variant={0} />
           </div>
         </div>
