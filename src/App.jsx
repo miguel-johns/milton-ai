@@ -262,7 +262,7 @@ function FloatingVisual({ variant = 0 }) {
   const configs = [
     // 0: Hero — floating chat bubbles
     () => (
-      <div style={{ width: "100%", maxWidth: 480, display: "flex", flexDirection: "column", gap: 14, margin: "0 auto" }}>
+      <div style={{ width: "100%", maxWidth: 480, display: "flex", flexDirection: "column", gap: 14 }}>
         {/* Milton greeting */}
         <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
           <div style={av}><img src={MILTON_LOGO} alt="" style={avImg} /></div>
@@ -768,7 +768,7 @@ function CoPilotSection() {
             padding: "clamp(80px, 10vw, 140px) clamp(20px, 4vw, 48px)",
             background: `linear-gradient(135deg, ${COLORS.mint}12 0%, ${COLORS.teal}10 50%, ${COLORS.emerald}08 100%)`,
           }}>
-            <div className="section-flex" style={{ maxWidth: 1280, margin: "0 auto", display: "flex", gap: "clamp(40px, 6vw, 80px)", flexWrap: "wrap", alignItems: "start" }}>
+            <div style={{ maxWidth: 1280, margin: "0 auto", display: "flex", gap: "clamp(40px, 6vw, 80px)", flexWrap: "wrap", alignItems: "start" }}>
 
               {/* Left: Header + Accordion */}
               <div style={{ flex: "1 1 440px", minWidth: 0 }}>
@@ -1802,7 +1802,7 @@ function AboutPage({ onNavigate }) {
       }}>
         <div style={{ position: "absolute", top: -200, right: -100, width: 600, height: 600, borderRadius: "50%", background: `radial-gradient(circle, ${COLORS.emerald}08, transparent 60%)`, pointerEvents: "none" }} />
         <div style={{ position: "absolute", bottom: -200, left: -100, width: 500, height: 500, borderRadius: "50%", background: `radial-gradient(circle, ${COLORS.teal}06, transparent 60%)`, pointerEvents: "none" }} />
-        <div className="section-flex" style={{ maxWidth: 1280, margin: "0 auto", display: "flex", alignItems: "center", gap: "clamp(40px, 6vw, 80px)", flexWrap: "wrap", position: "relative", zIndex: 1 }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", display: "flex", alignItems: "center", gap: "clamp(40px, 6vw, 80px)", flexWrap: "wrap", position: "relative", zIndex: 1 }}>
           {/* Text side */}
           <div style={{ flex: "1 1 420px", minWidth: 0 }}>
             <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase", color: COLORS.emerald, fontFamily: "'DM Sans', sans-serif" }}>Our Mission</span>
@@ -2764,33 +2764,14 @@ export default function MiltonSite() {
         body { background: #fafcfd; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
-        @keyframes barWave { 0%, 100% { transform: scaleY(1); opacity: 1; } 50% { transform: scaleY(0.94); opacity: 0.88; } }
-        @keyframes lineShimmer { 0% { stroke-dasharray: 0 300; stroke-dashoffset: 0; } 50% { stroke-dasharray: 60 300; stroke-dashoffset: -120; } 100% { stroke-dasharray: 0 300; stroke-dashoffset: -300; } }
-        @keyframes linePulse { 0%, 100% { opacity: 1; r: 3; } 50% { opacity: 0.7; r: 4; } }
+            @keyframes barWave { 0%, 100% { transform: scaleY(1); opacity: 1; } 50% { transform: scaleY(0.94); opacity: 0.88; } }
+            @keyframes lineShimmer { 0% { stroke-dasharray: 0 300; stroke-dashoffset: 0; } 50% { stroke-dasharray: 60 300; stroke-dashoffset: -120; } 100% { stroke-dasharray: 0 300; stroke-dashoffset: -300; } }
+            @keyframes linePulse { 0%, 100% { opacity: 1; r: 3; } 50% { opacity: 0.7; r: 4; } }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         @keyframes growBar { 0% { width: 0%; } 100% { width: inherit; } }
         @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
         @keyframes fadeUp { 0% { opacity: 0; transform: translateY(32px); } 100% { opacity: 1; transform: translateY(0); } }
         ::selection { background: ${COLORS.emerald}30; }
-        
-        /* Responsive adjustments for tablet/intermediate widths */
-        @media (max-width: 900px) {
-          .hero-flex { flex-direction: column !important; text-align: center !important; gap: 48px !important; align-items: center !important; justify-content: center !important; }
-          .hero-flex > div { flex: 1 1 100% !important; display: flex !important; flex-direction: column !important; align-items: center !important; width: 100% !important; margin: 0 auto !important; }
-          .hero-flex h1 { text-align: center !important; width: 100% !important; }
-          .hero-flex p { text-align: center !important; max-width: 100% !important; }
-          .hero-buttons { justify-content: center !important; width: 100% !important; align-items: center !important; }
-          .hero-buttons button { flex: 1 1 auto !important; min-width: 160px !important; }
-          .section-flex { flex-direction: column !important; align-items: center !important; }
-          .section-flex > div { flex: 1 1 100% !important; min-width: 100% !important; }
-        }
-        @media (max-width: 600px) {
-          .hero-flex { gap: 32px !important; padding: 0 16px !important; }
-          .hero-buttons { flex-direction: column !important; align-items: center !important; }
-          .hero-buttons button { width: 100% !important; max-width: 320px !important; }
-          .stats-grid { grid-template-columns: 1fr !important; }
-          .features-grid { grid-template-columns: 1fr !important; }
-        }
       `}</style>
 
       <Nav onNavigate={navigate} onDemo={() => setShowDemo(true)} />
@@ -2799,7 +2780,7 @@ export default function MiltonSite() {
       {/* ─── HERO ─── */}
       <section style={{
         minHeight: "100vh", display: "flex", alignItems: "center",
-        padding: "clamp(100px, 15vw, 140px) clamp(16px, 4vw, 48px) clamp(60px, 8vw, 80px)",
+        padding: "140px 48px 80px",
         background: `linear-gradient(135deg, ${COLORS.teal}12 0%, ${COLORS.mint}15 50%, ${COLORS.emerald}10 100%)`,
         position: "relative", overflow: "hidden",
       }}>
@@ -2809,8 +2790,8 @@ export default function MiltonSite() {
           backgroundImage: `linear-gradient(${COLORS.navy} 1px, transparent 1px), linear-gradient(90deg, ${COLORS.navy} 1px, transparent 1px)`,
           backgroundSize: "80px 80px",
         }} />
-        <div className="hero-flex" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 80, maxWidth: 1280, margin: "0 auto", width: "100%", position: "relative", flexWrap: "wrap" }}>
-          <div style={{ flex: "1 1 480px", minWidth: 280, width: "100%" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 80, maxWidth: 1280, margin: "0 auto", width: "100%", position: "relative", flexWrap: "wrap" }}>
+          <div style={{ flex: "1 1 480px", minWidth: 320 }}>
             <div style={{ animation: "fadeUp 0.8s ease both" }}>
               <div style={{
                 display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 18px",
@@ -2835,7 +2816,7 @@ export default function MiltonSite() {
             }}>
               Make every trainer in your gym perform like your best trainer. Milton turns coaching expertise into a scalable system.
             </p>
-            <div className="hero-buttons" style={{ display: "flex", gap: 16, marginTop: 40, animation: "fadeUp 0.8s ease 0.3s both", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", gap: 16, marginTop: 40, animation: "fadeUp 0.8s ease 0.3s both", flexWrap: "wrap" }}>
               <button onClick={() => setShowDemo(true)} style={{
                 padding: "16px 36px", borderRadius: 14, border: "none",
                 background: `linear-gradient(135deg, ${COLORS.navy}, ${COLORS.deepTeal})`,
@@ -2855,7 +2836,7 @@ export default function MiltonSite() {
               </button>
             </div>
           </div>
-<div style={{ flex: "1 1 440px", display: "flex", justifyContent: "center", alignItems: "center", animation: "fadeUp 1s ease 0.4s both", width: "100%", margin: "0 auto" }}>
+<div style={{ flex: "1 1 440px", display: "flex", justifyContent: "center", animation: "fadeUp 1s ease 0.4s both" }}>
             <FloatingVisual variant={0} />
           </div>
         </div>
@@ -2886,7 +2867,7 @@ export default function MiltonSite() {
 
       {/* ─── STEP 1: MAKE IT YOUR OWN ─── */}
       <Section style={{ padding: "clamp(80px, 10vw, 140px) clamp(20px, 4vw, 48px)", background: "white" }}>
-        <div className="section-flex" style={{ maxWidth: 1280, margin: "0 auto", display: "flex", alignItems: "center", gap: "clamp(40px, 6vw, 80px)", flexWrap: "wrap" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", display: "flex", alignItems: "center", gap: "clamp(40px, 6vw, 80px)", flexWrap: "wrap" }}>
           <div style={{ flex: "1 1 440px", minWidth: 0 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 24 }}>
               <div style={{
@@ -3042,7 +3023,7 @@ export default function MiltonSite() {
 
       {/* ─── STEP 3: THE COACH PORTAL ─��─ */}
       <Section style={{ padding: "clamp(80px, 10vw, 140px) clamp(20px, 4vw, 48px)", background: "white" }}>
-        <div className="section-flex" style={{ maxWidth: 1280, margin: "0 auto", display: "flex", alignItems: "center", gap: "clamp(40px, 6vw, 80px)", flexWrap: "wrap" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto", display: "flex", alignItems: "center", gap: "clamp(40px, 6vw, 80px)", flexWrap: "wrap" }}>
           <div style={{ flex: "1 1 440px", minWidth: 0 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 24 }}>
               <div style={{
