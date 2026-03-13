@@ -1513,16 +1513,17 @@ function EcosystemSection() {
     ) },
   ];
 
-const sections = [
-  { icon: Building2, label: "Owners & Directors", headline: "Full Visibility, From Anywhere", desc: "See trainer performance, member engagement, and revenue drivers across your entire operation — without needing to be on the floor.", items: ownersItems, idx: ownersIdx, setIdx: setOwnersIdx, bg: `linear-gradient(135deg, ${COLORS.teal}12 0%, ${COLORS.mint}15 50%, ${COLORS.emerald}10 100%)` },
-  { icon: Dumbbell, label: "Your Coaches & Trainers", headline: "Make Every Trainer Perform Like Your Best", desc: "Milton gives every coach on your floor an AI co-pilot — so they show up prepared, follow your methodology, and deliver consistent results across every client, every session.", items: coachesItems, idx: coachesIdx, setIdx: setCoachesIdx, bg: `linear-gradient(135deg, ${COLORS.mint}10 0%, ${COLORS.teal}12 50%, ${COLORS.emerald}08 100%)` },
-  { icon: Target, label: "Your Members", headline: "Give Every Member a VIP Experience", desc: "Milton connects each member's wearables, nutrition logs, and check-ins directly to their coach — creating a personalized experience that drives results, retention, and referrals across your entire membership.", items: membersItems, idx: membersIdx, setIdx: setMembersIdx, bg: `linear-gradient(135deg, ${COLORS.teal}12 0%, ${COLORS.mint}15 50%, ${COLORS.emerald}10 100%)` },
+const ecosystemBg = `linear-gradient(135deg, ${COLORS.teal}12 0%, ${COLORS.mint}15 50%, ${COLORS.emerald}10 100%)`;
+  const sections = [
+  { icon: Building2, label: "Owners & Directors", headline: "Full Visibility, From Anywhere", desc: "See trainer performance, member engagement, and revenue drivers across your entire operation — without needing to be on the floor.", items: ownersItems, idx: ownersIdx, setIdx: setOwnersIdx, bg: ecosystemBg },
+  { icon: Dumbbell, label: "Your Coaches & Trainers", headline: "Make Every Trainer Perform Like Your Best", desc: "Milton gives every coach on your floor an AI co-pilot — so they show up prepared, follow your methodology, and deliver consistent results across every client, every session.", items: coachesItems, idx: coachesIdx, setIdx: setCoachesIdx, bg: ecosystemBg },
+  { icon: Target, label: "Your Members", headline: "Give Every Member a VIP Experience", desc: "Milton connects each member's wearables, nutrition logs, and check-ins directly to their coach — creating a personalized experience that drives results, retention, and referrals across your entire membership.", items: membersItems, idx: membersIdx, setIdx: setMembersIdx, bg: ecosystemBg },
   ];
 
   return (
     <>
 {/* Header */}
-  <section style={{ padding: "clamp(100px, 12vw, 140px) clamp(20px, 4vw, 48px) 0", background: `linear-gradient(135deg, ${COLORS.teal}12 0%, ${COLORS.mint}15 50%, ${COLORS.emerald}10 100%)` }}>
+  <section style={{ padding: "clamp(100px, 12vw, 140px) clamp(20px, 4vw, 48px) 0", background: ecosystemBg }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", textAlign: "center" }}>
           <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase", color: COLORS.teal, fontFamily: "'DM Sans', sans-serif" }}>The Ecosystem</span>
           <h2 style={{ fontSize: "clamp(36px, 5vw, 56px)", fontWeight: 800, lineHeight: 1.1, fontFamily: "'DM Sans', sans-serif", color: COLORS.navy, marginTop: 20, letterSpacing: -2 }}>
