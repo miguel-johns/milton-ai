@@ -91,12 +91,12 @@ function TrustStats() {
               <div style={{ fontSize: "clamp(40px, 5vw, 56px)", fontWeight: 800, color: "white", fontFamily: "'DM Sans', sans-serif", letterSpacing: -2, lineHeight: 1 }}>100+</div>
               <div style={{ fontSize: 15, color: "rgba(255,255,255,.45)", fontFamily: "'DM Sans', sans-serif", marginTop: 6 }}>Active Coaches</div>
             </div>
-            <div style={{ padding: "6px 12px", borderRadius: 8, background: `${COLORS.emerald}18`, display: "flex", alignItems: "center", gap: 4 }}>
-              <TrendingUp size={12} color={COLORS.emerald} strokeWidth={2.5} />
-              <span style={{ fontSize: 12, fontWeight: 700, color: COLORS.emerald, fontFamily: "'DM Sans', sans-serif" }}>+24%</span>
-            </div>
-          </div>
-          {/* Mini bar chart */}
+<div style={{ padding: "6px 12px", borderRadius: 8, background: `${COLORS.emerald}18`, display: "flex", alignItems: "center", gap: 4 }}>
+  <UserCheck size={12} color={COLORS.emerald} strokeWidth={2.5} />
+  <span style={{ fontSize: 12, fontWeight: 700, color: COLORS.emerald, fontFamily: "'DM Sans', sans-serif" }}>+24%</span>
+  </div>
+  </div>
+  {/* Mini bar chart */}
           <div style={{ display: "flex", alignItems: "flex-end", gap: 3, height: 48, marginTop: "auto" }}>
             {[28, 35, 32, 45, 42, 55, 52, 60, 58, 68, 72, 80, 78, 85, 90, 100].map((h, i) => (
               <div key={i} style={{
@@ -117,12 +117,12 @@ function TrustStats() {
               <div style={{ fontSize: "clamp(40px, 5vw, 56px)", fontWeight: 800, color: "white", fontFamily: "'DM Sans', sans-serif", letterSpacing: -2, lineHeight: 1 }}>1,000+</div>
               <div style={{ fontSize: 15, color: "rgba(255,255,255,.45)", fontFamily: "'DM Sans', sans-serif", marginTop: 6 }}>Connected Members</div>
             </div>
-            <div style={{ padding: "6px 12px", borderRadius: 8, background: `${COLORS.emerald}18`, display: "flex", alignItems: "center", gap: 4 }}>
-              <TrendingUp size={12} color={COLORS.emerald} strokeWidth={2.5} />
-              <span style={{ fontSize: 12, fontWeight: 700, color: COLORS.emerald, fontFamily: "'DM Sans', sans-serif" }}>+38%</span>
-            </div>
-          </div>
-          {/* Rising line chart */}
+<div style={{ padding: "6px 12px", borderRadius: 8, background: `${COLORS.emerald}18`, display: "flex", alignItems: "center", gap: 4 }}>
+  <Users size={12} color={COLORS.emerald} strokeWidth={2.5} />
+  <span style={{ fontSize: 12, fontWeight: 700, color: COLORS.emerald, fontFamily: "'DM Sans', sans-serif" }}>+38%</span>
+  </div>
+  </div>
+  {/* Rising line chart */}
           <div style={{ height: 48, marginTop: "auto", position: "relative" }}>
             <svg viewBox="0 0 200 48" style={{ width: "100%", height: "100%" }} preserveAspectRatio="none">
               <defs>
@@ -153,12 +153,12 @@ function TrustStats() {
               <div style={{ fontSize: "clamp(40px, 5vw, 56px)", fontWeight: 800, color: "white", fontFamily: "'DM Sans', sans-serif", letterSpacing: -2, lineHeight: 1 }}>100k+</div>
               <div style={{ fontSize: 15, color: "rgba(255,255,255,.45)", fontFamily: "'DM Sans', sans-serif", marginTop: 6 }}>Total Engagements</div>
             </div>
-            <div style={{ padding: "6px 12px", borderRadius: 8, background: `${COLORS.emerald}18`, display: "flex", alignItems: "center", gap: 4 }}>
-              <Zap size={12} color={COLORS.emerald} strokeWidth={2.5} />
-              <span style={{ fontSize: 12, fontWeight: 700, color: COLORS.emerald, fontFamily: "'DM Sans', sans-serif" }}>Live</span>
-            </div>
-          </div>
-          {/* Activity dot grid */}
+<div style={{ padding: "6px 12px", borderRadius: 8, background: `${COLORS.emerald}18`, display: "flex", alignItems: "center", gap: 4 }}>
+  <MessageSquare size={12} color={COLORS.emerald} strokeWidth={2.5} />
+  <span style={{ fontSize: 12, fontWeight: 700, color: COLORS.emerald, fontFamily: "'DM Sans', sans-serif" }}>Live</span>
+  </div>
+  </div>
+  {/* Activity dot grid */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(16, 1fr)", gap: 3, marginTop: "auto" }}>
             {Array.from({ length: 48 }).map((_, i) => {
               const intensity = Math.random();
