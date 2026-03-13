@@ -839,8 +839,14 @@ function CoPilotSection() {
                           transition: "all 0.5s cubic-bezier(.16,1,.3,1)",
                           paddingBottom: isOpen ? 24 : 0,
                         }}>
-                          <div style={{ ...lc, padding: "clamp(16px, 2.5vw, 24px)", marginTop: 8 }}>
-                            {item.visual}
+                          <div style={{ 
+                            background: `linear-gradient(145deg, ${COLORS.teal}08, ${COLORS.mint}12)`,
+                            borderRadius: 24, padding: "clamp(12px, 2vw, 16px)", marginTop: 8,
+                            border: `1px solid ${COLORS.teal}10`,
+                          }}>
+                            <div style={{ ...lc, padding: "clamp(16px, 2.5vw, 24px)" }}>
+                              {item.visual}
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -850,7 +856,12 @@ function CoPilotSection() {
               </div>
 
               {/* Right: Active visual (desktop only) — offset down to align with accordion */}
-              <div className="accordion-visual-desktop" style={{ flex: "1 1 460px", minWidth: 0, position: "sticky", top: 100, marginTop: 80 }}>
+              <div className="accordion-visual-desktop" style={{ 
+                flex: "1 1 460px", minWidth: 0, position: "sticky", top: 100, marginTop: 80,
+                background: `linear-gradient(145deg, ${COLORS.teal}08, ${COLORS.mint}12)`,
+                borderRadius: 32, padding: "clamp(16px, 2vw, 24px)",
+                border: `1px solid ${COLORS.teal}10`,
+              }}>
                 {items.map((item, i) => (
                   <div key={i} style={{
                     display: openIdx === i ? "block" : "none",
@@ -2824,7 +2835,12 @@ export default function MiltonSite() {
               </button>
             </div>
           </div>
-          <div style={{ flex: "1 1 440px", display: "flex", justifyContent: "center", animation: "fadeUp 1s ease 0.4s both" }}>
+          <div style={{ 
+            flex: "1 1 440px", display: "flex", justifyContent: "center", animation: "fadeUp 1s ease 0.4s both",
+            background: `linear-gradient(145deg, ${COLORS.teal}08, ${COLORS.mint}12)`,
+            borderRadius: 32, padding: "clamp(20px, 3vw, 32px)",
+            border: `1px solid ${COLORS.teal}10`,
+          }}>
             <FloatingVisual variant={0} />
           </div>
         </div>
