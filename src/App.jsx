@@ -909,7 +909,7 @@ function EcoAccordion({ items, openIdx, setOpenIdx, color = COLORS.teal }) {
                 {/* Inline expand (mobile) */}
                 <div className="accordion-visual-inline" style={{ maxHeight: isOpen ? 600 : 0, overflow: "hidden", opacity: isOpen ? 1 : 0, transition: "all 0.5s cubic-bezier(.16,1,.3,1)", paddingBottom: isOpen ? 24 : 0 }}>
                   {item.visual ? (
-                    <div style={{ width: "100%", borderRadius: 20, overflow: "hidden" }}>{item.visual}</div>
+                    <div style={{ width: "100%", borderRadius: 20, overflow: "hidden", boxShadow: "0 12px 40px rgba(8,69,94,.15), 0 4px 12px rgba(8,69,94,.08)" }}>{item.visual}</div>
                   ) : (
                   <div style={{
                     width: "100%", aspectRatio: "16/10", borderRadius: 20,
@@ -931,9 +931,9 @@ function EcoAccordion({ items, openIdx, setOpenIdx, color = COLORS.teal }) {
       {/* Right: Active image (desktop) */}
       <div className="accordion-visual-desktop" style={{ flex: "1 1 480px", minWidth: 0, position: "sticky", top: 100 }}>
         {items.map((item, i) => (
-          <div key={i} style={{ display: openIdx === i ? "block" : "none", animation: openIdx === i ? "fadeUp 0.5s ease both" : "none" }}>
+          <div key={i} style={{ display: openIdx === i ? "block" : "none", animation: openIdx === i ? "fadeUp 0.5s ease both" }}>
             {item.visual ? (
-              <div style={{ width: "100%", borderRadius: 24, overflow: "hidden" }}>{item.visual}</div>
+              <div style={{ width: "100%", borderRadius: 24, overflow: "hidden", boxShadow: "0 12px 40px rgba(8,69,94,.15), 0 4px 12px rgba(8,69,94,.08)" }}>{item.visual}</div>
             ) : (
             <div style={{
               width: "100%", aspectRatio: "4/3", borderRadius: 24,
