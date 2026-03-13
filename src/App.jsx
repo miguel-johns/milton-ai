@@ -101,7 +101,7 @@ function TrustStats() {
             {[28, 35, 32, 45, 42, 55, 52, 60, 58, 68, 72, 80, 78, 85, 90, 100].map((h, i) => (
               <div key={i} style={{
                 flex: 1, height: `${h}%`, borderRadius: 3,
-                background: i >= 14 ? COLORS.emerald : `rgba(255,255,255,.12)`,
+                background: COLORS.emerald,
                 animation: `growBar 1.2s ease ${i * 0.04}s both`,
               }} />
             ))}
