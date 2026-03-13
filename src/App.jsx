@@ -101,8 +101,10 @@ function TrustStats() {
             {[28, 35, 32, 45, 42, 55, 52, 60, 58, 68, 72, 80, 78, 85, 90, 100].map((h, i) => (
               <div key={i} style={{
                 flex: 1, height: `${h}%`, borderRadius: 3,
-                background: COLORS.emerald,
-                animation: `growBar 1.2s ease ${i * 0.04}s both`,
+                background: `linear-gradient(to top, ${COLORS.emerald}, ${COLORS.emerald}cc)`,
+                animation: `barWave 2.5s ease-in-out ${i * 0.12}s infinite`,
+                transformOrigin: "bottom",
+                boxShadow: `0 0 8px ${COLORS.emerald}40`,
               }} />
             ))}
           </div>
@@ -2745,6 +2747,7 @@ export default function MiltonSite() {
         body { background: #fafcfd; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
+            @keyframes barWave { 0%, 100% { transform: scaleY(1); opacity: 1; } 50% { transform: scaleY(0.7); opacity: 0.6; } }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         @keyframes growBar { 0% { width: 0%; } 100% { width: inherit; } }
         @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
@@ -2999,7 +3002,7 @@ export default function MiltonSite() {
         </div>
       </Section>
 
-      {/* ─── STEP 3: THE COACH PORTAL ─── */}
+      {/* ─── STEP 3: THE COACH PORTAL ─��─ */}
       <Section style={{ padding: "clamp(80px, 10vw, 140px) clamp(20px, 4vw, 48px)", background: "white" }}>
         <div style={{ maxWidth: 1280, margin: "0 auto", display: "flex", alignItems: "center", gap: "clamp(40px, 6vw, 80px)", flexWrap: "wrap" }}>
           <div style={{ flex: "1 1 440px", minWidth: 0 }}>
