@@ -91,9 +91,8 @@ function TrustStats() {
               <div style={{ fontSize: "clamp(40px, 5vw, 56px)", fontWeight: 800, color: "white", fontFamily: "'DM Sans', sans-serif", letterSpacing: -2, lineHeight: 1 }}>100+</div>
               <div style={{ fontSize: 15, color: "rgba(255,255,255,.45)", fontFamily: "'DM Sans', sans-serif", marginTop: 6 }}>Active Coaches</div>
             </div>
-<div style={{ padding: "6px 12px", borderRadius: 8, background: `${COLORS.emerald}18`, display: "flex", alignItems: "center", gap: 4 }}>
-  <UserCheck size={12} color={COLORS.emerald} strokeWidth={2.5} />
-  <span style={{ fontSize: 12, fontWeight: 700, color: COLORS.emerald, fontFamily: "'DM Sans', sans-serif" }}>+24%</span>
+<div style={{ padding: "8px", borderRadius: 8, background: `${COLORS.emerald}18`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+  <UserCheck size={16} color={COLORS.emerald} strokeWidth={2.5} />
   </div>
   </div>
   {/* Mini bar chart */}
@@ -117,9 +116,8 @@ function TrustStats() {
               <div style={{ fontSize: "clamp(40px, 5vw, 56px)", fontWeight: 800, color: "white", fontFamily: "'DM Sans', sans-serif", letterSpacing: -2, lineHeight: 1 }}>1,000+</div>
               <div style={{ fontSize: 15, color: "rgba(255,255,255,.45)", fontFamily: "'DM Sans', sans-serif", marginTop: 6 }}>Connected Members</div>
             </div>
-<div style={{ padding: "6px 12px", borderRadius: 8, background: `${COLORS.emerald}18`, display: "flex", alignItems: "center", gap: 4 }}>
-  <Users size={12} color={COLORS.emerald} strokeWidth={2.5} />
-  <span style={{ fontSize: 12, fontWeight: 700, color: COLORS.emerald, fontFamily: "'DM Sans', sans-serif" }}>+38%</span>
+<div style={{ padding: "8px", borderRadius: 8, background: `${COLORS.emerald}18`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+  <Users size={16} color={COLORS.emerald} strokeWidth={2.5} />
   </div>
   </div>
   {/* Rising line chart */}
@@ -153,9 +151,8 @@ function TrustStats() {
               <div style={{ fontSize: "clamp(40px, 5vw, 56px)", fontWeight: 800, color: "white", fontFamily: "'DM Sans', sans-serif", letterSpacing: -2, lineHeight: 1 }}>100k+</div>
               <div style={{ fontSize: 15, color: "rgba(255,255,255,.45)", fontFamily: "'DM Sans', sans-serif", marginTop: 6 }}>Total Engagements</div>
             </div>
-<div style={{ padding: "6px 12px", borderRadius: 8, background: `${COLORS.emerald}18`, display: "flex", alignItems: "center", gap: 4 }}>
-  <MessageSquare size={12} color={COLORS.emerald} strokeWidth={2.5} />
-  <span style={{ fontSize: 12, fontWeight: 700, color: COLORS.emerald, fontFamily: "'DM Sans', sans-serif" }}>Live</span>
+<div style={{ padding: "8px", borderRadius: 8, background: `${COLORS.emerald}18`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+  <MessageSquare size={16} color={COLORS.emerald} strokeWidth={2.5} />
   </div>
   </div>
   {/* Activity dot grid */}
