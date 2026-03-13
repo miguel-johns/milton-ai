@@ -2774,13 +2774,20 @@ export default function MiltonSite() {
         ::selection { background: ${COLORS.emerald}30; }
         
         /* Responsive adjustments for tablet/intermediate widths */
-        @media (max-width: 768px) {
-          .hero-flex { flex-direction: column !important; text-align: center !important; }
-          .hero-flex > div { flex: 1 1 100% !important; }
+        @media (max-width: 900px) {
+          .hero-flex { flex-direction: column !important; text-align: center !important; gap: 48px !important; }
+          .hero-flex > div { flex: 1 1 100% !important; display: flex !important; flex-direction: column !important; align-items: center !important; }
+          .hero-flex h1 { text-align: center !important; }
+          .hero-flex p { text-align: center !important; max-width: 100% !important; }
+          .hero-buttons { justify-content: center !important; width: 100% !important; }
+          .hero-buttons button { flex: 1 1 auto !important; min-width: 160px !important; }
           .section-flex { flex-direction: column !important; }
           .section-flex > div { flex: 1 1 100% !important; min-width: 100% !important; }
         }
         @media (max-width: 600px) {
+          .hero-flex { gap: 32px !important; }
+          .hero-buttons { flex-direction: column !important; }
+          .hero-buttons button { width: 100% !important; max-width: 320px !important; }
           .stats-grid { grid-template-columns: 1fr !important; }
           .features-grid { grid-template-columns: 1fr !important; }
         }
@@ -2828,7 +2835,7 @@ export default function MiltonSite() {
             }}>
               Make every trainer in your gym perform like your best trainer. Milton turns coaching expertise into a scalable system.
             </p>
-            <div style={{ display: "flex", gap: 16, marginTop: 40, animation: "fadeUp 0.8s ease 0.3s both", flexWrap: "wrap" }}>
+            <div className="hero-buttons" style={{ display: "flex", gap: 16, marginTop: 40, animation: "fadeUp 0.8s ease 0.3s both", flexWrap: "wrap" }}>
               <button onClick={() => setShowDemo(true)} style={{
                 padding: "16px 36px", borderRadius: 14, border: "none",
                 background: `linear-gradient(135deg, ${COLORS.navy}, ${COLORS.deepTeal})`,
@@ -2848,7 +2855,7 @@ export default function MiltonSite() {
               </button>
             </div>
           </div>
-<div style={{ flex: "1 1 440px", display: "flex", justifyContent: "center", animation: "fadeUp 1s ease 0.4s both" }}>
+<div style={{ flex: "1 1 440px", display: "flex", justifyContent: "center", animation: "fadeUp 1s ease 0.4s both", width: "100%", maxWidth: 500 }}>
             <FloatingVisual variant={0} />
           </div>
         </div>
