@@ -2747,7 +2747,7 @@ export default function MiltonSite() {
         body { background: #fafcfd; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.7); } }
-            @keyframes barWave { 0%, 100% { transform: scaleY(1); opacity: 1; } 50% { transform: scaleY(0.7); opacity: 0.6; } }
+            @keyframes barWave { 0%, 100% { transform: scaleY(1); opacity: 1; } 50% { transform: scaleY(0.94); opacity: 0.88; } }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         @keyframes growBar { 0% { width: 0%; } 100% { width: inherit; } }
         @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-12px); } }
