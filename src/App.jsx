@@ -2365,12 +2365,13 @@ function DemoModal({ open, onClose }) {
         style={{
           position: "relative", width: "100%",
           maxWidth: step === "form" ? 480 : 700,
-          maxHeight: "90vh",
+          maxHeight: step === "form" ? "90vh" : "95vh",
+          height: step === "calendly" ? "min(95vh, 850px)" : "auto",
           borderRadius: 28, background: "white",
           boxShadow: "0 32px 80px rgba(8,69,94,.2)",
           overflow: "hidden",
           display: "flex", flexDirection: "column",
-          transition: "max-width 0.4s cubic-bezier(.16,1,.3,1)",
+          transition: "max-width 0.4s cubic-bezier(.16,1,.3,1), max-height 0.4s cubic-bezier(.16,1,.3,1)",
         }}
       >
         {/* Header */}
@@ -2439,7 +2440,7 @@ function DemoModal({ open, onClose }) {
             </button>
           </div>
         ) : (
-          <div style={{ flex: 1, overflowY: "auto", padding: "16px 28px 28px" }}>
+          <div style={{ flex: 1, overflowY: "auto", padding: "16px 28px 28px", minHeight: 0 }}>
             <div style={{
               padding: "12px 16px", borderRadius: 12, background: `${COLORS.emerald}08`,
               border: `1px solid ${COLORS.emerald}18`, marginBottom: 16,
@@ -2452,7 +2453,7 @@ function DemoModal({ open, onClose }) {
             </div>
             <div
               ref={calRef}
-              style={{ minHeight: 600, borderRadius: 16, overflow: "hidden" }}
+              style={{ height: 700, borderRadius: 16, overflow: "hidden" }}
             />
           </div>
         )}
