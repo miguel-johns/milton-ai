@@ -262,7 +262,7 @@ function FloatingVisual({ variant = 0 }) {
   const configs = [
     // 0: Hero — floating chat bubbles
     () => (
-      <div style={{ width: "100%", maxWidth: 480, display: "flex", flexDirection: "column", gap: 14 }}>
+      <div style={{ width: "100%", maxWidth: 480, display: "flex", flexDirection: "column", gap: 14, margin: "0 auto" }}>
         {/* Milton greeting */}
         <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
           <div style={av}><img src={MILTON_LOGO} alt="" style={avImg} /></div>
@@ -2775,18 +2775,18 @@ export default function MiltonSite() {
         
         /* Responsive adjustments for tablet/intermediate widths */
         @media (max-width: 900px) {
-          .hero-flex { flex-direction: column !important; text-align: center !important; gap: 48px !important; }
-          .hero-flex > div { flex: 1 1 100% !important; display: flex !important; flex-direction: column !important; align-items: center !important; }
-          .hero-flex h1 { text-align: center !important; }
+          .hero-flex { flex-direction: column !important; text-align: center !important; gap: 48px !important; align-items: center !important; justify-content: center !important; }
+          .hero-flex > div { flex: 1 1 100% !important; display: flex !important; flex-direction: column !important; align-items: center !important; width: 100% !important; margin: 0 auto !important; }
+          .hero-flex h1 { text-align: center !important; width: 100% !important; }
           .hero-flex p { text-align: center !important; max-width: 100% !important; }
-          .hero-buttons { justify-content: center !important; width: 100% !important; }
+          .hero-buttons { justify-content: center !important; width: 100% !important; align-items: center !important; }
           .hero-buttons button { flex: 1 1 auto !important; min-width: 160px !important; }
-          .section-flex { flex-direction: column !important; }
+          .section-flex { flex-direction: column !important; align-items: center !important; }
           .section-flex > div { flex: 1 1 100% !important; min-width: 100% !important; }
         }
         @media (max-width: 600px) {
-          .hero-flex { gap: 32px !important; }
-          .hero-buttons { flex-direction: column !important; }
+          .hero-flex { gap: 32px !important; padding: 0 16px !important; }
+          .hero-buttons { flex-direction: column !important; align-items: center !important; }
           .hero-buttons button { width: 100% !important; max-width: 320px !important; }
           .stats-grid { grid-template-columns: 1fr !important; }
           .features-grid { grid-template-columns: 1fr !important; }
@@ -2809,8 +2809,8 @@ export default function MiltonSite() {
           backgroundImage: `linear-gradient(${COLORS.navy} 1px, transparent 1px), linear-gradient(90deg, ${COLORS.navy} 1px, transparent 1px)`,
           backgroundSize: "80px 80px",
         }} />
-        <div className="hero-flex" style={{ display: "flex", alignItems: "center", gap: 80, maxWidth: 1280, margin: "0 auto", width: "100%", position: "relative", flexWrap: "wrap" }}>
-          <div style={{ flex: "1 1 480px", minWidth: 280 }}>
+        <div className="hero-flex" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 80, maxWidth: 1280, margin: "0 auto", width: "100%", position: "relative", flexWrap: "wrap" }}>
+          <div style={{ flex: "1 1 480px", minWidth: 280, width: "100%" }}>
             <div style={{ animation: "fadeUp 0.8s ease both" }}>
               <div style={{
                 display: "inline-flex", alignItems: "center", gap: 8, padding: "8px 18px",
@@ -2855,7 +2855,7 @@ export default function MiltonSite() {
               </button>
             </div>
           </div>
-<div style={{ flex: "1 1 440px", display: "flex", justifyContent: "center", animation: "fadeUp 1s ease 0.4s both", width: "100%", maxWidth: 500 }}>
+<div style={{ flex: "1 1 440px", display: "flex", justifyContent: "center", alignItems: "center", animation: "fadeUp 1s ease 0.4s both", width: "100%", margin: "0 auto" }}>
             <FloatingVisual variant={0} />
           </div>
         </div>
