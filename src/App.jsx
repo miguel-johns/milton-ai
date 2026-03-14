@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { createClient } from "@supabase/supabase-js";
 import {
   Eye, Zap, Clock, Building2, Dumbbell, Target,
   Star, User, ArrowUpRight, Cpu, Check, Loader,
@@ -9,6 +10,12 @@ import {
   DollarSign, Wifi, Heart, Settings, Mail, UserCheck,
   Menu, X, Watch, Circle, Droplets, Apple, Scale
 } from "lucide-react";
+
+// Initialize Supabase client
+const supabase = createClient(
+  import.meta.env.VITE_SUPABASE_URL || import.meta.env.NEXT_PUBLIC_SUPABASE_URL,
+  import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+);
 
 const COLORS = {
   mint: "#9af199",
@@ -2337,13 +2344,36 @@ function SolutionPage({ solution, onNavigate, onDemo }) {
 function DemoModal({ open, onClose }) {
   const [step, setStep] = useState("form");
   const [form, setForm] = useState({ name: "", email: "", phone: "", company: "" });
+  const [submitting, setSubmitting] = useState(false);
   const calRef = useRef(null);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
-    if (!open) { setStep("form"); setForm({ name: "", email: "", phone: "", company: "" }); }
+    if (!open) { setStep("form"); setForm({ name: "", email: "", phone: "", company: "" }); setSubmitting(false); }
     return () => { document.body.style.overflow = ""; };
   }, [open]);
+
+  // Save lead to Supabase and proceed to Calendly
+  const handleSubmit = async () => {
+    if (!valid || submitting) return;
+    setSubmitting(true);
+    try {
+      const { error } = await supabase.from("leads").insert({
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        company: form.company,
+      });
+      if (error) {
+        console.error("Failed to save lead:", error);
+      }
+    } catch (err) {
+      console.error("Error submitting lead:", err);
+    }
+    // Always proceed to Calendly even if save fails
+    setStep("calendly");
+    setSubmitting(false);
+  };
 
   useEffect(() => {
     if (step === "calendly" && calRef.current) {
@@ -2444,18 +2474,27 @@ function DemoModal({ open, onClose }) {
               ))}
             </div>
             <button
-              onClick={() => { if (valid) setStep("calendly"); }}
+              onClick={handleSubmit}
+              disabled={!valid || submitting}
               style={{
                 width: "100%", marginTop: 24, padding: "16px", borderRadius: 14, border: "none",
-                background: valid ? `linear-gradient(135deg, ${COLORS.navy}, ${COLORS.deepTeal})` : "rgba(2,98,120,.08)",
-                color: valid ? "white" : "#9ab5c0",
-                fontSize: 16, fontWeight: 700, cursor: valid ? "pointer" : "default",
+                background: valid && !submitting ? `linear-gradient(135deg, ${COLORS.navy}, ${COLORS.deepTeal})` : "rgba(2,98,120,.08)",
+                color: valid && !submitting ? "white" : "#9ab5c0",
+                fontSize: 16, fontWeight: 700, cursor: valid && !submitting ? "pointer" : "default",
                 fontFamily: "'DM Sans', sans-serif",
-                boxShadow: valid ? `0 8px 32px rgba(8,69,94,.2)` : "none",
+                boxShadow: valid && !submitting ? `0 8px 32px rgba(8,69,94,.2)` : "none",
                 transition: "all 0.3s",
+                display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
               }}
             >
-              Continue to Booking
+              {submitting ? (
+                <>
+                  <Loader size={18} style={{ animation: "spin 1s linear infinite" }} />
+                  Saving...
+                </>
+              ) : (
+                "Continue to Booking"
+              )}
             </button>
           </div>
         ) : (
