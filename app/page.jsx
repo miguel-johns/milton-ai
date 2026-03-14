@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect, useRef } from "react";
 import {
   Eye, Zap, Clock, Building2, Dumbbell, Target,
@@ -2444,7 +2446,18 @@ function DemoModal({ open, onClose }) {
               ))}
             </div>
             <button
-              onClick={() => { if (valid) setStep("calendly"); }}
+              onClick={() => {
+                if (valid) {
+                  // Send form data to API (non-blocking)
+                  fetch('/api/demo-form', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(form)
+                  }).catch(console.error);
+                  // Proceed to Calendly immediately
+                  setStep("calendly");
+                }
+              }}
               style={{
                 width: "100%", marginTop: 24, padding: "16px", borderRadius: 14, border: "none",
                 background: valid ? `linear-gradient(135deg, ${COLORS.navy}, ${COLORS.deepTeal})` : "rgba(2,98,120,.08)",
