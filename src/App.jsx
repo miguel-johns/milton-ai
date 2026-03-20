@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { createClient } from "@supabase/supabase-js";
 import About from "./About.jsx";
+import Technology from "./Technology.jsx";
 import {
   Eye, Zap, Clock, Building2, Dumbbell, Target,
   Star, User, ArrowUpRight, Cpu, Check, Loader,
@@ -474,6 +475,7 @@ function Nav({ onNavigate, onDemo }) {
   const handleNav = (item) => {
     if (item === "Insights") onNavigate("insights");
     if (item === "About") onNavigate("about");
+    if (item === "Technology") onNavigate("technology");
   };
 
   return (
@@ -497,7 +499,7 @@ function Nav({ onNavigate, onDemo }) {
         {/* Desktop nav */}
         {!isMobile && (
           <div style={{ display: "flex", alignItems: "center", gap: 36 }}>
-            {["About", "Insights"].map((item) => (
+            {["Technology", "About", "Insights"].map((item) => (
               item === "The Platform" ? (
                 <div key={item} style={{ position: "relative" }}
                   onMouseEnter={() => { clearTimeout(solTimeout.current); setSolOpen(true); }}
@@ -592,7 +594,7 @@ function Nav({ onNavigate, onDemo }) {
           pointerEvents: menuOpen ? "auto" : "none",
           transition: "opacity 0.35s cubic-bezier(.16,1,.3,1)",
         }}>
-          {["About", "Insights"].map((item, i) => (
+          {["Technology", "About", "Insights"].map((item, i) => (
             item === "The Platform" ? (
               <div key={item} style={{ textAlign: "center" }}>
                 <a href="#"
@@ -3373,6 +3375,7 @@ export default function MiltonSite() {
       {page === "privacy" && <PrivacyPolicyPage onNavigate={navigate} />}
       {page === "terms" && <TermsOfUsePage onNavigate={navigate} />}
       {page === "about" && <About onNavigate={navigate} />}
+      {page === "technology" && <Technology onNavigate={navigate} />}
 
       {/* ─── FOOTER ─── */}
       <footer style={{
