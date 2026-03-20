@@ -2846,7 +2846,7 @@ export default function MiltonSite() {
               fontFamily: "'DM Sans', sans-serif", color: COLORS.navy,
               animation: "fadeUp 0.8s ease 0.1s both", letterSpacing: -2,
             }}>
-              The first AI Co-Pilot<br />for Your <span style={{ color: COLORS.teal }}>Personal Training</span>
+              The First AI Co-Pilot<br />for Your <span style={{ color: COLORS.teal }}>Personal Training</span>
             </h1>
             <p style={{
               fontSize: 19, lineHeight: 1.7, color: "#5a7a88", maxWidth: 480,
