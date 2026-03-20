@@ -461,7 +461,7 @@ function PartTwoHeader() {
   );
 }
 
-/* Design Principles Section */
+/* Design Principles Section with Images */
 function DesignPrinciplesSection() {
   const principles = [
     {
@@ -469,18 +469,24 @@ function DesignPrinciplesSection() {
       title: "Beautiful by Design",
       description: "Milton doesn't look like enterprise software. It looks like something you want to open. Clean, considered, and calm — because the people using it are already managing a lot.",
       highlight: "We treat aesthetics as a functional requirement.",
+      image: "/images/beautiful-design.jpg",
+      reverse: false,
     },
     {
       icon: MousePointer,
       title: "Radically Simple",
       description: "Every feature had to earn its place. If it required a tutorial, we redesigned it. If it added friction, we cut it. The goal was always a product so intuitive anyone could use it.",
       highlight: "Simplicity at this level is harder than complexity.",
+      image: "/images/radically-simple.jpg",
+      reverse: true,
     },
     {
       icon: MessageSquare,
       title: "Natural Language First",
       description: "Milton is among the first platforms in fitness to make natural language the primary interface — not a chatbot bolted on, but the actual way you operate the software.",
       highlight: "A new paradigm for coaching software.",
+      image: "/images/natural-language.jpg",
+      reverse: false,
     },
   ];
 
@@ -489,14 +495,11 @@ function DesignPrinciplesSection() {
       padding: "48px 24px 80px",
       background: COLORS.backgroundAlt,
     }}>
-      <div style={{ maxWidth: 880, margin: "0 auto" }}>
+      <div style={{ maxWidth: 1080, margin: "0 auto" }}>
         <div style={{
           display: "flex",
           flexDirection: "column",
-          gap: 1,
-          background: COLORS.border,
-          borderRadius: 12,
-          overflow: "hidden",
+          gap: 64,
         }}>
           {principles.map((principle, i) => (
             <PrincipleCard key={i} {...principle} />
@@ -507,64 +510,87 @@ function DesignPrinciplesSection() {
   );
 }
 
-function PrincipleCard({ icon: Icon, title, description, highlight }) {
+function PrincipleCard({ icon: Icon, title, description, highlight, image, reverse }) {
   const [ref, visible] = useInView(0.1);
   
   return (
     <div
       ref={ref}
       style={{
-        display: "flex",
-        gap: 24,
-        alignItems: "flex-start",
-        background: COLORS.background,
-        padding: 32,
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+        gap: 48,
+        alignItems: "center",
         opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(16px)",
-        transition: "opacity 0.5s ease-out, transform 0.5s ease-out",
+        transform: visible ? "translateY(0)" : "translateY(24px)",
+        transition: "opacity 0.6s ease-out, transform 0.6s ease-out",
       }}
     >
-      <div style={{
-        width: 44,
-        height: 44,
-        borderRadius: 10,
-        background: COLORS.backgroundAlt,
-        border: `1px solid ${COLORS.border}`,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexShrink: 0,
-      }}>
-        <Icon size={20} color={COLORS.text} strokeWidth={1.5} />
-      </div>
-      
-      <div>
+      <div style={{ order: reverse ? 2 : 1 }}>
+        <div style={{
+          width: 44,
+          height: 44,
+          borderRadius: 10,
+          background: COLORS.background,
+          border: `1px solid ${COLORS.border}`,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          marginBottom: 20,
+        }}>
+          <Icon size={20} color={COLORS.text} strokeWidth={1.5} />
+        </div>
+        
         <h3 style={{
-          fontSize: 17,
+          fontSize: 24,
           fontWeight: 600,
           color: COLORS.text,
-          marginBottom: 8,
+          marginBottom: 12,
+          letterSpacing: -0.3,
         }}>{title}</h3>
         
         <p style={{
-          fontSize: 14,
+          fontSize: 15,
           lineHeight: 1.7,
           color: COLORS.textMuted,
-          marginBottom: 12,
+          marginBottom: 16,
         }}>{description}</p>
         
         <p style={{
-          fontSize: 13,
+          fontSize: 14,
           fontWeight: 500,
           color: COLORS.primary,
         }}>{highlight}</p>
+      </div>
+      
+      <div style={{ order: reverse ? 1 : 2 }}>
+        <div style={{
+          borderRadius: 12,
+          overflow: "hidden",
+          border: `1px solid ${COLORS.border}`,
+          boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
+        }}>
+          <img 
+            src={image} 
+            alt={title}
+            style={{
+              width: "100%",
+              height: "auto",
+              display: "block",
+              aspectRatio: "4/3",
+              objectFit: "cover",
+            }}
+          />
+        </div>
       </div>
     </div>
   );
 }
 
-/* Omni Section */
+/* Omni Section with Hero Image */
 function OmniSection() {
+  const [ref, visible] = useInView(0.1);
+  
   const omnis = [
     {
       icon: Mail,
@@ -594,6 +620,33 @@ function OmniSection() {
       background: COLORS.background,
     }}>
       <div style={{ maxWidth: 1120, margin: "0 auto" }}>
+        {/* Hero Image */}
+        <div 
+          ref={ref}
+          style={{
+            marginBottom: 64,
+            borderRadius: 16,
+            overflow: "hidden",
+            border: `1px solid ${COLORS.border}`,
+            boxShadow: "0 8px 32px rgba(0,0,0,0.08)",
+            opacity: visible ? 1 : 0,
+            transform: visible ? "translateY(0)" : "translateY(24px)",
+            transition: "opacity 0.6s ease-out, transform 0.6s ease-out",
+          }}
+        >
+          <img 
+            src="/images/omni-everything.jpg" 
+            alt="Omni-channel devices"
+            style={{
+              width: "100%",
+              height: "auto",
+              display: "block",
+              aspectRatio: "21/9",
+              objectFit: "cover",
+            }}
+          />
+        </div>
+        
         <div style={{ textAlign: "center", marginBottom: 48 }}>
           <h2 style={{
             fontSize: "clamp(28px, 4vw, 40px)",
@@ -614,7 +667,7 @@ function OmniSection() {
           gap: 16,
         }}>
           {omnis.map((omni, i) => (
-            <OmniCard key={i} {...omni} />
+            <OmniCard key={i} {...omni} index={i} />
           ))}
         </div>
       </div>
@@ -622,7 +675,7 @@ function OmniSection() {
   );
 }
 
-function OmniCard({ icon: Icon, title, description }) {
+function OmniCard({ icon: Icon, title, description, index }) {
   const [ref, visible] = useInView(0.12);
   
   return (
@@ -635,7 +688,7 @@ function OmniCard({ icon: Icon, title, description }) {
         border: `1px solid ${COLORS.border}`,
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(20px)",
-        transition: "opacity 0.5s ease-out, transform 0.5s ease-out",
+        transition: `opacity 0.5s ease-out ${index * 0.1}s, transform 0.5s ease-out ${index * 0.1}s`,
       }}
     >
       <div style={{
@@ -668,20 +721,48 @@ function OmniCard({ icon: Icon, title, description }) {
   );
 }
 
-/* User-First Section */
+/* User-First Section with Image */
 function UserFirstSection() {
+  const [ref, visible] = useInView(0.1);
+  
   return (
     <Section style={{
       padding: "80px 24px",
       background: COLORS.backgroundAlt,
     }}>
-      <div style={{ maxWidth: 960, margin: "0 auto" }}>
+      <div style={{ maxWidth: 1080, margin: "0 auto" }}>
         <div style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
           gap: 48,
           alignItems: "center",
         }}>
+          {/* Image */}
+          <div 
+            ref={ref}
+            style={{
+              borderRadius: 12,
+              overflow: "hidden",
+              border: `1px solid ${COLORS.border}`,
+              boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
+              opacity: visible ? 1 : 0,
+              transform: visible ? "translateY(0)" : "translateY(24px)",
+              transition: "opacity 0.6s ease-out, transform 0.6s ease-out",
+            }}
+          >
+            <img 
+              src="/images/user-first.jpg" 
+              alt="People using Milton"
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "block",
+                aspectRatio: "4/3",
+                objectFit: "cover",
+              }}
+            />
+          </div>
+          
           <div>
             <span style={{
               fontSize: 11,
@@ -722,18 +803,12 @@ function UserFirstSection() {
             }}>
               The interface adapts. The intelligence adapts. The communication adapts.
             </p>
-          </div>
-          
-          <div style={{
-            background: COLORS.background,
-            borderRadius: 10,
-            padding: 32,
-            border: `1px solid ${COLORS.border}`,
-          }}>
+            
             <div style={{
               display: "flex",
               flexDirection: "column",
-              gap: 16,
+              gap: 12,
+              marginTop: 24,
             }}>
               {[
                 { icon: UserCheck, text: "Adapts to user role and context" },
@@ -744,21 +819,9 @@ function UserFirstSection() {
                 <div key={i} style={{
                   display: "flex",
                   alignItems: "center",
-                  gap: 12,
+                  gap: 10,
                 }}>
-                  <div style={{
-                    width: 36,
-                    height: 36,
-                    borderRadius: 8,
-                    background: COLORS.backgroundAlt,
-                    border: `1px solid ${COLORS.border}`,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
-                  }}>
-                    <item.icon size={16} color={COLORS.text} strokeWidth={1.5} />
-                  </div>
+                  <CheckCircle2 size={16} color={COLORS.primary} strokeWidth={2} />
                   <span style={{
                     fontSize: 14,
                     fontWeight: 500,
@@ -774,72 +837,108 @@ function UserFirstSection() {
   );
 }
 
-/* Co-Design Section */
+/* Co-Design Section with Image */
 function CoDesignSection() {
+  const [ref, visible] = useInView(0.1);
+  
   return (
     <Section style={{
       padding: "80px 24px",
       background: COLORS.background,
     }}>
-      <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
+      <div style={{ maxWidth: 1080, margin: "0 auto" }}>
         <div style={{
-          width: 48,
-          height: 48,
-          borderRadius: 10,
-          background: COLORS.backgroundAlt,
-          border: `1px solid ${COLORS.border}`,
-          display: "flex",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+          gap: 48,
           alignItems: "center",
-          justifyContent: "center",
-          margin: "0 auto 20px",
         }}>
-          <Lightbulb size={22} color={COLORS.text} strokeWidth={1.5} />
-        </div>
-        
-        <h2 style={{
-          fontSize: "clamp(24px, 3vw, 32px)",
-          fontWeight: 600,
-          color: COLORS.text,
-          letterSpacing: -0.3,
-        }}>Crafted Through Co-Design</h2>
-        
-        <p style={{
-          fontSize: 15,
-          color: COLORS.textMuted,
-          marginTop: 20,
-          lineHeight: 1.8,
-        }}>
-          We didn't build Milton in a lab and ship it to gyms. We built it with gyms. 
-          With coaches who told us what broke their trust in software. With members who showed us 
-          where they dropped off. With owners who described what kept them up at night.
-        </p>
-        
-        <p style={{
-          fontSize: 14,
-          color: COLORS.textMuted,
-          marginTop: 16,
-          lineHeight: 1.7,
-        }}>
-          Every detail — the way a check-in reads, the moment a notification fires, the color of a progress ring — 
-          was iterated in the real world, with real people, over real time.
-        </p>
-        
-        <div style={{
-          background: COLORS.backgroundAlt,
-          border: `1px solid ${COLORS.border}`,
-          borderRadius: 10,
-          padding: "24px 32px",
-          marginTop: 32,
-          display: "inline-block",
-        }}>
-          <p style={{
-            fontSize: 15,
-            fontWeight: 500,
-            color: COLORS.text,
-            fontStyle: "italic",
-          }}>
-            "That's not a process. That's a philosophy."
-          </p>
+          <div>
+            <div style={{
+              width: 44,
+              height: 44,
+              borderRadius: 10,
+              background: COLORS.backgroundAlt,
+              border: `1px solid ${COLORS.border}`,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginBottom: 20,
+            }}>
+              <Lightbulb size={20} color={COLORS.text} strokeWidth={1.5} />
+            </div>
+            
+            <h2 style={{
+              fontSize: "clamp(24px, 3vw, 32px)",
+              fontWeight: 600,
+              color: COLORS.text,
+              letterSpacing: -0.3,
+            }}>Crafted Through Co-Design</h2>
+            
+            <p style={{
+              fontSize: 15,
+              color: COLORS.textMuted,
+              marginTop: 20,
+              lineHeight: 1.8,
+            }}>
+              We didn't build Milton in a lab and ship it to gyms. We built it with gyms. 
+              With coaches who told us what broke their trust in software. With members who showed us 
+              where they dropped off. With owners who described what kept them up at night.
+            </p>
+            
+            <p style={{
+              fontSize: 14,
+              color: COLORS.textMuted,
+              marginTop: 16,
+              lineHeight: 1.7,
+            }}>
+              Every detail — the way a check-in reads, the moment a notification fires, the color of a progress ring — 
+              was iterated in the real world, with real people, over real time.
+            </p>
+            
+            <div style={{
+              background: COLORS.backgroundAlt,
+              border: `1px solid ${COLORS.border}`,
+              borderRadius: 10,
+              padding: "20px 24px",
+              marginTop: 24,
+            }}>
+              <p style={{
+                fontSize: 15,
+                fontWeight: 500,
+                color: COLORS.text,
+                fontStyle: "italic",
+              }}>
+                "That's not a process. That's a philosophy."
+              </p>
+            </div>
+          </div>
+          
+          {/* Image */}
+          <div 
+            ref={ref}
+            style={{
+              borderRadius: 12,
+              overflow: "hidden",
+              border: `1px solid ${COLORS.border}`,
+              boxShadow: "0 4px 24px rgba(0,0,0,0.06)",
+              opacity: visible ? 1 : 0,
+              transform: visible ? "translateY(0)" : "translateY(24px)",
+              transition: "opacity 0.6s ease-out, transform 0.6s ease-out",
+            }}
+          >
+            <img 
+              src="/images/co-design.jpg" 
+              alt="Team collaboration"
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "block",
+                aspectRatio: "4/3",
+                objectFit: "cover",
+              }}
+            />
+          </div>
         </div>
       </div>
     </Section>
