@@ -515,7 +515,7 @@ function Nav({ onNavigate, onDemo }) {
                   </a>
                   {/* Dropdown */}
                   <div style={{
-                    position: "absolute", top: "calc(100% + 12px)", left: "50%", transform: "translateX(-50%)",
+                    position: "absolute", top: "calc(100% + 12px)", left: "50%",
                     width: 320, borderRadius: 20, padding: 8,
                     background: "rgba(255,255,255,.95)",
                     backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
@@ -2846,7 +2846,7 @@ export default function MiltonSite() {
               fontFamily: "'DM Sans', sans-serif", color: COLORS.navy,
               animation: "fadeUp 0.8s ease 0.1s both", letterSpacing: -2,
             }}>
-              The AI Co-Pilot<br />for Your <span style={{ color: COLORS.teal }}>Trainers</span>
+              The first AI Co-Pilot<br />for Your <span style={{ color: COLORS.teal }}>Personal Training</span>
             </h1>
             <p style={{
               fontSize: 19, lineHeight: 1.7, color: "#5a7a88", maxWidth: 480,
