@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { createClient } from "@supabase/supabase-js";
+import About from "./About.jsx";
 import {
   Eye, Zap, Clock, Building2, Dumbbell, Target,
   Star, User, ArrowUpRight, Cpu, Check, Loader,
@@ -472,7 +473,7 @@ function Nav({ onNavigate, onDemo }) {
 
   const handleNav = (item) => {
     if (item === "Insights") onNavigate("insights");
-    
+    if (item === "About") onNavigate("about");
   };
 
   return (
@@ -496,7 +497,7 @@ function Nav({ onNavigate, onDemo }) {
         {/* Desktop nav */}
         {!isMobile && (
           <div style={{ display: "flex", alignItems: "center", gap: 36 }}>
-            {["Insights"].map((item) => (
+            {["About", "Insights"].map((item) => (
               item === "The Platform" ? (
                 <div key={item} style={{ position: "relative" }}
                   onMouseEnter={() => { clearTimeout(solTimeout.current); setSolOpen(true); }}
@@ -591,7 +592,7 @@ function Nav({ onNavigate, onDemo }) {
           pointerEvents: menuOpen ? "auto" : "none",
           transition: "opacity 0.35s cubic-bezier(.16,1,.3,1)",
         }}>
-          {["Insights"].map((item, i) => (
+          {["About", "Insights"].map((item, i) => (
             item === "The Platform" ? (
               <div key={item} style={{ textAlign: "center" }}>
                 <a href="#"
@@ -3371,6 +3372,7 @@ export default function MiltonSite() {
       {page.startsWith("article-") && <ArticlePage article={ARTICLES[parseInt(page.split("-")[1])]} onNavigate={navigate} onDemo={() => setShowDemo(true)} />}
       {page === "privacy" && <PrivacyPolicyPage onNavigate={navigate} />}
       {page === "terms" && <TermsOfUsePage onNavigate={navigate} />}
+      {page === "about" && <About onNavigate={navigate} />}
 
       {/* ─── FOOTER ─── */}
       <footer style={{
