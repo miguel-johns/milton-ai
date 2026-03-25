@@ -562,15 +562,68 @@ export default function MiltonSite() {
               background: "white", borderRadius: 20, overflow: "hidden",
               boxShadow: "0 4px 24px rgba(8,69,94,.06)", border: `1px solid ${COLORS.teal}10`,
             }}>
+              {/* Illustrated Execution Dashboard */}
               <div style={{
-                aspectRatio: "4/3", minHeight: 280,
-                background: `linear-gradient(135deg, ${COLORS.teal}06, ${COLORS.mint}03)`,
-                display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16,
+                minHeight: 320, padding: 24,
+                background: `linear-gradient(135deg, ${COLORS.teal}04, ${COLORS.mint}02)`,
                 borderRight: `1px solid ${COLORS.teal}08`,
+                display: "flex", flexDirection: "column",
               }}>
-                <ClipboardList size={48} color={COLORS.teal} strokeWidth={1} style={{ opacity: 0.3 }} />
-                <span style={{ fontSize: 13, color: COLORS.teal, opacity: 0.5, fontWeight: 500 }}>[Execution Report Screenshot]</span>
+                {/* Header */}
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: COLORS.navy, fontFamily: "'DM Sans', sans-serif" }}>Execution Scores</div>
+                  <div style={{ fontSize: 11, color: COLORS.teal, fontFamily: "'DM Sans', sans-serif" }}>This Week</div>
+                </div>
+                
+                {/* Trainer Execution Rows */}
+                <div style={{ display: "flex", flexDirection: "column", gap: 12, flex: 1 }}>
+                  {[
+                    { name: "Aisha W.", score: 96, follow: 98, program: 94, checkin: 96, trend: "up" },
+                    { name: "Marcus C.", score: 94, follow: 92, program: 96, checkin: 94, trend: "up" },
+                    { name: "Jake T.", score: 72, follow: 41, program: 88, checkin: 87, trend: "down" },
+                    { name: "Priya S.", score: 91, follow: 96, program: 88, checkin: 89, trend: "up" },
+                  ].map((trainer, i) => (
+                    <div key={i} style={{
+                      display: "flex", alignItems: "center", gap: 12,
+                      padding: "12px 14px", borderRadius: 12,
+                      background: trainer.trend === "down" ? "rgba(196,92,92,.06)" : "white",
+                      border: `1px solid ${trainer.trend === "down" ? "rgba(196,92,92,.15)" : COLORS.teal + "10"}`,
+                    }}>
+                      <div style={{
+                        width: 32, height: 32, borderRadius: 8,
+                        background: trainer.trend === "down" ? "rgba(196,92,92,.1)" : COLORS.emerald,
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                      }}>
+                        <span style={{ fontSize: 10, fontWeight: 600, color: trainer.trend === "down" ? "#c45c5c" : "white" }}>
+                          {trainer.name.split(" ")[0][0]}{trainer.name.split(" ")[1][0]}
+                        </span>
+                      </div>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ fontSize: 13, fontWeight: 600, color: COLORS.navy, fontFamily: "'DM Sans', sans-serif" }}>{trainer.name}</div>
+                        <div style={{ display: "flex", gap: 8, marginTop: 4 }}>
+                          <span style={{ fontSize: 10, color: trainer.follow < 60 ? "#c45c5c" : "#7a9ba8", fontFamily: "'DM Sans', sans-serif" }}>Follow-up {trainer.follow}%</span>
+                          <span style={{ fontSize: 10, color: "#7a9ba8", fontFamily: "'DM Sans', sans-serif" }}>Prog {trainer.program}%</span>
+                        </div>
+                      </div>
+                      <div style={{
+                        fontSize: 20, fontWeight: 700, fontFamily: "'DM Sans', sans-serif",
+                        color: trainer.trend === "down" ? "#c45c5c" : COLORS.navy,
+                      }}>{trainer.score}</div>
+                    </div>
+                  ))}
+                </div>
+                
+                {/* Alert callout */}
+                <div style={{
+                  marginTop: 16, padding: "10px 14px", borderRadius: 10,
+                  background: "rgba(196,92,92,.08)", border: "1px solid rgba(196,92,92,.15)",
+                  display: "flex", alignItems: "center", gap: 10,
+                }}>
+                  <div style={{ width: 8, height: 8, borderRadius: 4, background: "#c45c5c" }} />
+                  <span style={{ fontSize: 12, color: "#8a4a4a", fontFamily: "'DM Sans', sans-serif" }}>Jake fell behind 3 days ago</span>
+                </div>
               </div>
+              
               <div style={{ padding: "clamp(32px, 4vw, 48px)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
                 <h3 style={{ fontSize: "clamp(22px, 2.5vw, 28px)", fontWeight: 700, color: COLORS.navy, marginBottom: 16, fontFamily: "'DM Sans', sans-serif" }}>
                   Execution
