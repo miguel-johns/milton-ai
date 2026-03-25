@@ -351,17 +351,68 @@ export default function MiltonSite() {
               </button>
             </div>
           </div>
-          {/* Hero Visual Placeholder */}
-          <div style={{ flex: "1 1 400px", display: "flex", justifyContent: "center", animation: "fadeUp 1s ease 0.4s both" }}>
-            <div style={{
-              width: "100%", maxWidth: 480, aspectRatio: "4/3", borderRadius: 24,
-              background: `linear-gradient(145deg, ${COLORS.navy}08, ${COLORS.teal}06, ${COLORS.emerald}04)`,
-              border: `2px dashed ${COLORS.teal}30`,
-              display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12,
-            }}>
-              <LayoutDashboard size={48} color={COLORS.teal} strokeWidth={1} style={{ opacity: 0.4 }} />
-              <span style={{ fontSize: 14, fontWeight: 600, color: COLORS.teal, opacity: 0.5 }}>Hero Visual</span>
-              <span style={{ fontSize: 12, color: "#9ab5c0" }}>960 x 720</span>
+          {/* Hero Visual - Platform Screenshots */}
+          <div style={{ flex: "1 1 480px", display: "flex", justifyContent: "center", animation: "fadeUp 1s ease 0.4s both", position: "relative" }}>
+            <div style={{ position: "relative", width: "100%", maxWidth: 600, height: 480 }}>
+              
+              {/* Desktop Director Dashboard - Background */}
+              <div style={{
+                position: "absolute", top: 0, left: 0, width: "85%",
+                borderRadius: 16, overflow: "hidden",
+                boxShadow: "0 24px 64px rgba(8,69,94,.2), 0 8px 24px rgba(8,69,94,.1)",
+                border: "1px solid rgba(255,255,255,.8)",
+                background: "white",
+              }}>
+                <img 
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screen%20Shot%202026-03-25%20at%206.16.55%20PM-epnWfWT3qtqCkFTW2yI2qyQ0J28eoK.png"
+                  alt="Milton Director Dashboard - Team Performance view showing weekly gross, attendance rate, and trainer roster"
+                  style={{ width: "100%", height: "auto", display: "block" }}
+                />
+                {/* Label */}
+                <div style={{
+                  position: "absolute", bottom: 12, left: 12,
+                  padding: "6px 12px", borderRadius: 8,
+                  background: "rgba(8,69,94,.85)", backdropFilter: "blur(8px)",
+                }}>
+                  <span style={{ fontSize: 11, fontWeight: 600, color: "white", fontFamily: "'DM Sans', sans-serif" }}>For Directors</span>
+                </div>
+              </div>
+              
+              {/* Mobile Coach App - Foreground */}
+              <div style={{
+                position: "absolute", bottom: 0, right: 0, width: 180,
+                borderRadius: 24, overflow: "hidden",
+                boxShadow: "0 32px 64px rgba(8,69,94,.25), 0 12px 32px rgba(8,69,94,.15)",
+                border: "4px solid white",
+                background: "white",
+              }}>
+                <img 
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_9943.PNG-mk0fT8GT4fuwqsNFfLcBIiaJviPORQ.png"
+                  alt="Milton Coach Mobile App - AI assistant showing client coaching queue"
+                  style={{ width: "100%", height: "auto", display: "block" }}
+                />
+                {/* Label */}
+                <div style={{
+                  position: "absolute", bottom: 12, left: "50%", transform: "translateX(-50%)",
+                  padding: "6px 12px", borderRadius: 8,
+                  background: `linear-gradient(135deg, ${COLORS.teal}, ${COLORS.emerald})`,
+                }}>
+                  <span style={{ fontSize: 10, fontWeight: 600, color: "white", fontFamily: "'DM Sans', sans-serif" }}>For Coaches</span>
+                </div>
+              </div>
+              
+              {/* Decorative element - floating stat */}
+              <div style={{
+                position: "absolute", top: "50%", right: 160, transform: "translateY(-50%)",
+                padding: "12px 16px", borderRadius: 12,
+                background: "white", boxShadow: "0 8px 24px rgba(8,69,94,.12)",
+                border: `1px solid ${COLORS.emerald}20`,
+                animation: "fadeUp 1s ease 0.8s both",
+              }}>
+                <div style={{ fontSize: 10, fontWeight: 600, color: COLORS.teal, textTransform: "uppercase", letterSpacing: 1, marginBottom: 4, fontFamily: "'DM Sans', sans-serif" }}>Attendance</div>
+                <div style={{ fontSize: 24, fontWeight: 800, color: COLORS.navy, fontFamily: "'DM Sans', sans-serif" }}>83%</div>
+                <div style={{ fontSize: 11, fontWeight: 600, color: COLORS.emerald, fontFamily: "'DM Sans', sans-serif" }}>+12%</div>
+              </div>
             </div>
           </div>
         </div>
