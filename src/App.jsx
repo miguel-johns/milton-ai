@@ -664,14 +664,58 @@ export default function MiltonSite() {
               background: "white", borderRadius: 20, overflow: "hidden",
               boxShadow: "0 4px 24px rgba(8,69,94,.06)", border: `1px solid ${COLORS.teal}10`,
             }} className="md-span-6">
+              {/* Illustrated Retention Dashboard */}
               <div style={{
-                aspectRatio: "16/10",
-                background: `linear-gradient(135deg, ${COLORS.teal}06, ${COLORS.mint}03)`,
-                display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12,
+                padding: 20,
+                background: `linear-gradient(135deg, ${COLORS.teal}04, ${COLORS.mint}02)`,
               }}>
-                <Users size={40} color={COLORS.teal} strokeWidth={1} style={{ opacity: 0.3 }} />
-                <span style={{ fontSize: 12, color: COLORS.teal, opacity: 0.5, fontWeight: 500 }}>[Retention Report Screenshot]</span>
+                {/* Header */}
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
+                  <div style={{ fontSize: 12, fontWeight: 600, color: COLORS.navy, fontFamily: "'DM Sans', sans-serif" }}>+/- Clients</div>
+                  <div style={{ fontSize: 10, color: COLORS.teal, fontFamily: "'DM Sans', sans-serif" }}>This Month</div>
+                </div>
+                
+                {/* Main Stats Row */}
+                <div style={{ display: "flex", gap: 16, marginBottom: 16 }}>
+                  <div style={{ flex: 1, padding: 14, borderRadius: 12, background: "white", border: `1px solid ${COLORS.teal}10` }}>
+                    <div style={{ fontSize: 9, fontWeight: 600, color: COLORS.emerald, textTransform: "uppercase", letterSpacing: 1, marginBottom: 6 }}>New</div>
+                    <div style={{ fontSize: 28, fontWeight: 800, color: COLORS.emerald, fontFamily: "'DM Sans', sans-serif" }}>+15</div>
+                  </div>
+                  <div style={{ flex: 1, padding: 14, borderRadius: 12, background: "white", border: `1px solid ${COLORS.teal}10` }}>
+                    <div style={{ fontSize: 9, fontWeight: 600, color: "#c45c5c", textTransform: "uppercase", letterSpacing: 1, marginBottom: 6 }}>Lost</div>
+                    <div style={{ fontSize: 28, fontWeight: 800, color: "#c45c5c", fontFamily: "'DM Sans', sans-serif" }}>-7</div>
+                  </div>
+                </div>
+                
+                {/* Net + Total */}
+                <div style={{ padding: 14, borderRadius: 12, background: "white", border: `1px solid ${COLORS.teal}10`, marginBottom: 16 }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                    <div>
+                      <div style={{ fontSize: 9, fontWeight: 600, color: COLORS.teal, textTransform: "uppercase", letterSpacing: 1, marginBottom: 4 }}>Net This Month</div>
+                      <div style={{ fontSize: 20, fontWeight: 700, color: COLORS.emerald, fontFamily: "'DM Sans', sans-serif" }}>+8</div>
+                    </div>
+                    <div style={{ textAlign: "right" }}>
+                      <div style={{ fontSize: 9, fontWeight: 600, color: COLORS.teal, textTransform: "uppercase", letterSpacing: 1, marginBottom: 4 }}>Total Active</div>
+                      <div style={{ fontSize: 20, fontWeight: 700, color: COLORS.navy, fontFamily: "'DM Sans', sans-serif" }}>88</div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Mini bar chart */}
+                <div style={{ display: "flex", alignItems: "flex-end", gap: 6, height: 48 }}>
+                  {[62, 58, 65, 70, 78, 82, 88].map((val, i) => (
+                    <div key={i} style={{
+                      flex: 1, height: `${(val / 88) * 100}%`, borderRadius: 4,
+                      background: i === 6 ? COLORS.emerald : `${COLORS.teal}30`,
+                    }} />
+                  ))}
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6 }}>
+                  <span style={{ fontSize: 9, color: "#9ab5c0" }}>Sep</span>
+                  <span style={{ fontSize: 9, color: COLORS.teal, fontWeight: 600 }}>Mar</span>
+                </div>
               </div>
+              
               <div style={{ padding: "clamp(24px, 3vw, 32px)" }}>
                 <h3 style={{ fontSize: "clamp(18px, 2vw, 22px)", fontWeight: 700, color: COLORS.navy, marginBottom: 12, fontFamily: "'DM Sans', sans-serif" }}>
                   Retention &amp; Growth
