@@ -550,14 +550,87 @@ export default function MiltonSite() {
             </div>
           </div>
 
+          {/* Platform Dashboard Visual */}
+          <div style={{
+            marginTop: "clamp(48px, 6vw, 64px)",
+            borderRadius: 24,
+            background: `linear-gradient(145deg, ${COLORS.navy}, ${COLORS.deepTeal})`,
+            padding: "clamp(32px, 4vw, 48px)",
+            position: "relative",
+            overflow: "hidden",
+          }}>
+            {/* Subtle grid pattern */}
+            <div style={{
+              position: "absolute", inset: 0, opacity: 0.04,
+              backgroundImage: `linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)`,
+              backgroundSize: "40px 40px",
+            }} />
+            
+            <div style={{ position: "relative" }}>
+              <p style={{ fontSize: 13, fontWeight: 600, color: COLORS.emerald, letterSpacing: 2, textTransform: "uppercase", marginBottom: 16, textAlign: "center" }}>
+                The Milton Dashboard
+              </p>
+              
+              {/* Dashboard Visual Placeholder */}
+              <div style={{
+                borderRadius: 16, overflow: "hidden",
+                background: "rgba(255,255,255,.05)",
+                border: "1px solid rgba(255,255,255,.1)",
+                aspectRatio: "16/9",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                flexDirection: "column", gap: 16,
+              }}>
+                <div style={{
+                  width: 72, height: 72, borderRadius: 18,
+                  background: "rgba(255,255,255,.08)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                }}>
+                  <LayoutDashboard size={32} color={COLORS.emerald} strokeWidth={1.5} />
+                </div>
+                <p style={{ fontSize: 15, color: "rgba(255,255,255,.5)", fontFamily: "'DM Sans', sans-serif" }}>
+                  [Dashboard screenshot - Reports overview]
+                </p>
+              </div>
+              
+              {/* Mini preview cards */}
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginTop: 20 }}>
+                <div style={{
+                  padding: "20px 16px", borderRadius: 12,
+                  background: "rgba(255,255,255,.06)", border: "1px dashed rgba(255,255,255,.15)",
+                  display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
+                }}>
+                  <ClipboardList size={20} color={COLORS.mint} strokeWidth={1.5} />
+                  <span style={{ fontSize: 11, color: "rgba(255,255,255,.5)", textAlign: "center" }}>[Execution report]</span>
+                </div>
+                <div style={{
+                  padding: "20px 16px", borderRadius: 12,
+                  background: "rgba(255,255,255,.06)", border: "1px dashed rgba(255,255,255,.15)",
+                  display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
+                }}>
+                  <TrendingUp size={20} color={COLORS.mint} strokeWidth={1.5} />
+                  <span style={{ fontSize: 11, color: "rgba(255,255,255,.5)", textAlign: "center" }}>[Results report]</span>
+                </div>
+                <div style={{
+                  padding: "20px 16px", borderRadius: 12,
+                  background: "rgba(255,255,255,.06)", border: "1px dashed rgba(255,255,255,.15)",
+                  display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
+                }}>
+                  <Users size={20} color={COLORS.mint} strokeWidth={1.5} />
+                  <span style={{ fontSize: 11, color: "rgba(255,255,255,.5)", textAlign: "center" }}>[Retention report]</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Closing statement */}
           <div style={{
-            marginTop: "clamp(48px, 6vw, 64px)", padding: "clamp(24px, 3vw, 40px)",
-            borderRadius: 20, background: `linear-gradient(145deg, ${COLORS.navy}, ${COLORS.deepTeal})`,
-            maxWidth: 900, margin: "clamp(48px, 6vw, 64px) auto 0", textAlign: "center",
+            marginTop: "clamp(32px, 4vw, 48px)", padding: "clamp(24px, 3vw, 40px)",
+            borderRadius: 20, background: `${COLORS.teal}08`,
+            maxWidth: 900, margin: "clamp(32px, 4vw, 48px) auto 0", textAlign: "center",
+            border: `1px solid ${COLORS.teal}15`,
           }}>
-            <p style={{ fontSize: "clamp(15px, 1.8vw, 18px)", lineHeight: 1.8, color: "rgba(255,255,255,.9)", fontFamily: "'DM Sans', sans-serif" }}>
-              When you can see execution, results, and retention across your entire staff - without rebuilding three spreadsheets every week - <span style={{ color: COLORS.emerald, fontWeight: 600 }}>you stop managing by gut and start managing by signal.</span>
+            <p style={{ fontSize: "clamp(15px, 1.8vw, 18px)", lineHeight: 1.8, color: COLORS.navy, fontFamily: "'DM Sans', sans-serif" }}>
+              When you can see execution, results, and retention across your entire staff - without rebuilding three spreadsheets every week - <span style={{ color: COLORS.teal, fontWeight: 600 }}>you stop managing by gut and start managing by signal.</span>
             </p>
           </div>
         </div>
@@ -577,14 +650,54 @@ export default function MiltonSite() {
             </h2>
           </div>
 
-          {/* Intro */}
-          <div style={{ maxWidth: 800, margin: "0 auto clamp(48px, 6vw, 64px)", textAlign: "center" }}>
-            <p style={{ fontSize: "clamp(15px, 1.6vw, 17px)", lineHeight: 1.8, color: "#5a7a88", fontFamily: "'DM Sans', sans-serif" }}>
-              Your best trainer doesn&apos;t just show up and count reps. They know which client&apos;s body scan is trending the wrong direction. They notice when someone&apos;s nutrition logs go quiet. They remember who needs a check-in today and who needs space. They connect dots across devices, data, and conversation - and they do it instinctively.
-            </p>
-            <p style={{ fontSize: "clamp(16px, 1.8vw, 19px)", lineHeight: 1.8, color: COLORS.navy, fontFamily: "'DM Sans', sans-serif", fontWeight: 600, marginTop: 24 }}>
-              Now every trainer on your staff can do it too.
-            </p>
+          {/* Hero Visual for Coaching Portal */}
+          <div style={{
+            marginBottom: "clamp(48px, 6vw, 64px)",
+            borderRadius: 24,
+            background: `linear-gradient(145deg, ${COLORS.teal}08, ${COLORS.mint}10)`,
+            border: `1px solid ${COLORS.teal}12`,
+            overflow: "hidden",
+          }}>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: 0 }}>
+              {/* Text content */}
+              <div style={{ padding: "clamp(32px, 4vw, 56px)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                <p style={{ fontSize: "clamp(15px, 1.6vw, 17px)", lineHeight: 1.8, color: "#5a7a88", fontFamily: "'DM Sans', sans-serif" }}>
+                  Your best trainer doesn&apos;t just show up and count reps. They know which client&apos;s body scan is trending the wrong direction. They notice when someone&apos;s nutrition logs go quiet. They remember who needs a check-in today and who needs space. They connect dots across devices, data, and conversation - and they do it instinctively.
+                </p>
+                <p style={{ fontSize: "clamp(16px, 1.8vw, 19px)", lineHeight: 1.8, color: COLORS.navy, fontFamily: "'DM Sans', sans-serif", fontWeight: 600, marginTop: 24 }}>
+                  Now every trainer on your staff can do it too.
+                </p>
+              </div>
+              {/* Visual placeholder - Main coaching portal screenshot */}
+              <div style={{
+                padding: "clamp(24px, 3vw, 40px)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                background: `linear-gradient(135deg, ${COLORS.navy}08, ${COLORS.deepTeal}05)`,
+              }}>
+                <div style={{
+                  width: "100%", maxWidth: 480, aspectRatio: "4/3",
+                  borderRadius: 16, overflow: "hidden",
+                  background: "white",
+                  border: `2px dashed ${COLORS.teal}25`,
+                  boxShadow: "0 12px 40px rgba(8,69,94,.12)",
+                  display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16,
+                }}>
+                  <div style={{
+                    width: 64, height: 64, borderRadius: 16,
+                    background: `${COLORS.teal}10`,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                  }}>
+                    <Smartphone size={28} color={COLORS.teal} strokeWidth={1.5} />
+                  </div>
+                  <p style={{ fontSize: 14, fontWeight: 600, color: COLORS.navy, textAlign: "center" }}>
+                    [Coaching Portal - Client View]
+                  </p>
+                  <p style={{ fontSize: 12, color: "#9ab5c0", textAlign: "center", padding: "0 24px" }}>
+                    Screenshot showing trainer&apos;s unified client dashboard
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "clamp(24px, 3vw, 32px)" }}>
@@ -670,16 +783,35 @@ export default function MiltonSite() {
                 Milton makes progress visual for your coaches - in real time, in the flow of their work - so they can see what&apos;s happening with every client and <span style={{ fontWeight: 700, color: COLORS.teal }}>coach them to results, not just through workouts.</span>
               </p>
             </div>
-            {/* Visual Placeholder */}
+            {/* Visual Placeholder - Desktop and Mobile side by side */}
             <div style={{
-              width: "100%", aspectRatio: "16/10", borderRadius: 20,
+              width: "100%", borderRadius: 20,
               background: `linear-gradient(145deg, ${COLORS.navy}06, ${COLORS.teal}04)`,
               border: `2px dashed ${COLORS.teal}20`,
-              display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12,
+              padding: "clamp(24px, 3vw, 40px)",
+              display: "flex", gap: 24, alignItems: "flex-end", justifyContent: "center", flexWrap: "wrap",
             }}>
-              <LayoutDashboard size={40} color={COLORS.teal} strokeWidth={1} style={{ opacity: 0.3 }} />
-              <span style={{ fontSize: 14, fontWeight: 600, color: COLORS.teal, opacity: 0.5 }}>Coaching Portal Visual</span>
-              <span style={{ fontSize: 12, color: "#9ab5c0" }}>Dashboard / Mobile View</span>
+              {/* Desktop mockup */}
+              <div style={{
+                flex: "1 1 280px", maxWidth: 340, aspectRatio: "16/10",
+                background: "white", borderRadius: 12, border: `1px solid ${COLORS.teal}15`,
+                boxShadow: "0 8px 24px rgba(8,69,94,.08)",
+                display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 8,
+              }}>
+                <LayoutDashboard size={28} color={COLORS.teal} strokeWidth={1.5} style={{ opacity: 0.4 }} />
+                <span style={{ fontSize: 12, fontWeight: 600, color: COLORS.navy, opacity: 0.6 }}>[Desktop Dashboard]</span>
+                <span style={{ fontSize: 10, color: "#9ab5c0" }}>Client progress overview</span>
+              </div>
+              {/* Mobile mockup */}
+              <div style={{
+                width: 100, aspectRatio: "9/16",
+                background: "white", borderRadius: 16, border: `1px solid ${COLORS.teal}15`,
+                boxShadow: "0 8px 24px rgba(8,69,94,.08)",
+                display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 6,
+              }}>
+                <Smartphone size={20} color={COLORS.teal} strokeWidth={1.5} style={{ opacity: 0.4 }} />
+                <span style={{ fontSize: 9, fontWeight: 600, color: COLORS.navy, opacity: 0.6, textAlign: "center" }}>[Mobile]</span>
+              </div>
             </div>
           </div>
         </div>
