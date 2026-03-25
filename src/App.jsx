@@ -283,6 +283,9 @@ export default function MiltonSite() {
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         @keyframes fadeUp { 0% { opacity: 0; transform: translateY(32px); } 100% { opacity: 1; transform: translateY(0); } }
         ::selection { background: ${COLORS.emerald}30; }
+        @media (min-width: 768px) {
+          .md-span-6 { grid-column: span 6 !important; }
+        }
       `}</style>
 
       <Nav onNavigate={navigate} onDemo={() => setShowDemo(true)} />
@@ -480,92 +483,113 @@ export default function MiltonSite() {
             </h2>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "clamp(24px, 3vw, 32px)" }}>
-            {/* Execution */}
-            <div style={{ ...lc, padding: 0, overflow: "hidden" }}>
-              {/* Image placeholder */}
+          {/* Bento Grid Layout - Image Driven */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(12, 1fr)", gap: 20 }}>
+            
+            {/* Execution - Large Feature */}
+            <div style={{
+              gridColumn: "span 12",
+              display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+              background: "white", borderRadius: 20, overflow: "hidden",
+              boxShadow: "0 4px 24px rgba(8,69,94,.06)", border: `1px solid ${COLORS.teal}10`,
+            }}>
               <div style={{
-                width: "100%", aspectRatio: "16/9",
-                background: `linear-gradient(135deg, ${COLORS.teal}08, ${COLORS.mint}05)`,
-                borderBottom: `1px solid ${COLORS.teal}10`,
-                display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12,
+                aspectRatio: "4/3", minHeight: 280,
+                background: `linear-gradient(135deg, ${COLORS.teal}06, ${COLORS.mint}03)`,
+                display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16,
+                borderRight: `1px solid ${COLORS.teal}08`,
               }}>
-                <ClipboardList size={32} color={COLORS.teal} strokeWidth={1.2} style={{ opacity: 0.4 }} />
-                <span style={{ fontSize: 12, color: COLORS.teal, opacity: 0.6, fontWeight: 500 }}>[Execution Report Screenshot]</span>
+                <ClipboardList size={48} color={COLORS.teal} strokeWidth={1} style={{ opacity: 0.3 }} />
+                <span style={{ fontSize: 13, color: COLORS.teal, opacity: 0.5, fontWeight: 500 }}>[Execution Report Screenshot]</span>
               </div>
-              <div style={{ padding: "clamp(24px, 3vw, 32px)" }}>
-                <h3 style={{ fontSize: "clamp(18px, 2vw, 22px)", fontWeight: 700, color: COLORS.navy, marginBottom: 12, fontFamily: "'DM Sans', sans-serif" }}>
+              <div style={{ padding: "clamp(32px, 4vw, 48px)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                <h3 style={{ fontSize: "clamp(22px, 2.5vw, 28px)", fontWeight: 700, color: COLORS.navy, marginBottom: 16, fontFamily: "'DM Sans', sans-serif" }}>
                   Execution
                 </h3>
-                <p style={{ fontSize: 15, lineHeight: 1.7, color: "#5a7a88", fontFamily: "'DM Sans', sans-serif" }}>
+                <p style={{ fontSize: 16, lineHeight: 1.75, color: "#5a7a88", fontFamily: "'DM Sans', sans-serif" }}>
                   Are your trainers following up, scheduling, programming, checking in? Milton scores it by trainer, by week - automatically. When a coach falls behind, you see it in days, not at month-end.
                 </p>
               </div>
             </div>
 
-            {/* Results */}
-            <div style={{ ...lc, padding: 0, overflow: "hidden" }}>
-              {/* Image placeholder */}
+            {/* Results - Medium */}
+            <div style={{
+              gridColumn: "span 12", "@media (min-width: 768px)": { gridColumn: "span 6" },
+              background: "white", borderRadius: 20, overflow: "hidden",
+              boxShadow: "0 4px 24px rgba(8,69,94,.06)", border: `1px solid ${COLORS.teal}10`,
+            }} className="md-span-6">
               <div style={{
-                width: "100%", aspectRatio: "16/9",
-                background: `linear-gradient(135deg, ${COLORS.teal}08, ${COLORS.mint}05)`,
-                borderBottom: `1px solid ${COLORS.teal}10`,
+                aspectRatio: "16/10",
+                background: `linear-gradient(135deg, ${COLORS.teal}06, ${COLORS.mint}03)`,
                 display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12,
               }}>
-                <TrendingUp size={32} color={COLORS.teal} strokeWidth={1.2} style={{ opacity: 0.4 }} />
-                <span style={{ fontSize: 12, color: COLORS.teal, opacity: 0.6, fontWeight: 500 }}>[Results Report Screenshot]</span>
+                <TrendingUp size={40} color={COLORS.teal} strokeWidth={1} style={{ opacity: 0.3 }} />
+                <span style={{ fontSize: 12, color: COLORS.teal, opacity: 0.5, fontWeight: 500 }}>[Results Report Screenshot]</span>
               </div>
               <div style={{ padding: "clamp(24px, 3vw, 32px)" }}>
                 <h3 style={{ fontSize: "clamp(18px, 2vw, 22px)", fontWeight: 700, color: COLORS.navy, marginBottom: 12, fontFamily: "'DM Sans', sans-serif" }}>
                   Results
                 </h3>
                 <p style={{ fontSize: 15, lineHeight: 1.7, color: "#5a7a88", fontFamily: "'DM Sans', sans-serif" }}>
-                  Are clients reaching their goals? Milton connects programming, nutrition, and health data to show who&apos;s progressing, plateauing, or declining - without pulling from three different trackers.
+                  Are clients reaching their goals? Milton connects programming, nutrition, and health data to show who&apos;s progressing, plateauing, or declining.
                 </p>
               </div>
             </div>
 
-            {/* Retention & Growth */}
-            <div style={{ ...lc, padding: 0, overflow: "hidden" }}>
-              {/* Image placeholder */}
+            {/* Retention - Medium */}
+            <div style={{
+              gridColumn: "span 12",
+              background: "white", borderRadius: 20, overflow: "hidden",
+              boxShadow: "0 4px 24px rgba(8,69,94,.06)", border: `1px solid ${COLORS.teal}10`,
+            }} className="md-span-6">
               <div style={{
-                width: "100%", aspectRatio: "16/9",
-                background: `linear-gradient(135deg, ${COLORS.teal}08, ${COLORS.mint}05)`,
-                borderBottom: `1px solid ${COLORS.teal}10`,
+                aspectRatio: "16/10",
+                background: `linear-gradient(135deg, ${COLORS.teal}06, ${COLORS.mint}03)`,
                 display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12,
               }}>
-                <Users size={32} color={COLORS.teal} strokeWidth={1.2} style={{ opacity: 0.4 }} />
-                <span style={{ fontSize: 12, color: COLORS.teal, opacity: 0.6, fontWeight: 500 }}>[Retention Report Screenshot]</span>
+                <Users size={40} color={COLORS.teal} strokeWidth={1} style={{ opacity: 0.3 }} />
+                <span style={{ fontSize: 12, color: COLORS.teal, opacity: 0.5, fontWeight: 500 }}>[Retention Report Screenshot]</span>
               </div>
               <div style={{ padding: "clamp(24px, 3vw, 32px)" }}>
                 <h3 style={{ fontSize: "clamp(18px, 2vw, 22px)", fontWeight: 700, color: COLORS.navy, marginBottom: 12, fontFamily: "'DM Sans', sans-serif" }}>
                   Retention &amp; Growth
                 </h3>
                 <p style={{ fontSize: 15, lineHeight: 1.7, color: "#5a7a88", fontFamily: "'DM Sans', sans-serif" }}>
-                  Client count. New clients. Attendance. Churn. Milton generates the monthly picture continuously - not once a month when someone has time to update the sheet.
+                  Client count. New clients. Attendance. Churn. Milton generates the monthly picture continuously - not once a month when someone has time.
                 </p>
               </div>
             </div>
 
-            {/* Where They're Getting Stuck */}
-            <div style={{ ...lc, padding: 0, overflow: "hidden" }}>
-              {/* Image placeholder */}
-              <div style={{
-                width: "100%", aspectRatio: "16/9",
-                background: `linear-gradient(135deg, ${COLORS.emerald}08, ${COLORS.mint}05)`,
-                borderBottom: `1px solid ${COLORS.emerald}10`,
-                display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12,
-              }}>
-                <AlertTriangle size={32} color={COLORS.emerald} strokeWidth={1.2} style={{ opacity: 0.4 }} />
-                <span style={{ fontSize: 12, color: COLORS.emerald, opacity: 0.6, fontWeight: 500 }}>[Diagnostics Screenshot]</span>
-              </div>
-              <div style={{ padding: "clamp(24px, 3vw, 32px)" }}>
-                <h3 style={{ fontSize: "clamp(18px, 2vw, 22px)", fontWeight: 700, color: COLORS.navy, marginBottom: 12, fontFamily: "'DM Sans', sans-serif" }}>
+            {/* Where They're Getting Stuck - Full Width Accent */}
+            <div style={{
+              gridColumn: "span 12",
+              display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+              background: `linear-gradient(135deg, ${COLORS.navy}, ${COLORS.deepTeal})`,
+              borderRadius: 20, overflow: "hidden",
+            }}>
+              <div style={{ padding: "clamp(32px, 4vw, 48px)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                <div style={{
+                  width: 48, height: 48, borderRadius: 14, marginBottom: 20,
+                  background: "rgba(255,255,255,.1)", border: "1px solid rgba(255,255,255,.15)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                }}>
+                  <AlertTriangle size={22} color={COLORS.emerald} strokeWidth={1.6} />
+                </div>
+                <h3 style={{ fontSize: "clamp(22px, 2.5vw, 28px)", fontWeight: 700, color: "white", marginBottom: 16, fontFamily: "'DM Sans', sans-serif" }}>
                   Where They&apos;re Getting Stuck
                 </h3>
-                <p style={{ fontSize: 15, lineHeight: 1.7, color: "#5a7a88", fontFamily: "'DM Sans', sans-serif" }}>
+                <p style={{ fontSize: 16, lineHeight: 1.75, color: "rgba(255,255,255,.75)", fontFamily: "'DM Sans', sans-serif" }}>
                   A trainer&apos;s clients are churning - is it execution or results? Milton connects all three layers so you can pinpoint the breakdown and coach to the right problem.
                 </p>
+              </div>
+              <div style={{
+                aspectRatio: "4/3", minHeight: 240,
+                background: "rgba(255,255,255,.03)",
+                display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16,
+                borderLeft: "1px solid rgba(255,255,255,.08)",
+              }}>
+                <AlertTriangle size={48} color={COLORS.emerald} strokeWidth={1} style={{ opacity: 0.4 }} />
+                <span style={{ fontSize: 13, color: "rgba(255,255,255,.4)", fontWeight: 500 }}>[Diagnostics Screenshot]</span>
               </div>
             </div>
           </div>
@@ -599,7 +623,7 @@ export default function MiltonSite() {
           </div>
 
           {/* Intro text */}
-          <div style={{ maxWidth: 800, margin: "0 auto clamp(48px, 6vw, 64px)", textAlign: "center" }}>
+          <div style={{ maxWidth: 800, margin: "0 auto clamp(56px, 7vw, 80px)", textAlign: "center" }}>
             <p style={{ fontSize: "clamp(15px, 1.6vw, 17px)", lineHeight: 1.8, color: "#5a7a88", fontFamily: "'DM Sans', sans-serif" }}>
               Your best trainer doesn&apos;t just show up and count reps. They know which client&apos;s body scan is trending the wrong direction. They notice when someone&apos;s nutrition logs go quiet. They remember who needs a check-in today and who needs space. They connect dots across devices, data, and conversation - and they do it instinctively.
             </p>
@@ -608,91 +632,81 @@ export default function MiltonSite() {
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "clamp(24px, 3vw, 32px)" }}>
-            {/* Feature 1 - Unified View */}
-            <div style={{ ...lc, padding: 0, overflow: "hidden" }}>
-              {/* Image placeholder */}
+          {/* Alternating Image/Text Rows */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "clamp(48px, 6vw, 80px)" }}>
+            
+            {/* Feature 1 - Image Left */}
+            <div style={{
+              display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+              gap: "clamp(32px, 4vw, 56px)", alignItems: "center",
+            }}>
               <div style={{
-                width: "100%", aspectRatio: "16/9",
-                background: `linear-gradient(135deg, ${COLORS.navy}06, ${COLORS.teal}04)`,
-                borderBottom: `1px solid ${COLORS.teal}10`,
-                display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12,
+                aspectRatio: "4/3", borderRadius: 20, overflow: "hidden",
+                background: `linear-gradient(135deg, ${COLORS.teal}08, ${COLORS.mint}04)`,
+                border: `1px solid ${COLORS.teal}10`,
+                display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16,
+                boxShadow: "0 8px 32px rgba(8,69,94,.08)",
               }}>
-                <Eye size={32} color={COLORS.teal} strokeWidth={1.2} style={{ opacity: 0.4 }} />
-                <span style={{ fontSize: 12, color: COLORS.teal, opacity: 0.6, fontWeight: 500 }}>[Unified Client View Screenshot]</span>
+                <Eye size={56} color={COLORS.teal} strokeWidth={0.8} style={{ opacity: 0.35 }} />
+                <span style={{ fontSize: 13, color: COLORS.teal, opacity: 0.5, fontWeight: 500 }}>[Unified Client View Screenshot]</span>
               </div>
-              <div style={{ padding: "clamp(24px, 3vw, 32px)" }}>
-                <h3 style={{ fontSize: "clamp(17px, 2vw, 20px)", fontWeight: 700, color: COLORS.navy, marginBottom: 12, fontFamily: "'DM Sans', sans-serif" }}>
+              <div>
+                <h3 style={{ fontSize: "clamp(20px, 2.5vw, 26px)", fontWeight: 700, color: COLORS.navy, marginBottom: 16, fontFamily: "'DM Sans', sans-serif", lineHeight: 1.3 }}>
                   Wearables, body scans, nutrition logs - one view.
                 </h3>
-                <p style={{ fontSize: 15, lineHeight: 1.7, color: "#5a7a88", fontFamily: "'DM Sans', sans-serif" }}>
+                <p style={{ fontSize: 16, lineHeight: 1.75, color: "#5a7a88", fontFamily: "'DM Sans', sans-serif" }}>
                   Milton pulls device data, InBody scans, nutrition tracking, and session history into a single coaching view. Your trainer doesn&apos;t need to check four apps. The full client picture is right there.
                 </p>
               </div>
             </div>
 
-            {/* Feature 2 - AI Programming */}
-            <div style={{ ...lc, padding: 0, overflow: "hidden" }}>
-              {/* Image placeholder */}
-              <div style={{
-                width: "100%", aspectRatio: "16/9",
-                background: `linear-gradient(135deg, ${COLORS.navy}06, ${COLORS.teal}04)`,
-                borderBottom: `1px solid ${COLORS.teal}10`,
-                display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12,
-              }}>
-                <Brain size={32} color={COLORS.teal} strokeWidth={1.2} style={{ opacity: 0.4 }} />
-                <span style={{ fontSize: 12, color: COLORS.teal, opacity: 0.6, fontWeight: 500 }}>[AI Programming Screenshot]</span>
-              </div>
-              <div style={{ padding: "clamp(24px, 3vw, 32px)" }}>
-                <h3 style={{ fontSize: "clamp(17px, 2vw, 20px)", fontWeight: 700, color: COLORS.navy, marginBottom: 12, fontFamily: "'DM Sans', sans-serif" }}>
+            {/* Feature 2 - Image Right */}
+            <div style={{
+              display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+              gap: "clamp(32px, 4vw, 56px)", alignItems: "center",
+            }}>
+              <div style={{ order: 1 }}>
+                <h3 style={{ fontSize: "clamp(20px, 2.5vw, 26px)", fontWeight: 700, color: COLORS.navy, marginBottom: 16, fontFamily: "'DM Sans', sans-serif", lineHeight: 1.3 }}>
                   AI-guided programming that adapts to real outcomes.
                 </h3>
-                <p style={{ fontSize: 15, lineHeight: 1.7, color: "#5a7a88", fontFamily: "'DM Sans', sans-serif" }}>
+                <p style={{ fontSize: 16, lineHeight: 1.75, color: "#5a7a88", fontFamily: "'DM Sans', sans-serif" }}>
                   Not cookie-cutter templates. Milton sees what&apos;s working for each client - based on actual results, not guesswork - and suggests adjustments your trainer can review and apply in seconds.
                 </p>
               </div>
+              <div style={{
+                aspectRatio: "4/3", borderRadius: 20, overflow: "hidden",
+                background: `linear-gradient(135deg, ${COLORS.navy}06, ${COLORS.teal}04)`,
+                border: `1px solid ${COLORS.teal}10`,
+                display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16,
+                boxShadow: "0 8px 32px rgba(8,69,94,.08)",
+                order: 2,
+              }}>
+                <Brain size={56} color={COLORS.teal} strokeWidth={0.8} style={{ opacity: 0.35 }} />
+                <span style={{ fontSize: 13, color: COLORS.teal, opacity: 0.5, fontWeight: 500 }}>[AI Programming Screenshot]</span>
+              </div>
             </div>
 
-            {/* Feature 3 - Follow-ups */}
-            <div style={{ ...lc, padding: 0, overflow: "hidden" }}>
-              {/* Image placeholder */}
+            {/* Feature 3 - Image Left */}
+            <div style={{
+              display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+              gap: "clamp(32px, 4vw, 56px)", alignItems: "center",
+            }}>
               <div style={{
-                width: "100%", aspectRatio: "16/9",
-                background: `linear-gradient(135deg, ${COLORS.navy}06, ${COLORS.teal}04)`,
-                borderBottom: `1px solid ${COLORS.teal}10`,
-                display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12,
+                aspectRatio: "4/3", borderRadius: 20, overflow: "hidden",
+                background: `linear-gradient(135deg, ${COLORS.teal}08, ${COLORS.mint}04)`,
+                border: `1px solid ${COLORS.teal}10`,
+                display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16,
+                boxShadow: "0 8px 32px rgba(8,69,94,.08)",
               }}>
-                <MessageSquare size={32} color={COLORS.teal} strokeWidth={1.2} style={{ opacity: 0.4 }} />
-                <span style={{ fontSize: 12, color: COLORS.teal, opacity: 0.6, fontWeight: 500 }}>[Follow-up System Screenshot]</span>
+                <MessageSquare size={56} color={COLORS.teal} strokeWidth={0.8} style={{ opacity: 0.35 }} />
+                <span style={{ fontSize: 13, color: COLORS.teal, opacity: 0.5, fontWeight: 500 }}>[Follow-up System Screenshot]</span>
               </div>
-              <div style={{ padding: "clamp(24px, 3vw, 32px)" }}>
-                <h3 style={{ fontSize: "clamp(17px, 2vw, 20px)", fontWeight: 700, color: COLORS.navy, marginBottom: 12, fontFamily: "'DM Sans', sans-serif" }}>
+              <div>
+                <h3 style={{ fontSize: "clamp(20px, 2.5vw, 26px)", fontWeight: 700, color: COLORS.navy, marginBottom: 16, fontFamily: "'DM Sans', sans-serif", lineHeight: 1.3 }}>
                   The follow-up that separates good trainers from great ones.
                 </h3>
-                <p style={{ fontSize: 15, lineHeight: 1.7, color: "#5a7a88", fontFamily: "'DM Sans', sans-serif" }}>
+                <p style={{ fontSize: 16, lineHeight: 1.75, color: "#5a7a88", fontFamily: "'DM Sans', sans-serif" }}>
                   Milton drafts check-ins, flags clients who need attention, and prompts the conversations that keep clients engaged between sessions. The stuff your best trainer does naturally - systematized for everyone.
-                </p>
-              </div>
-            </div>
-
-            {/* Feature 4 - Mobile Intelligence */}
-            <div style={{ ...lc, padding: 0, overflow: "hidden" }}>
-              {/* Image placeholder */}
-              <div style={{
-                width: "100%", aspectRatio: "16/9",
-                background: `linear-gradient(135deg, ${COLORS.navy}06, ${COLORS.teal}04)`,
-                borderBottom: `1px solid ${COLORS.teal}10`,
-                display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 12,
-              }}>
-                <Smartphone size={32} color={COLORS.teal} strokeWidth={1.2} style={{ opacity: 0.4 }} />
-                <span style={{ fontSize: 12, color: COLORS.teal, opacity: 0.6, fontWeight: 500 }}>[Mobile App Screenshot]</span>
-              </div>
-              <div style={{ padding: "clamp(24px, 3vw, 32px)" }}>
-                <h3 style={{ fontSize: "clamp(17px, 2vw, 20px)", fontWeight: 700, color: COLORS.navy, marginBottom: 12, fontFamily: "'DM Sans', sans-serif" }}>
-                  A better trainer&apos;s brain, in their pocket, 24/7.
-                </h3>
-                <p style={{ fontSize: 15, lineHeight: 1.7, color: "#5a7a88", fontFamily: "'DM Sans', sans-serif" }}>
-                  Your newest hire walks onto the floor with the same client intelligence your ten-year veteran carries in their head. Not replacing the human connection - powering it with data that was always there but never connected.
                 </p>
               </div>
             </div>
@@ -700,14 +714,14 @@ export default function MiltonSite() {
 
           {/* Closing statement */}
           <div style={{
-            marginTop: "clamp(48px, 6vw, 64px)",
-            padding: "clamp(24px, 3vw, 40px)",
-            borderRadius: 20, background: `linear-gradient(135deg, ${COLORS.mint}15, ${COLORS.emerald}08)`,
-            border: `1px solid ${COLORS.emerald}20`,
-            maxWidth: 900, margin: "clamp(48px, 6vw, 64px) auto 0",
+            marginTop: "clamp(64px, 8vw, 96px)",
+            padding: "clamp(32px, 4vw, 48px)",
+            borderRadius: 24, background: `linear-gradient(135deg, ${COLORS.mint}12, ${COLORS.emerald}06)`,
+            border: `1px solid ${COLORS.emerald}15`,
+            maxWidth: 900, marginLeft: "auto", marginRight: "auto",
             textAlign: "center",
           }}>
-            <p style={{ fontSize: "clamp(15px, 1.6vw, 17px)", lineHeight: 1.8, color: COLORS.navy, fontFamily: "'DM Sans', sans-serif" }}>
+            <p style={{ fontSize: "clamp(16px, 1.8vw, 19px)", lineHeight: 1.8, color: COLORS.navy, fontFamily: "'DM Sans', sans-serif" }}>
               Milton makes progress visual for your coaches - in real time, in the flow of their work - so they can see what&apos;s happening with every client and <span style={{ fontWeight: 700, color: COLORS.teal }}>coach them to results, not just through workouts.</span>
             </p>
           </div>
