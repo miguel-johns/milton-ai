@@ -748,14 +748,76 @@ export default function MiltonSite() {
                   A trainer&apos;s clients are churning - is it execution or results? Milton connects all three layers so you can pinpoint the breakdown and coach to the right problem.
                 </p>
               </div>
+              
+              {/* Chat Bubble Illustration */}
               <div style={{
-                aspectRatio: "4/3", minHeight: 240,
+                minHeight: 280, padding: 24,
                 background: "rgba(255,255,255,.03)",
-                display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16,
                 borderLeft: "1px solid rgba(255,255,255,.08)",
+                display: "flex", flexDirection: "column", justifyContent: "center", gap: 14,
               }}>
-                <AlertTriangle size={48} color={COLORS.emerald} strokeWidth={1} style={{ opacity: 0.4 }} />
-                <span style={{ fontSize: 13, color: "rgba(255,255,255,.4)", fontWeight: 500 }}>[Diagnostics Screenshot]</span>
+                {/* User question */}
+                <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                  <div style={{
+                    maxWidth: "85%", padding: "12px 16px", borderRadius: "16px 16px 4px 16px",
+                    background: "rgba(255,255,255,.1)", border: "1px solid rgba(255,255,255,.1)",
+                  }}>
+                    <p style={{ fontSize: 13, color: "rgba(255,255,255,.9)", lineHeight: 1.5, fontFamily: "'DM Sans', sans-serif" }}>
+                      Why is Jake losing clients?
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Milton response */}
+                <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+                  <div style={{
+                    width: 28, height: 28, borderRadius: 8, flexShrink: 0,
+                    background: `linear-gradient(135deg, ${COLORS.teal}, ${COLORS.emerald})`,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                  }}>
+                    <span style={{ fontSize: 12, fontWeight: 700, color: "white" }}>M</span>
+                  </div>
+                  <div style={{
+                    flex: 1, padding: "14px 16px", borderRadius: "4px 16px 16px 16px",
+                    background: "rgba(255,255,255,.08)", border: "1px solid rgba(255,255,255,.08)",
+                  }}>
+                    <p style={{ fontSize: 13, color: "rgba(255,255,255,.85)", lineHeight: 1.6, fontFamily: "'DM Sans', sans-serif", marginBottom: 12 }}>
+                      Jake&apos;s clients aren&apos;t churning because of results - his programming is solid. The issue is <span style={{ color: COLORS.emerald, fontWeight: 600 }}>execution</span>:
+                    </p>
+                    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                        <div style={{ width: 6, height: 6, borderRadius: 3, background: "#c45c5c" }} />
+                        <span style={{ fontSize: 12, color: "rgba(255,255,255,.7)", fontFamily: "'DM Sans', sans-serif" }}>41% follow-up rate (team avg: 77%)</span>
+                      </div>
+                      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                        <div style={{ width: 6, height: 6, borderRadius: 3, background: "#c45c5c" }} />
+                        <span style={{ fontSize: 12, color: "rgba(255,255,255,.7)", fontFamily: "'DM Sans', sans-serif" }}>20 missed sessions not rescheduled</span>
+                      </div>
+                      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                        <div style={{ width: 6, height: 6, borderRadius: 3, background: COLORS.emerald }} />
+                        <span style={{ fontSize: 12, color: "rgba(255,255,255,.7)", fontFamily: "'DM Sans', sans-serif" }}>Client results are on track</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Quick action suggestion */}
+                <div style={{ display: "flex", gap: 8, marginLeft: 38 }}>
+                  <div style={{
+                    padding: "8px 12px", borderRadius: 8,
+                    background: `${COLORS.emerald}20`, border: `1px solid ${COLORS.emerald}40`,
+                    cursor: "pointer",
+                  }}>
+                    <span style={{ fontSize: 11, fontWeight: 600, color: COLORS.emerald, fontFamily: "'DM Sans', sans-serif" }}>Show attendance gap</span>
+                  </div>
+                  <div style={{
+                    padding: "8px 12px", borderRadius: 8,
+                    background: "rgba(255,255,255,.06)", border: "1px solid rgba(255,255,255,.1)",
+                    cursor: "pointer",
+                  }}>
+                    <span style={{ fontSize: 11, fontWeight: 500, color: "rgba(255,255,255,.6)", fontFamily: "'DM Sans', sans-serif" }}>Coach Jake</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
