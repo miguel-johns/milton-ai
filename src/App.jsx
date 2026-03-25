@@ -351,67 +351,94 @@ export default function MiltonSite() {
               </button>
             </div>
           </div>
-          {/* Hero Visual - Platform Screenshots */}
-          <div style={{ flex: "1 1 480px", display: "flex", justifyContent: "center", animation: "fadeUp 1s ease 0.4s both", position: "relative" }}>
-            <div style={{ position: "relative", width: "100%", maxWidth: 600, height: 480 }}>
+          {/* Hero Visual - Illustrated Platform UI */}
+          <div style={{ flex: "1 1 480px", display: "flex", justifyContent: "center", animation: "fadeUp 1s ease 0.4s both" }}>
+            <div style={{ position: "relative", width: "100%", maxWidth: 520 }}>
               
-              {/* Desktop Director Dashboard - Background */}
+              {/* Main Dashboard Card */}
               <div style={{
-                position: "absolute", top: 0, left: 0, width: "85%",
-                borderRadius: 16, overflow: "hidden",
-                boxShadow: "0 24px 64px rgba(8,69,94,.2), 0 8px 24px rgba(8,69,94,.1)",
-                border: "1px solid rgba(255,255,255,.8)",
-                background: "white",
+                background: "white", borderRadius: 20, padding: 24,
+                boxShadow: "0 32px 64px rgba(8,69,94,.12), 0 8px 24px rgba(8,69,94,.06)",
+                border: `1px solid ${COLORS.teal}10`,
               }}>
-                <img 
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screen%20Shot%202026-03-25%20at%206.16.55%20PM-epnWfWT3qtqCkFTW2yI2qyQ0J28eoK.png"
-                  alt="Milton Director Dashboard - Team Performance view showing weekly gross, attendance rate, and trainer roster"
-                  style={{ width: "100%", height: "auto", display: "block" }}
-                />
-                {/* Label */}
-                <div style={{
-                  position: "absolute", bottom: 12, left: 12,
-                  padding: "6px 12px", borderRadius: 8,
-                  background: "rgba(8,69,94,.85)", backdropFilter: "blur(8px)",
-                }}>
-                  <span style={{ fontSize: 11, fontWeight: 600, color: "white", fontFamily: "'DM Sans', sans-serif" }}>For Directors</span>
+                {/* Header */}
+                <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
+                  <div style={{ width: 36, height: 36, borderRadius: 10, background: `linear-gradient(135deg, ${COLORS.teal}, ${COLORS.emerald})`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <span style={{ fontSize: 16 }}>M</span>
+                  </div>
+                  <span style={{ fontSize: 15, fontWeight: 600, color: COLORS.navy, fontFamily: "'DM Sans', sans-serif" }}>Team Performance</span>
+                </div>
+                
+                {/* Stats Row */}
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 24 }}>
+                  <div style={{ padding: 16, borderRadius: 12, background: `${COLORS.teal}06`, border: `1px solid ${COLORS.teal}10` }}>
+                    <div style={{ fontSize: 10, fontWeight: 600, color: COLORS.teal, textTransform: "uppercase", letterSpacing: 1, marginBottom: 8, fontFamily: "'DM Sans', sans-serif" }}>Weekly Gross</div>
+                    <div style={{ fontSize: 22, fontWeight: 800, color: COLORS.navy, fontFamily: "'DM Sans', sans-serif" }}>$57.6K</div>
+                    <div style={{ fontSize: 11, fontWeight: 600, color: COLORS.emerald, marginTop: 4, fontFamily: "'DM Sans', sans-serif" }}>+8</div>
+                  </div>
+                  <div style={{ padding: 16, borderRadius: 12, background: `${COLORS.teal}06`, border: `1px solid ${COLORS.teal}10` }}>
+                    <div style={{ fontSize: 10, fontWeight: 600, color: COLORS.teal, textTransform: "uppercase", letterSpacing: 1, marginBottom: 8, fontFamily: "'DM Sans', sans-serif" }}>Attendance</div>
+                    <div style={{ fontSize: 22, fontWeight: 800, color: COLORS.navy, fontFamily: "'DM Sans', sans-serif" }}>86%</div>
+                    <div style={{ fontSize: 11, fontWeight: 500, color: "#c45c5c", marginTop: 4, fontFamily: "'DM Sans', sans-serif" }}>39 missed</div>
+                  </div>
+                  <div style={{ padding: 16, borderRadius: 12, background: `${COLORS.teal}06`, border: `1px solid ${COLORS.teal}10` }}>
+                    <div style={{ fontSize: 10, fontWeight: 600, color: COLORS.teal, textTransform: "uppercase", letterSpacing: 1, marginBottom: 8, fontFamily: "'DM Sans', sans-serif" }}>Follow-up</div>
+                    <div style={{ fontSize: 22, fontWeight: 800, color: COLORS.navy, fontFamily: "'DM Sans', sans-serif" }}>77%</div>
+                    <div style={{ fontSize: 11, fontWeight: 600, color: COLORS.emerald, marginTop: 4, fontFamily: "'DM Sans', sans-serif" }}>+4</div>
+                  </div>
+                </div>
+                
+                {/* Trainer Row Preview */}
+                <div style={{ borderTop: `1px solid ${COLORS.teal}10`, paddingTop: 20 }}>
+                  <div style={{ fontSize: 12, fontWeight: 600, color: COLORS.navy, marginBottom: 16, fontFamily: "'DM Sans', sans-serif" }}>Trainer Roster</div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                    {[
+                      { name: "Aisha Williams", clients: 8, score: 96, status: "Needs Leads" },
+                      { name: "Marcus Cole", clients: 18, score: 94, status: "Executing" },
+                    ].map((trainer, i) => (
+                      <div key={i} style={{ display: "flex", alignItems: "center", gap: 12, padding: "10px 12px", borderRadius: 10, background: `${COLORS.teal}04` }}>
+                        <div style={{ width: 32, height: 32, borderRadius: 8, background: COLORS.emerald, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                          <span style={{ fontSize: 11, fontWeight: 600, color: "white" }}>{trainer.name.split(" ").map(n => n[0]).join("")}</span>
+                        </div>
+                        <div style={{ flex: 1 }}>
+                          <div style={{ fontSize: 13, fontWeight: 600, color: COLORS.navy, fontFamily: "'DM Sans', sans-serif" }}>{trainer.name}</div>
+                          <div style={{ fontSize: 11, color: COLORS.teal, fontFamily: "'DM Sans', sans-serif" }}>{trainer.clients} clients</div>
+                        </div>
+                        <div style={{ fontSize: 18, fontWeight: 700, color: COLORS.navy, fontFamily: "'DM Sans', sans-serif" }}>{trainer.score}</div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
               
-              {/* Mobile Coach App - Foreground */}
+              {/* Floating Mobile Card */}
               <div style={{
-                position: "absolute", bottom: 0, right: 0, width: 180,
-                borderRadius: 24, overflow: "hidden",
-                boxShadow: "0 32px 64px rgba(8,69,94,.25), 0 12px 32px rgba(8,69,94,.15)",
-                border: "4px solid white",
-                background: "white",
+                position: "absolute", bottom: -20, right: -20, width: 160,
+                background: "white", borderRadius: 16, padding: 14,
+                boxShadow: "0 20px 48px rgba(8,69,94,.15), 0 8px 20px rgba(8,69,94,.08)",
+                border: `1px solid ${COLORS.teal}10`,
               }}>
-                <img 
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_9943.PNG-mk0fT8GT4fuwqsNFfLcBIiaJviPORQ.png"
-                  alt="Milton Coach Mobile App - AI assistant showing client coaching queue"
-                  style={{ width: "100%", height: "auto", display: "block" }}
-                />
-                {/* Label */}
-                <div style={{
-                  position: "absolute", bottom: 12, left: "50%", transform: "translateX(-50%)",
-                  padding: "6px 12px", borderRadius: 8,
-                  background: `linear-gradient(135deg, ${COLORS.teal}, ${COLORS.emerald})`,
-                }}>
-                  <span style={{ fontSize: 10, fontWeight: 600, color: "white", fontFamily: "'DM Sans', sans-serif" }}>For Coaches</span>
+                <div style={{ fontSize: 10, fontWeight: 600, color: COLORS.teal, marginBottom: 8, fontFamily: "'DM Sans', sans-serif" }}>Coach View</div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: COLORS.navy, marginBottom: 12, fontFamily: "'DM Sans', sans-serif" }}>Today&apos;s Queue</div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                  {["Sarah Chen", "Marcus J."].map((name, i) => (
+                    <div key={i} style={{ display: "flex", alignItems: "center", gap: 8, padding: "6px 8px", borderRadius: 6, background: `${COLORS.teal}06` }}>
+                      <div style={{ width: 6, height: 6, borderRadius: 3, background: i === 0 ? COLORS.emerald : COLORS.teal }} />
+                      <span style={{ fontSize: 11, color: COLORS.navy, fontFamily: "'DM Sans', sans-serif" }}>{name}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
               
-              {/* Decorative element - floating stat */}
+              {/* Floating Insight Bubble */}
               <div style={{
-                position: "absolute", top: "50%", right: 160, transform: "translateY(-50%)",
-                padding: "12px 16px", borderRadius: 12,
-                background: "white", boxShadow: "0 8px 24px rgba(8,69,94,.12)",
-                border: `1px solid ${COLORS.emerald}20`,
-                animation: "fadeUp 1s ease 0.8s both",
+                position: "absolute", top: 20, right: -40,
+                background: `linear-gradient(135deg, ${COLORS.navy}, ${COLORS.deepTeal})`, borderRadius: 12, padding: 14,
+                boxShadow: "0 12px 32px rgba(8,69,94,.2)",
+                maxWidth: 180,
               }}>
-                <div style={{ fontSize: 10, fontWeight: 600, color: COLORS.teal, textTransform: "uppercase", letterSpacing: 1, marginBottom: 4, fontFamily: "'DM Sans', sans-serif" }}>Attendance</div>
-                <div style={{ fontSize: 24, fontWeight: 800, color: COLORS.navy, fontFamily: "'DM Sans', sans-serif" }}>83%</div>
-                <div style={{ fontSize: 11, fontWeight: 600, color: COLORS.emerald, fontFamily: "'DM Sans', sans-serif" }}>+12%</div>
+                <div style={{ fontSize: 11, color: "rgba(255,255,255,.7)", marginBottom: 6, fontFamily: "'DM Sans', sans-serif" }}>Milton says</div>
+                <div style={{ fontSize: 12, color: "white", lineHeight: 1.5, fontFamily: "'DM Sans', sans-serif" }}>Jake has a follow-up gap. 20 sessions not rescheduled.</div>
               </div>
             </div>
           </div>
