@@ -413,12 +413,9 @@ export default function MiltonSite() {
               }}>
                 <ArrowUpRight size={22} color={COLORS.teal} strokeWidth={1.6} />
               </div>
-              <h3 style={{ fontSize: "clamp(17px, 2vw, 20px)", fontWeight: 700, color: COLORS.navy, marginBottom: 16, fontFamily: "'DM Sans', sans-serif" }}>
+              <h3 style={{ fontSize: "clamp(17px, 2vw, 20px)", fontWeight: 700, color: COLORS.navy, fontFamily: "'DM Sans', sans-serif" }}>
                 Your best trainers leave - and the business leaves with them
               </h3>
-              <p style={{ fontSize: 15, lineHeight: 1.7, color: "#5a7a88", fontFamily: "'DM Sans', sans-serif" }}>
-                They build client relationships, develop their own systems, outgrow your gym, and take half their book with them. You don&apos;t just lose a trainer. You lose the revenue, the retention, and the playbook they never wrote down.
-              </p>
             </div>
 
             {/* Card 2 */}
@@ -430,12 +427,9 @@ export default function MiltonSite() {
               }}>
                 <Clock size={22} color={COLORS.teal} strokeWidth={1.6} />
               </div>
-              <h3 style={{ fontSize: "clamp(17px, 2vw, 20px)", fontWeight: 700, color: COLORS.navy, marginBottom: 16, fontFamily: "'DM Sans', sans-serif" }}>
+              <h3 style={{ fontSize: "clamp(17px, 2vw, 20px)", fontWeight: 700, color: COLORS.navy, fontFamily: "'DM Sans', sans-serif" }}>
                 New trainers take months before they stop costing you clients
               </h3>
-              <p style={{ fontSize: 15, lineHeight: 1.7, color: "#5a7a88", fontFamily: "'DM Sans', sans-serif" }}>
-                Every new hire is a gamble. They&apos;re learning on your clients, missing follow-ups, and delivering an inconsistent experience while your veterans carry the floor. By the time they&apos;re good, you&apos;ve already lost the members who noticed.
-              </p>
             </div>
 
             {/* Card 3 */}
@@ -447,12 +441,9 @@ export default function MiltonSite() {
               }}>
                 <Layers size={22} color={COLORS.teal} strokeWidth={1.6} />
               </div>
-              <h3 style={{ fontSize: "clamp(17px, 2vw, 20px)", fontWeight: 700, color: COLORS.navy, marginBottom: 16, fontFamily: "'DM Sans', sans-serif" }}>
+              <h3 style={{ fontSize: "clamp(17px, 2vw, 20px)", fontWeight: 700, color: COLORS.navy, fontFamily: "'DM Sans', sans-serif" }}>
                 Tracking all of this is a patchwork nightmare
               </h3>
-              <p style={{ fontSize: 15, lineHeight: 1.7, color: "#5a7a88", fontFamily: "'DM Sans', sans-serif" }}>
-                Who&apos;s executing? Who&apos;s getting results? Who&apos;s retaining clients and who&apos;s bleeding them? The answers exist - scattered across Mindbody reports, health trackers, scheduling tools, and spreadsheets you built yourself because nothing else connected the dots.
-              </p>
             </div>
           </div>
 
