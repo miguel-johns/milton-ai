@@ -2838,7 +2838,7 @@ export default function MiltonSite() {
                 marginBottom: 32,
               }}>
                 <Sparkles size={14} color={COLORS.emerald} strokeWidth={2} />
-                <span style={{ fontSize: 12, fontWeight: 600, color: COLORS.teal, letterSpacing: 0.5, fontFamily: "'DM Sans', sans-serif" }}>AI-Powered Coaching Intelligence</span>
+                <span style={{ fontSize: 12, fontWeight: 600, color: COLORS.teal, letterSpacing: 0.5, fontFamily: "'DM Sans', sans-serif" }}>AI-Powered Trainer Intelligence</span>
               </div>
             </div>
             <h1 style={{
@@ -2846,14 +2846,14 @@ export default function MiltonSite() {
               fontFamily: "'DM Sans', sans-serif", color: COLORS.navy,
               animation: "fadeUp 0.8s ease 0.1s both", letterSpacing: -2,
             }}>
-              The First AI Co-Pilot<br />for Your <span style={{ color: COLORS.teal }}>Personal Training</span>
+              The first AI co-pilot for your <span style={{ color: COLORS.teal }}>personal training business.</span>
             </h1>
             <p style={{
-              fontSize: 19, lineHeight: 1.7, color: "#5a7a88", maxWidth: 480,
+              fontSize: 19, lineHeight: 1.7, color: "#5a7a88", maxWidth: 520,
               marginTop: 28, fontFamily: "'DM Sans', sans-serif",
               animation: "fadeUp 0.8s ease 0.2s both",
             }}>
-              Make every trainer in your gym perform like your best trainer. Milton turns coaching expertise into a scalable system.
+              Milton gives every trainer on your staff the intelligence to drive attendance, follow-up, retention, and results — and gives you the visibility to see it all happening in real time.
             </p>
             <div style={{ display: "flex", gap: 16, marginTop: 40, animation: "fadeUp 0.8s ease 0.3s both", flexWrap: "wrap" }}>
               <button onClick={() => setShowDemo(true)} style={{
@@ -2862,8 +2862,9 @@ export default function MiltonSite() {
                 color: "white", fontSize: 16, fontWeight: 600, cursor: "pointer",
                 fontFamily: "'DM Sans', sans-serif", boxShadow: `0 8px 32px rgba(8,69,94,.25)`,
                 transition: "all 0.3s",
+                display: "flex", alignItems: "center", gap: 8,
               }}>
-                Request a Demo
+                Book a Demo <ChevronRight size={18} strokeWidth={2} />
               </button>
               <button onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })} style={{
                 padding: "16px 36px", borderRadius: 14,
@@ -2871,7 +2872,7 @@ export default function MiltonSite() {
                 color: COLORS.navy, fontSize: 16, fontWeight: 600, cursor: "pointer",
                 fontFamily: "'DM Sans', sans-serif", transition: "all 0.3s",
               }}>
-                See How It Works
+                Watch How It Works
               </button>
             </div>
           </div>
@@ -2881,26 +2882,412 @@ export default function MiltonSite() {
         </div>
       </section>
 
-      {/* ─── LOGO CAROUSEL ─── */}
-      <TrustStats />
-
-      {/* ─── SECTION 3: CO-PILOT (Accordion) ─── */}
-      <CoPilotSection />
-
-      {/* ─── HOW IT WORKS HEADER ─── */}
-      <Section id="how-it-works" style={{ padding: "clamp(80px, 10vw, 120px) clamp(20px, 4vw, 48px) 0", background: "white" }}>
-        <div style={{ maxWidth: 1280, margin: "0 auto", textAlign: "center" }}>
-          <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase", color: COLORS.teal, fontFamily: "'DM Sans', sans-serif" }}>The Platform</span>
-          <h2 style={{
-            fontSize: "clamp(36px, 5vw, 60px)", fontWeight: 800, lineHeight: 1.1,
-            fontFamily: "'DM Sans', sans-serif", color: COLORS.navy,
-            marginTop: 20, letterSpacing: -2,
+      {/* ─── CLARITY BAR ─── */}
+      <Section style={{ 
+        padding: "clamp(32px, 4vw, 48px) clamp(20px, 4vw, 48px)", 
+        background: "white",
+        borderBottom: "1px solid rgba(2,98,120,.06)",
+      }}>
+        <div style={{ maxWidth: 900, margin: "0 auto", textAlign: "center" }}>
+          <p style={{ 
+            fontSize: "clamp(16px, 1.8vw, 19px)", 
+            lineHeight: 1.7, 
+            color: "#5a7a88", 
+            fontFamily: "'DM Sans', sans-serif",
+            fontStyle: "italic",
           }}>
-            How It <span style={{ color: COLORS.teal }}>Works</span>
-          </h2>
-          <p style={{ fontSize: 17, lineHeight: 1.75, color: "#5a7a88", marginTop: 20, maxWidth: 520, margin: "20px auto 0", fontFamily: "'DM Sans', sans-serif" }}>
-            Four steps from setup to scale. Your methodology, your members, your coaches — all connected through Milton.
+            Milton isn&apos;t a replacement for your gym software. It&apos;s the intelligence layer that sits on top. Your billing, payments, and memberships stay exactly where they are.
           </p>
+        </div>
+      </Section>
+
+      {/* ─── THE REAL PROBLEM ─── */}
+      <Section style={{ 
+        padding: "clamp(80px, 10vw, 140px) clamp(20px, 4vw, 48px)", 
+        background: "#fafcfd" 
+      }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "clamp(48px, 6vw, 72px)" }}>
+            <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase", color: COLORS.teal, fontFamily: "'DM Sans', sans-serif" }}>The Real Problem</span>
+            <h2 style={{
+              fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 800, lineHeight: 1.15,
+              fontFamily: "'DM Sans', sans-serif", color: COLORS.navy,
+              marginTop: 20, letterSpacing: -1.5, maxWidth: 800, margin: "20px auto 0",
+            }}>
+              You sell personal training. So why is trainer performance the one thing you can&apos;t manage?
+            </h2>
+            <p style={{ fontSize: 17, lineHeight: 1.75, color: "#5a7a88", marginTop: 24, maxWidth: 700, margin: "24px auto 0", fontFamily: "'DM Sans', sans-serif" }}>
+              Your entire business runs on one thing: trainers getting clients results. But finding great trainers is hard. Keeping them is harder. And helping every trainer on your staff perform like your best one? That&apos;s damn near impossible without a system built for it.
+            </p>
+          </div>
+          
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "clamp(20px, 3vw, 32px)" }}>
+            {[
+              {
+                icon: ArrowUpRight,
+                title: "Your best trainers leave — and the business leaves with them",
+                desc: "They build client relationships, develop their own systems, outgrow your gym, and take half their book with them. You don't just lose a trainer. You lose the revenue, the retention, and the playbook they never wrote down.",
+                color: "#e74c3c",
+              },
+              {
+                icon: Clock,
+                title: "New trainers take months before they stop costing you clients",
+                desc: "Every new hire is a gamble. They're learning on your clients, missing follow-ups, and delivering an inconsistent experience while your veterans carry the floor. By the time they're good, you've already lost the members who noticed.",
+                color: "#f39c12",
+              },
+              {
+                icon: ClipboardList,
+                title: "Tracking all of this is a patchwork nightmare",
+                desc: "Who's executing? Who's getting results? Who's retaining clients and who's bleeding them? The answers exist — scattered across reports, trackers, scheduling tools, and spreadsheets you built yourself because nothing else connected the dots.",
+                color: COLORS.teal,
+              },
+            ].map(({ icon: Icon, title, desc, color }, i) => (
+              <div key={i} style={{
+                ...lc, padding: "clamp(28px, 3vw, 40px)",
+                display: "flex", flexDirection: "column", gap: 16,
+                transition: "all 0.4s cubic-bezier(.16,1,.3,1)",
+              }}
+                onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 12px 48px rgba(8,69,94,.12)"; e.currentTarget.style.transform = "translateY(-4px)"; }}
+                onMouseLeave={e => { e.currentTarget.style.boxShadow = "0 2px 24px rgba(8,69,94,.06)"; e.currentTarget.style.transform = "translateY(0)"; }}
+              >
+                <div style={{
+                  width: 48, height: 48, borderRadius: 14,
+                  background: `${color}12`, border: `1.5px solid ${color}20`,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                }}>
+                  <Icon size={22} color={color} strokeWidth={1.8} />
+                </div>
+                <h3 style={{
+                  fontSize: "clamp(18px, 2vw, 22px)", fontWeight: 800, lineHeight: 1.3,
+                  color: COLORS.navy, fontFamily: "'DM Sans', sans-serif",
+                }}>{title}</h3>
+                <p style={{
+                  fontSize: 15, lineHeight: 1.7, color: "#5a7a88",
+                  fontFamily: "'DM Sans', sans-serif", margin: 0,
+                }}>{desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ 
+            marginTop: "clamp(40px, 5vw, 64px)", 
+            padding: "clamp(24px, 3vw, 36px)", 
+            borderRadius: 20,
+            background: `linear-gradient(135deg, ${COLORS.mint}12, ${COLORS.emerald}08)`,
+            border: `1px solid ${COLORS.emerald}15`,
+            textAlign: "center",
+          }}>
+            <p style={{ 
+              fontSize: "clamp(16px, 1.8vw, 19px)", 
+              lineHeight: 1.7, 
+              color: COLORS.navy, 
+              fontFamily: "'DM Sans', sans-serif",
+              maxWidth: 800,
+              margin: "0 auto",
+              fontWeight: 500,
+            }}>
+              You want every trainer performing like your best trainer. But without one connected system that aids them in the moment, develops them over time, and tracks the business metrics that actually matter — you&apos;re managing the most important part of your business with duct tape and gut feel.
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      {/* ─── ONE PLATFORM, THREE REPORTS ─── */}
+      <Section style={{ 
+        padding: "clamp(80px, 10vw, 140px) clamp(20px, 4vw, 48px)", 
+        background: "white" 
+      }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "clamp(48px, 6vw, 72px)" }}>
+            <h2 style={{
+              fontSize: "clamp(32px, 4.5vw, 56px)", fontWeight: 800, lineHeight: 1.1,
+              fontFamily: "'DM Sans', sans-serif", color: COLORS.navy,
+              letterSpacing: -2,
+            }}>
+              One system for the thing that <span style={{ color: COLORS.teal }}>is</span> your business.
+            </h2>
+          </div>
+          
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "clamp(20px, 3vw, 32px)" }}>
+            {[
+              {
+                icon: ClipboardList,
+                title: "Execution",
+                desc: "Are your trainers following up, scheduling, programming, checking in? Milton scores it by trainer, by week — automatically. When a coach falls behind, you see it in days, not at month-end.",
+              },
+              {
+                icon: TrendingUp,
+                title: "Results",
+                desc: "Are clients reaching their goals? Milton connects programming, nutrition, and health data to show who's progressing, plateauing, or declining — without pulling from three different trackers.",
+              },
+              {
+                icon: Users,
+                title: "Retention & Growth",
+                desc: "Client count. New clients. Attendance. Churn. Milton generates the monthly picture continuously — not once a month when someone has time to update the sheet.",
+              },
+              {
+                icon: Target,
+                title: "Where They're Getting Stuck",
+                desc: "A trainer's clients are churning — is it execution or results? Milton connects all three layers so you can pinpoint the breakdown and coach to the right problem.",
+              },
+            ].map(({ icon: Icon, title, desc }, i) => (
+              <div key={i} style={{
+                padding: "clamp(24px, 3vw, 32px)",
+                borderRadius: 20,
+                background: i === 3 ? `linear-gradient(145deg, ${COLORS.navy}, ${COLORS.deepTeal})` : `${COLORS.mint}08`,
+                border: i === 3 ? "none" : `1px solid ${COLORS.emerald}12`,
+                display: "flex", flexDirection: "column", gap: 14,
+              }}>
+                <div style={{
+                  width: 44, height: 44, borderRadius: 12,
+                  background: i === 3 ? "rgba(255,255,255,.12)" : `${COLORS.teal}10`,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                }}>
+                  <Icon size={20} color={i === 3 ? COLORS.emerald : COLORS.teal} strokeWidth={1.8} />
+                </div>
+                <h3 style={{
+                  fontSize: "clamp(18px, 2vw, 22px)", fontWeight: 800, lineHeight: 1.3,
+                  color: i === 3 ? "white" : COLORS.navy, fontFamily: "'DM Sans', sans-serif",
+                }}>{title}</h3>
+                <p style={{
+                  fontSize: 15, lineHeight: 1.7, 
+                  color: i === 3 ? "rgba(255,255,255,.7)" : "#5a7a88",
+                  fontFamily: "'DM Sans', sans-serif", margin: 0,
+                }}>{desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <p style={{ 
+            fontSize: 17, 
+            lineHeight: 1.75, 
+            color: "#5a7a88", 
+            fontFamily: "'DM Sans', sans-serif",
+            textAlign: "center",
+            maxWidth: 700,
+            margin: "clamp(40px, 5vw, 64px) auto 0",
+          }}>
+            When you can see execution, results, and retention across your entire staff — without rebuilding three spreadsheets every week — you stop managing by gut and start managing by signal.
+          </p>
+        </div>
+      </Section>
+
+      {/* ─── THE COACHING PORTAL ─── */}
+      <Section style={{ 
+        padding: "clamp(80px, 10vw, 140px) clamp(20px, 4vw, 48px)", 
+        background: `linear-gradient(135deg, ${COLORS.mint}12 0%, ${COLORS.teal}10 50%, ${COLORS.emerald}08 100%)`,
+      }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "clamp(48px, 6vw, 72px)" }}>
+            <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase", color: COLORS.teal, fontFamily: "'DM Sans', sans-serif" }}>For Every Trainer On Your Staff</span>
+            <h2 style={{
+              fontSize: "clamp(32px, 4.5vw, 56px)", fontWeight: 800, lineHeight: 1.1,
+              fontFamily: "'DM Sans', sans-serif", color: COLORS.navy,
+              marginTop: 20, letterSpacing: -2,
+            }}>
+              Your best trainer&apos;s intelligence, available to <span style={{ color: COLORS.teal }}>every trainer.</span>
+            </h2>
+            <p style={{ fontSize: 17, lineHeight: 1.75, color: "#5a7a88", marginTop: 24, maxWidth: 700, margin: "24px auto 0", fontFamily: "'DM Sans', sans-serif" }}>
+              Your best trainer doesn&apos;t just show up and count reps. They know which client&apos;s body scan is trending the wrong direction. They notice when someone&apos;s nutrition logs go quiet. They remember who needs a check-in today and who needs space. They connect dots across devices, data, and conversation — and they do it instinctively. Now every trainer on your staff can do it too.
+            </p>
+          </div>
+          
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "clamp(20px, 3vw, 32px)" }}>
+            {[
+              {
+                icon: Eye,
+                title: "Wearables, body scans, nutrition logs — one view.",
+                desc: "Milton pulls device data, InBody scans, nutrition tracking, and session history into a single coaching view. Your trainer doesn't need to check four apps. The full client picture is right there.",
+              },
+              {
+                icon: Brain,
+                title: "AI-guided programming that adapts to real outcomes.",
+                desc: "Not cookie-cutter templates. Milton sees what's working for each client — based on actual results, not guesswork — and suggests adjustments your trainer can review and apply in seconds.",
+              },
+              {
+                icon: MessageSquare,
+                title: "The follow-up that separates good trainers from great ones.",
+                desc: "Milton drafts check-ins, flags clients who need attention, and prompts the conversations that keep clients engaged between sessions. The stuff your best trainer does naturally — systematized for everyone.",
+              },
+              {
+                icon: Smartphone,
+                title: "A better trainer's brain, in their pocket, 24/7.",
+                desc: "Your newest hire walks onto the floor with the same client intelligence your ten-year veteran carries in their head. Not replacing the human connection — powering it with data that was always there but never connected.",
+              },
+            ].map(({ icon: Icon, title, desc }, i) => (
+              <div key={i} style={{
+                ...lc, padding: "clamp(24px, 3vw, 32px)",
+                display: "flex", flexDirection: "column", gap: 14,
+                transition: "all 0.4s cubic-bezier(.16,1,.3,1)",
+              }}
+                onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 12px 48px rgba(8,69,94,.12)"; e.currentTarget.style.transform = "translateY(-4px)"; }}
+                onMouseLeave={e => { e.currentTarget.style.boxShadow = "0 2px 24px rgba(8,69,94,.06)"; e.currentTarget.style.transform = "translateY(0)"; }}
+              >
+                <div style={{
+                  width: 44, height: 44, borderRadius: 12,
+                  background: `${COLORS.teal}10`, border: `1.5px solid ${COLORS.teal}20`,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                }}>
+                  <Icon size={20} color={COLORS.teal} strokeWidth={1.8} />
+                </div>
+                <h3 style={{
+                  fontSize: "clamp(16px, 1.8vw, 19px)", fontWeight: 800, lineHeight: 1.35,
+                  color: COLORS.navy, fontFamily: "'DM Sans', sans-serif",
+                }}>{title}</h3>
+                <p style={{
+                  fontSize: 15, lineHeight: 1.7, color: "#5a7a88",
+                  fontFamily: "'DM Sans', sans-serif", margin: 0,
+                }}>{desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <p style={{ 
+            fontSize: 17, 
+            lineHeight: 1.75, 
+            color: "#5a7a88", 
+            fontFamily: "'DM Sans', sans-serif",
+            textAlign: "center",
+            maxWidth: 700,
+            margin: "clamp(40px, 5vw, 64px) auto 0",
+            fontStyle: "italic",
+          }}>
+            Milton makes progress visual for your coaches — in real time, in the flow of their work — so they can see what&apos;s happening with every client and coach them to results, not just through workouts.
+          </p>
+        </div>
+      </Section>
+
+      {/* ─── A DAY WITH MILTON ─── */}
+      <Section style={{ 
+        padding: "clamp(80px, 10vw, 140px) clamp(20px, 4vw, 48px)", 
+        background: "white" 
+      }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "clamp(48px, 6vw, 72px)" }}>
+            <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase", color: COLORS.teal, fontFamily: "'DM Sans', sans-serif" }}>What Actually Changes</span>
+            <h2 style={{
+              fontSize: "clamp(32px, 4.5vw, 56px)", fontWeight: 800, lineHeight: 1.1,
+              fontFamily: "'DM Sans', sans-serif", color: COLORS.navy,
+              marginTop: 20, letterSpacing: -2,
+            }}>
+              Tuesday morning. No spreadsheets. No guessing.
+            </h2>
+          </div>
+          
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "clamp(24px, 4vw, 48px)" }}>
+            {/* Sarah's Day */}
+            <div style={{
+              ...lc, padding: "clamp(28px, 3vw, 40px)",
+              display: "flex", flexDirection: "column", gap: 20,
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+                <div style={{
+                  width: 52, height: 52, borderRadius: 16,
+                  background: `linear-gradient(135deg, ${COLORS.mint}40, ${COLORS.emerald}30)`,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: 18, fontWeight: 800, color: COLORS.teal, fontFamily: "'DM Sans', sans-serif",
+                }}>S</div>
+                <div>
+                  <div style={{ fontSize: 18, fontWeight: 800, color: COLORS.navy, fontFamily: "'DM Sans', sans-serif" }}>Sarah, trainer</div>
+                  <div style={{ fontSize: 14, color: "#5a7a88", fontFamily: "'DM Sans', sans-serif" }}>6 clients today</div>
+                </div>
+              </div>
+              <p style={{
+                fontSize: 15, lineHeight: 1.7, color: "#5a7a88",
+                fontFamily: "'DM Sans', sans-serif", margin: 0,
+              }}>
+                <span style={{ fontWeight: 600, color: COLORS.navy }}>Daily brief:</span> one client missed two sessions, one hit a 12-week streak, one is trending off-plan. Follow-ups drafted. Programming adjustments suggested. She reviews, tweaks, sends. <span style={{ fontWeight: 600, color: COLORS.teal }}>Coaching in 4 minutes, not 40.</span>
+              </p>
+            </div>
+
+            {/* Owner's Day */}
+            <div style={{
+              padding: "clamp(28px, 3vw, 40px)",
+              borderRadius: 24,
+              background: `linear-gradient(145deg, ${COLORS.navy}, ${COLORS.deepTeal})`,
+              display: "flex", flexDirection: "column", gap: 20,
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+                <div style={{
+                  width: 52, height: 52, borderRadius: 16,
+                  background: "rgba(255,255,255,.12)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                }}>
+                  <Building2 size={24} color={COLORS.emerald} strokeWidth={1.8} />
+                </div>
+                <div>
+                  <div style={{ fontSize: 18, fontWeight: 800, color: "white", fontFamily: "'DM Sans', sans-serif" }}>You, the owner</div>
+                  <div style={{ fontSize: 14, color: "rgba(255,255,255,.6)", fontFamily: "'DM Sans', sans-serif" }}>11 trainers on the floor</div>
+                </div>
+              </div>
+              <p style={{
+                fontSize: 15, lineHeight: 1.7, color: "rgba(255,255,255,.7)",
+                fontFamily: "'DM Sans', sans-serif", margin: 0,
+              }}>
+                Execution scores are current — two new hires at 60% on follow-ups, rest of the team at 94%. One trainer&apos;s clients are plateauing despite consistent attendance — a programming conversation, not a motivation problem. Another lost three clients in six weeks — you trace it directly to missed check-ins. <span style={{ fontWeight: 600, color: COLORS.emerald }}>Same rigor you&apos;d build yourself. Fraction of the time.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* ─── HOW IT WORKS ─── */}
+      <Section id="how-it-works" style={{ padding: "clamp(80px, 10vw, 140px) clamp(20px, 4vw, 48px)", background: "#fafcfd" }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "clamp(48px, 6vw, 72px)" }}>
+            <h2 style={{
+              fontSize: "clamp(32px, 4.5vw, 56px)", fontWeight: 800, lineHeight: 1.1,
+              fontFamily: "'DM Sans', sans-serif", color: COLORS.navy,
+              letterSpacing: -2,
+            }}>
+              Live in 2 weeks, not 2 quarters.
+            </h2>
+          </div>
+          
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "clamp(24px, 4vw, 48px)" }}>
+            {[
+              {
+                num: "1",
+                title: "Connect your existing tools",
+                desc: "Milton layers on top of your current gym software. Everything stays where it is.",
+                icon: Plug,
+              },
+              {
+                num: "2",
+                title: "Upload your coaching playbook",
+                desc: "Your SOPs, your execution scorecard, your standards. Milton doesn't impose a framework. It automates yours.",
+                icon: ClipboardList,
+              },
+              {
+                num: "3",
+                title: "Your team gets smarter, your Tuesday mornings get shorter",
+                desc: "The three reports you built by hand? Milton runs them for you.",
+                icon: Zap,
+              },
+            ].map(({ num, title, desc, icon: Icon }, i) => (
+              <div key={i} style={{
+                display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", gap: 20,
+              }}>
+                <div style={{
+                  width: 72, height: 72, borderRadius: 20,
+                  background: `linear-gradient(145deg, ${COLORS.navy}, ${COLORS.deepTeal})`,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  fontSize: 28, fontWeight: 800, color: "white", fontFamily: "'DM Sans', sans-serif",
+                  boxShadow: `0 12px 40px rgba(8,69,94,.25)`,
+                }}>
+                  {num}
+                </div>
+                <h3 style={{
+                  fontSize: "clamp(18px, 2vw, 22px)", fontWeight: 800, lineHeight: 1.3,
+                  color: COLORS.navy, fontFamily: "'DM Sans', sans-serif",
+                }}>{title}</h3>
+                <p style={{
+                  fontSize: 15, lineHeight: 1.7, color: "#5a7a88",
+                  fontFamily: "'DM Sans', sans-serif", margin: 0,
+                }}>{desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </Section>
 
@@ -3223,108 +3610,267 @@ export default function MiltonSite() {
         </div>
       </Section>
 
-      {/* ─── SECTION 6: ECOSYSTEM ─── */}
-      <EcosystemSection />
-
-      {/* ─── INSIGHTS ─── */}
-      <Section style={{ padding: "clamp(80px, 10vw, 140px) clamp(20px, 4vw, 48px)", background: "#fafcfd" }}>
+      {/* ─── EARLY RESULTS ─── */}
+      <Section style={{ 
+        padding: "clamp(80px, 10vw, 140px) clamp(20px, 4vw, 48px)", 
+        background: "white" 
+      }}>
         <div style={{ maxWidth: 1280, margin: "0 auto" }}>
-          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", flexWrap: "wrap", gap: 20, marginBottom: "clamp(40px, 5vw, 64px)" }}>
-            <div>
-              <span style={{ fontSize: 12, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase", color: COLORS.teal, fontFamily: "'DM Sans', sans-serif" }}>Insights</span>
-              <h2 style={{
-                fontSize: "clamp(32px, 4vw, 52px)", fontWeight: 800, lineHeight: 1.12,
-                fontFamily: "'DM Sans', sans-serif", color: COLORS.navy,
-                marginTop: 20, letterSpacing: -1.5,
-              }}>
-                Thinking Behind the <span style={{ color: COLORS.teal }}>Platform</span>
-              </h2>
-            </div>
-            <a href="#" style={{
-              fontSize: 14, fontWeight: 600, color: COLORS.teal, textDecoration: "none",
-              fontFamily: "'DM Sans', sans-serif", display: "flex", alignItems: "center", gap: 6,
-              padding: "10px 20px", borderRadius: 10, border: `1.5px solid ${COLORS.teal}25`,
-              transition: "all 0.3s",
-            }} onClick={(e) => { e.preventDefault(); navigate("insights"); }}>View All <ChevronRight size={14} strokeWidth={2.5} /></a>
+          <div style={{ textAlign: "center", marginBottom: "clamp(48px, 6vw, 72px)" }}>
+            <h2 style={{
+              fontSize: "clamp(32px, 4.5vw, 56px)", fontWeight: 800, lineHeight: 1.1,
+              fontFamily: "'DM Sans', sans-serif", color: COLORS.navy,
+              letterSpacing: -2,
+            }}>
+              We don&apos;t expect you to take our word for it.
+            </h2>
           </div>
-
-          {/* Content grid */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))", gap: "clamp(16px, 2vw, 24px)" }}>
+          
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "clamp(24px, 4vw, 48px)" }}>
             {[
               {
-                type: "Article",
-                title: "Human-in-the-Loop AI: Why We Built Milton With Coaches, Not Instead of Them",
-                desc: "After working with hundreds of coaches across fitness and healthcare, one thing became clear — AI doesn't replace the human connection. It amplifies it. Here's how the coach-first philosophy shaped every decision we made building Milton.",
-                color: COLORS.teal,
-                tag: "7 min read",
-                link: "article-0",
-                image: BLOG_IMG_1,
+                company: "Athletica Health & Fitness",
+                quote: "Within the first month, our new hires were following up at the same rate as our 3-year veterans. That's never happened before.",
+                person: "Brett Reynolds, Owner",
+                stats: ["Check-in completion increase", "Fewer clients lost in transitions", "Hrs/week saved per trainer"],
               },
               {
-                type: "Article",
-                title: "The Data Is Finally Here. But We Forgot the Most Powerful Piece.",
-                desc: "Connected wearables, InBody scanners, photo-based food logging, CGMs, even uploaded bloodwork — we've never had more health data. AI coaches like ChatGPT can analyze it all. So why aren't outcomes improving? Because data without a human coach is just noise.",
-                color: COLORS.navy,
-                tag: "6 min read",
-                link: "article-1",
-                image: BLOG_IMG_2,
+                company: "Optimal Performance",
+                quote: "Milton showed us which trainers were losing clients and why. We made one scheduling change that paid for the platform in week two.",
+                person: "Bethany M., Director",
+                stats: ["Trainer utilization improvement", "Retention lift in 90 days", "ROI positive in weeks"],
               },
-              {
-                type: "Article",
-                title: "Where Fitness Meets Healthcare: The Prevention Layer Nobody Built",
-                desc: "The healthcare system waits for people to get sick. Gyms help people stay well. Somewhere between those two worlds is a trillion-dollar prevention layer — and the coaches on your gym floor are already standing in it.",
-                color: COLORS.emerald,
-                tag: "5 min read",
-                link: "article-2",
-                image: BLOG_IMG_3,
-              },
-            ].map(({ type, title, desc, color, tag, link, image }, i) => (
-              <a key={i} href="#" onClick={(e) => { e.preventDefault(); navigate(link); }} style={{ textDecoration: "none", display: "block" }}>
-                <div style={{
-                  ...lc, padding: 0, height: "100%", overflow: "hidden",
-                  display: "flex", flexDirection: "column",
-                  transition: "all 0.4s cubic-bezier(.16,1,.3,1)",
-                  cursor: "pointer",
-                }}
-                  onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 8px 40px rgba(8,69,94,.1)"; e.currentTarget.style.transform = "translateY(-4px)"; }}
-                  onMouseLeave={e => { e.currentTarget.style.boxShadow = "0 2px 24px rgba(8,69,94,.06)"; e.currentTarget.style.transform = "translateY(0)"; }}
-                >
-                  {image && (
-                    <div style={{ width: "100%", height: 180, overflow: "hidden" }}>
-                      <img src={image} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                    </div>
-                  )}
-                  <div style={{ padding: "clamp(20px, 2.5vw, 28px)", display: "flex", flexDirection: "column", gap: 16, flex: 1 }}>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    <span style={{
-                      fontSize: 11, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase",
-                      color, fontFamily: "'DM Sans', sans-serif",
-                      padding: "4px 10px", borderRadius: 6, background: `${color}10`,
-                    }}>{type}</span>
-                    <span style={{ fontSize: 11, color: "#9ab5c0", fontFamily: "'DM Sans', sans-serif" }}>{tag}</span>
-                  </div>
-                  <div style={{
-                    fontSize: "clamp(16px, 1.8vw, 19px)", fontWeight: 800, lineHeight: 1.35,
-                    color: COLORS.navy, fontFamily: "'DM Sans', sans-serif",
-                  }}>{title}</div>
-                  <div style={{
-                    fontSize: 14, lineHeight: 1.6, color: "#5a7a88",
-                    fontFamily: "'DM Sans', sans-serif", flex: 1,
-                  }}>{desc}</div>
-                  <div style={{ display: "flex", alignItems: "center", gap: 6, marginTop: "auto" }}>
-                    <span style={{ fontSize: 13, fontWeight: 600, color: COLORS.teal, fontFamily: "'DM Sans', sans-serif" }}>Read more</span>
-                    <ChevronRight size={13} color={COLORS.teal} strokeWidth={2.5} />
-                  </div>
-                  </div>
+            ].map(({ company, quote, person, stats }, i) => (
+              <div key={i} style={{
+                ...lc, padding: "clamp(32px, 4vw, 48px)",
+                display: "flex", flexDirection: "column", gap: 24,
+              }}>
+                <div style={{ fontSize: 14, fontWeight: 700, color: COLORS.teal, fontFamily: "'DM Sans', sans-serif", letterSpacing: 0.5 }}>{company}</div>
+                <blockquote style={{
+                  fontSize: "clamp(18px, 2vw, 22px)", lineHeight: 1.5, color: COLORS.navy,
+                  fontFamily: "'DM Sans', sans-serif", margin: 0, fontStyle: "italic", fontWeight: 500,
+                }}>
+                  &ldquo;{quote}&rdquo;
+                </blockquote>
+                <div style={{ fontSize: 14, color: "#5a7a88", fontFamily: "'DM Sans', sans-serif" }}>— {person}</div>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: "auto", paddingTop: 16, borderTop: "1px solid rgba(2,98,120,.06)" }}>
+                  {stats.map((stat, j) => (
+                    <span key={j} style={{
+                      padding: "6px 12px", borderRadius: 8,
+                      background: `${COLORS.emerald}10`, 
+                      fontSize: 12, fontWeight: 600, color: COLORS.teal, fontFamily: "'DM Sans', sans-serif",
+                    }}>{stat}</span>
+                  ))}
                 </div>
-              </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* ─── WHO IT'S FOR ─── */}
+      <Section style={{ 
+        padding: "clamp(80px, 10vw, 140px) clamp(20px, 4vw, 48px)", 
+        background: "#fafcfd" 
+      }}>
+        <div style={{ maxWidth: 1280, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "clamp(48px, 6vw, 72px)" }}>
+            <h2 style={{
+              fontSize: "clamp(32px, 4.5vw, 56px)", fontWeight: 800, lineHeight: 1.1,
+              fontFamily: "'DM Sans', sans-serif", color: COLORS.navy,
+              letterSpacing: -2,
+            }}>
+              Built for owners who manage trainers, not just memberships.
+            </h2>
+          </div>
+          
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "clamp(20px, 3vw, 32px)" }}>
+            {[
+              {
+                icon: Building2,
+                title: "Gym Owners",
+                desc: "5–30 trainers and no way to see who's driving attendance and who's losing clients. Milton gives you that visibility.",
+              },
+              {
+                icon: ClipboardList,
+                title: "Fitness Directors",
+                desc: "You built the spreadsheets. Milton automates them.",
+              },
+              {
+                icon: Target,
+                title: "Multi-Location Operators",
+                desc: "Consistency across locations without micromanaging.",
+              },
+            ].map(({ icon: Icon, title, desc }, i) => (
+              <div key={i} style={{
+                ...lc, padding: "clamp(28px, 3vw, 40px)",
+                display: "flex", flexDirection: "column", gap: 16, textAlign: "center",
+                transition: "all 0.4s cubic-bezier(.16,1,.3,1)",
+              }}
+                onMouseEnter={e => { e.currentTarget.style.boxShadow = "0 12px 48px rgba(8,69,94,.12)"; e.currentTarget.style.transform = "translateY(-4px)"; }}
+                onMouseLeave={e => { e.currentTarget.style.boxShadow = "0 2px 24px rgba(8,69,94,.06)"; e.currentTarget.style.transform = "translateY(0)"; }}
+              >
+                <div style={{
+                  width: 56, height: 56, borderRadius: 16,
+                  background: `linear-gradient(145deg, ${COLORS.navy}, ${COLORS.deepTeal})`,
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  margin: "0 auto",
+                  boxShadow: `0 8px 24px rgba(8,69,94,.2)`,
+                }}>
+                  <Icon size={24} color="white" strokeWidth={1.8} />
+                </div>
+                <h3 style={{
+                  fontSize: "clamp(20px, 2.2vw, 24px)", fontWeight: 800, lineHeight: 1.3,
+                  color: COLORS.navy, fontFamily: "'DM Sans', sans-serif",
+                }}>{title}</h3>
+                <p style={{
+                  fontSize: 15, lineHeight: 1.7, color: "#5a7a88",
+                  fontFamily: "'DM Sans', sans-serif", margin: 0,
+                }}>{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* ─── LET'S BE CLEAR ─── */}
+      <Section style={{ 
+        padding: "clamp(80px, 10vw, 140px) clamp(20px, 4vw, 48px)", 
+        background: "white" 
+      }}>
+        <div style={{ maxWidth: 1000, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "clamp(48px, 6vw, 72px)" }}>
+            <h2 style={{
+              fontSize: "clamp(32px, 4.5vw, 56px)", fontWeight: 800, lineHeight: 1.1,
+              fontFamily: "'DM Sans', sans-serif", color: COLORS.navy,
+              letterSpacing: -2,
+            }}>
+              Let&apos;s be clear.
+            </h2>
+          </div>
+          
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "clamp(32px, 4vw, 48px)" }}>
+            {/* Milton is NOT */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: "#e74c3c", fontFamily: "'DM Sans', sans-serif", letterSpacing: 1, textTransform: "uppercase" }}>Milton is not:</div>
+              {[
+                "A replacement for your gym management software",
+                "A client-facing fitness app",
+                "Another CRM to maintain",
+                "Months of setup",
+              ].map((item, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
+                  <div style={{
+                    width: 24, height: 24, borderRadius: 6, flexShrink: 0,
+                    background: "#e74c3c12",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    marginTop: 2,
+                  }}>
+                    <X size={14} color="#e74c3c" strokeWidth={2.5} />
+                  </div>
+                  <span style={{ fontSize: 16, color: "#5a7a88", fontFamily: "'DM Sans', sans-serif", lineHeight: 1.5 }}>{item}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Milton IS */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: COLORS.emerald, fontFamily: "'DM Sans', sans-serif", letterSpacing: 1, textTransform: "uppercase" }}>Milton is:</div>
+              {[
+                "The first AI co-pilot for personal training businesses",
+                "Execution, client health, and retention — by trainer, in real time",
+                "The three reports you built by hand, running themselves",
+                "Live in weeks, not months",
+              ].map((item, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
+                  <div style={{
+                    width: 24, height: 24, borderRadius: 6, flexShrink: 0,
+                    background: `${COLORS.emerald}15`,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    marginTop: 2,
+                  }}>
+                    <Check size={14} color={COLORS.emerald} strokeWidth={2.5} />
+                  </div>
+                  <span style={{ fontSize: 16, color: COLORS.navy, fontFamily: "'DM Sans', sans-serif", lineHeight: 1.5, fontWeight: 500 }}>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* ─── FAQ ─── */}
+      <Section style={{ 
+        padding: "clamp(80px, 10vw, 140px) clamp(20px, 4vw, 48px)", 
+        background: "#fafcfd" 
+      }}>
+        <div style={{ maxWidth: 800, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "clamp(48px, 6vw, 72px)" }}>
+            <h2 style={{
+              fontSize: "clamp(32px, 4.5vw, 56px)", fontWeight: 800, lineHeight: 1.1,
+              fontFamily: "'DM Sans', sans-serif", color: COLORS.navy,
+              letterSpacing: -2,
+            }}>
+              Questions we&apos;d ask too.
+            </h2>
+          </div>
+          
+          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+            {[
+              {
+                q: "Do my trainers need to learn a new platform?",
+                a: "Barely. Daily brief and suggested actions. Most are running in a week. We onboard your team hands-on.",
+              },
+              {
+                q: "How does it integrate with my current software?",
+                a: "Layers on top of Mindbody, ABC Fitness, Trainerize, TrueCoach. Your billing, scheduling, and memberships don't move.",
+              },
+              {
+                q: "You're a small company. How do I know you'll be around?",
+                a: "We're working with a small group of gyms intentionally. Early partners get direct access to the founding team. Your data is portable — you're never locked in.",
+              },
+              {
+                q: "Didn't this start as a healthcare tool?",
+                a: "Yes. That's where we learned to turn coaching data into outcomes at scale — in one of the most regulated environments in health. The healthcare DNA is a feature, not a pivot.",
+              },
+              {
+                q: "Who owns my data?",
+                a: "You do. We don't sell it, we don't train public models on it, and if you cancel, it's exported and deleted. Healthcare-grade data practices by default.",
+              },
+              {
+                q: "What does it cost?",
+                a: "Based on team size. Most owners find it pays for itself within 60 days through faster ramp and better retention. Book a demo and we'll build the ROI case with your real numbers.",
+              },
+              {
+                q: "I already built spreadsheets for this. Why do I need Milton?",
+                a: "You're exactly who we built this for. Same framework, same rigor — without the hours every week pulling reports, cross-referencing, and double-checking. Milton automates the system you already designed.",
+              },
+              {
+                q: "Why not just hire a better head trainer?",
+                a: "You should. Milton makes them more effective. Even the best head trainer can't track execution, results, and retention across 10+ trainers in real time. Milton gives them the data to scale their instincts.",
+              },
+            ].map(({ q, a }, i) => (
+              <div key={i} style={{
+                padding: "clamp(20px, 2.5vw, 28px) 0",
+                borderBottom: "1px solid rgba(2,98,120,.08)",
+              }}>
+                <h3 style={{
+                  fontSize: "clamp(16px, 1.8vw, 19px)", fontWeight: 700, lineHeight: 1.4,
+                  color: COLORS.navy, fontFamily: "'DM Sans', sans-serif",
+                  marginBottom: 12,
+                }}>{q}</h3>
+                <p style={{
+                  fontSize: 15, lineHeight: 1.7, color: "#5a7a88",
+                  fontFamily: "'DM Sans', sans-serif", margin: 0,
+                }}>{a}</p>
+              </div>
             ))}
           </div>
         </div>
       </Section>
 
       {/* ─── FINAL CTA ─── */}
-      <Section style={{ padding: "160px 48px", position: "relative", overflow: "hidden" }}>
+      <Section style={{ padding: "clamp(100px, 12vw, 180px) clamp(20px, 4vw, 48px)", position: "relative", overflow: "hidden" }}>
         <div style={{
           position: "absolute", inset: 0,
           background: `linear-gradient(145deg, ${COLORS.navy}, ${COLORS.deepTeal})`,
@@ -3333,21 +3879,16 @@ export default function MiltonSite() {
         <div style={{ position: "absolute", top: -200, right: -200, width: 600, height: 600, borderRadius: "50%", background: `radial-gradient(circle, ${COLORS.emerald}10, transparent 70%)` }} />
         <div style={{ position: "absolute", bottom: -150, left: -150, width: 500, height: 500, borderRadius: "50%", background: `radial-gradient(circle, ${COLORS.teal}10, transparent 70%)` }} />
 
-        <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center", position: "relative", zIndex: 1 }}>
-          <div style={{
-            width: 64, height: 64, borderRadius: 18, margin: "0 auto 36px", overflow: "hidden",
-            border: "2px solid rgba(255,255,255,.15)",
-          }}>
-            <img src={MILTON_LOGO} alt="Milton" style={{ width: 64, height: 64, borderRadius: 18, objectFit: "cover" }} />
-          </div>
+        <div style={{ maxWidth: 800, margin: "0 auto", textAlign: "center", position: "relative", zIndex: 1 }}>
           <h2 style={{
-            fontSize: "clamp(36px, 5vw, 56px)", fontWeight: 800, lineHeight: 1.1,
+            fontSize: "clamp(32px, 4.5vw, 52px)", fontWeight: 800, lineHeight: 1.15,
             fontFamily: "'DM Sans', sans-serif", color: "white", letterSpacing: -1.5,
           }}>
-            Make Every Trainer <span style={{ color: COLORS.emerald }}>Great</span>
+            The first AI co-pilot for personal training.<br />
+            <span style={{ color: COLORS.emerald }}>Built for the people who run it.</span>
           </h2>
-          <p style={{ fontSize: 19, lineHeight: 1.7, color: "rgba(255,255,255,.6)", marginTop: 24, fontFamily: "'DM Sans', sans-serif", maxWidth: 520, margin: "24px auto 0" }}>
-            See how Milton transforms coaching from an individual skill into a scalable system. Book a 30-minute walkthrough with our team.
+          <p style={{ fontSize: 19, lineHeight: 1.7, color: "rgba(255,255,255,.6)", marginTop: 28, fontFamily: "'DM Sans', sans-serif", maxWidth: 600, margin: "28px auto 0" }}>
+            Attendance. Follow-up. Retention. Results. One system. Every trainer. Every week.
           </p>
           <button onClick={() => setShowDemo(true)} style={{
             marginTop: 40, padding: "18px 48px", borderRadius: 14, border: "none",
@@ -3356,12 +3897,10 @@ export default function MiltonSite() {
             fontFamily: "'DM Sans', sans-serif",
             transition: "all 0.3s",
             boxShadow: `0 8px 32px rgba(46,229,177,.3)`,
+            display: "inline-flex", alignItems: "center", gap: 8,
           }}>
-            Book a Demo
+            Book a Demo <ChevronRight size={20} strokeWidth={2} />
           </button>
-          <p style={{ fontSize: 13, color: "rgba(255,255,255,.3)", marginTop: 16, fontFamily: "'DM Sans', sans-serif" }}>
-            30 minutes · No commitment · See it live
-          </p>
         </div>
       </Section>
 
