@@ -111,8 +111,133 @@ function GridRow({ children, cols = 2 }) {
 
 
 
-function HeroVisual({ mobile }) {
-  return <VisualPlaceholder height={420} mobileHeight={240} style={{ width: "100%", maxWidth: 900, marginBottom: mobile ? 36 : 60 }} />;
+function HeroVisual({ mobile, tablet }) {
+  // Device frame styles
+  const desktopFrame = {
+    position: "relative",
+    background: "#1a1a1a",
+    borderRadius: 12,
+    padding: "8px 8px 0 8px",
+    boxShadow: "0 25px 50px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1)",
+  };
+  
+  const mobileFrame = {
+    position: "absolute",
+    background: "#1a1a1a",
+    borderRadius: 24,
+    padding: 6,
+    boxShadow: "0 25px 50px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.15)",
+  };
+
+  const browserDots = (
+    <div style={{ display: "flex", gap: 6, marginBottom: 8, paddingLeft: 4 }}>
+      <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#ff5f56" }} />
+      <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#ffbd2e" }} />
+      <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#27ca40" }} />
+    </div>
+  );
+
+  const phoneNotch = (
+    <div style={{
+      position: "absolute", top: 8, left: "50%", transform: "translateX(-50%)",
+      width: 80, height: 24, background: "#000", borderRadius: 12, zIndex: 10,
+    }} />
+  );
+
+  if (mobile) {
+    return (
+      <div style={{
+        width: "100%",
+        maxWidth: 320,
+        margin: "0 auto 36px",
+        position: "relative",
+      }}>
+        {/* Single mobile view on small screens */}
+        <div style={{ ...mobileFrame, position: "relative" }}>
+          {phoneNotch}
+          <img
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_9989.PNG-f336Lct8eUSGmSBYoDHaUoIUBzfowf.png"
+            alt="Milton AI Coach Dashboard"
+            style={{
+              width: "100%",
+              borderRadius: 20,
+              display: "block",
+            }}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{
+      width: "100%",
+      maxWidth: 1000,
+      margin: "0 auto",
+      marginBottom: tablet ? 48 : 60,
+      position: "relative",
+      paddingBottom: tablet ? 80 : 100,
+    }}>
+      {/* Main desktop view - Director Dashboard */}
+      <div style={{
+        ...desktopFrame,
+        width: "100%",
+        maxWidth: tablet ? 700 : 900,
+        margin: "0 auto",
+      }}>
+        {browserDots}
+        <img
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_8212.PNG-cTAIkSuS32rf4Ovx8lJbj3UzpgbNWo.png"
+          alt="Milton Fitness Director Dashboard"
+          style={{
+            width: "100%",
+            borderRadius: "0 0 8px 8px",
+            display: "block",
+          }}
+        />
+      </div>
+
+      {/* Left mobile - Coach Dashboard */}
+      <div style={{
+        ...mobileFrame,
+        width: tablet ? 140 : 180,
+        left: tablet ? -20 : -40,
+        bottom: tablet ? -40 : -60,
+        zIndex: 10,
+      }}>
+        {phoneNotch}
+        <img
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_9988.PNG-XNvklkaBuveooprnrI8okF9c8UCquw.png"
+          alt="Milton Coach Mobile App"
+          style={{
+            width: "100%",
+            borderRadius: 18,
+            display: "block",
+          }}
+        />
+      </div>
+
+      {/* Right mobile - AI Chat */}
+      <div style={{
+        ...mobileFrame,
+        width: tablet ? 140 : 180,
+        right: tablet ? -20 : -40,
+        bottom: tablet ? -20 : -40,
+        zIndex: 10,
+      }}>
+        {phoneNotch}
+        <img
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_9989.PNG-f336Lct8eUSGmSBYoDHaUoIUBzfowf.png"
+          alt="Milton AI Assistant"
+          style={{
+            width: "100%",
+            borderRadius: 18,
+            display: "block",
+          }}
+        />
+      </div>
+    </div>
+  );
 }
 
 
