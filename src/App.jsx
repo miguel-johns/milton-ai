@@ -112,260 +112,286 @@ function GridRow({ children, cols = 2 }) {
 
 
 function HeroVisual({ mobile, tablet }) {
-  // Floating card component
-  const FloatingCard = ({ children, style, delay = 0 }) => (
+  const teal = "#0d9aa5";
+  const tealFaded = "rgba(13,154,165,0.4)";
+  const cardBg = "rgba(13,154,165,0.08)";
+  
+  // Sketch-style card with dashed border
+  const SketchCard = ({ children, style = {} }) => (
     <div style={{
-      background: "rgba(255,255,255,0.03)",
-      backdropFilter: "blur(20px)",
-      border: "1px solid rgba(255,255,255,0.08)",
-      borderRadius: 16,
-      padding: mobile ? 16 : 20,
-      boxShadow: "0 20px 40px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)",
-      animation: `float 6s ease-in-out ${delay}s infinite`,
+      background: cardBg,
+      border: `1px dashed ${tealFaded}`,
+      borderRadius: 8,
+      padding: mobile ? 12 : 16,
       ...style,
     }}>
       {children}
     </div>
   );
 
-  // Metric display
-  const Metric = ({ label, value, trend, color = "#0d9aa5" }) => (
-    <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, letterSpacing: 1.5, textTransform: "uppercase", color: "rgba(255,255,255,0.4)" }}>{label}</span>
-      <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
-        <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: mobile ? 28 : 36, fontWeight: 600, color: "#fff" }}>{value}</span>
-        {trend && <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color, fontWeight: 500 }}>{trend}</span>}
+  // Annotation label with dashed line
+  const Annotation = ({ text, style = {} }) => (
+    <div style={{
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      ...style,
+    }}>
+      <div style={{ width: 24, height: 1, borderTop: `1px dashed ${tealFaded}` }} />
+      <span style={{
+        fontFamily: "'DM Sans', sans-serif",
+        fontSize: 11,
+        color: "rgba(255,255,255,0.5)",
+        letterSpacing: 0.5,
+      }}>{text}</span>
+    </div>
+  );
+
+  // Small metric box
+  const MetricBox = ({ label, value, highlight }) => (
+    <SketchCard style={{ padding: mobile ? 10 : 12 }}>
+      <div style={{ fontSize: 9, letterSpacing: 1, color: "rgba(255,255,255,0.4)", marginBottom: 4, textTransform: "uppercase" }}>{label}</div>
+      <div style={{ fontSize: mobile ? 18 : 22, fontWeight: 600, color: highlight ? teal : "#fff" }}>{value}</div>
+    </SketchCard>
+  );
+
+  // Progress bar
+  const ProgressBar = ({ value, color = teal }) => (
+    <div style={{ height: 4, background: "rgba(255,255,255,0.1)", borderRadius: 2, overflow: "hidden" }}>
+      <div style={{ height: "100%", width: `${value}%`, background: color, borderRadius: 2 }} />
+    </div>
+  );
+
+  // Client row
+  const ClientRow = ({ name, status, statusColor, progress }) => (
+    <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 0", borderBottom: "1px dashed rgba(13,154,165,0.15)" }}>
+      <div style={{ width: 28, height: 28, borderRadius: 6, border: `1px dashed ${tealFaded}`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, color: teal }}>{name.split(" ").map(n => n[0]).join("")}</div>
+      <div style={{ flex: 1 }}>
+        <div style={{ fontSize: 12, color: "#fff", marginBottom: 2 }}>{name}</div>
+        <ProgressBar value={progress} />
+      </div>
+      <span style={{ fontSize: 9, padding: "3px 8px", borderRadius: 4, background: `${statusColor}20`, color: statusColor, border: `1px dashed ${statusColor}50` }}>{status}</span>
+    </div>
+  );
+
+  // Chat message
+  const ChatMessage = ({ isAi, text }) => (
+    <div style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
+      {isAi && (
+        <div style={{ width: 24, height: 24, borderRadius: 6, background: "rgba(13,154,165,0.2)", border: `1px dashed ${tealFaded}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Milton%20Face%20Logo-whMWzOXBgBgulGUqdRthSEMsjeyWPe.png" alt="" style={{ width: 16, height: 16, borderRadius: 3 }} />
+        </div>
+      )}
+      <div style={{
+        background: isAi ? "rgba(13,154,165,0.1)" : "rgba(255,255,255,0.05)",
+        border: `1px dashed ${isAi ? tealFaded : "rgba(255,255,255,0.15)"}`,
+        borderRadius: 8,
+        padding: "8px 12px",
+        flex: 1,
+      }}>
+        <p style={{ fontSize: 11, color: "rgba(255,255,255,0.8)", margin: 0, lineHeight: 1.5 }}>{text}</p>
       </div>
     </div>
   );
 
-  // Mini bar chart
-  const MiniChart = ({ values, color = "#0d9aa5" }) => (
-    <div style={{ display: "flex", alignItems: "flex-end", gap: 3, height: 40 }}>
-      {values.map((v, i) => (
-        <div key={i} style={{
-          width: mobile ? 6 : 8,
-          height: `${v}%`,
-          background: i === values.length - 1 ? color : "rgba(13,154,165,0.3)",
-          borderRadius: 2,
-        }} />
+  // Bar chart
+  const BarChart = ({ data }) => (
+    <div style={{ display: "flex", alignItems: "flex-end", gap: mobile ? 4 : 6, height: 50 }}>
+      {data.map((v, i) => (
+        <div key={i} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
+          <div style={{
+            width: "100%",
+            height: `${v.value}%`,
+            background: i === data.length - 1 ? teal : "rgba(13,154,165,0.3)",
+            borderRadius: 2,
+            border: `1px dashed ${i === data.length - 1 ? teal : tealFaded}`,
+          }} />
+          <span style={{ fontSize: 8, color: "rgba(255,255,255,0.3)" }}>{v.label}</span>
+        </div>
       ))}
     </div>
   );
 
-  // Progress ring
-  const ProgressRing = ({ value, size = 60 }) => {
-    const strokeWidth = 4;
-    const radius = (size - strokeWidth) / 2;
-    const circumference = radius * 2 * Math.PI;
-    const offset = circumference - (value / 100) * circumference;
+  // Donut chart
+  const DonutChart = ({ value, label }) => {
+    const size = mobile ? 50 : 60;
+    const stroke = 5;
+    const radius = (size - stroke) / 2;
+    const circ = radius * 2 * Math.PI;
+    const offset = circ - (value / 100) * circ;
     return (
-      <svg width={size} height={size} style={{ transform: "rotate(-90deg)" }}>
-        <circle cx={size/2} cy={size/2} r={radius} fill="none" stroke="rgba(13,154,165,0.2)" strokeWidth={strokeWidth} />
-        <circle cx={size/2} cy={size/2} r={radius} fill="none" stroke="#0d9aa5" strokeWidth={strokeWidth} strokeDasharray={circumference} strokeDashoffset={offset} strokeLinecap="round" />
-      </svg>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
+        <div style={{ position: "relative" }}>
+          <svg width={size} height={size} style={{ transform: "rotate(-90deg)" }}>
+            <circle cx={size/2} cy={size/2} r={radius} fill="none" stroke="rgba(13,154,165,0.15)" strokeWidth={stroke} strokeDasharray="4 2" />
+            <circle cx={size/2} cy={size/2} r={radius} fill="none" stroke={teal} strokeWidth={stroke} strokeDasharray={circ} strokeDashoffset={offset} strokeLinecap="round" />
+          </svg>
+          <span style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", fontSize: mobile ? 11 : 13, fontWeight: 600, color: "#fff" }}>{value}%</span>
+        </div>
+        <span style={{ fontSize: 8, color: "rgba(255,255,255,0.4)", letterSpacing: 0.5, textTransform: "uppercase" }}>{label}</span>
+      </div>
     );
   };
 
-  // Trainer row
-  const TrainerRow = ({ initials, name, status, color }) => (
-    <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 0" }}>
-      <div style={{ width: 32, height: 32, borderRadius: "50%", background: "rgba(13,154,165,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 600, color: "#0d9aa5" }}>{initials}</div>
-      <div style={{ flex: 1 }}>
-        <div style={{ fontSize: 13, fontWeight: 500, color: "#fff" }}>{name}</div>
-        <div style={{ fontSize: 10, color, display: "flex", alignItems: "center", gap: 4 }}>
-          <div style={{ width: 5, height: 5, borderRadius: "50%", background: color }} />
-          {status}
-        </div>
-      </div>
-    </div>
-  );
-
-  // Chat bubble
-  const ChatBubble = ({ isAi, children }) => (
-    <div style={{
-      background: isAi ? "rgba(13,154,165,0.15)" : "rgba(255,255,255,0.05)",
-      borderRadius: isAi ? "12px 12px 12px 4px" : "12px 12px 4px 12px",
-      padding: "10px 14px",
-      maxWidth: "85%",
-      alignSelf: isAi ? "flex-start" : "flex-end",
-    }}>
-      <p style={{ fontSize: 11, color: "rgba(255,255,255,0.8)", margin: 0, lineHeight: 1.5 }}>{children}</p>
-    </div>
-  );
+  const chartData = [
+    { label: "W1", value: 45 },
+    { label: "W2", value: 60 },
+    { label: "W3", value: 75 },
+    { label: "W4", value: 90 },
+  ];
 
   return (
     <div style={{
       width: "100%",
-      maxWidth: 1000,
+      maxWidth: 1100,
       margin: "0 auto",
       marginBottom: mobile ? 36 : 60,
-      position: "relative",
-      height: mobile ? 380 : tablet ? 480 : 520,
+      padding: mobile ? "0 16px" : 0,
     }}>
-      {/* CSS Animation */}
-      <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-12px); }
-        }
-        @keyframes pulse {
-          0%, 100% { opacity: 0.5; }
-          50% { opacity: 1; }
-        }
-        @keyframes glow {
-          0%, 100% { box-shadow: 0 0 20px rgba(13,154,165,0.2); }
-          50% { box-shadow: 0 0 40px rgba(13,154,165,0.4); }
-        }
-      `}</style>
-
-      {/* Ambient glow effects */}
+      {/* Two dashboards side by side */}
       <div style={{
-        position: "absolute",
-        width: mobile ? 200 : 400,
-        height: mobile ? 200 : 400,
-        borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(13,154,165,0.15) 0%, transparent 70%)",
-        top: "10%",
-        left: "20%",
-        filter: "blur(60px)",
-        animation: "pulse 8s ease-in-out infinite",
-      }} />
-      <div style={{
-        position: "absolute",
-        width: mobile ? 150 : 300,
-        height: mobile ? 150 : 300,
-        borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(154,241,152,0.1) 0%, transparent 70%)",
-        bottom: "20%",
-        right: "15%",
-        filter: "blur(50px)",
-        animation: "pulse 6s ease-in-out 2s infinite",
-      }} />
-
-      {/* Main Director Card - Center */}
-      <FloatingCard delay={0} style={{
-        position: "absolute",
-        left: "50%",
-        top: mobile ? "5%" : "0%",
-        transform: "translateX(-50%)",
-        width: mobile ? 260 : tablet ? 340 : 400,
-        zIndex: 10,
+        display: "flex",
+        flexDirection: mobile ? "column" : "row",
+        gap: mobile ? 24 : 32,
+        position: "relative",
       }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Milton%20Face%20Logo-whMWzOXBgBgulGUqdRthSEMsjeyWPe.png" alt="Milton" style={{ width: 28, height: 28, borderRadius: 6 }} />
-            <span style={{ fontSize: 13, fontWeight: 600, color: "#fff" }}>Director View</span>
-          </div>
-          <div style={{ fontSize: 10, color: "rgba(255,255,255,0.4)", letterSpacing: 1 }}>LIVE</div>
-        </div>
-        <div style={{ display: "flex", gap: mobile ? 16 : 24, marginBottom: 16 }}>
-          <Metric label="Weekly Gross" value="$57.6K" trend="+8%" />
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
-            <div style={{ position: "relative" }}>
-              <ProgressRing value={86} size={mobile ? 48 : 56} />
-              <span style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", fontSize: mobile ? 12 : 14, fontWeight: 600, color: "#fff" }}>86%</span>
+        
+        {/* LEFT: Coach Dashboard */}
+        <div style={{ flex: 1, position: "relative" }}>
+          <SketchCard style={{ padding: mobile ? 16 : 24 }}>
+            {/* Header */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16, paddingBottom: 12, borderBottom: `1px dashed ${tealFaded}` }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Milton%20Face%20Logo-whMWzOXBgBgulGUqdRthSEMsjeyWPe.png" alt="" style={{ width: 28, height: 28, borderRadius: 6 }} />
+                <div>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: "#fff" }}>Coach View</div>
+                  <div style={{ fontSize: 10, color: "rgba(255,255,255,0.4)" }}>Sarah Chen</div>
+                </div>
+              </div>
+              <div style={{ fontSize: 9, padding: "4px 10px", borderRadius: 20, border: `1px dashed ${teal}`, color: teal }}>ACTIVE</div>
             </div>
-            <span style={{ fontSize: 9, color: "rgba(255,255,255,0.4)", letterSpacing: 1 }}>ATTEND.</span>
+
+            {/* Metrics row */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginBottom: 16 }}>
+              <MetricBox label="Clients" value="12" />
+              <MetricBox label="Sessions" value="8" highlight />
+              <DonutChart value={83} label="Attend." />
+            </div>
+
+            {/* Client list */}
+            <div style={{ marginBottom: 16 }}>
+              <div style={{ fontSize: 10, letterSpacing: 1, color: "rgba(255,255,255,0.4)", marginBottom: 8, textTransform: "uppercase" }}>Today&apos;s Queue</div>
+              <ClientRow name="Marcus Johnson" status="Due" statusColor="#f59e0b" progress={80} />
+              <ClientRow name="Emily Rodriguez" status="Ready" statusColor="#22c55e" progress={100} />
+              {!mobile && <ClientRow name="David Park" status="Pending" statusColor={teal} progress={45} />}
+            </div>
+
+            {/* AI Chat */}
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              <ChatMessage isAi text="Good morning! Marcus needs his 8-week assessment today." />
+              {!mobile && <ChatMessage text="Pull up his progression data" />}
+            </div>
+          </SketchCard>
+
+          {/* Floating annotation */}
+          <Annotation text="Real-time coaching insights" style={{ position: "absolute", bottom: mobile ? -20 : -28, left: 20 }} />
+        </div>
+
+        {/* CENTER: Connection line */}
+        {!mobile && (
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 8, padding: "0 8px" }}>
+            <div style={{ width: 1, height: 60, borderLeft: `1px dashed ${tealFaded}` }} />
+            <div style={{ width: 36, height: 36, borderRadius: "50%", border: `1px dashed ${teal}`, background: "rgba(13,154,165,0.1)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Milton%20Face%20Logo-whMWzOXBgBgulGUqdRthSEMsjeyWPe.png" alt="" style={{ width: 22, height: 22, borderRadius: 4 }} />
+            </div>
+            <div style={{ width: 1, height: 60, borderLeft: `1px dashed ${tealFaded}` }} />
           </div>
-        </div>
-        <MiniChart values={[45, 55, 70, 80, 95, 100]} />
-      </FloatingCard>
+        )}
 
-      {/* Left Card - Trainer List */}
-      <FloatingCard delay={0.5} style={{
-        position: "absolute",
-        left: mobile ? "2%" : tablet ? "2%" : "5%",
-        top: mobile ? "45%" : "35%",
-        width: mobile ? 160 : tablet ? 180 : 200,
-        zIndex: 5,
-      }}>
-        <div style={{ fontSize: 10, letterSpacing: 1.5, color: "rgba(255,255,255,0.4)", marginBottom: 12, textTransform: "uppercase" }}>Trainer Roster</div>
-        <TrainerRow initials="JT" name="Jake Torres" status="Follow-up" color="#ef4444" />
-        <TrainerRow initials="MC" name="Marcus Cole" status="Executing" color="#22c55e" />
-        {!mobile && <TrainerRow initials="BL" name="Bethany Lane" status="Scheduling" color="#0d9aa5" />}
-      </FloatingCard>
+        {/* RIGHT: Director Dashboard */}
+        <div style={{ flex: 1, position: "relative" }}>
+          <SketchCard style={{ padding: mobile ? 16 : 24 }}>
+            {/* Header */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16, paddingBottom: 12, borderBottom: `1px dashed ${tealFaded}` }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Milton%20Face%20Logo-whMWzOXBgBgulGUqdRthSEMsjeyWPe.png" alt="" style={{ width: 28, height: 28, borderRadius: 6 }} />
+                <div>
+                  <div style={{ fontSize: 13, fontWeight: 600, color: "#fff" }}>Director View</div>
+                  <div style={{ fontSize: 10, color: "rgba(255,255,255,0.4)" }}>Team Overview</div>
+                </div>
+              </div>
+              <div style={{ fontSize: 9, padding: "4px 10px", borderRadius: 20, border: `1px dashed ${teal}`, color: teal }}>LIVE</div>
+            </div>
 
-      {/* Right Card - AI Chat */}
-      <FloatingCard delay={1} style={{
-        position: "absolute",
-        right: mobile ? "2%" : tablet ? "2%" : "5%",
-        top: mobile ? "55%" : "30%",
-        width: mobile ? 180 : tablet ? 200 : 240,
-        zIndex: 5,
-      }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 12 }}>
-          <div style={{ width: 20, height: 20, borderRadius: "50%", background: "linear-gradient(135deg, #0d9aa5, #22c55e)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Milton%20Face%20Logo-whMWzOXBgBgulGUqdRthSEMsjeyWPe.png" alt="" style={{ width: 14, height: 14, borderRadius: 3 }} />
-          </div>
-          <span style={{ fontSize: 11, fontWeight: 500, color: "#fff" }}>Milton AI</span>
-        </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-          <ChatBubble isAi>Good morning! Jake has 3 clients needing follow-up today.</ChatBubble>
-          {!mobile && <ChatBubble>Show me Jake&apos;s attendance gap</ChatBubble>}
-        </div>
-      </FloatingCard>
+            {/* Revenue + Chart */}
+            <div style={{ display: "flex", gap: 16, marginBottom: 16 }}>
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: 9, letterSpacing: 1, color: "rgba(255,255,255,0.4)", marginBottom: 4, textTransform: "uppercase" }}>Weekly Gross</div>
+                <div style={{ fontSize: mobile ? 26 : 32, fontWeight: 600, color: "#fff" }}>$57.6K</div>
+                <span style={{ fontSize: 11, color: "#22c55e" }}>+8%</span>
+              </div>
+              <div style={{ flex: 1 }}>
+                <BarChart data={chartData} />
+              </div>
+            </div>
 
-      {/* Bottom Center - Client Metrics */}
-      {!mobile && (
-        <FloatingCard delay={1.5} style={{
-          position: "absolute",
-          left: "50%",
-          bottom: tablet ? "5%" : "0%",
-          transform: "translateX(-50%)",
-          width: tablet ? 280 : 320,
-          zIndex: 8,
-        }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <Metric label="Active Clients" value="88" trend="+15" color="#22c55e" />
-            <div style={{ width: 1, height: 40, background: "rgba(255,255,255,0.1)" }} />
-            <Metric label="This Month" value="+8" trend="net" color="#0d9aa5" />
-            <div style={{ width: 1, height: 40, background: "rgba(255,255,255,0.1)" }} />
-            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
-              <div style={{ display: "flex", gap: 2 }}>
-                {[1,2,3,4,5].map(i => (
-                  <div key={i} style={{ width: 8, height: 8, borderRadius: "50%", background: i <= 4 ? "#22c55e" : "rgba(255,255,255,0.1)" }} />
+            {/* Metrics */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 16 }}>
+              <SketchCard style={{ padding: 12, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <div>
+                  <div style={{ fontSize: 9, color: "rgba(255,255,255,0.4)", marginBottom: 2 }}>TRAINERS</div>
+                  <div style={{ fontSize: 18, fontWeight: 600, color: "#fff" }}>6</div>
+                </div>
+                <DonutChart value={77} label="Follow" />
+              </SketchCard>
+              <SketchCard style={{ padding: 12 }}>
+                <div style={{ fontSize: 9, color: "rgba(255,255,255,0.4)", marginBottom: 2 }}>+/- CLIENTS</div>
+                <div style={{ display: "flex", gap: 12, alignItems: "baseline" }}>
+                  <span style={{ fontSize: 18, fontWeight: 600, color: "#22c55e" }}>+15</span>
+                  <span style={{ fontSize: 18, fontWeight: 600, color: "#ef4444" }}>-7</span>
+                </div>
+                <div style={{ fontSize: 10, color: teal, marginTop: 4 }}>Net +8 this month</div>
+              </SketchCard>
+            </div>
+
+            {/* Trainer status */}
+            <div>
+              <div style={{ fontSize: 10, letterSpacing: 1, color: "rgba(255,255,255,0.4)", marginBottom: 8, textTransform: "uppercase" }}>Trainer Status</div>
+              <div style={{ display: "flex", gap: 8 }}>
+                {["JT", "MC", "BL"].map((init, i) => (
+                  <div key={i} style={{ 
+                    width: 32, height: 32, borderRadius: 6, 
+                    border: `1px dashed ${i === 0 ? "#ef4444" : tealFaded}`,
+                    background: i === 0 ? "rgba(239,68,68,0.1)" : cardBg,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontSize: 10, color: i === 0 ? "#ef4444" : teal,
+                  }}>{init}</div>
+                ))}
+                {!mobile && ["PS", "DN", "AW"].map((init, i) => (
+                  <div key={i} style={{ 
+                    width: 32, height: 32, borderRadius: 6, 
+                    border: `1px dashed ${tealFaded}`,
+                    background: cardBg,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    fontSize: 10, color: teal,
+                  }}>{init}</div>
                 ))}
               </div>
-              <span style={{ fontSize: 9, color: "rgba(255,255,255,0.4)", letterSpacing: 1 }}>HEALTH</span>
             </div>
-          </div>
-        </FloatingCard>
-      )}
+          </SketchCard>
 
-      {/* Decorative floating elements */}
-      <div style={{
-        position: "absolute",
-        width: 6,
-        height: 6,
-        borderRadius: "50%",
-        background: "#0d9aa5",
-        top: "15%",
-        left: "15%",
-        animation: "pulse 3s ease-in-out infinite",
-        boxShadow: "0 0 20px rgba(13,154,165,0.5)",
-      }} />
-      <div style={{
-        position: "absolute",
-        width: 4,
-        height: 4,
-        borderRadius: "50%",
-        background: "#22c55e",
-        top: "25%",
-        right: "20%",
-        animation: "pulse 4s ease-in-out 1s infinite",
-        boxShadow: "0 0 15px rgba(34,197,94,0.5)",
-      }} />
-      <div style={{
-        position: "absolute",
-        width: 8,
-        height: 8,
-        borderRadius: "50%",
-        background: "rgba(255,255,255,0.2)",
-        bottom: "30%",
-        left: "25%",
-        animation: "pulse 5s ease-in-out 2s infinite",
-      }} />
+          {/* Floating annotation */}
+          <Annotation text="Business intelligence at a glance" style={{ position: "absolute", bottom: mobile ? -20 : -28, right: 20, flexDirection: "row-reverse" }} />
+        </div>
+      </div>
+
+      {/* Connecting lines to edges */}
+      {!mobile && (
+        <>
+          <div style={{ position: "absolute", top: "30%", left: 0, width: 40, borderTop: `1px dashed ${tealFaded}` }} />
+          <div style={{ position: "absolute", top: "60%", right: 0, width: 40, borderTop: `1px dashed ${tealFaded}` }} />
+        </>
+      )}
     </div>
   );
 }
