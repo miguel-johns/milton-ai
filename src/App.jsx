@@ -111,66 +111,8 @@ function GridRow({ children, cols = 2 }) {
 
 
 
-function HeroVisual({ mobile, tablet }) {
-  const coachImg = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_8211.PNG-nvZzhYaVukGNdbSNMdfi1c71ZPN9B4.png";
-  const directorImg = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_8212.PNG-lndl16WOI58GiM7En9NkSnsMIBuXGF.png";
-
-  if (mobile) {
-    return (
-      <div style={{
-        width: "100%",
-        marginBottom: 36,
-        position: "relative",
-      }}>
-        <div style={{
-          borderRadius: 16,
-          overflow: "hidden",
-          boxShadow: "0 30px 60px -10px rgba(0,0,0,0.4), 0 18px 36px -18px rgba(0,0,0,0.3)",
-        }}>
-          <img src={coachImg} alt="Milton Coach Dashboard" style={{ width: "100%", display: "block" }} />
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div style={{
-      width: "100%",
-      maxWidth: 900,
-      margin: "0 auto",
-      marginBottom: tablet ? 48 : 60,
-      position: "relative",
-      height: tablet ? 420 : 500,
-    }}>
-      {/* Back image - Director (larger, behind) */}
-      <div style={{
-        position: "absolute",
-        top: 0,
-        right: 0,
-        width: tablet ? "75%" : "70%",
-        borderRadius: tablet ? 16 : 20,
-        overflow: "hidden",
-        boxShadow: "0 50px 100px -20px rgba(0,0,0,0.4), 0 30px 60px -30px rgba(0,0,0,0.3)",
-        zIndex: 1,
-      }}>
-        <img src={directorImg} alt="Milton Director Dashboard" style={{ width: "100%", display: "block" }} />
-      </div>
-
-      {/* Front image - Coach (smaller, overlapping in front) */}
-      <div style={{
-        position: "absolute",
-        bottom: 0,
-        left: 0,
-        width: tablet ? "65%" : "60%",
-        borderRadius: tablet ? 16 : 20,
-        overflow: "hidden",
-        boxShadow: "0 50px 100px -20px rgba(0,0,0,0.5), 0 30px 60px -30px rgba(0,0,0,0.4)",
-        zIndex: 2,
-      }}>
-        <img src={coachImg} alt="Milton Coach Dashboard" style={{ width: "100%", display: "block" }} />
-      </div>
-    </div>
-  );
+function HeroVisual({ mobile }) {
+  return <VisualPlaceholder height={420} mobileHeight={240} style={{ width: "100%", maxWidth: 900, marginBottom: mobile ? 36 : 60 }} />;
 }
 
 
