@@ -112,130 +112,260 @@ function GridRow({ children, cols = 2 }) {
 
 
 function HeroVisual({ mobile, tablet }) {
-  // Device frame styles
-  const desktopFrame = {
-    position: "relative",
-    background: "#1a1a1a",
-    borderRadius: 12,
-    padding: "8px 8px 0 8px",
-    boxShadow: "0 25px 50px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1)",
-  };
-  
-  const mobileFrame = {
-    position: "absolute",
-    background: "#1a1a1a",
-    borderRadius: 24,
-    padding: 6,
-    boxShadow: "0 25px 50px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.15)",
-  };
-
-  const browserDots = (
-    <div style={{ display: "flex", gap: 6, marginBottom: 8, paddingLeft: 4 }}>
-      <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#ff5f56" }} />
-      <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#ffbd2e" }} />
-      <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#27ca40" }} />
+  // Floating card component
+  const FloatingCard = ({ children, style, delay = 0 }) => (
+    <div style={{
+      background: "rgba(255,255,255,0.03)",
+      backdropFilter: "blur(20px)",
+      border: "1px solid rgba(255,255,255,0.08)",
+      borderRadius: 16,
+      padding: mobile ? 16 : 20,
+      boxShadow: "0 20px 40px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)",
+      animation: `float 6s ease-in-out ${delay}s infinite`,
+      ...style,
+    }}>
+      {children}
     </div>
   );
 
-  const phoneNotch = (
-    <div style={{
-      position: "absolute", top: 8, left: "50%", transform: "translateX(-50%)",
-      width: 80, height: 24, background: "#000", borderRadius: 12, zIndex: 10,
-    }} />
+  // Metric display
+  const Metric = ({ label, value, trend, color = "#0d9aa5" }) => (
+    <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, letterSpacing: 1.5, textTransform: "uppercase", color: "rgba(255,255,255,0.4)" }}>{label}</span>
+      <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
+        <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: mobile ? 28 : 36, fontWeight: 600, color: "#fff" }}>{value}</span>
+        {trend && <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color, fontWeight: 500 }}>{trend}</span>}
+      </div>
+    </div>
   );
 
-  if (mobile) {
+  // Mini bar chart
+  const MiniChart = ({ values, color = "#0d9aa5" }) => (
+    <div style={{ display: "flex", alignItems: "flex-end", gap: 3, height: 40 }}>
+      {values.map((v, i) => (
+        <div key={i} style={{
+          width: mobile ? 6 : 8,
+          height: `${v}%`,
+          background: i === values.length - 1 ? color : "rgba(13,154,165,0.3)",
+          borderRadius: 2,
+        }} />
+      ))}
+    </div>
+  );
+
+  // Progress ring
+  const ProgressRing = ({ value, size = 60 }) => {
+    const strokeWidth = 4;
+    const radius = (size - strokeWidth) / 2;
+    const circumference = radius * 2 * Math.PI;
+    const offset = circumference - (value / 100) * circumference;
     return (
-      <div style={{
-        width: "100%",
-        maxWidth: 320,
-        margin: "0 auto 36px",
-        position: "relative",
-      }}>
-        {/* Single mobile view on small screens */}
-        <div style={{ ...mobileFrame, position: "relative" }}>
-          {phoneNotch}
-          <img
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_9989.PNG-f336Lct8eUSGmSBYoDHaUoIUBzfowf.png"
-            alt="Milton AI Coach Dashboard"
-            style={{
-              width: "100%",
-              borderRadius: 20,
-              display: "block",
-            }}
-          />
+      <svg width={size} height={size} style={{ transform: "rotate(-90deg)" }}>
+        <circle cx={size/2} cy={size/2} r={radius} fill="none" stroke="rgba(13,154,165,0.2)" strokeWidth={strokeWidth} />
+        <circle cx={size/2} cy={size/2} r={radius} fill="none" stroke="#0d9aa5" strokeWidth={strokeWidth} strokeDasharray={circumference} strokeDashoffset={offset} strokeLinecap="round" />
+      </svg>
+    );
+  };
+
+  // Trainer row
+  const TrainerRow = ({ initials, name, status, color }) => (
+    <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 0" }}>
+      <div style={{ width: 32, height: 32, borderRadius: "50%", background: "rgba(13,154,165,0.2)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 600, color: "#0d9aa5" }}>{initials}</div>
+      <div style={{ flex: 1 }}>
+        <div style={{ fontSize: 13, fontWeight: 500, color: "#fff" }}>{name}</div>
+        <div style={{ fontSize: 10, color, display: "flex", alignItems: "center", gap: 4 }}>
+          <div style={{ width: 5, height: 5, borderRadius: "50%", background: color }} />
+          {status}
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+
+  // Chat bubble
+  const ChatBubble = ({ isAi, children }) => (
+    <div style={{
+      background: isAi ? "rgba(13,154,165,0.15)" : "rgba(255,255,255,0.05)",
+      borderRadius: isAi ? "12px 12px 12px 4px" : "12px 12px 4px 12px",
+      padding: "10px 14px",
+      maxWidth: "85%",
+      alignSelf: isAi ? "flex-start" : "flex-end",
+    }}>
+      <p style={{ fontSize: 11, color: "rgba(255,255,255,0.8)", margin: 0, lineHeight: 1.5 }}>{children}</p>
+    </div>
+  );
 
   return (
     <div style={{
       width: "100%",
       maxWidth: 1000,
       margin: "0 auto",
-      marginBottom: tablet ? 48 : 60,
+      marginBottom: mobile ? 36 : 60,
       position: "relative",
-      paddingBottom: tablet ? 80 : 100,
+      height: mobile ? 380 : tablet ? 480 : 520,
     }}>
-      {/* Main desktop view - Director Dashboard */}
-      <div style={{
-        ...desktopFrame,
-        width: "100%",
-        maxWidth: tablet ? 700 : 900,
-        margin: "0 auto",
-      }}>
-        {browserDots}
-        <img
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_8212.PNG-cTAIkSuS32rf4Ovx8lJbj3UzpgbNWo.png"
-          alt="Milton Fitness Director Dashboard"
-          style={{
-            width: "100%",
-            borderRadius: "0 0 8px 8px",
-            display: "block",
-          }}
-        />
-      </div>
+      {/* CSS Animation */}
+      <style>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-12px); }
+        }
+        @keyframes pulse {
+          0%, 100% { opacity: 0.5; }
+          50% { opacity: 1; }
+        }
+        @keyframes glow {
+          0%, 100% { box-shadow: 0 0 20px rgba(13,154,165,0.2); }
+          50% { box-shadow: 0 0 40px rgba(13,154,165,0.4); }
+        }
+      `}</style>
 
-      {/* Left mobile - Coach Dashboard */}
+      {/* Ambient glow effects */}
       <div style={{
-        ...mobileFrame,
-        width: tablet ? 140 : 180,
-        left: tablet ? -20 : -40,
-        bottom: tablet ? -40 : -60,
+        position: "absolute",
+        width: mobile ? 200 : 400,
+        height: mobile ? 200 : 400,
+        borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(13,154,165,0.15) 0%, transparent 70%)",
+        top: "10%",
+        left: "20%",
+        filter: "blur(60px)",
+        animation: "pulse 8s ease-in-out infinite",
+      }} />
+      <div style={{
+        position: "absolute",
+        width: mobile ? 150 : 300,
+        height: mobile ? 150 : 300,
+        borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(154,241,152,0.1) 0%, transparent 70%)",
+        bottom: "20%",
+        right: "15%",
+        filter: "blur(50px)",
+        animation: "pulse 6s ease-in-out 2s infinite",
+      }} />
+
+      {/* Main Director Card - Center */}
+      <FloatingCard delay={0} style={{
+        position: "absolute",
+        left: "50%",
+        top: mobile ? "5%" : "0%",
+        transform: "translateX(-50%)",
+        width: mobile ? 260 : tablet ? 340 : 400,
         zIndex: 10,
       }}>
-        {phoneNotch}
-        <img
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_9988.PNG-XNvklkaBuveooprnrI8okF9c8UCquw.png"
-          alt="Milton Coach Mobile App"
-          style={{
-            width: "100%",
-            borderRadius: 18,
-            display: "block",
-          }}
-        />
-      </div>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Milton%20Face%20Logo-whMWzOXBgBgulGUqdRthSEMsjeyWPe.png" alt="Milton" style={{ width: 28, height: 28, borderRadius: 6 }} />
+            <span style={{ fontSize: 13, fontWeight: 600, color: "#fff" }}>Director View</span>
+          </div>
+          <div style={{ fontSize: 10, color: "rgba(255,255,255,0.4)", letterSpacing: 1 }}>LIVE</div>
+        </div>
+        <div style={{ display: "flex", gap: mobile ? 16 : 24, marginBottom: 16 }}>
+          <Metric label="Weekly Gross" value="$57.6K" trend="+8%" />
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
+            <div style={{ position: "relative" }}>
+              <ProgressRing value={86} size={mobile ? 48 : 56} />
+              <span style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", fontSize: mobile ? 12 : 14, fontWeight: 600, color: "#fff" }}>86%</span>
+            </div>
+            <span style={{ fontSize: 9, color: "rgba(255,255,255,0.4)", letterSpacing: 1 }}>ATTEND.</span>
+          </div>
+        </div>
+        <MiniChart values={[45, 55, 70, 80, 95, 100]} />
+      </FloatingCard>
 
-      {/* Right mobile - AI Chat */}
-      <div style={{
-        ...mobileFrame,
-        width: tablet ? 140 : 180,
-        right: tablet ? -20 : -40,
-        bottom: tablet ? -20 : -40,
-        zIndex: 10,
+      {/* Left Card - Trainer List */}
+      <FloatingCard delay={0.5} style={{
+        position: "absolute",
+        left: mobile ? "2%" : tablet ? "2%" : "5%",
+        top: mobile ? "45%" : "35%",
+        width: mobile ? 160 : tablet ? 180 : 200,
+        zIndex: 5,
       }}>
-        {phoneNotch}
-        <img
-          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_9989.PNG-f336Lct8eUSGmSBYoDHaUoIUBzfowf.png"
-          alt="Milton AI Assistant"
-          style={{
-            width: "100%",
-            borderRadius: 18,
-            display: "block",
-          }}
-        />
-      </div>
+        <div style={{ fontSize: 10, letterSpacing: 1.5, color: "rgba(255,255,255,0.4)", marginBottom: 12, textTransform: "uppercase" }}>Trainer Roster</div>
+        <TrainerRow initials="JT" name="Jake Torres" status="Follow-up" color="#ef4444" />
+        <TrainerRow initials="MC" name="Marcus Cole" status="Executing" color="#22c55e" />
+        {!mobile && <TrainerRow initials="BL" name="Bethany Lane" status="Scheduling" color="#0d9aa5" />}
+      </FloatingCard>
+
+      {/* Right Card - AI Chat */}
+      <FloatingCard delay={1} style={{
+        position: "absolute",
+        right: mobile ? "2%" : tablet ? "2%" : "5%",
+        top: mobile ? "55%" : "30%",
+        width: mobile ? 180 : tablet ? 200 : 240,
+        zIndex: 5,
+      }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 12 }}>
+          <div style={{ width: 20, height: 20, borderRadius: "50%", background: "linear-gradient(135deg, #0d9aa5, #22c55e)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Milton%20Face%20Logo-whMWzOXBgBgulGUqdRthSEMsjeyWPe.png" alt="" style={{ width: 14, height: 14, borderRadius: 3 }} />
+          </div>
+          <span style={{ fontSize: 11, fontWeight: 500, color: "#fff" }}>Milton AI</span>
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          <ChatBubble isAi>Good morning! Jake has 3 clients needing follow-up today.</ChatBubble>
+          {!mobile && <ChatBubble>Show me Jake&apos;s attendance gap</ChatBubble>}
+        </div>
+      </FloatingCard>
+
+      {/* Bottom Center - Client Metrics */}
+      {!mobile && (
+        <FloatingCard delay={1.5} style={{
+          position: "absolute",
+          left: "50%",
+          bottom: tablet ? "5%" : "0%",
+          transform: "translateX(-50%)",
+          width: tablet ? 280 : 320,
+          zIndex: 8,
+        }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <Metric label="Active Clients" value="88" trend="+15" color="#22c55e" />
+            <div style={{ width: 1, height: 40, background: "rgba(255,255,255,0.1)" }} />
+            <Metric label="This Month" value="+8" trend="net" color="#0d9aa5" />
+            <div style={{ width: 1, height: 40, background: "rgba(255,255,255,0.1)" }} />
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
+              <div style={{ display: "flex", gap: 2 }}>
+                {[1,2,3,4,5].map(i => (
+                  <div key={i} style={{ width: 8, height: 8, borderRadius: "50%", background: i <= 4 ? "#22c55e" : "rgba(255,255,255,0.1)" }} />
+                ))}
+              </div>
+              <span style={{ fontSize: 9, color: "rgba(255,255,255,0.4)", letterSpacing: 1 }}>HEALTH</span>
+            </div>
+          </div>
+        </FloatingCard>
+      )}
+
+      {/* Decorative floating elements */}
+      <div style={{
+        position: "absolute",
+        width: 6,
+        height: 6,
+        borderRadius: "50%",
+        background: "#0d9aa5",
+        top: "15%",
+        left: "15%",
+        animation: "pulse 3s ease-in-out infinite",
+        boxShadow: "0 0 20px rgba(13,154,165,0.5)",
+      }} />
+      <div style={{
+        position: "absolute",
+        width: 4,
+        height: 4,
+        borderRadius: "50%",
+        background: "#22c55e",
+        top: "25%",
+        right: "20%",
+        animation: "pulse 4s ease-in-out 1s infinite",
+        boxShadow: "0 0 15px rgba(34,197,94,0.5)",
+      }} />
+      <div style={{
+        position: "absolute",
+        width: 8,
+        height: 8,
+        borderRadius: "50%",
+        background: "rgba(255,255,255,0.2)",
+        bottom: "30%",
+        left: "25%",
+        animation: "pulse 5s ease-in-out 2s infinite",
+      }} />
     </div>
   );
 }
