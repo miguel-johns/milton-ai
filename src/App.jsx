@@ -112,22 +112,95 @@ function GridRow({ children, cols = 2 }) {
 
 
 function HeroVisual({ mobile, tablet }) {
-  const coachImg = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screen%20Shot%202026-03-27%20at%205.32.23%20PM-knOtra1ewytFjNhXJ8bcmjdtK731SO.png";
-  const directorImg = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screen%20Shot%202026-03-27%20at%205.37.56%20PM-gfrgzYJ8PpLSS5tqxvV63ivg1Iy9mu.png";
+  // Soft gradient background panel with floating dashboard cards
+  const teal = "#0d9aa5";
+  
+  // Stylized metric card
+  const MetricCard = ({ label, value, sub, highlight }) => (
+    <div style={{
+      background: "#fff",
+      borderRadius: 10,
+      padding: mobile ? "12px 14px" : "14px 18px",
+      boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
+    }}>
+      <div style={{ fontSize: mobile ? 9 : 10, color: "#8b9a8e", letterSpacing: 0.5, marginBottom: 4, textTransform: "uppercase" }}>{label}</div>
+      <div style={{ fontSize: mobile ? 20 : 26, fontWeight: 600, color: highlight ? teal : "#1a1a1a" }}>{value}</div>
+      {sub && <div style={{ fontSize: mobile ? 10 : 11, color: "#22c55e", marginTop: 2 }}>{sub}</div>}
+    </div>
+  );
 
-  const cardStyle = {
-    borderRadius: mobile ? 12 : 16,
-    boxShadow: "0 25px 80px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05)",
-    overflow: "hidden",
-    background: "#fff",
+  // Simple progress ring
+  const Ring = ({ value, size = 44 }) => {
+    const r = (size - 6) / 2;
+    const c = r * 2 * Math.PI;
+    const o = c - (value / 100) * c;
+    return (
+      <div style={{ position: "relative", width: size, height: size }}>
+        <svg width={size} height={size} style={{ transform: "rotate(-90deg)" }}>
+          <circle cx={size/2} cy={size/2} r={r} fill="none" stroke="#e8f0e9" strokeWidth={5} />
+          <circle cx={size/2} cy={size/2} r={r} fill="none" stroke={teal} strokeWidth={5} strokeDasharray={c} strokeDashoffset={o} strokeLinecap="round" />
+        </svg>
+        <span style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: mobile ? 10 : 12, fontWeight: 600, color: "#1a1a1a" }}>{value}%</span>
+      </div>
+    );
   };
+
+  // User avatar placeholder
+  const Avatar = ({ initials, color = teal }) => (
+    <div style={{ width: mobile ? 28 : 32, height: mobile ? 28 : 32, borderRadius: 8, background: color, display: "flex", alignItems: "center", justifyContent: "center", fontSize: mobile ? 10 : 11, fontWeight: 600, color: "#fff" }}>{initials}</div>
+  );
+
+  // Chat bubble
+  const ChatBubble = ({ text, isAi }) => (
+    <div style={{ display: "flex", gap: 8, alignItems: "flex-start" }}>
+      {isAi && (
+        <div style={{ width: 24, height: 24, borderRadius: 6, background: "#e8f5f0", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+          <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Milton%20Face%20Logo-whMWzOXBgBgulGUqdRthSEMsjeyWPe.png" alt="" style={{ width: 16, height: 16, borderRadius: 3 }} />
+        </div>
+      )}
+      <div style={{ background: isAi ? "#f0f7f4" : "#fff", border: isAi ? "none" : "1px solid #e5ebe7", borderRadius: 10, padding: "8px 12px", fontSize: mobile ? 10 : 11, color: "#2d3a2f", lineHeight: 1.5 }}>{text}</div>
+    </div>
+  );
+
+  // Quick action pill
+  const ActionPill = ({ text }) => (
+    <div style={{ padding: "6px 12px", borderRadius: 20, border: "1px solid #d4e0d7", fontSize: mobile ? 9 : 10, color: "#4a6350", background: "#fff" }}>{text}</div>
+  );
+
+  // Dashboard card wrapper
+  const DashboardCard = ({ children, style = {} }) => (
+    <div style={{
+      background: "linear-gradient(145deg, #f5f9f6 0%, #e8f0ea 100%)",
+      borderRadius: mobile ? 16 : 20,
+      padding: mobile ? 16 : 24,
+      boxShadow: "0 20px 60px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.08)",
+      border: "1px solid rgba(255,255,255,0.8)",
+      ...style,
+    }}>
+      {children}
+    </div>
+  );
 
   if (mobile) {
     return (
-      <div style={{ width: "100%", marginBottom: 36, position: "relative" }}>
-        <div style={{ ...cardStyle, transform: "rotate(-1deg)" }}>
-          <img src={coachImg} alt="Milton Coach Dashboard" style={{ width: "100%", display: "block" }} />
-        </div>
+      <div style={{ width: "100%", marginBottom: 36 }}>
+        <DashboardCard>
+          {/* Header */}
+          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Milton%20Face%20Logo-whMWzOXBgBgulGUqdRthSEMsjeyWPe.png" alt="" style={{ width: 28, height: 28, borderRadius: 6 }} />
+            <div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: "#1a1a1a" }}>Good morning, Coach!</div>
+              <div style={{ fontSize: 10, color: "#6b7c6e" }}>3 sessions today</div>
+            </div>
+          </div>
+          {/* Metrics */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 16 }}>
+            <MetricCard label="Clients" value="12" sub="+3" />
+            <MetricCard label="Attendance" value="83%" highlight />
+          </div>
+          {/* Chat */}
+          <ChatBubble isAi text="Sarah Chen has lower body today. She hit 120x6 last session." />
+        </DashboardCard>
       </div>
     );
   }
@@ -138,33 +211,125 @@ function HeroVisual({ mobile, tablet }) {
       maxWidth: 1000,
       margin: "0 auto",
       marginBottom: tablet ? 48 : 60,
-      position: "relative",
       display: "flex",
-      justifyContent: "center",
-      gap: tablet ? 20 : 32,
-      padding: "0 20px",
+      gap: tablet ? 20 : 28,
+      alignItems: "flex-start",
     }}>
-      {/* Coach Dashboard - Left, tilted */}
-      <div style={{
-        ...cardStyle,
-        flex: 1,
-        maxWidth: 480,
-        transform: "rotate(-2deg) translateY(20px)",
-        zIndex: 1,
-      }}>
-        <img src={coachImg} alt="Milton Coach Dashboard" style={{ width: "100%", display: "block" }} />
-      </div>
+      {/* LEFT: Coach Dashboard */}
+      <DashboardCard style={{ flex: 1, transform: "rotate(-1deg) translateY(12px)" }}>
+        {/* Header */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20, paddingBottom: 16, borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Milton%20Face%20Logo-whMWzOXBgBgulGUqdRthSEMsjeyWPe.png" alt="" style={{ width: 32, height: 32, borderRadius: 8 }} />
+            <div>
+              <div style={{ fontSize: 14, fontWeight: 600, color: "#1a1a1a" }}>Good morning, Coach!</div>
+              <div style={{ fontSize: 11, color: "#6b7c6e" }}>8 sessions scheduled today</div>
+            </div>
+          </div>
+          <div style={{ fontSize: 10, padding: "4px 10px", borderRadius: 20, background: "rgba(13,154,165,0.1)", color: teal }}>v2.0</div>
+        </div>
 
-      {/* Director Dashboard - Right, tilted opposite */}
-      <div style={{
-        ...cardStyle,
-        flex: 1,
-        maxWidth: 480,
-        transform: "rotate(2deg) translateY(-10px)",
-        zIndex: 2,
-      }}>
-        <img src={directorImg} alt="Milton Director Dashboard" style={{ width: "100%", display: "block" }} />
-      </div>
+        {/* Metrics */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr auto", gap: 12, marginBottom: 20 }}>
+          <MetricCard label="Active Clients" value="12" sub="+3" />
+          <MetricCard label="Attendance" value="83%" highlight />
+          <MetricCard label="Success Rate" value="73%" sub="+8%" />
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "0 8px" }}>
+            <Ring value={83} size={tablet ? 40 : 48} />
+            <span style={{ fontSize: 9, color: "#8b9a8e", marginTop: 4 }}>Engaged</span>
+          </div>
+        </div>
+
+        {/* Client queue */}
+        <div style={{ background: "#fff", borderRadius: 12, padding: 14, marginBottom: 16 }}>
+          <div style={{ fontSize: 11, fontWeight: 600, color: "#1a1a1a", marginBottom: 10 }}>Today&apos;s Queue</div>
+          {[
+            { name: "Sarah Chen", status: "Session Today", color: teal },
+            { name: "Marcus J.", status: "Assessment Due", color: "#f59e0b" },
+          ].map((c, i) => (
+            <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, padding: "8px 0", borderBottom: i < 1 ? "1px solid #f0f4f1" : "none" }}>
+              <Avatar initials={c.name.split(" ").map(n => n[0]).join("")} color={c.color} />
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: 12, fontWeight: 500, color: "#1a1a1a" }}>{c.name}</div>
+                <div style={{ fontSize: 10, color: c.color }}>{c.status}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Chat */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          <ChatBubble isAi text="Sarah Chen has lower body today. She hit 120x6 on squats last session — ready to test progression." />
+          <div style={{ display: "flex", gap: 6, flexWrap: "wrap", paddingLeft: 32 }}>
+            <ActionPill text="Pull up Sarah&apos;s program" />
+            <ActionPill text="Show squat progression" />
+          </div>
+        </div>
+      </DashboardCard>
+
+      {/* RIGHT: Director Dashboard */}
+      <DashboardCard style={{ flex: 1, transform: "rotate(1deg) translateY(-8px)" }}>
+        {/* Header */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20, paddingBottom: 16, borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Milton%20Face%20Logo-whMWzOXBgBgulGUqdRthSEMsjeyWPe.png" alt="" style={{ width: 32, height: 32, borderRadius: 8 }} />
+            <div>
+              <div style={{ fontSize: 14, fontWeight: 600, color: "#1a1a1a" }}>Good morning, Director.</div>
+              <div style={{ fontSize: 11, color: "#6b7c6e" }}>Team of 6 trainers</div>
+            </div>
+          </div>
+          <button style={{ fontSize: 11, padding: "8px 14px", borderRadius: 8, background: teal, color: "#fff", border: "none", fontWeight: 500 }}>+ Add Trainer</button>
+        </div>
+
+        {/* Revenue card */}
+        <div style={{ background: "#fff", borderRadius: 12, padding: 16, marginBottom: 16 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
+            <div>
+              <div style={{ fontSize: 10, color: "#8b9a8e", letterSpacing: 0.5, marginBottom: 4, textTransform: "uppercase" }}>Weekly Gross</div>
+              <div style={{ fontSize: tablet ? 28 : 34, fontWeight: 600, color: "#1a1a1a" }}>$57.6K</div>
+              <div style={{ fontSize: 12, color: "#22c55e" }}>+8%</div>
+            </div>
+            <div style={{ display: "flex", alignItems: "flex-end", gap: 4, height: 50 }}>
+              {[45, 55, 70, 85].map((h, i) => (
+                <div key={i} style={{ width: tablet ? 12 : 16, height: `${h}%`, background: i === 3 ? teal : "rgba(13,154,165,0.25)", borderRadius: 3 }} />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Metrics row */}
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 16 }}>
+          <div style={{ background: "#fff", borderRadius: 12, padding: 14, display: "flex", alignItems: "center", gap: 14 }}>
+            <Ring value={86} size={tablet ? 40 : 48} />
+            <div>
+              <div style={{ fontSize: 10, color: "#8b9a8e", marginBottom: 2 }}>ATTENDANCE</div>
+              <div style={{ fontSize: 9, color: "#6b7c6e" }}>248/287 sessions</div>
+            </div>
+          </div>
+          <div style={{ background: "#fff", borderRadius: 12, padding: 14 }}>
+            <div style={{ fontSize: 10, color: "#8b9a8e", marginBottom: 4 }}>+/- CLIENTS</div>
+            <div style={{ display: "flex", gap: 10 }}>
+              <span style={{ fontSize: 18, fontWeight: 600, color: "#22c55e" }}>+15</span>
+              <span style={{ fontSize: 18, fontWeight: 600, color: "#ef4444" }}>-7</span>
+            </div>
+            <div style={{ fontSize: 10, color: teal }}>Net +8 this month</div>
+          </div>
+        </div>
+
+        {/* Trainer roster preview */}
+        <div style={{ fontSize: 11, fontWeight: 600, color: "#1a1a1a", marginBottom: 10 }}>Trainer Roster</div>
+        <div style={{ display: "flex", gap: 8 }}>
+          {[
+            { init: "JT", color: "#ef4444" },
+            { init: "MC", color: teal },
+            { init: "BL", color: teal },
+            { init: "PS", color: teal },
+          ].map((t, i) => (
+            <Avatar key={i} initials={t.init} color={t.color} />
+          ))}
+          <div style={{ width: 32, height: 32, borderRadius: 8, border: "1px dashed #c5d0c8", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 10, color: "#8b9a8e" }}>+2</div>
+        </div>
+      </DashboardCard>
     </div>
   );
 }
