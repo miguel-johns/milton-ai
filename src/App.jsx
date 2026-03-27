@@ -111,8 +111,62 @@ function GridRow({ children, cols = 2 }) {
 
 
 
-function HeroVisual({ mobile }) {
-  return <VisualPlaceholder height={420} mobileHeight={240} style={{ width: "100%", maxWidth: 900, marginBottom: mobile ? 36 : 60 }} />;
+function HeroVisual({ mobile, tablet }) {
+  const coachImg = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screen%20Shot%202026-03-27%20at%205.32.23%20PM-knOtra1ewytFjNhXJ8bcmjdtK731SO.png";
+  const directorImg = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screen%20Shot%202026-03-27%20at%205.37.56%20PM-gfrgzYJ8PpLSS5tqxvV63ivg1Iy9mu.png";
+
+  const cardStyle = {
+    borderRadius: mobile ? 12 : 16,
+    boxShadow: "0 25px 80px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05)",
+    overflow: "hidden",
+    background: "#fff",
+  };
+
+  if (mobile) {
+    return (
+      <div style={{ width: "100%", marginBottom: 36, position: "relative" }}>
+        <div style={{ ...cardStyle, transform: "rotate(-1deg)" }}>
+          <img src={coachImg} alt="Milton Coach Dashboard" style={{ width: "100%", display: "block" }} />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{
+      width: "100%",
+      maxWidth: 1000,
+      margin: "0 auto",
+      marginBottom: tablet ? 48 : 60,
+      position: "relative",
+      display: "flex",
+      justifyContent: "center",
+      gap: tablet ? 20 : 32,
+      padding: "0 20px",
+    }}>
+      {/* Coach Dashboard - Left, tilted */}
+      <div style={{
+        ...cardStyle,
+        flex: 1,
+        maxWidth: 480,
+        transform: "rotate(-2deg) translateY(20px)",
+        zIndex: 1,
+      }}>
+        <img src={coachImg} alt="Milton Coach Dashboard" style={{ width: "100%", display: "block" }} />
+      </div>
+
+      {/* Director Dashboard - Right, tilted opposite */}
+      <div style={{
+        ...cardStyle,
+        flex: 1,
+        maxWidth: 480,
+        transform: "rotate(2deg) translateY(-10px)",
+        zIndex: 2,
+      }}>
+        <img src={directorImg} alt="Milton Director Dashboard" style={{ width: "100%", display: "block" }} />
+      </div>
+    </div>
+  );
 }
 
 
