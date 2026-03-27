@@ -541,12 +541,16 @@ export default function MiltonHomepage() {
           flexDirection: mobile ? "column" : "row", gap: mobile ? 12 : 0,
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <div style={{
-              width: 28, height: 28, borderRadius: 6,
-              background: "linear-gradient(135deg, #0d9aa5, #126b80)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: 12, color: "#fff",
-            }}>M</div>
+            <img
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Milton%20Face%20Logo-whMWzOXBgBgulGUqdRthSEMsjeyWPe.png"
+              alt="Milton Logo"
+              style={{
+                width: 28,
+                height: 28,
+                borderRadius: 6,
+                objectFit: "cover",
+              }}
+            />
             <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: 14, color: "rgba(255,255,255,0.5)", letterSpacing: 2 }}>MILTON AI</span>
           </div>
           <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.3)" }}>© 2026 MMNT Inc. All rights reserved.</span>
