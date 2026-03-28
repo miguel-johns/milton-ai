@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { Analytics } from '@vercel/analytics/react'
 import MiltonHomepage from './App.jsx'
 import PricingCalculator from './Pricing.jsx'
+import CaseStudy from './CaseStudy.jsx'
 
 function App() {
   const [page, setPage] = useState(() => {
@@ -22,6 +23,10 @@ function App() {
 
   if (page === '/pricing') {
     return <PricingCalculator />
+  }
+
+  if (page === '/case-study/optimal-performance') {
+    return <CaseStudy />
   }
   
   return <MiltonHomepage />

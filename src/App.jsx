@@ -451,7 +451,7 @@ export default function MiltonHomepage() {
                 <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.55)", margin: "14px 0 18px 0" }}>
                   Nearly two decades of personal training. A team ranging from brand new to veteran. They needed a system that develops younger coaches faster and replaces the spreadsheets consuming their week.
                 </p>
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, fontWeight: 600, color: "#9af198", cursor: "pointer" }}>Download the Full Case Study →</span>
+                <a href="#/case-study/optimal-performance" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, fontWeight: 600, color: "#9af198", cursor: "pointer", textDecoration: "none" }}>Read the Full Case Study →</a>
               </div>
             </div>
 
