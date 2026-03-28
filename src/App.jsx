@@ -80,7 +80,7 @@ function FeatureCard({ title, body, visual = true, visualHeight = 200 }) {
   );
 }
 
-function CTA({ children, variant = "primary", style: s = {} }) {
+function CTA({ children, variant = "primary", style: s = {}, href }) {
   const base = {
     fontFamily: "'DM Sans', sans-serif", fontSize: 15, fontWeight: 600,
     padding: "14px 32px", borderRadius: 100, cursor: "pointer",
@@ -90,6 +90,9 @@ function CTA({ children, variant = "primary", style: s = {} }) {
   const styles = variant === "primary"
     ? { ...base, background: "#fff", color: "#08455e", border: "none", ...s }
     : { ...base, background: "transparent", color: "#fff", border: "1px solid rgba(255,255,255,0.3)", ...s };
+  if (href) {
+    return <a href={href} style={styles}>{children}</a>;
+  }
   return <button style={styles}>{children}</button>;
 }
 
@@ -208,7 +211,7 @@ export default function MiltonHomepage() {
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <CTA variant="secondary" style={{ padding: "10px 24px", fontSize: 14 }}>Login</CTA>
             <CTA variant="secondary" style={{ padding: "10px 24px", fontSize: 14 }}>Request a Demo</CTA>
-            <CTA variant="primary" style={{ padding: "10px 24px", fontSize: 14 }}>Get Pricing</CTA>
+            <CTA variant="primary" style={{ padding: "10px 24px", fontSize: 14 }} href="#/pricing">Get Pricing</CTA>
           </div>
         )}
 
@@ -249,7 +252,7 @@ export default function MiltonHomepage() {
             </button>
           ))}
           <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 20 }}>
-            <CTA variant="primary" style={{ width: "100%", textAlign: "center", padding: "14px 0" }}>Get Pricing</CTA>
+            <CTA variant="primary" style={{ width: "100%", textAlign: "center", padding: "14px 0" }} href="#/pricing">Get Pricing</CTA>
             <CTA variant="secondary" style={{ width: "100%", textAlign: "center", padding: "14px 0" }}>Request a Demo</CTA>
           </div>
         </div>
@@ -317,7 +320,7 @@ export default function MiltonHomepage() {
 
           <div style={{ display: "flex", gap: 12, marginBottom: mobile ? 36 : 60, flexWrap: "wrap", justifyContent: "center" }}>
             <CTA variant="primary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }}>Request a Demo</CTA>
-            <CTA variant="secondary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }}>Get Pricing</CTA>
+            <CTA variant="secondary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }} href="#/pricing">Get Pricing</CTA>
           </div>
 
           <HeroVisual mobile={mobile} tablet={tablet} />
@@ -529,7 +532,7 @@ export default function MiltonHomepage() {
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <CTA variant="primary" style={{ fontSize: mobile ? 14 : 16, padding: mobile ? "14px 28px" : "16px 40px" }}>Request a Demo</CTA>
-            <CTA variant="secondary" style={{ fontSize: mobile ? 14 : 16, padding: mobile ? "14px 28px" : "16px 40px" }}>Get Pricing</CTA>
+            <CTA variant="secondary" style={{ fontSize: mobile ? 14 : 16, padding: mobile ? "14px 28px" : "16px 40px" }} href="#/pricing">Get Pricing</CTA>
           </div>
         </section>
 
