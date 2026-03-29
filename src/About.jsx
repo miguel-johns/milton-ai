@@ -221,32 +221,68 @@ export default function AboutPage() {
 
           <Headline>Built by people who've been on the <Accent>training floor</Accent>.</Headline>
 
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: mobile ? "1fr" : "1fr 1fr",
-            gap: mobile ? 14 : 20,
-          }}>
-            {[
-              { initials: "MJ", name: "Miguel Johns", title: "Founder & CEO", bio: "Former personal trainer turned healthcare technologist. Previously co-founded KingFit Preventive Health. Based in Wichita, KS." },
-              { initials: "JD", name: "John", title: "Co-Founder", bio: "Healthcare technology background. Enterprise-grade engineering for the fitness space." },
-            ].map((p, i) => (
-              <div key={i} style={{ ...glass, borderRadius: mobile ? 16 : 20, padding: mobile ? 24 : 28 }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 12 }}>
-                  <div style={{
-                    width: mobile ? 52 : 60, height: mobile ? 52 : 60, borderRadius: "50%",
-                    background: `linear-gradient(135deg, ${teal}30, ${navy})`,
-                    border: `1.5px solid ${teal}30`,
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    fontFamily: f, fontSize: mobile ? 17 : 20, fontWeight: 700, color: "#fff",
-                  }}>{p.initials}</div>
-                  <div>
-                    <div style={{ fontFamily: f, fontSize: mobile ? 17 : 19, fontWeight: 700, color: "#fff" }}>{p.name}</div>
-                    <div style={{ fontFamily: f, fontSize: 13, color: teal, fontWeight: 500 }}>{p.title}</div>
-                  </div>
+          {/* Leadership */}
+          <div style={{ marginBottom: mobile ? 24 : 32 }}>
+            <div style={{ fontFamily: f, fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.35)", letterSpacing: 2, textTransform: "uppercase", marginBottom: mobile ? 14 : 18 }}>Leadership</div>
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: mobile ? "1fr" : "repeat(4, 1fr)",
+              gap: mobile ? 14 : 20,
+            }}>
+              {[
+                { img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Miguel%20Johns%2C%20CEO-lZEJGQjNYl6kZ7EGW2kmb9QchdFiBa.png", name: "Miguel Johns", title: "CEO" },
+                { img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/John%20Elliott%2C%20COO-7lVzroaIzjIATXzzdZZpcbd34XjVTA.png", name: "John Elliott", title: "COO" },
+                { img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Srinivas%20Palthepu%2C%20CTO-6UiUB7zTETdyCdXIxsDcWLehDAfVj2.png", name: "Srinivas Palthepu", title: "CTO" },
+                { img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Jeff%20Turner%2C%20Investor%20%26%20Chair-YglZ83IINB3BwhO0RgB7VLYCaCw0Wv.png", name: "Jeff Turner", title: "Investor & Chair" },
+              ].map((p, i) => (
+                <div key={i} style={{ ...glass, borderRadius: mobile ? 16 : 20, padding: mobile ? 20 : 24, textAlign: "center" }}>
+                  <img
+                    src={p.img}
+                    alt={p.name}
+                    style={{
+                      width: mobile ? 80 : 100, height: mobile ? 80 : 100, borderRadius: "50%",
+                      objectFit: "cover", objectPosition: "center top",
+                      border: `2px solid ${teal}30`,
+                      marginBottom: 14,
+                    }}
+                  />
+                  <div style={{ fontFamily: f, fontSize: mobile ? 15 : 17, fontWeight: 700, color: "#fff", marginBottom: 2 }}>{p.name}</div>
+                  <div style={{ fontFamily: f, fontSize: 12, color: teal, fontWeight: 500 }}>{p.title}</div>
                 </div>
-                <p style={{ fontFamily: f, fontSize: mobile ? 13 : 14, lineHeight: 1.65, color: "rgba(255,255,255,0.45)", margin: 0 }}>{p.bio}</p>
-              </div>
-            ))}
+              ))}
+            </div>
+          </div>
+
+          {/* Engineering */}
+          <div>
+            <div style={{ fontFamily: f, fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.35)", letterSpacing: 2, textTransform: "uppercase", marginBottom: mobile ? 14 : 18 }}>Engineering</div>
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: mobile ? "1fr 1fr" : "repeat(4, 1fr)",
+              gap: mobile ? 14 : 20,
+            }}>
+              {[
+                { img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Sanjay%20Kumar%20Murudi%2C%20VP%2C%20Engineering-aOLDFFYqmRwSlqGFlgHroagMVugAc4.png", name: "Sanjay Kumar Murudi", title: "VP, Engineering" },
+                { img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Udaya%20Thalabattula%2C%20SR%20Architect-txS8zzFk2X7qAxBINdcWNldo3Qsdvs.png", name: "Udaya Thalabattula", title: "SR Architect" },
+                { img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Srinath%20Bellamkonda%2C%20AI%20Engineer-WTAU7ZR6RIlkSGCCTEwQy4cjCeTw0N.png", name: "Srinath Bellamkonda", title: "AI Engineer" },
+                { img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Sujit%20Kumar%20Pradhan%2C%20AI%20Engineer-lVHIxn46bx508ziTats0XqrdwxZDdK.png", name: "Sujit Kumar Pradhan", title: "AI Engineer" },
+              ].map((p, i) => (
+                <div key={i} style={{ ...glass, borderRadius: mobile ? 14 : 18, padding: mobile ? 16 : 20, textAlign: "center" }}>
+                  <img
+                    src={p.img}
+                    alt={p.name}
+                    style={{
+                      width: mobile ? 64 : 80, height: mobile ? 64 : 80, borderRadius: "50%",
+                      objectFit: "cover", objectPosition: "center top",
+                      border: `2px solid ${teal}20`,
+                      marginBottom: 12,
+                    }}
+                  />
+                  <div style={{ fontFamily: f, fontSize: mobile ? 13 : 15, fontWeight: 600, color: "#fff", marginBottom: 2 }}>{p.name}</div>
+                  <div style={{ fontFamily: f, fontSize: mobile ? 10 : 11, color: teal, fontWeight: 500 }}>{p.title}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
