@@ -219,7 +219,7 @@ export default function MiltonHomepage() {
           }}>
             {[
               { label: "AI Readiness Snapshot", href: "#/consultation" },
-              { label: "Insights", href: "#insights" },
+{ label: "Insights", href: "#/insights" },
               { label: "About Us", href: "#about" },
               { label: "Pricing", href: "#/pricing" },
             ].map(link => (
@@ -274,7 +274,7 @@ export default function MiltonHomepage() {
           {/* Nav links */}
           {[
             { label: "AI Readiness Snapshot", href: "#/consultation" },
-            { label: "Insights", href: "#insights" },
+            { label: "Insights", href: "#/insights" },
             { label: "About Us", href: "#about" },
             { label: "Pricing", href: "#/pricing" },
           ].map(link => (
