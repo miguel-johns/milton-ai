@@ -304,14 +304,16 @@ export default function AboutPage() {
               display: "grid", gridTemplateColumns: mobile ? "1fr" : "auto 1fr",
               gap: mobile ? 20 : 32, alignItems: "start",
             }}>
-              <div style={{
-                width: mobile ? 72 : 90, height: mobile ? 72 : 90, borderRadius: "50%",
-                background: `linear-gradient(135deg, ${teal}35, ${navy})`,
+<img
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Johnny%20O-f85QO3MehtjKe6jNVZZzn4Som59E6J.png"
+              alt="Johnny O'Connell"
+              style={{
+                width: mobile ? 90 : 110, height: mobile ? 90 : 110, borderRadius: "50%",
+                objectFit: "cover", objectPosition: "center top",
                 border: `2px solid ${teal}40`,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontFamily: f, fontSize: mobile ? 22 : 28, fontWeight: 700, color: "#fff",
                 boxShadow: `0 0 30px ${teal}15`, flexShrink: 0,
-              }}>JO</div>
+              }}
+            />
               <div>
                 <div style={{ fontFamily: f, fontSize: mobile ? 20 : 24, fontWeight: 700, color: "#fff", marginBottom: 2 }}>Johnny O'Connell</div>
                 <div style={{ fontFamily: f, fontSize: 14, color: teal, fontWeight: 600, marginBottom: 14 }}>Chief Coach Officer</div>
@@ -365,41 +367,6 @@ export default function AboutPage() {
               "I feel like you understand exactly what I'm saying. And then boom — less than a week later, there it is."
             </div>
             <div style={{ fontFamily: f, fontSize: 13, fontWeight: 600, color: "rgba(255,255,255,0.5)" }}>Bethany Langston <span style={{ color: "rgba(255,255,255,0.25)", fontWeight: 400 }}>· Owner, Optimal Performance</span></div>
-          </div>
-        </section>
-
-        {/* ═══════ ADVISORS ═══════ */}
-        <section style={{ padding: sectionPad }}>
-          <SectionLabel text="IN OUR CORNER" />
-          <SectionDivider />
-
-          <Headline>Backed by operators who've <Accent>built</Accent> before.</Headline>
-
-          <div style={{
-            display: "grid", gridTemplateColumns: mobile ? "1fr" : "1fr 1fr",
-            gap: mobile ? 14 : 20,
-          }}>
-            {[
-              { img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Johnny%20O-f85QO3MehtjKe6jNVZZzn4Som59E6J.png", name: "Johnny O", title: "Advisor, Fitness Operations", bio: "Owner of Johnny O's Gymnasium. Decades of experience running a successful personal training business." },
-            ].map((p, i) => (
-              <div key={i} style={{ ...glass, borderRadius: mobile ? 14 : 18, padding: mobile ? 20 : 24, display: "flex", alignItems: "center", gap: 16 }}>
-                <img
-                  src={p.img}
-                  alt={p.name}
-                  style={{
-                    width: mobile ? 70 : 80, height: mobile ? 70 : 80, borderRadius: "50%",
-                    objectFit: "cover", objectPosition: "center top",
-                    border: `2px solid ${teal}30`,
-                    flexShrink: 0,
-                  }}
-                />
-                <div>
-                  <div style={{ fontFamily: f, fontSize: mobile ? 16 : 18, fontWeight: 600, color: "#fff", marginBottom: 2 }}>{p.name}</div>
-                  <div style={{ fontFamily: f, fontSize: 12, color: teal, fontWeight: 500, marginBottom: 8 }}>{p.title}</div>
-                  <div style={{ fontFamily: f, fontSize: 13, lineHeight: 1.6, color: "rgba(255,255,255,0.4)" }}>{p.bio}</div>
-                </div>
-              </div>
-            ))}
           </div>
         </section>
 
