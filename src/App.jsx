@@ -114,120 +114,158 @@ function GridRow({ children, cols = 2 }) {
 
 
 
-function HeroVisual({ mobile, tablet }) {
-  const [visibleMessages, setVisibleMessages] = useState(0);
+function HeroVisual({ mobile }) {
   const teal = "#0d9aa5";
   const f = "'DM Sans', sans-serif";
+  
+  const miltonLogo = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Milton%20Face%20Logo-whMWzOXBgBgulGUqdRthSEMsjeyWPe.png";
 
-  const messages = [
-    { type: "milton", text: "Good morning, Director.", delay: 0 },
-    { type: "milton", text: "Your team of 6 trainers is managing 88 active clients this week. Here's your Monday check-in.", delay: 1 },
-    { type: "alert", name: "Jake Torres", label: "Urgent", text: "Follow-up problem — 41% rate, 20 missed sessions not rescheduled, 4 clients lost this month. This isn't a coaching skill issue. It's urgency and communication.", delay: 2 },
-    { type: "user", text: "Got it. Let's schedule a 1-on-1 with Jake this week.", delay: 3 },
-    { type: "milton", text: "Done. I've blocked 30 minutes on your calendar Thursday at 2pm and sent Jake a heads-up. I'll prep a diagnostic summary before the meeting.", delay: 4 },
-  ];
-
-  useEffect(() => {
-    const timers = messages.map((_, i) => 
-      setTimeout(() => setVisibleMessages(i + 1), (i + 1) * 1200)
+  // SVG for the weight progress chart
+  const ProgressChart = () => {
+    const points = [
+      { x: 40, y: 20 },   // W1: 210
+      { x: 120, y: 35 },  // W2: 207
+      { x: 200, y: 55 },  // W4: 203
+      { x: 280, y: 75 },  // W6: 200
+      { x: 360, y: 95 },  // W8: 197.7
+    ];
+    const goalY = 130;
+    const pathD = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+    
+    return (
+      <svg viewBox="0 0 440 160" style={{ width: "100%", height: mobile ? 100 : 140 }}>
+        {/* Grid lines */}
+        {[40, 70, 100, 130].map(y => (
+          <line key={y} x1="40" y1={y} x2="420" y2={y} stroke="rgba(13,154,165,0.15)" strokeWidth="1" />
+        ))}
+        {/* Y-axis label */}
+        <text x="25" y="25" fill={teal} fontSize="11" fontFamily={f}>210</text>
+        {/* Main progress line */}
+        <path d={pathD} fill="none" stroke={teal} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+        {/* Dashed projection to goal */}
+        <path d={`M 360 95 L 420 ${goalY}`} fill="none" stroke={teal} strokeWidth="2" strokeDasharray="6 4" opacity="0.6" />
+        {/* Data points */}
+        {points.map((p, i) => (
+          <g key={i}>
+            <circle cx={p.x} cy={p.y} r="6" fill="#061c27" stroke={teal} strokeWidth="2" />
+            {i === points.length - 1 && (
+              <text x={p.x + 12} y={p.y + 4} fill="#061c27" fontSize="13" fontWeight="600" fontFamily={f}>197.7</text>
+            )}
+          </g>
+        ))}
+        {/* Goal point */}
+        <circle cx="420" cy={goalY} r="4" fill={teal} opacity="0.5" />
+        {/* X-axis labels */}
+        {['W1', 'W2', 'W4', 'W6', 'W8', 'Goal'].map((label, i) => (
+          <text 
+            key={label} 
+            x={i < 5 ? points[i]?.x || 40 + i * 80 : 420} 
+            y="155" 
+            fill={label === 'W8' ? teal : label === 'Goal' ? teal : "rgba(13,154,165,0.5)"} 
+            fontSize="11" 
+            fontWeight={label === 'W8' ? 600 : 400}
+            fontFamily={f} 
+            textAnchor="middle"
+          >{label}</text>
+        ))}
+      </svg>
     );
-    return () => timers.forEach(clearTimeout);
-  }, []);
-
-  const MiltonBubble = ({ text, visible }) => (
-    <div style={{
-      display: "flex", gap: mobile ? 8 : 12, alignItems: "flex-start",
-      opacity: visible ? 1 : 0,
-      transform: visible ? "translateY(0)" : "translateY(20px)",
-      transition: "all 0.5s ease-out",
-    }}>
-      <div style={{
-        width: mobile ? 28 : 36, height: mobile ? 28 : 36, borderRadius: 8,
-        background: `linear-gradient(135deg, ${teal}, #126b80)`,
-        display: "flex", alignItems: "center", justifyContent: "center",
-        fontFamily: f, fontWeight: 700, fontSize: mobile ? 12 : 14, color: "#fff",
-        flexShrink: 0,
-      }}>M</div>
-      <div style={{
-        background: "rgba(13,154,165,0.12)", border: "1px solid rgba(13,154,165,0.25)",
-        borderRadius: mobile ? 12 : 16, borderTopLeftRadius: 4,
-        padding: mobile ? "10px 14px" : "12px 18px",
-        maxWidth: mobile ? "85%" : "75%",
-      }}>
-        <p style={{ fontFamily: f, fontSize: mobile ? 12 : 14, lineHeight: 1.5, color: "rgba(255,255,255,0.85)", margin: 0 }}>{text}</p>
-      </div>
-    </div>
-  );
-
-  const AlertBubble = ({ name, label, text, visible }) => (
-    <div style={{
-      display: "flex", gap: mobile ? 8 : 12, alignItems: "flex-start",
-      opacity: visible ? 1 : 0,
-      transform: visible ? "translateY(0)" : "translateY(20px)",
-      transition: "all 0.5s ease-out",
-    }}>
-      <div style={{
-        width: mobile ? 28 : 36, height: mobile ? 28 : 36, borderRadius: 8,
-        background: `linear-gradient(135deg, ${teal}, #126b80)`,
-        display: "flex", alignItems: "center", justifyContent: "center",
-        fontFamily: f, fontWeight: 700, fontSize: mobile ? 12 : 14, color: "#fff",
-        flexShrink: 0,
-      }}>M</div>
-      <div style={{
-        background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.3)",
-        borderRadius: mobile ? 12 : 16, borderTopLeftRadius: 4,
-        padding: mobile ? "10px 14px" : "12px 18px",
-        maxWidth: mobile ? "85%" : "75%",
-      }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-          <span style={{ fontFamily: f, fontSize: mobile ? 12 : 13, fontWeight: 600, color: "#fff" }}>{name}</span>
-          <span style={{
-            background: "rgba(239,68,68,0.25)", color: "#ef4444",
-            fontFamily: f, fontSize: 10, fontWeight: 600,
-            padding: "2px 8px", borderRadius: 100,
-          }}>{label}</span>
-        </div>
-        <p style={{ fontFamily: f, fontSize: mobile ? 11 : 13, lineHeight: 1.5, color: "rgba(255,255,255,0.75)", margin: 0 }}>{text}</p>
-      </div>
-    </div>
-  );
-
-  const UserBubble = ({ text, visible }) => (
-    <div style={{
-      display: "flex", justifyContent: "flex-end",
-      opacity: visible ? 1 : 0,
-      transform: visible ? "translateY(0)" : "translateY(20px)",
-      transition: "all 0.5s ease-out",
-    }}>
-      <div style={{
-        background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)",
-        borderRadius: mobile ? 12 : 16, borderTopRightRadius: 4,
-        padding: mobile ? "10px 14px" : "12px 18px",
-        maxWidth: mobile ? "85%" : "70%",
-      }}>
-        <p style={{ fontFamily: f, fontSize: mobile ? 12 : 14, lineHeight: 1.5, color: "rgba(255,255,255,0.9)", margin: 0 }}>{text}</p>
-      </div>
-    </div>
-  );
+  };
 
   return (
     <div style={{
       width: "100%",
-      maxWidth: mobile ? "100%" : 700,
+      maxWidth: mobile ? "100%" : 580,
       margin: "0 auto",
       marginBottom: mobile ? 36 : 60,
-      padding: mobile ? "20px 16px" : "28px 32px",
-      background: "rgba(6,28,39,0.6)",
-      border: "1px solid rgba(13,154,165,0.15)",
-      borderRadius: mobile ? 16 : 24,
-      backdropFilter: "blur(20px)",
+      display: "flex",
+      flexDirection: "column",
+      gap: mobile ? 16 : 20,
     }}>
-      <div style={{ display: "flex", flexDirection: "column", gap: mobile ? 12 : 16 }}>
-        <MiltonBubble text={messages[0].text} visible={visibleMessages >= 1} />
-        <MiltonBubble text={messages[1].text} visible={visibleMessages >= 2} />
-        <AlertBubble name={messages[2].name} label={messages[2].label} text={messages[2].text} visible={visibleMessages >= 3} />
-        <UserBubble text={messages[3].text} visible={visibleMessages >= 4} />
-        <MiltonBubble text={messages[4].text} visible={visibleMessages >= 5} />
+      {/* Milton greeting card */}
+      <div style={{ display: "flex", gap: mobile ? 10 : 14, alignItems: "flex-start" }}>
+        <img src={miltonLogo} alt="Milton" style={{ width: mobile ? 36 : 44, height: mobile ? 36 : 44, borderRadius: 10, flexShrink: 0 }} />
+        <div style={{
+          background: "#fff",
+          borderRadius: mobile ? 16 : 20,
+          padding: mobile ? "16px 18px" : "20px 24px",
+          boxShadow: "0 4px 24px rgba(0,0,0,0.12)",
+          flex: 1,
+        }}>
+          <h3 style={{ fontFamily: f, fontSize: mobile ? 18 : 22, fontWeight: 700, color: teal, margin: "0 0 8px 0" }}>
+            Good morning, Coach!
+          </h3>
+          <p style={{ fontFamily: f, fontSize: mobile ? 14 : 16, lineHeight: 1.55, color: "#4a5568", margin: 0 }}>
+            You have 3 clients needing attention today. Sarah missed 2 days of logging, Aaron's protein is trending low, and Mike just hit a new milestone.
+          </p>
+        </div>
+      </div>
+
+      {/* User message */}
+      <div style={{
+        background: teal,
+        borderRadius: 100,
+        padding: mobile ? "14px 24px" : "16px 32px",
+        textAlign: "center",
+        boxShadow: "0 4px 16px rgba(13,154,165,0.3)",
+      }}>
+        <p style={{ fontFamily: f, fontSize: mobile ? 14 : 16, fontWeight: 500, color: "#fff", margin: 0 }}>
+          Show me Mike's progress — how close is he to goal?
+        </p>
+      </div>
+
+      {/* Milton response with chart */}
+      <div style={{ display: "flex", gap: mobile ? 10 : 14, alignItems: "flex-start" }}>
+        <img src={miltonLogo} alt="Milton" style={{ width: mobile ? 36 : 44, height: mobile ? 36 : 44, borderRadius: 10, flexShrink: 0 }} />
+        <div style={{
+          background: "#fff",
+          borderRadius: mobile ? 16 : 20,
+          padding: mobile ? "16px 18px" : "20px 24px",
+          boxShadow: "0 4px 24px rgba(0,0,0,0.12)",
+          flex: 1,
+        }}>
+          {/* Header with milestone badge */}
+          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10, flexWrap: "wrap" }}>
+            <h3 style={{ fontFamily: f, fontSize: mobile ? 16 : 20, fontWeight: 700, color: "#1a202c", margin: 0 }}>
+              Mike Torres — Transformation
+            </h3>
+            <span style={{
+              background: "rgba(251,146,60,0.15)",
+              color: "#ea580c",
+              fontFamily: f, fontSize: 12, fontWeight: 600,
+              padding: "4px 10px", borderRadius: 100,
+              display: "flex", alignItems: "center", gap: 4,
+            }}>
+              <span>🔥</span> Milestone
+            </span>
+          </div>
+          
+          <p style={{ fontFamily: f, fontSize: mobile ? 13 : 15, lineHeight: 1.55, color: "#4a5568", margin: "0 0 14px 0" }}>
+            Down 12.3 lbs in 8 weeks. Consistency score at 91. At this rate, he'll hit his 185 lb goal by mid-April.
+          </p>
+
+          {/* Stats pills */}
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 16 }}>
+            <span style={{
+              background: "rgba(13,154,165,0.1)", border: `1.5px solid ${teal}`,
+              color: teal, fontFamily: f, fontSize: mobile ? 12 : 14, fontWeight: 600,
+              padding: "6px 14px", borderRadius: 100,
+            }}>-12.3 lbs</span>
+            <span style={{
+              background: "rgba(13,154,165,0.1)", border: `1.5px solid ${teal}`,
+              color: teal, fontFamily: f, fontSize: mobile ? 12 : 14, fontWeight: 600,
+              padding: "6px 14px", borderRadius: 100,
+            }}>91 consistency</span>
+            <span style={{
+              background: "transparent", border: `1.5px solid ${teal}`,
+              color: teal, fontFamily: f, fontSize: mobile ? 12 : 14, fontWeight: 600,
+              padding: "6px 14px", borderRadius: 100,
+            }}>Goal: Apr 14</span>
+          </div>
+
+          {/* Progress chart */}
+          <ProgressChart />
+        </div>
       </div>
     </div>
   );
