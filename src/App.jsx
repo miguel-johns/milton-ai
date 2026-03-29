@@ -115,7 +115,26 @@ function GridRow({ children, cols = 2 }) {
 
 
 function HeroVisual({ mobile }) {
-  return <VisualPlaceholder height={420} mobileHeight={240} style={{ width: "100%", maxWidth: 900, marginBottom: mobile ? 36 : 60 }} />;
+  return (
+    <div style={{
+      width: "100%",
+      maxWidth: 1000,
+      marginBottom: mobile ? 36 : 60,
+      borderRadius: mobile ? 12 : 20,
+      overflow: "hidden",
+      boxShadow: "0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.1)",
+    }}>
+      <img
+        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Hero%20Image-3Z8gJ67AGqgG8eXo2CYLV4ziFntX9U.jpg"
+        alt="Milton dashboard showing trainer roster, attendance rates, and AI coaching insights"
+        style={{
+          width: "100%",
+          height: "auto",
+          display: "block",
+        }}
+      />
+    </div>
+  );
 }
 
 
