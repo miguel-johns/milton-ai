@@ -376,24 +376,28 @@ export default function AboutPage() {
           <Headline>Backed by operators who've <Accent>built</Accent> before.</Headline>
 
           <div style={{
-            display: "grid", gridTemplateColumns: mobile ? "1fr" : "1fr 1fr 1fr",
+            display: "grid", gridTemplateColumns: mobile ? "1fr" : "1fr 1fr",
             gap: mobile ? 14 : 20,
           }}>
             {[
-              { initials: "JF", name: "Jeff", title: "Lead Investor & Advisor", bio: "Experienced operator backing Milton's mission to empower the frontline of preventive healthcare." },
-              { initials: "—", name: "Advisor", title: "Fitness Operations", bio: "Background in scaling franchise models and high-retention training teams." },
-              { initials: "—", name: "Advisor", title: "AI & Healthcare", bio: "Deep expertise in AI product development and healthcare platforms." },
+              { img: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Johnny%20O-f85QO3MehtjKe6jNVZZzn4Som59E6J.png", name: "Johnny O", title: "Advisor, Fitness Operations", bio: "Owner of Johnny O's Gymnasium. Decades of experience running a successful personal training business." },
             ].map((p, i) => (
-              <div key={i} style={{ ...glass, borderRadius: mobile ? 14 : 18, padding: mobile ? 20 : 24 }}>
-                <div style={{
-                  width: 44, height: 44, borderRadius: "50%",
-                  background: `linear-gradient(135deg, ${teal}25, ${navy})`, border: `1px solid ${teal}25`,
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  fontFamily: f, fontSize: 15, fontWeight: 700, color: "rgba(255,255,255,0.6)", marginBottom: 12,
-                }}>{p.initials}</div>
-                <div style={{ fontFamily: f, fontSize: 15, fontWeight: 600, color: "#fff", marginBottom: 2 }}>{p.name}</div>
-                <div style={{ fontFamily: f, fontSize: 12, color: teal, fontWeight: 500, marginBottom: 10 }}>{p.title}</div>
-                <div style={{ fontFamily: f, fontSize: 13, lineHeight: 1.6, color: "rgba(255,255,255,0.4)" }}>{p.bio}</div>
+              <div key={i} style={{ ...glass, borderRadius: mobile ? 14 : 18, padding: mobile ? 20 : 24, display: "flex", alignItems: "center", gap: 16 }}>
+                <img
+                  src={p.img}
+                  alt={p.name}
+                  style={{
+                    width: mobile ? 70 : 80, height: mobile ? 70 : 80, borderRadius: "50%",
+                    objectFit: "cover", objectPosition: "center top",
+                    border: `2px solid ${teal}30`,
+                    flexShrink: 0,
+                  }}
+                />
+                <div>
+                  <div style={{ fontFamily: f, fontSize: mobile ? 16 : 18, fontWeight: 600, color: "#fff", marginBottom: 2 }}>{p.name}</div>
+                  <div style={{ fontFamily: f, fontSize: 12, color: teal, fontWeight: 500, marginBottom: 8 }}>{p.title}</div>
+                  <div style={{ fontFamily: f, fontSize: 13, lineHeight: 1.6, color: "rgba(255,255,255,0.4)" }}>{p.bio}</div>
+                </div>
               </div>
             ))}
           </div>
