@@ -184,7 +184,9 @@ export default function MiltonHomepage() {
       <nav style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
         padding: mobile ? "12px 16px" : "16px 40px",
-        display: "flex", alignItems: "center", justifyContent: "space-between",
+        display: "grid",
+        gridTemplateColumns: mobile ? "1fr auto" : "1fr auto 1fr",
+        alignItems: "center",
         background: scrolled || menuOpen ? "rgba(6,28,39,0.95)" : "transparent",
         backdropFilter: scrolled || menuOpen ? "blur(20px)" : "none",
         borderBottom: scrolled ? "1px solid rgba(13,154,165,0.1)" : "1px solid transparent",
@@ -210,11 +212,9 @@ export default function MiltonHomepage() {
         {/* Centered text nav links */}
         {!mobile && (
           <div style={{
-            position: "absolute",
-            left: "50%",
-            transform: "translateX(-50%)",
             display: "flex",
             alignItems: "center",
+            justifyContent: "center",
             gap: tablet ? 24 : 36,
           }}>
             {[
@@ -245,7 +245,7 @@ export default function MiltonHomepage() {
 
         {/* Right side buttons */}
         {!mobile && (
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 10 }}>
             <CTA variant="secondary" style={{ padding: "10px 24px", fontSize: 14 }}>Login</CTA>
             <CTA variant="primary" style={{ padding: "10px 24px", fontSize: 14 }}>Request a Demo</CTA>
           </div>
