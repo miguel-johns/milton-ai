@@ -208,10 +208,38 @@ export default function MiltonHomepage() {
         </div>
 
         {!mobile && (
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <CTA variant="secondary" style={{ padding: "10px 24px", fontSize: 14 }}>Login</CTA>
-            <CTA variant="secondary" style={{ padding: "10px 24px", fontSize: 14 }}>Request a Demo</CTA>
-            <CTA variant="primary" style={{ padding: "10px 24px", fontSize: 14 }} href="#/pricing">Get Pricing</CTA>
+          <div style={{ display: "flex", alignItems: "center", gap: tablet ? 20 : 32 }}>
+            {/* Text nav links */}
+            <div style={{ display: "flex", alignItems: "center", gap: tablet ? 16 : 24 }}>
+              {[
+                { label: "Pricing", href: "#/pricing" },
+                { label: "AI Readiness Snapshot", href: "#/consultation" },
+                { label: "Insights", href: "#insights" },
+                { label: "About Us", href: "#about" },
+              ].map(link => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: 14,
+                    fontWeight: 500,
+                    color: "rgba(255,255,255,0.7)",
+                    textDecoration: "none",
+                    transition: "color 0.2s ease",
+                  }}
+                  onMouseEnter={e => e.target.style.color = "#fff"}
+                  onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.7)"}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+            {/* Buttons */}
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+              <CTA variant="secondary" style={{ padding: "10px 24px", fontSize: 14 }}>Login</CTA>
+              <CTA variant="primary" style={{ padding: "10px 24px", fontSize: 14 }}>Request a Demo</CTA>
+            </div>
           </div>
         )}
 
@@ -235,25 +263,55 @@ export default function MiltonHomepage() {
           padding: "28px 24px", display: "flex", flexDirection: "column", gap: 8,
           overflowY: "auto",
         }}>
+          {/* Nav links */}
+          {[
+            { label: "Pricing", href: "#/pricing" },
+            { label: "AI Readiness Snapshot", href: "#/consultation" },
+            { label: "Insights", href: "#insights" },
+            { label: "About Us", href: "#about" },
+          ].map(link => (
+            <a
+              key={link.label}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: 16,
+                fontWeight: 500,
+                color: "rgba(255,255,255,0.7)",
+                textDecoration: "none",
+                padding: "14px 0",
+                borderBottom: "1px solid rgba(13,154,165,0.1)",
+                display: "block",
+              }}
+            >
+              {link.label}
+            </a>
+          ))}
+          
+          {/* Page sections */}
+          <div style={{ marginTop: 16, paddingTop: 16, borderTop: "1px solid rgba(13,154,165,0.2)" }}>
+            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.4)", letterSpacing: 1.5, textTransform: "uppercase" }}>On This Page</span>
+          </div>
           {navSections.map(s => (
             <button key={s.id} onClick={() => {
               document.getElementById(s.id)?.scrollIntoView({ behavior: "smooth" });
               setMenuOpen(false);
             }} style={{
               background: "none", border: "none", cursor: "pointer",
-              padding: "14px 0", textAlign: "left",
-              borderBottom: "1px solid rgba(13,154,165,0.1)",
+              padding: "12px 0", textAlign: "left",
+              borderBottom: "1px solid rgba(13,154,165,0.08)",
             }}>
               <span style={{
-                fontFamily: "'DM Sans', sans-serif", fontSize: 14, fontWeight: 500,
-                color: activeSection === s.id ? "#0d9aa5" : "rgba(255,255,255,0.6)",
-                letterSpacing: 1.5, textTransform: "uppercase",
+                fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 500,
+                color: activeSection === s.id ? "#0d9aa5" : "rgba(255,255,255,0.5)",
+                letterSpacing: 1, textTransform: "uppercase",
               }}>{s.num} {s.label}</span>
             </button>
           ))}
-          <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 20 }}>
-            <CTA variant="primary" style={{ width: "100%", textAlign: "center", padding: "14px 0" }} href="#/pricing">Get Pricing</CTA>
-            <CTA variant="secondary" style={{ width: "100%", textAlign: "center", padding: "14px 0" }}>Request a Demo</CTA>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 24 }}>
+            <CTA variant="secondary" style={{ width: "100%", textAlign: "center", padding: "14px 0" }}>Login</CTA>
+            <CTA variant="primary" style={{ width: "100%", textAlign: "center", padding: "14px 0" }}>Request a Demo</CTA>
           </div>
         </div>
       )}

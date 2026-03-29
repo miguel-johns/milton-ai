@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/react'
 import MiltonHomepage from './App.jsx'
 import PricingCalculator from './Pricing.jsx'
 import CaseStudy from './CaseStudy.jsx'
+import AIConsultation from './Consultation.jsx'
 
 function App() {
   const [page, setPage] = useState(() => {
@@ -27,6 +28,10 @@ function App() {
 
   if (page === '/case-study/optimal-performance') {
     return <CaseStudy />
+  }
+
+  if (page === '/consultation') {
+    return <AIConsultation />
   }
   
   return <MiltonHomepage />
