@@ -59,7 +59,7 @@ function SectionDivider() {
   return <div style={{ height: 1, background: "linear-gradient(90deg, rgba(13,154,165,0.4) 0%, rgba(13,154,165,0.05) 100%)", marginBottom: 28 }} />;
 }
 
-function FeatureCard({ title, body, visual = true, visualHeight = 200 }) {
+function FeatureCard({ title, body, visual = true, visualHeight = 200, aspectRatio }) {
   const { mobile } = useBreakpoint();
   return (
     <div style={{
@@ -67,7 +67,17 @@ function FeatureCard({ title, body, visual = true, visualHeight = 200 }) {
       borderRadius: mobile ? 12 : 16, padding: mobile ? 20 : 28,
       display: "flex", flexDirection: "column", gap: mobile ? 12 : 16,
     }}>
-      {visual && <VisualPlaceholder height={visualHeight} mobileHeight={160} />}
+      {visual && (
+        aspectRatio ? (
+          <div style={{
+            aspectRatio,
+            background: "rgba(13,154,165,0.08)", border: "1px dashed rgba(13,154,165,0.25)",
+            borderRadius: mobile ? 8 : 12, display: "flex", alignItems: "center", justifyContent: "center",
+          }}>
+            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: "rgba(13,154,165,0.4)" }}>Visual</span>
+          </div>
+        ) : <VisualPlaceholder height={visualHeight} mobileHeight={160} />
+      )}
       <h4 style={{
         fontFamily: "'DM Sans', sans-serif", fontSize: mobile ? 17 : 20,
         fontWeight: 600, color: "#fff", margin: 0,
@@ -380,17 +390,15 @@ export default function MiltonHomepage() {
           <Headline>Every trainer performs like your <Accent>best</Accent> trainer.</Headline>
           <Body>Your best trainer follows up before the client thinks about canceling. They prep for every session. They track progressive overload without being asked. They know when to push and when to pull back. Milton puts that mind in the pocket of every trainer on your floor.</Body>
           <GridRow cols={2}>
-            <FeatureCard title="Session Intelligence" body="Milton briefs your trainer before every session — what you did last time, where the client is in their program, what to focus on today. No more scrambling to remember." />
-            <FeatureCard title="Workout Programming & Tracking" body="Build programs, log sessions, track progressive overload, and make progress visual. Clients see their gains. Trainers see what's working. Everyone stays accountable." />
+            <FeatureCard title="Session Intelligence" body="Milton briefs your trainer before every session — what you did last time, where the client is in their program, what to focus on today. No more scrambling to remember." aspectRatio="4/6" />
+            <FeatureCard title="Workout Programming & Tracking" body="Build programs, log sessions, track progressive overload, and make progress visual. Clients see their gains. Trainers see what's working. Everyone stays accountable." aspectRatio="4/6" />
           </GridRow>
           <div style={{ height: mobile ? 16 : 20 }} />
           <GridRow cols={2}>
-            <FeatureCard title="Automated Follow-Up" body="Session just ended? Milton drafts the follow-up. Client no-showed? Milton flags it and suggests the re-engagement message. The small things that separate good from great — handled." />
-            <FeatureCard title="Nutrition & Challenges" body="Run nutrition challenges that generate revenue. Give your trainers the tools to offer real nutrition guidance through a companion app that makes it simple for clients." />
+            <FeatureCard title="Automated Follow-Up" body="Session just ended? Milton drafts the follow-up. Client no-showed? Milton flags it and suggests the re-engagement message. The small things that separate good from great — handled." aspectRatio="4/6" />
+            <FeatureCard title="Nutrition & Challenges" body="Run nutrition challenges that generate revenue. Give your trainers the tools to offer real nutrition guidance through a companion app that makes it simple for clients." aspectRatio="4/6" />
           </GridRow>
-          <div style={{ height: mobile ? 16 : 20 }} />
-          <FeatureCard title="Career Development" body="Milton doesn't just help trainers do their job �� it shows them where their gaps are and how to grow. Follow-up habits, coaching skills, client results. Trainers see their path to earning more and building a real career." visualHeight={240} />
-        </section>
+</section>
 
         {/* 02 FITNESS DIRECTOR */}
         <section id="director" style={{ padding: sectionPad }}>
@@ -399,13 +407,13 @@ export default function MiltonHomepage() {
           <Headline>The view you've been building in <Accent>spreadsheets</Accent> for years.</Headline>
           <Body>Tracking attendance in one sheet. Consultations and close rates in another. Follow-ups and weekly check-ins in a third. Cross-referencing your scheduling software and doing the math in your head to figure out who's growing and who's slipping. Milton replaces all of it with one intelligent view.</Body>
           <GridRow cols={2}>
-            <FeatureCard title="Trainer Performance at a Glance" body="Every trainer on one screen. Active clients, plus or minus from last week. Projected gross for the month. Retention rate. Follow-up rate. Consultation close rate. Updated in real time." visualHeight={220} />
-            <FeatureCard title="The Six-Month Cliff" body="If you keep a client past six months, they typically stay two years or more. Milton tracks every client against that milestone so you can intervene before the drop-off — not after." visualHeight={220} />
+            <FeatureCard title="Trainer Performance at a Glance" body="Every trainer on one screen. Active clients, plus or minus from last week. Projected gross for the month. Retention rate. Follow-up rate. Consultation close rate. Updated in real time." aspectRatio="4/6" />
+            <FeatureCard title="The Six-Month Cliff" body="If you keep a client past six months, they typically stay two years or more. Milton tracks every client against that milestone so you can intervene before the drop-off — not after." aspectRatio="4/6" />
           </GridRow>
           <div style={{ height: mobile ? 16 : 20 }} />
           <GridRow cols={2}>
-            <FeatureCard title="Gap Identification" body="Is it a coaching skills issue? A follow-up issue? A scheduling issue? Milton identifies which pillar a struggling trainer needs help with — so your next conversation is specific, not a guessing game." visualHeight={220} />
-            <FeatureCard title="Trainer Development Paths" body="Milton builds development plans so your newer trainers see exactly how to level up, earn more, and build a career — not just a job that burns them out in 18 months. Your training philosophy, delivered consistently, at scale." visualHeight={220} />
+            <FeatureCard title="Gap Identification" body="Is it a coaching skills issue? A follow-up issue? A scheduling issue? Milton identifies which pillar a struggling trainer needs help with — so your next conversation is specific, not a guessing game." aspectRatio="4/6" />
+            <FeatureCard title="Trainer Development Paths" body="Milton builds development plans so your newer trainers see exactly how to level up, earn more, and build a career — not just a job that burns them out in 18 months. Your training philosophy, delivered consistently, at scale." aspectRatio="4/6" />
           </GridRow>
         </section>
 
