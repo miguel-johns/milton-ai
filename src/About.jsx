@@ -148,7 +148,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ══════�� WHY NOW ═══════ */}
+        {/* ══════��� WHY NOW ═══════ */}
         <section style={{ padding: sectionPad }}>
           <SectionLabel text="THE MOMENT" />
           <SectionDivider />
@@ -308,10 +308,10 @@ export default function AboutPage() {
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Johnny%20O-f85QO3MehtjKe6jNVZZzn4Som59E6J.png"
               alt="Johnny Olsen"
               style={{
-                width: mobile ? 90 : 110, height: mobile ? 90 : 110, borderRadius: "50%",
+                width: mobile ? 120 : 180, height: mobile ? 120 : 180, borderRadius: "50%",
                 objectFit: "cover", objectPosition: "center top",
-                border: `2px solid ${teal}40`,
-                boxShadow: `0 0 30px ${teal}15`, flexShrink: 0,
+                border: `3px solid ${teal}40`,
+                boxShadow: `0 0 40px ${teal}20`, flexShrink: 0,
               }}
             />
               <div>
