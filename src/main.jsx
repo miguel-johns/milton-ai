@@ -6,6 +6,7 @@ import PricingCalculator from './Pricing.jsx'
 import CaseStudy from './CaseStudy.jsx'
 import AIConsultation from './Consultation.jsx'
 import Insights from './Insights.jsx'
+import About from './About.jsx'
 
 function App() {
   const [page, setPage] = useState(() => {
@@ -37,6 +38,10 @@ function App() {
 
   if (page === '/insights') {
     return <Insights />
+  }
+
+  if (page === '/about') {
+    return <About />
   }
   
   return <MiltonHomepage />
