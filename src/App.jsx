@@ -207,39 +207,47 @@ export default function MiltonHomepage() {
           }}>MILTON</span>
         </div>
 
+        {/* Centered text nav links */}
         {!mobile && (
-          <div style={{ display: "flex", alignItems: "center", gap: tablet ? 20 : 32 }}>
-            {/* Text nav links */}
-            <div style={{ display: "flex", alignItems: "center", gap: tablet ? 16 : 24 }}>
-              {[
-                { label: "Pricing", href: "#/pricing" },
-                { label: "AI Readiness Snapshot", href: "#/consultation" },
-                { label: "Insights", href: "#insights" },
-                { label: "About Us", href: "#about" },
-              ].map(link => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: 14,
-                    fontWeight: 500,
-                    color: "rgba(255,255,255,0.7)",
-                    textDecoration: "none",
-                    transition: "color 0.2s ease",
-                  }}
-                  onMouseEnter={e => e.target.style.color = "#fff"}
-                  onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.7)"}
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-            {/* Buttons */}
-            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-              <CTA variant="secondary" style={{ padding: "10px 24px", fontSize: 14 }}>Login</CTA>
-              <CTA variant="primary" style={{ padding: "10px 24px", fontSize: 14 }}>Request a Demo</CTA>
-            </div>
+          <div style={{
+            position: "absolute",
+            left: "50%",
+            transform: "translateX(-50%)",
+            display: "flex",
+            alignItems: "center",
+            gap: tablet ? 24 : 36,
+          }}>
+            {[
+              { label: "Pricing", href: "#/pricing" },
+              { label: "AI Readiness Snapshot", href: "#/consultation" },
+              { label: "Insights", href: "#insights" },
+              { label: "About Us", href: "#about" },
+            ].map(link => (
+              <a
+                key={link.label}
+                href={link.href}
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: 14,
+                  fontWeight: 500,
+                  color: "rgba(255,255,255,0.7)",
+                  textDecoration: "none",
+                  transition: "color 0.2s ease",
+                }}
+                onMouseEnter={e => e.target.style.color = "#fff"}
+                onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.7)"}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        )}
+
+        {/* Right side buttons */}
+        {!mobile && (
+          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+            <CTA variant="secondary" style={{ padding: "10px 24px", fontSize: 14 }}>Login</CTA>
+            <CTA variant="primary" style={{ padding: "10px 24px", fontSize: 14 }}>Request a Demo</CTA>
           </div>
         )}
 
