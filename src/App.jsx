@@ -315,16 +315,6 @@ export default function MiltonHomepage() {
           justifyContent: "center", alignItems: "center", textAlign: "center",
           paddingTop: mobile ? 80 : 100, paddingBottom: mobile ? 40 : 0,
         }}>
-          <div style={{
-            display: "inline-flex", alignItems: "center", gap: 8,
-            background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)",
-            borderRadius: 100, padding: mobile ? "6px 16px" : "8px 20px", marginBottom: mobile ? 24 : 40,
-          }}>
-            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: mobile ? 12 : 14, color: "rgba(255,255,255,0.7)" }}>
-              Trusted by personal training businesses nationwide
-            </span>
-          </div>
-
           <h1 style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontSize: mobile ? 38 : tablet ? 56 : "clamp(56px, 6vw, 80px)",
