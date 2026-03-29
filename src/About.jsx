@@ -306,7 +306,7 @@ export default function AboutPage() {
             }}>
 <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Johnny%20O-f85QO3MehtjKe6jNVZZzn4Som59E6J.png"
-              alt="Johnny O'Connell"
+              alt="Johnny Olsen"
               style={{
                 width: mobile ? 90 : 110, height: mobile ? 90 : 110, borderRadius: "50%",
                 objectFit: "cover", objectPosition: "center top",
@@ -315,7 +315,7 @@ export default function AboutPage() {
               }}
             />
               <div>
-                <div style={{ fontFamily: f, fontSize: mobile ? 20 : 24, fontWeight: 700, color: "#fff", marginBottom: 2 }}>Johnny O'Connell</div>
+                <div style={{ fontFamily: f, fontSize: mobile ? 20 : 24, fontWeight: 700, color: "#fff", marginBottom: 2 }}>Johnny Olsen</div>
                 <div style={{ fontFamily: f, fontSize: 14, color: teal, fontWeight: 600, marginBottom: 14 }}>Chief Coach Officer</div>
                 <p style={{ fontFamily: f, fontSize: mobile ? 14 : 15, lineHeight: 1.7, color: "rgba(255,255,255,0.5)", margin: "0 0 12px 0" }}>
                   No AI company has a Chief Coach Officer. We do — because building for coaches without one is like building a hospital without asking a doctor.
