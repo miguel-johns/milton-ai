@@ -148,7 +148,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ═══════ WHY NOW ═══════ */}
+        {/* ══════�� WHY NOW ═══════ */}
         <section style={{ padding: sectionPad }}>
           <SectionLabel text="THE MOMENT" />
           <SectionDivider />
@@ -343,7 +343,21 @@ export default function AboutPage() {
             display: "grid", gridTemplateColumns: mobile ? "1fr" : "1fr 1fr",
             gap: mobile ? 16 : 24, marginBottom: mobile ? 24 : 36,
           }}>
-            <VisualPlaceholder height={260} mobileHeight={180} label="Photo" />
+            <div style={{
+              borderRadius: mobile ? 14 : 18,
+              overflow: "hidden",
+              height: mobile ? 180 : 260,
+            }}>
+              <img
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Untitled%20design%20%2835%29-RRDktgFJFs3AzS1PJRRlyKXvH42KxF.png"
+                alt="Optimal Performance gym exterior"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+              />
+            </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: mobile ? 10 : 12 }}>
               {[
                 { num: "~20", label: "Years in operation" },
