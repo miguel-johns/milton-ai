@@ -319,9 +319,9 @@ export default function MiltonHomepage() {
             fontFamily: "'Cormorant Garamond', serif",
             fontSize: mobile ? 38 : tablet ? 56 : "clamp(56px, 6vw, 80px)",
             fontWeight: 400, lineHeight: 1.1, color: "#fff",
-            margin: "0 0 24px 0", maxWidth: 900,
+            margin: "0 0 24px 0", maxWidth: 1000,
           }}>
-            The First AI Co-Pilot for Your{mobile ? " " : <br />}Personal Training Business.
+            The First AI Co-Pilot for Your Personal Training Business.
           </h1>
 
           <p style={{
