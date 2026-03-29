@@ -114,8 +114,123 @@ function GridRow({ children, cols = 2 }) {
 
 
 
-function HeroVisual({ mobile }) {
-  return <VisualPlaceholder height={420} mobileHeight={240} style={{ width: "100%", maxWidth: 900, marginBottom: mobile ? 36 : 60 }} />;
+function HeroVisual({ mobile, tablet }) {
+  const [visibleMessages, setVisibleMessages] = useState(0);
+  const teal = "#0d9aa5";
+  const f = "'DM Sans', sans-serif";
+
+  const messages = [
+    { type: "milton", text: "Good morning, Director.", delay: 0 },
+    { type: "milton", text: "Your team of 6 trainers is managing 88 active clients this week. Here's your Monday check-in.", delay: 1 },
+    { type: "alert", name: "Jake Torres", label: "Urgent", text: "Follow-up problem — 41% rate, 20 missed sessions not rescheduled, 4 clients lost this month. This isn't a coaching skill issue. It's urgency and communication.", delay: 2 },
+    { type: "user", text: "Got it. Let's schedule a 1-on-1 with Jake this week.", delay: 3 },
+    { type: "milton", text: "Done. I've blocked 30 minutes on your calendar Thursday at 2pm and sent Jake a heads-up. I'll prep a diagnostic summary before the meeting.", delay: 4 },
+  ];
+
+  useEffect(() => {
+    const timers = messages.map((_, i) => 
+      setTimeout(() => setVisibleMessages(i + 1), (i + 1) * 1200)
+    );
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  const MiltonBubble = ({ text, visible }) => (
+    <div style={{
+      display: "flex", gap: mobile ? 8 : 12, alignItems: "flex-start",
+      opacity: visible ? 1 : 0,
+      transform: visible ? "translateY(0)" : "translateY(20px)",
+      transition: "all 0.5s ease-out",
+    }}>
+      <div style={{
+        width: mobile ? 28 : 36, height: mobile ? 28 : 36, borderRadius: 8,
+        background: `linear-gradient(135deg, ${teal}, #126b80)`,
+        display: "flex", alignItems: "center", justifyContent: "center",
+        fontFamily: f, fontWeight: 700, fontSize: mobile ? 12 : 14, color: "#fff",
+        flexShrink: 0,
+      }}>M</div>
+      <div style={{
+        background: "rgba(13,154,165,0.12)", border: "1px solid rgba(13,154,165,0.25)",
+        borderRadius: mobile ? 12 : 16, borderTopLeftRadius: 4,
+        padding: mobile ? "10px 14px" : "12px 18px",
+        maxWidth: mobile ? "85%" : "75%",
+      }}>
+        <p style={{ fontFamily: f, fontSize: mobile ? 12 : 14, lineHeight: 1.5, color: "rgba(255,255,255,0.85)", margin: 0 }}>{text}</p>
+      </div>
+    </div>
+  );
+
+  const AlertBubble = ({ name, label, text, visible }) => (
+    <div style={{
+      display: "flex", gap: mobile ? 8 : 12, alignItems: "flex-start",
+      opacity: visible ? 1 : 0,
+      transform: visible ? "translateY(0)" : "translateY(20px)",
+      transition: "all 0.5s ease-out",
+    }}>
+      <div style={{
+        width: mobile ? 28 : 36, height: mobile ? 28 : 36, borderRadius: 8,
+        background: `linear-gradient(135deg, ${teal}, #126b80)`,
+        display: "flex", alignItems: "center", justifyContent: "center",
+        fontFamily: f, fontWeight: 700, fontSize: mobile ? 12 : 14, color: "#fff",
+        flexShrink: 0,
+      }}>M</div>
+      <div style={{
+        background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.3)",
+        borderRadius: mobile ? 12 : 16, borderTopLeftRadius: 4,
+        padding: mobile ? "10px 14px" : "12px 18px",
+        maxWidth: mobile ? "85%" : "75%",
+      }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+          <span style={{ fontFamily: f, fontSize: mobile ? 12 : 13, fontWeight: 600, color: "#fff" }}>{name}</span>
+          <span style={{
+            background: "rgba(239,68,68,0.25)", color: "#ef4444",
+            fontFamily: f, fontSize: 10, fontWeight: 600,
+            padding: "2px 8px", borderRadius: 100,
+          }}>{label}</span>
+        </div>
+        <p style={{ fontFamily: f, fontSize: mobile ? 11 : 13, lineHeight: 1.5, color: "rgba(255,255,255,0.75)", margin: 0 }}>{text}</p>
+      </div>
+    </div>
+  );
+
+  const UserBubble = ({ text, visible }) => (
+    <div style={{
+      display: "flex", justifyContent: "flex-end",
+      opacity: visible ? 1 : 0,
+      transform: visible ? "translateY(0)" : "translateY(20px)",
+      transition: "all 0.5s ease-out",
+    }}>
+      <div style={{
+        background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)",
+        borderRadius: mobile ? 12 : 16, borderTopRightRadius: 4,
+        padding: mobile ? "10px 14px" : "12px 18px",
+        maxWidth: mobile ? "85%" : "70%",
+      }}>
+        <p style={{ fontFamily: f, fontSize: mobile ? 12 : 14, lineHeight: 1.5, color: "rgba(255,255,255,0.9)", margin: 0 }}>{text}</p>
+      </div>
+    </div>
+  );
+
+  return (
+    <div style={{
+      width: "100%",
+      maxWidth: mobile ? "100%" : 700,
+      margin: "0 auto",
+      marginBottom: mobile ? 36 : 60,
+      padding: mobile ? "20px 16px" : "28px 32px",
+      background: "rgba(6,28,39,0.6)",
+      border: "1px solid rgba(13,154,165,0.15)",
+      borderRadius: mobile ? 16 : 24,
+      backdropFilter: "blur(20px)",
+    }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: mobile ? 12 : 16 }}>
+        <MiltonBubble text={messages[0].text} visible={visibleMessages >= 1} />
+        <MiltonBubble text={messages[1].text} visible={visibleMessages >= 2} />
+        <AlertBubble name={messages[2].name} label={messages[2].label} text={messages[2].text} visible={visibleMessages >= 3} />
+        <UserBubble text={messages[3].text} visible={visibleMessages >= 4} />
+        <MiltonBubble text={messages[4].text} visible={visibleMessages >= 5} />
+      </div>
+    </div>
+  );
 }
 
 
