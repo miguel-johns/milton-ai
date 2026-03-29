@@ -59,7 +59,7 @@ function SectionDivider() {
   return <div style={{ height: 1, background: "linear-gradient(90deg, rgba(13,154,165,0.4) 0%, rgba(13,154,165,0.05) 100%)", marginBottom: 28 }} />;
 }
 
-function FeatureCard({ title, body, visual = true, visualHeight = 200, image, imageAlt }) {
+function FeatureCard({ title, body, visual = true, visualHeight = 200 }) {
   const { mobile } = useBreakpoint();
   return (
     <div style={{
@@ -67,11 +67,7 @@ function FeatureCard({ title, body, visual = true, visualHeight = 200, image, im
       borderRadius: mobile ? 12 : 16, padding: mobile ? 20 : 28,
       display: "flex", flexDirection: "column", gap: mobile ? 12 : 16,
     }}>
-      {image ? (
-        <div style={{ borderRadius: mobile ? 8 : 12, overflow: "hidden" }}>
-          <img src={image} alt={imageAlt || title} style={{ width: "100%", height: "auto", display: "block" }} />
-        </div>
-      ) : visual && <VisualPlaceholder height={visualHeight} mobileHeight={160} />}
+      {visual && <VisualPlaceholder height={visualHeight} mobileHeight={160} />}
       <h4 style={{
         fontFamily: "'DM Sans', sans-serif", fontSize: mobile ? 17 : 20,
         fontWeight: 600, color: "#fff", margin: 0,
@@ -384,7 +380,7 @@ export default function MiltonHomepage() {
           <Headline>Every trainer performs like your <Accent>best</Accent> trainer.</Headline>
           <Body>Your best trainer follows up before the client thinks about canceling. They prep for every session. They track progressive overload without being asked. They know when to push and when to pull back. Milton puts that mind in the pocket of every trainer on your floor.</Body>
           <GridRow cols={2}>
-            <FeatureCard title="Session Intelligence" body="Milton briefs your trainer before every session — what you did last time, where the client is in their program, what to focus on today. No more scrambling to remember." image="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screen%20Shot%202026-03-29%20at%202.41.34%20PM-cHBwwSUszdTUPsYVVjtGhFlIrPe0QV.png" imageAlt="Milton coach dashboard showing session briefs, active clients, and today's coaching queue" />
+            <FeatureCard title="Session Intelligence" body="Milton briefs your trainer before every session — what you did last time, where the client is in their program, what to focus on today. No more scrambling to remember." />
             <FeatureCard title="Workout Programming & Tracking" body="Build programs, log sessions, track progressive overload, and make progress visual. Clients see their gains. Trainers see what's working. Everyone stays accountable." />
           </GridRow>
           <div style={{ height: mobile ? 16 : 20 }} />
