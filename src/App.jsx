@@ -218,10 +218,10 @@ export default function MiltonHomepage() {
             gap: tablet ? 24 : 36,
           }}>
             {[
-              { label: "Pricing", href: "#/pricing" },
               { label: "AI Readiness Snapshot", href: "#/consultation" },
               { label: "Insights", href: "#insights" },
               { label: "About Us", href: "#about" },
+              { label: "Pricing", href: "#/pricing" },
             ].map(link => (
               <a
                 key={link.label}
@@ -273,10 +273,10 @@ export default function MiltonHomepage() {
         }}>
           {/* Nav links */}
           {[
-            { label: "Pricing", href: "#/pricing" },
             { label: "AI Readiness Snapshot", href: "#/consultation" },
             { label: "Insights", href: "#insights" },
             { label: "About Us", href: "#about" },
+            { label: "Pricing", href: "#/pricing" },
           ].map(link => (
             <a
               key={link.label}
@@ -297,26 +297,6 @@ export default function MiltonHomepage() {
             </a>
           ))}
           
-          {/* Page sections */}
-          <div style={{ marginTop: 16, paddingTop: 16, borderTop: "1px solid rgba(13,154,165,0.2)" }}>
-            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.4)", letterSpacing: 1.5, textTransform: "uppercase" }}>On This Page</span>
-          </div>
-          {navSections.map(s => (
-            <button key={s.id} onClick={() => {
-              document.getElementById(s.id)?.scrollIntoView({ behavior: "smooth" });
-              setMenuOpen(false);
-            }} style={{
-              background: "none", border: "none", cursor: "pointer",
-              padding: "12px 0", textAlign: "left",
-              borderBottom: "1px solid rgba(13,154,165,0.08)",
-            }}>
-              <span style={{
-                fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 500,
-                color: activeSection === s.id ? "#0d9aa5" : "rgba(255,255,255,0.5)",
-                letterSpacing: 1, textTransform: "uppercase",
-              }}>{s.num} {s.label}</span>
-            </button>
-          ))}
           <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 24 }}>
             <CTA variant="secondary" style={{ width: "100%", textAlign: "center", padding: "14px 0" }}>Login</CTA>
             <CTA variant="primary" style={{ width: "100%", textAlign: "center", padding: "14px 0" }}>Request a Demo</CTA>
@@ -324,28 +304,7 @@ export default function MiltonHomepage() {
         </div>
       )}
 
-      {/* Side nav — desktop only */}
-      {desktop && (
-        <div style={{
-          position: "fixed", left: 28, top: "50%", transform: "translateY(-50%)",
-          zIndex: 90, display: "flex", flexDirection: "column", gap: 2,
-        }}>
-          {navSections.map(s => (
-            <button key={s.id} onClick={() => document.getElementById(s.id)?.scrollIntoView({ behavior: "smooth" })} style={{
-              background: "none", border: "none", cursor: "pointer",
-              padding: "7px 12px", textAlign: "left",
-              opacity: activeSection === s.id ? 1 : 0.3,
-              transition: "opacity 0.3s ease",
-              borderLeft: activeSection === s.id ? "2px solid #0d9aa5" : "2px solid transparent",
-            }}>
-              <span style={{
-                fontFamily: "'DM Sans', sans-serif", fontSize: 10, fontWeight: 500,
-                color: "#fff", letterSpacing: 1.5, textTransform: "uppercase",
-              }}>{s.num} {s.label}</span>
-            </button>
-          ))}
-        </div>
-      )}
+
 
       {/* ——— CONTENT ——— */}
       <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: `0 ${px}px` }}>
