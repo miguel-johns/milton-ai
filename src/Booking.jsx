@@ -149,43 +149,6 @@ export default function BookingPage() {
           </div>
         </section>
 
-        {/* Trust Section */}
-        <section style={{ 
-          padding: mobile ? "40px 0 60px" : "60px 0 80px",
-          borderTop: "1px solid rgba(13,154,165,0.1)",
-        }}>
-          <div style={{ maxWidth: 800, margin: "0 auto", padding: `0 ${px}px`, textAlign: "center" }}>
-            <p style={{
-              fontFamily: f,
-              fontSize: 13,
-              fontWeight: 500,
-              letterSpacing: 2,
-              textTransform: "uppercase",
-              color: "rgba(255,255,255,0.35)",
-              margin: "0 0 24px 0",
-            }}>
-              Trusted by leading training departments
-            </p>
-            <div style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: mobile ? 32 : 48,
-              flexWrap: "wrap",
-            }}>
-              <span style={{
-                fontFamily: f,
-                fontSize: 15,
-                fontWeight: 600,
-                color: "rgba(255,255,255,0.4)",
-                letterSpacing: 0.5,
-              }}>
-                Optimal Performance
-              </span>
-            </div>
-          </div>
-        </section>
-
         {/* Footer */}
         <footer style={{
           borderTop: "1px solid rgba(13,154,165,0.08)",
