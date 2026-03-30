@@ -23,6 +23,7 @@ const articlesContent = {
     slug: "ai-landscape-fitness",
     category: "AI IN FITNESS",
     categoryColor: teal,
+    image: "/images/blog/ai-landscape-fitness.jpg",
     title: "The AI Landscape in Fitness: What's Real, What's Hype, and What to Do About It",
     date: "March 24, 2026",
     readTime: "8 min read",
@@ -989,12 +990,34 @@ export default function ArticleDetail({ slug }) {
           </div>
         </header>
         
-        {/* Divider */}
-        <div style={{
-          height: 1,
-          background: `linear-gradient(90deg, transparent, ${teal}30, transparent)`,
-          marginBottom: mobile ? 40 : 56,
-        }} />
+        {/* Hero Image */}
+        {article.image && (
+          <div style={{
+            marginBottom: mobile ? 40 : 56,
+            borderRadius: mobile ? 12 : 16,
+            overflow: "hidden",
+            boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+          }}>
+            <img 
+              src={article.image} 
+              alt={article.title}
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "block",
+              }}
+            />
+          </div>
+        )}
+        
+        {/* Divider (only if no image) */}
+        {!article.image && (
+          <div style={{
+            height: 1,
+            background: `linear-gradient(90deg, transparent, ${teal}30, transparent)`,
+            marginBottom: mobile ? 40 : 56,
+          }} />
+        )}
         
         {/* Content */}
         <article style={{ paddingBottom: mobile ? 60 : 80 }}>

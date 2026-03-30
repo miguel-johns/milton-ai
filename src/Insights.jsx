@@ -35,6 +35,7 @@ const articles = [
     category: "ai-fitness",
     tag: "AI IN FITNESS",
     slug: "ai-landscape-fitness",
+    image: "/images/blog/ai-landscape-fitness.jpg",
     title: "The AI Landscape in Fitness: What's Real, What's Hype, and What to Do About It",
     excerpt: "We walked the floor at HFA 2026 and talked to every AI vendor in the space. Here's our honest breakdown of what's actually working in gyms right now — and what's still just a good demo.",
     date: "Mar 24, 2026",
@@ -152,15 +153,19 @@ function ArticleCard({ article, featured = false, mobile, tablet }) {
         transition: "border-color 0.3s ease",
         boxShadow: "0 12px 40px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.04)",
       }}>
-        {/* Image placeholder */}
+        {/* Image */}
         <div style={{
-          background: `linear-gradient(135deg, ${teal}12, rgba(6,28,39,0.6))`,
+          background: article.image ? `url(${article.image}) center/cover no-repeat` : `linear-gradient(135deg, ${teal}12, rgba(6,28,39,0.6))`,
           minHeight: mobile ? 200 : 320,
           display: "flex", alignItems: "center", justifyContent: "center",
           position: "relative", overflow: "hidden",
         }}>
-          <div style={{ position: "absolute", inset: 0, backgroundImage: `radial-gradient(circle at 40% 50%, ${teal}15 0%, transparent 60%)` }} />
-          <span style={{ fontFamily: f, fontSize: 12, letterSpacing: 2, textTransform: "uppercase", color: `${teal}50` }}>Featured Visual</span>
+          {!article.image && (
+            <>
+              <div style={{ position: "absolute", inset: 0, backgroundImage: `radial-gradient(circle at 40% 50%, ${teal}15 0%, transparent 60%)` }} />
+              <span style={{ fontFamily: f, fontSize: 12, letterSpacing: 2, textTransform: "uppercase", color: `${teal}50` }}>Featured Visual</span>
+            </>
+          )}
         </div>
 
         {/* Content */}
@@ -211,15 +216,19 @@ function ArticleCard({ article, featured = false, mobile, tablet }) {
       boxShadow: "0 6px 24px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.03)",
       display: "flex", flexDirection: "column",
     }}>
-      {/* Image placeholder */}
+      {/* Image */}
       <div style={{
-        background: `linear-gradient(135deg, ${tagColor}08, rgba(6,28,39,0.5))`,
+        background: article.image ? `url(${article.image}) center/cover no-repeat` : `linear-gradient(135deg, ${tagColor}08, rgba(6,28,39,0.5))`,
         height: mobile ? 160 : 180,
         display: "flex", alignItems: "center", justifyContent: "center",
         position: "relative", overflow: "hidden",
       }}>
-        <div style={{ position: "absolute", inset: 0, backgroundImage: `radial-gradient(circle at 50% 60%, ${tagColor}10 0%, transparent 60%)` }} />
-        <span style={{ fontFamily: f, fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: `${tagColor}40` }}>Visual Here</span>
+        {!article.image && (
+          <>
+            <div style={{ position: "absolute", inset: 0, backgroundImage: `radial-gradient(circle at 50% 60%, ${tagColor}10 0%, transparent 60%)` }} />
+            <span style={{ fontFamily: f, fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: `${tagColor}40` }}>Visual Here</span>
+          </>
+        )}
       </div>
 
       {/* Content */}
