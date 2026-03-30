@@ -533,15 +533,12 @@ export default function PricingCalculator() {
                 backdropFilter: "blur(16px)",
                 boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
               }}>
-                <span style={{ fontFamily: f, fontSize: 10, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.35)" }}>ESTIMATED MONTHLY COST</span>
+                <span style={{ fontFamily: f, fontSize: 10, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.35)" }}>STARTING AT</span>
                 <div style={{ fontFamily: f, fontSize: mobile ? 36 : 44, fontWeight: 700, color: "#fff", lineHeight: 1, margin: "10px 0 8px 0" }}>
-                  <AnimatedNumber value={miltonMonthly} prefix="$" suffix="/mo" />
+                  $499<span style={{ fontSize: mobile ? 18 : 22, fontWeight: 500, color: "rgba(255,255,255,0.5)" }}>/mo</span>
                 </div>
-                <p style={{ fontFamily: f, fontSize: 13, color: "rgba(255,255,255,0.35)", margin: "0 0 8px 0" }}>
-                  For {trainers} trainers + fitness director dashboard
-                </p>
                 <p style={{ fontFamily: f, fontSize: 12, color: teal, margin: 0, fontStyle: "italic" }}>
-                  This is an estimate per location. We provide custom pricing based on your unique needs.
+                  Custom pricing based on your unique needs.
                 </p>
               </div>
 
