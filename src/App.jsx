@@ -59,6 +59,82 @@ function SectionDivider() {
   return <div style={{ height: 1, background: "linear-gradient(90deg, rgba(13,154,165,0.4) 0%, rgba(13,154,165,0.05) 100%)", marginBottom: 28 }} />;
 }
 
+function ComingSoonBlur({ mobile }) {
+  const f = "'DM Sans', sans-serif";
+  const teal = "#0d9aa5";
+  return (
+    <div style={{
+      position: "relative",
+      borderRadius: mobile ? 12 : 20,
+      overflow: "hidden",
+      background: "rgba(8,69,94,0.3)",
+      border: "1px solid rgba(13,154,165,0.2)",
+    }}>
+      {/* Blurred hint content */}
+      <div style={{
+        padding: mobile ? 24 : 40,
+        filter: "blur(8px)",
+        opacity: 0.5,
+        pointerEvents: "none",
+        display: "grid",
+        gridTemplateColumns: mobile ? "1fr" : "1fr 1fr 1fr",
+        gap: mobile ? 16 : 24,
+      }}>
+        {[1, 2, 3].map((i) => (
+          <div key={i} style={{
+            background: "rgba(13,154,165,0.15)",
+            borderRadius: 12,
+            padding: mobile ? 20 : 28,
+            minHeight: mobile ? 180 : 240,
+          }}>
+            <div style={{ width: "60%", height: 14, background: "rgba(255,255,255,0.3)", borderRadius: 4, marginBottom: 12 }} />
+            <div style={{ width: "100%", height: 10, background: "rgba(255,255,255,0.15)", borderRadius: 4, marginBottom: 8 }} />
+            <div style={{ width: "90%", height: 10, background: "rgba(255,255,255,0.15)", borderRadius: 4, marginBottom: 8 }} />
+            <div style={{ width: "75%", height: 10, background: "rgba(255,255,255,0.15)", borderRadius: 4, marginBottom: 20 }} />
+            <div style={{ width: "100%", height: mobile ? 80 : 120, background: "rgba(13,154,165,0.2)", borderRadius: 8 }} />
+          </div>
+        ))}
+      </div>
+      {/* Coming Soon overlay */}
+      <div style={{
+        position: "absolute",
+        inset: 0,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "radial-gradient(ellipse at center, rgba(6,28,39,0.4) 0%, rgba(6,28,39,0.8) 100%)",
+      }}>
+        <div style={{
+          background: "rgba(13,154,165,0.15)",
+          border: `1px solid ${teal}40`,
+          borderRadius: 100,
+          padding: mobile ? "10px 24px" : "12px 32px",
+          marginBottom: 16,
+        }}>
+          <span style={{
+            fontFamily: f,
+            fontSize: mobile ? 11 : 12,
+            fontWeight: 600,
+            letterSpacing: 2,
+            textTransform: "uppercase",
+            color: teal,
+          }}>Coming Soon</span>
+        </div>
+        <p style={{
+          fontFamily: f,
+          fontSize: mobile ? 14 : 16,
+          color: "rgba(255,255,255,0.5)",
+          textAlign: "center",
+          maxWidth: 400,
+          margin: 0,
+          padding: "0 20px",
+        }}>We're building something special. Stay tuned.</p>
+      </div>
+    </div>
+  );
+}
+
 function FeatureCard({ title, body, visual = true, visualHeight = 200, aspectRatio, image, imageAlt }) {
   const { mobile } = useBreakpoint();
   return (
@@ -465,12 +541,8 @@ export default function MiltonHomepage() {
           <SectionDivider />
           <Headline>Don't just connect to your ops stack. Let an agent <Accent>run</Accent> it.</Headline>
           <Body>For teams ready to go further, Milton's Operations Coordinator takes the busywork off your plate entirely. Scheduling, rebooking, payment follow-ups, waitlist management — handled by an AI agent that works inside your existing systems.</Body>
-          <Body italic style={{ margin: "-24px 0 48px 0" }}>You don't have to use it. But when your front desk is overwhelmed and your fitness director is spending half their day on admin — it's there.</Body>
-          <GridRow cols={3}>
-            <FeatureCard title="Smart Scheduling" body="Automated booking, rebooking, and waitlist management that adapts to trainer availability and client preferences." visualHeight={180} />
-            <FeatureCard title="Payment & Billing Automation" body="Follow up on missed payments, send invoices, manage package renewals — without your front desk chasing anyone down." visualHeight={180} />
-            <FeatureCard title="Operational Alerts" body="Milton flags what slips through the cracks. A trainer's schedule is light. A client hasn't rebooked. Revenue is trending down. You'll know before it's a problem." visualHeight={180} />
-          </GridRow>
+<Body italic style={{ margin: "-24px 0 48px 0" }}>You don't have to use it. But when your front desk is overwhelmed and your fitness director is spending half their day on admin — it's there.</Body>
+          <ComingSoonBlur mobile={mobile} />
         </section>
 
         {/* 05 CONCIERGE */}
@@ -479,12 +551,8 @@ export default function MiltonHomepage() {
           <SectionDivider />
           <Headline>A personal experience your members <Accent>never</Accent> outgrow.</Headline>
           <Body>Milton's Concierge gives your members a companion app that keeps them connected between sessions. Nutrition logging, workout history, progress photos, goal tracking, direct messaging with their trainer — all in one place.</Body>
-          <Body italic style={{ margin: "-24px 0 48px 0" }}>You don't have to turn it on. But when you're ready to offer more without hiring more, this is how.</Body>
-          <GridRow cols={3}>
-            <FeatureCard title="Companion App" body="Your members get a clean, branded experience for logging nutrition, viewing their programs, tracking progress, and communicating with their trainer — all from their phone." visualHeight={180} />
-            <FeatureCard title="Nutrition Challenges" body="Launch challenges that drive engagement, build community, and generate new revenue. Milton handles the tracking, the leaderboards, and the nudges." visualHeight={180} />
-            <FeatureCard title="Omnichannel Communication" body="SMS, email, in-app — Milton meets your members wherever they are, with the right message at the right time. Pre-session prep. Post-session recaps. Re-engagement when they go quiet." visualHeight={180} />
-          </GridRow>
+<Body italic style={{ margin: "-24px 0 48px 0" }}>You don't have to turn it on. But when you're ready to offer more without hiring more, this is how.</Body>
+          <ComingSoonBlur mobile={mobile} />
         </section>
 
         {/* 06 CASE STUDIES */}
