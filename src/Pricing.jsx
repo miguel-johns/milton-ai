@@ -170,9 +170,9 @@ export default function PricingCalculator() {
   // Trainer retention: industry loses 80%, Milton reduces by ~25%
   const trainerRetentionLift = 25;
 
-  // ROI
-  const sessionTypeMultiplier = sessionTypes.length > 2 ? 1.3 : sessionTypes.length > 1 ? 1.15 : 1;
-  const miltonMonthly = Math.max(300, Math.round((trainers * 75 + 150) * sessionTypeMultiplier / 10) * 10);
+  // ROI - pricing starts at $499/month
+  const sessionTypeMultiplier = sessionTypes.length > 2 ? 1.15 : sessionTypes.length > 1 ? 1.08 : 1;
+  const miltonMonthly = Math.max(499, Math.round((trainers * 60 + 400) * sessionTypeMultiplier / 10) * 10);
   const annualValue = revenueRecovered + (totalTimeSavedMonth * 35 * 12); // $35/hr value on saved time
   const annualCost = miltonMonthly * 12;
   const roi = Math.round((annualValue / annualCost) * 100);
@@ -385,8 +385,8 @@ export default function PricingCalculator() {
             <SliderInput
               label="Number of trainers"
               value={trainers} onChange={setTrainers}
-              min={1} max={30}
-              description="Full-time and part-time on your roster"
+              min={1} max={15}
+              description="Per location — we provide custom pricing for multi-location businesses"
             />
             <SliderInput
               label="Average clients per trainer"
@@ -533,12 +533,15 @@ export default function PricingCalculator() {
                 backdropFilter: "blur(16px)",
                 boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
               }}>
-                <span style={{ fontFamily: f, fontSize: 10, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.35)" }}>MILTON MONTHLY COST</span>
+                <span style={{ fontFamily: f, fontSize: 10, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.35)" }}>ESTIMATED MONTHLY COST</span>
                 <div style={{ fontFamily: f, fontSize: mobile ? 36 : 44, fontWeight: 700, color: "#fff", lineHeight: 1, margin: "10px 0 8px 0" }}>
                   <AnimatedNumber value={miltonMonthly} prefix="$" suffix="/mo" />
                 </div>
-                <p style={{ fontFamily: f, fontSize: 13, color: "rgba(255,255,255,0.35)", margin: 0 }}>
+                <p style={{ fontFamily: f, fontSize: 13, color: "rgba(255,255,255,0.35)", margin: "0 0 8px 0" }}>
                   For {trainers} trainers + fitness director dashboard
+                </p>
+                <p style={{ fontFamily: f, fontSize: 12, color: teal, margin: 0, fontStyle: "italic" }}>
+                  This is an estimate per location. We provide custom pricing based on your unique needs.
                 </p>
               </div>
 
@@ -606,19 +609,12 @@ export default function PricingCalculator() {
               }}>
                 Book a 30-minute demo and we'll walk through exactly how Milton works for a team of {trainers} — with your numbers, not ours.
               </p>
-              <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-                <button style={{
+              <a href="#/book-snapshot" style={{
                   fontFamily: f, fontSize: 16, fontWeight: 700,
                   padding: "16px 44px", borderRadius: 100, border: "none",
                   background: "#fff", color: navy, cursor: "pointer",
-                }}>Book My Demo</button>
-                <button style={{
-                  fontFamily: f, fontSize: 16, fontWeight: 600,
-                  padding: "16px 44px", borderRadius: 100, cursor: "pointer",
-                  background: "transparent", color: "#fff",
-                  border: "1px solid rgba(255,255,255,0.2)",
-                }}>Download My Results</button>
-              </div>
+                  textDecoration: "none", display: "inline-block",
+                }}>Request a Demo</a>
             </div>
           </div>
         )}
