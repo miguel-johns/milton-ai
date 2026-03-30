@@ -10,7 +10,10 @@ import About from './About.jsx'
 import BookingPage from './Booking.jsx'
 import BookingSnapshotPage from './BookingSnapshot.jsx'
 import SharedNav from './SharedNav.jsx'
+import SharedFooter from './SharedFooter.jsx'
 import ArticleDetail from './ArticleDetail.jsx'
+import Terms from './Terms.jsx'
+import Privacy from './Privacy.jsx'
 
 function App() {
   const [page, setPage] = useState(() => {
@@ -47,6 +50,10 @@ function App() {
   } else if (page.startsWith('/insights/')) {
     const slug = page.replace('/insights/', '')
     PageContent = <ArticleDetail slug={slug} />
+  } else if (page === '/terms') {
+    PageContent = <Terms />
+  } else if (page === '/privacy') {
+    PageContent = <Privacy />
   } else {
     PageContent = <MiltonHomepage />
   }
@@ -63,6 +70,7 @@ function App() {
 
       <SharedNav />
       {PageContent}
+      <SharedFooter />
     </div>
   )
 }

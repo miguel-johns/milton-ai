@@ -91,18 +91,7 @@ export default function BookingSnapshotPage() {
           </div>
         </section>
 
-        {/* Footer */}
-        <footer style={{
-          borderTop: "1px solid rgba(13,154,165,0.08)",
-          padding: mobile ? "24px 20px" : "32px 40px",
-          display: "flex",
-          justifyContent: "center",
-        }}>
-          <span style={{ fontFamily: f, fontSize: 13, color: "rgba(255,255,255,0.25)" }}>
-            © 2026 MMNT Inc. All rights reserved.
-          </span>
-        </footer>
-      </div>
+        </div>
     </>
   );
 }

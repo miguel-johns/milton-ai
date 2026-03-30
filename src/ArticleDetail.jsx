@@ -980,14 +980,6 @@ export default function ArticleDetail({ slug }) {
             }}>Book Your Free Consultation</a>
           </div>
         </section>
-        
-        {/* Footer */}
-        <footer style={{
-          display: "flex", alignItems: "center", justifyContent: "center",
-          padding: "32px 0 48px", borderTop: "1px solid rgba(255,255,255,0.04)",
-        }}>
-          <span style={{ fontFamily: f, fontSize: 13, color: "rgba(255,255,255,0.25)" }}>© 2026 MMNT Inc. All rights reserved.</span>
-        </footer>
       </div>
     </>
   );

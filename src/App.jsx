@@ -544,29 +544,6 @@ export default function MiltonHomepage() {
             <CTA variant="secondary" style={{ fontSize: mobile ? 14 : 16, padding: mobile ? "14px 28px" : "16px 40px" }} href="#/pricing">Get Pricing</CTA>
           </div>
         </section>
-
-        {/* FOOTER */}
-        <footer style={{
-          borderTop: "1px solid rgba(13,154,165,0.1)",
-          padding: mobile ? "24px 0" : "40px 0",
-          display: "flex", justifyContent: "space-between", alignItems: "center",
-          flexDirection: mobile ? "column" : "row", gap: mobile ? 12 : 0,
-        }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Milton%20Face%20Logo-whMWzOXBgBgulGUqdRthSEMsjeyWPe.png"
-              alt="Milton Logo"
-              style={{
-                width: 28,
-                height: 28,
-                borderRadius: 6,
-                objectFit: "cover",
-              }}
-            />
-            <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: 14, color: "rgba(255,255,255,0.5)", letterSpacing: 2 }}>MILTON AI</span>
-          </div>
-          <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.3)" }}>© 2026 MMNT Inc. All rights reserved.</span>
-        </footer>
       </div>
     </>
   );
