@@ -18,6 +18,73 @@ const navy = "#08455e";
 const red = "#e85454";
 const warn = "#f0a030";
 
+// Icon components
+const Icons = {
+  DollarX: ({ size = 24, color = "currentColor" }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+      <path d="M12 2v4m0 12v4M9 6h6M9 18h6" />
+    </svg>
+  ),
+  Tired: ({ size = 24, color = "currentColor" }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M8 15s1.5-2 4-2 4 2 4 2" />
+      <line x1="9" y1="9" x2="9.01" y2="9" /><line x1="15" y1="9" x2="15.01" y2="9" />
+    </svg>
+  ),
+  Hourglass: ({ size = 24, color = "currentColor" }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M5 22h14M5 2h14M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2" />
+    </svg>
+  ),
+  Dumbbell: ({ size = 24, color = "currentColor" }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6.5 6.5a2 2 0 0 1 2.83 0L12 9.17l2.67-2.67a2 2 0 0 1 2.83 2.83L14.83 12l2.67 2.67a2 2 0 0 1-2.83 2.83L12 14.83l-2.67 2.67a2 2 0 0 1-2.83-2.83L9.17 12 6.5 9.33a2 2 0 0 1 0-2.83z" />
+      <path d="M4 12h2m12 0h2M12 4v2m0 12v2" />
+    </svg>
+  ),
+  Mic: ({ size = 24, color = "currentColor" }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+      <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3" />
+    </svg>
+  ),
+  Handshake: ({ size = 24, color = "currentColor" }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M11 17a4 4 0 0 0 4-4V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v8a4 4 0 0 0 4 4h2z" />
+      <path d="M19 12V5a2 2 0 0 0-2-2h-1" />
+      <path d="M5 12v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5" />
+      <path d="M9 21v-4M15 21v-4" />
+    </svg>
+  ),
+  Target: ({ size = 24, color = "currentColor" }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" />
+    </svg>
+  ),
+  Zap: ({ size = 24, color = "currentColor" }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+    </svg>
+  ),
+  Ban: ({ size = 24, color = "currentColor" }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" /><path d="m4.9 4.9 14.2 14.2" />
+    </svg>
+  ),
+  ArrowRight: ({ size = 24, color = "currentColor" }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M5 12h14M12 5l7 7-7 7" />
+    </svg>
+  ),
+  Check: ({ size = 24, color = "currentColor" }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+  ),
+};
+
 function Accent({ children }) {
   return <span style={{ color: teal, fontStyle: "italic" }}>{children}</span>;
 }
@@ -225,19 +292,24 @@ export default function AIConsultation() {
             gap: mobile ? 14 : 20,
           }}>
             {[
-              { icon: "💸", title: "Wrong tool, real cost", body: "The average failed software implementation costs a small business $10K+ in wasted spend, training time, and team morale." },
-              { icon: "😩", title: "Change fatigue is real", body: "Your trainers are already stretched thin. Every new tool you ask them to adopt is a withdrawal from a very limited trust account." },
-              { icon: "⏳", title: "The window is closing", body: "Early adopters in your market are already implementing. The gyms that figure this out first will have a compounding advantage." },
-            ].map((card, i) => (
+              { icon: "DollarX", title: "Wrong tool, real cost", body: "The average failed software implementation costs a small business $10K+ in wasted spend, training time, and team morale." },
+              { icon: "Tired", title: "Change fatigue is real", body: "Your trainers are already stretched thin. Every new tool you ask them to adopt is a withdrawal from a very limited trust account." },
+              { icon: "Hourglass", title: "The window is closing", body: "Early adopters in your market are already implementing. The gyms that figure this out first will have a compounding advantage." },
+            ].map((card, i) => {
+              const IconComponent = Icons[card.icon];
+              return (
               <div key={i} style={{
                 ...glass, borderRadius: mobile ? 16 : 20,
                 padding: mobile ? 22 : 28,
               }}>
-                <div style={{ fontSize: 28, marginBottom: 14 }}>{card.icon}</div>
+                <div style={{ width: 44, height: 44, borderRadius: 12, background: `${teal}15`, border: `1px solid ${teal}25`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 14 }}>
+                  <IconComponent size={22} color={teal} />
+                </div>
                 <div style={{ fontFamily: f, fontSize: mobile ? 16 : 17, fontWeight: 600, color: "#fff", marginBottom: 8 }}>{card.title}</div>
                 <div style={{ fontFamily: f, fontSize: mobile ? 13 : 14, lineHeight: 1.65, color: "rgba(255,255,255,0.45)" }}>{card.body}</div>
               </div>
-            ))}
+            );
+            })}
           </div>
         </section>
 
@@ -259,27 +331,32 @@ export default function AIConsultation() {
           }}>
             {[
               {
-                icon: "🏋️", title: "Built from the training floor",
+                icon: "Dumbbell", title: "Built from the training floor",
                 body: "Our founder was a personal trainer before becoming a technologist. Milton wasn't designed from a whiteboard — it was built from real coaching workflows, real trainer pain, and real gym operations.",
               },
               {
-                icon: "🎤", title: "HFA 2026 — we saw it all",
+                icon: "Mic", title: "HFA 2026 — we saw it all",
                 body: "We exhibited, presented, and walked the floor at the largest fitness industry conference in the country. We talked to hundreds of gym owners and every AI vendor in the space. We know the landscape.",
               },
               {
-                icon: "🤝", title: "Real gym partnerships",
+                icon: "Handshake", title: "Real gym partnerships",
                 body: "We work shoulder-to-shoulder with gym owners who've been in the business for decades. Our insights come from real operations — not assumptions about how gyms should work.",
               },
-            ].map((card, i) => (
+            ].map((card, i) => {
+              const IconComponent = Icons[card.icon];
+              return (
               <div key={i} style={{
                 ...glass, borderRadius: mobile ? 16 : 20,
                 padding: mobile ? 22 : 28,
               }}>
-                <div style={{ fontSize: 28, marginBottom: 14 }}>{card.icon}</div>
+                <div style={{ width: 44, height: 44, borderRadius: 12, background: `${teal}15`, border: `1px solid ${teal}25`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 14 }}>
+                  <IconComponent size={22} color={teal} />
+                </div>
                 <div style={{ fontFamily: f, fontSize: mobile ? 16 : 17, fontWeight: 600, color: "#fff", marginBottom: 8 }}>{card.title}</div>
                 <div style={{ fontFamily: f, fontSize: mobile ? 13 : 14, lineHeight: 1.65, color: "rgba(255,255,255,0.45)" }}>{card.body}</div>
               </div>
-            ))}
+            );
+            })}
           </div>
         </section>
 
@@ -362,26 +439,29 @@ export default function AIConsultation() {
             <div style={{ display: "flex", flexDirection: "column", gap: mobile ? 20 : 24 }}>
               {[
                 {
-                  icon: "🎯", title: "Where AI fits today — for you specifically",
+                  icon: "Target", title: "Where AI fits today — for you specifically",
                   body: "Based on your team size, current tools, and pain points, we'll map exactly which areas of your business are ready for AI — and which aren't.",
                   color: teal,
                 },
                 {
-                  icon: "⚡", title: "What to prioritize first",
+                  icon: "Zap", title: "What to prioritize first",
                   body: "The one or two moves that will have the biggest impact with the least disruption. What to do this quarter, not this decade.",
                   color: mint,
                 },
                 {
-                  icon: "🚫", title: "What to skip",
+                  icon: "Ban", title: "What to skip",
                   body: "Honest recommendations on what to avoid, what's not ready yet, and where the industry is overpromising. This alone could save you thousands.",
                   color: warn,
                 },
                 {
-                  icon: "→", title: "Your clear next step",
+                  icon: "ArrowRight", title: "Your clear next step",
                   body: "Whether that's implementing Milton, evaluating another tool, or simply waiting until your team is ready. No pressure. Just clarity.",
                   color: "rgba(255,255,255,0.7)",
                 },
-              ].map((item, i) => (
+              ].map((item, i) => {
+                const IconComponent = Icons[item.icon];
+                const iconColor = typeof item.color === "string" && item.color.startsWith("#") ? item.color : "rgba(255,255,255,0.7)";
+                return (
                 <div key={i} style={{
                   display: "flex", gap: mobile ? 14 : 18,
                   alignItems: "flex-start",
@@ -393,14 +473,16 @@ export default function AIConsultation() {
                     background: `${typeof item.color === "string" && item.color.startsWith("#") ? item.color : "rgba(255,255,255,0.1)"}10`,
                     border: `1px solid ${typeof item.color === "string" && item.color.startsWith("#") ? item.color : "rgba(255,255,255,0.1)"}20`,
                     display: "flex", alignItems: "center", justifyContent: "center",
-                    fontSize: 18,
-                  }}>{item.icon}</div>
+                  }}>
+                    <IconComponent size={18} color={iconColor} />
+                  </div>
                   <div>
                     <div style={{ fontFamily: f, fontSize: mobile ? 15 : 17, fontWeight: 600, color: "#fff", marginBottom: 4 }}>{item.title}</div>
                     <div style={{ fontFamily: f, fontSize: mobile ? 13 : 14, lineHeight: 1.65, color: "rgba(255,255,255,0.45)" }}>{item.body}</div>
                   </div>
                 </div>
-              ))}
+              );
+              })}
             </div>
           </div>
         </section>
@@ -434,9 +516,11 @@ export default function AIConsultation() {
                 borderRadius: 14,
               }}>
                 <span style={{
-                  color: teal, fontSize: 16, flexShrink: 0, marginTop: 1,
+                  flexShrink: 0, marginTop: 2,
                   filter: `drop-shadow(0 0 4px ${teal}40)`,
-                }}>✓</span>
+                }}>
+                  <Icons.Check size={18} color={teal} />
+                </span>
                 <span style={{ fontFamily: f, fontSize: mobile ? 14 : 15, color: "rgba(255,255,255,0.6)", lineHeight: 1.55 }}>{item}</span>
               </div>
             ))}
