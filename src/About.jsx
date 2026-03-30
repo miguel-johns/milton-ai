@@ -136,12 +136,24 @@ export default function AboutPage() {
             gap: mobile ? 14 : 20, marginBottom: mobile ? 24 : 36,
           }}>
             {[
-              { icon: "🧠", title: "AI is finally ready", body: "For the first time, AI can understand coaching nuance — session context, progressive overload, follow-up timing. Not replace the coach. Amplify them." },
-              { icon: "📉", title: "The trainer crisis", body: "80% annual turnover. The industry burns through coaches faster than it can train them. The model is broken." },
-              { icon: "🏥", title: "The health epidemic", body: "$4.1 trillion in chronic disease costs annually. The trainers we lose are the healthcare workers we can't afford to lose." },
+              { 
+                icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 4.5a2.5 2.5 0 0 0-4.96-.46 2.5 2.5 0 0 0-1.98 3 2.5 2.5 0 0 0-1.32 4.24 3 3 0 0 0 .34 5.58 2.5 2.5 0 0 0 2.96 3.08A2.5 2.5 0 0 0 12 19.5a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 12 4.5"/><path d="m15.7 10.4-.9.4"/><path d="m9.2 13.2-.9.4"/><path d="m13.6 15.7-.4-.9"/><path d="m10.8 9.2-.4-.9"/><path d="m15.7 13.5-.9-.4"/><path d="m9.2 10.9-.9-.4"/><path d="m10.5 15.7.4-.9"/><path d="m13.1 9.2.4-.9"/><circle cx="12" cy="12" r="2"/></svg>,
+                title: "AI is finally ready", 
+                body: "For the first time, AI can understand coaching nuance — session context, progressive overload, follow-up timing. Not replace the coach. Amplify them." 
+              },
+              { 
+                icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><line x1="18" y1="8" x2="22" y2="8"/></svg>,
+                title: "The trainer crisis", 
+                body: "80% annual turnover. The industry burns through coaches faster than it can train them. The model is broken." 
+              },
+              { 
+                icon: <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/><path d="m18 15-2-2"/><path d="m15 18-2-2"/></svg>,
+                title: "The health epidemic", 
+                body: "$4.1 trillion in chronic disease costs annually. The trainers we lose are the healthcare workers we can't afford to lose." 
+              },
             ].map((card, i) => (
               <div key={i} style={{ ...glass, borderRadius: mobile ? 16 : 20, padding: mobile ? 22 : 28 }}>
-                <div style={{ fontSize: 28, marginBottom: 12 }}>{card.icon}</div>
+                <div style={{ marginBottom: 12 }}>{card.icon}</div>
                 <div style={{ fontFamily: f, fontSize: mobile ? 16 : 17, fontWeight: 600, color: "#fff", marginBottom: 8 }}>{card.title}</div>
                 <div style={{ fontFamily: f, fontSize: mobile ? 13 : 14, lineHeight: 1.65, color: "rgba(255,255,255,0.45)" }}>{card.body}</div>
               </div>
