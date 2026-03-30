@@ -341,19 +341,6 @@ export default function MiltonHomepage() {
           </div>
 
           <HeroVisual mobile={mobile} tablet={tablet} />
-
-          <div style={{
-            display: "flex", alignItems: "center", justifyContent: "center",
-            gap: mobile ? 16 : 48, opacity: 0.35, flexWrap: "wrap", paddingBottom: 40,
-          }}>
-            {["MindBody", "ABC Fitness", "ClubReady", "BuzOps", "SuperSet"].map(name => (
-              <span key={name} style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: mobile ? 10 : 14, fontWeight: 600, letterSpacing: mobile ? 1 : 2,
-                textTransform: "uppercase", color: "#fff",
-              }}>{name}</span>
-            ))}
-          </div>
         </section>
 
         {/* 01 HEAD COACH */}
