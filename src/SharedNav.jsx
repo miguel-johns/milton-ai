@@ -122,12 +122,9 @@ export default function SharedNav() {
           </div>
         )}
 
-        {/* Right side buttons */}
+        {/* Right side button */}
         {!mobile && (
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 10 }}>
-            <CTA variant="secondary" style={{ padding: "10px 24px", fontSize: 14 }}>Login</CTA>
-            <CTA variant="primary" style={{ padding: "10px 24px", fontSize: 14 }} href="#/book">Request a Demo</CTA>
-          </div>
+          <CTA variant="primary" style={{ padding: "10px 24px", fontSize: 14 }} href="#/book">Request a Demo</CTA>
         )}
 
         {mobile && (
@@ -170,8 +167,7 @@ export default function SharedNav() {
             </a>
           ))}
           
-          <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 24 }}>
-            <CTA variant="secondary" style={{ width: "100%", textAlign: "center", padding: "14px 0" }}>Login</CTA>
+          <div style={{ marginTop: 24 }}>
             <CTA variant="primary" style={{ width: "100%", textAlign: "center", padding: "14px 0" }} href="#/book">Request a Demo</CTA>
           </div>
         </div>
