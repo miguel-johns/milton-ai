@@ -171,8 +171,8 @@ export default function PricingCalculator() {
   const trainerRetentionLift = 25;
 
   // ROI - pricing starts at $499/month
-  const sessionTypeMultiplier = sessionTypes.length > 2 ? 1.15 : sessionTypes.length > 1 ? 1.08 : 1;
-  const miltonMonthly = Math.max(499, Math.round((trainers * 60 + 400) * sessionTypeMultiplier / 10) * 10);
+  const sessionTypeMultiplier = sessionTypes.length > 2 ? 1.1 : sessionTypes.length > 1 ? 1.05 : 1;
+  const miltonMonthly = Math.round((499 + (trainers - 1) * 40) * sessionTypeMultiplier / 10) * 10;
   const annualValue = revenueRecovered + (totalTimeSavedMonth * 35 * 12); // $35/hr value on saved time
   const annualCost = miltonMonthly * 12;
   const roi = Math.round((annualValue / annualCost) * 100);
@@ -609,7 +609,7 @@ export default function PricingCalculator() {
               }}>
                 Book a 30-minute demo and we'll walk through exactly how Milton works for a team of {trainers} — with your numbers, not ours.
               </p>
-              <a href="#/book-snapshot" style={{
+              <a href="#/booking" style={{
                   fontFamily: f, fontSize: 16, fontWeight: 700,
                   padding: "16px 44px", borderRadius: 100, border: "none",
                   background: "#fff", color: navy, cursor: "pointer",
