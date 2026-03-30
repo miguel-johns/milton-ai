@@ -64,6 +64,7 @@ const articles = [
     id: 4,
     category: "industry",
     tag: "INDUSTRY DATA",
+    slug: "six-month-retention-cliff",
     title: "The 6-Month Retention Cliff: Why It Matters and How to See It Coming",
     excerpt: "If you keep a client past six months, they'll likely stay two years. But most gyms can't see the cliff until the client is already gone. Here's how to change that.",
     date: "Mar 7, 2026",
