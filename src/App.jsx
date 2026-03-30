@@ -28,8 +28,11 @@ function CalendlyModal({ isOpen, onClose }) {
   return (
     <div style={{
       position: "fixed",
-      inset: 0,
-      zIndex: 9999,
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      zIndex: 999999,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -40,50 +43,56 @@ function CalendlyModal({ isOpen, onClose }) {
         onClick={onClose}
         style={{
           position: "absolute",
-          inset: 0,
-          background: "rgba(6,28,39,0.9)",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: "rgba(6,28,39,0.95)",
           backdropFilter: "blur(8px)",
+          zIndex: 1,
         }}
       />
+      {/* Close button - outside modal container */}
+      <button
+        onClick={(e) => { e.stopPropagation(); onClose(); }}
+        style={{
+          position: "absolute",
+          top: mobile ? 20 : 32,
+          right: mobile ? 20 : 32,
+          zIndex: 3,
+          width: 44,
+          height: 44,
+          borderRadius: "50%",
+          border: "2px solid rgba(255,255,255,0.3)",
+          background: "rgba(255,255,255,0.1)",
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: 24,
+          color: "#fff",
+          fontWeight: 300,
+        }}
+      >
+        &#x2715;
+      </button>
       {/* Modal */}
       <div style={{
         position: "relative",
+        zIndex: 2,
         width: "100%",
         maxWidth: 700,
-        maxHeight: "90vh",
+        maxHeight: "85vh",
         background: "#fff",
         borderRadius: mobile ? 16 : 24,
         overflow: "hidden",
         boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
       }}>
-        {/* Close button */}
-        <button
-          onClick={onClose}
-          style={{
-            position: "absolute",
-            top: 16,
-            right: 16,
-            zIndex: 10,
-            width: 36,
-            height: 36,
-            borderRadius: "50%",
-            border: "none",
-            background: "rgba(0,0,0,0.1)",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: 20,
-            color: "#333",
-          }}
-        >
-          &times;
-        </button>
         {/* Calendly widget */}
         <div 
           className="calendly-inline-widget" 
           data-url="https://calendly.com/miguel-johns/milton-discovery-call?primary_color=00957b"
-          style={{ minWidth: 320, height: mobile ? 600 : 700 }}
+          style={{ minWidth: 320, height: mobile ? 580 : 680 }}
         />
       </div>
     </div>

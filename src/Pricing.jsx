@@ -13,11 +13,11 @@ function CalendlyModal({ isOpen, onClose, mobile }) {
   }, [isOpen]);
   if (!isOpen) return null;
   return (
-    <div style={{ position: "fixed", inset: 0, zIndex: 9999, display: "flex", alignItems: "center", justifyContent: "center", padding: mobile ? 16 : 32 }}>
-      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(6,28,39,0.9)", backdropFilter: "blur(8px)" }} />
-      <div style={{ position: "relative", width: "100%", maxWidth: 700, maxHeight: "90vh", background: "#fff", borderRadius: mobile ? 16 : 24, overflow: "hidden", boxShadow: "0 20px 60px rgba(0,0,0,0.5)" }}>
-        <button onClick={onClose} style={{ position: "absolute", top: 16, right: 16, zIndex: 10, width: 36, height: 36, borderRadius: "50%", border: "none", background: "rgba(0,0,0,0.1)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, color: "#333" }}>&times;</button>
-        <div className="calendly-inline-widget" data-url="https://calendly.com/miguel-johns/milton-discovery-call?primary_color=00957b" style={{ minWidth: 320, height: mobile ? 600 : 700 }} />
+    <div style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, zIndex: 999999, display: "flex", alignItems: "center", justifyContent: "center", padding: mobile ? 16 : 32 }}>
+      <div onClick={onClose} style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(6,28,39,0.95)", backdropFilter: "blur(8px)", zIndex: 1 }} />
+      <button onClick={(e) => { e.stopPropagation(); onClose(); }} style={{ position: "absolute", top: mobile ? 20 : 32, right: mobile ? 20 : 32, zIndex: 3, width: 44, height: 44, borderRadius: "50%", border: "2px solid rgba(255,255,255,0.3)", background: "rgba(255,255,255,0.1)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, color: "#fff", fontWeight: 300 }}>&#x2715;</button>
+      <div style={{ position: "relative", zIndex: 2, width: "100%", maxWidth: 700, maxHeight: "85vh", background: "#fff", borderRadius: mobile ? 16 : 24, overflow: "hidden", boxShadow: "0 20px 60px rgba(0,0,0,0.5)" }}>
+        <div className="calendly-inline-widget" data-url="https://calendly.com/miguel-johns/milton-discovery-call?primary_color=00957b" style={{ minWidth: 320, height: mobile ? 580 : 680 }} />
       </div>
     </div>
   );
