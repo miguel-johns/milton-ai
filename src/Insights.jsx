@@ -263,7 +263,6 @@ function ArticleCard({ article, featured = false, mobile, tablet }) {
 export default function Insights() {
   const { mobile, tablet } = useBreakpoint();
   const [activeCategory, setActiveCategory] = useState("all");
-  const [email, setEmail] = useState("");
   const px = mobile ? 20 : tablet ? 32 : 40;
 
   const featuredArticle = articles.find(a => a.featured);
@@ -351,7 +350,7 @@ export default function Insights() {
           )}
         </section>
 
-        {/* ═══════ NEWSLETTER CAPTURE ═══════ */}
+        {/* ═══════ FREE CONSULTATION CTA ═══════ */}
         <section style={{ paddingBottom: mobile ? 72 : 100 }}>
           <div style={{
             background: "linear-gradient(145deg, rgba(13,154,165,0.1) 0%, rgba(6,28,39,0.5) 100%)",
@@ -364,52 +363,32 @@ export default function Insights() {
           }}>
             <div style={{ position: "absolute", top: 0, left: "15%", right: "15%", height: 1, background: `linear-gradient(90deg, transparent, ${teal}30, transparent)` }} />
 
+            <p style={{
+              fontFamily: f, fontSize: 13, fontWeight: 500, letterSpacing: 1.5,
+              textTransform: "uppercase", color: teal, margin: "0 0 12px 0",
+            }}>Free Consultation</p>
+
             <h2 style={{
               fontFamily: serif, fontSize: mobile ? 26 : 36,
-              fontWeight: 400, color: "#fff", margin: "0 0 12px 0",
+              fontWeight: 400, color: "#fff", margin: "0 0 14px 0",
             }}>
-              Stay ahead of the <Accent>curve</Accent>.
+              Not sure where AI fits for your gym?
             </h2>
 
             <p style={{
               fontFamily: f, fontSize: mobile ? 14 : 16, lineHeight: 1.65,
               color: "rgba(255,255,255,0.45)",
-              maxWidth: 480, margin: "0 auto 28px auto",
+              maxWidth: 520, margin: "0 auto 28px auto",
             }}>
-              Weekly insights on AI in fitness, trainer retention, and building a personal training business that scales. No fluff. Just what's working.
+              Book a free AI Readiness Snapshot call. We'll assess your current operations and give you a clear picture of where AI can (and can't) help.
             </p>
 
-            <div style={{
-              display: "flex", gap: 10, maxWidth: 440, margin: "0 auto",
-              flexDirection: mobile ? "column" : "row",
-            }}>
-              <input
-                type="email" value={email} onChange={e => setEmail(e.target.value)}
-                placeholder="your@email.com"
-                style={{
-                  flex: 1, fontFamily: f, fontSize: 15,
-                  padding: "13px 18px", borderRadius: 100,
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  color: "#fff", outline: "none",
-                  transition: "border-color 0.2s ease",
-                }}
-                onFocus={e => e.target.style.borderColor = `${teal}60`}
-                onBlur={e => e.target.style.borderColor = "rgba(255,255,255,0.1)"}
-              />
-              <button style={{
-                fontFamily: f, fontSize: 15, fontWeight: 600,
-                padding: "13px 28px", borderRadius: 100, border: "none",
-                background: `linear-gradient(135deg, ${teal}, #126b80)`,
-                color: "#fff", cursor: "pointer", whiteSpace: "nowrap",
-                boxShadow: `0 4px 16px ${teal}25`,
-              }}>Subscribe</button>
-            </div>
-
-            <p style={{
-              fontFamily: f, fontSize: 11, color: "rgba(255,255,255,0.2)",
-              margin: "14px auto 0 auto",
-            }}>One email per week. Unsubscribe anytime.</p>
+            <a href="#/book-snapshot" style={{
+              fontFamily: f, fontSize: 15, fontWeight: 600,
+              padding: "14px 32px", borderRadius: 100,
+              background: "#fff", color: navy,
+              textDecoration: "none", display: "inline-block",
+            }}>Book Your Free Consultation</a>
           </div>
         </section>
       </div>
