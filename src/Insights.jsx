@@ -114,9 +114,10 @@ const articles = [
     id: 9,
     category: "industry",
     tag: "INDUSTRY DATA",
-    title: "Personal Training Revenue Per Trainer: Benchmarks From 200+ Gyms",
-    excerpt: "We aggregated revenue data across private studios and training teams to build the first AI-informed benchmark for personal training businesses. Here's where you stand.",
-    date: "Feb 8, 2026",
+    slug: "revenue-per-trainer-how-to-move-it",
+    title: "Revenue Per Trainer: You Know the Number. Here's How to Move It.",
+    excerpt: "A trainer plateaus at $8,000/month. You know they could be at $12,000. Revenue is a scoreboard — it tells you who's winning, but not how to coach the game.",
+    date: "Jan 29, 2026",
     readTime: "7 min read",
   },
 ];

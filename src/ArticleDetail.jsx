@@ -742,6 +742,96 @@ const articlesContent = {
       { type: "callout", text: "If that sounds like you, book a free AI consultation with our team. We'll walk through your current workflow, show you what the co-pilot sees, and talk about whether the founding partner program is the right fit. No pressure. No pitch deck. Just a conversation between people who've been where you are." },
     ],
   },
+  "revenue-per-trainer-how-to-move-it": {
+    id: 9,
+    slug: "revenue-per-trainer-how-to-move-it",
+    category: "INDUSTRY DATA",
+    categoryColor: "#f0a030",
+    title: "Revenue Per Trainer: You Know the Number. Here's How to Move It.",
+    date: "January 29, 2026",
+    readTime: "7 min read",
+    content: [
+      { type: "paragraph", text: "Every fitness director worth their title knows what each trainer brings in. You track it monthly. You probably track it weekly. You know who's hitting targets, who's short, and what net clients per month looks like across your roster." },
+      { type: "paragraph", text: "The number isn't the problem. The problem is what you do when the number is stuck." },
+      { type: "paragraph", text: "A trainer plateaus at $8,000/month. You know they could be at $12,000. You can feel it. They're capable, they work hard, their clients like them. But something is holding them back, and the revenue number alone won't tell you what it is." },
+      { type: "paragraph", text: "Is it a booking problem? A retention problem? A follow-up problem? A confidence problem that's killing their consultation close rate? A programming problem that's stalling client results?" },
+      { type: "callout", text: "Revenue per trainer is a scoreboard. It tells you who's winning and who's losing. But it doesn't tell you how to coach the game." },
+      { type: "paragraph", text: "And that's where most fitness directors get stuck: staring at a number they can see but can't move." },
+
+      { type: "heading", text: "The Gap Between Knowing and Fixing" },
+      { type: "paragraph", text: "You've had the conversation. You pull a trainer aside and say: \"Your numbers are down this month. What's going on?\"" },
+      { type: "paragraph", text: "They say: \"I don't know. I've been working hard. I think I just need more leads.\"" },
+      { type: "paragraph", text: "And that might be true. But it's probably not. In our experience working inside training businesses, the trainers who are underperforming relative to their potential almost never have a lead problem. They have a specific operational or behavioral gap that's bleeding revenue in a way neither they nor their director can easily see." },
+      { type: "paragraph", text: "The issue is diagnostic. You can see the symptom (revenue is flat). You can't see the root cause. And without the root cause, every intervention is a guess." },
+      { type: "paragraph", text: "\"Get more leads\" is a guess. \"Work harder\" is a guess. \"Do more floor time\" is a guess." },
+      { type: "quote", text: "What if the answer is: \"Your follow-up rate is 44% and the team average is 78%. You're losing clients between sessions because they don't feel supported. Fix that one behavior and your retention improves, your client tenure extends, and your revenue climbs without a single new lead.\"" },
+      { type: "paragraph", text: "That's not a guess. That's a diagnosis. And it changes the trajectory of a trainer's career." },
+
+      { type: "heading", text: "Two Trainers, Same Revenue, Different Problems" },
+      { type: "paragraph", text: "Here's a scenario every director has lived through." },
+      { type: "paragraph", text: "Trainer A and Trainer B both generate $8,500/month. Same ballpark. Same performance tier on the revenue report. You might manage them the same way, coach them with the same advice, set the same targets." },
+      { type: "paragraph", text: "But look underneath the number." },
+      { type: "advice", title: "Trainer A", text: "Has 18 active clients, a 91% follow-up rate, and strong client results. Her clients stay an average of 11 months. She's at 85% capacity. Her revenue is stuck because she's nearly maxed out: almost full book, high retention, no room to grow without either raising rates or moving to higher-value services. Her path forward is pricing strategy and service expansion." },
+      { type: "advice", title: "Trainer B", text: "Has 24 active clients, a 52% follow-up rate, and average client results. His clients stay an average of 4.5 months. He's at 60% capacity, but clients are churning so fast that new ones barely replace the ones leaving. His revenue looks the same as Trainer A's, but the underlying mechanics are completely different. His path forward isn't more clients. It's keeping the ones he has." },
+      { type: "callout", text: "Same revenue. Opposite problems. Opposite solutions. If you coach them the same way, you'll help neither." },
+
+      { type: "heading", text: "Where Trainers Actually Get Stuck" },
+      { type: "paragraph", text: "After working with training businesses across different markets and sizes, we've identified the most common patterns that limit a trainer's revenue growth. They almost always map to one of four categories." },
+
+      { type: "subheading", text: "Stuck at the follow-up." },
+      { type: "paragraph", text: "This is the most common revenue limiter and the most fixable. A trainer who doesn't follow up between sessions loses clients at two to three times the rate of a trainer who does. The math is brutal: if your average client pays $500/month, every lost client costs $500/month in recurring revenue plus the $3,000 to $12,000 in lifetime value they would have generated." },
+      { type: "paragraph", text: "Follow-up rate is the single most predictive metric of client retention. Trainers above 80% retain clients at nearly double the rate of trainers below 50%. And yet most trainers who have a follow-up problem don't know they have one. They think they're following up. They're just not doing it consistently, and nobody's shown them the data." },
+      { type: "paragraph", text: "The fix isn't \"follow up more.\" It's building a workflow: templates for post-session check-ins, reminders for no-show outreach, a system that makes follow-up the default instead of an afterthought. When a trainer's follow-up rate goes from 50% to 85%, the revenue impact shows up within 60 to 90 days." },
+
+      { type: "subheading", text: "Stuck at the consultation." },
+      { type: "paragraph", text: "Some trainers are excellent coaches but freeze in the consultation. They don't know how to convert a prospect into a paying client. Their close rate is 30% while the team average is 55%." },
+      { type: "paragraph", text: "This isn't a personality flaw. It's a skill gap. And it's diagnosable. Does the trainer struggle with objection handling? Do they fail to connect the prospect's goals to a specific program? Do they underquote because they're afraid of the price conversation?" },
+      { type: "paragraph", text: "Each of those is a different problem with a different fix. But if all you see is the revenue number, you'll never know which one it is. You'll just know that leads assigned to this trainer don't convert as often, and you'll eventually stop sending them leads. The trainer's book shrinks further, and the cycle accelerates." },
+
+      { type: "subheading", text: "Stuck at retention." },
+      { type: "paragraph", text: "A trainer who's booking new clients every month but whose book never grows has a retention leak. Clients are coming in and falling out at roughly the same rate." },
+      { type: "paragraph", text: "This is often a coaching skill issue, but not always. Sometimes it's programming: clients aren't seeing results because the trainer isn't tracking progressive overload or adapting programs to individual progress. Sometimes it's communication: the trainer delivers great sessions but the client doesn't feel connected between appointments. Sometimes it's a mismatch: the trainer keeps getting assigned clients who aren't a fit for their style." },
+      { type: "paragraph", text: "Revenue per trainer will show you the stall. Diagnosing which type of retention problem is causing it requires looking at client tenure, session frequency trends, and the four pillars. A trainer losing clients at month two has a different problem than a trainer losing clients at month six." },
+
+      { type: "subheading", text: "Stuck at capacity." },
+      { type: "paragraph", text: "This is the high-class problem. The trainer's book is full. Their retention is strong. Their follow-up rate is excellent. But their revenue has plateaued because they've hit the physical ceiling of hours in a day." },
+      { type: "paragraph", text: "The fix here isn't behavioral. It's structural. Can they shift some clients to small-group training, which increases revenue per hour? Can they raise their session rate (many trainers undercharge for years because nobody tells them they've earned a rate increase)? Can they take on higher-value clients: corporate wellness, specialty populations, premium packages?" },
+      { type: "paragraph", text: "A trainer stuck at capacity is actually your best success story. They've mastered the fundamentals. Now they need a business conversation, not a performance conversation. And they need a director who can see the difference." },
+
+      { type: "heading", text: "The Diagnostic Framework" },
+      { type: "paragraph", text: "This is where the four pillars we've written about become operational." },
+      { type: "paragraph", text: "When a trainer's revenue is stuck, the diagnostic question isn't \"what's wrong?\" It's \"where specifically is the breakdown?\"" },
+      { type: "list", items: [
+        "Self-management issue: The trainer is disorganized, unprepared for sessions, behind on admin. Clients sense it. The experience degrades. Fix: workflow structure, accountability systems, better tools.",
+        "Coaching skill issue: Clients aren't seeing results. Programs aren't progressing. The trainer is winging it session to session. Fix: programming education, progressive overload tracking, mentorship from a stronger trainer.",
+        "Communication issue: Follow-up is inconsistent. No-shows aren't being re-engaged. The client relationship exists only inside the gym walls. Fix: follow-up workflows, message templates, automated reminders, tracking the follow-up rate explicitly.",
+        "Teamwork issue: The trainer isn't contributing to the gym beyond their own book. They're not helping onboard new trainers, not sharing what works, not investing in the culture. This doesn't directly hurt revenue (at first), but it's the canary in the coal mine for disengagement.",
+      ]},
+      { type: "callout", text: "Revenue is the outcome. The four pillars are the inputs. Change the inputs and the outcome follows." },
+
+      { type: "heading", text: "What a $2,000/Month Increase Actually Looks Like" },
+      { type: "paragraph", text: "Let's make this concrete. A trainer generating $8,500/month who improves to $10,500/month has increased their output by $24,000/year." },
+      { type: "paragraph", text: "How does that happen?" },
+      { type: "advice", title: "Scenario 1: Fix the follow-up", text: "Trainer's follow-up rate goes from 48% to 82%. Average client tenure extends from 4.5 months to 7 months. Net client loss per month drops from 3 to 1. Within 90 days, the trainer has 3 to 4 more active clients than they would have otherwise. At $500/month per client, that's $1,500 to $2,000 in additional monthly revenue. No new leads required." },
+      { type: "advice", title: "Scenario 2: Fix the consultation", text: "Trainer's close rate goes from 30% to 50%. Over three months, they convert 3 additional prospects that would have otherwise been lost. Those 3 clients add $1,500/month in new recurring revenue." },
+      { type: "advice", title: "Scenario 3: Fix the capacity", text: "Trainer shifts 4 clients from individual sessions to a semi-private format (2:1 training at 75% of the individual rate per person). Revenue per hour for those slots increases by 50%. Monthly revenue increases by $1,200 to $1,800 without adding a single hour to the trainer's schedule." },
+      { type: "paragraph", text: "None of these require heroics. They require diagnosis." },
+
+      { type: "heading", text: "How to Start This Week" },
+      { type: "paragraph", text: "Pick your trainer with the most potential: the one who works hard, whose clients like them, but whose revenue has plateaued." },
+      { type: "paragraph", text: "Don't start with the revenue number. They already know it. Start with the question behind the number." },
+      { type: "list", items: [
+        "Check their follow-up rate. How many sessions did they deliver last month? How many post-session or post-no-show follow-ups did they send? Divide. If it's below 70%, you've found the gap.",
+        "Check their retention. How many clients did they start the quarter with versus end it with? If the number is flat or declining despite new client additions, they have a leak.",
+        "Check their consultation close rate. How many prospects were they assigned? How many became paying clients? If it's below 40%, they need consultation coaching, not more leads.",
+        "Check their capacity. If they're above 85% utilization with strong retention, the conversation isn't about performance. It's about growth strategy: rates, services, and structure.",
+      ]},
+      { type: "paragraph", text: "One of those four will be the answer. It almost always is." },
+      { type: "callout", text: "Find the gap. Name it. Build a plan around it. Watch the number move." },
+
+      { type: "sources", text: "Sources: BLS median wage of $46,180 for fitness trainers and instructors (May 2024). Session rate ranges of $50-$100/hour from WodGuru and industry benchmarks. Commission structures of 40%-50% at premium facilities from Institute of Personal Trainers." },
+    ],
+  },
 };
 
 export default function ArticleDetail({ slug }) {
