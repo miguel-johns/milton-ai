@@ -170,11 +170,10 @@ export default function PricingCalculator() {
   // Trainer retention: industry loses 80%, Milton reduces by ~25%
   const trainerRetentionLift = 25;
 
-  // ROI - pricing starts at $499/month
-  const sessionTypeMultiplier = sessionTypes.length > 2 ? 1.1 : sessionTypes.length > 1 ? 1.05 : 1;
-  const miltonMonthly = Math.round((499 + (trainers - 1) * 40) * sessionTypeMultiplier / 10) * 10;
+  // ROI - pricing is $499/month
+  const miltonMonthly = 499;
   const annualValue = revenueRecovered + (totalTimeSavedMonth * 35 * 12); // $35/hr value on saved time
-  const annualCost = miltonMonthly * 12;
+  const annualCost = miltonMonthly * 12; // $5,988 annually
   const roi = Math.round((annualValue / annualCost) * 100);
 
   const handleCalculate = () => {
