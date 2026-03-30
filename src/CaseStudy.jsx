@@ -210,32 +210,7 @@ export default function CaseStudy() {
   const px = mobile ? 20 : tablet ? 32 : 40;
   
   return (
-    <div style={{ minHeight: "100vh", background: "#061c27", color: "#fff", position: "relative" }}>
-      <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet" />
-
-      {/* Aurora */}
-      <div style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none", background: "radial-gradient(ellipse 80% 50% at 20% 20%, rgba(13,154,165,0.08) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 80%, rgba(154,241,152,0.04) 0%, transparent 50%), radial-gradient(ellipse 90% 60% at 50% 0%, rgba(8,69,94,0.3) 0%, transparent 70%)" }} />
-
-      {/* Nav */}
-      <nav style={{
-        padding: mobile ? "12px 16px" : "16px 40px",
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        borderBottom: "1px solid rgba(13,154,165,0.08)", position: "relative", zIndex: 10,
-      }}>
-        <a href="#/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
-          <img
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Milton%20Face%20Logo-whMWzOXBgBgulGUqdRthSEMsjeyWPe.png"
-            alt="Milton Logo"
-            style={{ width: mobile ? 36 : 44, height: mobile ? 36 : 44, borderRadius: 8, objectFit: "cover" }}
-          />
-          <span style={{ fontFamily: f, fontWeight: 700, fontSize: mobile ? 16 : 20, color: "#fff", letterSpacing: 2 }}>MILTON</span>
-        </a>
-        <div style={{ display: "flex", gap: 10 }}>
-          <a href="#/" style={{ fontFamily: f, fontSize: 14, fontWeight: 600, padding: "10px 24px", borderRadius: 100, background: "transparent", color: "#fff", border: "1px solid rgba(255,255,255,0.2)", cursor: "pointer", textDecoration: "none" }}>← Back</a>
-          <a href="#/pricing" style={{ fontFamily: f, fontSize: 14, fontWeight: 600, padding: "10px 24px", borderRadius: 100, background: "#fff", color: navy, border: "none", cursor: "pointer", textDecoration: "none" }}>Get Pricing</a>
-        </div>
-      </nav>
-
+    <>
       <div style={{ position: "relative", zIndex: 1, maxWidth: 1000, margin: "0 auto", padding: `0 ${px}px` }}>
 
         {/* ═══════════════════════════════════════════════
@@ -743,6 +718,6 @@ export default function CaseStudy() {
       }}>
         <span style={{ fontFamily: f, fontSize: 13, color: "rgba(255,255,255,0.25)" }}>© 2026 MMNT Inc. All rights reserved.</span>
       </footer>
-    </div>
+    </>
   );
 }

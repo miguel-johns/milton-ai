@@ -9,6 +9,7 @@ import Insights from './Insights.jsx'
 import About from './About.jsx'
 import BookingPage from './Booking.jsx'
 import BookingSnapshotPage from './BookingSnapshot.jsx'
+import SharedNav from './SharedNav.jsx'
 
 function App() {
   const [page, setPage] = useState(() => {
@@ -26,35 +27,40 @@ function App() {
     return () => window.removeEventListener('hashchange', handleHashChange)
   }, [])
 
+  // Determine which page content to render
+  let PageContent;
   if (page === '/pricing') {
-    return <PricingCalculator />
+    PageContent = <PricingCalculator />
+  } else if (page === '/case-study/optimal-performance') {
+    PageContent = <CaseStudy />
+  } else if (page === '/consultation') {
+    PageContent = <AIConsultation />
+  } else if (page === '/insights') {
+    PageContent = <Insights />
+  } else if (page === '/about') {
+    PageContent = <About />
+  } else if (page === '/book') {
+    PageContent = <BookingPage />
+  } else if (page === '/book-snapshot') {
+    PageContent = <BookingSnapshotPage />
+  } else {
+    PageContent = <MiltonHomepage />
   }
 
-  if (page === '/case-study/optimal-performance') {
-    return <CaseStudy />
-  }
+  return (
+    <div style={{ minHeight: "100vh", background: "#061c27", color: "#fff", position: "relative", overflow: "hidden" }}>
+      <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet" />
+      
+      {/* Aurora bg */}
+      <div style={{
+        position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
+        background: "radial-gradient(ellipse 80% 50% at 20% 20%, rgba(13,154,165,0.08) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 80%, rgba(154,241,152,0.04) 0%, transparent 50%), radial-gradient(ellipse 90% 60% at 50% 0%, rgba(8,69,94,0.3) 0%, transparent 70%)",
+      }} />
 
-  if (page === '/consultation') {
-    return <AIConsultation />
-  }
-
-  if (page === '/insights') {
-    return <Insights />
-  }
-
-  if (page === '/about') {
-    return <About />
-  }
-
-  if (page === '/book') {
-    return <BookingPage />
-  }
-
-  if (page === '/book-snapshot') {
-    return <BookingSnapshotPage />
-  }
-  
-  return <MiltonHomepage />
+      <SharedNav />
+      {PageContent}
+    </div>
+  )
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(

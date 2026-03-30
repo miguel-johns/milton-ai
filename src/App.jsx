@@ -284,34 +284,7 @@ function HeroVisual({ mobile }) {
 
 
 export default function MiltonHomepage() {
-  const [activeSection, setActiveSection] = useState("hero");
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
   const { mobile, tablet, desktop } = useBreakpoint();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 60);
-      const sectionEls = sections.filter(s => s.id !== "hero").map(s => ({
-        id: s.id, el: document.getElementById(s.id),
-      })).filter(s => s.el);
-      let current = "hero";
-      for (const s of sectionEls) {
-        if (s.el.getBoundingClientRect().top <= 200) current = s.id;
-      }
-      setActiveSection(current);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    if (menuOpen) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "";
-    return () => { document.body.style.overflow = ""; };
-  }, [menuOpen]);
-
-  const navSections = sections.filter(s => s.num);
   const px = mobile ? 20 : tablet ? 32 : 40;
   const sectionPad = mobile ? "80px 0" : "120px 0";
 
@@ -334,141 +307,7 @@ export default function MiltonHomepage() {
   );
 
   return (
-    <div style={{ minHeight: "100vh", background: "#061c27", color: "#fff", position: "relative", overflow: "hidden" }}>
-      <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet" />
-
-      {/* Aurora bg */}
-      <div style={{
-        position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
-        background: "radial-gradient(ellipse 80% 50% at 20% 20%, rgba(13,154,165,0.08) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 80%, rgba(154,241,152,0.04) 0%, transparent 50%), radial-gradient(ellipse 90% 60% at 50% 0%, rgba(8,69,94,0.3) 0%, transparent 70%)",
-      }} />
-
-      {/* ——— NAV ——— */}
-      <nav style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        padding: mobile ? "12px 16px" : "16px 40px",
-        display: "grid",
-        gridTemplateColumns: mobile ? "1fr auto" : "1fr auto 1fr",
-        alignItems: "center",
-        background: scrolled || menuOpen ? "rgba(6,28,39,0.95)" : "transparent",
-        backdropFilter: scrolled || menuOpen ? "blur(20px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(13,154,165,0.1)" : "1px solid transparent",
-        transition: "all 0.3s ease",
-      }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <img
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Milton%20Face%20Logo-whMWzOXBgBgulGUqdRthSEMsjeyWPe.png"
-            alt="Milton Logo"
-            style={{
-              width: mobile ? 36 : 44,
-              height: mobile ? 36 : 44,
-              borderRadius: 8,
-              objectFit: "cover",
-            }}
-          />
-          <span style={{
-            fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
-            fontSize: mobile ? 16 : 20, color: "#fff", letterSpacing: 2,
-          }}>MILTON</span>
-        </div>
-
-        {/* Centered text nav links */}
-        {!mobile && (
-          <div style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: tablet ? 24 : 36,
-          }}>
-            {[
-              { label: "AI Readiness Snapshot", href: "#/consultation" },
-{ label: "Insights", href: "#/insights" },
-              { label: "About Us", href: "#/about" },
-              { label: "Pricing", href: "#/pricing" },
-            ].map(link => (
-              <a
-                key={link.label}
-                href={link.href}
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: 14,
-                  fontWeight: 500,
-                  color: "rgba(255,255,255,0.7)",
-                  textDecoration: "none",
-                  transition: "color 0.2s ease",
-                }}
-                onMouseEnter={e => e.target.style.color = "#fff"}
-                onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.7)"}
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-        )}
-
-        {/* Right side buttons */}
-        {!mobile && (
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 10 }}>
-            <CTA variant="secondary" style={{ padding: "10px 24px", fontSize: 14 }}>Login</CTA>
-            <CTA variant="primary" style={{ padding: "10px 24px", fontSize: 14 }} href="#/book">Request a Demo</CTA>
-          </div>
-        )}
-
-        {mobile && (
-          <button onClick={() => setMenuOpen(!menuOpen)} style={{
-            background: "none", border: "none", cursor: "pointer", padding: 8,
-            display: "flex", flexDirection: "column", gap: 5, position: "relative", zIndex: 101,
-          }}>
-            <div style={{ width: 22, height: 2, background: "#fff", borderRadius: 2, transition: "all 0.3s", transform: menuOpen ? "rotate(45deg) translateY(7px)" : "none" }} />
-            <div style={{ width: 22, height: 2, background: "#fff", borderRadius: 2, transition: "all 0.3s", opacity: menuOpen ? 0 : 1 }} />
-            <div style={{ width: 22, height: 2, background: "#fff", borderRadius: 2, transition: "all 0.3s", transform: menuOpen ? "rotate(-45deg) translateY(-7px)" : "none" }} />
-          </button>
-        )}
-      </nav>
-
-      {/* Mobile menu */}
-      {mobile && menuOpen && (
-        <div style={{
-          position: "fixed", top: 54, left: 0, right: 0, bottom: 0, zIndex: 99,
-          background: "rgba(6,28,39,0.98)", backdropFilter: "blur(20px)",
-          padding: "28px 24px", display: "flex", flexDirection: "column", gap: 8,
-          overflowY: "auto",
-        }}>
-          {/* Nav links */}
-          {[
-            { label: "AI Readiness Snapshot", href: "#/consultation" },
-            { label: "Insights", href: "#/insights" },
-            { label: "About Us", href: "#/about" },
-            { label: "Pricing", href: "#/pricing" },
-          ].map(link => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: 16,
-                fontWeight: 500,
-                color: "rgba(255,255,255,0.7)",
-                textDecoration: "none",
-                padding: "14px 0",
-                borderBottom: "1px solid rgba(13,154,165,0.1)",
-                display: "block",
-              }}
-            >
-              {link.label}
-            </a>
-          ))}
-          
-          <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 24 }}>
-            <CTA variant="secondary" style={{ width: "100%", textAlign: "center", padding: "14px 0" }}>Login</CTA>
-            <CTA variant="primary" style={{ width: "100%", textAlign: "center", padding: "14px 0" }} href="#/book">Request a Demo</CTA>
-          </div>
-        </div>
-      )}
-
-
-
+    <>
       {/* ——— CONTENT ——— */}
       <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: `0 ${px}px` }}>
 
@@ -729,6 +568,6 @@ export default function MiltonHomepage() {
           <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.3)" }}>© 2026 MMNT Inc. All rights reserved.</span>
         </footer>
       </div>
-    </div>
+    </>
   );
 }

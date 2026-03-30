@@ -31,65 +31,7 @@ export default function BookingSnapshotPage() {
   }, []);
 
   return (
-    <div style={{ minHeight: "100vh", background: "#061c27", color: "#fff", position: "relative", overflow: "hidden" }}>
-      <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet" />
-
-      {/* Aurora bg */}
-      <div style={{
-        position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
-        background: "radial-gradient(ellipse 80% 50% at 20% 20%, rgba(13,154,165,0.08) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 80%, rgba(154,241,152,0.04) 0%, transparent 50%), radial-gradient(ellipse 90% 60% at 50% 0%, rgba(8,69,94,0.3) 0%, transparent 70%)",
-      }} />
-
-      {/* ——— NAV ——— */}
-      <nav style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        padding: mobile ? "12px 16px" : "16px 40px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        background: scrolled ? "rgba(6,28,39,0.95)" : "transparent",
-        backdropFilter: scrolled ? "blur(20px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(13,154,165,0.1)" : "1px solid transparent",
-        transition: "all 0.3s ease",
-      }}>
-        <a href="#/" style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}>
-          <img
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Milton%20Face%20Logo-whMWzOXBgBgulGUqdRthSEMsjeyWPe.png"
-            alt="Milton Logo"
-            style={{
-              width: mobile ? 36 : 44,
-              height: mobile ? 36 : 44,
-              borderRadius: 8,
-              objectFit: "cover",
-            }}
-          />
-          <span style={{
-            fontFamily: f, fontWeight: 700,
-            fontSize: mobile ? 16 : 20, color: "#fff", letterSpacing: 2,
-          }}>MILTON</span>
-        </a>
-
-        <a 
-          href="#/ai-consultation" 
-          style={{ 
-            fontFamily: f, 
-            fontSize: 14, 
-            fontWeight: 500,
-            color: "rgba(255,255,255,0.6)", 
-            textDecoration: "none",
-            display: "flex",
-            alignItems: "center",
-            gap: 8,
-            padding: "8px 16px",
-            borderRadius: 100,
-            border: "1px solid rgba(255,255,255,0.15)",
-            transition: "all 0.2s ease",
-          }}
-        >
-          <span style={{ fontSize: 16 }}>&larr;</span> Back
-        </a>
-      </nav>
-
+    <>
       {/* Content wrapper */}
       <div style={{ position: "relative", zIndex: 1 }}>
         {/* Hero Section */}
@@ -161,6 +103,6 @@ export default function BookingSnapshotPage() {
           </span>
         </footer>
       </div>
-    </div>
+    </>
   );
 }
