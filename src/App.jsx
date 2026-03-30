@@ -65,6 +65,8 @@ function ComingSoonBlur({ mobile }) {
   return (
     <div style={{
       position: "relative",
+      aspectRatio: "1/1",
+      maxWidth: mobile ? "100%" : 500,
       borderRadius: mobile ? 12 : 20,
       overflow: "hidden",
       background: "rgba(8,69,94,0.3)",
@@ -72,28 +74,20 @@ function ComingSoonBlur({ mobile }) {
     }}>
       {/* Blurred hint content */}
       <div style={{
-        padding: mobile ? 24 : 40,
-        filter: "blur(8px)",
-        opacity: 0.5,
+        position: "absolute",
+        inset: 0,
+        padding: mobile ? 20 : 32,
+        filter: "blur(6px)",
+        opacity: 0.4,
         pointerEvents: "none",
-        display: "grid",
-        gridTemplateColumns: mobile ? "1fr" : "1fr 1fr 1fr",
-        gap: mobile ? 16 : 24,
+        display: "flex",
+        flexDirection: "column",
+        gap: 12,
       }}>
-        {[1, 2, 3].map((i) => (
-          <div key={i} style={{
-            background: "rgba(13,154,165,0.15)",
-            borderRadius: 12,
-            padding: mobile ? 20 : 28,
-            minHeight: mobile ? 180 : 240,
-          }}>
-            <div style={{ width: "60%", height: 14, background: "rgba(255,255,255,0.3)", borderRadius: 4, marginBottom: 12 }} />
-            <div style={{ width: "100%", height: 10, background: "rgba(255,255,255,0.15)", borderRadius: 4, marginBottom: 8 }} />
-            <div style={{ width: "90%", height: 10, background: "rgba(255,255,255,0.15)", borderRadius: 4, marginBottom: 8 }} />
-            <div style={{ width: "75%", height: 10, background: "rgba(255,255,255,0.15)", borderRadius: 4, marginBottom: 20 }} />
-            <div style={{ width: "100%", height: mobile ? 80 : 120, background: "rgba(13,154,165,0.2)", borderRadius: 8 }} />
-          </div>
-        ))}
+        <div style={{ width: "50%", height: 16, background: "rgba(255,255,255,0.3)", borderRadius: 4 }} />
+        <div style={{ width: "80%", height: 10, background: "rgba(255,255,255,0.15)", borderRadius: 4 }} />
+        <div style={{ width: "65%", height: 10, background: "rgba(255,255,255,0.15)", borderRadius: 4 }} />
+        <div style={{ flex: 1, background: "rgba(13,154,165,0.15)", borderRadius: 12, marginTop: 8 }} />
       </div>
       {/* Coming Soon overlay */}
       <div style={{
@@ -103,14 +97,13 @@ function ComingSoonBlur({ mobile }) {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        background: "radial-gradient(ellipse at center, rgba(6,28,39,0.4) 0%, rgba(6,28,39,0.8) 100%)",
+        background: "radial-gradient(ellipse at center, rgba(6,28,39,0.3) 0%, rgba(6,28,39,0.7) 100%)",
       }}>
         <div style={{
           background: "rgba(13,154,165,0.15)",
           border: `1px solid ${teal}40`,
           borderRadius: 100,
           padding: mobile ? "10px 24px" : "12px 32px",
-          marginBottom: 16,
         }}>
           <span style={{
             fontFamily: f,
@@ -121,15 +114,6 @@ function ComingSoonBlur({ mobile }) {
             color: teal,
           }}>Coming Soon</span>
         </div>
-        <p style={{
-          fontFamily: f,
-          fontSize: mobile ? 14 : 16,
-          color: "rgba(255,255,255,0.5)",
-          textAlign: "center",
-          maxWidth: 400,
-          margin: 0,
-          padding: "0 20px",
-        }}>We're building something special. Stay tuned.</p>
       </div>
     </div>
   );
