@@ -605,7 +605,7 @@ export default function PricingCalculator() {
               }}>
                 Book a 30-minute demo and we'll walk through exactly how Milton works for a team of {trainers} — with your numbers, not ours.
               </p>
-              <a href="#/booking" style={{
+              <a href="#/book" style={{
                   fontFamily: f, fontSize: 16, fontWeight: 700,
                   padding: "16px 44px", borderRadius: 100, border: "none",
                   background: "#fff", color: navy, cursor: "pointer",
