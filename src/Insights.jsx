@@ -54,6 +54,7 @@ const articles = [
     id: 3,
     category: "director",
     tag: "FITNESS DIRECTOR PLAYBOOK",
+    slug: "four-pillars-fitness-director",
     title: "The 4 Pillars Every Fitness Director Should Be Tracking — But Probably Isn't",
     excerpt: "Self-management, coaching skill, communication, teamwork. A framework developed over 20 years of managing trainers, now powered by AI diagnostics.",
     date: "Mar 12, 2026",
