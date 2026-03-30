@@ -449,7 +449,13 @@ export default function MiltonHomepage() {
                 ))}
               </div>
             </div>
-            <VisualPlaceholder height={440} mobileHeight={260} />
+            <div style={{ borderRadius: mobile ? 12 : 16, overflow: "hidden" }}>
+              <img 
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Images-SNwTil1Y2uwTR8RFBmu5IXqFYsdBxo.png" 
+                alt="Milton integrates with Mindbody, Gymmaster, Pike13, Trainerize, and other fitness platforms"
+                style={{ width: "100%", height: "auto", display: "block" }}
+              />
+            </div>
           </div>
         </section>
 
