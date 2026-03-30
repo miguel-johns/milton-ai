@@ -74,10 +74,11 @@ const articles = [
     id: 5,
     category: "ai-fitness",
     tag: "AI IN FITNESS",
+    slug: "ai-receptionist-vs-copilot",
     title: "AI Receptionist vs. AI Co-Pilot: Why the Industry Is Solving the Wrong Problem",
     excerpt: "Every AI startup at HFA was selling the same thing — an AI that picks up your phone. Nobody was building the thing gym owners actually need: intelligence for the people already doing the work.",
     date: "Mar 3, 2026",
-    readTime: "6 min read",
+    readTime: "8 min read",
   },
   {
     id: 6,
