@@ -277,11 +277,6 @@ export default function Insights() {
 
         {/* ═══════ HEADER ═══════ */}
         <section style={{ padding: mobile ? "48px 0 32px" : "80px 0 48px" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
-            <div style={{ width: 8, height: 8, borderRadius: "50%", background: teal }} />
-            <span style={{ fontFamily: f, fontSize: 12, fontWeight: 500, letterSpacing: 2.5, textTransform: "uppercase", color: "rgba(255,255,255,0.7)" }}>INSIGHTS</span>
-          </div>
-
           <h1 style={{
             fontFamily: serif,
             fontSize: mobile ? 34 : tablet ? 48 : 56,
