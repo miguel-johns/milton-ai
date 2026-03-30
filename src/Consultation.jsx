@@ -109,7 +109,6 @@ export default function AIConsultation() {
 
         {/* ═══════ HERO ═══════ */}
         <section style={{ padding: mobile ? "52px 0 40px" : "88px 0 60px", textAlign: "center" }}>
-          <SectionLabel text="AI CONSULTATION" />
 
           <h1 style={{
             fontFamily: serif,
