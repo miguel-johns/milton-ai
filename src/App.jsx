@@ -490,7 +490,13 @@ export default function MiltonHomepage() {
 
           <GridRow cols={3}>
             <div style={{ background: "rgba(8,69,94,0.15)", border: "1px solid rgba(13,154,165,0.2)", borderRadius: mobile ? 12 : 16, overflow: "hidden" }}>
-              <VisualPlaceholder height={200} mobileHeight={160} style={{ borderRadius: 0 }} />
+              <div style={{ height: mobile ? 160 : 200, overflow: "hidden" }}>
+                <img 
+                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Untitled%20design%20%2835%29-RRDktgFJFs3AzS1PJRRlyKXvH42KxF.png" 
+                  alt="Optimal Performance gym exterior"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                />
+              </div>
               <div style={{ padding: mobile ? 20 : 28 }}>
                 <h4 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: mobile ? 16 : 18, fontWeight: 600, color: "#fff", margin: "0 0 6px 0" }}>Optimal Performance</h4>
                 <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: "#0d9aa5", fontWeight: 500 }}>Wichita, KS</span>
