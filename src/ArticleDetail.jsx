@@ -561,6 +561,104 @@ const articlesContent = {
       { type: "paragraph", text: "You might be early. You might be exactly on time. But you won't be too late." },
     ],
   },
+  "spreadsheets-to-dashboard-migration": {
+    id: 7,
+    slug: "spreadsheets-to-dashboard-migration",
+    category: "FITNESS DIRECTOR PLAYBOOK",
+    categoryColor: "#f0a030",
+    title: "From 8 Data Sources to 1 Dashboard: A Fitness Director's Migration Story",
+    date: "February 12, 2026",
+    readTime: "7 min read",
+    content: [
+      { type: "paragraph", text: "Every Monday morning at 6:15am, before the first session started and before any trainer walked through the door, a fitness director in Wichita started gathering." },
+      { type: "paragraph", text: "She had her own spreadsheets: one for weekly tasks and trainer assignments, one for the consultation pipeline, one for client intake and risk tracking. Three sheets she maintained personally, updated every Sunday night." },
+      { type: "paragraph", text: "But that was just her layer. Each trainer on her team had their own tracking sheets too: client programming notes, session logs, progress tracking. Some used Google Sheets. Some used Notes on their phone. One used a legal pad. That's another three to five data sources, each in a different format, none of them connected to anything." },
+      { type: "paragraph", text: "Then there was MindBody. Attendance data, billing records, session history, scheduling. A completely separate system that didn't talk to any of the spreadsheets." },
+      { type: "paragraph", text: "Six to eight data sources in total. None of them integrated. All of them essential." },
+      { type: "paragraph", text: "Every Monday, she'd cross-reference her sheets against the trainers' sheets against MindBody. Check which trainers had sessions booked versus sessions delivered. Look for gaps. Look for no-shows. Look for the clients who used to come three times a week and were now down to one. Piece together attendance patterns with follow-up data with revenue numbers with session notes." },
+      { type: "paragraph", text: "By the time she'd built a picture of how her team was actually performing, it was 8am. Sometimes 9. And the picture was already a week old." },
+      { type: "paragraph", text: "She'd been doing this for almost twenty years. Not because she liked spreadsheets. Because nothing else existed." },
+
+      { type: "heading", text: "The System That Worked (Until It Didn't)" },
+      { type: "paragraph", text: "Here's the thing nobody says about spreadsheet systems: they work. For a while. In the hands of someone who's disciplined, experienced, and willing to put in the hours." },
+      { type: "paragraph", text: "This director's system worked. Her trainer retention was above industry average. Her client retention was strong. She could identify problems, diagnose root causes, and have the right conversations with the right trainers at the right time." },
+      { type: "paragraph", text: "She was good at her job. The spreadsheets didn't make her good. She made the spreadsheets work." },
+      { type: "paragraph", text: "But the system had three fatal flaws." },
+
+      { type: "subheading", text: "It only existed in her head." },
+      { type: "paragraph", text: "The spreadsheets were tools. The intelligence was in her interpretation. She knew that when Jake's consultation close rate dropped, it wasn't a sales problem, it was a confidence problem because his last two clients had canceled. She knew that when attendance dipped for a trainer's afternoon clients, it probably meant the trainer's energy was flagging after lunch, not that the clients were losing interest." },
+      { type: "paragraph", text: "None of that was in the spreadsheets. It was in twenty years of pattern recognition, stored in one person's brain. If she got sick for a week, the system stopped. If she went on vacation, the system paused. If she ever left the organization, the system walked out the door with her." },
+
+      { type: "subheading", text: "It couldn't scale." },
+      { type: "paragraph", text: "At six trainers, the system was brutal but manageable. Eighty-eight clients across six trainers. Six to eight separate data sources to cross-reference weekly. Hours of manual work." },
+      { type: "paragraph", text: "But what about twelve trainers? What about 200 clients? What about a second location? Every new trainer doesn't just add clients. They add their own tracking sheets, their own session logs, their own data silo. The math doesn't double. It compounds. The patchwork system that barely works at six trainers collapses at ten." },
+      { type: "paragraph", text: "She knew this. She'd turned down opportunities to expand her team because she knew her system couldn't support it. The bottleneck wasn't talent or demand. It was her own capacity to manually process the data." },
+
+      { type: "subheading", text: "It was always looking backward." },
+      { type: "paragraph", text: "Spreadsheets are records. They tell you what happened last week. What happened last month. They're snapshots, not signals." },
+      { type: "paragraph", text: "By the time she'd cross-referenced Monday's data, the information was already stale. The trainer whose follow-up rate had dropped had already gone another week without following up. The client who'd been fading for three weeks had already missed another session. The window for intervention was shrinking while she was still building the picture." },
+      { type: "paragraph", text: "She wasn't making decisions in real time. She was making decisions on a seven-day delay. And in personal training, seven days is the difference between a conversation that saves a client and a cancellation email." },
+
+      { type: "heading", text: "What She Actually Needed" },
+      { type: "paragraph", text: "When we started working with this director, we didn't ask her what software she wanted. We asked her what decisions she was making every week." },
+      { type: "paragraph", text: "The answer was consistent. Every Monday, she needed to know five things:" },
+      { type: "list", items: [
+        "Which trainers need attention? Not which trainers had the lowest revenue (that's a lagging indicator). Which trainers had behavioral changes this week: follow-up rates dropping, attendance patterns shifting, teamwork declining. The leading indicators.",
+        "Which clients are at risk? Specifically, which clients were approaching predictable danger zones (the three-month adjustment period, the six-month retention cliff) while also showing warning signs: reduced frequency, fewer initiated communications, increased cancellations.",
+        "Where is revenue leaking? Not just total revenue (she knew that number). Revenue per trainer. Revenue per client. Where the gaps were between capacity and production. Which trainers were underbooked and which were overloaded.",
+        "Who's ready for more? Which trainers had capacity, strong metrics, and the right profile to take on a new consultation? She'd been making this decision by gut feel. She wanted to make it by signal.",
+        "What conversations should I have this week? Not a generic list. Specific, prioritized conversations tied to specific data. \"Talk to Jake about his follow-up rate. Talk to Marcus about the client approaching six months. Talk to Aisha about expanding her book.\"",
+      ]},
+      { type: "paragraph", text: "Five decisions. Every Monday. That was the job. Everything else was overhead." },
+
+      { type: "heading", text: "The Migration" },
+      { type: "paragraph", text: "The transition from six-plus data sources to a centralized system wasn't a flip-the-switch moment. It was a process. And the hardest part wasn't the technology. It was trust." },
+
+      { type: "subheading", text: "Week 1-2: Parallel running." },
+      { type: "paragraph", text: "She kept her spreadsheets and ran the new system alongside them. Every Monday, she'd build her picture the old way, then check it against what the system was showing her. She was testing whether the machine could see what she saw." },
+      { type: "paragraph", text: "It could. In most cases, it saw the same things she did. In a few cases, it saw things she'd missed: a pattern in one trainer's afternoon attendance data that she hadn't caught because she'd been focused on a different problem." },
+
+      { type: "subheading", text: "Week 3-4: The spreadsheets got thinner." },
+      { type: "paragraph", text: "She stopped updating sheet three (client intake) manually. The system was tracking tenure, session frequency, and engagement signals automatically. She kept sheets one and two as backups but checked them less often." },
+
+      { type: "subheading", text: "Week 5-6: The Monday morning changed." },
+      { type: "paragraph", text: "Instead of opening six tabs at 6:15am and cross-referencing for two hours, she opened one dashboard. The Monday brief was already there. Trainer diagnostics across all four pillars. Client risk flags with specific signals. Revenue analysis by trainer. Recommended conversations for the week." },
+      { type: "paragraph", text: "Her Monday morning prep went from two hours to fifteen minutes. Not because the work had disappeared. Because the intelligence had been automated." },
+
+      { type: "subheading", text: "Week 8: The spreadsheets closed." },
+      { type: "paragraph", text: "She didn't delete them. She just stopped opening them. The system had earned her trust. Not because it was smarter than her (it wasn't). Because it was faster, more consistent, and never took a day off." },
+      { type: "quote", text: "I didn't realize how much of my week I was spending building the picture until I didn't have to build it anymore. I was spending 80% of my time gathering information and 20% acting on it. Now it's the reverse." },
+
+      { type: "heading", text: "What Changed After the Spreadsheets" },
+      { type: "paragraph", text: "The direct impact was time. Hours per week returned to actual leadership work: coaching conversations with trainers, client relationship management, strategic planning, development." },
+      { type: "paragraph", text: "But the indirect impacts were bigger." },
+
+      { type: "subheading", text: "She could finally coach her coaches." },
+      { type: "paragraph", text: "With the diagnostic picture built automatically, she had something specific to bring to every conversation. Not \"how are things going?\" but \"your follow-up rate dropped from 88% to 71% this month. Let's look at what changed.\" The conversations went from vague check-ins to targeted development sessions." },
+      { type: "paragraph", text: "Trainers responded to this. They felt seen. Not monitored. Seen. One trainer told her: \"Nobody's ever shown me my own numbers like that. I didn't know I was slipping until you showed me the trend.\"" },
+
+      { type: "subheading", text: "She could scale." },
+      { type: "paragraph", text: "The system that collapsed at ten trainers in a spreadsheet could handle ten trainers without breaking a sweat. The cross-referencing that took hours now happened automatically. The intelligence that lived in her head was now in a system that could serve any director, at any scale, in any location." },
+      { type: "paragraph", text: "She started having conversations about expansion for the first time in years. Not because she'd suddenly become more ambitious. Because the constraint had been removed." },
+
+      { type: "subheading", text: "She could take a vacation." },
+      { type: "paragraph", text: "This sounds small. It wasn't. For almost twenty years, she'd never fully disconnected from the gym. Even on vacation, she'd check her sheets, update her notes, worry about what she was missing." },
+      { type: "quote", text: "This is the first time in my career I felt like the gym could survive without me." },
+      { type: "paragraph", text: "That's not a technology story. That's a professional quality-of-life story." },
+
+      { type: "heading", text: "The Spreadsheet Isn't the Problem" },
+      { type: "paragraph", text: "We're not here to demonize spreadsheets. Google Sheets is a powerful tool. It's flexible, free, and can be shaped into almost anything by someone with enough patience and skill." },
+      { type: "paragraph", text: "The problem isn't the spreadsheet. The problem is what the spreadsheet requires of the human using it." },
+      { type: "paragraph", text: "It requires hours of manual input. It requires constant cross-referencing against other systems. It requires the user to be the intelligence layer, the pattern recognizer, the signal detector, and the decision-maker, all at once, every week, with no break." },
+      { type: "paragraph", text: "That's not a sustainable system. That's a person doing the job of a machine while also doing the job of a leader. Something has to give. Usually, it's the leadership." },
+      { type: "callout", text: "The directors who run on spreadsheets aren't less capable. They're more capable. They've been doing what should be automated by hand, for years, and still producing results. Imagine what they could do if the manual work disappeared and all that was left was the leadership." },
+
+      { type: "heading", text: "If This Sounds Familiar" },
+      { type: "paragraph", text: "If you're a fitness director reading this with six tabs open and a knot in your stomach, you're not alone. Most directors we talk to are running some version of this system. Different sheets, different tools, same bottleneck." },
+      { type: "paragraph", text: "The migration doesn't have to be dramatic. Start by writing down the five decisions you make every Monday. Then ask yourself: how long does it take to gather the information for each one?" },
+      { type: "paragraph", text: "If the answer is hours, the problem isn't your discipline. It's your tools." },
+    ],
+  },
 };
 
 export default function ArticleDetail({ slug }) {
