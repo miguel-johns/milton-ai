@@ -269,7 +269,7 @@ function HeroVisual({ mobile }) {
       boxShadow: "0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.1)",
     }}>
       <img
-        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Hero%20Image-3Z8gJ67AGqgG8eXo2CYLV4ziFntX9U.jpg"
+        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Hero%20Image-qMFrg2JU59JkiO0EF8MAxOynKIBOPh.png"
         alt="Milton dashboard showing trainer roster, attendance rates, and AI coaching insights"
         style={{
           width: "100%",
