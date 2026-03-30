@@ -124,7 +124,9 @@ export default function SharedNav() {
 
         {/* Right side button */}
         {!mobile && (
-          <CTA variant="primary" style={{ padding: "10px 24px", fontSize: 14 }} href="#/book">Request a Demo</CTA>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <CTA variant="primary" style={{ padding: "10px 24px", fontSize: 14 }} href="#/book">Request a Demo</CTA>
+          </div>
         )}
 
         {mobile && (
