@@ -84,10 +84,11 @@ const articles = [
     id: 6,
     category: "trainer-dev",
     tag: "TRAINER DEVELOPMENT",
+    slug: "best-trainer-leaving-signals",
     title: "Your Best Trainer Is About to Leave. Here Are the Signals You're Missing.",
     excerpt: "Trainer churn rarely happens overnight. There are behavioral signals weeks before the resignation — and most fitness directors aren't tracking them.",
-    date: "Feb 26, 2026",
-    readTime: "5 min read",
+    date: "Feb 19, 2026",
+    readTime: "7 min read",
   },
   {
     id: 7,
