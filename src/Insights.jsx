@@ -44,6 +44,7 @@ const articles = [
     id: 2,
     category: "trainer-dev",
     tag: "TRAINER DEVELOPMENT",
+    slug: "trainer-turnover-crisis",
     title: "80% of Personal Trainers Quit Within a Year. Here's What the Other 20% Do Differently.",
     excerpt: "The fitness industry's trainer turnover crisis isn't a hiring problem — it's a development problem. We break down what high-retention gyms are doing to keep their coaches.",
     date: "Mar 18, 2026",

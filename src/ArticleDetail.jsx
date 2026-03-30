@@ -101,6 +101,91 @@ const articlesContent = {
       { type: "callout", text: "The signal is simple: make the humans better." },
     ],
   },
+  "trainer-turnover-crisis": {
+    id: 2,
+    slug: "trainer-turnover-crisis",
+    category: "TRAINER DEVELOPMENT",
+    categoryColor: "#9af198",
+    title: "80% of Personal Trainers Quit Within a Year. Here's What the Other 20% Do Differently.",
+    date: "March 18, 2026",
+    readTime: "6 min read",
+    content: [
+      { type: "paragraph", text: "His name was Derek. Twenty-four years old. NASM certified. Great with clients. The kind of trainer who remembered every detail: the knee that acted up on Tuesdays, the daughter's soccer schedule that shifted session times, the protein goal that kept slipping on weekends." },
+      { type: "paragraph", text: "Three months in, his client retention was the best on the floor. Six months in, his book was full. Nine months in, he quit." },
+      { type: "paragraph", text: "His fitness director didn't see it coming. Nobody did. Derek didn't complain. Didn't cause problems. Didn't show obvious signs of burnout. He just stopped showing up one Monday and sent a text that said, \"I got a job at a SaaS company. Sorry.\"" },
+      { type: "paragraph", text: "This story repeats itself in gyms across the country every single year. And the numbers behind it are staggering." },
+
+      { type: "heading", text: "The Number Nobody Wants to Talk About" },
+      { type: "paragraph", text: "The fitness industry has an annual personal trainer turnover rate of roughly 80%, a figure cited by multiple industry sources including the American Spa, IHRSA, and W.I.T.S. (World Instructor Training Schools). Among those who survive year one, an estimated three out of five won't make it to year three." },
+      { type: "quote", text: "You hire five trainers. Four are gone in twelve months. The one who stays? Coin flip whether they make it to three years." },
+      { type: "paragraph", text: "This isn't a hiring problem. This isn't a \"kids these days\" problem. This is a systemic failure in how the industry develops, supports, and retains its most valuable asset: the people doing the actual coaching." },
+      { type: "paragraph", text: "And it's costing gym owners a fortune. Estimates for the cost of replacing an employee range from 33% to as high as 200% of their annual salary, depending on the source and the role's complexity. For a trainer earning $46,000 a year (the BLS median for fitness trainers and instructors as of 2024), that's anywhere from $15,000 to $92,000 per replacement when you factor in recruiting, onboarding, training, lost productivity, and the client relationships that walk out the door with them." },
+      { type: "paragraph", text: "Multiply that by the number of trainers you've cycled through in the last three years. That's your turnover tax. You're paying it every year whether you realize it or not." },
+
+      { type: "heading", text: "Why They Actually Leave" },
+      { type: "paragraph", text: "Ask a gym owner why trainers leave and you'll get a familiar list: the pay is low, the hours are bad, they can't build a client base, they burn out." },
+      { type: "paragraph", text: "That list isn't wrong. But it's incomplete." },
+      { type: "paragraph", text: "The trainers who stay don't necessarily make more money on day one. They don't necessarily have better hours. They don't start with more clients. What they have is something harder to see and harder to build: a career." },
+      { type: "callout", text: "Not a job. A career." },
+      { type: "paragraph", text: "We've spent the last two years working inside personal training businesses. Not selling to them. Inside them. Watching how trainers are managed (or not managed), how development happens (or doesn't), and why the best ones still leave." },
+      { type: "paragraph", text: "Here's what we found." },
+
+      { type: "subheading", text: "Personal training doesn't look like a profession." },
+      { type: "paragraph", text: "Most trainers can see their numbers. They know how many clients they have, how much they're grossing, what their attendance looks like. The data isn't the problem." },
+      { type: "paragraph", text: "The problem is that nobody has shown them how to turn those numbers into a trajectory. There's no clear path from year one to year five. No progression framework. No milestones that say \"when you hit this, you're ready for that.\" No roadmap that connects being a good trainer today to building a real, sustainable, well-compensated career tomorrow." },
+      { type: "paragraph", text: "Compare this to almost any other profession. A nurse knows the path from RN to NP to specialist. An engineer knows the path from junior to senior to lead. A salesperson knows the path from SDR to AE to VP." },
+      { type: "paragraph", text: "A personal trainer? They know they're training clients. They might know they want to make more money. But there's no structure showing them how to get there, what skills to develop, what benchmarks matter, or what \"senior trainer\" even means in a concrete, measurable way." },
+      { type: "paragraph", text: "So when a SaaS company shows up offering $65K, a laptop, a title, and a career ladder? They leave. Not because they stopped caring about fitness. Because fitness never showed them a future." },
+
+      { type: "subheading", text: "The coaches aren't being coached." },
+      { type: "paragraph", text: "Ironic, isn't it? The coaches don't get coached." },
+      { type: "paragraph", text: "Most fitness directors are drowning in admin: cross-referencing spreadsheets, checking schedules in MindBody, tracking attendance manually, running payroll, handling client complaints. The time left for actual trainer development? Almost zero." },
+      { type: "paragraph", text: "One fitness director we work with was managing her entire training team using three separate Google Sheets and cross-referencing MindBody data. Weekly tasks in one. Consultations in another. Client intake in a third. She'd spend hours every week just trying to figure out who was struggling. By the time she identified a problem, it was usually too late. The trainer was already disengaged." },
+      { type: "paragraph", text: "Trainers don't need a manager who watches their numbers. They need a coach who helps them understand what to do with those numbers. Someone who says, \"Your follow-up rate dropped 12% this month. Here's what that means, here's what's causing it, and here's how we fix it together.\"" },
+      { type: "paragraph", text: "That conversation almost never happens. Not because directors don't care, but because they don't have the time or tools to make it happen consistently." },
+
+      { type: "subheading", text: "There's no identity to hold onto." },
+      { type: "paragraph", text: "Physical therapy has an identity. Nursing has an identity. Even real estate has an identity." },
+      { type: "paragraph", text: "Personal training? The public still thinks of it as \"the person who counts your reps at the gym.\" The profession hasn't built the kind of credibility, standards, or public perception that makes someone proud to say \"I'm a personal trainer\" at a dinner party ten years into their career." },
+      { type: "paragraph", text: "This matters more than it sounds. When a profession has a strong identity, its practitioners stick with it through the hard seasons. They invest in getting better because they believe the profession is worth investing in. They see themselves in it for the long haul." },
+      { type: "paragraph", text: "When the identity is weak, trainers treat the work as transitional. Something they do while they figure out what they really want to do. And the industry's 80% turnover rate reflects exactly that." },
+
+      { type: "heading", text: "What the 20% Have in Common" },
+      { type: "paragraph", text: "The gyms with low trainer turnover aren't doing anything exotic. They're doing something simple that almost nobody else does: they treat the trainer career path like something worth building." },
+
+      { type: "subheading", text: "They define what \"growth\" actually means." },
+      { type: "paragraph", text: "Not just \"get more clients.\" Growth with structure. The best fitness directors we've worked with track four dimensions of trainer performance: self-management, coaching skill, communication, and teamwork." },
+      { type: "paragraph", text: "When a trainer can see that their coaching skill score is elite but their client communication needs work, they have something specific to develop. That specificity transforms personal training from \"I show up and train people\" into \"I'm building a professional skill set with measurable dimensions.\" That's the difference between a job and a career." },
+
+      { type: "subheading", text: "They diagnose problems, not just symptoms." },
+      { type: "paragraph", text: "Knowing that a trainer has a 41% follow-up rate is useful. Knowing that it's a communication issue (not a coaching skill issue) is what lets you actually fix it." },
+      { type: "paragraph", text: "The gyms that retain trainers don't just flag problems. They categorize them. A trainer losing clients because their programs aren't producing results needs a different conversation than a trainer losing clients because they never follow up after a missed session. The first needs technical development. The second needs a workflow fix. Treating both the same way is how you lose both." },
+
+      { type: "subheading", text: "They make the future visible." },
+      { type: "paragraph", text: "The trainers who stay past year one almost always have one thing in common: someone showed them a future in the profession." },
+      { type: "paragraph", text: "Not just \"you could make more money.\" A real picture of what mastery looks like: deeper specializations, leadership roles, higher-value clients, mentor responsibilities, revenue milestones that compound year over year. A version of personal training that looks like a career, not a gig." },
+      { type: "paragraph", text: "The best fitness directors create this visibility intentionally. Monthly growth reviews. Development paths with real milestones. Conversations that connect today's effort to next year's opportunity. Most gym software doesn't support this. So the directors who care do it manually, for hours, every week. Until they burn out too." },
+
+      { type: "heading", text: "The Hidden Cost Nobody Calculates" },
+      { type: "paragraph", text: "When a trainer leaves, the obvious costs are replacement and lost revenue. The hidden cost is what you can't see on a P&L." },
+      { type: "list", items: [
+        "The client who was three weeks from a breakthrough and now has to start over with someone new. They don't restart. They cancel.",
+        "The other trainers on the floor who watched a colleague leave and started updating their own resumes. Research shows that burnt-out or disengaged employees are over twice as likely to influence coworkers to leave.",
+        "The fitness director who just spent six months developing that trainer's skills, now starting over from scratch with a new hire who needs three months before they're even productive.",
+        "The institutional knowledge that walked out the door: which clients need extra encouragement, which ones respond to data, which ones are quietly thinking about quitting.",
+      ]},
+      { type: "paragraph", text: "None of this shows up on a spreadsheet. All of it shows up in your retention rate, your revenue, and your culture." },
+
+      { type: "heading", text: "The Window Is Closing" },
+      { type: "paragraph", text: "Here's the uncomfortable truth: the gyms that figure out trainer retention in the next 12 to 24 months will have a compounding advantage over everyone else." },
+      { type: "paragraph", text: "Good trainers will gravitate toward gyms that invest in their development. Clients will gravitate toward gyms with consistent, experienced coaching teams. Revenue will follow." },
+      { type: "paragraph", text: "The gyms that keep cycling through trainers every nine months will keep paying the turnover tax, keep losing clients, and keep wondering why nothing sticks." },
+      { type: "paragraph", text: "The 20% who stay aren't luckier than the 80% who leave. They're not tougher. They're not more passionate. They just landed somewhere that showed them a future worth staying for." },
+      { type: "callout", text: "That's not a talent problem. That's a systems problem. And systems can be built." },
+
+      { type: "sources", text: "Sources: Trainer turnover rate of 80% cited by American Spa / W.I.T.S., Alloy Franchise, FitSW, and Hapana. Employee replacement costs cited by Alloy Franchise (up to 200% of salary) and Club-OS (33% of salary). Median trainer wage of $46,180 from U.S. Bureau of Labor Statistics (May 2024). Coworker influence stat from Club Automation." },
+    ],
+  },
 };
 
 export default function ArticleDetail({ slug }) {
@@ -200,6 +285,20 @@ export default function ArticleDetail({ slug }) {
               fontFamily: serif, fontSize: mobile ? 22 : 28,
               fontWeight: 500, fontStyle: "italic",
               color: "#fff", margin: 0,
+            }}>{block.text}</p>
+          </div>
+        );
+      case "sources":
+        return (
+          <div key={index} style={{
+            margin: "48px 0 24px 0", padding: "20px 24px",
+            background: "rgba(255,255,255,0.02)",
+            border: "1px solid rgba(255,255,255,0.06)",
+            borderRadius: 12,
+          }}>
+            <p style={{
+              fontFamily: f, fontSize: mobile ? 13 : 14, lineHeight: 1.7,
+              color: "rgba(255,255,255,0.4)", margin: 0, fontStyle: "italic",
             }}>{block.text}</p>
           </div>
         );
