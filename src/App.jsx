@@ -1,4 +1,94 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
+
+// Calendly Modal Context
+const CalendlyContext = createContext();
+export function useCalendly() {
+  return useContext(CalendlyContext);
+}
+
+function CalendlyModal({ isOpen, onClose }) {
+  const { mobile } = useBreakpoint();
+  
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      // Load Calendly script
+      const script = document.createElement("script");
+      script.src = "https://assets.calendly.com/assets/external/widget.js";
+      script.async = true;
+      document.body.appendChild(script);
+      return () => {
+        document.body.style.overflow = "";
+      };
+    }
+  }, [isOpen]);
+
+  if (!isOpen) return null;
+
+  return (
+    <div style={{
+      position: "fixed",
+      inset: 0,
+      zIndex: 9999,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: mobile ? 16 : 32,
+    }}>
+      {/* Backdrop */}
+      <div 
+        onClick={onClose}
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "rgba(6,28,39,0.9)",
+          backdropFilter: "blur(8px)",
+        }}
+      />
+      {/* Modal */}
+      <div style={{
+        position: "relative",
+        width: "100%",
+        maxWidth: 700,
+        maxHeight: "90vh",
+        background: "#fff",
+        borderRadius: mobile ? 16 : 24,
+        overflow: "hidden",
+        boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
+      }}>
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          style={{
+            position: "absolute",
+            top: 16,
+            right: 16,
+            zIndex: 10,
+            width: 36,
+            height: 36,
+            borderRadius: "50%",
+            border: "none",
+            background: "rgba(0,0,0,0.1)",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: 20,
+            color: "#333",
+          }}
+        >
+          &times;
+        </button>
+        {/* Calendly widget */}
+        <div 
+          className="calendly-inline-widget" 
+          data-url="https://calendly.com/miguel-johns/milton-discovery-call?primary_color=00957b"
+          style={{ minWidth: 320, height: mobile ? 600 : 700 }}
+        />
+      </div>
+    </div>
+  );
+}
 
 const sections = [
   { id: "hero", label: "" },
@@ -224,7 +314,7 @@ function FeatureCard({ title, body, visual = true, visualHeight = 200, aspectRat
   );
 }
 
-function CTA({ children, variant = "primary", style: s = {}, href }) {
+function CTA({ children, variant = "primary", style: s = {}, href, onClick }) {
   const base = {
     fontFamily: "'DM Sans', sans-serif", fontSize: 15, fontWeight: 600,
     padding: "14px 32px", borderRadius: 100, cursor: "pointer",
@@ -237,7 +327,7 @@ function CTA({ children, variant = "primary", style: s = {}, href }) {
   if (href) {
     return <a href={href} style={styles}>{children}</a>;
   }
-  return <button style={styles}>{children}</button>;
+  return <button style={styles} onClick={onClick}>{children}</button>;
 }
 
 function Accent({ children }) {
@@ -287,7 +377,11 @@ export default function MiltonHomepage() {
   const [activeSection, setActiveSection] = useState("hero");
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [calendlyOpen, setCalendlyOpen] = useState(false);
   const { mobile, tablet, desktop } = useBreakpoint();
+  
+  const openCalendly = () => setCalendlyOpen(true);
+  const closeCalendly = () => setCalendlyOpen(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -410,7 +504,7 @@ export default function MiltonHomepage() {
         {!mobile && (
           <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 10 }}>
             <CTA variant="secondary" style={{ padding: "10px 24px", fontSize: 14 }}>Login</CTA>
-            <CTA variant="primary" style={{ padding: "10px 24px", fontSize: 14 }}>Request a Demo</CTA>
+            <CTA variant="primary" style={{ padding: "10px 24px", fontSize: 14 }} onClick={openCalendly}>Request a Demo</CTA>
           </div>
         )}
 
@@ -462,7 +556,7 @@ export default function MiltonHomepage() {
           
           <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 24 }}>
             <CTA variant="secondary" style={{ width: "100%", textAlign: "center", padding: "14px 0" }}>Login</CTA>
-            <CTA variant="primary" style={{ width: "100%", textAlign: "center", padding: "14px 0" }}>Request a Demo</CTA>
+            <CTA variant="primary" style={{ width: "100%", textAlign: "center", padding: "14px 0" }} onClick={openCalendly}>Request a Demo</CTA>
           </div>
         </div>
       )}
@@ -497,7 +591,7 @@ export default function MiltonHomepage() {
           </p>
 
           <div style={{ display: "flex", gap: 12, marginBottom: mobile ? 36 : 60, flexWrap: "wrap", justifyContent: "center" }}>
-            <CTA variant="primary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }}>Request a Demo</CTA>
+            <CTA variant="primary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }} onClick={openCalendly}>Request a Demo</CTA>
             <CTA variant="secondary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }} href="#/pricing">Get Pricing</CTA>
           </div>
 
@@ -701,7 +795,7 @@ export default function MiltonHomepage() {
             See how Milton's AI co-pilots help your trainers perform, your fitness director lead, and your business grow.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <CTA variant="primary" style={{ fontSize: mobile ? 14 : 16, padding: mobile ? "14px 28px" : "16px 40px" }}>Request a Demo</CTA>
+            <CTA variant="primary" style={{ fontSize: mobile ? 14 : 16, padding: mobile ? "14px 28px" : "16px 40px" }} onClick={openCalendly}>Request a Demo</CTA>
             <CTA variant="secondary" style={{ fontSize: mobile ? 14 : 16, padding: mobile ? "14px 28px" : "16px 40px" }} href="#/pricing">Get Pricing</CTA>
           </div>
         </section>
@@ -728,6 +822,9 @@ export default function MiltonHomepage() {
           </div>
           <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.3)" }}>© 2026 MMNT Inc. All rights reserved.</span>
         </footer>
+
+        {/* Calendly Modal */}
+        <CalendlyModal isOpen={calendlyOpen} onClose={closeCalendly} />
       </div>
     </div>
   );

@@ -1,5 +1,28 @@
 import { useState, useEffect } from "react";
 
+function CalendlyModal({ isOpen, onClose, mobile }) {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      const script = document.createElement("script");
+      script.src = "https://assets.calendly.com/assets/external/widget.js";
+      script.async = true;
+      document.body.appendChild(script);
+      return () => { document.body.style.overflow = ""; };
+    }
+  }, [isOpen]);
+  if (!isOpen) return null;
+  return (
+    <div style={{ position: "fixed", inset: 0, zIndex: 9999, display: "flex", alignItems: "center", justifyContent: "center", padding: mobile ? 16 : 32 }}>
+      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(6,28,39,0.9)", backdropFilter: "blur(8px)" }} />
+      <div style={{ position: "relative", width: "100%", maxWidth: 700, maxHeight: "90vh", background: "#fff", borderRadius: mobile ? 16 : 24, overflow: "hidden", boxShadow: "0 20px 60px rgba(0,0,0,0.5)" }}>
+        <button onClick={onClose} style={{ position: "absolute", top: 16, right: 16, zIndex: 10, width: 36, height: 36, borderRadius: "50%", border: "none", background: "rgba(0,0,0,0.1)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, color: "#333" }}>&times;</button>
+        <div className="calendly-inline-widget" data-url="https://calendly.com/miguel-johns/milton-discovery-call?primary_color=00957b" style={{ minWidth: 320, height: mobile ? 600 : 700 }} />
+      </div>
+    </div>
+  );
+}
+
 function useBreakpoint() {
   const [w, setW] = useState(typeof window !== "undefined" ? window.innerWidth : 1200);
   useEffect(() => {
@@ -54,6 +77,9 @@ function VisualPlaceholder({ height = 280, mobileHeight, label = "", style = {} 
 
 export default function AboutPage() {
   const { mobile, tablet } = useBreakpoint();
+  const [calendlyOpen, setCalendlyOpen] = useState(false);
+  const openCalendly = () => setCalendlyOpen(true);
+  const closeCalendly = () => setCalendlyOpen(false);
   const px = mobile ? 20 : tablet ? 32 : 40;
   const sectionPad = mobile ? "72px 0" : "100px 0";
 
@@ -148,7 +174,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* ══════��� WHY NOW ═══════ */}
+        {/* ══════���� WHY NOW ═══════ */}
         <section style={{ padding: sectionPad }}>
           <SectionLabel text="THE MOMENT" />
           <SectionDivider />
@@ -510,7 +536,7 @@ export default function AboutPage() {
           </p>
 
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <button style={{ fontFamily: f, fontSize: 16, fontWeight: 700, padding: "16px 44px", borderRadius: 100, border: "none", background: "#fff", color: navy, cursor: "pointer" }}>Request a Demo</button>
+            <button onClick={openCalendly} style={{ fontFamily: f, fontSize: 16, fontWeight: 700, padding: "16px 44px", borderRadius: 100, border: "none", background: "#fff", color: navy, cursor: "pointer" }}>Request a Demo</button>
             <button style={{ fontFamily: f, fontSize: 16, fontWeight: 600, padding: "16px 44px", borderRadius: 100, cursor: "pointer", background: "transparent", color: "#fff", border: "1px solid rgba(255,255,255,0.2)" }}>Get Pricing</button>
           </div>
         </section>
@@ -523,6 +549,8 @@ export default function AboutPage() {
       }}>
         <span style={{ fontFamily: f, fontSize: 13, color: "rgba(255,255,255,0.25)" }}>© 2026 MMNT Inc. All rights reserved.</span>
       </footer>
+
+      <CalendlyModal isOpen={calendlyOpen} onClose={closeCalendly} mobile={mobile} />
     </div>
   );
 }

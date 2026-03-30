@@ -1,5 +1,28 @@
 import { useState, useEffect, useRef } from "react";
 
+function CalendlyModal({ isOpen, onClose, mobile }) {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      const script = document.createElement("script");
+      script.src = "https://assets.calendly.com/assets/external/widget.js";
+      script.async = true;
+      document.body.appendChild(script);
+      return () => { document.body.style.overflow = ""; };
+    }
+  }, [isOpen]);
+  if (!isOpen) return null;
+  return (
+    <div style={{ position: "fixed", inset: 0, zIndex: 9999, display: "flex", alignItems: "center", justifyContent: "center", padding: mobile ? 16 : 32 }}>
+      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(6,28,39,0.9)", backdropFilter: "blur(8px)" }} />
+      <div style={{ position: "relative", width: "100%", maxWidth: 700, maxHeight: "90vh", background: "#fff", borderRadius: mobile ? 16 : 24, overflow: "hidden", boxShadow: "0 20px 60px rgba(0,0,0,0.5)" }}>
+        <button onClick={onClose} style={{ position: "absolute", top: 16, right: 16, zIndex: 10, width: 36, height: 36, borderRadius: "50%", border: "none", background: "rgba(0,0,0,0.1)", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 20, color: "#333" }}>&times;</button>
+        <div className="calendly-inline-widget" data-url="https://calendly.com/miguel-johns/milton-discovery-call?primary_color=00957b" style={{ minWidth: 320, height: mobile ? 600 : 700 }} />
+      </div>
+    </div>
+  );
+}
+
 function useBreakpoint() {
   const [w, setW] = useState(typeof window !== "undefined" ? window.innerWidth : 1200);
   useEffect(() => {
@@ -139,6 +162,9 @@ export default function PricingCalculator() {
   const [showResults, setShowResults] = useState(false);
   const [resultsVisible, setResultsVisible] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [calendlyOpen, setCalendlyOpen] = useState(false);
+  const openCalendly = () => setCalendlyOpen(true);
+  const closeCalendly = () => setCalendlyOpen(false);
   const [leadName, setLeadName] = useState("");
   const [leadEmail, setLeadEmail] = useState("");
   const [leadGym, setLeadGym] = useState("");
@@ -247,7 +273,7 @@ export default function PricingCalculator() {
           />
           <span style={{ fontFamily: f, fontWeight: 700, fontSize: mobile ? 16 : 20, color: "#fff", letterSpacing: 2 }}>MILTON</span>
         </a>
-        <button style={{
+        <button onClick={openCalendly} style={{
           fontFamily: f, fontSize: 14, fontWeight: 600, padding: "10px 24px",
           borderRadius: 100, background: "#fff", color: navy, border: "none", cursor: "pointer",
         }}>Request a Demo</button>
@@ -667,6 +693,8 @@ export default function PricingCalculator() {
       }}>
         <span style={{ fontFamily: f, fontSize: 13, color: "rgba(255,255,255,0.25)" }}>© 2026 MMNT Inc. All rights reserved.</span>
       </footer>
+
+      <CalendlyModal isOpen={calendlyOpen} onClose={closeCalendly} mobile={mobile} />
     </div>
   );
 }
