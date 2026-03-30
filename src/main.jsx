@@ -7,6 +7,7 @@ import CaseStudy from './CaseStudy.jsx'
 import AIConsultation from './Consultation.jsx'
 import Insights from './Insights.jsx'
 import About from './About.jsx'
+import BookingPage from './Booking.jsx'
 
 function App() {
   const [page, setPage] = useState(() => {
@@ -42,6 +43,10 @@ function App() {
 
   if (page === '/about') {
     return <About />
+  }
+
+  if (page === '/book') {
+    return <BookingPage />
   }
   
   return <MiltonHomepage />
