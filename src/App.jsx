@@ -507,16 +507,6 @@ export default function MiltonHomepage() {
               </div>
             </div>
 
-            <div style={{ background: "rgba(8,69,94,0.1)", border: "1px solid rgba(13,154,165,0.12)", borderRadius: mobile ? 12 : 16, overflow: "hidden" }}>
-              <VisualPlaceholder height={200} mobileHeight={160} style={{ borderRadius: 0 }} />
-              <div style={{ padding: mobile ? 20 : 28 }}>
-                <h4 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: mobile ? 16 : 18, fontWeight: 600, color: "#fff", margin: "0 0 6px 0" }}>Athletica Health & Fitness</h4>
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: "rgba(255,255,255,0.4)", fontWeight: 500 }}>Coming Soon</span>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.35)", margin: "14px 0 18px 0" }}>Full case study in development. Get notified when it drops.</p>
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, fontWeight: 600, color: "rgba(154,241,152,0.5)", cursor: "pointer" }}>Notify Me →</span>
-              </div>
-            </div>
-
             <div style={{
               background: "rgba(8,69,94,0.06)", border: "1px dashed rgba(13,154,165,0.2)",
               borderRadius: mobile ? 12 : 16, display: "flex", flexDirection: "column",
