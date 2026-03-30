@@ -1,4 +1,18 @@
-import { useBreakpoint } from "./App.jsx";
+import { useState, useEffect } from "react";
+
+function useBreakpoint() {
+  const [state, setState] = useState({ mobile: false, tablet: false, desktop: true });
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth;
+      setState({ mobile: w < 768, tablet: w >= 768 && w < 1024, desktop: w >= 1024 });
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+  return state;
+}
 
 const f = "'DM Sans', sans-serif";
 const serif = "'Instrument Serif', serif";
