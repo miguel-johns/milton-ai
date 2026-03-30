@@ -139,7 +139,7 @@ export default function AIConsultation() {
             background: `linear-gradient(135deg, ${teal}, #126b80)`,
             color: "#fff", letterSpacing: 0.3,
             boxShadow: `0 8px 32px ${teal}30, 0 0 60px ${teal}10`,
-          }}>Book Your Free Consultation</button>
+          }} onClick={() => window.location.hash = '/book-snapshot'}>Book Your Free Consultation</button>
         </section>
 
         {/* ═══════ THE NOISE ═══════ */}
@@ -506,7 +506,7 @@ export default function AIConsultation() {
             color: "#fff", letterSpacing: 0.3,
             boxShadow: `0 8px 32px ${teal}30, 0 0 60px ${teal}10`,
             marginBottom: 20,
-          }}>Book Your Free Consultation →</button>
+          }} onClick={() => window.location.hash = '/book-snapshot'}>Book Your Free Consultation →</button>
 
           <p style={{
             fontFamily: f, fontSize: 12, color: "rgba(255,255,255,0.2)",
