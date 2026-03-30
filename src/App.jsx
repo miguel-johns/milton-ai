@@ -62,34 +62,95 @@ function SectionDivider() {
 function ComingSoonBlur({ mobile }) {
   const f = "'DM Sans', sans-serif";
   const teal = "#0d9aa5";
+  
+  // Mobile: 1:1 square with simple blurred content
+  if (mobile) {
+    return (
+      <div style={{
+        position: "relative",
+        aspectRatio: "1/1",
+        borderRadius: 12,
+        overflow: "hidden",
+        background: "rgba(8,69,94,0.3)",
+        border: "1px solid rgba(13,154,165,0.2)",
+      }}>
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          padding: 20,
+          filter: "blur(6px)",
+          opacity: 0.4,
+          pointerEvents: "none",
+          display: "flex",
+          flexDirection: "column",
+          gap: 12,
+        }}>
+          <div style={{ width: "50%", height: 16, background: "rgba(255,255,255,0.3)", borderRadius: 4 }} />
+          <div style={{ width: "80%", height: 10, background: "rgba(255,255,255,0.15)", borderRadius: 4 }} />
+          <div style={{ width: "65%", height: 10, background: "rgba(255,255,255,0.15)", borderRadius: 4 }} />
+          <div style={{ flex: 1, background: "rgba(13,154,165,0.15)", borderRadius: 12, marginTop: 8 }} />
+        </div>
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "radial-gradient(ellipse at center, rgba(6,28,39,0.3) 0%, rgba(6,28,39,0.7) 100%)",
+        }}>
+          <div style={{
+            background: "rgba(13,154,165,0.15)",
+            border: `1px solid ${teal}40`,
+            borderRadius: 100,
+            padding: "10px 24px",
+          }}>
+            <span style={{
+              fontFamily: f,
+              fontSize: 11,
+              fontWeight: 600,
+              letterSpacing: 2,
+              textTransform: "uppercase",
+              color: teal,
+            }}>Coming Soon</span>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Desktop: 3-column grid with blurred feature cards
   return (
     <div style={{
       position: "relative",
-      aspectRatio: "1/1",
-      maxWidth: mobile ? "100%" : 500,
-      borderRadius: mobile ? 12 : 20,
+      borderRadius: 20,
       overflow: "hidden",
       background: "rgba(8,69,94,0.3)",
       border: "1px solid rgba(13,154,165,0.2)",
     }}>
-      {/* Blurred hint content */}
       <div style={{
-        position: "absolute",
-        inset: 0,
-        padding: mobile ? 20 : 32,
-        filter: "blur(6px)",
-        opacity: 0.4,
+        padding: 40,
+        filter: "blur(8px)",
+        opacity: 0.5,
         pointerEvents: "none",
-        display: "flex",
-        flexDirection: "column",
-        gap: 12,
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr 1fr",
+        gap: 24,
       }}>
-        <div style={{ width: "50%", height: 16, background: "rgba(255,255,255,0.3)", borderRadius: 4 }} />
-        <div style={{ width: "80%", height: 10, background: "rgba(255,255,255,0.15)", borderRadius: 4 }} />
-        <div style={{ width: "65%", height: 10, background: "rgba(255,255,255,0.15)", borderRadius: 4 }} />
-        <div style={{ flex: 1, background: "rgba(13,154,165,0.15)", borderRadius: 12, marginTop: 8 }} />
+        {[1, 2, 3].map((i) => (
+          <div key={i} style={{
+            background: "rgba(13,154,165,0.15)",
+            borderRadius: 12,
+            padding: 28,
+            minHeight: 240,
+          }}>
+            <div style={{ width: "60%", height: 14, background: "rgba(255,255,255,0.3)", borderRadius: 4, marginBottom: 12 }} />
+            <div style={{ width: "100%", height: 10, background: "rgba(255,255,255,0.15)", borderRadius: 4, marginBottom: 8 }} />
+            <div style={{ width: "90%", height: 10, background: "rgba(255,255,255,0.15)", borderRadius: 4, marginBottom: 8 }} />
+            <div style={{ width: "75%", height: 10, background: "rgba(255,255,255,0.15)", borderRadius: 4, marginBottom: 20 }} />
+            <div style={{ width: "100%", height: 120, background: "rgba(13,154,165,0.2)", borderRadius: 8 }} />
+          </div>
+        ))}
       </div>
-      {/* Coming Soon overlay */}
       <div style={{
         position: "absolute",
         inset: 0,
@@ -97,23 +158,32 @@ function ComingSoonBlur({ mobile }) {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        background: "radial-gradient(ellipse at center, rgba(6,28,39,0.3) 0%, rgba(6,28,39,0.7) 100%)",
+        background: "radial-gradient(ellipse at center, rgba(6,28,39,0.4) 0%, rgba(6,28,39,0.8) 100%)",
       }}>
         <div style={{
           background: "rgba(13,154,165,0.15)",
           border: `1px solid ${teal}40`,
           borderRadius: 100,
-          padding: mobile ? "10px 24px" : "12px 32px",
+          padding: "12px 32px",
+          marginBottom: 16,
         }}>
           <span style={{
             fontFamily: f,
-            fontSize: mobile ? 11 : 12,
+            fontSize: 12,
             fontWeight: 600,
             letterSpacing: 2,
             textTransform: "uppercase",
             color: teal,
           }}>Coming Soon</span>
         </div>
+        <p style={{
+          fontFamily: f,
+          fontSize: 16,
+          color: "rgba(255,255,255,0.5)",
+          textAlign: "center",
+          maxWidth: 400,
+          margin: 0,
+        }}>We're building something special. Stay tuned.</p>
       </div>
     </div>
   );
