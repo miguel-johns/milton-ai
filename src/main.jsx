@@ -10,6 +10,7 @@ import About from './About.jsx'
 import BookingPage from './Booking.jsx'
 import BookingSnapshotPage from './BookingSnapshot.jsx'
 import SharedNav from './SharedNav.jsx'
+import ArticleDetail from './ArticleDetail.jsx'
 
 function App() {
   const [page, setPage] = useState(() => {
@@ -43,6 +44,9 @@ function App() {
     PageContent = <BookingPage />
   } else if (page === '/book-snapshot') {
     PageContent = <BookingSnapshotPage />
+  } else if (page.startsWith('/insights/')) {
+    const slug = page.replace('/insights/', '')
+    PageContent = <ArticleDetail slug={slug} />
   } else {
     PageContent = <MiltonHomepage />
   }

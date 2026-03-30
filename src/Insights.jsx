@@ -34,6 +34,7 @@ const articles = [
     id: 1, featured: true,
     category: "ai-fitness",
     tag: "AI IN FITNESS",
+    slug: "ai-landscape-fitness",
     title: "The AI Landscape in Fitness: What's Real, What's Hype, and What to Do About It",
     excerpt: "We walked the floor at HFA 2026 and talked to every AI vendor in the space. Here's our honest breakdown of what's actually working in gyms right now — and what's still just a good demo.",
     date: "Mar 24, 2026",
@@ -123,9 +124,15 @@ function ArticleCard({ article, featured = false, mobile, tablet }) {
   };
   const tagColor = tagColors[article.tag] || teal;
 
+  const handleClick = () => {
+    if (article.slug) {
+      window.location.hash = `/insights/${article.slug}`;
+    }
+  };
+
   if (featured) {
     return (
-      <div style={{
+      <div onClick={handleClick} style={{
         display: "grid",
         gridTemplateColumns: mobile ? "1fr" : "1fr 1fr",
         gap: mobile ? 0 : 0,
@@ -133,7 +140,7 @@ function ArticleCard({ article, featured = false, mobile, tablet }) {
         border: "1px solid rgba(13,154,165,0.2)",
         borderRadius: mobile ? 16 : 24,
         overflow: "hidden",
-        cursor: "pointer",
+        cursor: article.slug ? "pointer" : "default",
         transition: "border-color 0.3s ease",
         boxShadow: "0 12px 40px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.04)",
       }}>
@@ -187,11 +194,11 @@ function ArticleCard({ article, featured = false, mobile, tablet }) {
 
   // Standard card
   return (
-    <div style={{
+    <div onClick={handleClick} style={{
       background: "linear-gradient(145deg, rgba(13,154,165,0.05) 0%, rgba(6,28,39,0.35) 100%)",
       border: "1px solid rgba(13,154,165,0.13)",
       borderRadius: mobile ? 14 : 18,
-      overflow: "hidden", cursor: "pointer",
+      overflow: "hidden", cursor: article.slug ? "pointer" : "default",
       transition: "border-color 0.3s ease, transform 0.3s ease",
       boxShadow: "0 6px 24px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.03)",
       display: "flex", flexDirection: "column",
