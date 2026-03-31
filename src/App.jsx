@@ -226,7 +226,7 @@ export default function MiltonHomepage() {
 
           <div style={{ display: "flex", gap: 12, marginBottom: 0, flexWrap: "wrap", justifyContent: "center" }}>
             <CTA variant="primary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }} href="#/book">Book a Call</CTA>
-            <CTA variant="secondary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }} href="#/the-platform">See How It Works</CTA>
+            <CTA variant="secondary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }} href="#pricing">Get Pricing</CTA>
           </div>
 
           <ImagePlaceholder label="Hero Visual — Dashboard Preview" height={400} mobile={mobile} />
