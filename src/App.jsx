@@ -229,19 +229,18 @@ export default function MiltonHomepage() {
             <CTA variant="secondary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }} href="#/pricing">Get Pricing</CTA>
           </div>
 
-          <div style={{
-            borderRadius: mobile ? 12 : 16,
-            overflow: "hidden",
-            boxShadow: "0 20px 50px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.08)",
-            marginTop: mobile ? 32 : 48,
-            lineHeight: 0,
-          }}>
-            <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-Cu0zjAJVs2x9zOE9usESjdYMw2ML8S.png"
-              alt="Fitness director overseeing trainers on the gym floor"
-              style={{ width: "100%", height: "auto", display: "block", verticalAlign: "bottom" }}
-            />
-          </div>
+          <img
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-Cu0zjAJVs2x9zOE9usESjdYMw2ML8S.png"
+            alt="Fitness director overseeing trainers on the gym floor"
+            style={{ 
+              width: "100%", 
+              height: "auto", 
+              display: "block",
+              borderRadius: mobile ? 12 : 16,
+              marginTop: mobile ? 32 : 48,
+              boxShadow: "0 20px 50px rgba(0,0,0,0.3)",
+            }}
+          />
         </section>
 
         {/* SECTION 2 — THE REALITY */}
@@ -332,19 +331,18 @@ export default function MiltonHomepage() {
             So we built AI that does something different. It gives your fitness director the intelligence to develop every trainer on the floor — and <Mint>puts a co-pilot in every trainer&apos;s pocket</Mint> while they&apos;re doing the work.
           </Body>
 
-          <div style={{
-            borderRadius: mobile ? 12 : 16,
-            overflow: "hidden",
-            boxShadow: "0 20px 50px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.08)",
-            marginTop: mobile ? 32 : 48,
-            lineHeight: 0,
-          }}>
-            <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-3pzhSR7xCPi0gFaiyCDluZbXn8TB49.png"
-              alt="Milton team collaborating with gym owners at a desk"
-              style={{ width: "100%", height: "auto", display: "block", verticalAlign: "bottom" }}
-            />
-          </div>
+          <img
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-3pzhSR7xCPi0gFaiyCDluZbXn8TB49.png"
+            alt="Milton team collaborating with gym owners at a desk"
+            style={{ 
+              width: "100%", 
+              height: "auto", 
+              display: "block",
+              borderRadius: mobile ? 12 : 16,
+              marginTop: mobile ? 32 : 48,
+              boxShadow: "0 20px 50px rgba(0,0,0,0.3)",
+            }}
+          />
         </section>
 
         {/* SECTION 4 — THE PLATFORM */}
@@ -473,18 +471,17 @@ export default function MiltonHomepage() {
             That&apos;s why gym owners from single-location studios to 100+ location networks are paying attention. Not because of the technology. <Mint>Because we&apos;re talking about the problem they feel every single day.</Mint>
           </Body>
           
-          <div style={{
-            borderRadius: mobile ? 12 : 16,
-            overflow: "hidden",
-            boxShadow: "0 20px 50px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.08)",
-            lineHeight: 0,
-          }}>
-            <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3-rbrr5Fg8xGB9TAhiktdXUc3lfahj4U.png"
-              alt="Fitness professionals walking through gym discussing trainer development"
-              style={{ width: "100%", height: "auto", display: "block", verticalAlign: "bottom" }}
-            />
-          </div>
+          <img
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3-rbrr5Fg8xGB9TAhiktdXUc3lfahj4U.png"
+            alt="Fitness professionals walking through gym discussing trainer development"
+            style={{ 
+              width: "100%", 
+              height: "auto", 
+              display: "block",
+              borderRadius: mobile ? 12 : 16,
+              boxShadow: "0 20px 50px rgba(0,0,0,0.3)",
+            }}
+          />
         </section>
 
         {/* SECTION 6 — AI CONSULTING */}
