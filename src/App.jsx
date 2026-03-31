@@ -430,6 +430,74 @@ export default function MiltonHomepage() {
           </div>
         </section>
 
+        {/* SECTION 5 — OUR APPROACH */}
+        <section id="approach" style={{ padding: sectionPad }}>
+          <Headline>
+            Built <Accent>with</Accent> gym owners, not for them.
+          </Headline>
+          
+          <Body>
+            We didn&apos;t build Milton in a lab. We built it sitting next to fitness directors — watching them work, learning their systems, and understanding why the tools they have keep failing them.
+          </Body>
+          
+          <Body>
+            Every feature in Milton came from a real operator solving a real problem. The dashboard exists because we watched a 20-year veteran manage her entire training staff across three spreadsheets and a Mindbody account. The coach portal exists because trainers told us what they actually need on the gym floor — not what a product team assumed they&apos;d want.
+          </Body>
+          
+          <Body style={{ marginBottom: 40 }}>
+            That&apos;s why gym owners from single-location studios to 100+ location networks are paying attention. Not because of the technology. <Mint>Because we&apos;re talking about the problem they feel every single day.</Mint>
+          </Body>
+          
+          {/* Testimonial / Social Proof Placeholder */}
+          <div style={{
+            background: "rgba(255,255,255,0.02)",
+            border: "1px solid rgba(255,255,255,0.06)",
+            borderRadius: 16,
+            padding: mobile ? "32px 24px" : "40px 36px",
+            display: "flex",
+            flexDirection: "column",
+            gap: 20,
+          }}>
+            <div style={{
+              display: "flex",
+              gap: 16,
+              alignItems: "center",
+            }}>
+              <div style={{
+                width: 56,
+                height: 56,
+                borderRadius: "50%",
+                background: "linear-gradient(135deg, rgba(13,154,165,0.3), rgba(8,69,94,0.4))",
+                border: "1px solid rgba(255,255,255,0.1)",
+              }} />
+              <div>
+                <div style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: 16,
+                  fontWeight: 500,
+                  color: "#fff",
+                  marginBottom: 2,
+                }}>Operator Name</div>
+                <div style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: 14,
+                  color: "rgba(255,255,255,0.5)",
+                }}>Title, Gym Name</div>
+              </div>
+            </div>
+            <p style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: mobile ? 16 : 18,
+              lineHeight: 1.7,
+              color: "rgba(255,255,255,0.7)",
+              fontStyle: "italic",
+              margin: 0,
+            }}>
+              &ldquo;Testimonial quote placeholder — real operator feedback about working with Milton and the impact on their training team.&rdquo;
+            </p>
+          </div>
+        </section>
+
         {/* SECTION 6 — AI CONSULTING */}
         <section id="ai" style={{ padding: sectionPad }}>
           
