@@ -432,6 +432,7 @@ export default function MiltonHomepage() {
 
         {/* SECTION 5 — OUR APPROACH */}
         <section id="approach" style={{ padding: sectionPad }}>
+          <AccentLine />
           <Headline>
             Built <Accent>with</Accent> gym owners, not for them.
           </Headline>
