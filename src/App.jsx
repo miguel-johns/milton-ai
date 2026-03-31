@@ -364,8 +364,6 @@ export default function MiltonHomepage() {
               mobile={mobile}
             />
           </div>
-
-          <ImagePlaceholder label="Connected Platform — FD ↔ Coach ↔ Business" height={320} mobile={mobile} />
         </section>
 
         {/* SECTION 5 — EXPERTISE */}
