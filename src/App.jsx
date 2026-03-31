@@ -233,10 +233,13 @@ export default function MiltonHomepage() {
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-Cu0zjAJVs2x9zOE9usESjdYMw2ML8S.png"
             alt="Fitness director overseeing trainers on the gym floor"
             style={{ 
-              width: "100%", 
+              width: `calc(100% + ${px * 2}px)`,
+              marginLeft: -px,
+              marginRight: -px,
               height: "auto", 
               display: "block",
               marginTop: mobile ? 32 : 48,
+              borderRadius: mobile ? 12 : 16,
             }}
           />
         </section>
@@ -333,10 +336,13 @@ export default function MiltonHomepage() {
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-3pzhSR7xCPi0gFaiyCDluZbXn8TB49.png"
             alt="Milton team collaborating with gym owners at a desk"
             style={{ 
-              width: "100%", 
+              width: `calc(100% + ${px * 2}px)`,
+              marginLeft: -px,
+              marginRight: -px,
               height: "auto", 
               display: "block",
               marginTop: mobile ? 32 : 48,
+              borderRadius: mobile ? 12 : 16,
             }}
           />
         </section>
@@ -439,9 +445,12 @@ export default function MiltonHomepage() {
             src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3-rbrr5Fg8xGB9TAhiktdXUc3lfahj4U.png"
             alt="Fitness professionals walking through gym discussing trainer development"
             style={{ 
-              width: "100%", 
+              width: `calc(100% + ${px * 2}px)`,
+              marginLeft: -px,
+              marginRight: -px,
               height: "auto", 
               display: "block",
+              borderRadius: mobile ? 12 : 16,
             }}
           />
         </section>
