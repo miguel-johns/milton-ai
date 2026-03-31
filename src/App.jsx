@@ -234,11 +234,12 @@ export default function MiltonHomepage() {
             overflow: "hidden",
             boxShadow: "0 20px 50px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.08)",
             marginTop: mobile ? 32 : 48,
+            lineHeight: 0,
           }}>
             <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-Cu0zjAJVs2x9zOE9usESjdYMw2ML8S.png"
               alt="Fitness director overseeing trainers on the gym floor"
-              style={{ width: "100%", height: "auto", display: "block" }}
+              style={{ width: "100%", height: "auto", display: "block", verticalAlign: "bottom" }}
             />
           </div>
         </section>
@@ -336,11 +337,12 @@ export default function MiltonHomepage() {
             overflow: "hidden",
             boxShadow: "0 20px 50px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.08)",
             marginTop: mobile ? 32 : 48,
+            lineHeight: 0,
           }}>
             <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-3pzhSR7xCPi0gFaiyCDluZbXn8TB49.png"
               alt="Milton team collaborating with gym owners at a desk"
-              style={{ width: "100%", height: "auto", display: "block" }}
+              style={{ width: "100%", height: "auto", display: "block", verticalAlign: "bottom" }}
             />
           </div>
         </section>
@@ -475,11 +477,12 @@ export default function MiltonHomepage() {
             borderRadius: mobile ? 12 : 16,
             overflow: "hidden",
             boxShadow: "0 20px 50px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.08)",
+            lineHeight: 0,
           }}>
             <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3-rbrr5Fg8xGB9TAhiktdXUc3lfahj4U.png"
               alt="Fitness professionals walking through gym discussing trainer development"
-              style={{ width: "100%", height: "auto", display: "block" }}
+              style={{ width: "100%", height: "auto", display: "block", verticalAlign: "bottom" }}
             />
           </div>
         </section>
