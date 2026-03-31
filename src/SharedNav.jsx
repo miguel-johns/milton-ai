@@ -57,6 +57,7 @@ export default function SharedNav() {
   }, []);
 
   const navLinks = [
+    { label: "The Platform", href: "#/the-platform" },
     { label: "AI Readiness Snapshot", href: "#/consultation" },
     { label: "Insights", href: "#/insights" },
     { label: "About Us", href: "#/about" },

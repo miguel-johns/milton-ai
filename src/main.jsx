@@ -14,6 +14,7 @@ import SharedFooter from './SharedFooter.jsx'
 import ArticleDetail from './ArticleDetail.jsx'
 import Terms from './Terms.jsx'
 import Privacy from './Privacy.jsx'
+import ThePlatform from './ThePlatform.jsx'
 
 function App() {
   const [page, setPage] = useState(() => {
@@ -54,6 +55,8 @@ function App() {
     PageContent = <Terms />
   } else if (page === '/privacy') {
     PageContent = <Privacy />
+  } else if (page === '/the-platform') {
+    PageContent = <ThePlatform />
   } else {
     PageContent = <MiltonHomepage />
   }
