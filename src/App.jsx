@@ -554,62 +554,14 @@ export default function MiltonHomepage() {
                 Start with one location. See the difference in 90 days. No long-term contract. No massive implementation. Just a better way to develop, manage, and retain the people who drive your revenue.
               </Body>
               
-              <div style={{
-                display: "flex",
-                flexDirection: mobile ? "column" : "row",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: mobile ? 12 : 32,
-                marginBottom: 36,
-              }}>
-                <div style={{
-                  fontFamily: "'Cormorant Garamond', serif",
-                  fontSize: mobile ? 26 : 28,
-                  fontWeight: 400,
-                  color: "#fff",
-                }}>
-                  $499<span style={{ 
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: 14, 
-                    fontWeight: 400, 
-                    color: "rgba(255,255,255,0.5)" 
-                  }}>/month</span>
-                </div>
-                <span style={{ 
-                  fontFamily: "'DM Sans', sans-serif", 
-                  fontSize: 14, 
-                  color: "rgba(255,255,255,0.3)" 
-                }}>|</span>
-                <div style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 10,
-                }}>
-                  <span style={{
-                    fontFamily: "'Cormorant Garamond', serif",
-                    fontSize: mobile ? 26 : 28,
-                    fontWeight: 400,
-                    color: "#fff",
-                  }}>
-                    $4,800<span style={{ 
-                      fontFamily: "'DM Sans', sans-serif",
-                      fontSize: 14, 
-                      fontWeight: 400, 
-                      color: "rgba(255,255,255,0.5)" 
-                    }}>/year</span>
-                  </span>
-                  <span style={{ 
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: 12, 
-                    fontWeight: 500,
-                    color: "#9af198",
-                  }}>save two months</span>
-                </div>
+              <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+                <CTA variant="primary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "14px 28px" : "16px 36px" }} href="#/book">
+                  Book Your Discovery Call →
+                </CTA>
+                <CTA variant="secondary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "14px 28px" : "16px 36px" }} href="#/pricing">
+                  See Pricing
+                </CTA>
               </div>
-              
-              <CTA variant="primary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "14px 28px" : "16px 36px" }} href="#/book">
-                Book Your Discovery Call →
-              </CTA>
             </div>
           </div>
         </section>
