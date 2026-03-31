@@ -236,9 +236,7 @@ export default function MiltonHomepage() {
               width: "100%", 
               height: "auto", 
               display: "block",
-              borderRadius: mobile ? 12 : 16,
               marginTop: mobile ? 32 : 48,
-              boxShadow: "0 20px 50px rgba(0,0,0,0.3)",
             }}
           />
         </section>
@@ -338,9 +336,7 @@ export default function MiltonHomepage() {
               width: "100%", 
               height: "auto", 
               display: "block",
-              borderRadius: mobile ? 12 : 16,
               marginTop: mobile ? 32 : 48,
-              boxShadow: "0 20px 50px rgba(0,0,0,0.3)",
             }}
           />
         </section>
@@ -446,8 +442,6 @@ export default function MiltonHomepage() {
               width: "100%", 
               height: "auto", 
               display: "block",
-              borderRadius: mobile ? 12 : 16,
-              boxShadow: "0 20px 50px rgba(0,0,0,0.3)",
             }}
           />
         </section>
