@@ -234,7 +234,7 @@ export default function MiltonHomepage() {
 
         {/* SECTION 2 — THE REALITY */}
         <section id="problem" style={{ padding: sectionPad }}>
-          <SectionLabel text="01 — The Reality" />
+          
           <AccentLine />
           <Headline>You already <Accent>know</Accent> this story.</Headline>
           
@@ -300,7 +300,7 @@ export default function MiltonHomepage() {
 
         {/* SECTION 3 — THE SOLUTION */}
         <section id="solution" style={{ padding: sectionPad }}>
-          <SectionLabel text="02 — The Solution" />
+          
           <AccentLine />
           <Headline>That&apos;s why we built <Accent>Milton.</Accent></Headline>
           
@@ -325,7 +325,7 @@ export default function MiltonHomepage() {
 
         {/* SECTION 4 — THE PLATFORM */}
         <section id="platform" style={{ padding: sectionPad }}>
-          <SectionLabel text="03 — The Platform" />
+          
           <AccentLine />
           <Headline>A platform and a team built around <Accent>your trainers.</Accent></Headline>
           
@@ -370,7 +370,7 @@ export default function MiltonHomepage() {
 
         {/* SECTION 5 — EXPERTISE */}
         <section id="expertise" style={{ padding: sectionPad }}>
-          <SectionLabel text="04 — Platform + Service" />
+          
           <AccentLine />
           
           <div style={{
@@ -434,7 +434,7 @@ export default function MiltonHomepage() {
 
         {/* SECTION 6 — AI CONSULTING */}
         <section id="ai" style={{ padding: sectionPad }}>
-          <SectionLabel text="06 — Bonus" />
+          
           
           <div style={{
             background: "linear-gradient(135deg, rgba(13,154,165,0.07), rgba(8,69,94,0.1))",
