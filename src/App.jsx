@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 
 const sections = [
   { id: "hero", label: "" },
-  { id: "coach", num: "01", label: "THE HEAD COACH" },
-  { id: "director", num: "02", label: "THE FITNESS DIRECTOR" },
-  { id: "integrations", num: "03", label: "INTEGRATIONS" },
-  { id: "ops", num: "04", label: "AI-POWERED OPS" },
-  { id: "concierge", num: "05", label: "THE CONCIERGE" },
-  { id: "casestudies", num: "06", label: "CASE STUDIES" },
+  { id: "problem", num: "01", label: "THE PROBLEM" },
+  { id: "solution", num: "02", label: "THE SOLUTION" },
+  { id: "platform", num: "03", label: "THE PLATFORM" },
+  { id: "expertise", num: "04", label: "EXPERTISE" },
+  { id: "built-with", num: "05", label: "BUILT WITH YOU" },
+  { id: "ai-partner", num: "06", label: "AI PARTNER" },
   { id: "pricing", num: "07", label: "PRICING" },
 ];
 
@@ -19,28 +19,6 @@ function useBreakpoint() {
     return () => window.removeEventListener("resize", h);
   }, []);
   return { mobile: w < 640, tablet: w >= 640 && w < 1024, desktop: w >= 1024, w };
-}
-
-function VisualPlaceholder({ height = 320, mobileHeight, label = "", style = {} }) {
-  const { mobile } = useBreakpoint();
-  return (
-    <div style={{
-      height: mobile ? (mobileHeight || Math.min(height, 220)) : height,
-      borderRadius: mobile ? 12 : 16,
-      border: "1px solid rgba(13,154,165,0.25)",
-      background: "linear-gradient(135deg, rgba(13,154,165,0.08) 0%, rgba(8,69,94,0.12) 100%)",
-      display: "flex", alignItems: "center", justifyContent: "center",
-      color: "rgba(154,241,152,0.5)", fontSize: mobile ? 12 : 14,
-      fontFamily: "'DM Sans', sans-serif", letterSpacing: 2, textTransform: "uppercase",
-      position: "relative", overflow: "hidden", ...style,
-    }}>
-      <div style={{
-        position: "absolute", inset: 0,
-        backgroundImage: "radial-gradient(circle at 30% 40%, rgba(13,154,165,0.12) 0%, transparent 60%), radial-gradient(circle at 70% 80%, rgba(154,241,152,0.06) 0%, transparent 50%)",
-      }} />
-      <span style={{ position: "relative", zIndex: 1 }}>{label || "Visual Here"}</span>
-    </div>
-  );
 }
 
 function SectionLabel({ text }) {
@@ -57,171 +35,6 @@ function SectionLabel({ text }) {
 
 function SectionDivider() {
   return <div style={{ height: 1, background: "linear-gradient(90deg, rgba(13,154,165,0.4) 0%, rgba(13,154,165,0.05) 100%)", marginBottom: 28 }} />;
-}
-
-function ComingSoonBlur({ mobile }) {
-  const f = "'DM Sans', sans-serif";
-  const teal = "#0d9aa5";
-  
-  // Mobile: 1:1 square with simple blurred content
-  if (mobile) {
-    return (
-      <div style={{
-        position: "relative",
-        aspectRatio: "1/1",
-        borderRadius: 12,
-        overflow: "hidden",
-        background: "rgba(8,69,94,0.3)",
-        border: "1px solid rgba(13,154,165,0.2)",
-      }}>
-        <div style={{
-          position: "absolute",
-          inset: 0,
-          padding: 20,
-          filter: "blur(6px)",
-          opacity: 0.4,
-          pointerEvents: "none",
-          display: "flex",
-          flexDirection: "column",
-          gap: 12,
-        }}>
-          <div style={{ width: "50%", height: 16, background: "rgba(255,255,255,0.3)", borderRadius: 4 }} />
-          <div style={{ width: "80%", height: 10, background: "rgba(255,255,255,0.15)", borderRadius: 4 }} />
-          <div style={{ width: "65%", height: 10, background: "rgba(255,255,255,0.15)", borderRadius: 4 }} />
-          <div style={{ flex: 1, background: "rgba(13,154,165,0.15)", borderRadius: 12, marginTop: 8 }} />
-        </div>
-        <div style={{
-          position: "absolute",
-          inset: 0,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "radial-gradient(ellipse at center, rgba(6,28,39,0.3) 0%, rgba(6,28,39,0.7) 100%)",
-        }}>
-          <div style={{
-            background: "rgba(13,154,165,0.15)",
-            border: `1px solid ${teal}40`,
-            borderRadius: 100,
-            padding: "10px 24px",
-          }}>
-            <span style={{
-              fontFamily: f,
-              fontSize: 11,
-              fontWeight: 600,
-              letterSpacing: 2,
-              textTransform: "uppercase",
-              color: teal,
-            }}>Coming Soon</span>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Desktop: 3-column grid with blurred feature cards
-  return (
-    <div style={{
-      position: "relative",
-      borderRadius: 20,
-      overflow: "hidden",
-      background: "rgba(8,69,94,0.3)",
-      border: "1px solid rgba(13,154,165,0.2)",
-    }}>
-      <div style={{
-        padding: 40,
-        filter: "blur(8px)",
-        opacity: 0.5,
-        pointerEvents: "none",
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr 1fr",
-        gap: 24,
-      }}>
-        {[1, 2, 3].map((i) => (
-          <div key={i} style={{
-            background: "rgba(13,154,165,0.15)",
-            borderRadius: 12,
-            padding: 28,
-            minHeight: 240,
-          }}>
-            <div style={{ width: "60%", height: 14, background: "rgba(255,255,255,0.3)", borderRadius: 4, marginBottom: 12 }} />
-            <div style={{ width: "100%", height: 10, background: "rgba(255,255,255,0.15)", borderRadius: 4, marginBottom: 8 }} />
-            <div style={{ width: "90%", height: 10, background: "rgba(255,255,255,0.15)", borderRadius: 4, marginBottom: 8 }} />
-            <div style={{ width: "75%", height: 10, background: "rgba(255,255,255,0.15)", borderRadius: 4, marginBottom: 20 }} />
-            <div style={{ width: "100%", height: 120, background: "rgba(13,154,165,0.2)", borderRadius: 8 }} />
-          </div>
-        ))}
-      </div>
-      <div style={{
-        position: "absolute",
-        inset: 0,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "radial-gradient(ellipse at center, rgba(6,28,39,0.4) 0%, rgba(6,28,39,0.8) 100%)",
-      }}>
-        <div style={{
-          background: "rgba(13,154,165,0.15)",
-          border: `1px solid ${teal}40`,
-          borderRadius: 100,
-          padding: "12px 32px",
-          marginBottom: 16,
-        }}>
-          <span style={{
-            fontFamily: f,
-            fontSize: 12,
-            fontWeight: 600,
-            letterSpacing: 2,
-            textTransform: "uppercase",
-            color: teal,
-          }}>Coming Soon</span>
-        </div>
-        <p style={{
-          fontFamily: f,
-          fontSize: 16,
-          color: "rgba(255,255,255,0.5)",
-          textAlign: "center",
-          maxWidth: 400,
-          margin: 0,
-        }}>We're building something special. Stay tuned.</p>
-      </div>
-    </div>
-  );
-}
-
-function FeatureCard({ title, body, visual = true, visualHeight = 200, aspectRatio, image, imageAlt }) {
-  const { mobile } = useBreakpoint();
-  return (
-    <div style={{
-      background: "rgba(8,69,94,0.2)", border: "1px solid rgba(13,154,165,0.15)",
-      borderRadius: mobile ? 12 : 16, padding: mobile ? 20 : 28,
-      display: "flex", flexDirection: "column", gap: mobile ? 12 : 16,
-    }}>
-      {image ? (
-        <div style={{ aspectRatio: aspectRatio || "1/1", borderRadius: mobile ? 8 : 12, overflow: "hidden" }}>
-          <img src={image} alt={imageAlt || title} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }} />
-        </div>
-      ) : visual && (
-        aspectRatio ? (
-          <div style={{
-            aspectRatio,
-            background: "rgba(13,154,165,0.08)", border: "1px dashed rgba(13,154,165,0.25)",
-            borderRadius: mobile ? 8 : 12, display: "flex", alignItems: "center", justifyContent: "center",
-          }}>
-            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: "rgba(13,154,165,0.4)" }}>Visual</span>
-          </div>
-        ) : <VisualPlaceholder height={visualHeight} mobileHeight={160} />
-      )}
-      <h4 style={{
-        fontFamily: "'DM Sans', sans-serif", fontSize: mobile ? 17 : 20,
-        fontWeight: 600, color: "#fff", margin: 0,
-      }}>{title}</h4>
-      <p style={{
-        fontFamily: "'DM Sans', sans-serif", fontSize: mobile ? 14 : 15,
-        lineHeight: 1.7, color: "rgba(255,255,255,0.65)", margin: 0,
-      }}>{body}</p>
-    </div>
-  );
 }
 
 function CTA({ children, variant = "primary", style: s = {}, href, onClick }) {
@@ -243,20 +56,6 @@ function CTA({ children, variant = "primary", style: s = {}, href, onClick }) {
 function Accent({ children }) {
   return <span style={{ color: "#0d9aa5", fontStyle: "italic" }}>{children}</span>;
 }
-
-function GridRow({ children, cols = 2 }) {
-  const { mobile, tablet } = useBreakpoint();
-  const c = mobile ? 1 : tablet ? Math.min(cols, 2) : cols;
-  return (
-    <div style={{
-      display: "grid",
-      gridTemplateColumns: `repeat(${c}, 1fr)`,
-      gap: mobile ? 16 : 20,
-    }}>{children}</div>
-  );
-}
-
-
 
 function HeroVisual({ mobile }) {
   return (
@@ -281,10 +80,8 @@ function HeroVisual({ mobile }) {
   );
 }
 
-
-
 export default function MiltonHomepage() {
-  const { mobile, tablet, desktop } = useBreakpoint();
+  const { mobile, tablet } = useBreakpoint();
   const px = mobile ? 20 : tablet ? 32 : 40;
   const sectionPad = mobile ? "80px 0" : "120px 0";
 
@@ -297,18 +94,16 @@ export default function MiltonHomepage() {
     }}>{children}</h2>
   );
 
-  const Body = ({ children, italic, style = {} }) => (
+  const Body = ({ children, style = {} }) => (
     <p style={{
       fontFamily: "'DM Sans', sans-serif", fontSize: mobile ? 15 : 17,
-      lineHeight: 1.75, color: italic ? "rgba(255,255,255,0.45)" : "rgba(255,255,255,0.6)",
-      maxWidth: 680, margin: "0 0 48px 0",
-      fontStyle: italic ? "italic" : "normal", ...style,
+      lineHeight: 1.75, color: "rgba(255,255,255,0.6)",
+      maxWidth: 680, margin: "0 0 32px 0", ...style,
     }}>{children}</p>
   );
 
   return (
     <>
-      {/* ——— CONTENT ——— */}
       <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: `0 ${px}px` }}>
 
         {/* HERO */}
@@ -323,214 +118,331 @@ export default function MiltonHomepage() {
             fontWeight: 400, lineHeight: 1.1, color: "#fff",
             margin: "0 0 24px 0", maxWidth: 1000,
           }}>
-            The First AI Co-Pilot for Your Personal Training Business.
+            Great trainers are hard to find, impossible to keep, and expensive to build. <Accent>We fix that.</Accent>
           </h1>
 
           <p style={{
             fontFamily: "'DM Sans', sans-serif",
             fontSize: mobile ? 15 : "clamp(16px, 1.8vw, 20px)",
             lineHeight: 1.65, color: "rgba(255,255,255,0.6)",
-            maxWidth: 640, margin: "0 0 32px 0", padding: mobile ? "0 4px" : 0,
+            maxWidth: 720, margin: "0 0 32px 0", padding: mobile ? "0 4px" : 0,
           }}>
-            The industry loses 80% of its trainers every year. Hiring is brutal. Retention is worse. Milton gives your coaches the tools to perform — and your fitness director the visibility to lead.
+            Milton is the first platform built to help fitness directors develop, manage, and retain personal trainers — so your business grows instead of starting over every time a coach walks out the door.
           </p>
 
           <div style={{ display: "flex", gap: 12, marginBottom: mobile ? 36 : 60, flexWrap: "wrap", justifyContent: "center" }}>
-            <CTA variant="primary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }} href="#/book">Request a Demo</CTA>
-            <CTA variant="secondary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }} href="#/pricing">Get Pricing</CTA>
+            <CTA variant="primary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }} href="#/book">Book a Call</CTA>
+            <CTA variant="secondary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }} href="#/the-platform">See How It Works</CTA>
           </div>
 
           <HeroVisual mobile={mobile} tablet={tablet} />
         </section>
 
-        {/* 01 HEAD COACH */}
-        <section id="coach" style={{ padding: sectionPad }}>
-          <SectionLabel text="YOUR COACHING CO-PILOT" />
+        {/* YOU ALREADY KNOW THIS STORY */}
+        <section id="problem" style={{ padding: sectionPad }}>
+          <SectionLabel text="THE PROBLEM" />
           <SectionDivider />
-          <Headline>Every trainer performs like your <Accent>best</Accent> trainer.</Headline>
-          <Body>Your best trainer follows up before the client thinks about canceling. They prep for every session. They track progressive overload without being asked. They know when to push and when to pull back. Milton puts that mind in the pocket of every trainer on your floor.</Body>
-          <GridRow cols={2}>
-            <FeatureCard title="Session Intelligence" body="Milton briefs your trainer before every session — what you did last time, where the client is in their program, what to focus on today. No more scrambling to remember." aspectRatio="1/1" image="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Image%201-HkvFtsfO0H1rcjbsXgD8mcAQzRAr5y.png" imageAlt="Milton coach dashboard showing session briefs" />
-            <FeatureCard title="Workout Programming & Tracking" body="Build programs, log sessions, track progressive overload, and make progress visual. Clients see their gains. Trainers see what's working. Everyone stays accountable." aspectRatio="1/1" image="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Image%202-gTxldyFd8KlEvDftzBsPeRVblJfhcG.png" imageAlt="Workout calendar with custom program schedule" />
-          </GridRow>
-          <div style={{ height: mobile ? 16 : 20 }} />
-          <GridRow cols={2}>
-            <FeatureCard title="Automated Follow-Up" body="Session just ended? Milton drafts the follow-up. Client no-showed? Milton flags it and suggests the re-engagement message. The small things that separate good from great — handled." aspectRatio="1/1" image="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Image%203-Zyv1ZMbFfXEd2ReTSCxSaRgt0Hk0Sl.png" imageAlt="Milton crafting a rebooking message for Emily" />
-            <FeatureCard title="Nutrition & Challenges" body="Run nutrition challenges that generate revenue. Give your trainers the tools to offer real nutrition guidance through a companion app that makes it simple for clients." aspectRatio="1/1" image="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Image%204-HLCvFwx3vSa59mH6clAdW1P1I17T8f.png" imageAlt="Milton mobile app with nutrition logging" />
-          </GridRow>
-</section>
-
-        {/* 02 FITNESS DIRECTOR */}
-        <section id="director" style={{ padding: sectionPad }}>
-          <SectionLabel text="YOUR DIRECTOR CO-PILOT" />
-          <SectionDivider />
-          <Headline>The view you've been building in <Accent>spreadsheets</Accent> for years.</Headline>
-          <Body>Tracking attendance in one sheet. Consultations and close rates in another. Follow-ups and weekly check-ins in a third. Cross-referencing your scheduling software and doing the math in your head to figure out who's growing and who's slipping. Milton replaces all of it with one intelligent view.</Body>
-          <GridRow cols={2}>
-            <FeatureCard title="Trainer Performance at a Glance" body="Every trainer on one screen. Active clients, plus or minus from last week. Projected gross for the month. Retention rate. Follow-up rate. Consultation close rate. Updated in real time." aspectRatio="1/1" image="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Director%20Image%201-eEbwM6Ovg8Nf0ZPnFR5hN45wmD62TJ.png" imageAlt="Director dashboard with trainer roster and metrics" />
-            <FeatureCard title="The Six-Month Cliff" body="If you keep a client past six months, they typically stay two years or more. Milton tracks every client against that milestone so you can intervene before the drop-off — not after." aspectRatio="1/1" image="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Director%20Image%203-WAYQqbTvF2QsbnRBHR4uoBliMiFjZn.png" imageAlt="Client gains and losses tracking with retention cliff data" />
-          </GridRow>
-          <div style={{ height: mobile ? 16 : 20 }} />
-          <GridRow cols={2}>
-            <FeatureCard title="Gap Identification" body="Is it a coaching skills issue? A follow-up issue? A scheduling issue? Milton identifies which pillar a struggling trainer needs help with — so your next conversation is specific, not a guessing game." aspectRatio="1/1" image="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Director%20Image%204-Jxo6VtCBS28znVG099jiVAzhqijRs1.png" imageAlt="Skill diagnostic showing organizing and communication scores" />
-            <FeatureCard title="Trainer Development Paths" body="Milton builds development plans so your newer trainers see exactly how to level up, earn more, and build a career — not just a job that burns them out in 18 months. Your training philosophy, delivered consistently, at scale." aspectRatio="1/1" image="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Director%20Image%202-0f7dlr6a3WtEroRYE2ZHiGwzrFnL0C.png" imageAlt="Trainer profile with Milton's recommendations" />
-          </GridRow>
+          <Headline>You already know <Accent>this</Accent> story.</Headline>
+          
+          <Body>
+            You hire a trainer. You spend months getting them up to speed — teaching them your systems, your standards, how to actually keep clients coming back.
+          </Body>
+          
+          <Body>
+            Then one of two things happens.
+          </Body>
+          
+          <Body>
+            They leave. Maybe they burn out, maybe they go start their own gym, maybe the industry just chews them up. 80% don&apos;t make it to year five.
+          </Body>
+          
+          <Body>
+            Or they stay — but they plateau. Sessions drop off. Clients stop rebooking. And you can see it happening, but you&apos;re buried in spreadsheets trying to figure out which trainer needs what kind of help.
+          </Body>
+          
+          <Body style={{ marginBottom: 0 }}>
+            Meanwhile, your fitness director is spending 15+ hours a week cross-referencing session data, client results, and business metrics across three different tools just to answer one question: <Accent>how are my trainers actually doing?</Accent>
+          </Body>
         </section>
 
-        {/* 03 INTEGRATIONS */}
-        <section id="integrations" style={{ padding: sectionPad }}>
-          <SectionLabel text="INTEGRATIONS" />
+        {/* THAT'S WHY WE BUILT MILTON */}
+        <section id="solution" style={{ padding: sectionPad }}>
+          <SectionLabel text="THE SOLUTION" />
           <SectionDivider />
+          <Headline>That&apos;s why we built <Accent>Milton.</Accent></Headline>
+          
+          <Body>
+            Every AI tool in fitness is chasing the same two things: an AI coach for your members or an AI receptionist for your front desk.
+          </Body>
+          
+          <Body>
+            Nobody is building AI around the problem that actually drives your revenue, your retention, and your reputation — how well your trainers perform.
+          </Body>
+          
+          <Body>
+            Milton exists because we sat shoulder-to-shoulder with fitness directors and watched them work. We saw the three spreadsheets. The Mindbody cross-referencing. The hours spent manually tracking what should take minutes.
+          </Body>
+          
+          <Body style={{ marginBottom: 0 }}>
+            So we built AI that does something different. It gives your fitness director the intelligence to develop every trainer on the floor — and puts a co-pilot in every trainer&apos;s pocket while they&apos;re doing the work.
+          </Body>
+        </section>
+
+        {/* A PLATFORM AND A TEAM BUILT AROUND YOUR TRAINERS */}
+        <section id="platform" style={{ padding: sectionPad }}>
+          <SectionLabel text="THE PLATFORM" />
+          <SectionDivider />
+          <Headline>A platform and a team built around your <Accent>trainers.</Accent></Headline>
+          
           <div style={{
             display: "grid",
-            gridTemplateColumns: mobile ? "1fr" : "1fr 1fr",
-            gap: mobile ? 32 : 60, alignItems: "start",
+            gridTemplateColumns: mobile ? "1fr" : "repeat(3, 1fr)",
+            gap: mobile ? 24 : 32,
+            marginTop: mobile ? 32 : 48,
           }}>
-            <div>
-              <Headline style={{ fontSize: mobile ? 32 : tablet ? 40 : "clamp(36px, 4vw, 56px)" }}>
-                Works with the tools you <Accent>already</Accent> use.
-              </Headline>
-              <Body style={{ margin: "0 0 32px 0" }}>
-                Milton connects to your existing scheduling, billing, and management platforms — not replaces them. Your front desk doesn't learn a new system. Your trainers don't switch. Milton layers intelligence on top of what's already running your business.
-              </Body>
-              <div style={{ display: "flex", flexDirection: "column" }}>
-                {["Connects to your scheduling and billing platform", "No rip-and-replace — layer Milton on top", "Set up in days, not months", "Your data stays yours"].map((item, i) => (
-                  <div key={i} style={{
-                    padding: "14px 0", borderTop: "1px solid rgba(13,154,165,0.15)",
-                    display: "flex", alignItems: "center", gap: 12,
-                  }}>
-                    <span style={{ color: "#0d9aa5", fontSize: 18, flexShrink: 0 }}>✓</span>
-                    <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: mobile ? 14 : 15, fontWeight: 500, color: "rgba(255,255,255,0.8)" }}>{item}</span>
-                  </div>
-                ))}
+            {/* For your fitness director */}
+            <div style={{
+              background: "rgba(8,69,94,0.2)",
+              border: "1px solid rgba(13,154,165,0.15)",
+              borderRadius: mobile ? 12 : 16,
+              padding: mobile ? 24 : 32,
+            }}>
+              <div style={{
+                width: 48, height: 48, borderRadius: 12,
+                background: "rgba(13,154,165,0.15)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                marginBottom: 20,
+              }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0d9aa5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="3" y1="9" x2="21" y2="9"/>
+                  <line x1="9" y1="21" x2="9" y2="9"/>
+                </svg>
               </div>
+              <h3 style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: mobile ? 18 : 20,
+                fontWeight: 600, color: "#fff",
+                margin: "0 0 12px 0",
+              }}>For your fitness director</h3>
+              <p style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: mobile ? 14 : 15,
+                lineHeight: 1.7, color: "rgba(255,255,255,0.6)",
+                margin: 0,
+              }}>
+                One dashboard that replaces the spreadsheets, the cross-referencing, and the guesswork. See which trainers are thriving, which are stuck, and exactly what to do about it — powered by real session data, client outcomes, and business metrics married together.
+              </p>
             </div>
-            <div style={{ borderRadius: mobile ? 12 : 16, overflow: "hidden" }}>
-              <img 
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Images-SNwTil1Y2uwTR8RFBmu5IXqFYsdBxo.png" 
-                alt="Milton integrates with Mindbody, Gymmaster, Pike13, Trainerize, and other fitness platforms"
-                style={{ width: "100%", height: "auto", display: "block" }}
-              />
+
+            {/* For your coaches */}
+            <div style={{
+              background: "rgba(8,69,94,0.2)",
+              border: "1px solid rgba(13,154,165,0.15)",
+              borderRadius: mobile ? 12 : 16,
+              padding: mobile ? 24 : 32,
+            }}>
+              <div style={{
+                width: 48, height: 48, borderRadius: 12,
+                background: "rgba(13,154,165,0.15)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                marginBottom: 20,
+              }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0d9aa5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
+              <h3 style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: mobile ? 18 : 20,
+                fontWeight: 600, color: "#fff",
+                margin: "0 0 12px 0",
+              }}>For your coaches</h3>
+              <p style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: mobile ? 14 : 15,
+                lineHeight: 1.7, color: "rgba(255,255,255,0.6)",
+                margin: 0,
+              }}>
+                An AI co-pilot on the gym floor. Smart session tracking, progressive programming, client insights — all in one screen. Your trainers perform better because they have better information, not more software.
+              </p>
+            </div>
+
+            {/* For your business */}
+            <div style={{
+              background: "rgba(8,69,94,0.2)",
+              border: "1px solid rgba(13,154,165,0.15)",
+              borderRadius: mobile ? 12 : 16,
+              padding: mobile ? 24 : 32,
+            }}>
+              <div style={{
+                width: 48, height: 48, borderRadius: 12,
+                background: "rgba(13,154,165,0.15)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                marginBottom: 20,
+              }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0d9aa5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="12" y1="20" x2="12" y2="10"/>
+                  <line x1="18" y1="20" x2="18" y2="4"/>
+                  <line x1="6" y1="20" x2="6" y2="16"/>
+                </svg>
+              </div>
+              <h3 style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: mobile ? 18 : 20,
+                fontWeight: 600, color: "#fff",
+                margin: "0 0 12px 0",
+              }}>For your business</h3>
+              <p style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: mobile ? 14 : 15,
+                lineHeight: 1.7, color: "rgba(255,255,255,0.6)",
+                margin: 0,
+              }}>
+                The connective tissue between trainer performance and business results. When your trainers improve, attendance goes up, follow-through increases, clients stay longer, and results compound. Milton makes that visible and actionable.
+              </p>
             </div>
           </div>
         </section>
 
-        {/* 04 OPS COORDINATOR */}
-        <section id="ops" style={{ padding: sectionPad }}>
-          <SectionLabel text="AI-POWERED OPS" />
+        {/* TECHNOLOGY GETS YOU THE DATA. EXPERTISE GETS YOU THE RESULTS. */}
+        <section id="expertise" style={{ padding: sectionPad }}>
+          <SectionLabel text="EXPERTISE" />
           <SectionDivider />
-          <Headline>Don't just connect to your ops stack. Let an agent <Accent>run</Accent> it.</Headline>
-          <Body>For teams ready to go further, Milton's Operations Coordinator takes the busywork off your plate entirely. Scheduling, rebooking, payment follow-ups, waitlist management — handled by an AI agent that works inside your existing systems.</Body>
-<Body italic style={{ margin: "-24px 0 48px 0" }}>You don't have to use it. But when your front desk is overwhelmed and your fitness director is spending half their day on admin — it's there.</Body>
-          <ComingSoonBlur mobile={mobile} />
+          <Headline>Technology gets you the data. Expertise gets you the <Accent>results.</Accent></Headline>
+          
+          <Body>
+            Most platforms stop at the dashboard. Milton doesn&apos;t.
+          </Body>
+          
+          <Body>
+            Our team includes veteran coaches and fitness directors who&apos;ve spent decades on the gym floor — building trainers, growing programs, and solving the exact problems you&apos;re dealing with right now. Led by Chief Coach Officer Johnny Olsen, this isn&apos;t a support team reading from a script. It&apos;s a coaching operation that lives inside your business.
+          </Body>
+          
+          <Body>
+            Live workshops for your trainers. Performance frameworks your fitness director can actually use. Playbooks built on what works — not what sounds good in a demo.
+          </Body>
+          
+          <Body style={{ 
+            marginBottom: 0, 
+            fontStyle: "italic", 
+            color: "rgba(255,255,255,0.5)",
+            borderLeft: "3px solid #0d9aa5",
+            paddingLeft: 20,
+          }}>
+            The platform shows you where the gaps are. Our team helps you close them.
+          </Body>
         </section>
 
-        {/* 05 CONCIERGE */}
-        <section id="concierge" style={{ padding: sectionPad }}>
-          <SectionLabel text="MEMBER EXPERIENCE" />
+        {/* BUILT WITH GYM OWNERS, NOT FOR THEM */}
+        <section id="built-with" style={{ padding: sectionPad }}>
+          <SectionLabel text="OUR APPROACH" />
           <SectionDivider />
-          <Headline>A personal experience your members <Accent>never</Accent> outgrow.</Headline>
-          <Body>Milton's Concierge gives your members a companion app that keeps them connected between sessions. Nutrition logging, workout history, progress photos, goal tracking, direct messaging with their trainer — all in one place.</Body>
-<Body italic style={{ margin: "-24px 0 48px 0" }}>You don't have to turn it on. But when you're ready to offer more without hiring more, this is how.</Body>
-          <ComingSoonBlur mobile={mobile} />
+          <Headline>Built <Accent>with</Accent> gym owners, not for them.</Headline>
+          
+          <Body>
+            We didn&apos;t build Milton in a lab. We built it sitting next to fitness directors — watching them work, learning their systems, and understanding why the tools they have keep failing them.
+          </Body>
+          
+          <Body>
+            Every feature in Milton came from a real operator solving a real problem. The dashboard exists because we watched a 20-year veteran manage her entire training staff across three spreadsheets and a Mindbody account. The coach portal exists because trainers told us what they actually need on the gym floor — not what a product team assumed they&apos;d want.
+          </Body>
+          
+          <Body style={{ marginBottom: 0 }}>
+            That&apos;s why gym owners from single-location studios to 100+ location networks are paying attention. Not because of the technology. Because we&apos;re talking about the problem they feel every single day.
+          </Body>
         </section>
 
-        {/* 06 CASE STUDIES */}
-        <section id="casestudies" style={{ padding: sectionPad }}>
-          <SectionLabel text="REAL RESULTS" />
+        {/* AND YES, WE'LL HELP YOU FIGURE OUT THE REST OF AI TOO */}
+        <section id="ai-partner" style={{ padding: sectionPad }}>
+          <SectionLabel text="AI PARTNER" />
           <SectionDivider />
-          <Headline>Built <Accent>with</Accent> trainers, not for them.</Headline>
-          <Body>Milton wasn't designed by engineers guessing from the outside. It was built shoulder-to-shoulder with real gym owners, fitness directors, and personal trainers who've spent decades figuring out what actually works.</Body>
-
-          <GridRow cols={3}>
-            <div style={{ background: "rgba(8,69,94,0.15)", border: "1px solid rgba(13,154,165,0.2)", borderRadius: mobile ? 12 : 16, overflow: "hidden" }}>
-              <div style={{ height: mobile ? 160 : 200, overflow: "hidden" }}>
-                <img 
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Untitled%20design%20%2835%29-RRDktgFJFs3AzS1PJRRlyKXvH42KxF.png" 
-                  alt="Optimal Performance gym exterior"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                />
-              </div>
-              <div style={{ padding: mobile ? 20 : 28 }}>
-                <h4 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: mobile ? 16 : 18, fontWeight: 600, color: "#fff", margin: "0 0 6px 0" }}>Optimal Performance</h4>
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: "#0d9aa5", fontWeight: 500 }}>Wichita, KS</span>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.55)", margin: "14px 0 18px 0" }}>
-                  Nearly two decades of personal training. A team ranging from brand new to veteran. They needed a system that develops younger coaches faster and replaces the spreadsheets consuming their week.
-                </p>
-                <a href="#/case-study/optimal-performance" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, fontWeight: 600, color: "#9af198", cursor: "pointer", textDecoration: "none" }}>Read the Full Case Study →</a>
-              </div>
-            </div>
-
-            <div style={{
-              background: "rgba(8,69,94,0.06)", border: "1px dashed rgba(13,154,165,0.2)",
-              borderRadius: mobile ? 12 : 16, display: "flex", flexDirection: "column",
-              alignItems: "center", justifyContent: "center",
-              padding: mobile ? 28 : 40, textAlign: "center", minHeight: mobile ? 260 : 380,
-            }}>
-              <div style={{
-                width: 52, height: 52, borderRadius: "50%",
-                border: "1px dashed rgba(13,154,165,0.3)",
-                display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16,
-              }}>
-                <span style={{ fontSize: 24, color: "rgba(13,154,165,0.5)" }}>+</span>
-              </div>
-              <h4 style={{ fontFamily: "'DM Sans', sans-serif", fontSize: mobile ? 16 : 18, fontWeight: 600, color: "rgba(255,255,255,0.6)", margin: "0 0 8px 0" }}>Your Gym Here</h4>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,0.3)", margin: "0 0 16px 0" }}>
-                We're looking for forward-thinking personal training businesses to partner with.
-              </p>
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, fontWeight: 600, color: "rgba(154,241,152,0.5)", cursor: "pointer" }}>Apply to Be a Partner →</span>
-            </div>
-          </GridRow>
+          <Headline>And yes, we&apos;ll help you figure out the rest of <Accent>AI</Accent> too.</Headline>
+          
+          <Body style={{ marginBottom: 0 }}>
+            Most gym owners know they need to get up to speed on AI. They just don&apos;t know where to start. As a Milton partner, we&apos;ll show you how to spin up your own scheduling, billing, and member experience tools — whether you use our platform for those or not. We&apos;re not trying to lock you into a suite. We&apos;re trying to make you dangerous.
+          </Body>
         </section>
 
-        {/* 07 PRICING */}
+        {/* PRICING / FINAL CTA */}
         <section id="pricing" style={{ padding: sectionPad }}>
           <div style={{
             background: "linear-gradient(135deg, rgba(13,154,165,0.12) 0%, rgba(8,69,94,0.2) 100%)",
             border: "1px solid rgba(13,154,165,0.2)",
-            borderRadius: mobile ? 16 : 24, padding: mobile ? "44px 20px" : "80px 60px",
+            borderRadius: mobile ? 16 : 24, 
+            padding: mobile ? "44px 20px" : "80px 60px",
             textAlign: "center",
           }}>
-            <SectionLabel text="PRICING" />
+            <SectionLabel text="GET STARTED" />
             <h2 style={{
               fontFamily: "'Cormorant Garamond', serif",
               fontSize: mobile ? 28 : "clamp(36px, 4.5vw, 56px)",
-              fontWeight: 400, lineHeight: 1.15, color: "#fff", margin: "20px 0 24px 0",
-            }}>See exactly what Milton is <Accent>worth</Accent> to your business.</h2>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: mobile ? 14 : 17, lineHeight: 1.75, color: "rgba(255,255,255,0.6)", maxWidth: 600, margin: "0 auto 12px auto" }}>
-              Every personal training business is different. How many trainers you have, what you charge, how your packages work — it all changes the math.
+              fontWeight: 400, lineHeight: 1.15, color: "#fff", 
+              margin: "20px 0 24px 0",
+            }}>
+              Your trainers are your business. Let&apos;s make them <Accent>better.</Accent>
+            </h2>
+            
+            <p style={{ 
+              fontFamily: "'DM Sans', sans-serif", 
+              fontSize: mobile ? 14 : 17, 
+              lineHeight: 1.75, 
+              color: "rgba(255,255,255,0.6)", 
+              maxWidth: 600, 
+              margin: "0 auto 28px auto" 
+            }}>
+              Start with one location. See the difference in 90 days. No long-term contract. No massive implementation. Just a better way to develop, manage, and retain the people who drive your revenue.
             </p>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: mobile ? 14 : 17, lineHeight: 1.75, color: "rgba(255,255,255,0.6)", maxWidth: 600, margin: "0 auto 28px auto" }}>
-              Our pricing calculator shows you time saved, revenue recovered, trainer retention impact, and your projected ROI — specific to your business.
-            </p>
-            <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: mobile ? 18 : 22, fontStyle: "italic", color: "rgba(255,255,255,0.5)", margin: "0 0 32px 0" }}>
-              Enter your numbers. See the dream outcome.
-            </p>
-            <CTA variant="primary" style={{ fontSize: mobile ? 14 : 16, padding: mobile ? "14px 28px" : "16px 40px" }}>Get My Custom Pricing →</CTA>
+            
+            <div style={{
+              display: "flex",
+              flexDirection: mobile ? "column" : "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: mobile ? 8 : 24,
+              marginBottom: 32,
+            }}>
+              <div style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: mobile ? 24 : 32,
+                fontWeight: 600,
+                color: "#fff",
+              }}>
+                $499<span style={{ fontSize: mobile ? 14 : 16, fontWeight: 400, color: "rgba(255,255,255,0.5)" }}>/month</span>
+              </div>
+              <span style={{ 
+                fontFamily: "'DM Sans', sans-serif", 
+                fontSize: 14, 
+                color: "rgba(255,255,255,0.4)" 
+              }}>or</span>
+              <div style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: mobile ? 24 : 32,
+                fontWeight: 600,
+                color: "#fff",
+              }}>
+                $4,800<span style={{ fontSize: mobile ? 14 : 16, fontWeight: 400, color: "rgba(255,255,255,0.5)" }}>/year</span>
+                <span style={{ 
+                  fontSize: 12, 
+                  fontWeight: 500, 
+                  color: "#9af198", 
+                  marginLeft: 8,
+                  background: "rgba(154,241,152,0.1)",
+                  padding: "4px 10px",
+                  borderRadius: 100,
+                }}>Save 2 months</span>
+              </div>
+            </div>
+            
+            <CTA variant="primary" style={{ fontSize: mobile ? 14 : 16, padding: mobile ? "14px 28px" : "16px 40px" }} href="#/book">
+              Book Your Discovery Call
+            </CTA>
           </div>
         </section>
 
-        {/* 08 CLOSER */}
-        <section style={{ padding: mobile ? "60px 0 80px 0" : "120px 0 160px 0", textAlign: "center" }}>
-          <h2 style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: mobile ? 28 : "clamp(36px, 5vw, 64px)",
-            fontWeight: 400, lineHeight: 1.15, color: "#fff", margin: "0 0 20px 0",
-          }}>
-            From private studios to national franchises — Milton scales with you.
-          </h2>
-          <p style={{
-            fontFamily: "'DM Sans', sans-serif", fontSize: mobile ? 15 : 18,
-            lineHeight: 1.7, color: "rgba(255,255,255,0.55)",
-            maxWidth: 620, margin: "0 auto 36px auto",
-          }}>
-            See how Milton's AI co-pilots help your trainers perform, your fitness director lead, and your business grow.
-          </p>
-          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <CTA variant="primary" style={{ fontSize: mobile ? 14 : 16, padding: mobile ? "14px 28px" : "16px 40px" }} href="#/book">Request a Demo</CTA>
-            <CTA variant="secondary" style={{ fontSize: mobile ? 14 : 16, padding: mobile ? "14px 28px" : "16px 40px" }} href="#/pricing">Get Pricing</CTA>
-          </div>
-        </section>
       </div>
     </>
   );
