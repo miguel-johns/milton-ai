@@ -448,54 +448,7 @@ export default function MiltonHomepage() {
             That&apos;s why gym owners from single-location studios to 100+ location networks are paying attention. Not because of the technology. <Mint>Because we&apos;re talking about the problem they feel every single day.</Mint>
           </Body>
           
-          {/* Testimonial / Social Proof Placeholder */}
-          <div style={{
-            background: "rgba(255,255,255,0.02)",
-            border: "1px solid rgba(255,255,255,0.06)",
-            borderRadius: 16,
-            padding: mobile ? "32px 24px" : "40px 36px",
-            display: "flex",
-            flexDirection: "column",
-            gap: 20,
-          }}>
-            <div style={{
-              display: "flex",
-              gap: 16,
-              alignItems: "center",
-            }}>
-              <div style={{
-                width: 56,
-                height: 56,
-                borderRadius: "50%",
-                background: "linear-gradient(135deg, rgba(13,154,165,0.3), rgba(8,69,94,0.4))",
-                border: "1px solid rgba(255,255,255,0.1)",
-              }} />
-              <div>
-                <div style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: 16,
-                  fontWeight: 500,
-                  color: "#fff",
-                  marginBottom: 2,
-                }}>Operator Name</div>
-                <div style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: 14,
-                  color: "rgba(255,255,255,0.5)",
-                }}>Title, Gym Name</div>
-              </div>
-            </div>
-            <p style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: mobile ? 16 : 18,
-              lineHeight: 1.7,
-              color: "rgba(255,255,255,0.7)",
-              fontStyle: "italic",
-              margin: 0,
-            }}>
-              &ldquo;Testimonial quote placeholder — real operator feedback about working with Milton and the impact on their training team.&rdquo;
-            </p>
-          </div>
+          <ImagePlaceholder label="Operator Testimonial / Social Proof" height={280} mobile={mobile} />
         </section>
 
         {/* SECTION 6 — AI CONSULTING */}
