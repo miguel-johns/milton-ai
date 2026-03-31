@@ -236,7 +236,7 @@ export default function MiltonHomepage() {
             marginTop: mobile ? 32 : 48,
           }}>
             <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-Cu0zjAJVs2x9zOE9usESjdYMw2ML8S.png"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_8260-ZXksj4knhcDaRItpyEpzJ9MbO2vYea.png"
               alt="Fitness director overseeing trainers on the gym floor"
               style={{ width: "100%", height: "auto", display: "block" }}
             />
@@ -338,7 +338,7 @@ export default function MiltonHomepage() {
             marginTop: mobile ? 32 : 48,
           }}>
             <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-3pzhSR7xCPi0gFaiyCDluZbXn8TB49.png"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_8261-l0nmWrWcO3sFAVeKP5LwwjLotqMCHh.png"
               alt="Milton team collaborating with gym owners at a desk"
               style={{ width: "100%", height: "auto", display: "block" }}
             />
@@ -477,7 +477,7 @@ export default function MiltonHomepage() {
             boxShadow: "0 20px 50px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.08)",
           }}>
             <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3-rbrr5Fg8xGB9TAhiktdXUc3lfahj4U.png"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_8262-REWDKxl5JjX28bTxgQ61SfpI97qims.png"
               alt="Fitness professionals walking through gym discussing trainer development"
               style={{ width: "100%", height: "auto", display: "block" }}
             />
