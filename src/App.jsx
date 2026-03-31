@@ -142,50 +142,91 @@ export default function MiltonHomepage() {
         <section id="problem" style={{ padding: sectionPad }}>
           <SectionLabel text="THE PROBLEM" />
           <SectionDivider />
-          <Headline>You already know <Accent>this</Accent> story.</Headline>
-          
-          <Body>
-            You hire a trainer. You spend months getting them up to speed — teaching them your systems, your standards, how to actually keep clients coming back.
-          </Body>
-          
-          <Body>
-            Then one of two things happens.
-          </Body>
-          
-          <Body>
-            They leave. Maybe they burn out, maybe they go start their own gym, maybe the industry just chews them up. 80% don&apos;t make it to year five.
-          </Body>
-          
-          <Body>
-            Or they stay — but they plateau. Sessions drop off. Clients stop rebooking. And you can see it happening, but you&apos;re buried in spreadsheets trying to figure out which trainer needs what kind of help.
-          </Body>
-          
-          <Body style={{ marginBottom: 0 }}>
-            Meanwhile, your fitness director is spending 15+ hours a week cross-referencing session data, client results, and business metrics across three different tools just to answer one question: <Accent>how are my trainers actually doing?</Accent>
-          </Body>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: mobile ? "1fr" : "1fr 1fr",
+            gap: mobile ? 32 : 60,
+            alignItems: "center",
+          }}>
+            <div>
+              <Headline>You already know <Accent>this</Accent> story.</Headline>
+              
+              <Body>
+                You hire a trainer. You spend months getting them up to speed — teaching them your systems, your standards, how to actually keep clients coming back.
+              </Body>
+              
+              <Body>
+                Then one of two things happens.
+              </Body>
+              
+              <Body>
+                They leave. Maybe they burn out, maybe they go start their own gym, maybe the industry just chews them up. 80% don&apos;t make it to year five.
+              </Body>
+              
+              <Body>
+                Or they stay — but they plateau. Sessions drop off. Clients stop rebooking. And you can see it happening, but you&apos;re buried in spreadsheets trying to figure out which trainer needs what kind of help.
+              </Body>
+              
+              <Body style={{ marginBottom: 0 }}>
+                Meanwhile, your fitness director is spending 15+ hours a week cross-referencing session data, client results, and business metrics across three different tools just to answer one question: <Accent>how are my trainers actually doing?</Accent>
+              </Body>
+            </div>
+            <div style={{
+              borderRadius: mobile ? 12 : 16,
+              overflow: "hidden",
+              boxShadow: "0 20px 50px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.08)",
+              order: mobile ? -1 : 0,
+            }}>
+              <img
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Director%20Image%203-WAYQqbTvF2QsbnRBHR4uoBliMiFjZn.png"
+                alt="Client gains and losses tracking showing the retention challenge"
+                style={{ width: "100%", height: "auto", display: "block" }}
+              />
+            </div>
+          </div>
         </section>
 
         {/* THAT'S WHY WE BUILT MILTON */}
         <section id="solution" style={{ padding: sectionPad }}>
           <SectionLabel text="THE SOLUTION" />
           <SectionDivider />
-          <Headline>That&apos;s why we built <Accent>Milton.</Accent></Headline>
-          
-          <Body>
-            Every AI tool in fitness is chasing the same two things: an AI coach for your members or an AI receptionist for your front desk.
-          </Body>
-          
-          <Body>
-            Nobody is building AI around the problem that actually drives your revenue, your retention, and your reputation — how well your trainers perform.
-          </Body>
-          
-          <Body>
-            Milton exists because we sat shoulder-to-shoulder with fitness directors and watched them work. We saw the three spreadsheets. The Mindbody cross-referencing. The hours spent manually tracking what should take minutes.
-          </Body>
-          
-          <Body style={{ marginBottom: 0 }}>
-            So we built AI that does something different. It gives your fitness director the intelligence to develop every trainer on the floor — and puts a co-pilot in every trainer&apos;s pocket while they&apos;re doing the work.
-          </Body>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: mobile ? "1fr" : "1fr 1fr",
+            gap: mobile ? 32 : 60,
+            alignItems: "center",
+          }}>
+            <div style={{
+              borderRadius: mobile ? 12 : 16,
+              overflow: "hidden",
+              boxShadow: "0 20px 50px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.08)",
+            }}>
+              <img
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Director%20Image%201-eEbwM6Ovg8Nf0ZPnFR5hN45wmD62TJ.png"
+                alt="Milton dashboard showing trainer roster and performance metrics"
+                style={{ width: "100%", height: "auto", display: "block" }}
+              />
+            </div>
+            <div>
+              <Headline>That&apos;s why we built <Accent>Milton.</Accent></Headline>
+              
+              <Body>
+                Every AI tool in fitness is chasing the same two things: an AI coach for your members or an AI receptionist for your front desk.
+              </Body>
+              
+              <Body>
+                Nobody is building AI around the problem that actually drives your revenue, your retention, and your reputation — how well your trainers perform.
+              </Body>
+              
+              <Body>
+                Milton exists because we sat shoulder-to-shoulder with fitness directors and watched them work. We saw the three spreadsheets. The Mindbody cross-referencing. The hours spent manually tracking what should take minutes.
+              </Body>
+              
+              <Body style={{ marginBottom: 0 }}>
+                So we built AI that does something different. It gives your fitness director the intelligence to develop every trainer on the floor — and puts a co-pilot in every trainer&apos;s pocket while they&apos;re doing the work.
+              </Body>
+            </div>
+          </div>
         </section>
 
         {/* A PLATFORM AND A TEAM BUILT AROUND YOUR TRAINERS */}
@@ -312,59 +353,119 @@ export default function MiltonHomepage() {
         <section id="expertise" style={{ padding: sectionPad }}>
           <SectionLabel text="EXPERTISE" />
           <SectionDivider />
-          <Headline>Technology gets you the data. Expertise gets you the <Accent>results.</Accent></Headline>
-          
-          <Body>
-            Most platforms stop at the dashboard. Milton doesn&apos;t.
-          </Body>
-          
-          <Body>
-            Our team includes veteran coaches and fitness directors who&apos;ve spent decades on the gym floor — building trainers, growing programs, and solving the exact problems you&apos;re dealing with right now. Led by Chief Coach Officer Johnny Olsen, this isn&apos;t a support team reading from a script. It&apos;s a coaching operation that lives inside your business.
-          </Body>
-          
-          <Body>
-            Live workshops for your trainers. Performance frameworks your fitness director can actually use. Playbooks built on what works — not what sounds good in a demo.
-          </Body>
-          
-          <Body style={{ 
-            marginBottom: 0, 
-            fontStyle: "italic", 
-            color: "rgba(255,255,255,0.5)",
-            borderLeft: "3px solid #0d9aa5",
-            paddingLeft: 20,
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: mobile ? "1fr" : "1fr 1fr",
+            gap: mobile ? 32 : 60,
+            alignItems: "center",
           }}>
-            The platform shows you where the gaps are. Our team helps you close them.
-          </Body>
+            <div>
+              <Headline>Technology gets you the data. Expertise gets you the <Accent>results.</Accent></Headline>
+              
+              <Body>
+                Most platforms stop at the dashboard. Milton doesn&apos;t.
+              </Body>
+              
+              <Body>
+                Our team includes veteran coaches and fitness directors who&apos;ve spent decades on the gym floor — building trainers, growing programs, and solving the exact problems you&apos;re dealing with right now. Led by Chief Coach Officer Johnny Olsen, this isn&apos;t a support team reading from a script. It&apos;s a coaching operation that lives inside your business.
+              </Body>
+              
+              <Body>
+                Live workshops for your trainers. Performance frameworks your fitness director can actually use. Playbooks built on what works — not what sounds good in a demo.
+              </Body>
+              
+              <Body style={{ 
+                marginBottom: 0, 
+                fontStyle: "italic", 
+                color: "rgba(255,255,255,0.5)",
+                borderLeft: "3px solid #0d9aa5",
+                paddingLeft: 20,
+              }}>
+                The platform shows you where the gaps are. Our team helps you close them.
+              </Body>
+            </div>
+            <div style={{
+              borderRadius: mobile ? 12 : 16,
+              overflow: "hidden",
+              boxShadow: "0 20px 50px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.08)",
+            }}>
+              <img
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Johnny%20O-f85QO3MehtjKe6jNVZZzn4Som59E6J.png"
+                alt="Johnny Olsen, Chief Coach Officer leading trainer development"
+                style={{ width: "100%", height: "auto", display: "block" }}
+              />
+            </div>
+          </div>
         </section>
 
         {/* BUILT WITH GYM OWNERS, NOT FOR THEM */}
         <section id="built-with" style={{ padding: sectionPad }}>
           <SectionLabel text="OUR APPROACH" />
           <SectionDivider />
-          <Headline>Built <Accent>with</Accent> gym owners, not for them.</Headline>
-          
-          <Body>
-            We didn&apos;t build Milton in a lab. We built it sitting next to fitness directors — watching them work, learning their systems, and understanding why the tools they have keep failing them.
-          </Body>
-          
-          <Body>
-            Every feature in Milton came from a real operator solving a real problem. The dashboard exists because we watched a 20-year veteran manage her entire training staff across three spreadsheets and a Mindbody account. The coach portal exists because trainers told us what they actually need on the gym floor — not what a product team assumed they&apos;d want.
-          </Body>
-          
-          <Body style={{ marginBottom: 0 }}>
-            That&apos;s why gym owners from single-location studios to 100+ location networks are paying attention. Not because of the technology. Because we&apos;re talking about the problem they feel every single day.
-          </Body>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: mobile ? "1fr" : "1fr 1fr",
+            gap: mobile ? 32 : 60,
+            alignItems: "center",
+          }}>
+            <div style={{
+              borderRadius: mobile ? 12 : 16,
+              overflow: "hidden",
+              boxShadow: "0 20px 50px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.08)",
+            }}>
+              <img
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Images-SNwTil1Y2uwTR8RFBmu5IXqFYsdBxo.png"
+                alt="Milton team collaborating with gym owners"
+                style={{ width: "100%", height: "auto", display: "block" }}
+              />
+            </div>
+            <div>
+              <Headline>Built <Accent>with</Accent> gym owners, not for them.</Headline>
+              
+              <Body>
+                We didn&apos;t build Milton in a lab. We built it sitting next to fitness directors — watching them work, learning their systems, and understanding why the tools they have keep failing them.
+              </Body>
+              
+              <Body>
+                Every feature in Milton came from a real operator solving a real problem. The dashboard exists because we watched a 20-year veteran manage her entire training staff across three spreadsheets and a Mindbody account. The coach portal exists because trainers told us what they actually need on the gym floor — not what a product team assumed they&apos;d want.
+              </Body>
+              
+              <Body style={{ marginBottom: 0 }}>
+                That&apos;s why gym owners from single-location studios to 100+ location networks are paying attention. Not because of the technology. Because we&apos;re talking about the problem they feel every single day.
+              </Body>
+            </div>
+          </div>
         </section>
 
         {/* AND YES, WE'LL HELP YOU FIGURE OUT THE REST OF AI TOO */}
         <section id="ai-partner" style={{ padding: sectionPad }}>
           <SectionLabel text="AI PARTNER" />
           <SectionDivider />
-          <Headline>And yes, we&apos;ll help you figure out the rest of <Accent>AI</Accent> too.</Headline>
-          
-          <Body style={{ marginBottom: 0 }}>
-            Most gym owners know they need to get up to speed on AI. They just don&apos;t know where to start. As a Milton partner, we&apos;ll show you how to spin up your own scheduling, billing, and member experience tools — whether you use our platform for those or not. We&apos;re not trying to lock you into a suite. We&apos;re trying to make you dangerous.
-          </Body>
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: mobile ? "1fr" : "1fr 1fr",
+            gap: mobile ? 32 : 60,
+            alignItems: "center",
+          }}>
+            <div>
+              <Headline>And yes, we&apos;ll help you figure out the rest of <Accent>AI</Accent> too.</Headline>
+              
+              <Body style={{ marginBottom: 0 }}>
+                Most gym owners know they need to get up to speed on AI. They just don&apos;t know where to start. As a Milton partner, we&apos;ll show you how to spin up your own scheduling, billing, and member experience tools — whether you use our platform for those or not. We&apos;re not trying to lock you into a suite. We&apos;re trying to make you dangerous.
+              </Body>
+            </div>
+            <div style={{
+              borderRadius: mobile ? 12 : 16,
+              overflow: "hidden",
+              boxShadow: "0 20px 50px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.08)",
+            }}>
+              <img
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Untitled%20design%20%2835%29-RRDktgFJFs3AzS1PJRRlyKXvH42KxF.png"
+                alt="AI-powered tools and integrations visualization"
+                style={{ width: "100%", height: "auto", display: "block" }}
+              />
+            </div>
+          </div>
         </section>
 
         {/* PRICING / FINAL CTA */}
