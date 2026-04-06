@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const MOVEMENTS = [
   {
@@ -258,11 +258,11 @@ export default function ExerciseLibrary() {
   return (
     <div style={{
       background: "#060d13", minHeight: "100vh", color: "#fff",
-      fontFamily: "'DM Sans', sans-serif", position: "relative", zIndex: 1
+      fontFamily: "'DM Sans', sans-serif"
     }}>
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Cormorant+Garamond:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
 
-      {/* HERO */}
+      {/* ─── HERO ─── */}
       <div style={{
         minHeight: "100vh", display: "flex", alignItems: "center",
         justifyContent: "center", position: "relative", overflow: "hidden"
@@ -319,7 +319,7 @@ export default function ExerciseLibrary() {
         </div>
       </div>
 
-      {/* WHAT IS THIS */}
+      {/* ─── WHAT IS THIS ─── */}
       <Section id="start">
         <div style={w}>
           <p style={{
@@ -331,7 +331,7 @@ export default function ExerciseLibrary() {
             fontSize: 32, fontWeight: 700, lineHeight: 1.2, marginBottom: 20
           }}>80 ready-to-use AI prompts that generate professional exercise images featuring <span style={{ color: "#0d9aa5" }}>you and your actual trainers</span> as the models.</h2>
           <p style={{ fontSize: 15, lineHeight: 1.75, color: "rgba(255,255,255,0.55)", marginBottom: 16 }}>
-            Professional exercise photography has always been expensive and time-consuming. A single shoot with a photographer and studio can eat an entire quarter&apos;s content budget.
+            Professional exercise photography has always been expensive and time-consuming. A single shoot with a photographer and studio can eat an entire quarter's content budget.
           </p>
           <p style={{ fontSize: 15, lineHeight: 1.75, color: "rgba(255,255,255,0.55)", marginBottom: 16 }}>
             This guide gives you something different. Every prompt has been tested and refined to produce consistent, high-quality results across four visual styles that match what you see from the biggest fitness brands in the world.
@@ -342,7 +342,7 @@ export default function ExerciseLibrary() {
         </div>
       </Section>
 
-      {/* WHAT YOU NEED */}
+      {/* ─── WHAT YOU NEED ─── */}
       <Section id="setup">
         <div style={w}>
           <p style={{
@@ -352,7 +352,7 @@ export default function ExerciseLibrary() {
           <h2 style={{
             fontFamily: "'Cormorant Garamond', Georgia, serif",
             fontSize: 32, fontWeight: 700, lineHeight: 1.2, marginBottom: 36
-          }}>What You&apos;ll Need</h2>
+          }}>What You'll Need</h2>
 
           {[
             { t: "A Google Account (Free)", d: "The AI tool we use is called Nano Banana. It's built into Google's Gemini. If you have a Gmail account, you already have access. Go to gemini.google.com and sign in." },
@@ -377,7 +377,7 @@ export default function ExerciseLibrary() {
         </div>
       </Section>
 
-      {/* STEP BY STEP */}
+      {/* ─── STEP BY STEP ─── */}
       <Section id="steps">
         <div style={w}>
           <p style={{
@@ -399,7 +399,7 @@ export default function ExerciseLibrary() {
         </div>
       </Section>
 
-      {/* 4 STYLES */}
+      {/* ─── 4 STYLES ─── */}
       <Section id="styles">
         <div style={w}>
           <p style={{
@@ -416,7 +416,7 @@ export default function ExerciseLibrary() {
         </div>
       </Section>
 
-      {/* TIPS */}
+      {/* ─── TIPS ─── */}
       <Section id="tips">
         <div style={w}>
           <p style={{
@@ -444,7 +444,7 @@ export default function ExerciseLibrary() {
         </div>
       </Section>
 
-      {/* THE PROMPTS */}
+      {/* ─── THE PROMPTS ─── */}
       <Section id="prompts" style={{ borderBottom: "none" }}>
         <div style={w}>
           <p style={{
@@ -553,7 +553,7 @@ export default function ExerciseLibrary() {
         </div>
       </Section>
 
-      {/* FOOTER CTA */}
+      {/* ─── FOOTER CTA ─── */}
       <div style={{
         padding: "80px 24px", textAlign: "center",
         background: "linear-gradient(180deg, transparent, rgba(13,154,165,0.05))"
@@ -568,7 +568,7 @@ export default function ExerciseLibrary() {
         }}>
           Milton AI is building the operating system for fitness facilities. Trainer performance tracking, session logging, progressive overload programming, client retention intelligence, and more. All powered by AI.
         </p>
-        <a href="https://getmilton.com" target="_blank" rel="noopener noreferrer" style={{
+        <a href="https://getmilton.com" target="_blank" rel="noopener" style={{
           display: "inline-block", padding: "14px 36px", borderRadius: 8,
           background: "linear-gradient(135deg, #0d9aa5, #126b80)",
           color: "#fff", fontSize: 14, fontWeight: 600, textDecoration: "none",
