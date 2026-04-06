@@ -15,6 +15,7 @@ import ArticleDetail from './ArticleDetail.jsx'
 import Terms from './Terms.jsx'
 import Privacy from './Privacy.jsx'
 import ThePlatform from './ThePlatform.jsx'
+import ExerciseLibrary from './ExerciseLibrary.jsx'
 
 function App() {
   const [page, setPage] = useState(() => {
@@ -57,6 +58,8 @@ function App() {
     PageContent = <Privacy />
   } else if (page === '/the-platform') {
     PageContent = <ThePlatform />
+  } else if (page === '/exercise-library') {
+    PageContent = <ExerciseLibrary />
   } else {
     PageContent = <MiltonHomepage />
   }
