@@ -79,9 +79,18 @@ function App() {
   )
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-    <Analytics />
-  </React.StrictMode>,
-)
+console.log("[v0] Starting React app render");
+const rootEl = document.getElementById('root');
+console.log("[v0] Root element found:", rootEl);
+
+if (rootEl) {
+  ReactDOM.createRoot(rootEl).render(
+    <React.StrictMode>
+      <App />
+      <Analytics />
+    </React.StrictMode>,
+  );
+  console.log("[v0] React render called successfully");
+} else {
+  console.error("[v0] Root element not found!");
+}
