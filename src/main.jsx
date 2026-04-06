@@ -15,10 +15,13 @@ import ArticleDetail from './ArticleDetail.jsx'
 import Terms from './Terms.jsx'
 import Privacy from './Privacy.jsx'
 import ThePlatform from './ThePlatform.jsx'
+// import ExerciseLibrary from './ExerciseLibrary.jsx'
 
 function App() {
+  console.log("[v0] App component rendering");
   const [page, setPage] = useState(() => {
     const hash = window.location.hash.slice(1) || '/'
+    console.log("[v0] Initial hash:", hash);
     return hash
   })
 
@@ -57,6 +60,8 @@ function App() {
     PageContent = <Privacy />
   } else if (page === '/the-platform') {
     PageContent = <ThePlatform />
+  // } else if (page === '/exercise-library') {
+  //   PageContent = <ExerciseLibrary />
   } else {
     PageContent = <MiltonHomepage />
   }
