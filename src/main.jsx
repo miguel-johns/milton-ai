@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
 import { Analytics } from '@vercel/analytics/react'
+import './index.css'
 import MiltonHomepage from './App.jsx'
 import PricingCalculator from './Pricing.jsx'
 import CaseStudy from './CaseStudy.jsx'
