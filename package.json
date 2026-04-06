@@ -2,21 +2,24 @@
   "name": "milton-site",
   "private": true,
   "version": "1.0.0",
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.49.1",
     "@vercel/analytics": "^1.4.1",
+    "lucide-react": "^0.383.0",
+    "next": "^15.2.4",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "lucide-react": "^0.383.0"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^4.2.1",
-    "vite": "^5.2.0"
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "typescript": "^5"
   }
 }
