@@ -189,6 +189,46 @@ const ReceptionistIcon = () => (
   </svg>
 );
 
+const CRMIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+    <rect x="3" y="6" width="18" height="12" rx="2" stroke="#0d9aa5" strokeWidth="1.5"/>
+    <path d="M3 10H21" stroke="#0d9aa5" strokeWidth="1.5"/>
+    <path d="M7 14H10" stroke="#9af198" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>
+);
+
+const StrategyIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="12" r="9" stroke="#0d9aa5" strokeWidth="1.5"/>
+    <path d="M12 7V12L15 15" stroke="#9af198" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const ImplementationIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+    <path d="M9 11L12 14L22 4" stroke="#9af198" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M21 12V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V5C3 3.89543 3.89543 3 5 3H16" stroke="#0d9aa5" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>
+);
+
+const AcademyIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+    <path d="M12 3L2 9L12 15L22 9L12 3Z" stroke="#0d9aa5" strokeWidth="1.5" strokeLinejoin="round"/>
+    <path d="M2 9V15" stroke="#0d9aa5" strokeWidth="1.5" strokeLinecap="round"/>
+    <path d="M6 11V17C6 17 8 20 12 20C16 20 18 17 18 17V11" stroke="#0d9aa5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <circle cx="12" cy="9" r="2" fill="#9af198"/>
+  </svg>
+);
+
+const PromptIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+    <rect x="4" y="4" width="16" height="16" rx="2" stroke="#0d9aa5" strokeWidth="1.5"/>
+    <path d="M8 9H16" stroke="#9af198" strokeWidth="1.5" strokeLinecap="round"/>
+    <path d="M8 12H14" stroke="#0d9aa5" strokeWidth="1.5" strokeLinecap="round"/>
+    <path d="M8 15H12" stroke="#0d9aa5" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>
+);
+
 export default function MiltonHomepage() {
   const { mobile, tablet } = useBreakpoint();
   const px = mobile ? 20 : tablet ? 32 : 40;
@@ -211,13 +251,23 @@ export default function MiltonHomepage() {
     }}>{children}</p>
   );
 
-  const products = [
-    { icon: <CoachIcon />, title: "Coach Co-Pilot", description: "AI that helps trainers program smarter, track progressive overload, and level up their coaching.", href: "#/coach-copilot" },
+  // AI Agents
+  const agents = [
+    { icon: <CoachIcon />, title: "Coach Co-Pilot", description: "AI that helps trainers program smarter.", href: "#/coach-copilot" },
+    { icon: <DashboardIcon />, title: "Director Co-Pilot", description: "Real-time visibility into performance and revenue.", href: "#/director-dashboard" },
     { icon: <MemberIcon />, title: "Agentic Commerce", description: "Payments and shop via omni-channel communication.", href: "#/agentic-commerce" },
-    { icon: <DashboardIcon />, title: "Director Dashboard", description: "Shows which trainers need support, which members are at risk, and where revenue is leaking.", href: "#/director-dashboard" },
-    { icon: <WebsiteIcon />, title: "AI Websites & Booking", description: "Done-for-you sites wired to Stripe with scheduling, payments, and no middlemen." },
-    { icon: <MarketingIcon />, title: "AI Marketing Engine", description: "Professional photos, social content, email campaigns, and outreach built for you." },
-    { icon: <ReceptionistIcon />, title: "AI Receptionist", description: "Handles inbound calls, answers questions, books appointments, never takes a day off." },
+    { icon: <WebsiteIcon />, title: "AI Website & Booking", description: "Professional sites wired to Stripe.", href: "#/websites" },
+    { icon: <MarketingIcon />, title: "AI Acquisition Engine", description: "Lead gen, nurture sequences, and campaigns.", href: "#/marketing" },
+    { icon: <ReceptionistIcon />, title: "AI Receptionist", description: "Answers calls and books appointments.", href: "#/receptionist" },
+    { icon: <CRMIcon />, title: "Stripe-Powered CRM & POS", description: "Payments, memberships, and client management.", href: "#/crm" },
+  ];
+
+  // AI Services
+  const services = [
+    { icon: <StrategyIcon />, title: "AI Strategy Session", description: "Free one-on-one consultation and AI audit.", href: "#/consultation" },
+    { icon: <ImplementationIcon />, title: "Implementation Science", description: "Hands-on deployment with your team.", href: "#/implementation" },
+    { icon: <AcademyIcon />, title: "Milton Academy", description: "Certification for coaches and managers.", href: "#/academy" },
+    { icon: <PromptIcon />, title: "Prompt Library", description: "Ready-to-use prompts for fitness professionals.", href: "#/prompts" },
   ];
 
   const caseStudies = [
@@ -311,7 +361,7 @@ export default function MiltonHomepage() {
           </Body>
         </section>
 
-        {/* SECTION 3 — PRODUCTS & TOOLS */}
+        {/* SECTION 3 — AI AGENTS & SERVICES */}
         <section id="products" style={{ padding: sectionPad }}>
           <div style={{ textAlign: "center", marginBottom: mobile ? 40 : 56 }}>
             <span style={{
@@ -323,27 +373,68 @@ export default function MiltonHomepage() {
               color: "#0d9aa5",
               marginBottom: 16,
               display: "block",
-            }}>Products & Tools</span>
+            }}>AI Agents & Services</span>
             <Headline style={{ maxWidth: 700, margin: "0 auto" }}>
-              Everything your gym needs. <Accent>Nothing it doesn&apos;t.</Accent>
+              The complete AI toolkit for <Accent>personal training businesses.</Accent>
             </Headline>
           </div>
           
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: mobile ? "1fr" : tablet ? "repeat(2, 1fr)" : "repeat(3, 1fr)",
-            gap: mobile ? 16 : 20,
-          }}>
-            {products.map((product, i) => (
-              <ProductCard 
-                key={i}
-                icon={product.icon}
-                title={product.title}
-                description={product.description}
-                mobile={mobile}
-                href={product.href}
-              />
-            ))}
+          {/* AI Agents */}
+          <div style={{ marginBottom: mobile ? 48 : 64 }}>
+            <h3 style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: 11,
+              fontWeight: 600,
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
+              color: "#0d9aa5",
+              marginBottom: 20,
+            }}>AI Agents</h3>
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: mobile ? "1fr" : tablet ? "repeat(2, 1fr)" : "repeat(3, 1fr)",
+              gap: mobile ? 16 : 20,
+            }}>
+              {agents.map((agent, i) => (
+                <ProductCard 
+                  key={i}
+                  icon={agent.icon}
+                  title={agent.title}
+                  description={agent.description}
+                  mobile={mobile}
+                  href={agent.href}
+                />
+              ))}
+            </div>
+          </div>
+          
+          {/* AI Services */}
+          <div>
+            <h3 style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: 11,
+              fontWeight: 600,
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
+              color: "#9af198",
+              marginBottom: 20,
+            }}>AI Services</h3>
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: mobile ? "1fr" : tablet ? "repeat(2, 1fr)" : "repeat(4, 1fr)",
+              gap: mobile ? 16 : 20,
+            }}>
+              {services.map((service, i) => (
+                <ProductCard 
+                  key={i}
+                  icon={service.icon}
+                  title={service.title}
+                  description={service.description}
+                  mobile={mobile}
+                  href={service.href}
+                />
+              ))}
+            </div>
           </div>
         </section>
 
