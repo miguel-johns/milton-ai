@@ -236,17 +236,6 @@ export default function MiltonHomepage() {
           justifyContent: "center", alignItems: "center", textAlign: "center",
           paddingTop: mobile ? 80 : 100, paddingBottom: mobile ? 40 : 60,
         }}>
-          <div style={{ marginBottom: 20 }}>
-            <span style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: 11,
-              fontWeight: 600,
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-              color: "#0d9aa5",
-            }}>The AI operating system for personal training businesses</span>
-          </div>
-
           <h1 style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontSize: mobile ? 36 : tablet ? 48 : "clamp(40px, 5vw, 64px)",
@@ -296,21 +285,29 @@ export default function MiltonHomepage() {
           </div>
         </section>
 
-        {/* SECTION 2 — THE SYSTEM */}
+        {/* SECTION 2 — AI IS HERE */}
         <section id="system" style={{ padding: sectionPad }}>
           <AccentLine />
-          <Headline>One system. Every role. <Accent>Instant impact.</Accent></Headline>
+          <Headline>AI is here. <Accent>We make it work for you.</Accent></Headline>
           
           <Body>
-            Milton simplifies the complex world of running a personal training business by putting AI to work across your entire operation — not someday, this week.
+            AI is changing everything — but if you&apos;re running a gym, you don&apos;t have time to figure out which tools matter, how to set them up, or what&apos;s actually worth it. That&apos;s where Milton comes in.
           </Body>
           
           <Body>
-            Our co-pilots help trainers coach better. Our agents handle member engagement, scheduling, and follow-up automatically. Our director tools surface which trainers need support and which members are about to leave. And our done-for-you builds — websites, booking systems, marketing — come wired to Stripe so you own everything with no middlemen.
+            We take the most powerful AI capabilities available today and apply them to the workflows you already live in — programming sessions, following up with members, filling your schedule, managing your team, growing your revenue. The stuff that eats your day, keeps you up at night, or just never gets done.
+          </Body>
+          
+          <Body>
+            The result? Your trainers coach better without working harder. Your members feel seen and stay longer. Your front desk runs itself. Your marketing actually happens. And you stop duct-taping five different tools together just to get through the week.
+          </Body>
+          
+          <Body>
+            Milton is one system that touches every role in your business — with an expert team behind it that makes sure it actually works. Not a login you&apos;ll forget about. Not a demo that goes nowhere. Real tools, deployed in your operation, producing results this week.
           </Body>
           
           <Body style={{ marginBottom: 0 }}>
-            Every piece works together. And behind all of it, <Mint>an expert team that knows your business and deploys the right tools at the right time.</Mint>
+            <Mint>You don&apos;t need to become an AI expert. You just need the right one in your corner.</Mint>
           </Body>
         </section>
 
