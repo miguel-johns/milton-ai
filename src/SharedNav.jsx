@@ -33,7 +33,17 @@ function CTA({ children, variant = "primary", style: s = {}, href, onClick }) {
 export default function SharedNav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const { mobile, tablet } = useBreakpoint();
+
+  const agentsMenuItems = [
+    { label: "Coach Co-Pilot", description: "AI that helps trainers program smarter.", href: "#/coach-copilot" },
+    { label: "Member AI Assistant", description: "Handles engagement, follow-up, and scheduling.", href: "#/member-assistant" },
+    { label: "Director Dashboard", description: "See which trainers and members need attention.", href: "#/director-dashboard" },
+    { label: "AI Websites & Booking", description: "Done-for-you sites wired to Stripe.", href: "#/websites" },
+    { label: "AI Marketing Engine", description: "Photos, social content, and campaigns.", href: "#/marketing" },
+    { label: "AI Receptionist", description: "Handles calls and books appointments.", href: "#/receptionist" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -57,7 +67,7 @@ export default function SharedNav() {
   }, []);
 
   const navLinks = [
-    { label: "AI Agents & Services", href: "#/products" },
+    { label: "AI Agents & Services", hasDropdown: true },
     { label: "Connected Partners", href: "#/consultation" },
     { label: "Insights", href: "#/insights" },
     { label: "About Us", href: "#/about" },
@@ -103,22 +113,101 @@ export default function SharedNav() {
             gap: tablet ? 24 : 36,
           }}>
             {navLinks.map(link => (
-              <a
-                key={link.label}
-                href={link.href}
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: 14,
-                  fontWeight: 500,
-                  color: "rgba(255,255,255,0.7)",
-                  textDecoration: "none",
-                  transition: "color 0.2s ease",
-                }}
-                onMouseEnter={e => e.target.style.color = "#fff"}
-                onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.7)"}
-              >
-                {link.label}
-              </a>
+              link.hasDropdown ? (
+                <div
+                  key={link.label}
+                  style={{ position: "relative" }}
+                  onMouseEnter={() => setDropdownOpen(true)}
+                  onMouseLeave={() => setDropdownOpen(false)}
+                >
+                  <button
+                    style={{
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: 14,
+                      fontWeight: 500,
+                      color: dropdownOpen ? "#fff" : "rgba(255,255,255,0.7)",
+                      background: "none",
+                      border: "none",
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 4,
+                      padding: 0,
+                      transition: "color 0.2s ease",
+                    }}
+                  >
+                    {link.label}
+                    <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style={{ transform: dropdownOpen ? "rotate(180deg)" : "none", transition: "transform 0.2s ease" }}>
+                      <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                  
+                  {dropdownOpen && (
+                    <div style={{
+                      position: "absolute",
+                      top: "100%",
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      paddingTop: 12,
+                      minWidth: 320,
+                    }}>
+                      <div style={{
+                        background: "rgba(6,28,39,0.98)",
+                        backdropFilter: "blur(20px)",
+                        border: "1px solid rgba(13,154,165,0.2)",
+                        borderRadius: 12,
+                        padding: "8px 0",
+                        boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
+                      }}>
+                        {agentsMenuItems.map(item => (
+                          <a
+                            key={item.label}
+                            href={item.href}
+                            style={{
+                              display: "block",
+                              padding: "12px 20px",
+                              textDecoration: "none",
+                              transition: "background 0.2s ease",
+                            }}
+                            onMouseEnter={e => e.currentTarget.style.background = "rgba(13,154,165,0.1)"}
+                            onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+                          >
+                            <div style={{
+                              fontFamily: "'DM Sans', sans-serif",
+                              fontSize: 14,
+                              fontWeight: 600,
+                              color: "#fff",
+                              marginBottom: 2,
+                            }}>{item.label}</div>
+                            <div style={{
+                              fontFamily: "'DM Sans', sans-serif",
+                              fontSize: 12,
+                              color: "rgba(255,255,255,0.5)",
+                            }}>{item.description}</div>
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: 14,
+                    fontWeight: 500,
+                    color: "rgba(255,255,255,0.7)",
+                    textDecoration: "none",
+                    transition: "color 0.2s ease",
+                  }}
+                  onMouseEnter={e => e.target.style.color = "#fff"}
+                  onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.7)"}
+                >
+                  {link.label}
+                </a>
+              )
             ))}
           </div>
         )}
@@ -151,23 +240,80 @@ export default function SharedNav() {
           overflowY: "auto",
         }}>
           {navLinks.map(link => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: 16,
-                fontWeight: 500,
-                color: "rgba(255,255,255,0.7)",
-                textDecoration: "none",
-                padding: "14px 0",
-                borderBottom: "1px solid rgba(13,154,165,0.1)",
-                display: "block",
-              }}
-            >
-              {link.label}
-            </a>
+            link.hasDropdown ? (
+              <div key={link.label}>
+                <button
+                  onClick={() => setDropdownOpen(!dropdownOpen)}
+                  style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: 16,
+                    fontWeight: 500,
+                    color: "rgba(255,255,255,0.7)",
+                    background: "none",
+                    border: "none",
+                    padding: "14px 0",
+                    borderBottom: "1px solid rgba(13,154,165,0.1)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    width: "100%",
+                    cursor: "pointer",
+                  }}
+                >
+                  {link.label}
+                  <svg width="12" height="7" viewBox="0 0 10 6" fill="none" style={{ transform: dropdownOpen ? "rotate(180deg)" : "none", transition: "transform 0.2s ease" }}>
+                    <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+                {dropdownOpen && (
+                  <div style={{ paddingLeft: 16, paddingTop: 8, paddingBottom: 8 }}>
+                    {agentsMenuItems.map(item => (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        onClick={() => setMenuOpen(false)}
+                        style={{
+                          display: "block",
+                          padding: "10px 0",
+                          textDecoration: "none",
+                        }}
+                      >
+                        <div style={{
+                          fontFamily: "'DM Sans', sans-serif",
+                          fontSize: 14,
+                          fontWeight: 600,
+                          color: "#fff",
+                          marginBottom: 2,
+                        }}>{item.label}</div>
+                        <div style={{
+                          fontFamily: "'DM Sans', sans-serif",
+                          fontSize: 12,
+                          color: "rgba(255,255,255,0.5)",
+                        }}>{item.description}</div>
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: 16,
+                  fontWeight: 500,
+                  color: "rgba(255,255,255,0.7)",
+                  textDecoration: "none",
+                  padding: "14px 0",
+                  borderBottom: "1px solid rgba(13,154,165,0.1)",
+                  display: "block",
+                }}
+              >
+                {link.label}
+              </a>
+            )
           ))}
           
           <div style={{ marginTop: 24 }}>
