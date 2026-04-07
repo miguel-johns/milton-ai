@@ -39,7 +39,7 @@ export default function SharedNav() {
   const productsMenuItems = [
     { label: "Coach Co-Pilot", description: "AI that helps trainers program smarter.", href: "#/coach-copilot" },
     { label: "Director Co-Pilot", description: "Real-time visibility into performance and revenue.", href: "#/director-dashboard" },
-    { label: "Member AI Assistant", description: "Automated engagement, follow-up, and scheduling.", href: "#/member-assistant" },
+    { label: "Agentic Commerce", description: "Payments and shop via omni-channel communication.", href: "#/agentic-commerce" },
     { label: "AI Website & Booking", description: "Professional sites wired to Stripe.", href: "#/websites" },
     { label: "AI Acquisition Engine", description: "Lead gen, nurture sequences, and campaigns.", href: "#/marketing" },
     { label: "AI Receptionist", description: "Answers calls and books appointments.", href: "#/receptionist" },
