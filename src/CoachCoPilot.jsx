@@ -283,7 +283,7 @@ function HeroVisual({ mobile }) {
 
 
 
-export default function ThePlatform() {
+export default function CoachCoPilot() {
   const { mobile, tablet, desktop } = useBreakpoint();
   const px = mobile ? 20 : tablet ? 32 : 40;
   const sectionPad = mobile ? "80px 0" : "120px 0";

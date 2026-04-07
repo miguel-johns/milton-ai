@@ -212,7 +212,7 @@ export default function MiltonHomepage() {
   );
 
   const products = [
-    { icon: <CoachIcon />, title: "Coach Co-Pilot", description: "AI that helps trainers program smarter, track progressive overload, and level up their coaching." },
+    { icon: <CoachIcon />, title: "Coach Co-Pilot", description: "AI that helps trainers program smarter, track progressive overload, and level up their coaching.", href: "#/coach-copilot" },
     { icon: <MemberIcon />, title: "Member AI Assistant", description: "Handles engagement, follow-up, reminders, and scheduling so no member falls through the cracks." },
     { icon: <DashboardIcon />, title: "Director Dashboard", description: "Shows which trainers need support, which members are at risk, and where revenue is leaking.", href: "#/director-dashboard" },
     { icon: <WebsiteIcon />, title: "AI Websites & Booking", description: "Done-for-you sites wired to Stripe with scheduling, payments, and no middlemen." },
