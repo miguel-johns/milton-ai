@@ -225,7 +225,7 @@ export default function DirectorDashboard() {
           </p>
 
           <div style={{ display: "flex", gap: 12, marginBottom: 0, flexWrap: "wrap", justifyContent: "center" }}>
-            <CTA variant="primary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }} href="#/book">Book a Call</CTA>
+            <CTA variant="primary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }} href="#/book">AI Consultation</CTA>
             <CTA variant="secondary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }} href="#/pricing">Get Pricing</CTA>
           </div>
 

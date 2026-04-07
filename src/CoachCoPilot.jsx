@@ -336,7 +336,7 @@ export default function CoachCoPilot() {
           </p>
 
           <div style={{ display: "flex", gap: 12, marginBottom: mobile ? 36 : 60, flexWrap: "wrap", justifyContent: "center" }}>
-            <CTA variant="primary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }} href="#/book">Request a Demo</CTA>
+            <CTA variant="primary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }} href="#/book">AI Consultation</CTA>
             <CTA variant="secondary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }} href="#/pricing">Get Pricing</CTA>
           </div>
 
@@ -527,7 +527,7 @@ export default function CoachCoPilot() {
             See how Milton's AI co-pilots help your trainers perform, your fitness director lead, and your business grow.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <CTA variant="primary" style={{ fontSize: mobile ? 14 : 16, padding: mobile ? "14px 28px" : "16px 40px" }} href="#/book">Request a Demo</CTA>
+            <CTA variant="primary" style={{ fontSize: mobile ? 14 : 16, padding: mobile ? "14px 28px" : "16px 40px" }} href="#/book">AI Consultation</CTA>
             <CTA variant="secondary" style={{ fontSize: mobile ? 14 : 16, padding: mobile ? "14px 28px" : "16px 40px" }} href="#/pricing">Get Pricing</CTA>
           </div>
         </section>

@@ -705,7 +705,7 @@ export default function CaseStudy() {
             See what Milton looks like with your trainers, your metrics, and your business.
           </p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <a href="#/book" style={{ fontFamily: f, fontSize: 16, fontWeight: 700, padding: "16px 44px", borderRadius: 100, border: "none", background: "#fff", color: navy, cursor: "pointer", textDecoration: "none", display: "inline-block" }}>Request a Demo</a>
+            <a href="#/book" style={{ fontFamily: f, fontSize: 16, fontWeight: 700, padding: "16px 44px", borderRadius: 100, border: "none", background: "#fff", color: navy, cursor: "pointer", textDecoration: "none", display: "inline-block" }}>AI Consultation</a>
             <button style={{ fontFamily: f, fontSize: 16, fontWeight: 600, padding: "16px 44px", borderRadius: 100, cursor: "pointer", background: "transparent", color: "#fff", border: "1px solid rgba(255,255,255,0.2)" }}>Get Pricing</button>
           </div>
         </section>

@@ -610,7 +610,7 @@ export default function PricingCalculator() {
                   padding: "16px 44px", borderRadius: 100, border: "none",
                   background: "#fff", color: navy, cursor: "pointer",
                   textDecoration: "none", display: "inline-block",
-                }}>Request a Demo</a>
+                }}>AI Consultation</a>
             </div>
           </div>
         )}

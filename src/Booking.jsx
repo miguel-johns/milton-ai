@@ -46,7 +46,7 @@ export default function BookingPage() {
               <span style={{
                 fontFamily: f, fontSize: 12, fontWeight: 500,
                 letterSpacing: 2.5, textTransform: "uppercase", color: "rgba(255,255,255,0.7)",
-              }}>Book a Call</span>
+              }}>AI Consultation</span>
             </div>
 
             <h1 style={{
