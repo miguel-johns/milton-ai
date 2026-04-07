@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
 import { Analytics } from '@vercel/analytics/react'
 import MiltonHomepage from './App.jsx'
+import DirectorDashboard from './DirectorDashboard.jsx'
 import PricingCalculator from './Pricing.jsx'
 import CaseStudy from './CaseStudy.jsx'
 import AIConsultation from './Consultation.jsx'
@@ -57,6 +58,8 @@ function App() {
     PageContent = <Privacy />
   } else if (page === '/the-platform') {
     PageContent = <ThePlatform />
+  } else if (page === '/director-dashboard') {
+    PageContent = <DirectorDashboard />
   } else {
     PageContent = <MiltonHomepage />
   }
