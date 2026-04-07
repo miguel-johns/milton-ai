@@ -192,6 +192,7 @@ export default function ConnectedPartners() {
       body: "Milton connects to nearly all major strength and cardio equipment on your floor. Session data flows straight into member profiles — reps, sets, load, duration, watts — giving trainers a complete picture without clipboards.",
       partners: ["Fit-X", "Peloton", "Concept 2", "iFIT / NordicTrack", "Zwift", "Rouvy", "Hammerhead", "Lezyne", "Xert", "Decathlon"],
       icon: <EquipmentIcon />,
+      href: "#/partners/equipment",
     },
     {
       title: "Management Software",

@@ -19,6 +19,7 @@ import CoachCoPilot from './CoachCoPilot.jsx'
 import ConnectedPartners from './ConnectedPartners.jsx'
 import WearableDevices from './WearableDevices.jsx'
 import BodyScans from './BodyScans.jsx'
+import StrengthCardioEquipment from './StrengthCardioEquipment.jsx'
 
 function App() {
   const [page, setPage] = useState(() => {
@@ -69,6 +70,8 @@ function App() {
     PageContent = <WearableDevices />
   } else if (page === '/partners/body-scans') {
     PageContent = <BodyScans />
+  } else if (page === '/partners/equipment') {
+    PageContent = <StrengthCardioEquipment />
   } else {
     PageContent = <MiltonHomepage />
   }
