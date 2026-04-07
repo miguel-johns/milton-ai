@@ -334,7 +334,7 @@ export default function SharedNav() {
                 </button>
                 {dropdownOpen && (
                   <div style={{ paddingLeft: 16, paddingTop: 8, paddingBottom: 8 }}>
-                    {/* Products Section */}
+                    {/* AI Agents Section */}
                     <div style={{
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: 11,
@@ -343,7 +343,7 @@ export default function SharedNav() {
                       textTransform: "uppercase",
                       letterSpacing: 1,
                       padding: "8px 0 4px",
-                    }}>Products</div>
+                    }}>AI Agents</div>
                     {productsMenuItems.map(item => (
                       <a
                         key={item.label}
@@ -370,7 +370,7 @@ export default function SharedNav() {
                       </a>
                     ))}
                     
-                    {/* Services Section */}
+                    {/* AI Services Section */}
                     <div style={{
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: 11,
@@ -379,7 +379,7 @@ export default function SharedNav() {
                       textTransform: "uppercase",
                       letterSpacing: 1,
                       padding: "16px 0 4px",
-                    }}>Services</div>
+                    }}>AI Services</div>
                     {servicesMenuItems.map(item => (
                       <a
                         key={item.label}
