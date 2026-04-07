@@ -302,11 +302,15 @@ export default function MiltonHomepage() {
           <Headline>One system. Every role. <Accent>Instant impact.</Accent></Headline>
           
           <Body>
-            Most gyms run on five disconnected tools that don&apos;t talk to each other. Milton is one system — your coach co-pilot knows what your member assistant surfaced. Your director dashboard reflects what&apos;s actually happening on the floor.
+            Milton simplifies the complex world of running a fitness business by putting AI to work across your entire operation — not someday, this week.
+          </Body>
+          
+          <Body>
+            Our co-pilots help trainers coach better. Our agents handle member engagement, scheduling, and follow-up automatically. Our director tools surface which trainers need support and which members are about to leave. And our done-for-you builds — websites, booking systems, marketing — come wired to Stripe so you own everything with no middlemen.
           </Body>
           
           <Body style={{ marginBottom: 0 }}>
-            Every interaction feeds the intelligence that makes the next one better. <Mint>That&apos;s not a feature. That&apos;s a moat.</Mint>
+            Every piece works together. And behind all of it, <Mint>an expert team that knows your business and deploys the right tools at the right time.</Mint>
           </Body>
         </section>
 
