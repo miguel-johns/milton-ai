@@ -34,7 +34,16 @@ export default function SharedNav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [partnersDropdownOpen, setPartnersDropdownOpen] = useState(false);
   const { mobile, tablet } = useBreakpoint();
+
+  const partnerCategories = [
+    { label: "Wearable Devices", description: "Connect fitness trackers and smartwatches.", href: "#/partners/wearables" },
+    { label: "Body Scans", description: "Connect body composition analyzers.", href: "#/partners/body-scans" },
+    { label: "Strength & Cardio Equipment", description: "Connect smart gym machines.", href: "#/partners/equipment" },
+    { label: "Management Software", description: "Connect gym management platforms.", href: "#/partners/software" },
+    { label: "Apps", description: "Connect fitness and wellness apps.", href: "#/partners/apps" },
+  ];
 
   const productsMenuItems = [
     { label: "Coach Co-Pilot", description: "AI that helps trainers program smarter.", href: "#/coach-copilot" },
@@ -74,8 +83,8 @@ export default function SharedNav() {
   }, []);
 
   const navLinks = [
-    { label: "AI Agents & Services", hasDropdown: true },
-    { label: "Connected Partners", href: "#/consultation" },
+    { label: "AI Agents & Services", hasDropdown: "agents" },
+    { label: "Connected Partners", hasDropdown: "partners" },
     { label: "Insights", href: "#/insights" },
     { label: "About Us", href: "#/about" },
     { label: "Pricing", href: "#/pricing" },
@@ -120,7 +129,7 @@ export default function SharedNav() {
             gap: tablet ? 24 : 36,
           }}>
             {navLinks.map(link => (
-              link.hasDropdown ? (
+              link.hasDropdown === "agents" ? (
                 <div
                   key={link.label}
                   style={{ position: "relative" }}
@@ -257,6 +266,180 @@ export default function SharedNav() {
                     </div>
                   )}
                 </div>
+              ) : link.hasDropdown === "partners" ? (
+                <div
+                  key={link.label}
+                  style={{ position: "relative" }}
+                  onMouseEnter={() => setPartnersDropdownOpen(true)}
+                  onMouseLeave={() => setPartnersDropdownOpen(false)}
+                >
+                  <button
+                    style={{
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: 14,
+                      fontWeight: 500,
+                      color: partnersDropdownOpen ? "#fff" : "rgba(255,255,255,0.7)",
+                      background: "none",
+                      border: "none",
+                      cursor: "pointer",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 4,
+                      padding: 0,
+                      transition: "color 0.2s ease",
+                    }}
+                  >
+                    {link.label}
+                    <svg width="10" height="6" viewBox="0 0 10 6" fill="none" style={{ transform: partnersDropdownOpen ? "rotate(180deg)" : "none", transition: "transform 0.2s ease" }}>
+                      <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                  
+                  {partnersDropdownOpen && (
+                    <div style={{
+                      position: "absolute",
+                      top: "100%",
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      paddingTop: 12,
+                    }}>
+                      <div style={{
+                        background: "rgba(6,28,39,0.98)",
+                        backdropFilter: "blur(20px)",
+                        border: "1px solid rgba(13,154,165,0.2)",
+                        borderRadius: 12,
+                        padding: "16px 0",
+                        boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
+                        display: "flex",
+                        gap: 0,
+                      }}>
+                        {/* Connected Partners Column */}
+                        <div style={{ minWidth: 320 }}>
+                          <div style={{
+                            padding: "4px 20px 10px",
+                            fontFamily: "'DM Sans', sans-serif",
+                            fontSize: 11,
+                            fontWeight: 600,
+                            color: "#0d9aa5",
+                            textTransform: "uppercase",
+                            letterSpacing: 1,
+                          }}>Connected Partners</div>
+                          <div style={{ padding: "0 20px 12px" }}>
+                            <p style={{
+                              fontFamily: "'DM Sans', sans-serif",
+                              fontSize: 13,
+                              color: "rgba(255,255,255,0.6)",
+                              lineHeight: 1.5,
+                              margin: "0 0 10px 0",
+                            }}>
+                              Milton connects leading fitness brands with AI-powered digital solutions, smart equipment, and integrated experiences.
+                            </p>
+                            <a
+                              href="#/partners"
+                              style={{
+                                fontFamily: "'DM Sans', sans-serif",
+                                fontSize: 13,
+                                fontWeight: 600,
+                                color: "#0d9aa5",
+                                textDecoration: "none",
+                              }}
+                              onMouseEnter={e => e.target.style.textDecoration = "underline"}
+                              onMouseLeave={e => e.target.style.textDecoration = "none"}
+                            >Learn More &rarr;</a>
+                          </div>
+                          
+                          <div style={{
+                            height: 1,
+                            background: "rgba(13,154,165,0.15)",
+                            margin: "4px 20px 12px",
+                          }} />
+                          
+                          <div style={{
+                            padding: "0 20px 12px",
+                          }}>
+                            <div style={{
+                              fontFamily: "'DM Sans', sans-serif",
+                              fontSize: 11,
+                              fontWeight: 600,
+                              color: "#9af198",
+                              textTransform: "uppercase",
+                              letterSpacing: 1,
+                              marginBottom: 8,
+                            }}>Product Integrations</div>
+                            <p style={{
+                              fontFamily: "'DM Sans', sans-serif",
+                              fontSize: 13,
+                              color: "rgba(255,255,255,0.6)",
+                              lineHeight: 1.5,
+                              margin: "0 0 10px 0",
+                            }}>
+                              Interested in integrating your product with the Milton ecosystem? Explore becoming a Connected Partner.
+                            </p>
+                            <a
+                              href="#/partners/inquire"
+                              style={{
+                                fontFamily: "'DM Sans', sans-serif",
+                                fontSize: 13,
+                                fontWeight: 600,
+                                color: "#9af198",
+                                textDecoration: "none",
+                              }}
+                              onMouseEnter={e => e.target.style.textDecoration = "underline"}
+                              onMouseLeave={e => e.target.style.textDecoration = "none"}
+                            >Inquire Now &rarr;</a>
+                          </div>
+                        </div>
+                        
+                        {/* Vertical Divider */}
+                        <div style={{
+                          width: 1,
+                          background: "rgba(13,154,165,0.15)",
+                          margin: "8px 0",
+                        }} />
+                        
+                        {/* Partner Overview Column */}
+                        <div style={{ minWidth: 260 }}>
+                          <div style={{
+                            padding: "4px 20px 10px",
+                            fontFamily: "'DM Sans', sans-serif",
+                            fontSize: 11,
+                            fontWeight: 600,
+                            color: "#0d9aa5",
+                            textTransform: "uppercase",
+                            letterSpacing: 1,
+                          }}>Partner Overview</div>
+                          {partnerCategories.map(item => (
+                            <a
+                              key={item.label}
+                              href={item.href}
+                              style={{
+                                display: "block",
+                                padding: "8px 20px",
+                                textDecoration: "none",
+                                transition: "background 0.2s ease",
+                              }}
+                              onMouseEnter={e => e.currentTarget.style.background = "rgba(13,154,165,0.1)"}
+                              onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+                            >
+                              <div style={{
+                                fontFamily: "'DM Sans', sans-serif",
+                                fontSize: 14,
+                                fontWeight: 600,
+                                color: "#fff",
+                                marginBottom: 2,
+                              }}>{item.label}</div>
+                              <div style={{
+                                fontFamily: "'DM Sans', sans-serif",
+                                fontSize: 12,
+                                color: "rgba(255,255,255,0.5)",
+                              }}>{item.description}</div>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
               ) : (
                 <a
                   key={link.label}
@@ -307,7 +490,7 @@ export default function SharedNav() {
           overflowY: "auto",
         }}>
           {navLinks.map(link => (
-            link.hasDropdown ? (
+            link.hasDropdown === "agents" ? (
               <div key={link.label}>
                 <button
                   onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -381,6 +564,137 @@ export default function SharedNav() {
                       padding: "16px 0 4px",
                     }}>AI Services</div>
                     {servicesMenuItems.map(item => (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        onClick={() => setMenuOpen(false)}
+                        style={{
+                          display: "block",
+                          padding: "10px 0",
+                          textDecoration: "none",
+                        }}
+                      >
+                        <div style={{
+                          fontFamily: "'DM Sans', sans-serif",
+                          fontSize: 14,
+                          fontWeight: 600,
+                          color: "#fff",
+                          marginBottom: 2,
+                        }}>{item.label}</div>
+                        <div style={{
+                          fontFamily: "'DM Sans', sans-serif",
+                          fontSize: 12,
+                          color: "rgba(255,255,255,0.5)",
+                        }}>{item.description}</div>
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : link.hasDropdown === "partners" ? (
+              <div key={link.label}>
+                <button
+                  onClick={() => setPartnersDropdownOpen(!partnersDropdownOpen)}
+                  style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: 16,
+                    fontWeight: 500,
+                    color: "rgba(255,255,255,0.7)",
+                    background: "none",
+                    border: "none",
+                    padding: "14px 0",
+                    borderBottom: "1px solid rgba(13,154,165,0.1)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    width: "100%",
+                    cursor: "pointer",
+                  }}
+                >
+                  {link.label}
+                  <svg width="12" height="7" viewBox="0 0 10 6" fill="none" style={{ transform: partnersDropdownOpen ? "rotate(180deg)" : "none", transition: "transform 0.2s ease" }}>
+                    <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+                {partnersDropdownOpen && (
+                  <div style={{ paddingLeft: 16, paddingTop: 8, paddingBottom: 8 }}>
+                    {/* Connected Partners Section */}
+                    <div style={{
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: 11,
+                      fontWeight: 600,
+                      color: "#0d9aa5",
+                      textTransform: "uppercase",
+                      letterSpacing: 1,
+                      padding: "8px 0 4px",
+                    }}>Connected Partners</div>
+                    <p style={{
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: 13,
+                      color: "rgba(255,255,255,0.6)",
+                      lineHeight: 1.5,
+                      margin: "0 0 10px 0",
+                    }}>
+                      Milton connects leading fitness brands with AI-powered digital solutions.
+                    </p>
+                    <a
+                      href="#/partners"
+                      onClick={() => setMenuOpen(false)}
+                      style={{
+                        fontFamily: "'DM Sans', sans-serif",
+                        fontSize: 13,
+                        fontWeight: 600,
+                        color: "#0d9aa5",
+                        textDecoration: "none",
+                        display: "block",
+                        marginBottom: 16,
+                      }}
+                    >Learn More &rarr;</a>
+                    
+                    {/* Product Integrations */}
+                    <div style={{
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: 11,
+                      fontWeight: 600,
+                      color: "#9af198",
+                      textTransform: "uppercase",
+                      letterSpacing: 1,
+                      padding: "8px 0 4px",
+                    }}>Product Integrations</div>
+                    <p style={{
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: 13,
+                      color: "rgba(255,255,255,0.6)",
+                      lineHeight: 1.5,
+                      margin: "0 0 10px 0",
+                    }}>
+                      Interested in integrating your product? Become a Connected Partner.
+                    </p>
+                    <a
+                      href="#/partners/inquire"
+                      onClick={() => setMenuOpen(false)}
+                      style={{
+                        fontFamily: "'DM Sans', sans-serif",
+                        fontSize: 13,
+                        fontWeight: 600,
+                        color: "#9af198",
+                        textDecoration: "none",
+                        display: "block",
+                        marginBottom: 16,
+                      }}
+                    >Inquire Now &rarr;</a>
+                    
+                    {/* Partner Overview Section */}
+                    <div style={{
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: 11,
+                      fontWeight: 600,
+                      color: "#0d9aa5",
+                      textTransform: "uppercase",
+                      letterSpacing: 1,
+                      padding: "8px 0 4px",
+                    }}>Partner Overview</div>
+                    {partnerCategories.map(item => (
                       <a
                         key={item.label}
                         href={item.href}
