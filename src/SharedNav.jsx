@@ -58,7 +58,7 @@ export default function SharedNav() {
 
   const navLinks = [
     { label: "AI Agents & Services", href: "#/products" },
-    { label: "AI Readiness Snapshot", href: "#/consultation" },
+    { label: "Connected Partners", href: "#/consultation" },
     { label: "Insights", href: "#/insights" },
     { label: "About Us", href: "#/about" },
     { label: "Pricing", href: "#/pricing" },
