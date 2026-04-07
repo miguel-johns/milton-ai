@@ -36,13 +36,20 @@ export default function SharedNav() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const { mobile, tablet } = useBreakpoint();
 
-  const agentsMenuItems = [
+  const productsMenuItems = [
     { label: "Coach Co-Pilot", description: "AI that helps trainers program smarter.", href: "#/coach-copilot" },
-    { label: "Member AI Assistant", description: "Handles engagement, follow-up, and scheduling.", href: "#/member-assistant" },
-    { label: "Director Dashboard", description: "See which trainers and members need attention.", href: "#/director-dashboard" },
-    { label: "AI Websites & Booking", description: "Done-for-you sites wired to Stripe.", href: "#/websites" },
-    { label: "AI Marketing Engine", description: "Photos, social content, and campaigns.", href: "#/marketing" },
-    { label: "AI Receptionist", description: "Handles calls and books appointments.", href: "#/receptionist" },
+    { label: "Director Co-Pilot", description: "Real-time visibility into performance and revenue.", href: "#/director-dashboard" },
+    { label: "Member AI Assistant", description: "Automated engagement, follow-up, and scheduling.", href: "#/member-assistant" },
+    { label: "AI Website & Booking", description: "Professional sites wired to Stripe.", href: "#/websites" },
+    { label: "AI Acquisition Engine", description: "Lead gen, nurture sequences, and campaigns.", href: "#/marketing" },
+    { label: "AI Receptionist", description: "Answers calls and books appointments.", href: "#/receptionist" },
+    { label: "Stripe-Powered CRM & POS", description: "Payments, memberships, and client management.", href: "#/crm" },
+  ];
+
+  const servicesMenuItems = [
+    { label: "AI Strategy Session", description: "Free one-on-one consultation and AI audit.", href: "#/consultation" },
+    { label: "Implementation Science", description: "Hands-on deployment with your team.", href: "#/implementation" },
+    { label: "Milton Academy", description: "Certification for coaches and managers.", href: "#/academy" },
   ];
 
   useEffect(() => {
@@ -149,23 +156,78 @@ export default function SharedNav() {
                       left: "50%",
                       transform: "translateX(-50%)",
                       paddingTop: 12,
-                      minWidth: 320,
+                      minWidth: 380,
                     }}>
                       <div style={{
                         background: "rgba(6,28,39,0.98)",
                         backdropFilter: "blur(20px)",
                         border: "1px solid rgba(13,154,165,0.2)",
                         borderRadius: 12,
-                        padding: "8px 0",
+                        padding: "12px 0",
                         boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
                       }}>
-                        {agentsMenuItems.map(item => (
+                        {/* Products Section */}
+                        <div style={{
+                          padding: "8px 20px 6px",
+                          fontFamily: "'DM Sans', sans-serif",
+                          fontSize: 11,
+                          fontWeight: 600,
+                          color: "#0d9aa5",
+                          textTransform: "uppercase",
+                          letterSpacing: 1,
+                        }}>Products</div>
+                        {productsMenuItems.map(item => (
                           <a
                             key={item.label}
                             href={item.href}
                             style={{
                               display: "block",
-                              padding: "12px 20px",
+                              padding: "10px 20px",
+                              textDecoration: "none",
+                              transition: "background 0.2s ease",
+                            }}
+                            onMouseEnter={e => e.currentTarget.style.background = "rgba(13,154,165,0.1)"}
+                            onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+                          >
+                            <div style={{
+                              fontFamily: "'DM Sans', sans-serif",
+                              fontSize: 14,
+                              fontWeight: 600,
+                              color: "#fff",
+                              marginBottom: 2,
+                            }}>{item.label}</div>
+                            <div style={{
+                              fontFamily: "'DM Sans', sans-serif",
+                              fontSize: 12,
+                              color: "rgba(255,255,255,0.5)",
+                            }}>{item.description}</div>
+                          </a>
+                        ))}
+                        
+                        {/* Divider */}
+                        <div style={{
+                          height: 1,
+                          background: "rgba(13,154,165,0.15)",
+                          margin: "8px 20px",
+                        }} />
+                        
+                        {/* Services Section */}
+                        <div style={{
+                          padding: "8px 20px 6px",
+                          fontFamily: "'DM Sans', sans-serif",
+                          fontSize: 11,
+                          fontWeight: 600,
+                          color: "#9af198",
+                          textTransform: "uppercase",
+                          letterSpacing: 1,
+                        }}>Services</div>
+                        {servicesMenuItems.map(item => (
+                          <a
+                            key={item.label}
+                            href={item.href}
+                            style={{
+                              display: "block",
+                              padding: "10px 20px",
                               textDecoration: "none",
                               transition: "background 0.2s ease",
                             }}
@@ -267,7 +329,53 @@ export default function SharedNav() {
                 </button>
                 {dropdownOpen && (
                   <div style={{ paddingLeft: 16, paddingTop: 8, paddingBottom: 8 }}>
-                    {agentsMenuItems.map(item => (
+                    {/* Products Section */}
+                    <div style={{
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: 11,
+                      fontWeight: 600,
+                      color: "#0d9aa5",
+                      textTransform: "uppercase",
+                      letterSpacing: 1,
+                      padding: "8px 0 4px",
+                    }}>Products</div>
+                    {productsMenuItems.map(item => (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        onClick={() => setMenuOpen(false)}
+                        style={{
+                          display: "block",
+                          padding: "10px 0",
+                          textDecoration: "none",
+                        }}
+                      >
+                        <div style={{
+                          fontFamily: "'DM Sans', sans-serif",
+                          fontSize: 14,
+                          fontWeight: 600,
+                          color: "#fff",
+                          marginBottom: 2,
+                        }}>{item.label}</div>
+                        <div style={{
+                          fontFamily: "'DM Sans', sans-serif",
+                          fontSize: 12,
+                          color: "rgba(255,255,255,0.5)",
+                        }}>{item.description}</div>
+                      </a>
+                    ))}
+                    
+                    {/* Services Section */}
+                    <div style={{
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: 11,
+                      fontWeight: 600,
+                      color: "#9af198",
+                      textTransform: "uppercase",
+                      letterSpacing: 1,
+                      padding: "16px 0 4px",
+                    }}>Services</div>
+                    {servicesMenuItems.map(item => (
                       <a
                         key={item.label}
                         href={item.href}
