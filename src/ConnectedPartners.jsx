@@ -325,8 +325,8 @@ export default function ConnectedPartners() {
               Interested in integrating your product with the Milton ecosystem? Explore becoming a Connected Partner.
             </p>
             
-            <a
-              href="#/partners/inquire"
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent('openInquireModal'))}
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -339,7 +339,7 @@ export default function ConnectedPartners() {
                 border: "none",
                 borderRadius: 8,
                 padding: mobile ? "14px 28px" : "16px 36px",
-                textDecoration: "none",
+                cursor: "pointer",
                 transition: "all 0.2s ease",
               }}
               onMouseEnter={e => {
@@ -355,7 +355,7 @@ export default function ConnectedPartners() {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
-            </a>
+            </button>
           </div>
         </section>
 

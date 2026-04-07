@@ -22,8 +22,10 @@ import BodyScans from './BodyScans.jsx'
 import StrengthCardioEquipment from './StrengthCardioEquipment.jsx'
 import ManagementSoftware from './ManagementSoftware.jsx'
 import NutritionFitnessApps from './NutritionFitnessApps.jsx'
+import InquireModal from './InquireModal.jsx'
 
 function App() {
+  const [inquireModalOpen, setInquireModalOpen] = useState(false)
   const [page, setPage] = useState(() => {
     const hash = window.location.hash.slice(1) || '/'
     return hash
@@ -37,6 +39,13 @@ function App() {
     }
     window.addEventListener('hashchange', handleHashChange)
     return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [])
+
+  // Listen for custom event to open inquire modal from any component
+  useEffect(() => {
+    const handleOpenInquireModal = () => setInquireModalOpen(true)
+    window.addEventListener('openInquireModal', handleOpenInquireModal)
+    return () => window.removeEventListener('openInquireModal', handleOpenInquireModal)
   }, [])
 
   // Determine which page content to render
@@ -92,9 +101,10 @@ function App() {
         background: "radial-gradient(ellipse 80% 50% at 20% 20%, rgba(13,154,165,0.08) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 80%, rgba(154,241,152,0.04) 0%, transparent 50%), radial-gradient(ellipse 90% 60% at 50% 0%, rgba(8,69,94,0.3) 0%, transparent 70%)",
       }} />
 
-      <SharedNav />
+      <SharedNav onInquireClick={() => setInquireModalOpen(true)} />
       {PageContent}
       <SharedFooter />
+      <InquireModal isOpen={inquireModalOpen} onClose={() => setInquireModalOpen(false)} />
     </div>
   )
 }

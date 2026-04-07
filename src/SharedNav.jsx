@@ -30,7 +30,7 @@ function CTA({ children, variant = "primary", style: s = {}, href, onClick }) {
   return <button style={styles} onClick={onClick}>{children}</button>;
 }
 
-export default function SharedNav() {
+export default function SharedNav({ onInquireClick }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -377,18 +377,26 @@ export default function SharedNav() {
                             }}>
                               Interested in integrating your product with the Milton ecosystem? Explore becoming a Connected Partner.
                             </p>
-                            <a
-                              href="#/partners/inquire"
-                              style={{
-                                fontFamily: "'DM Sans', sans-serif",
-                                fontSize: 13,
-                                fontWeight: 600,
-                                color: "#9af198",
-                                textDecoration: "none",
-                              }}
-                              onMouseEnter={e => e.target.style.textDecoration = "underline"}
-                              onMouseLeave={e => e.target.style.textDecoration = "none"}
-                            >Inquire Now &rarr;</a>
+<button
+                                              onClick={(e) => {
+                                                e.preventDefault();
+                                                setPartnersDropdownOpen(false);
+                                                onInquireClick?.();
+                                              }}
+                                              style={{
+                                                fontFamily: "'DM Sans', sans-serif",
+                                                fontSize: 13,
+                                                fontWeight: 600,
+                                                color: "#9af198",
+                                                textDecoration: "none",
+                                                background: "none",
+                                                border: "none",
+                                                padding: 0,
+                                                cursor: "pointer",
+                                              }}
+                                              onMouseEnter={e => e.target.style.textDecoration = "underline"}
+                                              onMouseLeave={e => e.target.style.textDecoration = "none"}
+                                            >Inquire Now &rarr;</button>
                           </div>
                         </div>
                         
@@ -682,9 +690,11 @@ export default function SharedNav() {
                     }}>
                       Interested in integrating your product? Become a Connected Partner.
                     </p>
-                    <a
-                      href="#/partners/inquire"
-                      onClick={() => setMenuOpen(false)}
+                    <button
+                      onClick={() => {
+                        setMenuOpen(false);
+                        onInquireClick?.();
+                      }}
                       style={{
                         fontFamily: "'DM Sans', sans-serif",
                         fontSize: 13,
@@ -693,8 +703,12 @@ export default function SharedNav() {
                         textDecoration: "none",
                         display: "block",
                         marginBottom: 16,
+                        background: "none",
+                        border: "none",
+                        padding: 0,
+                        cursor: "pointer",
                       }}
-                    >Inquire Now &rarr;</a>
+                    >Inquire Now &rarr;</button>
                     
                     {/* Partner Overview Section */}
                     <div style={{
