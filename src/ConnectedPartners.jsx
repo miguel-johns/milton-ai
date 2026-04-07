@@ -182,7 +182,7 @@ export default function ConnectedPartners() {
       title: "Strength & Cardio Equipment",
       description: "Connect smart gym machines",
       body: "Through our partnership with Fit-X, Milton connects to nearly all major strength and cardio equipment on your floor. Session data flows straight into member profiles — reps, sets, load, duration, watts — giving trainers a complete picture without clipboards.",
-      partners: ["Fit-X Integration Hub", "Peloton", "Concept 2", "iFIT / NordicTrack", "Zwift", "Rouvy", "Hammerhead", "Lezyne", "Xert", "Decathlon"],
+      partners: ["Fit-X", "Peloton", "Concept 2", "iFIT / NordicTrack", "Zwift", "Rouvy", "Hammerhead", "Lezyne", "Xert", "Decathlon"],
       icon: <EquipmentIcon />,
     },
     {
