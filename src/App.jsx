@@ -407,7 +407,7 @@ export default function MiltonHomepage() {
               
               <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
                 <CTA variant="primary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "14px 28px" : "16px 36px" }} href="#/book">
-                  Book a call
+                  AI Consultation
                 </CTA>
                 <CTA variant="secondary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "14px 28px" : "16px 36px" }} href="#/book-snapshot">
                   See your free site
