@@ -45,24 +45,28 @@ function AccentLine() {
   );
 }
 
-function ProductCard({ icon, title, description, mobile }) {
+function ProductCard({ icon, title, description, mobile, href }) {
   const [hovered, setHovered] = useState(false);
+  const Wrapper = href ? 'a' : 'div';
+  const wrapperProps = href ? { href, style: { textDecoration: 'none', display: 'block', height: '100%' } } : {};
   return (
-    <div 
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        background: hovered ? "rgba(13,154,165,0.06)" : "rgba(255,255,255,0.02)",
-        border: hovered ? "1px solid rgba(13,154,165,0.3)" : "1px solid rgba(255,255,255,0.06)",
-        borderRadius: 16,
-        padding: mobile ? "24px 20px" : "32px 24px",
-        transition: "all 0.3s ease",
-        transform: hovered ? "translateY(-3px)" : "translateY(0)",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
+    <Wrapper {...wrapperProps}>
+      <div 
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={{
+          background: hovered ? "rgba(13,154,165,0.06)" : "rgba(255,255,255,0.02)",
+          border: hovered ? "1px solid rgba(13,154,165,0.3)" : "1px solid rgba(255,255,255,0.06)",
+          borderRadius: 16,
+          padding: mobile ? "24px 20px" : "32px 24px",
+          transition: "all 0.3s ease",
+          transform: hovered ? "translateY(-3px)" : "translateY(0)",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          cursor: href ? "pointer" : "default",
+        }}
+      >
       <div style={{
         width: 44, height: 44, borderRadius: 12,
         background: "rgba(13,154,165,0.1)",
@@ -84,7 +88,8 @@ function ProductCard({ icon, title, description, mobile }) {
         margin: 0,
         flex: 1,
       }}>{description}</p>
-    </div>
+      </div>
+    </Wrapper>
   );
 }
 
@@ -209,7 +214,7 @@ export default function MiltonHomepage() {
   const products = [
     { icon: <CoachIcon />, title: "Coach Co-Pilot", description: "AI that helps trainers program smarter, track progressive overload, and level up their coaching." },
     { icon: <MemberIcon />, title: "Member AI Assistant", description: "Handles engagement, follow-up, reminders, and scheduling so no member falls through the cracks." },
-    { icon: <DashboardIcon />, title: "Director Dashboard", description: "Shows which trainers need support, which members are at risk, and where revenue is leaking." },
+    { icon: <DashboardIcon />, title: "Director Dashboard", description: "Shows which trainers need support, which members are at risk, and where revenue is leaking.", href: "#/director-dashboard" },
     { icon: <WebsiteIcon />, title: "AI Websites & Booking", description: "Done-for-you sites wired to Stripe with scheduling, payments, and no middlemen." },
     { icon: <MarketingIcon />, title: "AI Marketing Engine", description: "Professional photos, social content, email campaigns, and outreach built for you." },
     { icon: <ReceptionistIcon />, title: "AI Receptionist", description: "Handles inbound calls, answers questions, books appointments, never takes a day off." },
@@ -335,6 +340,7 @@ export default function MiltonHomepage() {
                 title={product.title}
                 description={product.description}
                 mobile={mobile}
+                href={product.href}
               />
             ))}
           </div>
