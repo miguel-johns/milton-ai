@@ -59,6 +59,7 @@ export default function SharedNav() {
     { label: "AI Strategy Session", description: "Free one-on-one consultation and AI audit.", href: "#/consultation" },
     { label: "Implementation Science", description: "Hands-on deployment with your team.", href: "#/implementation" },
     { label: "Milton Academy", description: "Certification for coaches and managers.", href: "#/academy" },
+    { label: "Prompt Library", description: "Ready-to-use prompts for fitness professionals.", href: "#/prompts" },
   ];
 
   useEffect(() => {
