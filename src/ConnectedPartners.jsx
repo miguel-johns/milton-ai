@@ -32,11 +32,11 @@ function SectionDivider() {
   return <div style={{ height: 1, background: `linear-gradient(90deg, ${teal}60, ${teal}08)`, marginBottom: 28 }} />;
 }
 
-function PartnerCategory({ title, description, body, partners, icon }) {
+function PartnerCategory({ title, description, body, partners, icon, href }) {
   const { mobile, tablet } = useBreakpoint();
   const [hovered, setHovered] = useState(false);
   
-  return (
+  const content = (
     <div 
       style={{
         background: hovered ? "rgba(13,154,165,0.06)" : "rgba(255,255,255,0.02)",
@@ -45,6 +45,7 @@ function PartnerCategory({ title, description, body, partners, icon }) {
         padding: mobile ? "28px 24px" : "36px 32px",
         transition: "all 0.3s ease",
         marginBottom: mobile ? 20 : 24,
+        cursor: href ? "pointer" : "default",
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -105,6 +106,11 @@ function PartnerCategory({ title, description, body, partners, icon }) {
       </div>
     </div>
   );
+  
+  if (href) {
+    return <a href={href} style={{ textDecoration: "none", display: "block" }}>{content}</a>;
+  }
+  return content;
 }
 
 // Icons
@@ -170,6 +176,7 @@ export default function ConnectedPartners() {
       body: "Milton syncs with every major wearable platform — pulling heart rate, HRV, sleep, steps, and activity data directly into your coaching dashboard. Real-time member insights, zero manual entry.",
       partners: ["Apple Watch", "Garmin", "Fitbit", "Oura", "Withings", "Wahoo", "Polar", "Suunto", "Samsung Health", "Coros", "Huawei", "Biostrap", "Whoop", "Ultrahuman", "Omron", "Zepp", "XOSS", "Moxy", "Catapult One", "Core"],
       icon: <WearableIcon />,
+      href: "#/partners/wearables",
     },
     {
       title: "Body Scans",
@@ -279,6 +286,7 @@ export default function ConnectedPartners() {
               body={category.body}
               partners={category.partners}
               icon={category.icon}
+              href={category.href}
             />
           ))}
         </section>
