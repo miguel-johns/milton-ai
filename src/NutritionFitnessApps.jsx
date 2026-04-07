@@ -246,8 +246,8 @@ export default function NutritionFitnessApps() {
               Members use an app we don&apos;t support yet? We&apos;re always expanding — tell us what your members are tracking with.
             </p>
             
-            <a
-              href="#/partners/inquire"
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent('openInquireModal'))}
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -256,7 +256,9 @@ export default function NutritionFitnessApps() {
                 fontSize: mobile ? 14 : 15,
                 fontWeight: 600,
                 color: teal,
-                textDecoration: "none",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
                 transition: "color 0.2s ease",
               }}
               onMouseEnter={e => e.currentTarget.style.color = mint}
@@ -266,7 +268,7 @@ export default function NutritionFitnessApps() {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
-            </a>
+            </button>
           </div>
         </section>
 

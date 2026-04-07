@@ -279,8 +279,8 @@ export default function StrengthCardioEquipment() {
               Running equipment not listed here? The Fit-X integration covers a broad range of manufacturers — contact us to confirm your specific hardware.
             </p>
             
-            <a
-              href="#/consultation"
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent('openInquireModal'))}
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -289,7 +289,9 @@ export default function StrengthCardioEquipment() {
                 fontSize: mobile ? 14 : 15,
                 fontWeight: 600,
                 color: teal,
-                textDecoration: "none",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
                 transition: "color 0.2s ease",
               }}
               onMouseEnter={e => e.currentTarget.style.color = mint}
@@ -299,7 +301,7 @@ export default function StrengthCardioEquipment() {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
-            </a>
+            </button>
           </div>
         </section>
 
