@@ -244,7 +244,7 @@ export default function MiltonHomepage() {
               letterSpacing: "0.15em",
               textTransform: "uppercase",
               color: "#0d9aa5",
-            }}>The AI operating system for fitness</span>
+            }}>The AI operating system for personal training businesses</span>
           </div>
 
           <h1 style={{
@@ -253,7 +253,7 @@ export default function MiltonHomepage() {
             fontWeight: 400, lineHeight: 1.12, color: "#fff",
             margin: "0 0 24px 0", maxWidth: 850,
           }}>
-            Milton is the AI operating system for fitness businesses — <Accent>plug-in tools, co-pilots, and expert guidance</Accent> for every part of your operation.
+            Milton is the AI operating system for personal training businesses — <Accent>plug-in tools, co-pilots, and expert guidance</Accent> for every part of your operation.
           </h1>
 
           <p style={{
@@ -280,7 +280,7 @@ export default function MiltonHomepage() {
               textTransform: "uppercase",
               color: "rgba(255,255,255,0.3)",
               marginBottom: 20,
-            }}>Trusted by leading fitness businesses</p>
+            }}>Trusted by leading personal training businesses</p>
             <div style={{
               display: "flex",
               gap: mobile ? 32 : 48,
@@ -302,7 +302,7 @@ export default function MiltonHomepage() {
           <Headline>One system. Every role. <Accent>Instant impact.</Accent></Headline>
           
           <Body>
-            Milton simplifies the complex world of running a fitness business by putting AI to work across your entire operation — not someday, this week.
+            Milton simplifies the complex world of running a personal training business by putting AI to work across your entire operation — not someday, this week.
           </Body>
           
           <Body>
