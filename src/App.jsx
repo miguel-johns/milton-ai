@@ -253,7 +253,7 @@ export default function MiltonHomepage() {
             fontWeight: 400, lineHeight: 1.12, color: "#fff",
             margin: "0 0 24px 0", maxWidth: 850,
           }}>
-            Milton is the AI operating system for personal training businesses — <Accent>plug-in tools, co-pilots, and expert guidance</Accent> for every part of your operation.
+            Milton is the AI operating system for personal training businesses.
           </h1>
 
           <p style={{
@@ -262,7 +262,7 @@ export default function MiltonHomepage() {
             lineHeight: 1.65, color: "rgba(255,255,255,0.5)",
             maxWidth: 600, margin: "0 0 36px 0", padding: mobile ? "0 4px" : 0,
           }}>
-            Everything you need to run a smarter gym — from trainer development to member engagement to automated marketing.
+            AI tools, co-pilots, and expert guidance for every part of your operation.
           </p>
 
           <div style={{ display: "flex", gap: 12, marginBottom: mobile ? 48 : 64, flexWrap: "wrap", justifyContent: "center" }}>
