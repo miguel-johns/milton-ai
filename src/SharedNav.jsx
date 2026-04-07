@@ -537,9 +537,14 @@ export default function SharedNav() {
                         onClick={() => setMenuOpen(false)}
                         style={{
                           display: "block",
-                          padding: "10px 0",
+                          padding: "10px 12px",
+                          margin: "0 -12px",
+                          borderRadius: 8,
                           textDecoration: "none",
+                          transition: "background 0.2s ease",
                         }}
+                        onMouseEnter={e => e.currentTarget.style.background = "rgba(13,154,165,0.1)"}
+                        onMouseLeave={e => e.currentTarget.style.background = "transparent"}
                       >
                         <div style={{
                           fontFamily: "'DM Sans', sans-serif",
@@ -573,9 +578,14 @@ export default function SharedNav() {
                         onClick={() => setMenuOpen(false)}
                         style={{
                           display: "block",
-                          padding: "10px 0",
+                          padding: "10px 12px",
+                          margin: "0 -12px",
+                          borderRadius: 8,
                           textDecoration: "none",
+                          transition: "background 0.2s ease",
                         }}
+                        onMouseEnter={e => e.currentTarget.style.background = "rgba(13,154,165,0.1)"}
+                        onMouseLeave={e => e.currentTarget.style.background = "transparent"}
                       >
                         <div style={{
                           fontFamily: "'DM Sans', sans-serif",
@@ -704,9 +714,14 @@ export default function SharedNav() {
                         onClick={() => setMenuOpen(false)}
                         style={{
                           display: "block",
-                          padding: "10px 0",
+                          padding: "10px 12px",
+                          margin: "0 -12px",
+                          borderRadius: 8,
                           textDecoration: "none",
+                          transition: "background 0.2s ease",
                         }}
+                        onMouseEnter={e => e.currentTarget.style.background = "rgba(13,154,165,0.1)"}
+                        onMouseLeave={e => e.currentTarget.style.background = "transparent"}
                       >
                         <div style={{
                           fontFamily: "'DM Sans', sans-serif",
@@ -736,9 +751,19 @@ export default function SharedNav() {
                   fontWeight: 500,
                   color: "rgba(255,255,255,0.7)",
                   textDecoration: "none",
-                  padding: "14px 0",
-                  borderBottom: "1px solid rgba(13,154,165,0.1)",
+                  padding: "14px 12px",
+                  margin: "0 -12px",
+                  borderRadius: 8,
                   display: "block",
+                  transition: "background 0.2s ease, color 0.2s ease",
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.background = "rgba(13,154,165,0.1)";
+                  e.currentTarget.style.color = "#fff";
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.background = "transparent";
+                  e.currentTarget.style.color = "rgba(255,255,255,0.7)";
                 }}
               >
                 {link.label}
