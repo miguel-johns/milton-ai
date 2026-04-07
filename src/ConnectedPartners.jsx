@@ -200,6 +200,7 @@ export default function ConnectedPartners() {
       body: "Milton layers intelligence on top of the systems your facility already runs. We integrate with leading gym management platforms so member data, scheduling, and billing context feed directly into Milton's AI agents.",
       partners: ["MindBody", "ABC Fitness", "Wellness Living", "ZenPlanner", "Exercise.com", "GymMaster", "Push Press", "Virtuagym"],
       icon: <SoftwareIcon />,
+      href: "#/partners/software",
     },
     {
       title: "Nutrition & Fitness Apps",

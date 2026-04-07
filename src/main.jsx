@@ -20,6 +20,7 @@ import ConnectedPartners from './ConnectedPartners.jsx'
 import WearableDevices from './WearableDevices.jsx'
 import BodyScans from './BodyScans.jsx'
 import StrengthCardioEquipment from './StrengthCardioEquipment.jsx'
+import ManagementSoftware from './ManagementSoftware.jsx'
 
 function App() {
   const [page, setPage] = useState(() => {
@@ -72,6 +73,8 @@ function App() {
     PageContent = <BodyScans />
   } else if (page === '/partners/equipment') {
     PageContent = <StrengthCardioEquipment />
+  } else if (page === '/partners/software') {
+    PageContent = <ManagementSoftware />
   } else {
     PageContent = <MiltonHomepage />
   }
