@@ -156,98 +156,103 @@ export default function SharedNav() {
                       left: "50%",
                       transform: "translateX(-50%)",
                       paddingTop: 12,
-                      minWidth: 380,
                     }}>
                       <div style={{
                         background: "rgba(6,28,39,0.98)",
                         backdropFilter: "blur(20px)",
                         border: "1px solid rgba(13,154,165,0.2)",
                         borderRadius: 12,
-                        padding: "12px 0",
+                        padding: "16px 0",
                         boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
+                        display: "flex",
+                        gap: 0,
                       }}>
-                        {/* Products Section */}
-                        <div style={{
-                          padding: "8px 20px 6px",
-                          fontFamily: "'DM Sans', sans-serif",
-                          fontSize: 11,
-                          fontWeight: 600,
-                          color: "#0d9aa5",
-                          textTransform: "uppercase",
-                          letterSpacing: 1,
-                        }}>Products</div>
-                        {productsMenuItems.map(item => (
-                          <a
-                            key={item.label}
-                            href={item.href}
-                            style={{
-                              display: "block",
-                              padding: "10px 20px",
-                              textDecoration: "none",
-                              transition: "background 0.2s ease",
-                            }}
-                            onMouseEnter={e => e.currentTarget.style.background = "rgba(13,154,165,0.1)"}
-                            onMouseLeave={e => e.currentTarget.style.background = "transparent"}
-                          >
-                            <div style={{
-                              fontFamily: "'DM Sans', sans-serif",
-                              fontSize: 14,
-                              fontWeight: 600,
-                              color: "#fff",
-                              marginBottom: 2,
-                            }}>{item.label}</div>
-                            <div style={{
-                              fontFamily: "'DM Sans', sans-serif",
-                              fontSize: 12,
-                              color: "rgba(255,255,255,0.5)",
-                            }}>{item.description}</div>
-                          </a>
-                        ))}
+                        {/* AI Agents Column */}
+                        <div style={{ minWidth: 280 }}>
+                          <div style={{
+                            padding: "4px 20px 10px",
+                            fontFamily: "'DM Sans', sans-serif",
+                            fontSize: 11,
+                            fontWeight: 600,
+                            color: "#0d9aa5",
+                            textTransform: "uppercase",
+                            letterSpacing: 1,
+                          }}>AI Agents</div>
+                          {productsMenuItems.map(item => (
+                            <a
+                              key={item.label}
+                              href={item.href}
+                              style={{
+                                display: "block",
+                                padding: "8px 20px",
+                                textDecoration: "none",
+                                transition: "background 0.2s ease",
+                              }}
+                              onMouseEnter={e => e.currentTarget.style.background = "rgba(13,154,165,0.1)"}
+                              onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+                            >
+                              <div style={{
+                                fontFamily: "'DM Sans', sans-serif",
+                                fontSize: 14,
+                                fontWeight: 600,
+                                color: "#fff",
+                                marginBottom: 2,
+                              }}>{item.label}</div>
+                              <div style={{
+                                fontFamily: "'DM Sans', sans-serif",
+                                fontSize: 12,
+                                color: "rgba(255,255,255,0.5)",
+                              }}>{item.description}</div>
+                            </a>
+                          ))}
+                        </div>
                         
-                        {/* Divider */}
+                        {/* Vertical Divider */}
                         <div style={{
-                          height: 1,
+                          width: 1,
                           background: "rgba(13,154,165,0.15)",
-                          margin: "8px 20px",
+                          margin: "8px 0",
                         }} />
                         
-                        {/* Services Section */}
-                        <div style={{
-                          padding: "8px 20px 6px",
-                          fontFamily: "'DM Sans', sans-serif",
-                          fontSize: 11,
-                          fontWeight: 600,
-                          color: "#9af198",
-                          textTransform: "uppercase",
-                          letterSpacing: 1,
-                        }}>Services</div>
-                        {servicesMenuItems.map(item => (
-                          <a
-                            key={item.label}
-                            href={item.href}
-                            style={{
-                              display: "block",
-                              padding: "10px 20px",
-                              textDecoration: "none",
-                              transition: "background 0.2s ease",
-                            }}
-                            onMouseEnter={e => e.currentTarget.style.background = "rgba(13,154,165,0.1)"}
-                            onMouseLeave={e => e.currentTarget.style.background = "transparent"}
-                          >
-                            <div style={{
-                              fontFamily: "'DM Sans', sans-serif",
-                              fontSize: 14,
-                              fontWeight: 600,
-                              color: "#fff",
-                              marginBottom: 2,
-                            }}>{item.label}</div>
-                            <div style={{
-                              fontFamily: "'DM Sans', sans-serif",
-                              fontSize: 12,
-                              color: "rgba(255,255,255,0.5)",
-                            }}>{item.description}</div>
-                          </a>
-                        ))}
+                        {/* AI Services Column */}
+                        <div style={{ minWidth: 260 }}>
+                          <div style={{
+                            padding: "4px 20px 10px",
+                            fontFamily: "'DM Sans', sans-serif",
+                            fontSize: 11,
+                            fontWeight: 600,
+                            color: "#9af198",
+                            textTransform: "uppercase",
+                            letterSpacing: 1,
+                          }}>AI Services</div>
+                          {servicesMenuItems.map(item => (
+                            <a
+                              key={item.label}
+                              href={item.href}
+                              style={{
+                                display: "block",
+                                padding: "8px 20px",
+                                textDecoration: "none",
+                                transition: "background 0.2s ease",
+                              }}
+                              onMouseEnter={e => e.currentTarget.style.background = "rgba(13,154,165,0.1)"}
+                              onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+                            >
+                              <div style={{
+                                fontFamily: "'DM Sans', sans-serif",
+                                fontSize: 14,
+                                fontWeight: 600,
+                                color: "#fff",
+                                marginBottom: 2,
+                              }}>{item.label}</div>
+                              <div style={{
+                                fontFamily: "'DM Sans', sans-serif",
+                                fontSize: 12,
+                                color: "rgba(255,255,255,0.5)",
+                              }}>{item.description}</div>
+                            </a>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   )}
