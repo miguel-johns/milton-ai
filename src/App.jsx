@@ -45,18 +45,23 @@ function AccentLine() {
   );
 }
 
-function ProductCard({ icon, title, description, mobile, href }) {
+function ProductCard({ icon, title, description, mobile, href, variant = "teal" }) {
   const [hovered, setHovered] = useState(false);
   const Wrapper = href ? 'a' : 'div';
   const wrapperProps = href ? { href, style: { textDecoration: 'none', display: 'block', height: '100%' } } : {};
+  
+  const colors = variant === "mint" 
+    ? { bg: "rgba(154,241,152,0.06)", border: "rgba(154,241,152,0.3)", iconBg: "rgba(154,241,152,0.1)" }
+    : { bg: "rgba(13,154,165,0.06)", border: "rgba(13,154,165,0.3)", iconBg: "rgba(13,154,165,0.1)" };
+  
   return (
     <Wrapper {...wrapperProps}>
       <div 
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         style={{
-          background: hovered ? "rgba(13,154,165,0.06)" : "rgba(255,255,255,0.02)",
-          border: hovered ? "1px solid rgba(13,154,165,0.3)" : "1px solid rgba(255,255,255,0.06)",
+          background: hovered ? colors.bg : "rgba(255,255,255,0.02)",
+          border: hovered ? `1px solid ${colors.border}` : "1px solid rgba(255,255,255,0.06)",
           borderRadius: 16,
           padding: mobile ? "24px 20px" : "32px 24px",
           transition: "all 0.3s ease",
@@ -69,7 +74,7 @@ function ProductCard({ icon, title, description, mobile, href }) {
       >
       <div style={{
         width: 44, height: 44, borderRadius: 12,
-        background: "rgba(13,154,165,0.1)",
+        background: colors.iconBg,
         display: "flex", alignItems: "center", justifyContent: "center",
         marginBottom: 16,
       }}>
@@ -432,6 +437,7 @@ export default function MiltonHomepage() {
                   description={service.description}
                   mobile={mobile}
                   href={service.href}
+                  variant="mint"
                 />
               ))}
             </div>
