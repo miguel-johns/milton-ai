@@ -202,6 +202,26 @@ const CRMIcon = () => (
   </svg>
 );
 
+const AICoachIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="8" r="4" stroke="#0d9aa5" strokeWidth="1.5"/>
+    <path d="M4 20C4 16.6863 7.58172 14 12 14C16.4183 14 20 16.6863 20 20" stroke="#0d9aa5" strokeWidth="1.5" strokeLinecap="round"/>
+    <path d="M12 4V2" stroke="#9af198" strokeWidth="1.5" strokeLinecap="round"/>
+    <path d="M15.5 5L17 3.5" stroke="#9af198" strokeWidth="1.5" strokeLinecap="round"/>
+    <path d="M8.5 5L7 3.5" stroke="#9af198" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>
+);
+
+const SchedulingIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+    <rect x="3" y="4" width="18" height="18" rx="2" stroke="#0d9aa5" strokeWidth="1.5"/>
+    <path d="M3 9H21" stroke="#0d9aa5" strokeWidth="1.5"/>
+    <path d="M8 2V5" stroke="#0d9aa5" strokeWidth="1.5" strokeLinecap="round"/>
+    <path d="M16 2V5" stroke="#0d9aa5" strokeWidth="1.5" strokeLinecap="round"/>
+    <circle cx="12" cy="15" r="2" fill="#9af198"/>
+  </svg>
+);
+
 const StrategyIcon = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
     <circle cx="12" cy="12" r="9" stroke="#0d9aa5" strokeWidth="1.5"/>
@@ -258,12 +278,14 @@ export default function MiltonHomepage() {
 
   // AI Agents
   const agents = [
-    { icon: <CoachIcon />, title: "Coach Co-Pilot", description: "AI that helps trainers program smarter.", href: "#/coach-copilot" },
-    { icon: <DashboardIcon />, title: "Director Co-Pilot", description: "Real-time visibility into performance and revenue.", href: "#/director-dashboard" },
-    { icon: <MemberIcon />, title: "Agentic Commerce", description: "Payments and shop via omni-channel communication.", href: "#/agentic-commerce" },
-    { icon: <WebsiteIcon />, title: "AI Website & Booking", description: "Professional sites wired to Stripe.", href: "#/websites" },
-    { icon: <MarketingIcon />, title: "AI Acquisition Engine", description: "Lead gen, nurture sequences, and campaigns.", href: "#/marketing" },
-    { icon: <ReceptionistIcon />, title: "AI Receptionist", description: "Answers calls and books appointments.", href: "#/receptionist" },
+    { icon: <CoachIcon />, title: "Coach Co-Pilot", description: "AI for people coaching clients.", href: "#/coach-copilot" },
+    { icon: <DashboardIcon />, title: "Director Co-Pilot", description: "AI for people managing trainers.", href: "#/director-dashboard" },
+    { icon: <AICoachIcon />, title: "AI Coach", description: "AI for people without a coach.", href: "#/ai-coach" },
+    { icon: <WebsiteIcon />, title: "AI Website", description: "AI for professional sites.", href: "#/websites" },
+    { icon: <SchedulingIcon />, title: "Scheduling & Booking", description: "AI for self-serve scheduling and booking.", href: "#/scheduling" },
+    { icon: <ReceptionistIcon />, title: "AI Receptionist", description: "AI for voicemail and follow up.", href: "#/receptionist" },
+    { icon: <MarketingIcon />, title: "AI Acquisition Engine", description: "AI for turning results into referrals.", href: "#/marketing" },
+    { icon: <MemberIcon />, title: "Agentic Commerce", description: "AI-powered shopping via text message.", href: "#/agentic-commerce" },
     { icon: <CRMIcon />, title: "Stripe-Powered CRM & POS", description: "Payments, memberships, and client management.", href: "#/crm" },
   ];
 

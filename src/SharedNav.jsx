@@ -46,12 +46,14 @@ export default function SharedNav() {
   ];
 
   const productsMenuItems = [
-    { label: "Coach Co-Pilot", description: "AI that helps trainers program smarter.", href: "#/coach-copilot" },
-    { label: "Director Co-Pilot", description: "Real-time visibility into performance and revenue.", href: "#/director-dashboard" },
-    { label: "Agentic Commerce", description: "Payments and shop via omni-channel communication.", href: "#/agentic-commerce" },
-    { label: "AI Website & Booking", description: "Professional sites wired to Stripe.", href: "#/websites" },
-    { label: "AI Acquisition Engine", description: "Lead gen, nurture sequences, and campaigns.", href: "#/marketing" },
-    { label: "AI Receptionist", description: "Answers calls and books appointments.", href: "#/receptionist" },
+    { label: "Coach Co-Pilot", description: "AI for people coaching clients.", href: "#/coach-copilot" },
+    { label: "Director Co-Pilot", description: "AI for people managing trainers.", href: "#/director-dashboard" },
+    { label: "AI Coach", description: "AI for people without a coach.", href: "#/ai-coach" },
+    { label: "AI Website", description: "AI for professional sites.", href: "#/websites" },
+    { label: "Scheduling & Booking", description: "AI for self-serve scheduling and booking.", href: "#/scheduling" },
+    { label: "AI Receptionist", description: "AI for voicemail and follow up.", href: "#/receptionist" },
+    { label: "AI Acquisition Engine", description: "AI for turning results into referrals.", href: "#/marketing" },
+    { label: "Agentic Commerce", description: "AI-powered shopping via text message.", href: "#/agentic-commerce" },
     { label: "Stripe-Powered CRM & POS", description: "Payments, memberships, and client management.", href: "#/crm" },
   ];
 
