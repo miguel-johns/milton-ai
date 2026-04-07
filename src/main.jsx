@@ -1,22 +1,40 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
 import { Analytics } from '@vercel/analytics/react'
+
+console.log("[v0] main.jsx starting - imports beginning")
+
 import MiltonHomepage from './App.jsx'
+console.log("[v0] MiltonHomepage imported")
 import PricingCalculator from './Pricing.jsx'
+console.log("[v0] PricingCalculator imported")
 import CaseStudy from './CaseStudy.jsx'
+console.log("[v0] CaseStudy imported")
 import AIConsultation from './Consultation.jsx'
+console.log("[v0] AIConsultation imported")
 import Insights from './Insights.jsx'
+console.log("[v0] Insights imported")
 import About from './About.jsx'
+console.log("[v0] About imported")
 import BookingPage from './Booking.jsx'
+console.log("[v0] BookingPage imported")
 import BookingSnapshotPage from './BookingSnapshot.jsx'
+console.log("[v0] BookingSnapshotPage imported")
 import SharedNav from './SharedNav.jsx'
+console.log("[v0] SharedNav imported")
 import SharedFooter from './SharedFooter.jsx'
+console.log("[v0] SharedFooter imported")
 import ArticleDetail from './ArticleDetail.jsx'
+console.log("[v0] ArticleDetail imported")
 import Terms from './Terms.jsx'
+console.log("[v0] Terms imported")
 import Privacy from './Privacy.jsx'
+console.log("[v0] Privacy imported")
 import ThePlatform from './ThePlatform.jsx'
+console.log("[v0] ThePlatform imported - all imports complete")
 
 function App() {
+  console.log("[v0] App component rendering")
   const [page, setPage] = useState(() => {
     const hash = window.location.hash.slice(1) || '/'
     return hash
@@ -78,9 +96,14 @@ function App() {
   )
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+console.log("[v0] About to mount React app")
+const rootElement = document.getElementById('root')
+console.log("[v0] Root element found:", rootElement)
+
+ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
     <App />
     <Analytics />
   </React.StrictMode>,
 )
+console.log("[v0] React render called")
