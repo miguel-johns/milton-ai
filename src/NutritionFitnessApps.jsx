@@ -1,28 +1,45 @@
-import { useState, useEffect } from 'react';
-
-const f = "'DM Sans', sans-serif";
-const fSerif = "'Cormorant Garamond', serif";
+import { useState, useEffect } from "react";
 
 function useBreakpoint() {
-  const [state, setState] = useState({ mobile: false, tablet: false });
+  const [w, setW] = useState(typeof window !== "undefined" ? window.innerWidth : 1200);
   useEffect(() => {
-    const check = () => {
-      setState({ mobile: window.innerWidth < 640, tablet: window.innerWidth >= 640 && window.innerWidth < 1024 });
-    };
-    check();
-    window.addEventListener('resize', check);
-    return () => window.removeEventListener('resize', check);
+    const h = () => setW(window.innerWidth);
+    window.addEventListener("resize", h);
+    return () => window.removeEventListener("resize", h);
   }, []);
-  return state;
+  return { mobile: w < 640, tablet: w >= 640 && w < 1024, desktop: w >= 1024 };
+}
+
+const f = "'DM Sans', sans-serif";
+const serif = "'Cormorant Garamond', serif";
+const teal = "#0d9aa5";
+const mint = "#9af198";
+
+function Accent({ children }) {
+  return <span style={{ color: teal, fontStyle: "italic" }}>{children}</span>;
+}
+
+function SectionLabel({ text }) {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+      <div style={{ width: 8, height: 8, borderRadius: "50%", background: teal, flexShrink: 0 }} />
+      <span style={{ fontFamily: f, fontSize: 12, fontWeight: 500, letterSpacing: 2.5, textTransform: "uppercase", color: "rgba(255,255,255,0.7)" }}>{text}</span>
+    </div>
+  );
+}
+
+function SectionDivider() {
+  return <div style={{ height: 1, background: `linear-gradient(90deg, ${teal}60, ${teal}08)`, marginBottom: 28 }} />;
 }
 
 export default function NutritionFitnessApps() {
   const { mobile, tablet } = useBreakpoint();
-  const sectionPad = mobile ? "48px 20px" : tablet ? "64px 40px" : "80px 64px";
+  const px = mobile ? 20 : tablet ? 32 : 40;
+  const sectionPad = mobile ? "48px 0" : "72px 0";
 
   const featuredApps = ["MyFitnessPal", "Strava", "Cronometer", "Training Peaks"];
   const allApps = ["MapMyFitness", "MapMyRun", "MapMyRide", "MapMyWalk", "FatSecret", "NutraCheck", "MacrosFirst", "Keto-Mojo", "My Macros+", "Today's Plan", "Ride with GPS", "Komoot", "Nolio", "Xhale", "CardioMood", "Clue", "Insiders", "Health Gauge"];
-
+  
   const dataPoints = [
     "Daily calorie and macronutrient intake",
     "Meal logging frequency and consistency",
@@ -33,228 +50,227 @@ export default function NutritionFitnessApps() {
   ];
 
   return (
-    <div style={{ background: "#061c27", minHeight: "100vh" }}>
-      {/* Hero */}
-      <section style={{ padding: sectionPad, paddingTop: mobile ? 100 : 120 }}>
-        <a href="#/partners" style={{
-          fontFamily: f,
-          fontSize: 12,
-          color: "#0d9aa5",
-          textDecoration: "none",
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 6,
-          marginBottom: 24,
+    <>
+      <div style={{ position: "relative", zIndex: 1, maxWidth: 900, margin: "0 auto", padding: `0 ${px}px` }}>
+
+        {/* ═══════ HERO ═══════ */}
+        <section style={{
+          minHeight: mobile ? "auto" : "50vh",
+          display: "flex", flexDirection: "column", justifyContent: "center",
+          padding: mobile ? "64px 0 48px" : "100px 0 64px",
         }}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-            <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-          Connected Partners
-        </a>
-        
-        <p style={{
-          fontFamily: f,
-          fontSize: 11,
-          fontWeight: 600,
-          letterSpacing: "0.15em",
-          textTransform: "uppercase",
-          color: "#0d9aa5",
-          marginBottom: 16,
-        }}>Connected Partners / Nutrition & Fitness Apps</p>
-        
-        <h1 style={{
-          fontFamily: fSerif,
-          fontSize: mobile ? 32 : tablet ? 40 : 48,
-          fontWeight: 400,
-          color: "#fff",
-          lineHeight: 1.15,
-          marginBottom: 24,
-          maxWidth: 700,
-        }}>See what your members are doing between sessions</h1>
-        
-        <p style={{
-          fontFamily: f,
-          fontSize: mobile ? 15 : 17,
-          color: "rgba(255,255,255,0.6)",
-          lineHeight: 1.7,
-          maxWidth: 680,
-        }}>
-          The hour a member spends with their trainer matters. The other 167 hours matter more. Milton connects to the nutrition and fitness apps your members already use — giving trainers visibility into eating habits, extra workouts, and daily activity without asking members to switch tools.
-        </p>
-      </section>
+          <a 
+            href="#/partners"
+            style={{
+              display: "inline-flex", alignItems: "center", gap: 8,
+              fontFamily: f, fontSize: 12, fontWeight: 500, letterSpacing: 1.5, textTransform: "uppercase",
+              color: "rgba(255,255,255,0.5)",
+              textDecoration: "none",
+              marginBottom: 24,
+              transition: "color 0.2s ease",
+            }}
+            onMouseEnter={e => e.currentTarget.style.color = teal}
+            onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.5)"}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Connected Partners / Nutrition & Fitness Apps
+          </a>
 
-      {/* Why It Matters */}
-      <section style={{ padding: sectionPad, paddingTop: 0 }}>
-        <h2 style={{
-          fontFamily: fSerif,
-          fontSize: mobile ? 24 : 28,
-          fontWeight: 400,
-          color: "#fff",
-          marginBottom: 16,
-        }}>Why it matters for your facility</h2>
-        <p style={{
-          fontFamily: f,
-          fontSize: mobile ? 15 : 16,
-          color: "rgba(255,255,255,0.6)",
-          lineHeight: 1.7,
-          maxWidth: 680,
-        }}>
-          A trainer notices a member's energy has been low in sessions. They glance at Milton and see the member has been logging 1,200 calories a day in MyFitnessPal for two weeks. Now they can have a real conversation. That's the difference between guessing and coaching.
-        </p>
-      </section>
+          <h1 style={{
+            fontFamily: serif,
+            fontSize: mobile ? 32 : tablet ? 44 : 56,
+            fontWeight: 400, lineHeight: 1.12, color: "#fff",
+            margin: "0 0 24px 0",
+          }}>
+            See what your members are doing <Accent>between sessions</Accent>
+          </h1>
 
-      {/* How It Works */}
-      <section style={{ padding: sectionPad, paddingTop: 0 }}>
-        <h2 style={{
-          fontFamily: fSerif,
-          fontSize: mobile ? 24 : 28,
-          fontWeight: 400,
-          color: "#fff",
-          marginBottom: 16,
-        }}>How it works</h2>
-        <p style={{
-          fontFamily: f,
-          fontSize: mobile ? 15 : 16,
-          color: "rgba(255,255,255,0.6)",
-          lineHeight: 1.7,
-          maxWidth: 680,
-        }}>
-          Members authorize their existing apps through the Milton app, via SMS sync, or through the coaching portal. Data syncs automatically in the background. Trainers see a consolidated nutrition and activity feed — no need to ask members to screenshot their food logs or recall what they did over the weekend.
-        </p>
-      </section>
+          <p style={{
+            fontFamily: f, fontSize: mobile ? 15 : 18, lineHeight: 1.7,
+            color: "rgba(255,255,255,0.6)", maxWidth: 700, margin: 0,
+          }}>
+            The hour a member spends with their trainer matters. The other 167 hours matter more. Milton connects to the nutrition and fitness apps your members already use — giving trainers visibility into eating habits, extra workouts, and daily activity without asking members to switch tools.
+          </p>
+        </section>
 
-      {/* Connected Apps */}
-      <section style={{ padding: sectionPad, paddingTop: 0 }}>
-        <h2 style={{
-          fontFamily: fSerif,
-          fontSize: mobile ? 24 : 28,
-          fontWeight: 400,
-          color: "#fff",
-          marginBottom: 32,
-        }}>Connected Apps</h2>
+        {/* ═══════ WHY IT MATTERS ═══════ */}
+        <section style={{ padding: sectionPad }}>
+          <SectionLabel text="Why It Matters For Your Facility" />
+          <SectionDivider />
+          
+          <p style={{
+            fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
+            color: "rgba(255,255,255,0.65)", margin: 0,
+          }}>
+            A trainer notices a member&apos;s energy has been low in sessions. They glance at Milton and see the member has been logging 1,200 calories a day in MyFitnessPal for two weeks. Now they can have a real conversation. That&apos;s the difference between guessing and coaching.
+          </p>
+        </section>
 
-        {/* Featured Integrations */}
-        <div style={{ marginBottom: 32 }}>
-          <h3 style={{
-            fontFamily: f,
-            fontSize: 11,
-            fontWeight: 600,
-            letterSpacing: "0.15em",
-            textTransform: "uppercase",
-            color: "#0d9aa5",
-            marginBottom: 16,
-          }}>Featured Integrations</h3>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-            {featuredApps.map((app, i) => (
-              <span key={i} style={{
-                fontFamily: f,
-                fontSize: 13,
-                fontWeight: 500,
-                color: "#fff",
-                background: "rgba(13,154,165,0.15)",
-                border: "1px solid rgba(13,154,165,0.3)",
-                borderRadius: 8,
-                padding: "10px 16px",
-              }}>{app}</span>
-            ))}
-          </div>
-        </div>
+        {/* ═══════ HOW IT WORKS ═══════ */}
+        <section style={{ padding: sectionPad }}>
+          <SectionLabel text="How It Works" />
+          <SectionDivider />
+          
+          <p style={{
+            fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
+            color: "rgba(255,255,255,0.65)", margin: 0,
+          }}>
+            Members authorize their existing apps through the Milton app, via SMS sync, or through the coaching portal. Data syncs automatically in the background. Trainers see a consolidated nutrition and activity feed — no need to ask members to screenshot their food logs or recall what they did over the weekend.
+          </p>
+        </section>
 
-        {/* All Supported Apps */}
-        <div>
-          <h3 style={{
-            fontFamily: f,
-            fontSize: 11,
-            fontWeight: 600,
-            letterSpacing: "0.15em",
-            textTransform: "uppercase",
-            color: "rgba(255,255,255,0.5)",
-            marginBottom: 16,
-          }}>All Supported Apps</h3>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-            {allApps.map((app, i) => (
-              <span key={i} style={{
-                fontFamily: f,
-                fontSize: 12,
-                color: "rgba(255,255,255,0.5)",
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.08)",
-                borderRadius: 6,
-                padding: "6px 12px",
-              }}>{app}</span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Data Points */}
-      <section style={{ padding: sectionPad, paddingTop: 0 }}>
-        <h2 style={{
-          fontFamily: fSerif,
-          fontSize: mobile ? 24 : 28,
-          fontWeight: 400,
-          color: "#fff",
-          marginBottom: 24,
-        }}>Data Milton pulls from apps</h2>
-        
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: mobile ? "1fr" : tablet ? "repeat(2, 1fr)" : "repeat(3, 1fr)",
-          gap: 16,
-        }}>
-          {dataPoints.map((point, i) => (
-            <div key={i} style={{
-              background: "rgba(255,255,255,0.02)",
-              border: "1px solid rgba(255,255,255,0.06)",
-              borderRadius: 12,
-              padding: "16px 20px",
+        {/* ═══════ CONNECTED APPS ═══════ */}
+        <section style={{ padding: sectionPad }}>
+          <SectionLabel text="Connected Apps" />
+          <SectionDivider />
+          
+          {/* Featured Integrations */}
+          <div style={{ marginBottom: mobile ? 36 : 48 }}>
+            <h3 style={{
+              fontFamily: f, fontSize: 13, fontWeight: 600,
+              letterSpacing: 1, textTransform: "uppercase",
+              color: teal, marginBottom: 16,
+            }}>Featured Integrations</h3>
+            
+            <div style={{
               display: "flex",
-              alignItems: "center",
+              flexWrap: "wrap",
               gap: 12,
             }}>
-              <div style={{
-                width: 8,
-                height: 8,
-                borderRadius: "50%",
-                background: "#9af198",
-                flexShrink: 0,
-              }} />
-              <span style={{
-                fontFamily: f,
-                fontSize: 14,
-                color: "rgba(255,255,255,0.7)",
-              }}>{point}</span>
+              {featuredApps.map((app, i) => (
+                <span 
+                  key={i}
+                  style={{
+                    fontFamily: f,
+                    fontSize: mobile ? 14 : 15,
+                    fontWeight: 500,
+                    color: "#fff",
+                    background: "rgba(13,154,165,0.15)",
+                    border: "1px solid rgba(13,154,165,0.3)",
+                    borderRadius: 8,
+                    padding: mobile ? "10px 18px" : "12px 24px",
+                  }}
+                >{app}</span>
+              ))}
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
+          
+          {/* All Supported Apps */}
+          <div>
+            <h3 style={{
+              fontFamily: f, fontSize: 13, fontWeight: 600,
+              letterSpacing: 1, textTransform: "uppercase",
+              color: "rgba(255,255,255,0.5)", marginBottom: 16,
+            }}>All Supported Apps</h3>
+            
+            <div style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 8,
+            }}>
+              {allApps.map((app, i) => (
+                <span 
+                  key={i}
+                  style={{
+                    fontFamily: f,
+                    fontSize: mobile ? 12 : 13,
+                    color: "rgba(255,255,255,0.5)",
+                    background: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    borderRadius: 6,
+                    padding: "8px 14px",
+                  }}
+                >{app}</span>
+              ))}
+            </div>
+          </div>
+        </section>
 
-      {/* CTA */}
-      <section style={{ padding: sectionPad, paddingTop: 0 }}>
-        <div style={{
-          background: "rgba(13,154,165,0.08)",
-          border: "1px solid rgba(13,154,165,0.2)",
-          borderRadius: 16,
-          padding: mobile ? "28px 24px" : "36px 32px",
-        }}>
-          <p style={{
-            fontFamily: f,
-            fontSize: mobile ? 15 : 16,
-            color: "rgba(255,255,255,0.7)",
-            lineHeight: 1.7,
-            marginBottom: 20,
+        {/* ═══════ DATA POINTS ═══════ */}
+        <section style={{ padding: sectionPad }}>
+          <SectionLabel text="Data Milton Pulls From Apps" />
+          <SectionDivider />
+          
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: mobile ? "1fr" : "repeat(2, 1fr)",
+            gap: mobile ? 12 : 16,
           }}>
-            Members use an app we don't support yet? We're always expanding — tell us what your members are tracking with.
-          </p>
-          <a href="#/partners/inquire" style={{
-            fontFamily: f,
-            fontSize: 14,
-            fontWeight: 600,
-            color: "#0d9aa5",
-            textDecoration: "none",
-          }}>Request an Integration &rarr;</a>
-        </div>
-      </section>
-    </div>
+            {dataPoints.map((point, i) => (
+              <div 
+                key={i}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 12,
+                  background: "rgba(255,255,255,0.02)",
+                  border: "1px solid rgba(255,255,255,0.06)",
+                  borderRadius: 10,
+                  padding: mobile ? "14px 16px" : "16px 20px",
+                }}
+              >
+                <div style={{
+                  width: 8, height: 8, borderRadius: "50%",
+                  background: mint, flexShrink: 0,
+                }} />
+                <span style={{
+                  fontFamily: f,
+                  fontSize: mobile ? 14 : 15,
+                  color: "rgba(255,255,255,0.7)",
+                }}>{point}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ═══════ CTA ═══════ */}
+        <section style={{ 
+          padding: mobile ? "48px 0 80px" : "64px 0 120px",
+        }}>
+          <div style={{
+            background: "rgba(255,255,255,0.02)",
+            border: "1px solid rgba(255,255,255,0.06)",
+            borderRadius: mobile ? 16 : 20,
+            padding: mobile ? "28px 24px" : "36px 32px",
+            textAlign: "center",
+          }}>
+            <p style={{
+              fontFamily: f,
+              fontSize: mobile ? 14 : 16,
+              lineHeight: 1.65,
+              color: "rgba(255,255,255,0.6)",
+              margin: "0 0 20px 0",
+            }}>
+              Members use an app we don&apos;t support yet? We&apos;re always expanding — tell us what your members are tracking with.
+            </p>
+            
+            <a
+              href="#/partners/inquire"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                fontFamily: f,
+                fontSize: mobile ? 14 : 15,
+                fontWeight: 600,
+                color: teal,
+                textDecoration: "none",
+                transition: "color 0.2s ease",
+              }}
+              onMouseEnter={e => e.currentTarget.style.color = mint}
+              onMouseLeave={e => e.currentTarget.style.color = teal}
+            >
+              Request an integration
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </section>
+
+      </div>
+    </>
   );
 }
