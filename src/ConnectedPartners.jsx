@@ -208,6 +208,7 @@ export default function ConnectedPartners() {
       body: "Your members already track nutrition and workouts across dozens of apps. Milton pulls it all together — giving trainers a unified view of what members are eating, how they're training, and where the gaps are.",
       partners: ["MyFitnessPal", "Strava", "Cronometer", "Training Peaks", "MapMyFitness", "MapMyRun", "MapMyRide", "MapMyWalk", "FatSecret", "NutraCheck", "MacrosFirst", "Keto-Mojo", "My Macros+", "Today's Plan", "Ride with GPS", "Komoot", "Nolio", "Xhale", "CardioMood", "Clue", "Insiders", "Health Gauge"],
       icon: <NutritionIcon />,
+      href: "#/partners/apps",
     },
   ];
 

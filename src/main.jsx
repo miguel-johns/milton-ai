@@ -21,6 +21,7 @@ import WearableDevices from './WearableDevices.jsx'
 import BodyScans from './BodyScans.jsx'
 import StrengthCardioEquipment from './StrengthCardioEquipment.jsx'
 import ManagementSoftware from './ManagementSoftware.jsx'
+import NutritionFitnessApps from './NutritionFitnessApps.jsx'
 
 function App() {
   const [page, setPage] = useState(() => {
@@ -75,6 +76,8 @@ function App() {
     PageContent = <StrengthCardioEquipment />
   } else if (page === '/partners/software') {
     PageContent = <ManagementSoftware />
+  } else if (page === '/partners/apps') {
+    PageContent = <NutritionFitnessApps />
   } else {
     PageContent = <MiltonHomepage />
   }
