@@ -16,6 +16,7 @@ import ArticleDetail from './ArticleDetail.jsx'
 import Terms from './Terms.jsx'
 import Privacy from './Privacy.jsx'
 import CoachCoPilot from './CoachCoPilot.jsx'
+import ConnectedPartners from './ConnectedPartners.jsx'
 
 function App() {
   const [page, setPage] = useState(() => {
@@ -60,6 +61,8 @@ function App() {
     PageContent = <CoachCoPilot />
   } else if (page === '/director-dashboard') {
     PageContent = <DirectorDashboard />
+  } else if (page === '/partners') {
+    PageContent = <ConnectedPartners />
   } else {
     PageContent = <MiltonHomepage />
   }
