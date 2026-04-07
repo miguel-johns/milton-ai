@@ -184,6 +184,7 @@ export default function ConnectedPartners() {
       body: "Track member body composition over time with data from leading analyzers. Milton turns scan results into actionable coaching insights and progress narratives your trainers can share.",
       partners: ["InBody", "Withings Body+", "Omron Body Composition", "Samsung Body Composition"],
       icon: <BodyScanIcon />,
+      href: "#/partners/body-scans",
     },
     {
       title: "Strength & Cardio Equipment",
