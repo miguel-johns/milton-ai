@@ -90,7 +90,6 @@ export default function SharedNav() {
     { label: "Connected Partners", hasDropdown: "partners" },
     { label: "Insights", href: "#/insights" },
     { label: "About Us", href: "#/about" },
-    { label: "Pricing", href: "#/pricing" },
   ];
 
   return (
