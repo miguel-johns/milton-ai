@@ -56,6 +56,42 @@ function Accent({ children }) {
   return <span style={{ color: "#0d9aa5", fontStyle: "italic" }}>{children}</span>;
 }
 
+function CTAButton({ mobile }) {
+  return (
+    <button
+      onClick={() => window.dispatchEvent(new CustomEvent('openConsultationModal'))}
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 8,
+        fontFamily: "'DM Sans', sans-serif",
+        fontSize: mobile ? 13 : 14,
+        fontWeight: 600,
+        color: "#061c27",
+        background: "#9af198",
+        border: "none",
+        borderRadius: 100,
+        padding: mobile ? "12px 24px" : "14px 28px",
+        cursor: "pointer",
+        transition: "all 0.2s ease",
+      }}
+      onMouseEnter={e => {
+        e.currentTarget.style.background = "#b8f5b6";
+        e.currentTarget.style.transform = "translateY(-2px)";
+      }}
+      onMouseLeave={e => {
+        e.currentTarget.style.background = "#9af198";
+        e.currentTarget.style.transform = "translateY(0)";
+      }}
+    >
+      AI Consultation
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </button>
+  );
+}
+
 function Mint({ children }) {
   return <span style={{ color: "#9af198" }}>{children}</span>;
 }
@@ -191,55 +227,55 @@ export default function DirectorDashboard() {
 
         {/* SECTION 1 — HERO */}
         <section id="hero" style={{
-          minHeight: "100vh", display: "flex", flexDirection: "column",
-          justifyContent: "center", alignItems: "center", textAlign: "center",
-          paddingTop: mobile ? 80 : 100, paddingBottom: mobile ? 40 : 0,
+          minHeight: mobile ? "auto" : "50vh",
+          display: "flex", flexDirection: "column",
+          justifyContent: "center",
+          padding: mobile ? "120px 0 48px" : "140px 0 64px",
         }}>
-          <div style={{ marginBottom: 20 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
+            <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#0d9aa5", flexShrink: 0 }} />
             <span style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: 11,
-              fontWeight: 600,
-              letterSpacing: "0.15em",
+              fontSize: 12,
+              fontWeight: 500,
+              letterSpacing: 2.5,
               textTransform: "uppercase",
-              color: "#0d9aa5",
-            }}>The trainer performance platform</span>
+              color: "rgba(255,255,255,0.7)",
+            }}>Director Co-Pilot</span>
           </div>
 
           <h1 style={{
             fontFamily: "'Cormorant Garamond', serif",
-            fontSize: mobile ? 36 : tablet ? 52 : "clamp(40px, 5.5vw, 68px)",
-            fontWeight: 400, lineHeight: 1.12, color: "#fff",
-            margin: "0 0 24px 0", maxWidth: 900,
+            fontSize: mobile ? 36 : tablet ? 52 : 64,
+            fontWeight: 400, lineHeight: 1.08, color: "#fff",
+            margin: "0 0 28px 0",
           }}>
             Great trainers are hard to find, impossible to keep, and expensive to build. <Accent>We fix that.</Accent>
           </h1>
 
           <p style={{
             fontFamily: "'DM Sans', sans-serif",
-            fontSize: mobile ? 15 : 18,
-            lineHeight: 1.65, color: "rgba(255,255,255,0.5)",
-            maxWidth: 600, margin: "0 0 32px 0", padding: mobile ? "0 4px" : 0,
+            fontSize: mobile ? 16 : 20,
+            lineHeight: 1.7, color: "rgba(255,255,255,0.6)",
+            maxWidth: 720, margin: "0 0 40px 0",
           }}>
             Milton is the first platform built to help fitness directors develop, manage, and retain personal trainers — so your business grows instead of starting over every time a coach walks out the door.
           </p>
-
-          <div style={{ display: "flex", gap: 12, marginBottom: 0, flexWrap: "wrap", justifyContent: "center" }}>
-            <CTA variant="primary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }} href="#/book">AI Consultation</CTA>
-            <CTA variant="secondary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }} href="#/pricing">Get Pricing</CTA>
-          </div>
 
           <div style={{
             borderRadius: mobile ? 12 : 16,
             overflow: "hidden",
             boxShadow: "0 20px 50px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.08)",
-            marginTop: mobile ? 32 : 48,
           }}>
             <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_8260-ZXksj4knhcDaRItpyEpzJ9MbO2vYea.png"
               alt="Fitness director overseeing trainers on the gym floor"
               style={{ width: "100%", height: "auto", display: "block" }}
             />
+          </div>
+
+          <div style={{ marginTop: 40 }}>
+            <CTAButton mobile={mobile} />
           </div>
         </section>
 
@@ -343,6 +379,10 @@ export default function DirectorDashboard() {
               style={{ width: "100%", height: "auto", display: "block" }}
             />
           </div>
+
+          <div style={{ marginTop: 40 }}>
+            <CTAButton mobile={mobile} />
+          </div>
         </section>
 
         {/* SECTION 4 — THE PLATFORM */}
@@ -385,6 +425,10 @@ export default function DirectorDashboard() {
               description="The connective tissue between trainer performance and business results. When your trainers improve, attendance goes up, follow-through increases, clients stay longer, and results compound. Milton makes that visible and actionable."
               mobile={mobile}
             />
+          </div>
+
+          <div style={{ marginTop: 40, textAlign: "center" }}>
+            <CTAButton mobile={mobile} />
           </div>
         </section>
 
@@ -554,14 +598,7 @@ export default function DirectorDashboard() {
                 Start with one location. See the difference in 90 days. No long-term contract. No massive implementation. Just a better way to develop, manage, and retain the people who drive your revenue.
               </Body>
               
-              <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-                <CTA variant="primary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "14px 28px" : "16px 36px" }} href="#/book">
-                  Book Your Discovery Call →
-                </CTA>
-                <CTA variant="secondary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "14px 28px" : "16px 36px" }} href="#/pricing">
-                  See Pricing
-                </CTA>
-              </div>
+              <CTAButton mobile={mobile} />
             </div>
           </div>
         </section>
