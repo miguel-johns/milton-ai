@@ -159,7 +159,7 @@ export default function CoachCoPilot() {
             This is what AI for coaches should actually look like. Not a robot that writes generic programs. Not a chatbot pretending to understand your client&apos;s bad knee. Not another app that promises to &quot;automate your coaching&quot; while stripping out everything that makes your coaching yours.
           </p>
 
-          <VisualPlaceholder height={mobile ? 280 : 480} label="Hero Image" mobile={mobile} />
+          <VisualPlaceholder height={mobile ? 280 : 480} label="Dashboard overview — unified client profile with data flowing from wearables, nutrition apps, body scans into one clean screen" mobile={mobile} />
 
           <div style={{ marginTop: 40 }}>
             <CTAButton mobile={mobile} />
