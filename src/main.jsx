@@ -24,6 +24,7 @@ import StrengthCardioEquipment from './StrengthCardioEquipment.jsx'
 import ManagementSoftware from './ManagementSoftware.jsx'
 import NutritionFitnessApps from './NutritionFitnessApps.jsx'
 import AIPoweredScheduling from './AIPoweredScheduling.jsx'
+import AIReceptionist from './AIReceptionist.jsx'
 import InquireModal from './InquireModal.jsx'
 
 function App() {
@@ -79,6 +80,8 @@ function App() {
     PageContent = <AICoach />
   } else if (page === '/scheduling') {
     PageContent = <AIPoweredScheduling />
+  } else if (page === '/receptionist') {
+    PageContent = <AIReceptionist />
   } else if (page === '/director-dashboard') {
     PageContent = <DirectorDashboard />
   } else if (page === '/partners') {
