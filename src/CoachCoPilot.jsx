@@ -228,6 +228,56 @@ function NutritionCoachingVisual({ mobile }) {
   );
 }
 
+function CRMPaymentsVisual({ mobile }) {
+  const desktopImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Co-pilot%20Stripe%20CRM%20Desktop-uzdQlbA7zRaIawJMatAaJFNF1OVjvU.png";
+  const mobileImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Stripe%20CRM-a6thKJYDNAPxxPhmFyZeMmdiJR1s7Q.png";
+
+  return (
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      position: "relative",
+    }}>
+      <img 
+        src={mobile ? mobileImage : desktopImage}
+        alt="Stripe-powered client CRM showing active clients, payment plans, and monthly recurring revenue"
+        style={{
+          width: "100%",
+          maxWidth: mobile ? 400 : 1100,
+          height: "auto",
+          borderRadius: mobile ? 16 : 20,
+        }}
+      />
+    </div>
+  );
+}
+
+function AcquisitionEngineVisual({ mobile }) {
+  const desktopImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Acquisition%20Engine%20Coach%20Co-Pilot%20Desktop-KBp7XTvUHEQCQKOXrG0zDhOSPc0xAM.png";
+  const mobileImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Acquisition%20Enginge-GuyF7Wy9nwz2xpZkmbmyK4GdXPpOP7.png";
+
+  return (
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      position: "relative",
+    }}>
+      <img 
+        src={mobile ? mobileImage : desktopImage}
+        alt="Client transformation summary card with social sharing options for Instagram, Facebook, Messages, and Email"
+        style={{
+          width: "100%",
+          maxWidth: mobile ? 400 : 1100,
+          height: "auto",
+          borderRadius: mobile ? 16 : 20,
+        }}
+      />
+    </div>
+  );
+}
+
 function CTAButton({ mobile }) {
   return (
     <button
@@ -301,8 +351,8 @@ const features = [
     { title: "Inbox", body: "Every client conversation in one place. Text threads, in-app messages, and follow-ups organized by client — not scattered across your personal phone." },
     { title: "Video Calls", body: "Remote sessions and check-ins built right into the platform. No Zoom links. No switching apps. Your client's data is on screen while you're talking to them." },
     { title: "Goals & Macros", body: "Set targets collaboratively with clients. Milton tracks progress toward those targets and surfaces when someone is on pace, ahead, or falling behind — so you can step in before things go sideways." },
-    { title: "CRM, Payments & Memberships", body: "Manage your entire client lifecycle in one place. Built-in CRM tracks leads, onboarding, and retention. Stripe-powered payments handle one-time sessions, recurring memberships, and package deals — all automated with invoices, receipts, and payment reminders." },
-    { title: "Acquisition Engine", body: "Turn your coaching into a client magnet. AI-powered landing pages, lead capture forms, and automated follow-up sequences help you attract and convert prospects while you focus on coaching. Track where leads come from and what converts them." },
+    { title: "CRM, Payments & Memberships", body: "Manage your entire client lifecycle in one place. Built-in CRM tracks leads, onboarding, and retention. Stripe-powered payments handle one-time sessions, recurring memberships, and package deals — all automated with invoices, receipts, and payment reminders.", Visual: CRMPaymentsVisual },
+    { title: "Acquisition Engine", body: "Turn your coaching into a client magnet. AI-powered landing pages, lead capture forms, and automated follow-up sequences help you attract and convert prospects while you focus on coaching. Track where leads come from and what converts them.", Visual: AcquisitionEngineVisual },
   ];
 
   return (
