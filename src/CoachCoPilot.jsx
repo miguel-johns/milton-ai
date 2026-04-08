@@ -178,6 +178,31 @@ function CoachMomentVisual({ mobile }) {
   );
 }
 
+function WorkoutBuilderVisual({ mobile }) {
+  const desktopImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Co-Pilot%20Coach%20workout%20builder%20Desktop-Nnfj5bBAcWgtRAag44RL0wCRyvuXw1.png";
+  const mobileImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Workout%20Builder-EaLJ2QboaLvL8Mnlb6PPhVM93TJm5O.png";
+
+  return (
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      position: "relative",
+    }}>
+      <img 
+        src={mobile ? mobileImage : desktopImage}
+        alt="Workout program builder showing Pull: Back & Biceps workout with exercises like Barbell Deadlift, Seated Cable Row, and Barbell Curl"
+        style={{
+          width: "100%",
+          maxWidth: mobile ? 400 : 1100,
+          height: "auto",
+          borderRadius: mobile ? 16 : 20,
+        }}
+      />
+    </div>
+  );
+}
+
 function CTAButton({ mobile }) {
   return (
     <button
@@ -214,7 +239,7 @@ function CTAButton({ mobile }) {
   );
 }
 
-function FeatureCard({ title, body, mobile }) {
+function FeatureCard({ title, body, mobile, Visual }) {
   return (
     <div style={{
       background: "rgba(255,255,255,0.02)",
@@ -233,7 +258,7 @@ function FeatureCard({ title, body, mobile }) {
         margin: 0,
       }}>{body}</p>
       <div style={{ marginTop: mobile ? 16 : 20 }}>
-        <VisualPlaceholder height={180} mobile={mobile} />
+        {Visual ? <Visual mobile={mobile} /> : <VisualPlaceholder height={180} mobile={mobile} />}
       </div>
     </div>
   );
@@ -244,8 +269,8 @@ export default function CoachCoPilot() {
   const px = mobile ? 20 : tablet ? 32 : 40;
   const sectionPad = mobile ? "48px 0" : "72px 0";
 
-  const features = [
-    { title: "Workout Builder", body: "Build and assign programs with AI-assisted exercise selection based on your client's goals, history, and equipment access. Or build from scratch. Your programming, your philosophy — Milton just makes it faster." },
+const features = [
+  { title: "Workout Builder", body: "Build and assign programs with AI-assisted exercise selection based on your client's goals, history, and equipment access. Or build from scratch. Your programming, your philosophy — Milton just makes it faster.", Visual: WorkoutBuilderVisual },
     { title: "Nutrition Tracking", body: "See what your clients are eating without making them switch apps. Data flows in from MyFitnessPal, Cronometer, and others. Set macros, track adherence, and flag gaps — all from one dashboard." },
     { title: "Calendar & Scheduling", body: "Your schedule, your clients' bookings, and your availability in one view. No more double-booking. No more back-and-forth texts to find a time." },
     { title: "Inbox", body: "Every client conversation in one place. Text threads, in-app messages, and follow-ups organized by client — not scattered across your personal phone." },
@@ -477,7 +502,7 @@ export default function CoachCoPilot() {
             gap: mobile ? 16 : 20,
           }}>
             {features.map((feature, i) => (
-              <FeatureCard key={i} title={feature.title} body={feature.body} mobile={mobile} />
+              <FeatureCard key={i} title={feature.title} body={feature.body} mobile={mobile} Visual={feature.Visual} />
             ))}
           </div>
 
