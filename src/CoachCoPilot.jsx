@@ -462,37 +462,7 @@ export default function CoachCoPilot() {
               Book a free AI Strategy Session and we&apos;ll show you exactly how the Coach Co-Pilot fits your business.
             </p>
             
-            <a
-              href="#/consultation"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                fontFamily: f,
-                fontSize: mobile ? 14 : 15,
-                fontWeight: 600,
-                color: "#061c27",
-                background: mint,
-                border: "none",
-                borderRadius: 8,
-                padding: mobile ? "14px 28px" : "16px 36px",
-                textDecoration: "none",
-                transition: "all 0.2s ease",
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = "#b8f5b6";
-                e.currentTarget.style.transform = "translateY(-2px)";
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.background = mint;
-                e.currentTarget.style.transform = "translateY(0)";
-              }}
-            >
-              Book a Strategy Session
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-              </svg>
-            </a>
+            <CTAButton mobile={mobile} />
           </div>
         </section>
 
