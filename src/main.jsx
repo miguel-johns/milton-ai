@@ -23,6 +23,7 @@ import BodyScans from './BodyScans.jsx'
 import StrengthCardioEquipment from './StrengthCardioEquipment.jsx'
 import ManagementSoftware from './ManagementSoftware.jsx'
 import NutritionFitnessApps from './NutritionFitnessApps.jsx'
+import AIPoweredScheduling from './AIPoweredScheduling.jsx'
 import InquireModal from './InquireModal.jsx'
 
 function App() {
@@ -76,6 +77,8 @@ function App() {
     PageContent = <CoachCoPilot />
   } else if (page === '/ai-coach') {
     PageContent = <AICoach />
+  } else if (page === '/scheduling') {
+    PageContent = <AIPoweredScheduling />
   } else if (page === '/director-dashboard') {
     PageContent = <DirectorDashboard />
   } else if (page === '/partners') {
