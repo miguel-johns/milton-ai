@@ -54,126 +54,86 @@ function VisualPlaceholder({ height = 320, label = "Visual Here", mobile }) {
 }
 
 function HeroChatVisual({ mobile }) {
-  const clientCards = [
-    { initials: "SM", name: "Sarah M.", time: "8:00 AM", note: "Squat has been progressing. Ready for 140 today. Shoulder was bugging her Tuesday — modified plan ready." },
-    { initials: "JR", name: "James R.", time: "10:30 AM", note: "Missed his last two nutrition targets. Energy might be low. Worth checking in." },
-    { initials: "DP", name: "Dev P.", time: "4:00 PM", note: "Hit a 4-week consistency streak yesterday. Great time to show him his progress report." },
-  ];
+  // Shared bubble styles - smooth, thin, wide
+  const miltonBubble = {
+    background: "rgba(13,154,165,0.1)",
+    border: `1px solid ${teal}`,
+    borderRadius: 20,
+    borderBottomLeftRadius: 4,
+    padding: mobile ? "10px 14px" : "12px 18px",
+    boxShadow: "0 4px 16px rgba(0,0,0,0.15)",
+  };
+
+  const coachBubble = {
+    background: "rgba(255,255,255,0.95)",
+    borderRadius: 20,
+    borderBottomRightRadius: 4,
+    padding: mobile ? "10px 14px" : "12px 18px",
+    boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
+  };
+
+  const textStyle = (isCoach) => ({
+    fontFamily: f,
+    fontSize: mobile ? 13 : 14,
+    color: isCoach ? "#061c27" : "#fff",
+    lineHeight: 1.5,
+    margin: 0,
+  });
 
   return (
     <div style={{
-      borderRadius: mobile ? 12 : 20,
-      background: "linear-gradient(145deg, #0a1f2a 0%, #061c27 100%)",
-      padding: mobile ? 24 : 48,
+      borderRadius: mobile ? 16 : 24,
+      background: "linear-gradient(155deg, #0a1f2a 0%, #061c27 100%)",
+      padding: mobile ? 16 : 40,
       position: "relative",
       overflow: "hidden",
-      minHeight: mobile ? "auto" : 520,
     }}>
-      {/* Background glow effects */}
-      <div style={{ position: "absolute", top: "20%", left: "-5%", width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle, rgba(13,154,165,0.12) 0%, transparent 70%)", pointerEvents: "none" }} />
-      <div style={{ position: "absolute", bottom: "10%", right: "-5%", width: 250, height: 250, borderRadius: "50%", background: "radial-gradient(circle, rgba(13,154,165,0.08) 0%, transparent 70%)", pointerEvents: "none" }} />
+      {/* Subtle background glow */}
+      <div style={{ position: "absolute", top: "30%", left: "-10%", width: 200, height: 200, borderRadius: "50%", background: "radial-gradient(circle, rgba(13,154,165,0.1) 0%, transparent 70%)", pointerEvents: "none" }} />
 
-      {/* Chat Bubbles Container */}
-      <div style={{ display: "flex", flexDirection: "column", gap: mobile ? 16 : 24, maxWidth: 720, margin: "0 auto", position: "relative", zIndex: 1 }}>
+      {/* Chat Bubbles - tighter spacing, wider bubbles */}
+      <div style={{ display: "flex", flexDirection: "column", gap: mobile ? 10 : 14, maxWidth: 600, margin: "0 auto", position: "relative", zIndex: 1 }}>
         
-        {/* Milton Bubble 1 - Morning Brief */}
-        <div style={{ alignSelf: "flex-start", maxWidth: mobile ? "92%" : "85%" }}>
-          <div style={{
-            background: "rgba(13,154,165,0.08)",
-            border: `1px solid ${teal}`,
-            borderRadius: mobile ? 16 : 20,
-            borderTopLeftRadius: 4,
-            padding: mobile ? 14 : 20,
-            boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
-          }}>
-            <p style={{ fontFamily: f, fontSize: mobile ? 13 : 15, color: "#fff", lineHeight: 1.6, margin: 0 }}>
-              Good morning, Coach. Here&apos;s your brief for today. You&apos;ve got 6 sessions. Three clients to keep an eye on:
-            </p>
-            
-            {/* Client Mini Cards */}
-            <div style={{ display: "flex", flexDirection: "column", gap: mobile ? 8 : 10, marginTop: mobile ? 12 : 16 }}>
-              {clientCards.map((client, i) => (
-                <div key={i} style={{
-                  background: "rgba(255,255,255,0.04)",
-                  borderRadius: 10,
-                  padding: mobile ? 10 : 12,
-                  border: "1px solid rgba(255,255,255,0.06)",
-                }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
-                    <div style={{ width: mobile ? 24 : 28, height: mobile ? 24 : 28, borderRadius: "50%", background: `linear-gradient(135deg, ${teal}, ${mint})`, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <span style={{ fontFamily: f, fontSize: mobile ? 9 : 10, fontWeight: 600, color: "#061c27" }}>{client.initials}</span>
-                    </div>
-                    <span style={{ fontFamily: f, fontSize: mobile ? 12 : 13, fontWeight: 600, color: "#fff" }}>{client.name}</span>
-                    <span style={{ fontFamily: f, fontSize: mobile ? 10 : 11, color: teal, marginLeft: "auto" }}>{client.time}</span>
-                  </div>
-                  <p style={{ fontFamily: f, fontSize: mobile ? 11 : 12, color: "rgba(255,255,255,0.6)", lineHeight: 1.5, margin: 0 }}>{client.note}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Coach Bubble 1 */}
-        <div style={{ alignSelf: "flex-end", maxWidth: mobile ? "85%" : "75%" }}>
-          <div style={{
-            background: "rgba(255,255,255,0.95)",
-            borderRadius: mobile ? 16 : 20,
-            borderTopRightRadius: 4,
-            padding: mobile ? 14 : 18,
-            boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
-          }}>
-            <p style={{ fontFamily: f, fontSize: mobile ? 13 : 15, color: "#061c27", lineHeight: 1.6, margin: 0 }}>
-              Pull up Sarah&apos;s session plan. Let&apos;s swap out overhead press for landmine press on that shoulder.
+        {/* Milton: Brief intro (condensed for mobile) */}
+        <div style={{ alignSelf: "flex-start", maxWidth: "88%" }}>
+          <div style={miltonBubble}>
+            <p style={textStyle(false)}>
+              {mobile 
+                ? "Morning, Coach. 6 sessions today. Sarah's ready for 140 on squat — shoulder mod is prepped."
+                : "Good morning, Coach. You've got 6 sessions today. Sarah's ready for 140 on squat — I've prepped a shoulder modification for her overhead press."
+              }
             </p>
           </div>
         </div>
 
-        {/* Milton Bubble 2 */}
-        <div style={{ alignSelf: "flex-start", maxWidth: mobile ? "80%" : "70%" }}>
-          <div style={{
-            background: "rgba(13,154,165,0.08)",
-            border: `1px solid ${teal}`,
-            borderRadius: mobile ? 16 : 20,
-            borderTopLeftRadius: 4,
-            padding: mobile ? 14 : 18,
-            boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
-          }}>
-            <p style={{ fontFamily: f, fontSize: mobile ? 13 : 15, color: "#fff", lineHeight: 1.6, margin: 0 }}>
-              Done. Updated plan ready. Want me to send Dev his progress card before he comes in today?
-            </p>
+        {/* Coach: Quick reply */}
+        <div style={{ alignSelf: "flex-end", maxWidth: "80%" }}>
+          <div style={coachBubble}>
+            <p style={textStyle(true)}>Swap overhead for landmine press on that shoulder.</p>
           </div>
         </div>
 
-        {/* Coach Bubble 2 */}
-        <div style={{ alignSelf: "flex-end", maxWidth: mobile ? "70%" : "55%" }}>
-          <div style={{
-            background: "rgba(255,255,255,0.95)",
-            borderRadius: mobile ? 16 : 20,
-            borderTopRightRadius: 4,
-            padding: mobile ? 14 : 18,
-            boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
-          }}>
-            <p style={{ fontFamily: f, fontSize: mobile ? 13 : 15, color: "#061c27", lineHeight: 1.6, margin: 0 }}>
-              Yeah do it. He&apos;ll love that.
-            </p>
+        {/* Milton: Confirmation + follow-up */}
+        <div style={{ alignSelf: "flex-start", maxWidth: "85%" }}>
+          <div style={miltonBubble}>
+            <p style={textStyle(false)}>Done. Want me to send Dev his progress card? He hit a 4-week streak.</p>
           </div>
         </div>
 
-        {/* Milton Bubble 3 */}
-        <div style={{ alignSelf: "flex-start", maxWidth: mobile ? "65%" : "50%" }}>
-          <div style={{
-            background: "rgba(13,154,165,0.08)",
-            border: `1px solid ${teal}`,
-            borderRadius: mobile ? 16 : 20,
-            borderTopLeftRadius: 4,
-            padding: mobile ? 14 : 18,
-            boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
-          }}>
-            <p style={{ fontFamily: f, fontSize: mobile ? 13 : 15, color: "#fff", lineHeight: 1.6, margin: 0 }}>
-              Sent. Have a great day, Coach.
-            </p>
+        {/* Coach: Approval */}
+        <div style={{ alignSelf: "flex-end", maxWidth: "55%" }}>
+          <div style={coachBubble}>
+            <p style={textStyle(true)}>Yeah, he&apos;ll love that.</p>
           </div>
         </div>
+
+        {/* Milton: Sign-off */}
+        <div style={{ alignSelf: "flex-start", maxWidth: "60%" }}>
+          <div style={miltonBubble}>
+            <p style={textStyle(false)}>Sent. Have a great day, Coach.</p>
+          </div>
+        </div>
+
       </div>
     </div>
   );
