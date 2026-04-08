@@ -26,6 +26,7 @@ import NutritionFitnessApps from './NutritionFitnessApps.jsx'
 import AIPoweredScheduling from './AIPoweredScheduling.jsx'
 import AIReceptionist from './AIReceptionist.jsx'
 import AIBranding from './AIBranding.jsx'
+import AgenticCommerce from './AgenticCommerce.jsx'
 import InquireModal from './InquireModal.jsx'
 
 function App() {
@@ -85,6 +86,8 @@ function App() {
     PageContent = <AIReceptionist />
   } else if (page === '/websites') {
     PageContent = <AIBranding />
+  } else if (page === '/agentic-commerce') {
+    PageContent = <AgenticCommerce />
   } else if (page === '/director-dashboard') {
     PageContent = <DirectorDashboard />
   } else if (page === '/partners') {
