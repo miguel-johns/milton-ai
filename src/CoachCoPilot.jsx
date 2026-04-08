@@ -53,127 +53,127 @@ function VisualPlaceholder({ height = 320, label = "Visual Here", mobile }) {
   );
 }
 
-function HeroDashboardVisual({ mobile }) {
+function HeroChatVisual({ mobile }) {
+  const clientCards = [
+    { initials: "SM", name: "Sarah M.", time: "8:00 AM", note: "Squat has been progressing. Ready for 140 today. Shoulder was bugging her Tuesday — modified plan ready." },
+    { initials: "JR", name: "James R.", time: "10:30 AM", note: "Missed his last two nutrition targets. Energy might be low. Worth checking in." },
+    { initials: "DP", name: "Dev P.", time: "4:00 PM", note: "Hit a 4-week consistency streak yesterday. Great time to show him his progress report." },
+  ];
+
   return (
     <div style={{
       borderRadius: mobile ? 12 : 20,
       background: "linear-gradient(145deg, #0a1f2a 0%, #061c27 100%)",
-      border: "1px solid rgba(13,154,165,0.3)",
-      boxShadow: "0 25px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.05)",
-      padding: mobile ? 16 : 32,
+      padding: mobile ? 24 : 48,
       position: "relative",
       overflow: "hidden",
+      minHeight: mobile ? "auto" : 520,
     }}>
       {/* Background glow effects */}
-      <div style={{ position: "absolute", top: -100, right: -100, width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle, rgba(13,154,165,0.15) 0%, transparent 70%)", pointerEvents: "none" }} />
-      <div style={{ position: "absolute", bottom: -50, left: -50, width: 200, height: 200, borderRadius: "50%", background: "radial-gradient(circle, rgba(154,241,152,0.08) 0%, transparent 70%)", pointerEvents: "none" }} />
+      <div style={{ position: "absolute", top: "20%", left: "-5%", width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle, rgba(13,154,165,0.12) 0%, transparent 70%)", pointerEvents: "none" }} />
+      <div style={{ position: "absolute", bottom: "10%", right: "-5%", width: 250, height: 250, borderRadius: "50%", background: "radial-gradient(circle, rgba(13,154,165,0.08) 0%, transparent 70%)", pointerEvents: "none" }} />
 
-      {/* Data Source Icons flowing in */}
-      <div style={{ display: "flex", justifyContent: "center", gap: mobile ? 24 : 48, marginBottom: mobile ? 16 : 24, position: "relative" }}>
-        {/* Wearable Icon */}
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
-          <div style={{ width: mobile ? 40 : 56, height: mobile ? 40 : 56, borderRadius: 12, background: "rgba(13,154,165,0.15)", border: "1px solid rgba(13,154,165,0.3)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <svg width={mobile ? 20 : 28} height={mobile ? 20 : 28} viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5">
-              <rect x="6" y="4" width="12" height="16" rx="2" />
-              <path d="M9 8h6M9 12h6M9 16h3" />
-            </svg>
-          </div>
-          <span style={{ fontFamily: f, fontSize: mobile ? 9 : 11, color: "rgba(255,255,255,0.5)", letterSpacing: 0.5 }}>Wearable</span>
-          <div style={{ width: 1, height: mobile ? 16 : 24, background: `linear-gradient(180deg, ${teal}, transparent)` }} />
-        </div>
-
-        {/* Nutrition Icon */}
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
-          <div style={{ width: mobile ? 40 : 56, height: mobile ? 40 : 56, borderRadius: 12, background: "rgba(154,241,152,0.1)", border: "1px solid rgba(154,241,152,0.25)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <svg width={mobile ? 20 : 28} height={mobile ? 20 : 28} viewBox="0 0 24 24" fill="none" stroke={mint} strokeWidth="1.5">
-              <path d="M12 2C16 2 18 5 18 8C18 11 16 13 16 16V20C16 21 15 21 14 21H10C9 21 8 21 8 20V16C8 13 6 11 6 8C6 5 8 2 12 2Z" />
-              <circle cx="12" cy="8" r="2" fill={mint} fillOpacity="0.3" />
-            </svg>
-          </div>
-          <span style={{ fontFamily: f, fontSize: mobile ? 9 : 11, color: "rgba(255,255,255,0.5)", letterSpacing: 0.5 }}>Nutrition</span>
-          <div style={{ width: 1, height: mobile ? 16 : 24, background: `linear-gradient(180deg, ${mint}, transparent)` }} />
-        </div>
-
-        {/* Body Scan Icon */}
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
-          <div style={{ width: mobile ? 40 : 56, height: mobile ? 40 : 56, borderRadius: 12, background: "rgba(13,154,165,0.15)", border: "1px solid rgba(13,154,165,0.3)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <svg width={mobile ? 20 : 28} height={mobile ? 20 : 28} viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5">
-              <circle cx="12" cy="5" r="2" />
-              <path d="M12 7v4M8 21v-6l-2-4 6-1 6 1-2 4v6" />
-              <path d="M8 11l-3 1M16 11l3 1" />
-            </svg>
-          </div>
-          <span style={{ fontFamily: f, fontSize: mobile ? 9 : 11, color: "rgba(255,255,255,0.5)", letterSpacing: 0.5 }}>Body Scan</span>
-          <div style={{ width: 1, height: mobile ? 16 : 24, background: `linear-gradient(180deg, ${teal}, transparent)` }} />
-        </div>
-      </div>
-
-      {/* Main Dashboard Card */}
-      <div style={{
-        background: "rgba(255,255,255,0.02)",
-        borderRadius: mobile ? 12 : 16,
-        border: "1px solid rgba(255,255,255,0.08)",
-        padding: mobile ? 16 : 24,
-      }}>
-        {/* Client Header */}
-        <div style={{ display: "flex", alignItems: "center", gap: mobile ? 12 : 16, marginBottom: mobile ? 16 : 24, paddingBottom: mobile ? 16 : 20, borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-          <div style={{ width: mobile ? 44 : 56, height: mobile ? 44 : 56, borderRadius: "50%", background: `linear-gradient(135deg, ${teal}, ${mint})`, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <span style={{ fontFamily: f, fontSize: mobile ? 16 : 20, fontWeight: 600, color: "#061c27" }}>JM</span>
-          </div>
-          <div style={{ flex: 1 }}>
-            <div style={{ fontFamily: f, fontSize: mobile ? 15 : 18, fontWeight: 600, color: "#fff" }}>Jessica Martinez</div>
-            <div style={{ fontFamily: f, fontSize: mobile ? 11 : 13, color: "rgba(255,255,255,0.5)", marginTop: 2 }}>12-week program &bull; Week 8</div>
-          </div>
-          <div style={{ padding: "6px 12px", borderRadius: 100, background: "rgba(154,241,152,0.15)", border: "1px solid rgba(154,241,152,0.3)" }}>
-            <span style={{ fontFamily: f, fontSize: mobile ? 10 : 12, fontWeight: 600, color: mint }}>On Track</span>
+      {/* Chat Bubbles Container */}
+      <div style={{ display: "flex", flexDirection: "column", gap: mobile ? 16 : 24, maxWidth: 720, margin: "0 auto", position: "relative", zIndex: 1 }}>
+        
+        {/* Milton Bubble 1 - Morning Brief */}
+        <div style={{ alignSelf: "flex-start", maxWidth: mobile ? "92%" : "85%" }}>
+          <div style={{
+            background: "rgba(13,154,165,0.08)",
+            border: `1px solid ${teal}`,
+            borderRadius: mobile ? 16 : 20,
+            borderTopLeftRadius: 4,
+            padding: mobile ? 14 : 20,
+            boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
+          }}>
+            <p style={{ fontFamily: f, fontSize: mobile ? 13 : 15, color: "#fff", lineHeight: 1.6, margin: 0 }}>
+              Good morning, Coach. Here&apos;s your brief for today. You&apos;ve got 6 sessions. Three clients to keep an eye on:
+            </p>
+            
+            {/* Client Mini Cards */}
+            <div style={{ display: "flex", flexDirection: "column", gap: mobile ? 8 : 10, marginTop: mobile ? 12 : 16 }}>
+              {clientCards.map((client, i) => (
+                <div key={i} style={{
+                  background: "rgba(255,255,255,0.04)",
+                  borderRadius: 10,
+                  padding: mobile ? 10 : 12,
+                  border: "1px solid rgba(255,255,255,0.06)",
+                }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
+                    <div style={{ width: mobile ? 24 : 28, height: mobile ? 24 : 28, borderRadius: "50%", background: `linear-gradient(135deg, ${teal}, ${mint})`, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <span style={{ fontFamily: f, fontSize: mobile ? 9 : 10, fontWeight: 600, color: "#061c27" }}>{client.initials}</span>
+                    </div>
+                    <span style={{ fontFamily: f, fontSize: mobile ? 12 : 13, fontWeight: 600, color: "#fff" }}>{client.name}</span>
+                    <span style={{ fontFamily: f, fontSize: mobile ? 10 : 11, color: teal, marginLeft: "auto" }}>{client.time}</span>
+                  </div>
+                  <p style={{ fontFamily: f, fontSize: mobile ? 11 : 12, color: "rgba(255,255,255,0.6)", lineHeight: 1.5, margin: 0 }}>{client.note}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Today's Snapshot Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: mobile ? "1fr 1fr" : "repeat(4, 1fr)", gap: mobile ? 12 : 16 }}>
-          {/* Workout Summary */}
-          <div style={{ background: "rgba(13,154,165,0.08)", borderRadius: 12, padding: mobile ? 12 : 16, border: "1px solid rgba(13,154,165,0.15)" }}>
-            <div style={{ fontFamily: f, fontSize: mobile ? 9 : 11, fontWeight: 500, color: "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: 1, marginBottom: 8 }}>Today&apos;s Workout</div>
-            <div style={{ fontFamily: f, fontSize: mobile ? 18 : 24, fontWeight: 600, color: "#fff" }}>Upper A</div>
-            <div style={{ fontFamily: f, fontSize: mobile ? 11 : 13, color: teal, marginTop: 4 }}>5/6 exercises done</div>
-          </div>
-
-          {/* Macro Breakdown */}
-          <div style={{ background: "rgba(154,241,152,0.06)", borderRadius: 12, padding: mobile ? 12 : 16, border: "1px solid rgba(154,241,152,0.12)" }}>
-            <div style={{ fontFamily: f, fontSize: mobile ? 9 : 11, fontWeight: 500, color: "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: 1, marginBottom: 8 }}>Macros</div>
-            <div style={{ fontFamily: f, fontSize: mobile ? 18 : 24, fontWeight: 600, color: "#fff" }}>1,840</div>
-            <div style={{ fontFamily: f, fontSize: mobile ? 11 : 13, color: mint, marginTop: 4 }}>P: 142g &bull; C: 185g &bull; F: 58g</div>
-          </div>
-
-          {/* Sleep Score */}
-          <div style={{ background: "rgba(13,154,165,0.08)", borderRadius: 12, padding: mobile ? 12 : 16, border: "1px solid rgba(13,154,165,0.15)" }}>
-            <div style={{ fontFamily: f, fontSize: mobile ? 9 : 11, fontWeight: 500, color: "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: 1, marginBottom: 8 }}>Sleep</div>
-            <div style={{ fontFamily: f, fontSize: mobile ? 18 : 24, fontWeight: 600, color: "#fff" }}>7.2h</div>
-            <div style={{ fontFamily: f, fontSize: mobile ? 11 : 13, color: teal, marginTop: 4 }}>Score: 82</div>
-          </div>
-
-          {/* Weekly Trend */}
-          <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: 12, padding: mobile ? 12 : 16, border: "1px solid rgba(255,255,255,0.06)" }}>
-            <div style={{ fontFamily: f, fontSize: mobile ? 9 : 11, fontWeight: 500, color: "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: 1, marginBottom: 8 }}>Trend</div>
-            {/* Mini trend line SVG */}
-            <svg width="100%" height={mobile ? 32 : 40} viewBox="0 0 100 40" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="trendGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor={mint} stopOpacity="0.3" />
-                  <stop offset="100%" stopColor={mint} stopOpacity="0" />
-                </linearGradient>
-              </defs>
-              <path d="M0 35 L15 30 L30 32 L45 25 L60 20 L75 15 L100 8 L100 40 L0 40 Z" fill="url(#trendGrad)" />
-              <path d="M0 35 L15 30 L30 32 L45 25 L60 20 L75 15 L100 8" fill="none" stroke={mint} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            <div style={{ fontFamily: f, fontSize: mobile ? 11 : 13, color: mint, marginTop: 4 }}>+12% this week</div>
+        {/* Coach Bubble 1 */}
+        <div style={{ alignSelf: "flex-end", maxWidth: mobile ? "85%" : "75%" }}>
+          <div style={{
+            background: "rgba(255,255,255,0.95)",
+            borderRadius: mobile ? 16 : 20,
+            borderTopRightRadius: 4,
+            padding: mobile ? 14 : 18,
+            boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
+          }}>
+            <p style={{ fontFamily: f, fontSize: mobile ? 13 : 15, color: "#061c27", lineHeight: 1.6, margin: 0 }}>
+              Pull up Sarah&apos;s session plan. Let&apos;s swap out overhead press for landmine press on that shoulder.
+            </p>
           </div>
         </div>
-      </div>
 
-      {/* Bottom label */}
-      <div style={{ textAlign: "center", marginTop: mobile ? 16 : 24 }}>
-        <span style={{ fontFamily: f, fontSize: mobile ? 10 : 12, color: "rgba(255,255,255,0.4)", letterSpacing: 2, textTransform: "uppercase" }}>One screen. Everything you need.</span>
+        {/* Milton Bubble 2 */}
+        <div style={{ alignSelf: "flex-start", maxWidth: mobile ? "80%" : "70%" }}>
+          <div style={{
+            background: "rgba(13,154,165,0.08)",
+            border: `1px solid ${teal}`,
+            borderRadius: mobile ? 16 : 20,
+            borderTopLeftRadius: 4,
+            padding: mobile ? 14 : 18,
+            boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
+          }}>
+            <p style={{ fontFamily: f, fontSize: mobile ? 13 : 15, color: "#fff", lineHeight: 1.6, margin: 0 }}>
+              Done. Updated plan ready. Want me to send Dev his progress card before he comes in today?
+            </p>
+          </div>
+        </div>
+
+        {/* Coach Bubble 2 */}
+        <div style={{ alignSelf: "flex-end", maxWidth: mobile ? "70%" : "55%" }}>
+          <div style={{
+            background: "rgba(255,255,255,0.95)",
+            borderRadius: mobile ? 16 : 20,
+            borderTopRightRadius: 4,
+            padding: mobile ? 14 : 18,
+            boxShadow: "0 8px 32px rgba(0,0,0,0.15)",
+          }}>
+            <p style={{ fontFamily: f, fontSize: mobile ? 13 : 15, color: "#061c27", lineHeight: 1.6, margin: 0 }}>
+              Yeah do it. He&apos;ll love that.
+            </p>
+          </div>
+        </div>
+
+        {/* Milton Bubble 3 */}
+        <div style={{ alignSelf: "flex-start", maxWidth: mobile ? "65%" : "50%" }}>
+          <div style={{
+            background: "rgba(13,154,165,0.08)",
+            border: `1px solid ${teal}`,
+            borderRadius: mobile ? 16 : 20,
+            borderTopLeftRadius: 4,
+            padding: mobile ? 14 : 18,
+            boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
+          }}>
+            <p style={{ fontFamily: f, fontSize: mobile ? 13 : 15, color: "#fff", lineHeight: 1.6, margin: 0 }}>
+              Sent. Have a great day, Coach.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -676,7 +676,7 @@ export default function CoachCoPilot() {
             This is what AI for coaches should actually look like. Not a robot that writes generic programs. Not a chatbot pretending to understand your client&apos;s bad knee. Not another app that promises to &quot;automate your coaching&quot; while stripping out everything that makes your coaching yours.
           </p>
 
-          <HeroDashboardVisual mobile={mobile} />
+          <HeroChatVisual mobile={mobile} />
 
           <div style={{ marginTop: 40 }}>
             <CTAButton mobile={mobile} />
