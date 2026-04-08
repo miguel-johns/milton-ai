@@ -428,8 +428,6 @@ export default function CoachCoPilot() {
             </p>
           </div>
 
-          <VisualPlaceholder height={350} mobile={mobile} />
-
           <div style={{
             background: "rgba(13,154,165,0.08)",
             border: "1px solid rgba(13,154,165,0.2)",
@@ -450,8 +448,6 @@ export default function CoachCoPilot() {
               A client finishes a set and asks if they&apos;re actually getting stronger. You don&apos;t have to think back or check a notebook. You ask Milton, turn your screen around, and show them the curve. That moment lands differently when the data is right there.
             </p>
           </div>
-
-          <VisualPlaceholder height={350} mobile={mobile} />
 
           <p style={{
             fontFamily: f, fontSize: mobile ? 16 : 18, lineHeight: 1.75,
