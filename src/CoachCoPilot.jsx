@@ -128,6 +128,31 @@ function ClientConnectionFlowVisual({ mobile }) {
   );
 }
 
+function DataViewVisual({ mobile }) {
+  const desktopImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Co-Pilot%20Data%20View%20Desktop-HwGFexD2N3QXrFqvsbOdX8ftaV4GOn.png";
+  const mobileImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Co-pilot%20Data%20Visual%20Mobile-d7c1vdcEY9Fr9zZzT8brAOYyNWwfgV.png";
+
+  return (
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      position: "relative",
+    }}>
+      <img 
+        src={mobile ? mobileImage : desktopImage}
+        alt="Progress dashboard showing bodyweight, body fat, and lean mass tracking with projected goal completion dates"
+        style={{
+          width: "100%",
+          maxWidth: mobile ? 400 : 1100,
+          height: "auto",
+          borderRadius: mobile ? 16 : 20,
+        }}
+      />
+    </div>
+  );
+}
+
 function CTAButton({ mobile }) {
   return (
     <button
@@ -344,7 +369,7 @@ export default function CoachCoPilot() {
             The Co-Pilot makes all of this visible — automatically. AI-powered reports turn raw data into progress charts, milestone markers, trend lines, and streak tracking. You didn&apos;t have to build a report. You didn&apos;t have to screenshot a graph. Milton generates it from the data that&apos;s already flowing in, and it&apos;s ready to share with a tap.
           </p>
 
-          <VisualPlaceholder height={350} mobile={mobile} />
+          <DataViewVisual mobile={mobile} />
 
           <p style={{
             fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
@@ -353,7 +378,7 @@ export default function CoachCoPilot() {
             This is where coaching gets powerful. Not because you have more data, but because the right data shows up at the right time and you can use it to do what you do best — motivate, adjust, and guide.
           </p>
 
-          <VisualPlaceholder height={350} mobile={mobile} />
+          <DataViewVisual mobile={mobile} />
 
           <div style={{ marginTop: 40, textAlign: "center" }}>
             <CTAButton mobile={mobile} />
