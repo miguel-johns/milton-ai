@@ -54,8 +54,8 @@ function VisualPlaceholder({ height = 320, label = "Visual Here", mobile }) {
 }
 
 function HeroChatVisual({ mobile }) {
-  const desktopImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Co-Pilot%20Hero%20Desktop-sTPeBs7bNUME5wePZ9gqrY7smPLIMZ.png";
-  const mobileImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Co-Pilot%20Hero%20Mobile-d5fkQU02HELD7S2yw7420CmedvCriS.png";
+  const desktopImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Co-Pilot%20Hero%20Desktop%20%281%29-oMs3uAN8vmnZe5G2mpOxrpBxoV7L6o.png";
+  const mobileImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Co-pilot%20Hero%20Mobile%20%281%29-2QqYvycjYPrkb71k4xX3UjoUXcWils.png";
 
   return (
     <div style={{
@@ -66,12 +66,12 @@ function HeroChatVisual({ mobile }) {
     }}>
       <img 
         src={mobile ? mobileImage : desktopImage}
-        alt="Milton Coach Co-Pilot app showing morning brief with client sessions and AI assistant conversation"
+        alt="Milton Coach Co-Pilot dashboard showing morning brief with client sessions, coaching queue, and performance metrics"
         style={{
           width: "100%",
-          maxWidth: mobile ? 340 : 900,
+          maxWidth: mobile ? 400 : 1100,
           height: "auto",
-          borderRadius: mobile ? 12 : 16,
+          borderRadius: mobile ? 16 : 20,
         }}
       />
     </div>
