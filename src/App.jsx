@@ -284,7 +284,7 @@ export default function MiltonHomepage() {
     { icon: <WebsiteIcon />, title: "AI Branding", description: "AI for professional brands.", href: "#/websites" },
     { icon: <SchedulingIcon />, title: "AI-Powered Scheduling", description: "AI for self-serve scheduling and booking.", href: "#/scheduling" },
     { icon: <ReceptionistIcon />, title: "AI Receptionist", description: "AI for voicemail and follow up.", href: "#/receptionist" },
-    { icon: <MarketingIcon />, title: "AI Acquisition Engine", description: "AI for turning results into referrals.", href: "#/marketing" },
+    { icon: <MarketingIcon />, title: "AI Acquisition Engine", description: "AI for turning results into referrals.", href: "#/acquisition" },
     { icon: <MemberIcon />, title: "Agentic Commerce", description: "AI-powered workflows driving leads the stuff you sell.", href: "#/agentic-commerce" },
     { icon: <CRMIcon />, title: "Stripe-Powered CRM & POS", description: "Payments, memberships, and client management.", href: "#/crm" },
   ];
