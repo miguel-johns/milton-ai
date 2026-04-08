@@ -79,175 +79,26 @@ function HeroChatVisual({ mobile }) {
 }
 
 function TrackingProfileVisual({ mobile }) {
-  const exercises = [
-    { name: "Bench Press", sets: "4", reps: "8", load: "155 lbs", done: true },
-    { name: "Barbell Squat", sets: "4", reps: "6", load: "225 lbs", done: true },
-    { name: "Bent-Over Row", sets: "3", reps: "10", load: "135 lbs", done: true },
-  ];
+  const desktopImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Co-Pilot%20Tracking%20Desktop-JscMJpHxI8D2ndmcPCevXdneVNzXrM.png";
+  const mobileImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Co-pilot%20Tracking%20Mobile-KU3hlz513b4LnFmOAyzzcFUFWzbXGc.png";
 
   return (
     <div style={{
-      borderRadius: mobile ? 12 : 20,
-      background: "linear-gradient(145deg, #0a1f2a 0%, #061c27 100%)",
-      border: "1px solid rgba(13,154,165,0.3)",
-      boxShadow: "0 25px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05), inset 0 1px 0 rgba(255,255,255,0.05)",
-      padding: mobile ? 16 : 28,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
       position: "relative",
-      overflow: "hidden",
     }}>
-      {/* Background glow */}
-      <div style={{ position: "absolute", top: -80, right: -80, width: 250, height: 250, borderRadius: "50%", background: "radial-gradient(circle, rgba(13,154,165,0.12) 0%, transparent 70%)", pointerEvents: "none" }} />
-
-      {/* Client Header */}
-      <div style={{ display: "flex", alignItems: "center", gap: mobile ? 12 : 16, marginBottom: mobile ? 20 : 28, paddingBottom: mobile ? 16 : 20, borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
-        <div style={{ 
-          width: mobile ? 52 : 64, 
-          height: mobile ? 52 : 64, 
-          borderRadius: "50%", 
-          background: `linear-gradient(135deg, ${teal}, ${mint})`,
-          display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "0 4px 12px rgba(13,154,165,0.3)",
-        }}>
-          <span style={{ fontFamily: f, fontSize: mobile ? 18 : 22, fontWeight: 700, color: "#061c27" }}>SM</span>
-        </div>
-        <div style={{ flex: 1 }}>
-          <div style={{ fontFamily: f, fontSize: mobile ? 17 : 20, fontWeight: 600, color: "#fff" }}>Sarah Mitchell</div>
-          <div style={{ fontFamily: f, fontSize: mobile ? 12 : 14, color: "rgba(255,255,255,0.5)", marginTop: 3 }}>Strength &bull; 16-week program &bull; Week 11</div>
-        </div>
-      </div>
-
-      {/* Data Grid */}
-      <div style={{ display: "grid", gridTemplateColumns: mobile ? "1fr" : "1fr 1fr", gap: mobile ? 16 : 20 }}>
-        
-        {/* Today's Workout - Completed */}
-        <div style={{ 
-          background: "rgba(154,241,152,0.06)", 
-          borderRadius: 14, 
-          padding: mobile ? 16 : 20,
-          border: "1px solid rgba(154,241,152,0.15)",
-        }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
-            <span style={{ fontFamily: f, fontSize: mobile ? 10 : 11, fontWeight: 600, color: "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: 1.5 }}>Today&apos;s Workout</span>
-            <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "4px 10px", borderRadius: 100, background: "rgba(154,241,152,0.15)" }}>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={mint} strokeWidth="3"><path d="M20 6L9 17l-5-5"/></svg>
-              <span style={{ fontFamily: f, fontSize: 10, fontWeight: 600, color: mint }}>Completed</span>
-            </div>
-          </div>
-          
-          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-            {exercises.map((ex, i) => (
-              <div key={i} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "10px 12px", background: "rgba(255,255,255,0.03)", borderRadius: 8, border: "1px solid rgba(255,255,255,0.05)" }}>
-                <span style={{ fontFamily: f, fontSize: mobile ? 13 : 14, fontWeight: 500, color: "#fff" }}>{ex.name}</span>
-                <span style={{ fontFamily: f, fontSize: mobile ? 11 : 12, color: "rgba(255,255,255,0.6)" }}>{ex.sets}×{ex.reps} @ {ex.load}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Yesterday's Nutrition */}
-        <div style={{ 
-          background: "rgba(13,154,165,0.08)", 
-          borderRadius: 14, 
-          padding: mobile ? 16 : 20,
-          border: "1px solid rgba(13,154,165,0.2)",
-        }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
-            <span style={{ fontFamily: f, fontSize: mobile ? 10 : 11, fontWeight: 600, color: "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: 1.5 }}>Yesterday&apos;s Nutrition</span>
-          </div>
-          
-          <div style={{ fontFamily: f, fontSize: mobile ? 28 : 34, fontWeight: 700, color: "#fff", marginBottom: 8 }}>2,180 <span style={{ fontSize: mobile ? 14 : 16, fontWeight: 400, color: "rgba(255,255,255,0.5)" }}>cal</span></div>
-          
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8 }}>
-            <div style={{ textAlign: "center", padding: "10px 0", background: "rgba(255,255,255,0.03)", borderRadius: 8 }}>
-              <div style={{ fontFamily: f, fontSize: mobile ? 16 : 18, fontWeight: 600, color: teal }}>165g</div>
-              <div style={{ fontFamily: f, fontSize: 10, color: "rgba(255,255,255,0.5)", marginTop: 2 }}>Protein</div>
-            </div>
-            <div style={{ textAlign: "center", padding: "10px 0", background: "rgba(255,255,255,0.03)", borderRadius: 8 }}>
-              <div style={{ fontFamily: f, fontSize: mobile ? 16 : 18, fontWeight: 600, color: "#fff" }}>210g</div>
-              <div style={{ fontFamily: f, fontSize: 10, color: "rgba(255,255,255,0.5)", marginTop: 2 }}>Carbs</div>
-            </div>
-            <div style={{ textAlign: "center", padding: "10px 0", background: "rgba(255,255,255,0.03)", borderRadius: 8 }}>
-              <div style={{ fontFamily: f, fontSize: mobile ? 16 : 18, fontWeight: 600, color: "#fff" }}>72g</div>
-              <div style={{ fontFamily: f, fontSize: 10, color: "rgba(255,255,255,0.5)", marginTop: 2 }}>Fat</div>
-            </div>
-          </div>
-        </div>
-
-        {/* Last Night's Sleep */}
-        <div style={{ 
-          background: "rgba(255,255,255,0.02)", 
-          borderRadius: 14, 
-          padding: mobile ? 16 : 20,
-          border: "1px solid rgba(255,255,255,0.06)",
-        }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
-            <span style={{ fontFamily: f, fontSize: mobile ? 10 : 11, fontWeight: 600, color: "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: 1.5 }}>Last Night&apos;s Sleep</span>
-          </div>
-          
-          <div style={{ display: "flex", alignItems: "baseline", gap: 16 }}>
-            <div>
-              <span style={{ fontFamily: f, fontSize: mobile ? 28 : 34, fontWeight: 700, color: "#fff" }}>7.2</span>
-              <span style={{ fontFamily: f, fontSize: mobile ? 14 : 16, fontWeight: 400, color: "rgba(255,255,255,0.5)", marginLeft: 4 }}>hrs</span>
-            </div>
-            <div style={{ padding: "6px 12px", background: "rgba(13,154,165,0.15)", borderRadius: 8, border: "1px solid rgba(13,154,165,0.25)" }}>
-              <span style={{ fontFamily: f, fontSize: 11, color: "rgba(255,255,255,0.6)" }}>HRV </span>
-              <span style={{ fontFamily: f, fontSize: 13, fontWeight: 600, color: teal }}>48</span>
-            </div>
-          </div>
-          
-          <div style={{ marginTop: 12, display: "flex", gap: 3 }}>
-            {[85, 90, 72, 88, 95, 82, 78].map((val, i) => (
-              <div key={i} style={{ flex: 1, height: mobile ? 24 : 32, background: `rgba(13,154,165,${0.1 + (val/100) * 0.3})`, borderRadius: 4 }} />
-            ))}
-          </div>
-          <div style={{ fontFamily: f, fontSize: 10, color: "rgba(255,255,255,0.4)", marginTop: 6 }}>7-day sleep quality</div>
-        </div>
-
-        {/* 30-Day Trend */}
-        <div style={{ 
-          background: "rgba(154,241,152,0.04)", 
-          borderRadius: 14, 
-          padding: mobile ? 16 : 20,
-          border: "1px solid rgba(154,241,152,0.1)",
-        }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
-            <span style={{ fontFamily: f, fontSize: mobile ? 10 : 11, fontWeight: 600, color: "rgba(255,255,255,0.5)", textTransform: "uppercase", letterSpacing: 1.5 }}>30-Day Consistency</span>
-            <span style={{ fontFamily: f, fontSize: mobile ? 12 : 14, fontWeight: 600, color: mint }}>+18%</span>
-          </div>
-          
-          {/* Sparkline */}
-          <svg width="100%" height={mobile ? 50 : 70} viewBox="0 0 200 70" preserveAspectRatio="none" style={{ display: "block" }}>
-            <defs>
-              <linearGradient id="sparkGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor={mint} stopOpacity="0.25" />
-                <stop offset="100%" stopColor={mint} stopOpacity="0" />
-              </linearGradient>
-            </defs>
-            <path 
-              d="M0 60 L10 55 L20 58 L30 50 L40 52 L50 48 L60 45 L70 47 L80 40 L90 42 L100 35 L110 38 L120 30 L130 32 L140 25 L150 28 L160 20 L170 22 L180 15 L190 18 L200 10 L200 70 L0 70 Z" 
-              fill="url(#sparkGrad)" 
-            />
-            <path 
-              d="M0 60 L10 55 L20 58 L30 50 L40 52 L50 48 L60 45 L70 47 L80 40 L90 42 L100 35 L110 38 L120 30 L130 32 L140 25 L150 28 L160 20 L170 22 L180 15 L190 18 L200 10" 
-              fill="none" 
-              stroke={mint} 
-              strokeWidth="2.5" 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-            />
-            <circle cx="200" cy="10" r="4" fill={mint} />
-          </svg>
-          
-          <div style={{ fontFamily: f, fontSize: mobile ? 12 : 13, color: "rgba(255,255,255,0.6)", marginTop: 8 }}>
-            Consistency trending <span style={{ color: mint, fontWeight: 600 }}>upward</span> — best streak in 6 months
-          </div>
-        </div>
-      </div>
-
-      {/* Footer label */}
-      <div style={{ textAlign: "center", marginTop: mobile ? 20 : 28 }}>
-        <span style={{ fontFamily: f, fontSize: mobile ? 10 : 12, color: "rgba(255,255,255,0.4)", letterSpacing: 2, textTransform: "uppercase" }}>No tabs. No drilling down. Just open and coach.</span>
-      </div>
+      <img 
+        src={mobile ? mobileImage : desktopImage}
+        alt="Sarah Chen client profile showing weight loss progress, upcoming sessions, and 30-day activity calendar"
+        style={{
+          width: "100%",
+          maxWidth: mobile ? 400 : 1100,
+          height: "auto",
+          borderRadius: mobile ? 16 : 20,
+        }}
+      />
     </div>
   );
 }
