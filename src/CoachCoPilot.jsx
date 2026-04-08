@@ -413,42 +413,6 @@ export default function CoachCoPilot() {
 
           <VisualPlaceholder height={350} mobile={mobile} />
 
-          <div style={{
-            background: "rgba(13,154,165,0.08)",
-            border: "1px solid rgba(13,154,165,0.2)",
-            borderRadius: mobile ? 12 : 16,
-            padding: mobile ? "24px" : "32px",
-            margin: "32px 0",
-          }}>
-            <p style={{
-              fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
-              color: "rgba(255,255,255,0.75)", margin: "0 0 16px 0", fontStyle: "italic",
-            }}>
-              A client texts you at 8pm saying they&apos;re thinking about skipping tomorrow. You ask Milton for their latest trends — four weeks consistent, strength numbers climbing. You share the progress and a message: &quot;Look at this streak. Don&apos;t break it now.&quot; That&apos;s coaching. And it took you 30 seconds.
-            </p>
-          </div>
-
-          <div style={{
-            background: "rgba(13,154,165,0.08)",
-            border: "1px solid rgba(13,154,165,0.2)",
-            borderRadius: mobile ? 12 : 16,
-            padding: mobile ? "24px" : "32px",
-            margin: "32px 0",
-          }}>
-            <p style={{
-              fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
-              color: "rgba(255,255,255,0.75)", margin: "0 0 16px 0", fontStyle: "italic",
-            }}>
-              A remote client jumps on a video call feeling discouraged. You pull up their report while you&apos;re talking — body fat is down, lean mass is up, and they&apos;ve hit a new PR they forgot about. You show them. The whole conversation shifts.
-            </p>
-            <p style={{
-              fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
-              color: "rgba(255,255,255,0.75)", margin: 0, fontStyle: "italic",
-            }}>
-              A client finishes a set and asks if they&apos;re actually getting stronger. You don&apos;t have to think back or check a notebook. You ask Milton, turn your screen around, and show them the curve. That moment lands differently when the data is right there.
-            </p>
-          </div>
-
           <p style={{
             fontFamily: f, fontSize: mobile ? 16 : 18, lineHeight: 1.75,
             color: mint, fontWeight: 500, margin: "32px 0 0 0", textAlign: "center",
