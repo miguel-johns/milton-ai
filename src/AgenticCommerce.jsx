@@ -234,7 +234,7 @@ export default function AgenticCommerce() {
 
           <WorkflowStep
             title="Transact"
-            body="Milton can process payments directly through text or in-app. A member gets a message: "Your 10-pack is down to one session. Want to renew?" They reply yes. Milton handles the payment through Stripe. Done. No portal. No front desk. No friction."
+            body="Milton can process payments directly through text or in-app. A member gets a message: 'Your 10-pack is down to one session. Want to renew?' They reply yes. Milton handles the payment through Stripe. Done. No portal. No front desk. No friction."
             mobile={mobile}
           />
           <VisualPlaceholder height={280} label="Transaction Visual" mobile={mobile} />
