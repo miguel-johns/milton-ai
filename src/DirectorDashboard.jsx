@@ -402,29 +402,103 @@ export default function DirectorDashboard() {
             Three connected systems, one goal — trainer performance driving business growth.
           </p>
           
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: mobile ? "1fr" : tablet ? "repeat(2, 1fr)" : "repeat(3, 1fr)",
-            gap: mobile ? 16 : 20,
-          }}>
-            <FeatureCard 
-              icon="director"
-              title="For your fitness director"
-              description="One dashboard that replaces the spreadsheets, the cross-referencing, and the guesswork. See which trainers are thriving, which are stuck, and exactly what to do about it — powered by real session data, client outcomes, and business metrics married together."
-              mobile={mobile}
-            />
-            <FeatureCard 
-              icon="coach"
-              title="For your coaches"
-              description="An AI co-pilot on the gym floor. Smart session tracking, progressive programming, client insights — all in one screen. Your trainers perform better because they have better information, not more software."
-              mobile={mobile}
-            />
-            <FeatureCard 
-              icon="business"
-              title="For your business"
-              description="The connective tissue between trainer performance and business results. When your trainers improve, attendance goes up, follow-through increases, clients stay longer, and results compound. Milton makes that visible and actionable."
-              mobile={mobile}
-            />
+          {/* Subsection: For your fitness director */}
+          <div style={{ marginBottom: mobile ? 48 : 64 }}>
+            <h3 style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: mobile ? 20 : 24,
+              fontWeight: 600,
+              color: "#fff",
+              margin: "0 0 20px 0",
+            }}>For your fitness director</h3>
+            
+            <div style={{
+              borderRadius: mobile ? 12 : 16,
+              overflow: "hidden",
+              marginBottom: 20,
+            }}>
+              <img 
+                src="/placeholder.svg?height=400&width=800"
+                alt="Fitness director dashboard showing trainer performance metrics"
+                style={{ width: "100%", height: "auto", display: "block" }}
+              />
+            </div>
+            
+            <p style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: mobile ? 15 : 17,
+              lineHeight: 1.75,
+              color: "rgba(255,255,255,0.6)",
+              margin: 0,
+            }}>
+              One dashboard that replaces the spreadsheets, the cross-referencing, and the guesswork. See which trainers are thriving, which are stuck, and exactly what to do about it — powered by real session data, client outcomes, and business metrics married together.
+            </p>
+          </div>
+
+          {/* Subsection: For your coaches */}
+          <div style={{ marginBottom: mobile ? 48 : 64 }}>
+            <h3 style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: mobile ? 20 : 24,
+              fontWeight: 600,
+              color: "#fff",
+              margin: "0 0 20px 0",
+            }}>For your coaches</h3>
+            
+            <div style={{
+              borderRadius: mobile ? 12 : 16,
+              overflow: "hidden",
+              marginBottom: 20,
+            }}>
+              <img 
+                src="/placeholder.svg?height=400&width=800"
+                alt="Coach co-pilot interface with session tracking and client insights"
+                style={{ width: "100%", height: "auto", display: "block" }}
+              />
+            </div>
+            
+            <p style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: mobile ? 15 : 17,
+              lineHeight: 1.75,
+              color: "rgba(255,255,255,0.6)",
+              margin: 0,
+            }}>
+              An AI co-pilot on the gym floor. Smart session tracking, progressive programming, client insights — all in one screen. Your trainers perform better because they have better information, not more software.
+            </p>
+          </div>
+
+          {/* Subsection: For your business */}
+          <div style={{ marginBottom: mobile ? 24 : 32 }}>
+            <h3 style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: mobile ? 20 : 24,
+              fontWeight: 600,
+              color: "#fff",
+              margin: "0 0 20px 0",
+            }}>For your business</h3>
+            
+            <div style={{
+              borderRadius: mobile ? 12 : 16,
+              overflow: "hidden",
+              marginBottom: 20,
+            }}>
+              <img 
+                src="/placeholder.svg?height=400&width=800"
+                alt="Business analytics connecting trainer performance to growth metrics"
+                style={{ width: "100%", height: "auto", display: "block" }}
+              />
+            </div>
+            
+            <p style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: mobile ? 15 : 17,
+              lineHeight: 1.75,
+              color: "rgba(255,255,255,0.6)",
+              margin: 0,
+            }}>
+              The connective tissue between trainer performance and business results. When your trainers improve, attendance goes up, follow-through increases, clients stay longer, and results compound. Milton makes that visible and actionable.
+            </p>
           </div>
 
           <div style={{ marginTop: 40, textAlign: "center" }}>
