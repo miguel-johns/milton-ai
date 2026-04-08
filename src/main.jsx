@@ -16,6 +16,7 @@ import ArticleDetail from './ArticleDetail.jsx'
 import Terms from './Terms.jsx'
 import Privacy from './Privacy.jsx'
 import CoachCoPilot from './CoachCoPilot.jsx'
+import AICoach from './AICoach.jsx'
 import ConnectedPartners from './ConnectedPartners.jsx'
 import WearableDevices from './WearableDevices.jsx'
 import BodyScans from './BodyScans.jsx'
@@ -73,6 +74,8 @@ function App() {
     PageContent = <Privacy />
   } else if (page === '/coach-copilot') {
     PageContent = <CoachCoPilot />
+  } else if (page === '/ai-coach') {
+    PageContent = <AICoach />
   } else if (page === '/director-dashboard') {
     PageContent = <DirectorDashboard />
   } else if (page === '/partners') {
