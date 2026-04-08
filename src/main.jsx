@@ -5,7 +5,7 @@ import MiltonHomepage from './App.jsx'
 import DirectorDashboard from './DirectorDashboard.jsx'
 import PricingCalculator from './Pricing.jsx'
 import CaseStudy from './CaseStudy.jsx'
-import AIConsultation from './Consultation.jsx'
+import AIConsultationPage from './AIConsultation.jsx'
 import Insights from './Insights.jsx'
 import About from './About.jsx'
 import BookingPage from './Booking.jsx'
@@ -62,7 +62,7 @@ function App() {
   } else if (page === '/case-study/optimal-performance') {
     PageContent = <CaseStudy />
   } else if (page === '/consultation') {
-    PageContent = <AIConsultation />
+    PageContent = <AIConsultationPage />
   } else if (page === '/insights') {
     PageContent = <Insights />
   } else if (page === '/about') {
