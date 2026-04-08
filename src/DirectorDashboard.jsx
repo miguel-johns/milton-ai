@@ -628,42 +628,7 @@ export default function DirectorDashboard() {
           </div>
         </section>
 
-        {/* SECTION 6 — AI CONSULTING */}
-        <section id="ai" style={{ padding: sectionPad }}>
-          
-          
-          <div style={{
-            background: "linear-gradient(135deg, rgba(13,154,165,0.07), rgba(8,69,94,0.1))",
-            border: "1px solid rgba(13,154,165,0.15)",
-            borderRadius: 20,
-            padding: mobile ? "40px 24px" : "56px 48px",
-            position: "relative",
-            overflow: "hidden",
-          }}>
-            {/* Subtle radial glow */}
-            <div style={{
-              position: "absolute",
-              top: -100,
-              right: -100,
-              width: 300,
-              height: 300,
-              background: "radial-gradient(circle, rgba(13,154,165,0.15) 0%, transparent 70%)",
-              pointerEvents: "none",
-            }} />
-            
-            <div style={{ position: "relative", zIndex: 1 }}>
-              <Headline style={{ marginBottom: 20 }}>
-                And yes, we&apos;ll help you figure out the <Accent>rest of AI</Accent> too.
-              </Headline>
-              
-              <Body style={{ marginBottom: 0, maxWidth: 800 }}>
-                Most gym owners know they need to get up to speed on AI. They just don&apos;t know where to start. As a Milton partner, we&apos;ll show you how to spin up your own scheduling, billing, and member experience tools — whether you use our platform for those or not. We&apos;re not trying to lock you into a suite. <Mint>We&apos;re trying to make you dangerous.</Mint>
-              </Body>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 7 — CTA / CLOSE */}
+        {/* SECTION 6 — CTA / CLOSE */}
         <section id="pricing" style={{ padding: sectionPad }}>
           <div style={{
             textAlign: "center",
