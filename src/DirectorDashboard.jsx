@@ -266,11 +266,12 @@ export default function DirectorDashboard() {
             borderRadius: mobile ? 12 : 16,
             overflow: "hidden",
             boxShadow: "0 20px 50px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.08)",
+            aspectRatio: mobile ? "4 / 5" : "16 / 9",
           }}>
             <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_8260-ZXksj4knhcDaRItpyEpzJ9MbO2vYea.png"
               alt="Fitness director overseeing trainers on the gym floor"
-              style={{ width: "100%", height: "auto", display: "block" }}
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
             />
           </div>
 
@@ -372,11 +373,12 @@ export default function DirectorDashboard() {
             overflow: "hidden",
             boxShadow: "0 20px 50px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.08)",
             marginTop: mobile ? 32 : 48,
+            aspectRatio: mobile ? "4 / 5" : "16 / 9",
           }}>
             <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_8261-l0nmWrWcO3sFAVeKP5LwwjLotqMCHh.png"
               alt="Milton team collaborating with gym owners at a desk"
-              style={{ width: "100%", height: "auto", display: "block" }}
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
             />
           </div>
 
