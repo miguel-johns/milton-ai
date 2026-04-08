@@ -379,20 +379,6 @@ function ClientConnectionFlowVisual({ mobile }) {
         
         {/* Step 1 - Text Message */}
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flex: mobile ? "none" : 1, maxWidth: mobile ? "100%" : 240 }}>
-          <div style={{ 
-            width: mobile ? 56 : 64, 
-            height: mobile ? 56 : 64, 
-            borderRadius: "50%", 
-            background: "rgba(13,154,165,0.15)", 
-            border: "2px solid rgba(13,154,165,0.4)",
-            display: "flex", 
-            alignItems: "center", 
-            justifyContent: "center",
-            marginBottom: 16,
-          }}>
-            <span style={{ fontFamily: f, fontSize: mobile ? 20 : 24, fontWeight: 700, color: teal }}>1</span>
-          </div>
-          
           {/* Phone with text message */}
           <div style={{
             width: mobile ? 160 : 200,
@@ -443,20 +429,6 @@ function ClientConnectionFlowVisual({ mobile }) {
 
         {/* Step 2 - Toggle Switches */}
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flex: mobile ? "none" : 1, maxWidth: mobile ? "100%" : 240 }}>
-          <div style={{ 
-            width: mobile ? 56 : 64, 
-            height: mobile ? 56 : 64, 
-            borderRadius: "50%", 
-            background: "rgba(13,154,165,0.15)", 
-            border: "2px solid rgba(13,154,165,0.4)",
-            display: "flex", 
-            alignItems: "center", 
-            justifyContent: "center",
-            marginBottom: 16,
-          }}>
-            <span style={{ fontFamily: f, fontSize: mobile ? 20 : 24, fontWeight: 700, color: teal }}>2</span>
-          </div>
-          
           {/* Connection toggles card */}
           <div style={{
             width: mobile ? 180 : 220,
@@ -532,20 +504,6 @@ function ClientConnectionFlowVisual({ mobile }) {
 
         {/* Step 3 - Data Syncing */}
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flex: mobile ? "none" : 1, maxWidth: mobile ? "100%" : 240 }}>
-          <div style={{ 
-            width: mobile ? 56 : 64, 
-            height: mobile ? 56 : 64, 
-            borderRadius: "50%", 
-            background: "rgba(154,241,152,0.15)", 
-            border: "2px solid rgba(154,241,152,0.4)",
-            display: "flex", 
-            alignItems: "center", 
-            justifyContent: "center",
-            marginBottom: 16,
-          }}>
-            <span style={{ fontFamily: f, fontSize: mobile ? 20 : 24, fontWeight: 700, color: mint }}>3</span>
-          </div>
-          
           {/* Data syncing card */}
           <div style={{
             width: mobile ? 160 : 200,
