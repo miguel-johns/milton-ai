@@ -203,6 +203,31 @@ function WorkoutBuilderVisual({ mobile }) {
   );
 }
 
+function NutritionCoachingVisual({ mobile }) {
+  const desktopImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Co-Pilot%20Coach%20nutrition%20coaching%20Desktop-lANGVLHAZXfBhuk0pKiypJ5r42e0YY.png";
+  const mobileImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Nutrition%20Coaching-XWFFPrn4Sskd6vzS2jNWcf37VsVteC.png";
+
+  return (
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      position: "relative",
+    }}>
+      <img 
+        src={mobile ? mobileImage : desktopImage}
+        alt="Milton AI analyzing Miguel's meal logging with 30-day activity calendar showing nutrition tracking gaps"
+        style={{
+          width: "100%",
+          maxWidth: mobile ? 400 : 1100,
+          height: "auto",
+          borderRadius: mobile ? 16 : 20,
+        }}
+      />
+    </div>
+  );
+}
+
 function CTAButton({ mobile }) {
   return (
     <button
@@ -271,7 +296,7 @@ export default function CoachCoPilot() {
 
 const features = [
   { title: "Workout Builder", body: "Build and assign programs with AI-assisted exercise selection based on your client's goals, history, and equipment access. Or build from scratch. Your programming, your philosophy — Milton just makes it faster.", Visual: WorkoutBuilderVisual },
-    { title: "Nutrition Coaching", body: "See what your clients are eating without making them switch apps. Data flows in from MyFitnessPal, Cronometer, and others. Set macros, track adherence, and flag gaps — all from one dashboard." },
+    { title: "Nutrition Coaching", body: "See what your clients are eating without making them switch apps. Data flows in from MyFitnessPal, Cronometer, and others. Set macros, track adherence, and flag gaps — all from one dashboard.", Visual: NutritionCoachingVisual },
     { title: "Calendar & Scheduling", body: "Your schedule, your clients' bookings, and your availability in one view. No more double-booking. No more back-and-forth texts to find a time." },
     { title: "Inbox", body: "Every client conversation in one place. Text threads, in-app messages, and follow-ups organized by client — not scattered across your personal phone." },
     { title: "Video Calls", body: "Remote sessions and check-ins built right into the platform. No Zoom links. No switching apps. Your client's data is on screen while you're talking to them." },
