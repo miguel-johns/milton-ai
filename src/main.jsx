@@ -28,6 +28,7 @@ import AIReceptionist from './AIReceptionist.jsx'
 import AIBranding from './AIBranding.jsx'
 import AgenticCommerce from './AgenticCommerce.jsx'
 import AIAcquisition from './AIAcquisition.jsx'
+import StripeCRM from './StripeCRM.jsx'
 import InquireModal from './InquireModal.jsx'
 
 function App() {
@@ -91,6 +92,8 @@ function App() {
     PageContent = <AgenticCommerce />
   } else if (page === '/acquisition') {
     PageContent = <AIAcquisition />
+  } else if (page === '/stripe-crm') {
+    PageContent = <StripeCRM />
   } else if (page === '/director-dashboard') {
     PageContent = <DirectorDashboard />
   } else if (page === '/partners') {

@@ -54,7 +54,7 @@ export default function SharedNav({ onInquireClick }) {
     { label: "AI Receptionist", description: "AI for voicemail and follow up.", href: "#/receptionist" },
     { label: "AI Acquisition Engine", description: "AI for turning results into referrals.", href: "#/acquisition" },
     { label: "Agentic Commerce", description: "AI-powered workflows driving leads the stuff you sell.", href: "#/agentic-commerce" },
-    { label: "Stripe-Powered CRM & POS", description: "Payments, memberships, and client management.", href: "#/crm" },
+    { label: "Stripe-Powered CRM & POS", description: "Payments, memberships, and client management.", href: "#/stripe-crm" },
   ];
 
   const servicesMenuItems = [
