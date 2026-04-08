@@ -53,22 +53,22 @@ function VisualPlaceholder({ height = 320, label = "Visual Here", mobile }) {
   );
 }
 
-function CTAButton({ text = "Book a Free Strategy Session", mobile }) {
+function CTAButton({ mobile }) {
   return (
     <button
       onClick={() => window.dispatchEvent(new CustomEvent('openConsultationModal'))}
       style={{
         display: "inline-flex",
         alignItems: "center",
-        gap: 10,
+        gap: 8,
         fontFamily: f,
-        fontSize: mobile ? 14 : 16,
+        fontSize: mobile ? 13 : 14,
         fontWeight: 600,
         color: "#061c27",
         background: mint,
         border: "none",
-        borderRadius: 8,
-        padding: mobile ? "14px 28px" : "16px 36px",
+        borderRadius: 100,
+        padding: mobile ? "12px 24px" : "14px 28px",
         cursor: "pointer",
         transition: "all 0.2s ease",
       }}
@@ -81,8 +81,8 @@ function CTAButton({ text = "Book a Free Strategy Session", mobile }) {
         e.currentTarget.style.transform = "translateY(0)";
       }}
     >
-      {text}
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      AI Consultation
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M5 12h14M12 5l7 7-7 7"/>
       </svg>
     </button>
@@ -237,7 +237,7 @@ export default function CoachCoPilot() {
           <VisualPlaceholder height={350} mobile={mobile} />
 
           <div style={{ marginTop: 40, textAlign: "center" }}>
-            <CTAButton text="See How Tracking Works" mobile={mobile} />
+            <CTAButton mobile={mobile} />
           </div>
         </section>
 
@@ -281,7 +281,7 @@ export default function CoachCoPilot() {
           <VisualPlaceholder height={350} mobile={mobile} />
 
           <div style={{ marginTop: 40, textAlign: "center" }}>
-            <CTAButton text="See Progress Reports in Action" mobile={mobile} />
+            <CTAButton mobile={mobile} />
           </div>
         </section>
 
@@ -363,7 +363,7 @@ export default function CoachCoPilot() {
           </p>
 
           <div style={{ marginTop: 40, textAlign: "center" }}>
-            <CTAButton text="Get a Live Demo" mobile={mobile} />
+            <CTAButton mobile={mobile} />
           </div>
         </section>
 
@@ -399,7 +399,7 @@ export default function CoachCoPilot() {
           </div>
 
           <div style={{ marginTop: 48, textAlign: "center" }}>
-            <CTAButton text="Explore All Features" mobile={mobile} />
+            <CTAButton mobile={mobile} />
           </div>
         </section>
 
