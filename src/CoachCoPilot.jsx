@@ -407,7 +407,7 @@ const features = [
     <>
       <div style={{ position: "relative", zIndex: 1, maxWidth: 900, margin: "0 auto", padding: `0 ${px}px` }}>
 
-        {/* ═══════ HERO ═══════ */}
+        {/* ═��═════ HERO ═══════ */}
         <section style={{
           minHeight: mobile ? "auto" : "50vh",
           display: "flex", flexDirection: "column", justifyContent: "center",
@@ -659,37 +659,6 @@ const features = [
           <div style={{ marginTop: 48, textAlign: "center" }}>
             <CTAButton mobile={mobile} />
           </div>
-        </section>
-
-        {/* ═══════ CLOSING ═══════ */}
-        <section style={{ padding: sectionPad }}>
-          <SectionLabel text="The New World For Coaches" />
-          <SectionDivider />
-          
-          <h2 style={{
-            fontFamily: serif,
-            fontSize: mobile ? 28 : tablet ? 36 : 44,
-            fontWeight: 400, lineHeight: 1.15, color: "#fff",
-            margin: "0 0 24px 0",
-          }}>
-            This is the new world <Accent>for coaches</Accent>
-          </h2>
-
-          <p style={{
-            fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
-            color: "rgba(255,255,255,0.65)", margin: "0 0 24px 0",
-          }}>
-            Not more apps. Not more tabs. Not more things to remember. One AI-powered system built around your life — making tracking seamless, progress visible, communication effortless, and everything in between a little easier than it was yesterday.
-          </p>
-
-          <p style={{
-            fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
-            color: "rgba(255,255,255,0.65)", margin: "0 0 32px 0",
-          }}>
-            You&apos;re still the coach. You&apos;re still the one who knows when to push and when to listen. Milton just makes sure nothing falls through the cracks.
-          </p>
-
-          <VisualPlaceholder height={400} mobile={mobile} />
         </section>
 
         {/* ═══════ CTA ═══════ */}
