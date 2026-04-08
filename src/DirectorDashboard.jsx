@@ -321,7 +321,7 @@ export default function DirectorDashboard() {
             {[
               { num: "80%", label: "of trainers leave within 5 years" },
               { num: "15+", label: "hours/week lost to personal training operations" },
-              { num: "$600+/location", label: "lost to disconnected tools monthly" },
+              { num: "Thousands / Month", label: "lost to disconnected tools monthly" },
             ].map((stat, i) => (
               <div key={i} style={{
                 textAlign: mobile ? "left" : "center",
