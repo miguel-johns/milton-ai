@@ -100,65 +100,54 @@ export default function CoachCoPilot() {
         <section style={{
           minHeight: mobile ? "auto" : "50vh",
           display: "flex", flexDirection: "column", justifyContent: "center",
-          padding: mobile ? "64px 0 48px" : "100px 0 64px",
+          padding: mobile ? "120px 0 48px" : "140px 0 64px",
         }}>
-          <a 
-            href="#/"
-            style={{
-              display: "inline-flex", alignItems: "center", gap: 8,
-              fontFamily: f, fontSize: 12, fontWeight: 500, letterSpacing: 1.5, textTransform: "uppercase",
-              color: "rgba(255,255,255,0.5)",
-              textDecoration: "none",
-              marginBottom: 24,
-              transition: "color 0.2s ease",
-            }}
-            onMouseEnter={e => e.currentTarget.style.color = teal}
-            onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.5)"}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M19 12H5M12 19l-7-7 7-7"/>
-            </svg>
-            AI Agents / Coach Co-Pilot
-          </a>
+          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
+            <div style={{ width: 8, height: 8, borderRadius: "50%", background: teal, flexShrink: 0 }} />
+            <span style={{ fontFamily: f, fontSize: 12, fontWeight: 500, letterSpacing: 2.5, textTransform: "uppercase", color: "rgba(255,255,255,0.7)" }}>Coach Co-Pilot</span>
+          </div>
 
           <h1 style={{
             fontFamily: serif,
-            fontSize: mobile ? 32 : tablet ? 44 : 56,
-            fontWeight: 400, lineHeight: 1.12, color: "#fff",
-            margin: "0 0 24px 0",
+            fontSize: mobile ? 36 : tablet ? 52 : 64,
+            fontWeight: 400, lineHeight: 1.08, color: "#fff",
+            margin: "0 0 28px 0",
           }}>
             AI designed to <Accent>embrace you</Accent> — not replace you
           </h1>
 
           <p style={{
-            fontFamily: f, fontSize: mobile ? 15 : 18, lineHeight: 1.7,
-            color: "rgba(255,255,255,0.6)", maxWidth: 700, margin: "0 0 20px 0",
+            fontFamily: f, fontSize: mobile ? 16 : 20, lineHeight: 1.7,
+            color: "rgba(255,255,255,0.6)", maxWidth: 720, margin: "0 0 40px 0",
           }}>
             This is what AI for coaches should actually look like. Not a robot that writes generic programs. Not a chatbot pretending to understand your client&apos;s bad knee. Not another app that promises to &quot;automate your coaching&quot; while stripping out everything that makes your coaching yours.
           </p>
 
+          <VisualPlaceholder height={mobile ? 280 : 480} label="Hero Image" mobile={mobile} />
+        </section>
+
+        {/* ═══════ INTRO ═══════ */}
+        <section style={{ padding: sectionPad }}>
           <p style={{
-            fontFamily: f, fontSize: mobile ? 15 : 18, lineHeight: 1.7,
-            color: "rgba(255,255,255,0.6)", maxWidth: 700, margin: "0 0 20px 0",
+            fontFamily: f, fontSize: mobile ? 15 : 18, lineHeight: 1.75,
+            color: "rgba(255,255,255,0.65)", margin: "0 0 24px 0",
           }}>
             The Coach Co-Pilot is AI built around your life. It handles the parts of coaching that slow you down — tracking, organizing, reporting, scheduling, follow-ups — so you can spend more time doing the part that actually changes lives: coaching.
           </p>
 
           <p style={{
-            fontFamily: f, fontSize: mobile ? 15 : 18, lineHeight: 1.7,
-            color: "rgba(255,255,255,0.6)", maxWidth: 700, margin: "0 0 32px 0",
+            fontFamily: f, fontSize: mobile ? 15 : 18, lineHeight: 1.75,
+            color: "rgba(255,255,255,0.65)", margin: "0 0 24px 0",
           }}>
             Your clients&apos; data from wearables, nutrition apps, equipment, and body scans all flow into one place. AI turns that data into visual progress reports your clients can actually understand. And you can coach from that progress in real time — over text, in-app, or in person — with everything you need right in front of you.
           </p>
 
           <p style={{
-            fontFamily: f, fontSize: mobile ? 16 : 19, lineHeight: 1.7,
-            color: mint, fontWeight: 500, maxWidth: 700, margin: "0 0 32px 0",
+            fontFamily: f, fontSize: mobile ? 17 : 20, lineHeight: 1.75,
+            color: mint, fontWeight: 500, margin: 0,
           }}>
             One system. Everything connected. Built around the way you already work.
           </p>
-
-          <VisualPlaceholder height={400} mobile={mobile} />
         </section>
 
         {/* ═══════ TRACKING ═══════ */}
