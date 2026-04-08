@@ -419,20 +419,20 @@ export default function DirectorDashboard() {
             marginBottom: mobile ? 48 : 72,
           }}>
             <div style={{
-              flex: mobile ? "none" : 1,
-              width: mobile ? "100%" : "auto",
+              flex: mobile ? "none" : "0 0 auto",
+              width: mobile ? "100%" : 400,
               borderRadius: mobile ? 12 : 16,
               overflow: "hidden",
-              aspectRatio: mobile ? "4 / 5" : "16 / 9",
+              aspectRatio: "1 / 1",
             }}>
               <img 
-                src="/placeholder.svg?height=400&width=600"
+                src="/placeholder.svg?height=1080&width=1080"
                 alt="Fitness director dashboard showing trainer performance metrics"
                 style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }}
               />
             </div>
             
-            <div style={{ flex: mobile ? "none" : 1, width: mobile ? "100%" : "auto" }}>
+            <div style={{ flex: 1 }}>
               <h3 style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: mobile ? 20 : 26,
@@ -462,20 +462,20 @@ export default function DirectorDashboard() {
             marginBottom: mobile ? 48 : 72,
           }}>
             <div style={{
-              flex: mobile ? "none" : 1,
-              width: mobile ? "100%" : "auto",
+              flex: mobile ? "none" : "0 0 auto",
+              width: mobile ? "100%" : 400,
               borderRadius: mobile ? 12 : 16,
               overflow: "hidden",
-              aspectRatio: mobile ? "4 / 5" : "16 / 9",
+              aspectRatio: "1 / 1",
             }}>
               <img 
-                src="/placeholder.svg?height=400&width=600"
+                src="/placeholder.svg?height=1080&width=1080"
                 alt="Coach co-pilot interface with session tracking and client insights"
                 style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }}
               />
             </div>
             
-            <div style={{ flex: mobile ? "none" : 1, width: mobile ? "100%" : "auto" }}>
+            <div style={{ flex: 1 }}>
               <h3 style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: mobile ? 20 : 26,
@@ -505,19 +505,20 @@ export default function DirectorDashboard() {
             marginBottom: mobile ? 24 : 32,
           }}>
             <div style={{
-              flex: mobile ? "none" : 1,
-              width: mobile ? "100%" : "auto",
+              flex: mobile ? "none" : "0 0 auto",
+              width: mobile ? "100%" : 400,
               borderRadius: mobile ? 12 : 16,
               overflow: "hidden",
+              aspectRatio: "1 / 1",
             }}>
               <img 
-                src="/placeholder.svg?height=400&width=600"
+                src="/placeholder.svg?height=1080&width=1080"
                 alt="Business analytics connecting trainer performance to growth metrics"
-                style={{ width: "100%", height: "auto", display: "block" }}
+                style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }}
               />
             </div>
             
-            <div style={{ flex: mobile ? "none" : 1, width: mobile ? "100%" : "auto" }}>
+            <div style={{ flex: 1 }}>
               <h3 style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: mobile ? 20 : 26,
