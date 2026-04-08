@@ -104,218 +104,26 @@ function TrackingProfileVisual({ mobile }) {
 }
 
 function ClientConnectionFlowVisual({ mobile }) {
+  const desktopImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Co-Pilot%20Connect%20Desktop-RP5BHFlQv19yvoJkOS7Pa42TLO1rA4.png";
+  const mobileImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Co-pilot%20Connecting%20Mobile-b99xF4h9i0uCKecJBZOrmGE6zaELNW.png";
+
   return (
     <div style={{
-      borderRadius: mobile ? 12 : 20,
-      background: "linear-gradient(145deg, #0a1f2a 0%, #061c27 100%)",
-      border: "1px solid rgba(13,154,165,0.3)",
-      boxShadow: "0 25px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05)",
-      padding: mobile ? 20 : 40,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
       position: "relative",
-      overflow: "hidden",
     }}>
-      {/* Background glow */}
-      <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: 400, height: 200, borderRadius: "50%", background: "radial-gradient(circle, rgba(13,154,165,0.08) 0%, transparent 70%)", pointerEvents: "none" }} />
-
-      {/* Steps Container */}
-      <div style={{ 
-        display: "flex", 
-        flexDirection: mobile ? "column" : "row",
-        alignItems: mobile ? "center" : "flex-start",
-        justifyContent: "center",
-        gap: mobile ? 24 : 0,
-        position: "relative",
-      }}>
-        
-        {/* Step 1 - Text Message */}
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flex: mobile ? "none" : 1, maxWidth: mobile ? "100%" : 240 }}>
-          {/* Phone with text message */}
-          <div style={{
-            width: mobile ? 160 : 200,
-            background: "rgba(255,255,255,0.03)",
-            borderRadius: 16,
-            border: "1px solid rgba(255,255,255,0.08)",
-            padding: mobile ? 12 : 16,
-            position: "relative",
-          }}>
-            {/* Phone notch */}
-            <div style={{ width: 40, height: 4, background: "rgba(255,255,255,0.1)", borderRadius: 2, margin: "0 auto 12px" }} />
-            
-            {/* Text bubble */}
-            <div style={{
-              background: "rgba(13,154,165,0.2)",
-              border: "1px solid rgba(13,154,165,0.3)",
-              borderRadius: 12,
-              padding: mobile ? 10 : 12,
-            }}>
-              <p style={{ fontFamily: f, fontSize: mobile ? 10 : 11, color: "#fff", lineHeight: 1.5, margin: 0 }}>
-                Your coach invited you to connect — <span style={{ color: teal, textDecoration: "underline" }}>tap here to get started</span>
-              </p>
-            </div>
-            
-            {/* Time */}
-            <div style={{ fontFamily: f, fontSize: 9, color: "rgba(255,255,255,0.4)", textAlign: "center", marginTop: 8 }}>Just now</div>
-          </div>
-          
-          <div style={{ fontFamily: f, fontSize: mobile ? 11 : 12, color: "rgba(255,255,255,0.5)", marginTop: 12, textAlign: "center" }}>Receive invite</div>
-        </div>
-
-        {/* Connector Arrow 1 */}
-        {!mobile && (
-          <div style={{ display: "flex", alignItems: "center", paddingTop: 80 }}>
-            <svg width="60" height="24" viewBox="0 0 60 24">
-              <path d="M0 12 L50 12" stroke="rgba(13,154,165,0.4)" strokeWidth="2" strokeDasharray="4 4" />
-              <path d="M45 6 L55 12 L45 18" stroke={teal} strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-        )}
-        
-        {mobile && (
-          <svg width="24" height="32" viewBox="0 0 24 32">
-            <path d="M12 0 L12 22" stroke="rgba(13,154,165,0.4)" strokeWidth="2" strokeDasharray="4 4" />
-            <path d="M6 18 L12 28 L18 18" stroke={teal} strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        )}
-
-        {/* Step 2 - Toggle Switches */}
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flex: mobile ? "none" : 1, maxWidth: mobile ? "100%" : 240 }}>
-          {/* Connection toggles card */}
-          <div style={{
-            width: mobile ? 180 : 220,
-            background: "rgba(255,255,255,0.03)",
-            borderRadius: 16,
-            border: "1px solid rgba(255,255,255,0.08)",
-            padding: mobile ? 14 : 18,
-          }}>
-            {[
-              { name: "Apple Watch", icon: "⌚" },
-              { name: "MyFitnessPal", icon: "🍎" },
-              { name: "InBody", icon: "📊" },
-            ].map((item, i) => (
-              <div key={i} style={{ 
-                display: "flex", 
-                alignItems: "center", 
-                justifyContent: "space-between",
-                padding: "10px 0",
-                borderBottom: i < 2 ? "1px solid rgba(255,255,255,0.06)" : "none",
-              }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ fontSize: mobile ? 14 : 16 }}>{item.icon}</span>
-                  <span style={{ fontFamily: f, fontSize: mobile ? 11 : 12, color: "#fff" }}>{item.name}</span>
-                </div>
-                {/* Toggle with checkmark */}
-                <div style={{
-                  width: mobile ? 36 : 42,
-                  height: mobile ? 20 : 24,
-                  borderRadius: 100,
-                  background: `linear-gradient(90deg, ${teal}, ${mint})`,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "flex-end",
-                  padding: 2,
-                }}>
-                  <div style={{
-                    width: mobile ? 16 : 20,
-                    height: mobile ? 16 : 20,
-                    borderRadius: "50%",
-                    background: "#fff",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#061c27" strokeWidth="3">
-                      <path d="M20 6L9 17l-5-5"/>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          <div style={{ fontFamily: f, fontSize: mobile ? 11 : 12, color: "rgba(255,255,255,0.5)", marginTop: 12, textAlign: "center" }}>Connect apps</div>
-        </div>
-
-        {/* Connector Arrow 2 */}
-        {!mobile && (
-          <div style={{ display: "flex", alignItems: "center", paddingTop: 80 }}>
-            <svg width="60" height="24" viewBox="0 0 60 24">
-              <path d="M0 12 L50 12" stroke="rgba(13,154,165,0.4)" strokeWidth="2" strokeDasharray="4 4" />
-              <path d="M45 6 L55 12 L45 18" stroke={teal} strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-        )}
-        
-        {mobile && (
-          <svg width="24" height="32" viewBox="0 0 24 32">
-            <path d="M12 0 L12 22" stroke="rgba(13,154,165,0.4)" strokeWidth="2" strokeDasharray="4 4" />
-            <path d="M6 18 L12 28 L18 18" stroke={teal} strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        )}
-
-        {/* Step 3 - Data Syncing */}
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flex: mobile ? "none" : 1, maxWidth: mobile ? "100%" : 240 }}>
-          {/* Data syncing card */}
-          <div style={{
-            width: mobile ? 160 : 200,
-            background: "rgba(154,241,152,0.06)",
-            borderRadius: 16,
-            border: "1px solid rgba(154,241,152,0.2)",
-            padding: mobile ? 16 : 20,
-            textAlign: "center",
-          }}>
-            {/* Animated pulse rings */}
-            <div style={{ position: "relative", width: mobile ? 48 : 56, height: mobile ? 48 : 56, margin: "0 auto 12px" }}>
-              <div style={{
-                position: "absolute",
-                inset: 0,
-                borderRadius: "50%",
-                border: `2px solid ${mint}`,
-                opacity: 0.3,
-                animation: "pulse 2s ease-in-out infinite",
-              }} />
-              <div style={{
-                position: "absolute",
-                inset: 8,
-                borderRadius: "50%",
-                border: `2px solid ${mint}`,
-                opacity: 0.5,
-                animation: "pulse 2s ease-in-out infinite 0.3s",
-              }} />
-              <div style={{
-                position: "absolute",
-                inset: 16,
-                borderRadius: "50%",
-                background: mint,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#061c27" strokeWidth="2.5">
-                  <path d="M20 6L9 17l-5-5"/>
-                </svg>
-              </div>
-            </div>
-            
-            <div style={{ fontFamily: f, fontSize: mobile ? 13 : 15, fontWeight: 600, color: "#fff" }}>Data Syncing</div>
-            <div style={{ fontFamily: f, fontSize: mobile ? 10 : 11, color: mint, marginTop: 4 }}>All connected</div>
-          </div>
-          
-          <div style={{ fontFamily: f, fontSize: mobile ? 11 : 12, color: "rgba(255,255,255,0.5)", marginTop: 12, textAlign: "center" }}>Done!</div>
-        </div>
-      </div>
-
-      {/* Footer message */}
-      <div style={{ textAlign: "center", marginTop: mobile ? 24 : 32 }}>
-        <span style={{ fontFamily: f, fontSize: mobile ? 11 : 13, color: "rgba(255,255,255,0.5)" }}>60 seconds to connect. Then it just works.</span>
-      </div>
-
-      {/* CSS Animation for pulse */}
-      <style>{`
-        @keyframes pulse {
-          0%, 100% { transform: scale(1); opacity: 0.3; }
-          50% { transform: scale(1.15); opacity: 0.1; }
-        }
-      `}</style>
+      <img 
+        src={mobile ? mobileImage : desktopImage}
+        alt="Client connection flow showing 3 steps: receive invite, connect apps like Apple Watch and MyFitnessPal, and data syncing confirmation"
+        style={{
+          width: "100%",
+          maxWidth: mobile ? 400 : 1100,
+          height: "auto",
+          borderRadius: mobile ? 16 : 20,
+        }}
+      />
     </div>
   );
 }
