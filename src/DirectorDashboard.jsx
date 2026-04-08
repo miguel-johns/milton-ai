@@ -426,8 +426,11 @@ export default function DirectorDashboard() {
               aspectRatio: "1 / 1",
             }}>
               <img 
-                src="/placeholder.svg?height=1080&width=1080"
-                alt="Fitness director dashboard showing trainer performance metrics"
+                src={mobile 
+                  ? "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-2KhIcjy6NOIaOJDv0eYTG1DLclv0Ma.png"
+                  : "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3-Vysf4hhkfJnZbrk1ndH1dE0Fb02ThL.png"
+                }
+                alt="Skill Diagnostic showing Organizing, Communication, and Technical Skills scores with client roster"
                 style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }}
               />
             </div>
@@ -469,8 +472,11 @@ export default function DirectorDashboard() {
               aspectRatio: "1 / 1",
             }}>
               <img 
-                src="/placeholder.svg?height=1080&width=1080"
-                alt="Coach co-pilot interface with session tracking and client insights"
+                src={mobile 
+                  ? "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-AOWGSUZBv6Ti5Y0JGPa6bViJF4zN4E.png"
+                  : "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4-MMwfbz3xNcye8CiogSVo7YcZfcSacr.png"
+                }
+                alt="Coach Co-Pilot showing active clients, attendance rate, client growth, and today's coaching queue"
                 style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }}
               />
             </div>
@@ -512,8 +518,11 @@ export default function DirectorDashboard() {
               aspectRatio: "1 / 1",
             }}>
               <img 
-                src="/placeholder.svg?height=1080&width=1080"
-                alt="Business analytics connecting trainer performance to growth metrics"
+                src={mobile 
+                  ? "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3-bC2Nbn028t3yLdBW0wxUMrHR0r4Q2X.png"
+                  : "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5-I66aeetxmFi0vz5mTJKGNPs9EQWSNn.png"
+                }
+                alt="+/- Clients dashboard showing net change, clients lost and gained, and retention cliff analysis"
                 style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }}
               />
             </div>
