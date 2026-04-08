@@ -415,11 +415,12 @@ export default function DirectorDashboard() {
               width: mobile ? "100%" : "auto",
               borderRadius: mobile ? 12 : 16,
               overflow: "hidden",
+              aspectRatio: mobile ? "4 / 5" : "16 / 9",
             }}>
               <img 
                 src="/placeholder.svg?height=400&width=600"
                 alt="Fitness director dashboard showing trainer performance metrics"
-                style={{ width: "100%", height: "auto", display: "block" }}
+                style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }}
               />
             </div>
             
@@ -457,11 +458,12 @@ export default function DirectorDashboard() {
               width: mobile ? "100%" : "auto",
               borderRadius: mobile ? 12 : 16,
               overflow: "hidden",
+              aspectRatio: mobile ? "4 / 5" : "16 / 9",
             }}>
               <img 
                 src="/placeholder.svg?height=400&width=600"
                 alt="Coach co-pilot interface with session tracking and client insights"
-                style={{ width: "100%", height: "auto", display: "block" }}
+                style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }}
               />
             </div>
             
