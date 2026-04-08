@@ -49,7 +49,7 @@ export default function SharedNav({ onInquireClick }) {
     { label: "Coach Co-Pilot", description: "AI for people coaching clients.", href: "#/coach-copilot" },
     { label: "Director Co-Pilot", description: "AI for people managing trainers.", href: "#/director-dashboard" },
     { label: "AI Coach", description: "AI for people without a coach.", href: "#/ai-coach" },
-    { label: "AI Website", description: "AI for professional sites.", href: "#/websites" },
+    { label: "AI Branding", description: "AI for professional sites.", href: "#/websites" },
     { label: "AI-Powered Scheduling", description: "AI for self-serve scheduling and booking.", href: "#/scheduling" },
     { label: "AI Receptionist", description: "AI for voicemail and follow up.", href: "#/receptionist" },
     { label: "AI Acquisition Engine", description: "AI for turning results into referrals.", href: "#/marketing" },

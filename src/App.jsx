@@ -281,7 +281,7 @@ export default function MiltonHomepage() {
     { icon: <CoachIcon />, title: "Coach Co-Pilot", description: "AI for people coaching clients.", href: "#/coach-copilot" },
     { icon: <DashboardIcon />, title: "Director Co-Pilot", description: "AI for people managing trainers.", href: "#/director-dashboard" },
     { icon: <AICoachIcon />, title: "AI Coach", description: "AI for people without a coach.", href: "#/ai-coach" },
-    { icon: <WebsiteIcon />, title: "AI Website", description: "AI for professional sites.", href: "#/websites" },
+    { icon: <WebsiteIcon />, title: "AI Branding", description: "AI for professional sites.", href: "#/websites" },
     { icon: <SchedulingIcon />, title: "AI-Powered Scheduling", description: "AI for self-serve scheduling and booking.", href: "#/scheduling" },
     { icon: <ReceptionistIcon />, title: "AI Receptionist", description: "AI for voicemail and follow up.", href: "#/receptionist" },
     { icon: <MarketingIcon />, title: "AI Acquisition Engine", description: "AI for turning results into referrals.", href: "#/marketing" },
