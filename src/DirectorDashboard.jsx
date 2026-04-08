@@ -619,11 +619,12 @@ export default function DirectorDashboard() {
             borderRadius: mobile ? 12 : 16,
             overflow: "hidden",
             boxShadow: "0 20px 50px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.08)",
+            aspectRatio: mobile ? "4 / 5" : "auto",
           }}>
             <img
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_8262-REWDKxl5JjX28bTxgQ61SfpI97qims.png"
               alt="Fitness professionals walking through gym discussing trainer development"
-              style={{ width: "100%", height: "auto", display: "block" }}
+              style={{ width: "100%", height: mobile ? "100%" : "auto", display: "block", objectFit: mobile ? "cover" : "initial" }}
             />
           </div>
         </section>
