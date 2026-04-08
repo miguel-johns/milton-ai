@@ -399,8 +399,6 @@ const features = [
     { title: "Nutrition Coaching", body: "See what your clients are eating without making them switch apps. Data flows in from MyFitnessPal, Cronometer, and others. Set macros, track adherence, and flag gaps — all from one dashboard.", Visual: NutritionCoachingVisual },
     { title: "Calendar & Scheduling", body: "Your schedule, your clients' bookings, and your availability in one view. No more double-booking. No more back-and-forth texts to find a time.", Visual: CalendarSchedulingVisual },
     { title: "Inbox", body: "Every client conversation in one place. Text threads, in-app messages, and follow-ups organized by client — not scattered across your personal phone.", Visual: InboxVisual },
-    { title: "Video Calls", body: "Remote sessions and check-ins built right into the platform. No Zoom links. No switching apps. Your client's data is on screen while you're talking to them." },
-    { title: "Goals & Macros", body: "Set targets collaboratively with clients. Milton tracks progress toward those targets and surfaces when someone is on pace, ahead, or falling behind — so you can step in before things go sideways." },
     { title: "CRM, Payments & Memberships", body: "Manage your entire client lifecycle in one place. Built-in CRM tracks leads, onboarding, and retention. Stripe-powered payments handle one-time sessions, recurring memberships, and package deals — all automated with invoices, receipts, and payment reminders.", Visual: CRMPaymentsVisual },
     { title: "Acquisition Engine", body: "Turn your coaching into a client magnet. AI-powered landing pages, lead capture forms, and automated follow-up sequences help you attract and convert prospects while you focus on coaching. Track where leads come from and what converts them.", Visual: AcquisitionEngineVisual },
   ];
@@ -631,6 +629,31 @@ const features = [
             {features.map((feature, i) => (
               <FeatureCard key={i} title={feature.title} body={feature.body} mobile={mobile} Visual={feature.Visual} />
             ))}
+          </div>
+
+          {/* +More! Callout */}
+          <div style={{
+            marginTop: mobile ? 24 : 32,
+            textAlign: "center",
+            padding: mobile ? "20px" : "28px",
+            background: "rgba(13,154,165,0.08)",
+            border: "1px solid rgba(13,154,165,0.2)",
+            borderRadius: mobile ? 12 : 16,
+          }}>
+            <span style={{
+              fontFamily: f,
+              fontSize: mobile ? 18 : 22,
+              fontWeight: 600,
+              color: teal,
+            }}>+More!</span>
+            <p style={{
+              fontFamily: f,
+              fontSize: mobile ? 14 : 15,
+              color: "rgba(255,255,255,0.6)",
+              margin: "8px 0 0 0",
+            }}>
+              Video calls, goals &amp; macros, assessments, and more features launching soon.
+            </p>
           </div>
 
           <div style={{ marginTop: 48, textAlign: "center" }}>
