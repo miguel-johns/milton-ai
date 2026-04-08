@@ -153,6 +153,31 @@ function DataViewVisual({ mobile }) {
   );
 }
 
+function CoachMomentVisual({ mobile }) {
+  const desktopImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Co-Pilot%20Coach%20Moment%20Desktop-ysLK69sKo29vkmLx2LmQLHeWWTXxwK.png";
+  const mobileImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Co-pilot%20Coach%20Moment%20Mobile-bhIgNJteHiZ7u0caA0jGVbb2QGcanV.png";
+
+  return (
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      position: "relative",
+    }}>
+      <img 
+        src={mobile ? mobileImage : desktopImage}
+        alt="Milton AI chat showing Marcus's last session details with key lifts progress and session notes"
+        style={{
+          width: "100%",
+          maxWidth: mobile ? 400 : 1100,
+          height: "auto",
+          borderRadius: mobile ? 16 : 20,
+        }}
+      />
+    </div>
+  );
+}
+
 function CTAButton({ mobile }) {
   return (
     <button
@@ -411,7 +436,7 @@ export default function CoachCoPilot() {
             Just ask Milton. Pull up a client&apos;s strength trends mid-session to show them how far they&apos;ve come. Check their nutrition consistency before a check-in call. Glance at their sleep and recovery data while you&apos;re texting them back about tomorrow&apos;s workout. It&apos;s all there — on demand, in context, ready to use.
           </p>
 
-          <VisualPlaceholder height={350} mobile={mobile} />
+          <CoachMomentVisual mobile={mobile} />
 
           <p style={{
             fontFamily: f, fontSize: mobile ? 16 : 18, lineHeight: 1.75,
