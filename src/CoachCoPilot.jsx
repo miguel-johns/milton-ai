@@ -371,15 +371,6 @@ export default function CoachCoPilot() {
 
           <DataViewVisual mobile={mobile} />
 
-          <p style={{
-            fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
-            color: "rgba(255,255,255,0.65)", margin: "32px 0 32px 0",
-          }}>
-            This is where coaching gets powerful. Not because you have more data, but because the right data shows up at the right time and you can use it to do what you do best — motivate, adjust, and guide.
-          </p>
-
-          <DataViewVisual mobile={mobile} />
-
           <div style={{ marginTop: 40, textAlign: "center" }}>
             <CTAButton mobile={mobile} />
           </div>
