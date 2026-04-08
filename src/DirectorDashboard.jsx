@@ -622,8 +622,11 @@ export default function DirectorDashboard() {
             aspectRatio: mobile ? "4 / 5" : "auto",
           }}>
             <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_8262-REWDKxl5JjX28bTxgQ61SfpI97qims.png"
-              alt="Fitness professionals walking through gym discussing trainer development"
+              src={mobile 
+                ? "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Director%20Co-Pilot%20Mobile%2045-KHRthdrmWSoIz47cD4b7Je2YQ0nCYv.png"
+                : "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Director%20Co-Pilot%20Desktop-nVhZn3qp97XkDAjFzBT6pSUluPQwmt.png"
+              }
+              alt="Milton Director Co-Pilot showing coaching conversation recommendations for Jake Torres and Derek Nguyen"
               style={{ width: "100%", height: mobile ? "100%" : "auto", display: "block", objectFit: mobile ? "cover" : "initial" }}
             />
           </div>
