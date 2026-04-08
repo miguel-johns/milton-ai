@@ -276,6 +276,8 @@ const features = [
     { title: "Inbox", body: "Every client conversation in one place. Text threads, in-app messages, and follow-ups organized by client — not scattered across your personal phone." },
     { title: "Video Calls", body: "Remote sessions and check-ins built right into the platform. No Zoom links. No switching apps. Your client's data is on screen while you're talking to them." },
     { title: "Goals & Macros", body: "Set targets collaboratively with clients. Milton tracks progress toward those targets and surfaces when someone is on pace, ahead, or falling behind — so you can step in before things go sideways." },
+    { title: "CRM, Payments & Memberships", body: "Manage your entire client lifecycle in one place. Built-in CRM tracks leads, onboarding, and retention. Stripe-powered payments handle one-time sessions, recurring memberships, and package deals — all automated with invoices, receipts, and payment reminders." },
+    { title: "Acquisition Engine", body: "Turn your coaching into a client magnet. AI-powered landing pages, lead capture forms, and automated follow-up sequences help you attract and convert prospects while you focus on coaching. Track where leads come from and what converts them." },
   ];
 
   return (
