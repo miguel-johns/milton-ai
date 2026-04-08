@@ -407,7 +407,7 @@ const features = [
     <>
       <div style={{ position: "relative", zIndex: 1, maxWidth: 900, margin: "0 auto", padding: `0 ${px}px` }}>
 
-        {/* ═��═════ HERO ═══════ */}
+        {/* ═���═════ HERO ═══════ */}
         <section style={{
           minHeight: mobile ? "auto" : "50vh",
           display: "flex", flexDirection: "column", justifyContent: "center",
@@ -654,10 +654,6 @@ const features = [
             }}>
               Video calls, goals &amp; macros, assessments, and more features launching soon.
             </p>
-          </div>
-
-          <div style={{ marginTop: 48, textAlign: "center" }}>
-            <CTAButton mobile={mobile} />
           </div>
         </section>
 
