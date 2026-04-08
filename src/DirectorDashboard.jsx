@@ -269,8 +269,11 @@ export default function DirectorDashboard() {
             aspectRatio: mobile ? "4 / 5" : "16 / 9",
           }}>
             <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_8260-ZXksj4knhcDaRItpyEpzJ9MbO2vYea.png"
-              alt="Fitness director overseeing trainers on the gym floor"
+              src={mobile 
+                ? "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-8ZqxfLA75h3apTAIMAU9z8eHUlmf57.png"
+                : "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-fPDuVA6fNhdGhbxYvsyCv84rRNn9uH.png"
+              }
+              alt="Milton director dashboard showing weekly gross, attendance rate, follow-up rate, and trainer roster"
               style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
             />
           </div>
@@ -376,8 +379,11 @@ export default function DirectorDashboard() {
             aspectRatio: mobile ? "4 / 5" : "16 / 9",
           }}>
             <img
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_8261-l0nmWrWcO3sFAVeKP5LwwjLotqMCHh.png"
-              alt="Milton team collaborating with gym owners at a desk"
+              src={mobile 
+                ? "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-gyb6fw0CWxEikWfBP8N4Ocmr8UrGXL.png"
+                : "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-jYQKUJztisMQYaKs16mLZ31k6SHPKH.png"
+              }
+              alt="Jake Torres trainer profile with Milton's diagnostic showing follow-up issues and recommendations"
               style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
             />
           </div>
