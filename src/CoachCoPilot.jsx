@@ -53,6 +53,42 @@ function VisualPlaceholder({ height = 320, label = "Visual Here", mobile }) {
   );
 }
 
+function CTAButton({ text = "Book a Free Strategy Session", mobile }) {
+  return (
+    <button
+      onClick={() => window.dispatchEvent(new CustomEvent('openConsultationModal'))}
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 10,
+        fontFamily: f,
+        fontSize: mobile ? 14 : 16,
+        fontWeight: 600,
+        color: "#061c27",
+        background: mint,
+        border: "none",
+        borderRadius: 8,
+        padding: mobile ? "14px 28px" : "16px 36px",
+        cursor: "pointer",
+        transition: "all 0.2s ease",
+      }}
+      onMouseEnter={e => {
+        e.currentTarget.style.background = "#b8f5b6";
+        e.currentTarget.style.transform = "translateY(-2px)";
+      }}
+      onMouseLeave={e => {
+        e.currentTarget.style.background = mint;
+        e.currentTarget.style.transform = "translateY(0)";
+      }}
+    >
+      {text}
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </button>
+  );
+}
+
 function FeatureCard({ title, body, mobile }) {
   return (
     <div style={{
@@ -124,6 +160,10 @@ export default function CoachCoPilot() {
           </p>
 
           <VisualPlaceholder height={mobile ? 280 : 480} label="Hero Image" mobile={mobile} />
+
+          <div style={{ marginTop: 40 }}>
+            <CTAButton mobile={mobile} />
+          </div>
         </section>
 
         {/* ═══════ INTRO ═══════ */}
@@ -195,6 +235,10 @@ export default function CoachCoPilot() {
           </p>
 
           <VisualPlaceholder height={350} mobile={mobile} />
+
+          <div style={{ marginTop: 40, textAlign: "center" }}>
+            <CTAButton text="See How Tracking Works" mobile={mobile} />
+          </div>
         </section>
 
         {/* ═══════ PROGRESS ═══════ */}
@@ -235,6 +279,10 @@ export default function CoachCoPilot() {
           </p>
 
           <VisualPlaceholder height={350} mobile={mobile} />
+
+          <div style={{ marginTop: 40, textAlign: "center" }}>
+            <CTAButton text="See Progress Reports in Action" mobile={mobile} />
+          </div>
         </section>
 
         {/* ═══════ COACH FROM DATA ═══════ */}
@@ -313,6 +361,10 @@ export default function CoachCoPilot() {
           }}>
             The coaching happens everywhere. Milton just makes sure the insights are already waiting for you.
           </p>
+
+          <div style={{ marginTop: 40, textAlign: "center" }}>
+            <CTAButton text="Get a Live Demo" mobile={mobile} />
+          </div>
         </section>
 
         {/* ═══════ FEATURES ═══════ */}
@@ -344,6 +396,10 @@ export default function CoachCoPilot() {
             {features.map((feature, i) => (
               <FeatureCard key={i} title={feature.title} body={feature.body} mobile={mobile} />
             ))}
+          </div>
+
+          <div style={{ marginTop: 48, textAlign: "center" }}>
+            <CTAButton text="Explore All Features" mobile={mobile} />
           </div>
         </section>
 
