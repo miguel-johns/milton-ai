@@ -293,8 +293,8 @@ export default function MiltonHomepage() {
   const services = [
     { icon: <StrategyIcon />, title: "AI Strategy Session", description: "Free one-on-one consultation and AI audit.", href: "#/consultation" },
     { icon: <ImplementationIcon />, title: "Implementation Science", description: "Hands-on deployment with your team.", href: "#/implementation" },
-    { icon: <AcademyIcon />, title: "Milton Academy", description: "Certification for coaches and managers.", href: "#/academy" },
-    { icon: <PromptIcon />, title: "Prompt Library", description: "Ready-to-use prompts for fitness professionals.", href: "#/prompts" },
+    { icon: <AcademyIcon />, title: "Milton Academy", description: "Coming Soon", href: "#/academy" },
+    { icon: <PromptIcon />, title: "Prompt Library", description: "Coming Soon", href: "#/prompts" },
   ];
 
   const caseStudies = [
