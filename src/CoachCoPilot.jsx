@@ -278,6 +278,56 @@ function AcquisitionEngineVisual({ mobile }) {
   );
 }
 
+function CalendarSchedulingVisual({ mobile }) {
+  const desktopImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Co-Pilot%20Calendar%20Desktop-uIBBZQx28gJk4quzZJfowOuQLwnnms.png";
+  const mobileImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Schedule-3XwMFgJF577pNtiNyFWB6k4KZe0aBD.png";
+
+  return (
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      position: "relative",
+    }}>
+      <img 
+        src={mobile ? mobileImage : desktopImage}
+        alt="Weekly calendar view showing client sessions, team meetings, and back office time blocks"
+        style={{
+          width: "100%",
+          maxWidth: mobile ? 400 : 1100,
+          height: "auto",
+          borderRadius: mobile ? 16 : 20,
+        }}
+      />
+    </div>
+  );
+}
+
+function InboxVisual({ mobile }) {
+  const desktopImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Co-Pilot%20Inbox%20Desktop-xNVGdU5NAsvoE8nsfIsY3afIguchny.png";
+  const mobileImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Inbox-uH5x7A6BPDClcFUL7xsucFv8XBIzwW.png";
+
+  return (
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      position: "relative",
+    }}>
+      <img 
+        src={mobile ? mobileImage : desktopImage}
+        alt="Unified inbox showing client and team conversations with Go Live, 1-on-1, and Group messaging options"
+        style={{
+          width: "100%",
+          maxWidth: mobile ? 400 : 1100,
+          height: "auto",
+          borderRadius: mobile ? 16 : 20,
+        }}
+      />
+    </div>
+  );
+}
+
 function CTAButton({ mobile }) {
   return (
     <button
@@ -347,8 +397,8 @@ export default function CoachCoPilot() {
 const features = [
   { title: "Workout Builder", body: "Build and assign programs with AI-assisted exercise selection based on your client's goals, history, and equipment access. Or build from scratch. Your programming, your philosophy — Milton just makes it faster.", Visual: WorkoutBuilderVisual },
     { title: "Nutrition Coaching", body: "See what your clients are eating without making them switch apps. Data flows in from MyFitnessPal, Cronometer, and others. Set macros, track adherence, and flag gaps — all from one dashboard.", Visual: NutritionCoachingVisual },
-    { title: "Calendar & Scheduling", body: "Your schedule, your clients' bookings, and your availability in one view. No more double-booking. No more back-and-forth texts to find a time." },
-    { title: "Inbox", body: "Every client conversation in one place. Text threads, in-app messages, and follow-ups organized by client — not scattered across your personal phone." },
+    { title: "Calendar & Scheduling", body: "Your schedule, your clients' bookings, and your availability in one view. No more double-booking. No more back-and-forth texts to find a time.", Visual: CalendarSchedulingVisual },
+    { title: "Inbox", body: "Every client conversation in one place. Text threads, in-app messages, and follow-ups organized by client — not scattered across your personal phone.", Visual: InboxVisual },
     { title: "Video Calls", body: "Remote sessions and check-ins built right into the platform. No Zoom links. No switching apps. Your client's data is on screen while you're talking to them." },
     { title: "Goals & Macros", body: "Set targets collaboratively with clients. Milton tracks progress toward those targets and surfaces when someone is on pace, ahead, or falling behind — so you can step in before things go sideways." },
     { title: "CRM, Payments & Memberships", body: "Manage your entire client lifecycle in one place. Built-in CRM tracks leads, onboarding, and retention. Stripe-powered payments handle one-time sessions, recurring memberships, and package deals — all automated with invoices, receipts, and payment reminders.", Visual: CRMPaymentsVisual },
