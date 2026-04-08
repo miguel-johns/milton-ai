@@ -54,87 +54,26 @@ function VisualPlaceholder({ height = 320, label = "Visual Here", mobile }) {
 }
 
 function HeroChatVisual({ mobile }) {
-  // Shared bubble styles - smooth, thin, wide
-  const miltonBubble = {
-    background: "rgba(13,154,165,0.1)",
-    border: `1px solid ${teal}`,
-    borderRadius: 20,
-    borderBottomLeftRadius: 4,
-    padding: mobile ? "10px 14px" : "12px 18px",
-    boxShadow: "0 4px 16px rgba(0,0,0,0.15)",
-  };
-
-  const coachBubble = {
-    background: "rgba(255,255,255,0.95)",
-    borderRadius: 20,
-    borderBottomRightRadius: 4,
-    padding: mobile ? "10px 14px" : "12px 18px",
-    boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
-  };
-
-  const textStyle = (isCoach) => ({
-    fontFamily: f,
-    fontSize: mobile ? 13 : 14,
-    color: isCoach ? "#061c27" : "#fff",
-    lineHeight: 1.5,
-    margin: 0,
-  });
+  const desktopImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Co-Pilot%20Hero%20Desktop-sTPeBs7bNUME5wePZ9gqrY7smPLIMZ.png";
+  const mobileImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Co-Pilot%20Hero%20Mobile-d5fkQU02HELD7S2yw7420CmedvCriS.png";
 
   return (
     <div style={{
-      borderRadius: mobile ? 16 : 24,
-      background: "linear-gradient(155deg, #0a1f2a 0%, #061c27 100%)",
-      padding: mobile ? 16 : 40,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
       position: "relative",
-      overflow: "hidden",
     }}>
-      {/* Subtle background glow */}
-      <div style={{ position: "absolute", top: "30%", left: "-10%", width: 200, height: 200, borderRadius: "50%", background: "radial-gradient(circle, rgba(13,154,165,0.1) 0%, transparent 70%)", pointerEvents: "none" }} />
-
-      {/* Chat Bubbles - tighter spacing, wider bubbles */}
-      <div style={{ display: "flex", flexDirection: "column", gap: mobile ? 10 : 14, maxWidth: 600, margin: "0 auto", position: "relative", zIndex: 1 }}>
-        
-        {/* Milton: Brief intro (condensed for mobile) */}
-        <div style={{ alignSelf: "flex-start", maxWidth: "88%" }}>
-          <div style={miltonBubble}>
-            <p style={textStyle(false)}>
-              {mobile 
-                ? "Morning, Coach. 6 sessions today. Sarah's ready for 140 on squat — shoulder mod is prepped."
-                : "Good morning, Coach. You've got 6 sessions today. Sarah's ready for 140 on squat — I've prepped a shoulder modification for her overhead press."
-              }
-            </p>
-          </div>
-        </div>
-
-        {/* Coach: Quick reply */}
-        <div style={{ alignSelf: "flex-end", maxWidth: "80%" }}>
-          <div style={coachBubble}>
-            <p style={textStyle(true)}>Swap overhead for landmine press on that shoulder.</p>
-          </div>
-        </div>
-
-        {/* Milton: Confirmation + follow-up */}
-        <div style={{ alignSelf: "flex-start", maxWidth: "85%" }}>
-          <div style={miltonBubble}>
-            <p style={textStyle(false)}>Done. Want me to send Dev his progress card? He hit a 4-week streak.</p>
-          </div>
-        </div>
-
-        {/* Coach: Approval */}
-        <div style={{ alignSelf: "flex-end", maxWidth: "55%" }}>
-          <div style={coachBubble}>
-            <p style={textStyle(true)}>Yeah, he&apos;ll love that.</p>
-          </div>
-        </div>
-
-        {/* Milton: Sign-off */}
-        <div style={{ alignSelf: "flex-start", maxWidth: "60%" }}>
-          <div style={miltonBubble}>
-            <p style={textStyle(false)}>Sent. Have a great day, Coach.</p>
-          </div>
-        </div>
-
-      </div>
+      <img 
+        src={mobile ? mobileImage : desktopImage}
+        alt="Milton Coach Co-Pilot app showing morning brief with client sessions and AI assistant conversation"
+        style={{
+          width: "100%",
+          maxWidth: mobile ? 340 : 900,
+          height: "auto",
+          borderRadius: mobile ? 12 : 16,
+        }}
+      />
     </div>
   );
 }
