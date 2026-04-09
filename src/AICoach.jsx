@@ -674,7 +674,7 @@ export default function AICoach() {
             The AI doesn&apos;t program in a vacuum. It programs from a complete, living profile that updates every time a member trains, eats, sleeps, or checks in. The more data it has, the smarter the plan gets.
           </p>
 
-          <VisualPlaceholder height={350} mobile={mobile} />
+          <UnifiedProfileMockup mobile={mobile} />
         </section>
 
         {/* ═══════ WORKOUTS ═══════ */}
