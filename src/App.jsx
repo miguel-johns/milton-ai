@@ -1034,7 +1034,7 @@ export default function MiltonHomepage() {
 
   return (
     <>
-      <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: `0 ${px}px` }}>
+      <div style={{ position: "relative", zIndex: 1, maxWidth: 1100, margin: "0 auto", padding: `0 ${px}px`, boxSizing: "border-box", width: "100%", overflowX: "hidden" }}>
 
         {/* SECTION 1 — HERO */}
         <section id="hero" style={{
@@ -1166,7 +1166,7 @@ export default function MiltonHomepage() {
           </div>
           
           {/* AI Services */}
-          <div>
+          <div style={{ width: "100%", minWidth: 0, overflow: "hidden" }}>
             <h3 style={{
               fontFamily: "'DM Sans', sans-serif",
               fontSize: 11,
@@ -1178,8 +1178,10 @@ export default function MiltonHomepage() {
             }}>AI Services</h3>
             <div style={{
               display: "grid",
-              gridTemplateColumns: mobile ? "1fr" : "repeat(auto-fit, minmax(340px, 1fr))",
+              gridTemplateColumns: "1fr",
               gap: mobile ? 16 : 24,
+              width: "100%",
+              minWidth: 0,
             }}>
               {services.map((service, i) => (
                 <ServiceCard 
