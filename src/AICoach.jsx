@@ -89,7 +89,7 @@ function CTAButton({ mobile, label = "AI Consultation" }) {
   );
 }
 
-function StepCard({ number, title, description, mobile }) {
+function StepCard({ number, title, description, mobile, desktopImage, mobileImage, alt }) {
   return (
     <div style={{
       background: "rgba(255,255,255,0.02)",
@@ -125,7 +125,17 @@ function StepCard({ number, title, description, mobile }) {
         color: "rgba(255,255,255,0.6)",
         margin: "0 0 20px 0",
       }}>{description}</p>
-      <VisualPlaceholder height={200} mobile={mobile} />
+      <div style={{
+        borderRadius: mobile ? 8 : 12,
+        overflow: "hidden",
+        aspectRatio: mobile ? "1 / 1" : "16 / 9",
+      }}>
+        <img
+          src={mobile ? mobileImage : desktopImage}
+          alt={alt}
+          style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }}
+        />
+      </div>
     </div>
   );
 }
@@ -218,24 +228,36 @@ export default function AICoach() {
               title="You upload your content"
               description="Training philosophy, nutrition principles, programming style, brand voice."
               mobile={mobile}
+              desktopImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-7RQOwsCBtwlm9To16zCwdC1YcT1s8T.png"
+              mobileImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-xDgT51Y5L79MnLDVDX4hRzffcfEjna.png"
+              alt="Milton AI upload interface with drag-and-drop for training philosophy, nutrition principles, and program templates"
             />
             <StepCard
               number="02"
               title="Milton learns it"
               description="The AI builds a model of your methods — not generic advice, your approach."
               mobile={mobile}
+              desktopImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3-xJ7Q8OLebOmjZp8YIjEPxyMtoOKShZ.png"
+              mobileImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3-EoGWo7T2FkVokH7e6QnmtAssr0Jm5E.png"
+              alt="Knowledge graph showing Your Method connecting Progressive Overload, Protein-First Nutrition, OPT Model, Client Goal Setting, and Coaching Voice"
             />
             <StepCard
               number="03"
               title="Members get their plan"
               description="Personalized workouts and meal plans built for each individual's goals."
               mobile={mobile}
+              desktopImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4-93KNlFhnZYXTOSIxkByajdFRFJgYwF.png"
+              mobileImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4-tm7WgQ1gVqQCik7ETISKH9eM6tXpXc.png"
+              alt="Personalized plans for Alex Johnson, Leah Brown, and Kyle Smith with different goals and nutrition targets"
             />
             <StepCard
               number="04"
               title="The system evolves"
               description="Every session logged, every meal tracked — the AI adapts and progresses automatically."
               mobile={mobile}
+              desktopImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5-xv6oij15d9Y1MGNxuC4dQh1GK46uQz.png"
+              mobileImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5-fsPvkpSQgYqSvsYou4LXiwwTWwFUWg.png"
+              alt="Real-time adaptation feed showing session logged, nutrition tracked, program updated, recovery flagged, and next session adjusted"
             />
           </div>
         </section>
