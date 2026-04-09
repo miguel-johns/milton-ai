@@ -214,10 +214,16 @@ function UploadContentMockup({ mobile }) {
 
 function MiltonLearnsMockup({ mobile }) {
   const nodes = [
-    { label: "Progressive Overload" },
-    { label: "Protein-First Nutrition" },
-    { label: "Your Coaching Voice" },
+    { label: "Progressive Overload", angle: -45 },
+    { label: "Protein-First Nutrition", angle: 45 },
+    { label: "Your Coaching Voice", angle: 180 },
   ];
+  
+  const orbitRadius = mobile ? 75 : 95;
+  const centerSize = mobile ? 54 : 68;
+  const nodeWidth = mobile ? 90 : 110;
+  const containerSize = mobile ? 220 : 280;
+  
   return (
     <div style={{ 
       background: "linear-gradient(135deg, #e8f5f4 0%, #d4f5e9 100%)",
@@ -225,37 +231,124 @@ function MiltonLearnsMockup({ mobile }) {
       padding: mobile ? 12 : 16,
       minWidth: 0, maxWidth: "100%",
     }}>
+      {/* Orbital container */}
       <div style={{
-        display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
-        padding: mobile ? "12px" : "16px",
-        background: "#fff",
-        borderRadius: 10,
-        marginBottom: 12,
-        boxShadow: "0 2px 8px rgba(13, 154, 165, 0.1)",
+        position: "relative",
+        width: containerSize,
+        height: containerSize,
+        margin: "0 auto",
       }}>
+        {/* Orbital ring */}
         <div style={{
-          width: mobile ? 32 : 38, height: mobile ? 32 : 38, borderRadius: "50%",
-          background: "linear-gradient(135deg, #0d9aa5, #9af198)",
-          display: "flex", alignItems: "center", justifyContent: "center",
-        }}><BrainIcon /></div>
-        <span style={{ fontSize: mobile ? 13 : 15, fontWeight: 700, color: "#0d4a4f" }}>Your Method</span>
-      </div>
-      <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-        {nodes.map((n, i) => (
-          <div key={i} style={{
-            display: "flex", alignItems: "center", gap: 10,
-            padding: mobile ? "10px 12px" : "12px 14px",
-            background: "#fff",
-            borderRadius: 8,
-            borderLeft: "4px solid #0d9aa5",
-            boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
-          }}>
-            <div style={{ width: 8, height: 8, borderRadius: "50%", background: i % 2 === 0 ? "#0d9aa5" : "#9af198" }} />
-            <span style={{ fontSize: mobile ? 11 : 12, color: "#0d4a4f", fontWeight: 500 }}>{n.label}</span>
+          position: "absolute",
+          top: "50%", left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: orbitRadius * 2 + 20,
+          height: orbitRadius * 2 + 20,
+          borderRadius: "50%",
+          border: "2px dashed rgba(13, 154, 165, 0.25)",
+        }} />
+        
+        {/* AI Chip center */}
+        <div style={{
+          position: "absolute",
+          top: "50%", left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: centerSize, height: centerSize,
+          background: "linear-gradient(135deg, #0d9aa5, #0d7a82)",
+          borderRadius: 12,
+          display: "flex", flexDirection: "column",
+          alignItems: "center", justifyContent: "center",
+          boxShadow: "0 4px 20px rgba(13, 154, 165, 0.4), inset 0 1px 0 rgba(255,255,255,0.2)",
+          zIndex: 10,
+        }}>
+          {/* Chip circuit lines */}
+          <div style={{ position: "absolute", inset: 0, overflow: "hidden", borderRadius: 12 }}>
+            {[...Array(4)].map((_, i) => (
+              <div key={i} style={{
+                position: "absolute",
+                background: "rgba(255,255,255,0.1)",
+                ...(i === 0 ? { top: "25%", left: 0, right: 0, height: 1 } : {}),
+                ...(i === 1 ? { top: "75%", left: 0, right: 0, height: 1 } : {}),
+                ...(i === 2 ? { left: "25%", top: 0, bottom: 0, width: 1 } : {}),
+                ...(i === 3 ? { left: "75%", top: 0, bottom: 0, width: 1 } : {}),
+              }} />
+            ))}
           </div>
-        ))}
+          {/* Database/AI icon */}
+          <svg width={mobile ? 20 : 26} height={mobile ? 20 : 26} viewBox="0 0 24 24" fill="none" style={{ position: "relative", zIndex: 1 }}>
+            <ellipse cx="12" cy="6" rx="8" ry="3" stroke="#fff" strokeWidth="1.5" fill="rgba(255,255,255,0.15)" />
+            <path d="M4 6v4c0 1.66 3.58 3 8 3s8-1.34 8-3V6" stroke="#fff" strokeWidth="1.5" />
+            <path d="M4 10v4c0 1.66 3.58 3 8 3s8-1.34 8-3v-4" stroke="#fff" strokeWidth="1.5" />
+            <path d="M4 14v4c0 1.66 3.58 3 8 3s8-1.34 8-3v-4" stroke="#fff" strokeWidth="1.5" />
+          </svg>
+          <span style={{ fontSize: mobile ? 7 : 8, fontWeight: 700, color: "#fff", marginTop: 2, letterSpacing: "0.05em" }}>MILTON</span>
+        </div>
+        
+        {/* Orbiting nodes */}
+        {nodes.map((n, i) => {
+          const angleRad = (n.angle * Math.PI) / 180;
+          const x = Math.cos(angleRad) * orbitRadius;
+          const y = Math.sin(angleRad) * orbitRadius;
+          
+          return (
+            <div key={i}>
+              {/* Connection line */}
+              <svg style={{
+                position: "absolute",
+                top: "50%", left: "50%",
+                transform: "translate(-50%, -50%)",
+                width: containerSize,
+                height: containerSize,
+                pointerEvents: "none",
+                zIndex: 1,
+              }}>
+                <line
+                  x1={containerSize / 2}
+                  y1={containerSize / 2}
+                  x2={containerSize / 2 + x}
+                  y2={containerSize / 2 + y}
+                  stroke="rgba(13, 154, 165, 0.4)"
+                  strokeWidth="2"
+                  strokeDasharray="4 4"
+                />
+                {/* Pulse dot on line */}
+                <circle
+                  cx={containerSize / 2 + x * 0.5}
+                  cy={containerSize / 2 + y * 0.5}
+                  r="3"
+                  fill="#0d9aa5"
+                />
+              </svg>
+              
+              {/* Node card */}
+              <div style={{
+                position: "absolute",
+                top: "50%", left: "50%",
+                transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
+                width: nodeWidth,
+                padding: mobile ? "6px 8px" : "8px 10px",
+                background: "#fff",
+                borderRadius: 8,
+                boxShadow: "0 2px 12px rgba(13, 154, 165, 0.15)",
+                border: "1px solid rgba(13, 154, 165, 0.2)",
+                zIndex: 5,
+                textAlign: "center",
+              }}>
+                <span style={{ 
+                  fontSize: mobile ? 9 : 10, 
+                  fontWeight: 600, 
+                  color: "#0d4a4f",
+                  lineHeight: 1.3,
+                  display: "block",
+                }}>{n.label}</span>
+              </div>
+            </div>
+          );
+        })}
       </div>
-      <div style={{ fontSize: mobile ? 9 : 10, color: "#0d9aa5", textAlign: "center", marginTop: 10, fontStyle: "italic" }}>
+      
+      <div style={{ fontSize: mobile ? 9 : 10, color: "#0d9aa5", textAlign: "center", marginTop: 12, fontStyle: "italic" }}>
         Building your unique coaching model...
       </div>
     </div>
