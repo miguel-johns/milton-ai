@@ -586,10 +586,13 @@ function ServiceCard({ icon, title, description, mobile, href, mockup, comingSoo
             background: "rgba(8, 20, 38, 0.7)",
             border: "1px solid rgba(154, 241, 152, 0.08)",
             borderRadius: 12,
-            padding: mobile ? 16 : 20,
+            padding: mobile ? 12 : 20,
             display: "flex",
             flexDirection: "column",
             gap: 12,
+            width: "100%",
+            minWidth: 0,
+            boxSizing: "border-box",
           }}>
             {mockup}
           </div>
