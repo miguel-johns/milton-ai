@@ -53,7 +53,7 @@ function VisualPlaceholder({ height = 320, label = "Visual Here", mobile }) {
   );
 }
 
-function CTAButton({ mobile, label = "Book a free consultation" }) {
+function CTAButton({ mobile, label = "AI Consultation" }) {
   return (
     <button
       onClick={() => window.dispatchEvent(new CustomEvent('openConsultationModal'))}
