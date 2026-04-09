@@ -990,12 +990,38 @@ export default function MiltonHomepage() {
     },
   ];
 
-  // AI Services
+  // AI Services with enhanced descriptions and mockups
   const services = [
-    { icon: <StrategyIcon />, title: "AI Strategy Session", description: "Free one-on-one consultation and AI audit.", href: "#/consultation" },
-    { icon: <ImplementationIcon />, title: "Implementation Science", description: "Hands-on deployment with your team.", href: "#/implementation" },
-    { icon: <AcademyIcon />, title: "Milton Academy", description: "Coming Soon", href: "#/academy" },
-    { icon: <PromptIcon />, title: "Prompt Library", description: "Coming Soon", href: "#/prompts" },
+    { 
+      icon: <StrategyIcon />, 
+      title: "AI Strategy Session", 
+      description: "A free one-on-one consultation where we audit your current operations, identify the highest-impact AI opportunities, and map a 90-day rollout plan tailored to your facility.", 
+      href: "#/consultation",
+      mockup: <StrategySessionMockup mobile={mobile} />
+    },
+    { 
+      icon: <ImplementationIcon />, 
+      title: "Implementation Science", 
+      description: "We don't hand you software and walk away. Our team embeds with yours — configuring agents, training staff, and optimizing workflows until Milton is fully operational.", 
+      href: "#/implementation",
+      mockup: <ImplementationMockup mobile={mobile} />
+    },
+    { 
+      icon: <AcademyIcon />, 
+      title: "Milton Academy", 
+      description: "On-demand courses that teach your trainers and directors how to leverage AI in their daily workflow — from prompt engineering to data-driven coaching decisions.", 
+      href: "#/academy",
+      mockup: <AcademyMockup mobile={mobile} />,
+      comingSoon: true
+    },
+    { 
+      icon: <PromptIcon />, 
+      title: "Prompt Library", 
+      description: "A curated vault of battle-tested prompts for coaching, sales, onboarding, and client communication — copy, customize, and deploy instantly across Milton's agents.", 
+      href: "#/prompts",
+      mockup: <PromptLibraryMockup mobile={mobile} />,
+      comingSoon: true
+    },
   ];
 
   const caseStudies = [
