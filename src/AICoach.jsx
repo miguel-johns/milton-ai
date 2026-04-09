@@ -866,7 +866,21 @@ export default function AICoach() {
             When they complete a session, it logs it, tracks it, and automatically advances what comes next. Every member sees real progression over weeks and months — without a trainer writing a single program.
           </p>
 
-          <VisualPlaceholder height={350} mobile={mobile} />
+          <div style={{
+            borderRadius: mobile ? 12 : 16,
+            overflow: "hidden",
+            border: "1px solid rgba(255,255,255,0.08)",
+          }}>
+            <img 
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Workout-DjTLfnuYtbscyYDLIevy0mWM9KXoNu.png"
+              alt="Person completing workout on phone with notification showing workout complete and weekly goal progress"
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "block",
+              }}
+            />
+          </div>
         </section>
 
         {/* ═══════ NUTRITION ═══════ */}
@@ -897,7 +911,21 @@ export default function AICoach() {
             Members log meals by snapping a photo, texting what they ate, or scanning a label. The AI processes the meal, tracks their macros, and nudges when they fall short — all without a trainer checking a single dashboard.
           </p>
 
-          <VisualPlaceholder height={350} mobile={mobile} />
+          <div style={{
+            borderRadius: mobile ? 12 : 16,
+            overflow: "hidden",
+            border: "1px solid rgba(255,255,255,0.08)",
+          }}>
+            <img 
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Meal%20Planning-cDX2qfYys6zOOsBApMwQLybNhtUPTB.png"
+              alt="Person photographing food with phone, AI responds with meal logging encouragement"
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "block",
+              }}
+            />
+          </div>
         </section>
 
         {/* ═══════ CHANNELS ═══════ */}
@@ -928,7 +956,21 @@ export default function AICoach() {
             A member texts a photo of their lunch. They get back their macro count and a suggestion for the afternoon. Another opens the app and sees their weekly dashboard. Both are being coached. Neither required a human to deliver it.
           </p>
 
-          <VisualPlaceholder height={350} mobile={mobile} />
+          <div style={{
+            borderRadius: mobile ? 12 : 16,
+            overflow: "hidden",
+            border: "1px solid rgba(255,255,255,0.08)",
+          }}>
+            <img 
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Omni%20Channel-ERkC2LAPR0ezawetpKlsri8OBB56B4.png"
+              alt="Good morning notification from AI coach showing daily plan on cozy bed background"
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "block",
+              }}
+            />
+          </div>
         </section>
 
         {/* ═══════ FUTURE OF MEMBER EXPERIENCE ═══════ */}
