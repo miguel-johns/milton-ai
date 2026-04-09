@@ -870,14 +870,17 @@ export default function AICoach() {
             borderRadius: mobile ? 12 : 16,
             overflow: "hidden",
             border: "1px solid rgba(255,255,255,0.08)",
+            ...(mobile ? { aspectRatio: "1 / 1" } : {}),
           }}>
             <img 
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Workout-DjTLfnuYtbscyYDLIevy0mWM9KXoNu.png"
               alt="Person completing workout on phone with notification showing workout complete and weekly goal progress"
               style={{
                 width: "100%",
-                height: "auto",
+                height: mobile ? "100%" : "auto",
                 display: "block",
+                objectFit: "cover",
+                objectPosition: "center",
               }}
             />
           </div>
@@ -915,14 +918,17 @@ export default function AICoach() {
             borderRadius: mobile ? 12 : 16,
             overflow: "hidden",
             border: "1px solid rgba(255,255,255,0.08)",
+            ...(mobile ? { aspectRatio: "1 / 1" } : {}),
           }}>
             <img 
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Meal%20Planning-cDX2qfYys6zOOsBApMwQLybNhtUPTB.png"
               alt="Person photographing food with phone, AI responds with meal logging encouragement"
               style={{
                 width: "100%",
-                height: "auto",
+                height: mobile ? "100%" : "auto",
                 display: "block",
+                objectFit: "cover",
+                objectPosition: "center",
               }}
             />
           </div>
@@ -960,14 +966,17 @@ export default function AICoach() {
             borderRadius: mobile ? 12 : 16,
             overflow: "hidden",
             border: "1px solid rgba(255,255,255,0.08)",
+            ...(mobile ? { aspectRatio: "1 / 1" } : {}),
           }}>
             <img 
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Omni%20Channel-ERkC2LAPR0ezawetpKlsri8OBB56B4.png"
               alt="Good morning notification from AI coach showing daily plan on cozy bed background"
               style={{
                 width: "100%",
-                height: "auto",
+                height: mobile ? "100%" : "auto",
                 display: "block",
+                objectFit: "cover",
+                objectPosition: "center",
               }}
             />
           </div>
