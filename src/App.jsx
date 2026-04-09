@@ -489,7 +489,7 @@ function StripeCRMMockup({ mobile }) {
 function ServiceCard({ icon, title, description, mobile, href, mockup, comingSoon }) {
   const [hovered, setHovered] = useState(false);
   const Wrapper = href ? 'a' : 'div';
-  const wrapperProps = href ? { href, style: { textDecoration: 'none', display: 'block', height: '100%' } } : {};
+  const wrapperProps = href ? { href, style: { textDecoration: 'none', display: 'block', height: '100%', width: '100%' } } : {};
   
   return (
     <Wrapper {...wrapperProps}>
@@ -500,13 +500,15 @@ function ServiceCard({ icon, title, description, mobile, href, mockup, comingSoo
           background: "rgba(13, 30, 50, 0.6)",
           border: hovered ? "1px solid rgba(154, 241, 152, 0.25)" : "1px solid rgba(154, 241, 152, 0.12)",
           borderRadius: 16,
-          padding: mobile ? "28px 24px 24px" : "40px 36px 36px",
+          padding: mobile ? "20px 16px 16px" : "40px 36px 36px",
           transition: "all 0.3s ease",
           transform: hovered ? "translateY(-2px)" : "translateY(0)",
           height: "100%",
+          width: "100%",
+          boxSizing: "border-box",
           display: "flex",
           flexDirection: "column",
-          gap: mobile ? 20 : 28,
+          gap: mobile ? 16 : 28,
           cursor: href ? "pointer" : "default",
           position: "relative",
           overflow: "hidden",
@@ -523,7 +525,7 @@ function ServiceCard({ icon, title, description, mobile, href, mockup, comingSoo
         }} />
         
         {/* Text content */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 10, width: "100%" }}>
           <div style={{
             width: 44, height: 44, borderRadius: 10,
             background: "rgba(154, 241, 152, 0.08)",
@@ -531,6 +533,7 @@ function ServiceCard({ icon, title, description, mobile, href, mockup, comingSoo
             display: "flex", alignItems: "center", justifyContent: "center",
             marginBottom: 8,
             color: "#9af198",
+            flexShrink: 0,
           }}>
             {icon}
           </div>
@@ -548,7 +551,9 @@ function ServiceCard({ icon, title, description, mobile, href, mockup, comingSoo
             lineHeight: 1.6, 
             color: "rgba(240, 244, 248, 0.72)",
             margin: 0,
-            maxWidth: 420,
+            width: "100%",
+            wordWrap: "break-word",
+            overflowWrap: "break-word",
           }}>{description}</p>
           
           {/* Coming Soon Badge */}
