@@ -89,43 +89,122 @@ function CTAButton({ mobile, label = "AI Consultation" }) {
   );
 }
 
-// Step Mockup Components
+// Step Mockup Icons
+const DocIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#0d9aa5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M14 2V8H20" stroke="#0d9aa5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const ChartIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+    <rect x="3" y="3" width="18" height="18" rx="2" stroke="#0d9aa5" strokeWidth="1.5"/>
+    <path d="M7 17V13" stroke="#9af198" strokeWidth="2" strokeLinecap="round"/>
+    <path d="M12 17V9" stroke="#0d9aa5" strokeWidth="2" strokeLinecap="round"/>
+    <path d="M17 17V11" stroke="#9af198" strokeWidth="2" strokeLinecap="round"/>
+  </svg>
+);
+
+const TargetIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="12" r="9" stroke="#0d9aa5" strokeWidth="1.5"/>
+    <circle cx="12" cy="12" r="5" stroke="#0d9aa5" strokeWidth="1.5"/>
+    <circle cx="12" cy="12" r="2" fill="#9af198"/>
+  </svg>
+);
+
+const BrainIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+    <path d="M12 4C8 4 6 6 6 9C4 9 2 11 2 13C2 15 4 17 6 17H18C20 17 22 15 22 13C22 11 20 9 18 9C18 6 16 4 12 4Z" stroke="#0d9aa5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M12 4V17" stroke="#9af198" strokeWidth="1.5" strokeLinecap="round"/>
+    <path d="M8 9C9 10 11 10 12 9" stroke="#0d9aa5" strokeWidth="1.5" strokeLinecap="round"/>
+    <path d="M12 9C13 10 15 10 16 9" stroke="#0d9aa5" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>
+);
+
+const CheckIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+    <path d="M5 12L10 17L20 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const GraphIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+    <path d="M3 3V21H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M7 16L12 11L15 14L21 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const BoltIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+    <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const UserIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="8" r="4" stroke="#0d9aa5" strokeWidth="1.5"/>
+    <path d="M4 20C4 16.6863 7.58172 14 12 14C16.4183 14 20 16.6863 20 20" stroke="#0d9aa5" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>
+);
+
+const DumbbellIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+    <path d="M6 7V17M18 7V17M6 12H18M4 9V15M20 9V15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const AppleIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+    <path d="M12 3C12 3 14 1 16 3C18 5 16 7 16 7M17 8C19 8 21 10 21 13C21 18 17 22 12 22C7 22 3 18 3 13C3 10 5 8 7 8C9 8 10 9 12 9C14 9 15 8 17 8Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+// Step Mockup Components - Light Theme
 function UploadContentMockup({ mobile }) {
   const files = [
-    { name: "Training Philosophy.pdf", icon: "📄" },
-    { name: "Nutrition Guide.docx", icon: "📝" },
-    { name: "Program Templates.xlsx", icon: "📊" },
-    { name: "Brand Voice.pdf", icon: "🎯" },
+    { name: "Training Philosophy.pdf", Icon: DocIcon },
+    { name: "Nutrition Guide.docx", Icon: DocIcon },
+    { name: "Program Templates.xlsx", Icon: ChartIcon },
+    { name: "Brand Voice.pdf", Icon: TargetIcon },
   ];
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 10, minWidth: 0, maxWidth: "100%" }}>
+    <div style={{ 
+      background: "linear-gradient(135deg, #e8f5f4 0%, #d4f5e9 100%)",
+      borderRadius: mobile ? 10 : 12,
+      padding: mobile ? 12 : 16,
+      minWidth: 0, maxWidth: "100%",
+    }}>
       <div style={{
         display: "flex", alignItems: "center", justifyContent: "space-between",
         padding: mobile ? "8px 10px" : "10px 14px",
-        background: "rgba(13, 154, 165, 0.08)",
+        background: "#fff",
         borderRadius: 8,
-        border: "1px solid rgba(13, 154, 165, 0.15)",
+        marginBottom: 12,
+        boxShadow: "0 2px 8px rgba(13, 154, 165, 0.1)",
       }}>
-        <span style={{ fontSize: mobile ? 11 : 12, fontWeight: 600, color: "#f0f4f8" }}>Milton AI</span>
-        <span style={{ fontSize: mobile ? 9 : 10, color: "#9af198", fontWeight: 500 }}>Ready to import</span>
+        <span style={{ fontSize: mobile ? 11 : 12, fontWeight: 600, color: "#0d4a4f" }}>Milton AI</span>
+        <span style={{ fontSize: mobile ? 9 : 10, color: "#0d9aa5", fontWeight: 600 }}>Ready to import</span>
       </div>
       <div style={{
-        border: "2px dashed rgba(13, 154, 165, 0.25)",
+        border: "2px dashed #0d9aa5",
         borderRadius: 10,
-        padding: mobile ? 12 : 16,
-        display: "flex", flexDirection: "column", gap: 8,
+        padding: mobile ? 10 : 14,
+        background: "rgba(255,255,255,0.5)",
+        display: "flex", flexDirection: "column", gap: 6,
       }}>
-        <div style={{ fontSize: mobile ? 10 : 11, color: "rgba(255,255,255,0.5)", textAlign: "center", marginBottom: 4 }}>Drag & Drop</div>
+        <div style={{ fontSize: mobile ? 10 : 11, color: "#0d9aa5", textAlign: "center", marginBottom: 4, fontWeight: 500 }}>Drag & Drop</div>
         {files.map((f, i) => (
           <div key={i} style={{
             display: "flex", alignItems: "center", gap: 8,
             padding: mobile ? "6px 8px" : "8px 10px",
-            background: "rgba(255,255,255,0.03)",
+            background: "#fff",
             borderRadius: 6,
-            border: "1px solid rgba(255,255,255,0.06)",
+            boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
           }}>
-            <span style={{ fontSize: mobile ? 12 : 14 }}>{f.icon}</span>
-            <span style={{ fontSize: mobile ? 10 : 11, color: "rgba(240, 244, 248, 0.72)" }}>{f.name}</span>
+            <f.Icon />
+            <span style={{ fontSize: mobile ? 10 : 11, color: "#0d4a4f", fontWeight: 500 }}>{f.name}</span>
           </div>
         ))}
       </div>
@@ -135,42 +214,48 @@ function UploadContentMockup({ mobile }) {
 
 function MiltonLearnsMockup({ mobile }) {
   const nodes = [
-    { label: "Progressive Overload", color: "#0d9aa5" },
-    { label: "Protein-First Nutrition", color: "#9af198" },
-    { label: "Your Coaching Voice", color: "#0d9aa5" },
+    { label: "Progressive Overload" },
+    { label: "Protein-First Nutrition" },
+    { label: "Your Coaching Voice" },
   ];
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, minWidth: 0, maxWidth: "100%" }}>
+    <div style={{ 
+      background: "linear-gradient(135deg, #e8f5f4 0%, #d4f5e9 100%)",
+      borderRadius: mobile ? 10 : 12,
+      padding: mobile ? 12 : 16,
+      minWidth: 0, maxWidth: "100%",
+    }}>
       <div style={{
-        display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
-        padding: mobile ? "10px" : "14px",
-        background: "rgba(13, 154, 165, 0.1)",
+        display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
+        padding: mobile ? "12px" : "16px",
+        background: "#fff",
         borderRadius: 10,
-        border: "1px solid rgba(13, 154, 165, 0.2)",
+        marginBottom: 12,
+        boxShadow: "0 2px 8px rgba(13, 154, 165, 0.1)",
       }}>
         <div style={{
-          width: mobile ? 28 : 32, height: mobile ? 28 : 32, borderRadius: "50%",
+          width: mobile ? 32 : 38, height: mobile ? 32 : 38, borderRadius: "50%",
           background: "linear-gradient(135deg, #0d9aa5, #9af198)",
           display: "flex", alignItems: "center", justifyContent: "center",
-          fontSize: mobile ? 14 : 16,
-        }}>🧠</div>
-        <span style={{ fontSize: mobile ? 12 : 14, fontWeight: 600, color: "#f0f4f8" }}>Your Method</span>
+        }}><BrainIcon /></div>
+        <span style={{ fontSize: mobile ? 13 : 15, fontWeight: 700, color: "#0d4a4f" }}>Your Method</span>
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
         {nodes.map((n, i) => (
           <div key={i} style={{
-            display: "flex", alignItems: "center", gap: 8,
-            padding: mobile ? "8px 10px" : "10px 12px",
-            background: "rgba(255,255,255,0.03)",
+            display: "flex", alignItems: "center", gap: 10,
+            padding: mobile ? "10px 12px" : "12px 14px",
+            background: "#fff",
             borderRadius: 8,
-            borderLeft: `3px solid ${n.color}`,
+            borderLeft: "4px solid #0d9aa5",
+            boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
           }}>
-            <div style={{ width: 6, height: 6, borderRadius: "50%", background: n.color }} />
-            <span style={{ fontSize: mobile ? 10 : 12, color: "rgba(240, 244, 248, 0.72)" }}>{n.label}</span>
+            <div style={{ width: 8, height: 8, borderRadius: "50%", background: i % 2 === 0 ? "#0d9aa5" : "#9af198" }} />
+            <span style={{ fontSize: mobile ? 11 : 12, color: "#0d4a4f", fontWeight: 500 }}>{n.label}</span>
           </div>
         ))}
       </div>
-      <div style={{ fontSize: mobile ? 9 : 10, color: "rgba(255,255,255,0.4)", textAlign: "center", fontStyle: "italic" }}>
+      <div style={{ fontSize: mobile ? 9 : 10, color: "#0d9aa5", textAlign: "center", marginTop: 10, fontStyle: "italic" }}>
         Building your unique coaching model...
       </div>
     </div>
@@ -183,78 +268,106 @@ function MembersGetPlanMockup({ mobile }) {
     { name: "Sarah M.", goal: "Fat Loss", macro: "1,800 cal" },
   ];
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 8, minWidth: 0, maxWidth: "100%" }}>
-      {members.map((m, i) => (
-        <div key={i} style={{
-          padding: mobile ? "10px" : "12px 14px",
-          background: "rgba(255,255,255,0.03)",
-          borderRadius: 8,
-          border: "1px solid rgba(255,255,255,0.06)",
-        }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-            <span style={{ fontSize: mobile ? 12 : 13, fontWeight: 600, color: "#f0f4f8" }}>{m.name}</span>
-            <span style={{
-              fontSize: mobile ? 9 : 10, fontWeight: 500,
-              padding: "2px 6px", borderRadius: 4,
-              background: "rgba(13, 154, 165, 0.1)", color: "#0d9aa5",
-            }}>{m.goal}</span>
-          </div>
-          <div style={{ display: "flex", gap: 6 }}>
-            <div style={{
-              flex: 1, padding: mobile ? "6px" : "8px",
-              background: "rgba(13, 154, 165, 0.06)",
-              borderRadius: 6, textAlign: "center",
-            }}>
-              <div style={{ fontSize: mobile ? 8 : 9, color: "rgba(255,255,255,0.5)", marginBottom: 2 }}>WORKOUT</div>
-              <div style={{ fontSize: mobile ? 10 : 11, color: "#9af198", fontWeight: 600 }}>Ready</div>
+    <div style={{ 
+      background: "linear-gradient(135deg, #e8f5f4 0%, #d4f5e9 100%)",
+      borderRadius: mobile ? 10 : 12,
+      padding: mobile ? 12 : 16,
+      minWidth: 0, maxWidth: "100%",
+    }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        {members.map((m, i) => (
+          <div key={i} style={{
+            padding: mobile ? "12px" : "14px",
+            background: "#fff",
+            borderRadius: 10,
+            boxShadow: "0 2px 8px rgba(13, 154, 165, 0.1)",
+          }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <div style={{
+                  width: mobile ? 28 : 32, height: mobile ? 28 : 32, borderRadius: "50%",
+                  background: "linear-gradient(135deg, #e8f5f4, #d4f5e9)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                }}><UserIcon /></div>
+                <span style={{ fontSize: mobile ? 12 : 13, fontWeight: 600, color: "#0d4a4f" }}>{m.name}</span>
+              </div>
+              <span style={{
+                fontSize: mobile ? 9 : 10, fontWeight: 600,
+                padding: "3px 8px", borderRadius: 12,
+                background: "#e8f5f4", color: "#0d9aa5",
+              }}>{m.goal}</span>
             </div>
-            <div style={{
-              flex: 1, padding: mobile ? "6px" : "8px",
-              background: "rgba(154, 241, 152, 0.06)",
-              borderRadius: 6, textAlign: "center",
-            }}>
-              <div style={{ fontSize: mobile ? 8 : 9, color: "rgba(255,255,255,0.5)", marginBottom: 2 }}>NUTRITION</div>
-              <div style={{ fontSize: mobile ? 10 : 11, color: "#9af198", fontWeight: 600 }}>{m.macro}</div>
+            <div style={{ display: "flex", gap: 8 }}>
+              <div style={{
+                flex: 1, padding: mobile ? "8px" : "10px",
+                background: "#e8f5f4",
+                borderRadius: 8, textAlign: "center",
+              }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 4, marginBottom: 4 }}>
+                  <span style={{ color: "#0d9aa5" }}><DumbbellIcon /></span>
+                  <span style={{ fontSize: mobile ? 8 : 9, color: "#0d9aa5", fontWeight: 600 }}>WORKOUT</span>
+                </div>
+                <div style={{ fontSize: mobile ? 11 : 12, color: "#0d4a4f", fontWeight: 700 }}>Ready</div>
+              </div>
+              <div style={{
+                flex: 1, padding: mobile ? "8px" : "10px",
+                background: "#d4f5e9",
+                borderRadius: 8, textAlign: "center",
+              }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 4, marginBottom: 4 }}>
+                  <span style={{ color: "#0d9aa5" }}><AppleIcon /></span>
+                  <span style={{ fontSize: mobile ? 8 : 9, color: "#0d9aa5", fontWeight: 600 }}>NUTRITION</span>
+                </div>
+                <div style={{ fontSize: mobile ? 11 : 12, color: "#0d4a4f", fontWeight: 700 }}>{m.macro}</div>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
 
 function SystemEvolvesMockup({ mobile }) {
   const events = [
-    { icon: "✓", text: "Session logged", time: "2m ago", color: "#9af198" },
-    { icon: "📊", text: "Nutrition tracked", time: "1h ago", color: "#0d9aa5" },
-    { icon: "⚡", text: "Program updated", time: "3h ago", color: "#f0c832" },
+    { Icon: CheckIcon, text: "Session logged", time: "2m ago", color: "#22c55e" },
+    { Icon: GraphIcon, text: "Nutrition tracked", time: "1h ago", color: "#0d9aa5" },
+    { Icon: BoltIcon, text: "Program updated", time: "3h ago", color: "#f59e0b" },
   ];
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 8, minWidth: 0, maxWidth: "100%" }}>
+    <div style={{ 
+      background: "linear-gradient(135deg, #e8f5f4 0%, #d4f5e9 100%)",
+      borderRadius: mobile ? 10 : 12,
+      padding: mobile ? 12 : 16,
+      minWidth: 0, maxWidth: "100%",
+    }}>
       <div style={{
-        fontSize: mobile ? 10 : 11, fontWeight: 600, color: "rgba(255,255,255,0.5)",
-        letterSpacing: "0.05em", textTransform: "uppercase", marginBottom: 4,
+        fontSize: mobile ? 10 : 11, fontWeight: 700, color: "#0d9aa5",
+        letterSpacing: "0.05em", textTransform: "uppercase", marginBottom: 10,
+        textAlign: "center",
       }}>Real-Time Adaptation</div>
-      {events.map((e, i) => (
-        <div key={i} style={{
-          display: "flex", alignItems: "center", gap: 10,
-          padding: mobile ? "8px 10px" : "10px 12px",
-          background: "rgba(255,255,255,0.03)",
-          borderRadius: 8,
-          border: "1px solid rgba(255,255,255,0.04)",
-        }}>
-          <div style={{
-            width: mobile ? 24 : 28, height: mobile ? 24 : 28, borderRadius: 6,
-            background: `${e.color}15`, border: `1px solid ${e.color}30`,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            fontSize: mobile ? 10 : 12, color: e.color,
-          }}>{e.icon}</div>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: mobile ? 11 : 12, color: "#f0f4f8" }}>{e.text}</div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        {events.map((e, i) => (
+          <div key={i} style={{
+            display: "flex", alignItems: "center", gap: 10,
+            padding: mobile ? "10px 12px" : "12px 14px",
+            background: "#fff",
+            borderRadius: 8,
+            boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
+          }}>
+            <div style={{
+              width: mobile ? 28 : 32, height: mobile ? 28 : 32, borderRadius: 8,
+              background: `${e.color}15`,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              color: e.color,
+            }}><e.Icon /></div>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontSize: mobile ? 11 : 12, color: "#0d4a4f", fontWeight: 600 }}>{e.text}</div>
+            </div>
+            <span style={{ fontSize: mobile ? 9 : 10, color: "#0d9aa5", fontWeight: 500 }}>{e.time}</span>
           </div>
-          <span style={{ fontSize: mobile ? 9 : 10, color: "rgba(255,255,255,0.4)" }}>{e.time}</span>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
