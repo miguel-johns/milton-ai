@@ -89,13 +89,188 @@ function CTAButton({ mobile, label = "AI Consultation" }) {
   );
 }
 
-function StepCard({ number, title, description, mobile, desktopImage, mobileImage, alt }) {
+// Step Mockup Components
+function UploadContentMockup({ mobile }) {
+  const files = [
+    { name: "Training Philosophy.pdf", icon: "📄" },
+    { name: "Nutrition Guide.docx", icon: "📝" },
+    { name: "Program Templates.xlsx", icon: "📊" },
+    { name: "Brand Voice.pdf", icon: "🎯" },
+  ];
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 10, minWidth: 0, maxWidth: "100%" }}>
+      <div style={{
+        display: "flex", alignItems: "center", justifyContent: "space-between",
+        padding: mobile ? "8px 10px" : "10px 14px",
+        background: "rgba(13, 154, 165, 0.08)",
+        borderRadius: 8,
+        border: "1px solid rgba(13, 154, 165, 0.15)",
+      }}>
+        <span style={{ fontSize: mobile ? 11 : 12, fontWeight: 600, color: "#f0f4f8" }}>Milton AI</span>
+        <span style={{ fontSize: mobile ? 9 : 10, color: "#9af198", fontWeight: 500 }}>Ready to import</span>
+      </div>
+      <div style={{
+        border: "2px dashed rgba(13, 154, 165, 0.25)",
+        borderRadius: 10,
+        padding: mobile ? 12 : 16,
+        display: "flex", flexDirection: "column", gap: 8,
+      }}>
+        <div style={{ fontSize: mobile ? 10 : 11, color: "rgba(255,255,255,0.5)", textAlign: "center", marginBottom: 4 }}>Drag & Drop</div>
+        {files.map((f, i) => (
+          <div key={i} style={{
+            display: "flex", alignItems: "center", gap: 8,
+            padding: mobile ? "6px 8px" : "8px 10px",
+            background: "rgba(255,255,255,0.03)",
+            borderRadius: 6,
+            border: "1px solid rgba(255,255,255,0.06)",
+          }}>
+            <span style={{ fontSize: mobile ? 12 : 14 }}>{f.icon}</span>
+            <span style={{ fontSize: mobile ? 10 : 11, color: "rgba(240, 244, 248, 0.72)" }}>{f.name}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function MiltonLearnsMockup({ mobile }) {
+  const nodes = [
+    { label: "Progressive Overload", color: "#0d9aa5" },
+    { label: "Protein-First Nutrition", color: "#9af198" },
+    { label: "Your Coaching Voice", color: "#0d9aa5" },
+  ];
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 12, minWidth: 0, maxWidth: "100%" }}>
+      <div style={{
+        display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+        padding: mobile ? "10px" : "14px",
+        background: "rgba(13, 154, 165, 0.1)",
+        borderRadius: 10,
+        border: "1px solid rgba(13, 154, 165, 0.2)",
+      }}>
+        <div style={{
+          width: mobile ? 28 : 32, height: mobile ? 28 : 32, borderRadius: "50%",
+          background: "linear-gradient(135deg, #0d9aa5, #9af198)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          fontSize: mobile ? 14 : 16,
+        }}>🧠</div>
+        <span style={{ fontSize: mobile ? 12 : 14, fontWeight: 600, color: "#f0f4f8" }}>Your Method</span>
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+        {nodes.map((n, i) => (
+          <div key={i} style={{
+            display: "flex", alignItems: "center", gap: 8,
+            padding: mobile ? "8px 10px" : "10px 12px",
+            background: "rgba(255,255,255,0.03)",
+            borderRadius: 8,
+            borderLeft: `3px solid ${n.color}`,
+          }}>
+            <div style={{ width: 6, height: 6, borderRadius: "50%", background: n.color }} />
+            <span style={{ fontSize: mobile ? 10 : 12, color: "rgba(240, 244, 248, 0.72)" }}>{n.label}</span>
+          </div>
+        ))}
+      </div>
+      <div style={{ fontSize: mobile ? 9 : 10, color: "rgba(255,255,255,0.4)", textAlign: "center", fontStyle: "italic" }}>
+        Building your unique coaching model...
+      </div>
+    </div>
+  );
+}
+
+function MembersGetPlanMockup({ mobile }) {
+  const members = [
+    { name: "Alex J.", goal: "Build Muscle", macro: "2,400 cal" },
+    { name: "Sarah M.", goal: "Fat Loss", macro: "1,800 cal" },
+  ];
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 8, minWidth: 0, maxWidth: "100%" }}>
+      {members.map((m, i) => (
+        <div key={i} style={{
+          padding: mobile ? "10px" : "12px 14px",
+          background: "rgba(255,255,255,0.03)",
+          borderRadius: 8,
+          border: "1px solid rgba(255,255,255,0.06)",
+        }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+            <span style={{ fontSize: mobile ? 12 : 13, fontWeight: 600, color: "#f0f4f8" }}>{m.name}</span>
+            <span style={{
+              fontSize: mobile ? 9 : 10, fontWeight: 500,
+              padding: "2px 6px", borderRadius: 4,
+              background: "rgba(13, 154, 165, 0.1)", color: "#0d9aa5",
+            }}>{m.goal}</span>
+          </div>
+          <div style={{ display: "flex", gap: 6 }}>
+            <div style={{
+              flex: 1, padding: mobile ? "6px" : "8px",
+              background: "rgba(13, 154, 165, 0.06)",
+              borderRadius: 6, textAlign: "center",
+            }}>
+              <div style={{ fontSize: mobile ? 8 : 9, color: "rgba(255,255,255,0.5)", marginBottom: 2 }}>WORKOUT</div>
+              <div style={{ fontSize: mobile ? 10 : 11, color: "#9af198", fontWeight: 600 }}>Ready</div>
+            </div>
+            <div style={{
+              flex: 1, padding: mobile ? "6px" : "8px",
+              background: "rgba(154, 241, 152, 0.06)",
+              borderRadius: 6, textAlign: "center",
+            }}>
+              <div style={{ fontSize: mobile ? 8 : 9, color: "rgba(255,255,255,0.5)", marginBottom: 2 }}>NUTRITION</div>
+              <div style={{ fontSize: mobile ? 10 : 11, color: "#9af198", fontWeight: 600 }}>{m.macro}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function SystemEvolvesMockup({ mobile }) {
+  const events = [
+    { icon: "✓", text: "Session logged", time: "2m ago", color: "#9af198" },
+    { icon: "📊", text: "Nutrition tracked", time: "1h ago", color: "#0d9aa5" },
+    { icon: "⚡", text: "Program updated", time: "3h ago", color: "#f0c832" },
+  ];
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 8, minWidth: 0, maxWidth: "100%" }}>
+      <div style={{
+        fontSize: mobile ? 10 : 11, fontWeight: 600, color: "rgba(255,255,255,0.5)",
+        letterSpacing: "0.05em", textTransform: "uppercase", marginBottom: 4,
+      }}>Real-Time Adaptation</div>
+      {events.map((e, i) => (
+        <div key={i} style={{
+          display: "flex", alignItems: "center", gap: 10,
+          padding: mobile ? "8px 10px" : "10px 12px",
+          background: "rgba(255,255,255,0.03)",
+          borderRadius: 8,
+          border: "1px solid rgba(255,255,255,0.04)",
+        }}>
+          <div style={{
+            width: mobile ? 24 : 28, height: mobile ? 24 : 28, borderRadius: 6,
+            background: `${e.color}15`, border: `1px solid ${e.color}30`,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            fontSize: mobile ? 10 : 12, color: e.color,
+          }}>{e.icon}</div>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: mobile ? 11 : 12, color: "#f0f4f8" }}>{e.text}</div>
+          </div>
+          <span style={{ fontSize: mobile ? 9 : 10, color: "rgba(255,255,255,0.4)" }}>{e.time}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function StepCard({ number, title, description, mobile, mockup }) {
   return (
     <div style={{
       background: "rgba(255,255,255,0.02)",
       border: "1px solid rgba(255,255,255,0.06)",
       borderRadius: mobile ? 12 : 16,
-      padding: mobile ? "24px" : "32px",
+      padding: mobile ? "20px 16px" : "32px",
+      display: "flex",
+      flexDirection: "column",
+      minWidth: 0,
+      width: "100%",
+      boxSizing: "border-box",
     }}>
       <div style={{
         display: "flex",
@@ -120,22 +295,24 @@ function StepCard({ number, title, description, mobile, desktopImage, mobileImag
       </div>
       <p style={{
         fontFamily: f,
-        fontSize: mobile ? 14 : 15,
+        fontSize: mobile ? 13 : 15,
         lineHeight: 1.7,
         color: "rgba(255,255,255,0.6)",
         margin: "0 0 20px 0",
       }}>{description}</p>
-      <div style={{
-        borderRadius: mobile ? 8 : 12,
-        overflow: "hidden",
-        aspectRatio: mobile ? "1 / 1" : "16 / 9",
-      }}>
-        <img
-          src={mobile ? mobileImage : desktopImage}
-          alt={alt}
-          style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }}
-        />
-      </div>
+      {mockup && (
+        <div style={{
+          background: "rgba(8, 20, 38, 0.5)",
+          border: "1px solid rgba(13, 154, 165, 0.12)",
+          borderRadius: mobile ? 10 : 12,
+          padding: mobile ? 12 : 16,
+          minWidth: 0,
+          width: "100%",
+          boxSizing: "border-box",
+        }}>
+          {mockup}
+        </div>
+      )}
     </div>
   );
 }
@@ -222,42 +399,36 @@ export default function AICoach() {
             display: "grid",
             gridTemplateColumns: mobile ? "1fr" : "repeat(2, 1fr)",
             gap: mobile ? 16 : 20,
+            width: "100%",
+            minWidth: 0,
           }}>
             <StepCard
               number="01"
               title="You upload your content"
               description="Training philosophy, nutrition principles, programming style, brand voice."
               mobile={mobile}
-              desktopImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-7RQOwsCBtwlm9To16zCwdC1YcT1s8T.png"
-              mobileImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-xDgT51Y5L79MnLDVDX4hRzffcfEjna.png"
-              alt="Milton AI upload interface with drag-and-drop for training philosophy, nutrition principles, and program templates"
+              mockup={<UploadContentMockup mobile={mobile} />}
             />
             <StepCard
               number="02"
               title="Milton learns it"
               description="The AI builds a model of your methods — not generic advice, your approach."
               mobile={mobile}
-              desktopImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3-xJ7Q8OLebOmjZp8YIjEPxyMtoOKShZ.png"
-              mobileImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3-EoGWo7T2FkVokH7e6QnmtAssr0Jm5E.png"
-              alt="Knowledge graph showing Your Method connecting Progressive Overload, Protein-First Nutrition, OPT Model, Client Goal Setting, and Coaching Voice"
+              mockup={<MiltonLearnsMockup mobile={mobile} />}
             />
             <StepCard
               number="03"
               title="Members get their plan"
               description="Personalized workouts and meal plans built for each individual's goals."
               mobile={mobile}
-              desktopImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4-93KNlFhnZYXTOSIxkByajdFRFJgYwF.png"
-              mobileImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4-tm7WgQ1gVqQCik7ETISKH9eM6tXpXc.png"
-              alt="Personalized plans for Alex Johnson, Leah Brown, and Kyle Smith with different goals and nutrition targets"
+              mockup={<MembersGetPlanMockup mobile={mobile} />}
             />
             <StepCard
               number="04"
               title="The system evolves"
               description="Every session logged, every meal tracked — the AI adapts and progresses automatically."
               mobile={mobile}
-              desktopImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5-xv6oij15d9Y1MGNxuC4dQh1GK46uQz.png"
-              mobileImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5-fsPvkpSQgYqSvsYou4LXiwwTWwFUWg.png"
-              alt="Real-time adaptation feed showing session logged, nutrition tracked, program updated, recovery flagged, and next session adjusted"
+              mockup={<SystemEvolvesMockup mobile={mobile} />}
             />
           </div>
         </section>
