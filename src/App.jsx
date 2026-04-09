@@ -98,6 +98,393 @@ function ProductCard({ icon, title, description, mobile, href, variant = "teal" 
   );
 }
 
+// Enhanced Agent Card with mockup previews
+function AgentCard({ icon, title, description, mobile, href, mockup }) {
+  const [hovered, setHovered] = useState(false);
+  const Wrapper = href ? 'a' : 'div';
+  const wrapperProps = href ? { href, style: { textDecoration: 'none', display: 'block', height: '100%' } } : {};
+  
+  return (
+    <Wrapper {...wrapperProps}>
+      <div 
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={{
+          background: "rgba(13, 30, 50, 0.6)",
+          border: hovered ? "1px solid rgba(43, 191, 170, 0.25)" : "1px solid rgba(43, 191, 170, 0.12)",
+          borderRadius: 16,
+          padding: mobile ? "28px 24px 24px" : "40px 36px 36px",
+          transition: "all 0.3s ease",
+          transform: hovered ? "translateY(-2px)" : "translateY(0)",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          gap: mobile ? 20 : 28,
+          cursor: href ? "pointer" : "default",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        {/* Top gradient line on hover */}
+        <div style={{
+          position: "absolute",
+          top: 0, left: 0, right: 0,
+          height: 1,
+          background: "linear-gradient(90deg, transparent, #0d9aa5, transparent)",
+          opacity: hovered ? 0.5 : 0,
+          transition: "opacity 0.3s ease",
+        }} />
+        
+        {/* Text content */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          <div style={{
+            width: 44, height: 44, borderRadius: 10,
+            background: "rgba(43, 191, 170, 0.08)",
+            border: "1px solid rgba(43, 191, 170, 0.15)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            marginBottom: 8,
+            color: "#0d9aa5",
+          }}>
+            {icon}
+          </div>
+          <h3 style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: mobile ? 18 : 22,
+            fontWeight: 700, 
+            color: "#f0f4f8",
+            margin: 0,
+            letterSpacing: "-0.01em",
+          }}>{title}</h3>
+          <p style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: mobile ? 14 : 15,
+            lineHeight: 1.6, 
+            color: "rgba(240, 244, 248, 0.72)",
+            margin: 0,
+            maxWidth: 420,
+          }}>{description}</p>
+        </div>
+        
+        {/* Mockup preview */}
+        {mockup && (
+          <div style={{
+            background: "rgba(8, 20, 38, 0.7)",
+            border: "1px solid rgba(43, 191, 170, 0.08)",
+            borderRadius: 12,
+            padding: mobile ? 16 : 20,
+            display: "flex",
+            flexDirection: "column",
+            gap: 12,
+          }}>
+            {mockup}
+          </div>
+        )}
+      </div>
+    </Wrapper>
+  );
+}
+
+// Mockup Components for Agent Cards
+function CoachCoPilotMockup({ mobile }) {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+      <div style={{
+        padding: mobile ? "8px 12px" : "10px 14px",
+        borderRadius: 10,
+        fontSize: mobile ? 12 : 13,
+        lineHeight: 1.5,
+        maxWidth: "85%",
+        color: "rgba(240, 244, 248, 0.72)",
+        background: "rgba(255,255,255,0.04)",
+        border: "1px solid rgba(255,255,255,0.06)",
+        alignSelf: "flex-end",
+      }}>
+        <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 4, display: "block", color: "rgba(255,255,255,0.35)" }}>Coach</span>
+        Sarah says her left knee is flaring up again
+      </div>
+      <div style={{
+        padding: mobile ? "8px 12px" : "10px 14px",
+        borderRadius: 10,
+        fontSize: mobile ? 12 : 13,
+        lineHeight: 1.5,
+        maxWidth: "85%",
+        color: "rgba(240, 244, 248, 0.72)",
+        background: "rgba(43, 191, 170, 0.08)",
+        border: "1px solid rgba(43, 191, 170, 0.12)",
+        alignSelf: "flex-start",
+      }}>
+        <span style={{ fontSize: 10, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 4, display: "block", color: "#0d9aa5" }}>Milton</span>
+        Sarah reported knee pain 3x in 6 weeks. Suggest swapping lunges for hip hinge variations.
+      </div>
+    </div>
+  );
+}
+
+function DirectorCoPilotMockup({ mobile }) {
+  const trainers = [
+    { name: "Marcus T.", sessions: "24 sessions / week", retention: "92%", status: "good" },
+    { name: "Jenna R.", sessions: "18 sessions / week", retention: "74%", status: "warn" },
+    { name: "Kyle D.", sessions: "12 sessions / week", retention: "58%", status: "low" },
+  ];
+  const statusColors = {
+    good: { bg: "rgba(154, 241, 152, 0.1)", color: "#9af198" },
+    warn: { bg: "rgba(255, 200, 50, 0.1)", color: "#f0c832" },
+    low: { bg: "rgba(255, 100, 100, 0.08)", color: "#ff8a8a" },
+  };
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+      {trainers.map((t, i) => (
+        <div key={i} style={{
+          display: "flex", justifyContent: "space-between", alignItems: "center",
+          padding: mobile ? "8px 12px" : "10px 14px",
+          background: "rgba(255,255,255,0.03)",
+          borderRadius: 8,
+          border: "1px solid rgba(255,255,255,0.04)",
+        }}>
+          <div>
+            <div style={{ fontSize: mobile ? 12 : 13, fontWeight: 500, color: "#f0f4f8" }}>{t.name}</div>
+            <div style={{ fontSize: 11, color: "rgba(240, 244, 248, 0.55)" }}>{t.sessions}</div>
+          </div>
+          <span style={{
+            fontSize: 12, fontWeight: 600, padding: "4px 10px", borderRadius: 6,
+            background: statusColors[t.status].bg,
+            color: statusColors[t.status].color,
+          }}>{t.retention} retention</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function AICoachMockup({ mobile }) {
+  const exercises = [
+    { name: "Barbell Back Squat", sets: "4 × 6" },
+    { name: "Romanian Deadlift", sets: "3 × 10" },
+    { name: "Bulgarian Split Squat", sets: "3 × 8/side" },
+    { name: "Hip Thrust", sets: "3 × 12" },
+  ];
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      <div style={{ fontSize: 11, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.1em", color: "#0d9aa5", marginBottom: 2 }}>
+        Today — Lower Body Strength
+      </div>
+      {exercises.map((e, i) => (
+        <div key={i} style={{
+          display: "flex", alignItems: "center", gap: 12,
+          padding: mobile ? "6px 10px" : "8px 12px",
+          background: "rgba(255,255,255,0.03)",
+          borderRadius: 8,
+          border: "1px solid rgba(255,255,255,0.04)",
+          fontSize: mobile ? 12 : 13,
+          color: "rgba(240, 244, 248, 0.72)",
+        }}>
+          <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#0d9aa5", flexShrink: 0 }} />
+          {e.name}
+          <span style={{ marginLeft: "auto", fontSize: 11, color: "rgba(240, 244, 248, 0.55)", fontWeight: 500 }}>{e.sets}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function AIBrandingMockup({ mobile }) {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+      <div style={{
+        display: "flex", alignItems: "center", gap: 14,
+        padding: 14,
+        background: "rgba(255,255,255,0.03)",
+        borderRadius: 8,
+        border: "1px solid rgba(255,255,255,0.04)",
+      }}>
+        <div style={{
+          width: 48, height: 48, borderRadius: 10,
+          background: "linear-gradient(135deg, #0d9aa5, #2BBFAA)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          fontFamily: "'Cormorant Garamond', serif",
+          fontSize: 20, fontWeight: 700, color: "#0B1628",
+          flexShrink: 0,
+        }}>EP</div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+          <div style={{ fontSize: 14, fontWeight: 600, color: "#f0f4f8" }}>Elite Performance</div>
+          <div style={{ fontSize: 11, color: "rgba(240, 244, 248, 0.55)" }}>Train Smarter. Live Stronger.</div>
+        </div>
+      </div>
+      <div style={{ display: "flex", gap: 6 }}>
+        {["#1a1a2e", "#16213e", "#0f3460", "#e94560", "#f5f5f5"].map((c, i) => (
+          <div key={i} style={{ width: 28, height: 28, borderRadius: 6, background: c, border: "1px solid rgba(255,255,255,0.06)" }} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function SchedulingMockup({ mobile }) {
+  const slots = [
+    { time: "6:00 AM", name: "Marcus — Boot Camp", status: "Booked" },
+    { time: "7:30 AM", name: "Sarah K. — 1-on-1", status: "Booked" },
+    { time: "9:00 AM", name: "Available", status: "Open" },
+  ];
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      {slots.map((s, i) => (
+        <div key={i} style={{
+          display: "flex", alignItems: "center", gap: 12,
+          padding: mobile ? "8px 12px" : "10px 14px",
+          background: "rgba(255,255,255,0.03)",
+          borderRadius: 8,
+          border: "1px solid rgba(255,255,255,0.04)",
+        }}>
+          <span style={{ fontSize: 12, fontWeight: 600, color: "#0d9aa5", minWidth: 58 }}>{s.time}</span>
+          <span style={{ fontSize: 13, color: "rgba(240, 244, 248, 0.72)" }}>{s.name}</span>
+          <span style={{
+            marginLeft: "auto",
+            fontSize: 10, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em",
+            padding: "3px 8px", borderRadius: 4,
+            background: s.status === "Open" ? "rgba(255,255,255,0.05)" : "rgba(43, 191, 170, 0.1)",
+            color: s.status === "Open" ? "rgba(240, 244, 248, 0.55)" : "#0d9aa5",
+          }}>{s.status}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ReceptionistMockup({ mobile }) {
+  const entries = [
+    { caller: "James P.", action: "Missed call → AI follow-up sent" },
+    { caller: "Maria G.", action: "Voicemail → Consultation booked" },
+  ];
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+      {entries.map((e, i) => (
+        <div key={i} style={{
+          display: "flex", alignItems: "center", gap: 12,
+          padding: mobile ? "8px 12px" : "10px 14px",
+          background: "rgba(255,255,255,0.03)",
+          borderRadius: 8,
+          border: "1px solid rgba(255,255,255,0.04)",
+        }}>
+          <div style={{
+            width: 32, height: 32, borderRadius: "50%",
+            background: "rgba(43, 191, 170, 0.1)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            flexShrink: 0, color: "#0d9aa5",
+          }}>
+            <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M1 7h12M8 2l5 5-5 5"/></svg>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <div style={{ fontSize: 13, fontWeight: 500, color: "#f0f4f8" }}>{e.caller}</div>
+            <div style={{ fontSize: 11, color: "rgba(240, 244, 248, 0.55)" }}>{e.action}</div>
+          </div>
+          <span style={{
+            marginLeft: "auto",
+            fontSize: 10, fontWeight: 600, padding: "3px 8px", borderRadius: 4,
+            background: "rgba(154, 241, 152, 0.1)",
+            color: "#9af198",
+            textTransform: "uppercase", letterSpacing: "0.05em",
+          }}>Handled</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function AcquisitionMockup({ mobile }) {
+  const funnelData = [
+    { label: "Results posted", num: 142, width: "90%" },
+    { label: "Referrals sent", num: 78, width: "55%" },
+    { label: "Consults booked", num: 34, width: "28%" },
+  ];
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      {funnelData.map((f, i) => (
+        <div key={i} style={{
+          display: "flex", alignItems: "center", gap: 12,
+          padding: "8px 14px",
+          borderRadius: 8,
+          background: "rgba(255,255,255,0.03)",
+          border: "1px solid rgba(255,255,255,0.04)",
+        }}>
+          <span style={{ fontSize: 12, color: "rgba(240, 244, 248, 0.72)", minWidth: 80 }}>{f.label}</span>
+          <div style={{ flex: 1 }}>
+            <div style={{ height: 4, borderRadius: 2, background: "linear-gradient(90deg, #0d9aa5, #2BBFAA)", width: f.width }} />
+          </div>
+          <span style={{ fontSize: 12, fontWeight: 600, color: "#f0f4f8" }}>{f.num}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function AgenticCommerceMockup({ mobile }) {
+  const steps = [
+    { text: "Client hits 12-week milestone", active: true },
+    { text: "AI generates progress summary", active: true },
+    { text: "Personalized upsell: 6-month package", active: true },
+    { text: "Client converts → $1,200 revenue", active: false },
+  ];
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+      {steps.map((s, i) => (
+        <div key={i}>
+          <div style={{
+            display: "flex", alignItems: "center", gap: 10,
+            padding: "8px 12px",
+            fontSize: 12,
+            color: "rgba(240, 244, 248, 0.72)",
+          }}>
+            <span style={{
+              width: 8, height: 8, borderRadius: "50%",
+              border: "2px solid #0d9aa5",
+              background: s.active ? "#0d9aa5" : "transparent",
+              flexShrink: 0,
+            }} />
+            {s.text}
+          </div>
+          {i < steps.length - 1 && (
+            <div style={{ width: 2, height: 16, background: "rgba(43, 191, 170, 0.2)", marginLeft: 15 }} />
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function StripeCRMMockup({ mobile }) {
+  const rows = [
+    { label: "Sarah K. — Monthly", sub: "Auto-renews May 1", amount: "$299/mo" },
+    { label: "James P. — 10-Pack", sub: "3 sessions remaining", amount: "$750" },
+  ];
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      {rows.map((r, i) => (
+        <div key={i} style={{
+          display: "flex", alignItems: "center", gap: 12,
+          padding: mobile ? "8px 12px" : "10px 14px",
+          background: "rgba(255,255,255,0.03)",
+          borderRadius: 8,
+          border: "1px solid rgba(255,255,255,0.04)",
+        }}>
+          <div style={{
+            width: 28, height: 28, borderRadius: 6,
+            background: "rgba(99, 91, 255, 0.15)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            flexShrink: 0,
+          }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#635bff"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z"/></svg>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
+            <div style={{ fontSize: 13, color: "#f0f4f8", fontWeight: 500 }}>{r.label}</div>
+            <div style={{ fontSize: 11, color: "rgba(240, 244, 248, 0.55)" }}>{r.sub}</div>
+          </div>
+          <span style={{ fontSize: 13, fontWeight: 600, color: "#9af198", marginLeft: "auto" }}>{r.amount}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function CaseStudyCard({ metric, title, description, mobile }) {
   const [hovered, setHovered] = useState(false);
   return (
@@ -276,17 +663,71 @@ export default function MiltonHomepage() {
     }}>{children}</p>
   );
 
-  // AI Agents
+  // AI Agents with enhanced descriptions and mockups
   const agents = [
-    { icon: <CoachIcon />, title: "Coach Co-Pilot", description: "AI for people coaching clients.", href: "#/coach-copilot" },
-    { icon: <DashboardIcon />, title: "Director Co-Pilot", description: "AI for people managing trainers.", href: "#/director-dashboard" },
-    { icon: <AICoachIcon />, title: "AI Coach", description: "AI for people without a coach.", href: "#/ai-coach" },
-    { icon: <WebsiteIcon />, title: "AI Branding", description: "AI for professional brands.", href: "#/websites" },
-    { icon: <SchedulingIcon />, title: "AI-Powered Scheduling", description: "AI for self-serve scheduling and booking.", href: "#/scheduling" },
-    { icon: <ReceptionistIcon />, title: "AI Receptionist", description: "AI for voicemail and follow up.", href: "#/receptionist" },
-    { icon: <MarketingIcon />, title: "AI Acquisition Engine", description: "AI for turning results into referrals.", href: "#/acquisition" },
-    { icon: <MemberIcon />, title: "Agentic Commerce", description: "AI-powered workflows driving leads the stuff you sell.", href: "#/agentic-commerce" },
-    { icon: <CRMIcon />, title: "Stripe-Powered CRM & POS", description: "Payments, memberships, and client management.", href: "#/stripe-crm" },
+    { 
+      icon: <CoachIcon />, 
+      title: "Coach Co-Pilot", 
+      description: "Real-time AI that rides shotgun with your trainers — surfacing client history, flagging risk, and suggesting programming adjustments mid-session.", 
+      href: "#/coach-copilot",
+      mockup: <CoachCoPilotMockup mobile={mobile} />
+    },
+    { 
+      icon: <DashboardIcon />, 
+      title: "Director Co-Pilot", 
+      description: "Give your fitness director a command center — trainer utilization, session quality scores, and retention risk all in one view so nothing slips through the cracks.", 
+      href: "#/director-dashboard",
+      mockup: <DirectorCoPilotMockup mobile={mobile} />
+    },
+    { 
+      icon: <AICoachIcon />, 
+      title: "AI Coach", 
+      description: "A fully autonomous AI trainer for members who don't work with a coach — delivering NASM-compliant programming, check-ins, and progressive overload without human intervention.", 
+      href: "#/ai-coach",
+      mockup: <AICoachMockup mobile={mobile} />
+    },
+    { 
+      icon: <WebsiteIcon />, 
+      title: "AI Branding", 
+      description: "Generate a complete brand identity for any trainer — logo, color palette, and marketing copy — in minutes instead of weeks.", 
+      href: "#/websites",
+      mockup: <AIBrandingMockup mobile={mobile} />
+    },
+    { 
+      icon: <SchedulingIcon />, 
+      title: "AI-Powered Scheduling", 
+      description: "Self-serve booking that fills your trainers' calendars automatically — members book sessions, consults, or group classes without a single back-and-forth.", 
+      href: "#/scheduling",
+      mockup: <SchedulingMockup mobile={mobile} />
+    },
+    { 
+      icon: <ReceptionistIcon />, 
+      title: "AI Receptionist", 
+      description: "Never miss a lead again. AI answers calls, captures voicemails, and follows up automatically — so your front desk runs 24/7 even when nobody's there.", 
+      href: "#/receptionist",
+      mockup: <ReceptionistMockup mobile={mobile} />
+    },
+    { 
+      icon: <MarketingIcon />, 
+      title: "AI Acquisition Engine", 
+      description: "Turn your best client results into a referral flywheel — AI identifies success stories, generates social proof, and triggers outreach to warm prospects.", 
+      href: "#/acquisition",
+      mockup: <AcquisitionMockup mobile={mobile} />
+    },
+    { 
+      icon: <MemberIcon />, 
+      title: "Agentic Commerce", 
+      description: "AI-powered workflows that drive leads toward the stuff you sell — packages, memberships, supplements, and merch — at exactly the right moment.", 
+      href: "#/agentic-commerce",
+      mockup: <AgenticCommerceMockup mobile={mobile} />
+    },
+    { 
+      icon: <CRMIcon />, 
+      title: "Stripe-Powered CRM & POS", 
+      description: "Payments, memberships, and client management unified through Stripe — one system for revenue, not five disconnected tools.", 
+      href: "#/stripe-crm",
+      mockup: <StripeCRMMockup mobile={mobile} />
+    },
   ];
 
   // AI Services
@@ -416,22 +857,23 @@ export default function MiltonHomepage() {
               textTransform: "uppercase",
               color: "#0d9aa5",
               marginBottom: 20,
-            }}>AI Agents</h3>
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: mobile ? "1fr" : tablet ? "repeat(2, 1fr)" : "repeat(3, 1fr)",
-              gap: mobile ? 16 : 20,
-            }}>
-              {agents.map((agent, i) => (
-                <ProductCard 
-                  key={i}
-                  icon={agent.icon}
-                  title={agent.title}
-                  description={agent.description}
-                  mobile={mobile}
-                  href={agent.href}
-                />
-              ))}
+}}>AI Agents</h3>
+  <div style={{
+  display: "grid",
+  gridTemplateColumns: mobile ? "1fr" : "repeat(auto-fit, minmax(340px, 1fr))",
+  gap: mobile ? 16 : 24,
+  }}>
+  {agents.map((agent, i) => (
+  <AgentCard
+  key={i}
+  icon={agent.icon}
+  title={agent.title}
+  description={agent.description}
+  mobile={mobile}
+  href={agent.href}
+  mockup={agent.mockup}
+  />
+  ))}
             </div>
           </div>
           
