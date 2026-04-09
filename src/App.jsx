@@ -485,6 +485,266 @@ function StripeCRMMockup({ mobile }) {
   );
 }
 
+// Enhanced Service Card with mockup previews (mint color scheme)
+function ServiceCard({ icon, title, description, mobile, href, mockup, comingSoon }) {
+  const [hovered, setHovered] = useState(false);
+  const Wrapper = href ? 'a' : 'div';
+  const wrapperProps = href ? { href, style: { textDecoration: 'none', display: 'block', height: '100%' } } : {};
+  
+  return (
+    <Wrapper {...wrapperProps}>
+      <div 
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={{
+          background: "rgba(13, 30, 50, 0.6)",
+          border: hovered ? "1px solid rgba(154, 241, 152, 0.25)" : "1px solid rgba(154, 241, 152, 0.12)",
+          borderRadius: 16,
+          padding: mobile ? "28px 24px 24px" : "40px 36px 36px",
+          transition: "all 0.3s ease",
+          transform: hovered ? "translateY(-2px)" : "translateY(0)",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          gap: mobile ? 20 : 28,
+          cursor: href ? "pointer" : "default",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        {/* Top gradient line on hover */}
+        <div style={{
+          position: "absolute",
+          top: 0, left: 0, right: 0,
+          height: 1,
+          background: "linear-gradient(90deg, transparent, #9af198, transparent)",
+          opacity: hovered ? 0.5 : 0,
+          transition: "opacity 0.3s ease",
+        }} />
+        
+        {/* Text content */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          <div style={{
+            width: 44, height: 44, borderRadius: 10,
+            background: "rgba(154, 241, 152, 0.08)",
+            border: "1px solid rgba(154, 241, 152, 0.15)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            marginBottom: 8,
+            color: "#9af198",
+          }}>
+            {icon}
+          </div>
+          <h3 style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: mobile ? 18 : 22,
+            fontWeight: 700, 
+            color: "#f0f4f8",
+            margin: 0,
+            letterSpacing: "-0.01em",
+          }}>{title}</h3>
+          <p style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: mobile ? 14 : 15,
+            lineHeight: 1.6, 
+            color: "rgba(240, 244, 248, 0.72)",
+            margin: 0,
+            maxWidth: 420,
+          }}>{description}</p>
+          
+          {/* Coming Soon Badge */}
+          {comingSoon && (
+            <div style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
+              fontSize: 11,
+              fontWeight: 600,
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              color: "#9af198",
+              background: "rgba(154, 241, 152, 0.08)",
+              border: "1px solid rgba(154, 241, 152, 0.15)",
+              padding: "5px 12px",
+              borderRadius: 6,
+              width: "fit-content",
+              marginTop: 4,
+            }}>
+              <svg width="10" height="10" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><circle cx="5" cy="5" r="4"/></svg>
+              Coming Soon
+            </div>
+          )}
+        </div>
+        
+        {/* Mockup preview */}
+        {mockup && (
+          <div style={{
+            background: "rgba(8, 20, 38, 0.7)",
+            border: "1px solid rgba(154, 241, 152, 0.08)",
+            borderRadius: 12,
+            padding: mobile ? 16 : 20,
+            display: "flex",
+            flexDirection: "column",
+            gap: 12,
+          }}>
+            {mockup}
+          </div>
+        )}
+      </div>
+    </Wrapper>
+  );
+}
+
+// Service Mockup Components
+function StrategySessionMockup({ mobile }) {
+  const steps = [
+    { num: "1", title: "Operations Audit", desc: "Review scheduling, retention, and coach workflows" },
+    { num: "2", title: "AI Opportunity Map", desc: "Identify where AI moves the needle fastest" },
+    { num: "3", title: "90-Day Rollout Plan", desc: "Prioritized roadmap with projected ROI" },
+  ];
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+      {steps.map((s, i) => (
+        <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: 14, position: "relative" }}>
+          {i < steps.length - 1 && (
+            <div style={{
+              position: "absolute",
+              left: 15, top: 34, bottom: -12,
+              width: 2,
+              background: "rgba(154, 241, 152, 0.12)",
+            }} />
+          )}
+          <div style={{
+            width: 32, height: 32, borderRadius: "50%",
+            background: "rgba(154, 241, 152, 0.1)",
+            border: "1px solid rgba(154, 241, 152, 0.2)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            fontSize: 13, fontWeight: 700, color: "#9af198",
+            flexShrink: 0,
+          }}>{s.num}</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 2, paddingTop: 4 }}>
+            <div style={{ fontSize: 13, fontWeight: 600, color: "#f0f4f8" }}>{s.title}</div>
+            <div style={{ fontSize: 11, color: "rgba(240, 244, 248, 0.55)", lineHeight: 1.5 }}>{s.desc}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ImplementationMockup({ mobile }) {
+  const weeks = [
+    { label: "Week 1", tasks: [{ text: "Team onboarding & account setup", done: true }, { text: "Import client data & history", done: true }] },
+    { label: "Week 2", tasks: [{ text: "Configure Coach Co-Pilot prompts", done: true }, { text: "Launch scheduling integration", done: false }] },
+    { label: "Week 3", tasks: [{ text: "Director dashboard calibration", done: false }, { text: "Live workflow stress test", done: false }] },
+  ];
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+      {weeks.map((w, i) => (
+        <div key={i} style={{
+          display: "flex", alignItems: "stretch", gap: 14,
+          padding: "12px 0",
+          borderBottom: i < weeks.length - 1 ? "1px solid rgba(255,255,255,0.04)" : "none",
+        }}>
+          <div style={{ fontSize: 11, fontWeight: 600, color: "#9af198", minWidth: 52, paddingTop: 2, letterSpacing: "0.02em" }}>{w.label}</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+            {w.tasks.map((t, j) => (
+              <div key={j} style={{ fontSize: 12, color: "rgba(240, 244, 248, 0.72)", display: "flex", alignItems: "center", gap: 8 }}>
+                <div style={{
+                  width: 14, height: 14, borderRadius: 3,
+                  border: t.done ? "1.5px solid #9af198" : "1.5px solid rgba(154, 241, 152, 0.3)",
+                  background: t.done ? "rgba(154, 241, 152, 0.15)" : "transparent",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  flexShrink: 0,
+                  fontSize: 9, fontWeight: 700, color: "#9af198",
+                }}>{t.done && "✓"}</div>
+                {t.text}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function AcademyMockup({ mobile }) {
+  const courses = [
+    { emoji: "🎯", name: "AI for Personal Trainers", meta: "8 modules · 2.5 hours", bg: "rgba(43,191,170,0.1)" },
+    { emoji: "📊", name: "Data-Driven Coaching", meta: "6 modules · 1.5 hours", bg: "rgba(154,241,152,0.1)" },
+    { emoji: "⚡", name: "Prompt Engineering for Fitness", meta: "5 modules · 1 hour", bg: "rgba(255,200,50,0.1)" },
+  ];
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+      {courses.map((c, i) => (
+        <div key={i} style={{
+          display: "flex", alignItems: "center", gap: 14,
+          padding: mobile ? "10px 12px" : "12px 14px",
+          background: "rgba(255,255,255,0.03)",
+          borderRadius: 8,
+          border: "1px solid rgba(255,255,255,0.04)",
+        }}>
+          <div style={{
+            width: 40, height: 40, borderRadius: 8,
+            background: c.bg,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            flexShrink: 0, fontSize: 18,
+          }}>{c.emoji}</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <div style={{ fontSize: 13, fontWeight: 600, color: "#f0f4f8" }}>{c.name}</div>
+            <div style={{ fontSize: 11, color: "rgba(240, 244, 248, 0.55)" }}>{c.meta}</div>
+          </div>
+          <div style={{
+            marginLeft: "auto",
+            width: 36, height: 36, borderRadius: "50%",
+            border: "3px solid rgba(255,255,255,0.06)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            fontSize: 10, fontWeight: 700, color: "rgba(240, 244, 248, 0.55)",
+            flexShrink: 0,
+          }}>—</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function PromptLibraryMockup({ mobile }) {
+  const prompts = [
+    { tag: "Coaching", tagColor: { bg: "rgba(43, 191, 170, 0.1)", color: "#2BBFAA" }, text: "Post-session check-in with progressive overload cues" },
+    { tag: "Sales", tagColor: { bg: "rgba(154, 241, 152, 0.1)", color: "#9af198" }, text: "Reactivation outreach for lapsed 60-day members" },
+    { tag: "Onboard", tagColor: { bg: "rgba(255, 200, 50, 0.1)", color: "#f0c832" }, text: "New client welcome sequence with goal discovery" },
+  ];
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      {prompts.map((p, i) => (
+        <div key={i} style={{
+          display: "flex", alignItems: "center", gap: 12,
+          padding: mobile ? "8px 12px" : "10px 14px",
+          background: "rgba(255,255,255,0.03)",
+          borderRadius: 8,
+          border: "1px solid rgba(255,255,255,0.04)",
+        }}>
+          <span style={{
+            fontSize: 10, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em",
+            padding: "3px 8px", borderRadius: 4, flexShrink: 0,
+            background: p.tagColor.bg, color: p.tagColor.color,
+          }}>{p.tag}</span>
+          <span style={{
+            fontSize: 12, color: "rgba(240, 244, 248, 0.72)",
+            whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+          }}>{p.text}</span>
+          <span style={{
+            marginLeft: "auto",
+            fontSize: 10, fontWeight: 600, color: "rgba(240, 244, 248, 0.55)",
+            background: "rgba(255,255,255,0.05)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            padding: "4px 10px", borderRadius: 4, flexShrink: 0,
+          }}>Copy</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function CaseStudyCard({ metric, title, description, mobile }) {
   const [hovered, setHovered] = useState(false);
   return (
