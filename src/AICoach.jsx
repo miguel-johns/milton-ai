@@ -1019,12 +1019,10 @@ export default function AICoach() {
 
           <p style={{
             fontFamily: f, fontSize: mobile ? 16 : 18, lineHeight: 1.75,
-            color: mint, fontWeight: 500, margin: "0 0 32px 0",
+            color: mint, fontWeight: 500, margin: 0,
           }}>
             This is what AI makes possible. Not replacing the experience you&apos;ve built — amplifying it. Your best version of service, delivered to everyone, all the time.
           </p>
-
-          <VisualPlaceholder height={350} mobile={mobile} />
         </section>
 
         {/* ═══════ CTA ═══════ */}
