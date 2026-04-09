@@ -465,6 +465,167 @@ function SystemEvolvesMockup({ mobile }) {
   );
 }
 
+// Unified Profile Mockup - Central profile with data sources connected
+function UnifiedProfileMockup({ mobile }) {
+  const dataSources = [
+    { label: "Wearables", color: "#10b981", angle: -60 },
+    { label: "Gym Equipment", color: "#f59e0b", angle: 0 },
+    { label: "Health Apps", color: "#8b5cf6", angle: 60 },
+    { label: "Blood Work", color: "#ef4444", angle: 120 },
+    { label: "Coach Notes", color: "#0d9aa5", angle: 180 },
+    { label: "Sleep Data", color: "#6366f1", angle: 240 },
+  ];
+  
+  const orbitRadius = mobile ? 80 : 105;
+  const centerSize = mobile ? 64 : 80;
+  const nodeSize = mobile ? 48 : 56;
+  const containerSize = mobile ? 240 : 300;
+  
+  return (
+    <div style={{ 
+      background: "linear-gradient(135deg, #0d1a2d 0%, #0a1525 100%)",
+      borderRadius: mobile ? 12 : 16,
+      padding: mobile ? 20 : 32,
+      border: "1px solid rgba(255,255,255,0.06)",
+    }}>
+      <div style={{
+        position: "relative",
+        width: containerSize,
+        height: containerSize,
+        margin: "0 auto",
+      }}>
+        {/* Glow */}
+        <div style={{
+          position: "absolute",
+          top: "50%", left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: orbitRadius * 2 + 40,
+          height: orbitRadius * 2 + 40,
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(13, 154, 165, 0.1) 0%, transparent 70%)",
+        }} />
+        
+        {/* Orbit ring */}
+        <div style={{
+          position: "absolute",
+          top: "50%", left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: orbitRadius * 2 + 16,
+          height: orbitRadius * 2 + 16,
+          borderRadius: "50%",
+          border: "1px dashed rgba(13, 154, 165, 0.3)",
+        }} />
+        
+        {/* Central Profile */}
+        <div style={{
+          position: "absolute",
+          top: "50%", left: "50%",
+          transform: "translate(-50%, -50%)",
+          width: centerSize, height: centerSize,
+          background: "linear-gradient(135deg, rgba(13, 154, 165, 0.25), rgba(154, 241, 152, 0.15))",
+          border: "2px solid rgba(13, 154, 165, 0.5)",
+          borderRadius: 16,
+          display: "flex", flexDirection: "column",
+          alignItems: "center", justifyContent: "center",
+          boxShadow: "0 8px 32px rgba(13, 154, 165, 0.3)",
+          zIndex: 10,
+        }}>
+          <div style={{
+            width: mobile ? 26 : 32, height: mobile ? 26 : 32,
+            borderRadius: "50%",
+            background: "linear-gradient(135deg, #0d9aa5, #9af198)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            marginBottom: 4,
+          }}>
+            <svg width={mobile ? 12 : 16} height={mobile ? 12 : 16} viewBox="0 0 24 24" fill="none" stroke="#0B1628" strokeWidth="2.5">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 20c0-4 4-6 8-6s8 2 8 6" />
+            </svg>
+          </div>
+          <span style={{ fontSize: mobile ? 7 : 9, fontWeight: 700, color: "#fff", textAlign: "center", lineHeight: 1.2 }}>MEMBER<br/>PROFILE</span>
+        </div>
+        
+        {/* Data source nodes */}
+        {dataSources.map((source, i) => {
+          const angleRad = (source.angle * Math.PI) / 180;
+          const x = Math.cos(angleRad) * orbitRadius;
+          const y = Math.sin(angleRad) * orbitRadius;
+          
+          return (
+            <div key={i}>
+              {/* Connection line */}
+              <svg style={{
+                position: "absolute",
+                top: 0, left: 0,
+                width: containerSize,
+                height: containerSize,
+                pointerEvents: "none",
+                zIndex: 1,
+              }}>
+                <line
+                  x1={containerSize / 2}
+                  y1={containerSize / 2}
+                  x2={containerSize / 2 + x * 0.85}
+                  y2={containerSize / 2 + y * 0.85}
+                  stroke={source.color}
+                  strokeWidth="2"
+                  strokeOpacity="0.4"
+                />
+                <circle
+                  cx={containerSize / 2 + x * 0.6}
+                  cy={containerSize / 2 + y * 0.6}
+                  r="3"
+                  fill={source.color}
+                />
+              </svg>
+              
+              {/* Node */}
+              <div style={{
+                position: "absolute",
+                top: "50%", left: "50%",
+                transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
+                width: nodeSize,
+                height: nodeSize,
+                background: "rgba(15, 25, 40, 0.95)",
+                border: `1px solid ${source.color}50`,
+                borderRadius: 10,
+                display: "flex", flexDirection: "column",
+                alignItems: "center", justifyContent: "center",
+                boxShadow: `0 4px 12px ${source.color}30`,
+                zIndex: 5,
+              }}>
+                <div style={{
+                  width: 6, height: 6, borderRadius: "50%",
+                  background: source.color,
+                  marginBottom: 4,
+                }} />
+                <span style={{ 
+                  fontSize: mobile ? 6 : 7, 
+                  fontWeight: 600, 
+                  color: "rgba(255,255,255,0.85)",
+                  textAlign: "center",
+                  lineHeight: 1.2,
+                  padding: "0 2px",
+                }}>{source.label}</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      
+      <div style={{ 
+        textAlign: "center", 
+        marginTop: mobile ? 14 : 20,
+        fontSize: mobile ? 10 : 11,
+        color: "rgba(255,255,255,0.45)",
+        fontStyle: "italic",
+      }}>
+        All data streams feed into one living profile
+      </div>
+    </div>
+  );
+}
+
 function StepCard({ number, title, description, mobile, mockup }) {
   return (
     <div style={{
