@@ -890,18 +890,19 @@ export default function MiltonHomepage() {
             }}>AI Services</h3>
             <div style={{
               display: "grid",
-              gridTemplateColumns: mobile ? "1fr" : tablet ? "repeat(2, 1fr)" : "repeat(4, 1fr)",
-              gap: mobile ? 16 : 20,
+              gridTemplateColumns: mobile ? "1fr" : "repeat(auto-fit, minmax(340px, 1fr))",
+              gap: mobile ? 16 : 24,
             }}>
               {services.map((service, i) => (
-                <ProductCard 
+                <ServiceCard 
                   key={i}
                   icon={service.icon}
                   title={service.title}
                   description={service.description}
                   mobile={mobile}
                   href={service.href}
-                  variant="mint"
+                  mockup={service.mockup}
+                  comingSoon={service.comingSoon}
                 />
               ))}
             </div>
