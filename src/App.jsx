@@ -602,7 +602,37 @@ function ServiceCard({ icon, title, description, mobile, href, mockup, comingSoo
   );
 }
 
-// Service Mockup Components
+// Service Mockup Icons
+const TargetServiceIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="12" r="9" stroke="#0d9aa5" strokeWidth="1.5"/>
+    <circle cx="12" cy="12" r="5" stroke="#0d9aa5" strokeWidth="1.5"/>
+    <circle cx="12" cy="12" r="2" fill="#0d9aa5"/>
+  </svg>
+);
+
+const ChartServiceIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+    <rect x="3" y="3" width="18" height="18" rx="2" stroke="#0d9aa5" strokeWidth="1.5"/>
+    <path d="M7 17V13" stroke="#0d9aa5" strokeWidth="2" strokeLinecap="round"/>
+    <path d="M12 17V9" stroke="#0d9aa5" strokeWidth="2" strokeLinecap="round"/>
+    <path d="M17 17V11" stroke="#0d9aa5" strokeWidth="2" strokeLinecap="round"/>
+  </svg>
+);
+
+const BoltServiceIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+    <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="#0d9aa5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const CheckServiceIcon = () => (
+  <svg width="10" height="10" viewBox="0 0 24 24" fill="none">
+    <path d="M5 12L10 17L20 7" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+// Service Mockup Components - Light Theme
 function StrategySessionMockup({ mobile }) {
   const steps = [
     { num: "1", title: "Operations Audit", desc: "Review scheduling, retention, and coach workflows" },
@@ -610,31 +640,36 @@ function StrategySessionMockup({ mobile }) {
     { num: "3", title: "90-Day Rollout Plan", desc: "Prioritized roadmap with projected ROI" },
   ];
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 12, minWidth: 0, width: "100%" }}>
-      {steps.map((s, i) => (
-        <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: mobile ? 10 : 14, position: "relative", minWidth: 0 }}>
-          {i < steps.length - 1 && (
+    <div style={{ 
+      background: "linear-gradient(135deg, #e8f5f4 0%, #d4f5e9 100%)",
+      borderRadius: mobile ? 10 : 12,
+      padding: mobile ? 12 : 16,
+      minWidth: 0, width: "100%",
+    }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        {steps.map((s, i) => (
+          <div key={i} style={{ 
+            display: "flex", alignItems: "flex-start", gap: mobile ? 10 : 12, 
+            position: "relative", minWidth: 0,
+            background: "#fff",
+            padding: mobile ? "10px 12px" : "12px 14px",
+            borderRadius: 8,
+            boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
+          }}>
             <div style={{
-              position: "absolute",
-              left: mobile ? 13 : 15, top: 34, bottom: -12,
-              width: 2,
-              background: "rgba(154, 241, 152, 0.12)",
-            }} />
-          )}
-          <div style={{
-            width: mobile ? 28 : 32, height: mobile ? 28 : 32, borderRadius: "50%",
-            background: "rgba(154, 241, 152, 0.1)",
-            border: "1px solid rgba(154, 241, 152, 0.2)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            fontSize: mobile ? 12 : 13, fontWeight: 700, color: "#9af198",
-            flexShrink: 0,
-          }}>{s.num}</div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 2, paddingTop: mobile ? 2 : 4, minWidth: 0, flex: 1 }}>
-            <div style={{ fontSize: mobile ? 12 : 13, fontWeight: 600, color: "#f0f4f8" }}>{s.title}</div>
-            <div style={{ fontSize: mobile ? 10 : 11, color: "rgba(240, 244, 248, 0.55)", lineHeight: 1.5, wordWrap: "break-word" }}>{s.desc}</div>
+              width: mobile ? 26 : 30, height: mobile ? 26 : 30, borderRadius: "50%",
+              background: "#d4f5e9",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: mobile ? 12 : 13, fontWeight: 700, color: "#0d9aa5",
+              flexShrink: 0,
+            }}>{s.num}</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 2, minWidth: 0, flex: 1 }}>
+              <div style={{ fontSize: mobile ? 12 : 13, fontWeight: 600, color: "#0d4a4f" }}>{s.title}</div>
+              <div style={{ fontSize: mobile ? 10 : 11, color: "#5f8a8c", lineHeight: 1.5, wordWrap: "break-word" }}>{s.desc}</div>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
@@ -646,117 +681,141 @@ function ImplementationMockup({ mobile }) {
     { label: "Week 3", tasks: [{ text: "Dashboard calibration", done: false }, { text: "Workflow stress test", done: false }] },
   ];
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 0, minWidth: 0, width: "100%" }}>
-      {weeks.map((w, i) => (
-        <div key={i} style={{
-          display: "flex", alignItems: "stretch", gap: mobile ? 10 : 14,
-          padding: "10px 0",
-          borderBottom: i < weeks.length - 1 ? "1px solid rgba(255,255,255,0.04)" : "none",
-          minWidth: 0,
-        }}>
-          <div style={{ fontSize: mobile ? 10 : 11, fontWeight: 600, color: "#9af198", minWidth: mobile ? 44 : 52, paddingTop: 2, letterSpacing: "0.02em", flexShrink: 0 }}>{w.label}</div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 4, minWidth: 0, flex: 1 }}>
-            {w.tasks.map((t, j) => (
-              <div key={j} style={{ fontSize: mobile ? 11 : 12, color: "rgba(240, 244, 248, 0.72)", display: "flex", alignItems: "center", gap: 6 }}>
-                <div style={{
-                  width: 14, height: 14, borderRadius: 3,
-                  border: t.done ? "1.5px solid #9af198" : "1.5px solid rgba(154, 241, 152, 0.3)",
-                  background: t.done ? "rgba(154, 241, 152, 0.15)" : "transparent",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  flexShrink: 0,
-                  fontSize: 9, fontWeight: 700, color: "#9af198",
-                }}>{t.done && "✓"}</div>
-                <span style={{ wordWrap: "break-word", overflowWrap: "break-word" }}>{t.text}</span>
-              </div>
-            ))}
+    <div style={{ 
+      background: "linear-gradient(135deg, #e8f5f4 0%, #d4f5e9 100%)",
+      borderRadius: mobile ? 10 : 12,
+      padding: mobile ? 12 : 16,
+      minWidth: 0, width: "100%",
+    }}>
+      <div style={{ 
+        background: "#fff", 
+        borderRadius: 10, 
+        padding: mobile ? 12 : 16,
+        boxShadow: "0 2px 8px rgba(13, 154, 165, 0.1)",
+      }}>
+        {weeks.map((w, i) => (
+          <div key={i} style={{
+            display: "flex", alignItems: "stretch", gap: mobile ? 10 : 14,
+            padding: "10px 0",
+            borderBottom: i < weeks.length - 1 ? "1px solid #e8f5f4" : "none",
+            minWidth: 0,
+          }}>
+            <div style={{ fontSize: mobile ? 10 : 11, fontWeight: 700, color: "#0d9aa5", minWidth: mobile ? 44 : 52, paddingTop: 2, letterSpacing: "0.02em", flexShrink: 0 }}>{w.label}</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 4, minWidth: 0, flex: 1 }}>
+              {w.tasks.map((t, j) => (
+                <div key={j} style={{ fontSize: mobile ? 11 : 12, color: "#0d4a4f", display: "flex", alignItems: "center", gap: 6, fontWeight: 500 }}>
+                  <div style={{
+                    width: 16, height: 16, borderRadius: 4,
+                    border: t.done ? "none" : "2px solid #d4f5e9",
+                    background: t.done ? "#0d9aa5" : "#fff",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    flexShrink: 0,
+                  }}>{t.done && <CheckServiceIcon />}</div>
+                  <span style={{ wordWrap: "break-word", overflowWrap: "break-word" }}>{t.text}</span>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
 
 function AcademyMockup({ mobile }) {
   const courses = [
-    { emoji: "🎯", name: "AI for Personal Trainers", meta: "8 modules", bg: "rgba(43,191,170,0.1)" },
-    { emoji: "📊", name: "Data-Driven Coaching", meta: "6 modules", bg: "rgba(154,241,152,0.1)" },
-    { emoji: "⚡", name: "Prompt Engineering", meta: "5 modules", bg: "rgba(255,200,50,0.1)" },
+    { Icon: TargetServiceIcon, name: "AI for Personal Trainers", meta: "8 modules" },
+    { Icon: ChartServiceIcon, name: "Data-Driven Coaching", meta: "6 modules" },
+    { Icon: BoltServiceIcon, name: "Prompt Engineering", meta: "5 modules" },
   ];
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 8, minWidth: 0, maxWidth: "100%" }}>
-      {courses.map((c, i) => (
-        <div key={i} style={{
-          display: "flex", alignItems: "center", gap: mobile ? 8 : 14,
-          padding: mobile ? "8px 8px" : "12px 14px",
-          background: "rgba(255,255,255,0.03)",
-          borderRadius: 8,
-          border: "1px solid rgba(255,255,255,0.04)",
-          minWidth: 0,
-          maxWidth: "100%",
-        }}>
-          <div style={{
-            width: mobile ? 32 : 40, height: mobile ? 32 : 40, borderRadius: 8,
-            background: c.bg,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            flexShrink: 0, fontSize: mobile ? 14 : 18,
-          }}>{c.emoji}</div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 2, minWidth: 0, flex: 1 }}>
-            <div style={{ fontSize: mobile ? 11 : 13, fontWeight: 600, color: "#f0f4f8", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{c.name}</div>
-            <div style={{ fontSize: mobile ? 9 : 11, color: "rgba(240, 244, 248, 0.55)" }}>{c.meta}</div>
-          </div>
-          {!mobile && (
+    <div style={{ 
+      background: "linear-gradient(135deg, #e8f5f4 0%, #d4f5e9 100%)",
+      borderRadius: mobile ? 10 : 12,
+      padding: mobile ? 12 : 16,
+      minWidth: 0, maxWidth: "100%",
+    }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        {courses.map((c, i) => (
+          <div key={i} style={{
+            display: "flex", alignItems: "center", gap: mobile ? 10 : 14,
+            padding: mobile ? "10px 12px" : "12px 14px",
+            background: "#fff",
+            borderRadius: 8,
+            boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
+            minWidth: 0,
+            maxWidth: "100%",
+          }}>
             <div style={{
-              width: 36, height: 36, borderRadius: "50%",
-              border: "3px solid rgba(255,255,255,0.06)",
+              width: mobile ? 36 : 44, height: mobile ? 36 : 44, borderRadius: 10,
+              background: "#e8f5f4",
               display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: 10, fontWeight: 700, color: "rgba(240, 244, 248, 0.55)",
               flexShrink: 0,
-            }}>—</div>
-          )}
-        </div>
-      ))}
+            }}><c.Icon /></div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 2, minWidth: 0, flex: 1 }}>
+              <div style={{ fontSize: mobile ? 11 : 13, fontWeight: 600, color: "#0d4a4f", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{c.name}</div>
+              <div style={{ fontSize: mobile ? 9 : 11, color: "#5f8a8c" }}>{c.meta}</div>
+            </div>
+            {!mobile && (
+              <div style={{
+                width: 36, height: 36, borderRadius: "50%",
+                background: "#e8f5f4",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: 10, fontWeight: 700, color: "#0d9aa5",
+                flexShrink: 0,
+              }}>0%</div>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
 
 function PromptLibraryMockup({ mobile }) {
   const prompts = [
-    { tag: "Coaching", tagColor: { bg: "rgba(43, 191, 170, 0.1)", color: "#2BBFAA" }, text: "Post-session check-in" },
-    { tag: "Sales", tagColor: { bg: "rgba(154, 241, 152, 0.1)", color: "#9af198" }, text: "Reactivation outreach" },
-    { tag: "Onboard", tagColor: { bg: "rgba(255, 200, 50, 0.1)", color: "#f0c832" }, text: "New client welcome" },
+    { tag: "Coaching", tagColor: { bg: "#d4f5e9", color: "#0d9aa5" }, text: "Post-session check-in" },
+    { tag: "Sales", tagColor: { bg: "#e8f5f4", color: "#0d9aa5" }, text: "Reactivation outreach" },
+    { tag: "Onboard", tagColor: { bg: "#fef3c7", color: "#d97706" }, text: "New client welcome" },
   ];
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 8, minWidth: 0, maxWidth: "100%" }}>
-      {prompts.map((p, i) => (
-        <div key={i} style={{
-          display: "flex", alignItems: "center", gap: mobile ? 6 : 12,
-          padding: mobile ? "8px 8px" : "10px 14px",
-          background: "rgba(255,255,255,0.03)",
-          borderRadius: 8,
-          border: "1px solid rgba(255,255,255,0.04)",
-          minWidth: 0,
-          maxWidth: "100%",
-        }}>
-          <span style={{
-            fontSize: mobile ? 8 : 10, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.04em",
-            padding: mobile ? "2px 4px" : "3px 8px", borderRadius: 4, flexShrink: 0,
-            background: p.tagColor.bg, color: p.tagColor.color,
-          }}>{p.tag}</span>
-          <span style={{
-            fontSize: mobile ? 10 : 12, color: "rgba(240, 244, 248, 0.72)",
-            whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-            minWidth: 0, flex: 1,
-          }}>{p.text}</span>
-          {!mobile && (
+    <div style={{ 
+      background: "linear-gradient(135deg, #e8f5f4 0%, #d4f5e9 100%)",
+      borderRadius: mobile ? 10 : 12,
+      padding: mobile ? 12 : 16,
+      minWidth: 0, maxWidth: "100%",
+    }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        {prompts.map((p, i) => (
+          <div key={i} style={{
+            display: "flex", alignItems: "center", gap: mobile ? 8 : 12,
+            padding: mobile ? "10px 12px" : "12px 14px",
+            background: "#fff",
+            borderRadius: 8,
+            boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
+            minWidth: 0,
+            maxWidth: "100%",
+          }}>
             <span style={{
-              fontSize: 10, fontWeight: 600, color: "rgba(240, 244, 248, 0.55)",
-              background: "rgba(255,255,255,0.05)",
-              border: "1px solid rgba(255,255,255,0.08)",
-              padding: "4px 10px", borderRadius: 4, flexShrink: 0,
-            }}>Copy</span>
-          )}
-        </div>
-      ))}
+              fontSize: mobile ? 9 : 10, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.04em",
+              padding: mobile ? "3px 6px" : "4px 10px", borderRadius: 12, flexShrink: 0,
+              background: p.tagColor.bg, color: p.tagColor.color,
+            }}>{p.tag}</span>
+            <span style={{
+              fontSize: mobile ? 11 : 12, color: "#0d4a4f", fontWeight: 500,
+              whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+              minWidth: 0, flex: 1,
+            }}>{p.text}</span>
+            {!mobile && (
+              <span style={{
+                fontSize: 10, fontWeight: 600, color: "#0d9aa5",
+                background: "#e8f5f4",
+                padding: "5px 12px", borderRadius: 12, flexShrink: 0,
+              }}>Copy</span>
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
