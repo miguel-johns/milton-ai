@@ -166,7 +166,21 @@ export default function AICoach() {
             A fully automated coaching experience — personalized workouts, complete meal plans, and intelligent check-ins. All built on your methods. Running 24/7 without you.
           </p>
 
-          <VisualPlaceholder height={mobile ? 280 : 480} label="Hero Image" mobile={mobile} />
+          <div style={{
+            borderRadius: mobile ? 12 : 16,
+            overflow: "hidden",
+            boxShadow: "0 20px 50px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.08)",
+            aspectRatio: mobile ? "1 / 1" : "16 / 9",
+          }}>
+            <img
+              src={mobile 
+                ? "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AI%20Coach%20Page%20Mobile%20Hero-UA01I1S25lvaBgrzzbCWshIXjB3BDH.png"
+                : "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AI%20Coach%20Hero%20Desktop.png-eswd6m7AXATbQcXZNwSlMVblwyFWLn.jpeg"
+              }
+              alt="Person holding phone with Milton AI notification saying Good morning Connor, will we see you later today for the usual?"
+              style={{ width: "100%", height: "100%", display: "block", objectFit: "cover" }}
+            />
+          </div>
 
           <div style={{ marginTop: 40 }}>
             <CTAButton mobile={mobile} />
