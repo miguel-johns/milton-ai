@@ -422,65 +422,83 @@ function AgenticCommerceMockup({ mobile }) {
     { text: "Client hits 12-week milestone", active: true },
     { text: "AI generates progress summary", active: true },
     { text: "Personalized upsell: 6-month package", active: true },
-    { text: "Client converts → $1,200 revenue", active: false },
+    { text: "Client converts - $1,200 revenue", active: false },
   ];
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-      {steps.map((s, i) => (
-        <div key={i}>
-          <div style={{
-            display: "flex", alignItems: "center", gap: 10,
-            padding: "8px 12px",
-            fontSize: 12,
-            color: "rgba(240, 244, 248, 0.72)",
-          }}>
-            <span style={{
-              width: 8, height: 8, borderRadius: "50%",
-              border: "2px solid #0d9aa5",
-              background: s.active ? "#0d9aa5" : "transparent",
-              flexShrink: 0,
-            }} />
-            {s.text}
+    <div style={{ 
+      background: "linear-gradient(135deg, #e8f5f4 0%, #d4f5e9 100%)",
+      borderRadius: mobile ? 10 : 12,
+      padding: mobile ? 12 : 16,
+    }}>
+      <div style={{ 
+        background: "#fff", 
+        borderRadius: 10, 
+        padding: mobile ? 12 : 16,
+        boxShadow: "0 2px 8px rgba(13, 154, 165, 0.1)",
+      }}>
+        {steps.map((s, i) => (
+          <div key={i}>
+            <div style={{
+              display: "flex", alignItems: "center", gap: 10,
+              padding: "8px 0",
+              fontSize: 12,
+              color: "#0d4a4f",
+              fontWeight: 500,
+            }}>
+              <span style={{
+                width: 10, height: 10, borderRadius: "50%",
+                border: "2px solid #0d9aa5",
+                background: s.active ? "#0d9aa5" : "#fff",
+                flexShrink: 0,
+              }} />
+              {s.text}
+            </div>
+            {i < steps.length - 1 && (
+              <div style={{ width: 2, height: 12, background: "#d4f5e9", marginLeft: 4 }} />
+            )}
           </div>
-          {i < steps.length - 1 && (
-            <div style={{ width: 2, height: 16, background: "rgba(43, 191, 170, 0.2)", marginLeft: 15 }} />
-          )}
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
 
 function StripeCRMMockup({ mobile }) {
   const rows = [
-    { label: "Sarah K. — Monthly", sub: "Auto-renews May 1", amount: "$299/mo" },
-    { label: "James P. — 10-Pack", sub: "3 sessions remaining", amount: "$750" },
+    { label: "Sarah K. - Monthly", sub: "Auto-renews May 1", amount: "$299/mo" },
+    { label: "James P. - 10-Pack", sub: "3 sessions remaining", amount: "$750" },
   ];
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-      {rows.map((r, i) => (
-        <div key={i} style={{
-          display: "flex", alignItems: "center", gap: 12,
-          padding: mobile ? "8px 12px" : "10px 14px",
-          background: "rgba(255,255,255,0.03)",
-          borderRadius: 8,
-          border: "1px solid rgba(255,255,255,0.04)",
-        }}>
-          <div style={{
-            width: 28, height: 28, borderRadius: 6,
-            background: "rgba(99, 91, 255, 0.15)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            flexShrink: 0,
+    <div style={{ 
+      background: "linear-gradient(135deg, #e8f5f4 0%, #d4f5e9 100%)",
+      borderRadius: mobile ? 10 : 12,
+      padding: mobile ? 12 : 16,
+    }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        {rows.map((r, i) => (
+          <div key={i} style={{
+            display: "flex", alignItems: "center", gap: 12,
+            padding: mobile ? "10px 12px" : "12px 14px",
+            background: "#fff",
+            borderRadius: 8,
+            boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
           }}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="#635bff"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z"/></svg>
+            <div style={{
+              width: 32, height: 32, borderRadius: 8,
+              background: "#ede9fe",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              flexShrink: 0,
+            }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#635bff"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.591-7.305z"/></svg>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
+              <div style={{ fontSize: 13, color: "#0d4a4f", fontWeight: 600 }}>{r.label}</div>
+              <div style={{ fontSize: 11, color: "#5f8a8c" }}>{r.sub}</div>
+            </div>
+            <span style={{ fontSize: 13, fontWeight: 700, color: "#0d9aa5", marginLeft: "auto" }}>{r.amount}</span>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
-            <div style={{ fontSize: 13, color: "#f0f4f8", fontWeight: 500 }}>{r.label}</div>
-            <div style={{ fontSize: 11, color: "rgba(240, 244, 248, 0.55)" }}>{r.sub}</div>
-          </div>
-          <span style={{ fontSize: 13, fontWeight: 600, color: "#9af198", marginLeft: "auto" }}>{r.amount}</span>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
