@@ -641,9 +641,9 @@ function StrategySessionMockup({ mobile }) {
 
 function ImplementationMockup({ mobile }) {
   const weeks = [
-    { label: "Week 1", tasks: [{ text: "Team onboarding & account setup", done: true }, { text: "Import client data & history", done: true }] },
-    { label: "Week 2", tasks: [{ text: "Configure Coach Co-Pilot prompts", done: true }, { text: "Launch scheduling integration", done: false }] },
-    { label: "Week 3", tasks: [{ text: "Director dashboard calibration", done: false }, { text: "Live workflow stress test", done: false }] },
+    { label: "Week 1", tasks: [{ text: "Team onboarding & setup", done: true }, { text: "Import client data", done: true }] },
+    { label: "Week 2", tasks: [{ text: "Configure Co-Pilot", done: true }, { text: "Launch scheduling", done: false }] },
+    { label: "Week 3", tasks: [{ text: "Dashboard calibration", done: false }, { text: "Workflow stress test", done: false }] },
   ];
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 0, minWidth: 0, width: "100%" }}>
@@ -678,38 +678,41 @@ function ImplementationMockup({ mobile }) {
 
 function AcademyMockup({ mobile }) {
   const courses = [
-    { emoji: "🎯", name: "AI for Personal Trainers", meta: "8 modules · 2.5 hours", bg: "rgba(43,191,170,0.1)" },
-    { emoji: "📊", name: "Data-Driven Coaching", meta: "6 modules · 1.5 hours", bg: "rgba(154,241,152,0.1)" },
-    { emoji: "⚡", name: "Prompt Engineering for Fitness", meta: "5 modules · 1 hour", bg: "rgba(255,200,50,0.1)" },
+    { emoji: "🎯", name: "AI for Personal Trainers", meta: "8 modules", bg: "rgba(43,191,170,0.1)" },
+    { emoji: "📊", name: "Data-Driven Coaching", meta: "6 modules", bg: "rgba(154,241,152,0.1)" },
+    { emoji: "⚡", name: "Prompt Engineering", meta: "5 modules", bg: "rgba(255,200,50,0.1)" },
   ];
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 10, minWidth: 0, width: "100%" }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: 8, minWidth: 0, maxWidth: "100%" }}>
       {courses.map((c, i) => (
         <div key={i} style={{
-          display: "flex", alignItems: "center", gap: mobile ? 10 : 14,
-          padding: mobile ? "10px 10px" : "12px 14px",
+          display: "flex", alignItems: "center", gap: mobile ? 8 : 14,
+          padding: mobile ? "8px 8px" : "12px 14px",
           background: "rgba(255,255,255,0.03)",
           borderRadius: 8,
           border: "1px solid rgba(255,255,255,0.04)",
           minWidth: 0,
+          maxWidth: "100%",
         }}>
           <div style={{
-            width: mobile ? 36 : 40, height: mobile ? 36 : 40, borderRadius: 8,
+            width: mobile ? 32 : 40, height: mobile ? 32 : 40, borderRadius: 8,
             background: c.bg,
             display: "flex", alignItems: "center", justifyContent: "center",
-            flexShrink: 0, fontSize: mobile ? 16 : 18,
+            flexShrink: 0, fontSize: mobile ? 14 : 18,
           }}>{c.emoji}</div>
           <div style={{ display: "flex", flexDirection: "column", gap: 2, minWidth: 0, flex: 1 }}>
-            <div style={{ fontSize: mobile ? 12 : 13, fontWeight: 600, color: "#f0f4f8", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{c.name}</div>
-            <div style={{ fontSize: mobile ? 10 : 11, color: "rgba(240, 244, 248, 0.55)" }}>{c.meta}</div>
+            <div style={{ fontSize: mobile ? 11 : 13, fontWeight: 600, color: "#f0f4f8", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{c.name}</div>
+            <div style={{ fontSize: mobile ? 9 : 11, color: "rgba(240, 244, 248, 0.55)" }}>{c.meta}</div>
           </div>
-          <div style={{
-            width: mobile ? 32 : 36, height: mobile ? 32 : 36, borderRadius: "50%",
-            border: "3px solid rgba(255,255,255,0.06)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            fontSize: 10, fontWeight: 700, color: "rgba(240, 244, 248, 0.55)",
-            flexShrink: 0,
-          }}>—</div>
+          {!mobile && (
+            <div style={{
+              width: 36, height: 36, borderRadius: "50%",
+              border: "3px solid rgba(255,255,255,0.06)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: 10, fontWeight: 700, color: "rgba(240, 244, 248, 0.55)",
+              flexShrink: 0,
+            }}>—</div>
+          )}
         </div>
       ))}
     </div>
@@ -718,37 +721,40 @@ function AcademyMockup({ mobile }) {
 
 function PromptLibraryMockup({ mobile }) {
   const prompts = [
-    { tag: "Coaching", tagColor: { bg: "rgba(43, 191, 170, 0.1)", color: "#2BBFAA" }, text: "Post-session check-in with progressive overload cues" },
-    { tag: "Sales", tagColor: { bg: "rgba(154, 241, 152, 0.1)", color: "#9af198" }, text: "Reactivation outreach for lapsed 60-day members" },
-    { tag: "Onboard", tagColor: { bg: "rgba(255, 200, 50, 0.1)", color: "#f0c832" }, text: "New client welcome sequence with goal discovery" },
+    { tag: "Coaching", tagColor: { bg: "rgba(43, 191, 170, 0.1)", color: "#2BBFAA" }, text: "Post-session check-in" },
+    { tag: "Sales", tagColor: { bg: "rgba(154, 241, 152, 0.1)", color: "#9af198" }, text: "Reactivation outreach" },
+    { tag: "Onboard", tagColor: { bg: "rgba(255, 200, 50, 0.1)", color: "#f0c832" }, text: "New client welcome" },
   ];
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: 8, minWidth: 0, width: "100%" }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: 8, minWidth: 0, maxWidth: "100%" }}>
       {prompts.map((p, i) => (
         <div key={i} style={{
-          display: "flex", alignItems: "center", gap: mobile ? 8 : 12,
-          padding: mobile ? "8px 10px" : "10px 14px",
+          display: "flex", alignItems: "center", gap: mobile ? 6 : 12,
+          padding: mobile ? "8px 8px" : "10px 14px",
           background: "rgba(255,255,255,0.03)",
           borderRadius: 8,
           border: "1px solid rgba(255,255,255,0.04)",
           minWidth: 0,
+          maxWidth: "100%",
         }}>
           <span style={{
-            fontSize: mobile ? 9 : 10, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.06em",
-            padding: mobile ? "2px 6px" : "3px 8px", borderRadius: 4, flexShrink: 0,
+            fontSize: mobile ? 8 : 10, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.04em",
+            padding: mobile ? "2px 4px" : "3px 8px", borderRadius: 4, flexShrink: 0,
             background: p.tagColor.bg, color: p.tagColor.color,
           }}>{p.tag}</span>
           <span style={{
-            fontSize: mobile ? 11 : 12, color: "rgba(240, 244, 248, 0.72)",
+            fontSize: mobile ? 10 : 12, color: "rgba(240, 244, 248, 0.72)",
             whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
             minWidth: 0, flex: 1,
           }}>{p.text}</span>
-          <span style={{
-            fontSize: mobile ? 9 : 10, fontWeight: 600, color: "rgba(240, 244, 248, 0.55)",
-            background: "rgba(255,255,255,0.05)",
-            border: "1px solid rgba(255,255,255,0.08)",
-            padding: mobile ? "3px 8px" : "4px 10px", borderRadius: 4, flexShrink: 0,
-          }}>Copy</span>
+          {!mobile && (
+            <span style={{
+              fontSize: 10, fontWeight: 600, color: "rgba(240, 244, 248, 0.55)",
+              background: "rgba(255,255,255,0.05)",
+              border: "1px solid rgba(255,255,255,0.08)",
+              padding: "4px 10px", borderRadius: 4, flexShrink: 0,
+            }}>Copy</span>
+          )}
         </div>
       ))}
     </div>
