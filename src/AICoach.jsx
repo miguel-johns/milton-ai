@@ -835,7 +835,27 @@ export default function AICoach() {
             The AI doesn&apos;t program in a vacuum. It programs from a complete, living profile that updates every time a member trains, eats, sleeps, or checks in. The more data it has, the smarter the plan gets.
           </p>
 
-          <UnifiedProfileMockup mobile={mobile} />
+          <div style={{
+            borderRadius: mobile ? 12 : 16,
+            overflow: "hidden",
+            border: "1px solid rgba(255,255,255,0.08)",
+            ...(mobile ? { aspectRatio: "1 / 1" } : {}),
+          }}>
+            <img 
+              src={mobile 
+                ? "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All%20in%20one%20place%20mobile-Ctwhf89oOzkGWRbe4fXgwg8qok9Wfp.png"
+                : "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All%20in%20One-Z0J1YN5HvEfcQDyx1HRCggtS5aMEbH.png"
+              }
+              alt="Unified member profile showing Good morning Sarah dashboard with training schedule, burn protocol progress, and nutrition challenge stats"
+              style={{
+                width: "100%",
+                height: mobile ? "100%" : "auto",
+                display: "block",
+                objectFit: "cover",
+                objectPosition: "center",
+              }}
+            />
+          </div>
         </section>
 
         {/* ═══════ WORKOUTS ═══════ */}
