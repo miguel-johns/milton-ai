@@ -123,7 +123,21 @@ export default function AIBranding() {
             Fitness is the front line of healthcare. You&apos;re changing lives, preventing disease, building people up from the inside out. But most fitness businesses don&apos;t look the part.
           </p>
 
-          <VisualPlaceholder height={mobile ? 280 : 480} label="Hero Image" mobile={mobile} />
+          <div style={{
+            borderRadius: mobile ? 12 : 16,
+            overflow: "hidden",
+            border: "1px solid rgba(255,255,255,0.08)",
+          }}>
+            <img 
+              src="/images/ai-branding-hero.jpg"
+              alt="Premium fitness brand identity mockup showing business cards, brand guideline booklet, website on laptop, and branded merchandise arranged on dark slate surface"
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "block",
+              }}
+            />
+          </div>
 
           <div style={{ marginTop: 40 }}>
             <CTAButton mobile={mobile} />
