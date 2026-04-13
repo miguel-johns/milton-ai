@@ -193,7 +193,22 @@ export default function AIBranding() {
             AI changes that equation completely. Milton generates professional-grade brand assets using AI tools — guided by real design expertise, not just prompts. You get the output of a full creative agency in a fraction of the time and cost. And everything is built to be cohesive, consistent, and unmistakably yours.
           </p>
 
-          <VisualPlaceholder height={350} mobile={mobile} />
+          <div style={{
+            borderRadius: mobile ? 12 : 16,
+            overflow: "hidden",
+            border: "1px solid rgba(255,255,255,0.08)",
+            marginTop: 32,
+          }}>
+            <img 
+              src="/images/ai-branding-speed.jpg"
+              alt="Transformation from chaotic sketches and notes to polished brand deliverables including logo, color swatches, business cards and social media mockups"
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "block",
+              }}
+            />
+          </div>
 
           <div style={{ marginTop: 40, textAlign: "center" }}>
             <CTAButton mobile={mobile} />
