@@ -189,10 +189,6 @@ export default function AIPoweredScheduling() {
             Two versions. Pick the one that fits.
           </p>
 
-          <div style={{ marginTop: 32 }}>
-            <VisualPlaceholder height={300} label="Scheduling Overview" mobile={mobile} />
-          </div>
-
           <div style={{ marginTop: 40, textAlign: "center" }}>
             <CTAButton mobile={mobile} />
           </div>
@@ -388,8 +384,6 @@ export default function AIPoweredScheduling() {
             }}>
               Milton&apos;s scheduling system removes that friction entirely. Members book in seconds. Trainers stay full. Gaps get filled. And with the intelligent version, Milton is actively working to keep your schedule tight and your members engaged — before anyone has to ask.
             </p>
-
-            <VisualPlaceholder height={300} label="Scheduling Dashboard" mobile={mobile} />
 
             <div style={{ marginTop: 32 }}>
               <CTAButton mobile={mobile} />
