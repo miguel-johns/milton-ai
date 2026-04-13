@@ -89,7 +89,7 @@ export default function SharedNav({ onInquireClick }) {
   }, []);
 
   const navLinks = [
-    { label: "AI Agents & Services", hasDropdown: "agents" },
+    { label: "Co-Pilots & AI Agents", hasDropdown: "agents" },
     { label: "Connected Partners", hasDropdown: "partners" },
     { label: "Insights", href: "#/insights" },
     { label: "About Us", href: "#/about" },
