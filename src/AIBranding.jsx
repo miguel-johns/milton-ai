@@ -240,7 +240,22 @@ export default function AIBranding() {
             Not a generic icon from a template library. A real logo with real thought behind it — one that works on your website, your signage, your apparel, your social media, and your business cards.
           </p>
 
-          <VisualPlaceholder height={350} mobile={mobile} />
+          <div style={{
+            borderRadius: mobile ? 12 : 16,
+            overflow: "hidden",
+            border: "1px solid rgba(255,255,255,0.08)",
+            marginTop: 32,
+          }}>
+            <img 
+              src="/images/ai-branding-logo.jpg"
+              alt="Fitness brand identity system showing a minimalist logo applied across t-shirt, signage, business cards, Instagram profile, website, and water bottle"
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "block",
+              }}
+            />
+          </div>
         </section>
 
         {/* ═══════ BRAND GUIDE ═══════ */}
