@@ -45,10 +45,13 @@ export default function SharedNav({ onInquireClick }) {
     { label: "Apps", description: "Connect fitness and wellness apps.", href: "#/partners/apps" },
   ];
 
-  const productsMenuItems = [
+  const coPilotsMenuItems = [
     { label: "Coach Co-Pilot", description: "AI for people coaching clients.", href: "#/coach-copilot" },
     { label: "Director Co-Pilot", description: "AI for people managing trainers.", href: "#/director-dashboard" },
     { label: "Member Co-Pilot", description: "AI for people without a coach.", href: "#/ai-coach" },
+  ];
+
+  const aiAgentsMenuItems = [
     { label: "AI Branding", description: "AI for professional brands.", href: "#/websites" },
     { label: "AI-Powered Scheduling", description: "AI for self-serve scheduling and booking.", href: "#/scheduling" },
     { label: "AI Receptionist", description: "AI for voicemail and follow up.", href: "#/receptionist" },
@@ -185,11 +188,48 @@ export default function SharedNav({ onInquireClick }) {
                             fontFamily: "'DM Sans', sans-serif",
                             fontSize: 11,
                             fontWeight: 600,
+                            color: "#9af198",
+                            textTransform: "uppercase",
+                            letterSpacing: 1,
+                          }}>Co-Pilots</div>
+                          {coPilotsMenuItems.map(item => (
+                            <a
+                              key={item.label}
+                              href={item.href}
+                              style={{
+                                display: "block",
+                                padding: "8px 20px",
+                                textDecoration: "none",
+                                transition: "background 0.2s ease",
+                              }}
+                              onMouseEnter={e => e.currentTarget.style.background = "rgba(13,154,165,0.1)"}
+                              onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+                            >
+                              <div style={{
+                                fontFamily: "'DM Sans', sans-serif",
+                                fontSize: 14,
+                                fontWeight: 600,
+                                color: "#fff",
+                                marginBottom: 2,
+                              }}>{item.label}</div>
+                              <div style={{
+                                fontFamily: "'DM Sans', sans-serif",
+                                fontSize: 12,
+                                color: "rgba(255,255,255,0.5)",
+                              }}>{item.description}</div>
+                            </a>
+                          ))}
+                          
+                          <div style={{
+                            padding: "16px 20px 10px",
+                            fontFamily: "'DM Sans', sans-serif",
+                            fontSize: 11,
+                            fontWeight: 600,
                             color: "#0d9aa5",
                             textTransform: "uppercase",
                             letterSpacing: 1,
                           }}>AI Agents</div>
-                          {productsMenuItems.map(item => (
+                          {aiAgentsMenuItems.map(item => (
                             <a
                               key={item.label}
                               href={item.href}
@@ -527,6 +567,47 @@ export default function SharedNav({ onInquireClick }) {
                 </button>
                 {dropdownOpen && (
                   <div style={{ paddingLeft: 16, paddingTop: 8, paddingBottom: 8 }}>
+                    {/* Co-Pilots Section */}
+                    <div style={{
+                      fontFamily: "'DM Sans', sans-serif",
+                      fontSize: 11,
+                      fontWeight: 600,
+                      color: "#9af198",
+                      textTransform: "uppercase",
+                      letterSpacing: 1,
+                      padding: "8px 0 4px",
+                    }}>Co-Pilots</div>
+                    {coPilotsMenuItems.map(item => (
+                      <a
+                        key={item.label}
+                        href={item.href}
+                        onClick={() => setMenuOpen(false)}
+                        style={{
+                          display: "block",
+                          padding: "10px 12px",
+                          margin: "0 -12px",
+                          borderRadius: 8,
+                          textDecoration: "none",
+                          transition: "background 0.2s ease",
+                        }}
+                        onMouseEnter={e => e.currentTarget.style.background = "rgba(13,154,165,0.1)"}
+                        onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+                      >
+                        <div style={{
+                          fontFamily: "'DM Sans', sans-serif",
+                          fontSize: 14,
+                          fontWeight: 600,
+                          color: "#fff",
+                          marginBottom: 2,
+                        }}>{item.label}</div>
+                        <div style={{
+                          fontFamily: "'DM Sans', sans-serif",
+                          fontSize: 12,
+                          color: "rgba(255,255,255,0.5)",
+                        }}>{item.description}</div>
+                      </a>
+                    ))}
+                    
                     {/* AI Agents Section */}
                     <div style={{
                       fontFamily: "'DM Sans', sans-serif",
@@ -535,9 +616,9 @@ export default function SharedNav({ onInquireClick }) {
                       color: "#0d9aa5",
                       textTransform: "uppercase",
                       letterSpacing: 1,
-                      padding: "8px 0 4px",
+                      padding: "16px 0 4px",
                     }}>AI Agents</div>
-                    {productsMenuItems.map(item => (
+                    {aiAgentsMenuItems.map(item => (
                       <a
                         key={item.label}
                         href={item.href}
