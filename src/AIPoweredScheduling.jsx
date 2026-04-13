@@ -226,8 +226,6 @@ export default function AIPoweredScheduling() {
             ))}
           </div>
 
-          <VisualPlaceholder height={350} label="Base Scheduling Interface" mobile={mobile} />
-
           <div style={{ marginTop: 40, textAlign: "center" }}>
             <CTAButton mobile={mobile} />
           </div>
