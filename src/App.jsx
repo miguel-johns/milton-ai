@@ -998,29 +998,39 @@ export default function MiltonHomepage() {
     }}>{children}</p>
   );
 
-  // AI Agents with enhanced descriptions and mockups
-  const agents = [
+  // Co-Pilots - premium AI assistants
+  const coPilots = [
     { 
       icon: <CoachIcon />, 
       title: "Coach Co-Pilot", 
       description: "Real-time AI that rides shotgun with your trainers — surfacing client history, flagging risk, and suggesting programming adjustments mid-session.", 
       href: "#/coach-copilot",
-      mockup: <CoachCoPilotMockup mobile={mobile} />
+      heroImage: mobile 
+        ? "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Co-pilot%20Hero%20Mobile%20%281%29-2QqYvycjYPrkb71k4xX3UjoUXcWils.png"
+        : "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Co-Pilot%20Hero%20Desktop%20%281%29-oMs3uAN8vmnZe5G2mpOxrpBxoV7L6o.png"
     },
     { 
       icon: <DashboardIcon />, 
       title: "Director Co-Pilot", 
       description: "Give your fitness director a command center — trainer utilization, session quality scores, and retention risk all in one view so nothing slips through the cracks.", 
       href: "#/director-dashboard",
-      mockup: <DirectorCoPilotMockup mobile={mobile} />
+      heroImage: mobile 
+        ? "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Director%20Co-Pilot%20Mobile%2045-KHRthdrmWSoIz47cD4b7Je2YQ0nCYv.png"
+        : "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Director%20Co-Pilot%20Desktop-nVhZn3qp97XkDAjFzBT6pSUluPQwmt.png"
     },
     { 
       icon: <AICoachIcon />, 
       title: "Member Co-Pilot", 
       description: "A fully autonomous AI trainer for members who don't work with a coach — delivering NASM-compliant programming, check-ins, and progressive overload without human intervention.", 
       href: "#/ai-coach",
-      mockup: <AICoachMockup mobile={mobile} />
+      heroImage: mobile 
+        ? "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AI%20Coach%20Page%20Mobile%20Hero-UA01I1S25lvaBgrzzbCWshIXjB3BDH.png"
+        : "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AI%20Coach%20Hero%20Desktop.png-eswd6m7AXATbQcXZNwSlMVblwyFWLn.jpeg"
     },
+  ];
+
+  // AI Agents
+  const aiAgents = [
     { 
       icon: <WebsiteIcon />, 
       title: "AI Branding", 
@@ -1190,7 +1200,7 @@ export default function MiltonHomepage() {
           </Body>
         </section>
 
-        {/* SECTION 3 — AI AGENTS & SERVICES */}
+        {/* SECTION 3 — CO-PILOTS & AI AGENTS */}
         <section id="products" style={{ padding: sectionPad }}>
           <div style={{ textAlign: "center", marginBottom: mobile ? 40 : 56 }}>
             <span style={{
@@ -1199,13 +1209,107 @@ export default function MiltonHomepage() {
               fontWeight: 600,
               letterSpacing: "0.15em",
               textTransform: "uppercase",
-              color: "#0d9aa5",
+              color: "#9af198",
               marginBottom: 16,
               display: "block",
-            }}>AI Agents & Services</span>
+            }}>Co-Pilots & AI Agents</span>
             <Headline style={{ maxWidth: 700, margin: "0 auto" }}>
               The complete AI toolkit for <Accent>personal training businesses.</Accent>
             </Headline>
+          </div>
+          
+          {/* Co-Pilots */}
+          <div style={{ marginBottom: mobile ? 48 : 64 }}>
+            <h3 style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: 11,
+              fontWeight: 600,
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
+              color: "#9af198",
+              marginBottom: 20,
+            }}>Co-Pilots</h3>
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: mobile ? "1fr" : "repeat(auto-fit, minmax(340px, 1fr))",
+              gap: mobile ? 16 : 24,
+            }}>
+              {coPilots.map((coPilot, i) => (
+                <a 
+                  key={i}
+                  href={coPilot.href}
+                  style={{ textDecoration: "none" }}
+                >
+                  <div style={{
+                    background: "rgba(13,26,34,0.85)",
+                    borderRadius: 16,
+                    border: "1px solid rgba(154,241,152,0.15)",
+                    overflow: "hidden",
+                    transition: "transform 0.2s ease, border-color 0.2s ease",
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.transform = "translateY(-4px)";
+                    e.currentTarget.style.borderColor = "rgba(154,241,152,0.4)";
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.transform = "translateY(0)";
+                    e.currentTarget.style.borderColor = "rgba(154,241,152,0.15)";
+                  }}
+                  >
+                    <div style={{
+                      aspectRatio: mobile ? "1 / 1" : "16 / 9",
+                      overflow: "hidden",
+                    }}>
+                      <img 
+                        src={coPilot.heroImage}
+                        alt={coPilot.title}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          objectPosition: "center",
+                        }}
+                      />
+                    </div>
+                    <div style={{ padding: mobile ? 16 : 20 }}>
+                      <div style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 12,
+                        marginBottom: 12,
+                      }}>
+                        <div style={{
+                          width: 40,
+                          height: 40,
+                          borderRadius: 10,
+                          background: "rgba(154,241,152,0.1)",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          color: "#9af198",
+                        }}>
+                          {coPilot.icon}
+                        </div>
+                        <h4 style={{
+                          fontFamily: "'DM Sans', sans-serif",
+                          fontSize: mobile ? 18 : 20,
+                          fontWeight: 600,
+                          color: "#fff",
+                          margin: 0,
+                        }}>{coPilot.title}</h4>
+                      </div>
+                      <p style={{
+                        fontFamily: "'DM Sans', sans-serif",
+                        fontSize: 14,
+                        lineHeight: 1.6,
+                        color: "rgba(255,255,255,0.6)",
+                        margin: 0,
+                      }}>{coPilot.description}</p>
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
           </div>
           
           {/* AI Agents */}
@@ -1218,23 +1322,23 @@ export default function MiltonHomepage() {
               textTransform: "uppercase",
               color: "#0d9aa5",
               marginBottom: 20,
-}}>AI Agents</h3>
-  <div style={{
-  display: "grid",
-  gridTemplateColumns: mobile ? "1fr" : "repeat(auto-fit, minmax(340px, 1fr))",
-  gap: mobile ? 16 : 24,
-  }}>
-  {agents.map((agent, i) => (
-  <AgentCard
-  key={i}
-  icon={agent.icon}
-  title={agent.title}
-  description={agent.description}
-  mobile={mobile}
-  href={agent.href}
-  mockup={agent.mockup}
-  />
-  ))}
+            }}>AI Agents</h3>
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: mobile ? "1fr" : "repeat(auto-fit, minmax(340px, 1fr))",
+              gap: mobile ? 16 : 24,
+            }}>
+              {aiAgents.map((agent, i) => (
+                <AgentCard
+                  key={i}
+                  icon={agent.icon}
+                  title={agent.title}
+                  description={agent.description}
+                  mobile={mobile}
+                  href={agent.href}
+                  mockup={agent.mockup}
+                />
+              ))}
             </div>
           </div>
           
