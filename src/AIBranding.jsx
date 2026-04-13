@@ -129,8 +129,8 @@ export default function AIBranding() {
             border: "1px solid rgba(255,255,255,0.08)",
           }}>
             <img 
-              src="/images/ai-branding-hero.jpg"
-              alt="Premium fitness brand identity mockup showing business cards, brand guideline booklet, website on laptop, and branded merchandise arranged on dark slate surface"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-QxT3JlYVGWd0eH5QJQ35bx3sDGpiJA.png"
+              alt="Premium fitness brand identity flat lay showing FitForge brand guidelines, business cards, letterhead, phone mockup, and marketing materials"
               style={{
                 width: "100%",
                 height: "auto",
@@ -200,8 +200,8 @@ export default function AIBranding() {
             marginTop: 32,
           }}>
             <img 
-              src="/images/ai-branding-speed.jpg"
-              alt="Transformation from chaotic sketches and notes to polished brand deliverables including logo, color swatches, business cards and social media mockups"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2-aO0345iYAjrtrhjENwKKKTSyhGhK8E.png"
+              alt="Logo design process showing pencil sketch with golden ratio measurements transitioning to finished colored FitForge logo mark"
               style={{
                 width: "100%",
                 height: "auto",
@@ -247,8 +247,8 @@ export default function AIBranding() {
             marginTop: 32,
           }}>
             <img 
-              src="/images/ai-branding-logo.jpg"
-              alt="Fitness brand identity system showing a minimalist logo applied across t-shirt, signage, business cards, Instagram profile, website, and water bottle"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3-T836jU9vNOzxkWCqC6e6ieeW6JAe8B.png"
+              alt="FitForge brand identity shown across multiple applications including logo variations, athlete photography, and gym environment contexts"
               style={{
                 width: "100%",
                 height: "auto",
@@ -283,7 +283,22 @@ export default function AIBranding() {
             This is the thing that separates businesses that look professional from businesses that look like they&apos;re figuring it out as they go. Most gyms don&apos;t have one. You will.
           </p>
 
-          <VisualPlaceholder height={350} mobile={mobile} />
+          <div style={{
+            borderRadius: mobile ? 12 : 16,
+            overflow: "hidden",
+            border: "1px solid rgba(255,255,255,0.08)",
+            marginTop: 32,
+          }}>
+            <img 
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1-rkhS4oVavHcGoMowjwyRuhjopi32bn.png"
+              alt="Complete brand identity system including brand guidelines book, business cards, letterhead, phone mockup, and marketing collateral arranged in professional flat lay"
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "block",
+              }}
+            />
+          </div>
 
           <div style={{ marginTop: 40, textAlign: "center" }}>
             <CTAButton mobile={mobile} />
@@ -315,7 +330,22 @@ export default function AIBranding() {
             Need headshots for your trainers? Lifestyle shots for your homepage? Equipment and facility photos for your marketing? Milton handles it — blending real photos with AI enhancement to create visuals that elevate everything they touch.
           </p>
 
-          <VisualPlaceholder height={350} mobile={mobile} />
+          <div style={{
+            borderRadius: mobile ? 12 : 16,
+            overflow: "hidden",
+            border: "1px solid rgba(255,255,255,0.08)",
+            marginTop: 32,
+          }}>
+            <img 
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4-LzJgFvXmAylkQ7AcKQWDIclXNI5ZzD.png"
+              alt="Professional fitness team wearing branded FitForge apparel standing confidently in modern gym facility"
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "block",
+              }}
+            />
+          </div>
         </section>
 
         {/* ═══════ WEBSITE ═══════ */}
@@ -350,7 +380,22 @@ export default function AIBranding() {
             This isn&apos;t a template with your name dropped in. It&apos;s a real website, designed around your brand, your services, and your facility — built to make the right first impression and turn interest into action.
           </p>
 
-          <VisualPlaceholder height={350} mobile={mobile} />
+          <div style={{
+            borderRadius: mobile ? 12 : 16,
+            overflow: "hidden",
+            border: "1px solid rgba(255,255,255,0.08)",
+            marginTop: 32,
+          }}>
+            <img 
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5-yVyyIGiQntY2afwcu3pHvheWvhIjl4.png"
+              alt="MacBook displaying professional FitForge website with modern design, hero section showing 'Elevate Your Strength & Performance' headline"
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "block",
+              }}
+            />
+          </div>
 
           <div style={{ marginTop: 40, textAlign: "center" }}>
             <CTAButton mobile={mobile} />
@@ -389,7 +434,22 @@ export default function AIBranding() {
             You&apos;re doing healthcare-level work. It&apos;s time you looked like it.
           </p>
 
-          <VisualPlaceholder height={350} mobile={mobile} />
+          <div style={{
+            borderRadius: mobile ? 12 : 16,
+            overflow: "hidden",
+            border: "1px solid rgba(255,255,255,0.08)",
+            marginTop: 32,
+          }}>
+            <img 
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6-9mqs0SCMR0GRBP6UrWVqitMBN7MoFp.png"
+              alt="Close-up of premium FitForge logo printed on dark athletic shirt showing professional brand application"
+              style={{
+                width: "100%",
+                height: "auto",
+                display: "block",
+              }}
+            />
+          </div>
         </section>
 
         {/* ═══════ CLOSING CTA ═══════ */}
