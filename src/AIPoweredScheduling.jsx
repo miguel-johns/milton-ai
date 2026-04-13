@@ -340,7 +340,7 @@ export default function AIPoweredScheduling() {
             fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
             color: "rgba(255,255,255,0.6)", margin: "0 0 32px 0",
           }}>
-            And because it&apos;s part of the Milton ecosystem, scheduling data also feeds into the Coach Co-Pilot, the Director Co-Pilot, and the AI Coach. A trainer can see their upcoming sessions alongside client progress data. A fitness director can see team utilization alongside retention trends. The AI Coach can prompt members to book based on their training plan.
+            And because it&apos;s part of the Milton ecosystem, scheduling data also feeds into the Coach Co-Pilot, the Director Co-Pilot, and the Member Co-Pilot. A trainer can see their upcoming sessions alongside client progress data. A fitness director can see team utilization alongside retention trends. The Member Co-Pilot can prompt members to book based on their training plan.
           </p>
 
           <p style={{

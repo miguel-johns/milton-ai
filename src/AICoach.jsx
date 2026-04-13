@@ -818,7 +818,7 @@ export default function AICoach() {
             fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
             color: "rgba(255,255,255,0.65)", margin: "0 0 24px 0",
           }}>
-            Before the AI Coach builds a single workout or meal plan, it knows who it&apos;s working with. Not just their goals — their full picture.
+            Before the Member Co-Pilot builds a single workout or meal plan, it knows who it&apos;s working with. Not just their goals — their full picture.
           </p>
 
           <p style={{
@@ -876,7 +876,7 @@ export default function AICoach() {
             fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
             color: "rgba(255,255,255,0.65)", margin: "0 0 24px 0",
           }}>
-            The AI Coach generates fully individualized programming based on each member&apos;s goals, experience, equipment, and history. A beginner gets a different program than someone training for a half marathon. A member rehabbing a shoulder gets exercises that work around it.
+            The Member Co-Pilot generates fully individualized programming based on each member&apos;s goals, experience, equipment, and history. A beginner gets a different program than someone training for a half marathon. A member rehabbing a shoulder gets exercises that work around it.
           </p>
 
           <p style={{
@@ -924,7 +924,7 @@ export default function AICoach() {
             fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
             color: "rgba(255,255,255,0.65)", margin: "0 0 24px 0",
           }}>
-            The AI Coach builds weekly meal plans matched to each member&apos;s goals and macros — not a generic template, a real plan based on their targets. It adjusts based on what they&apos;re actually eating.
+            The Member Co-Pilot builds weekly meal plans matched to each member&apos;s goals and macros — not a generic template, a real plan based on their targets. It adjusts based on what they&apos;re actually eating.
           </p>
 
           <p style={{
@@ -972,7 +972,7 @@ export default function AICoach() {
             fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
             color: "rgba(255,255,255,0.65)", margin: "0 0 24px 0",
           }}>
-            Some members open the app every morning. Others will never download anything but will respond to a text. The AI Coach works both ways — same personalization, same coaching intelligence, different channel.
+            Some members open the app every morning. Others will never download anything but will respond to a text. The Member Co-Pilot works both ways — same personalization, same coaching intelligence, different channel.
           </p>
 
           <p style={{
@@ -1059,12 +1059,12 @@ export default function AICoach() {
               fontSize: mobile ? 24 : 32,
               fontWeight: 400, color: "#fff",
               margin: "0 0 16px 0",
-            }}>See the AI Coach in your facility.</h3>
+            }}>See the Member Co-Pilot in your facility.</h3>
             <p style={{
               fontFamily: f, fontSize: mobile ? 14 : 16, lineHeight: 1.7,
               color: "rgba(255,255,255,0.6)", margin: "0 0 28px 0",
             }}>
-              Book a free consultation and we&apos;ll show you exactly how the AI Coach fits your business.
+              Book a free consultation and we&apos;ll show you exactly how the Member Co-Pilot fits your business.
             </p>
             <CTAButton mobile={mobile} />
           </div>
