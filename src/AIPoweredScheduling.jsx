@@ -89,13 +89,15 @@ function CTAButton({ mobile }) {
   );
 }
 
-function FeatureCard({ title, body, mobile }) {
+function FeatureCard({ title, body, mobile, mockup }) {
   return (
     <div style={{
       background: "rgba(255,255,255,0.02)",
       border: "1px solid rgba(255,255,255,0.06)",
       borderRadius: mobile ? 12 : 16,
       padding: mobile ? "20px" : "28px",
+      display: "flex",
+      flexDirection: "column",
     }}>
       <h4 style={{
         fontFamily: f,
@@ -110,7 +112,125 @@ function FeatureCard({ title, body, mobile }) {
         lineHeight: 1.7,
         color: "rgba(255,255,255,0.55)",
         margin: 0,
+        marginBottom: mockup ? 16 : 0,
       }}>{body}</p>
+      {mockup}
+    </div>
+  );
+}
+
+function BookingPageMockup() {
+  return (
+    <div style={{ background: "rgba(8, 20, 38, 0.7)", border: "1px solid rgba(13, 154, 165, 0.12)", borderRadius: 10, padding: 12, marginTop: "auto" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <div style={{ width: 26, height: 26, borderRadius: "50%", background: "linear-gradient(135deg, #0d9aa5, #9af198)" }} />
+          <span style={{ fontFamily: f, fontSize: 11, fontWeight: 600, color: "#fff" }}>Coach Alex</span>
+        </div>
+        <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
+          {["9:00 AM", "10:30 AM", "2:00 PM"].map((time, i) => (
+            <div key={i} style={{ padding: "5px 8px", borderRadius: 5, background: i === 1 ? "#0d9aa5" : "rgba(255,255,255,0.06)", fontSize: 10, fontFamily: f, color: i === 1 ? "#fff" : "rgba(255,255,255,0.6)", fontWeight: 500 }}>{time}</div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function AvailabilityMockup() {
+  const days = ["M", "T", "W", "T", "F"];
+  return (
+    <div style={{ background: "rgba(8, 20, 38, 0.7)", border: "1px solid rgba(13, 154, 165, 0.12)", borderRadius: 10, padding: 12, marginTop: "auto" }}>
+      <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
+        {days.map((day, i) => (
+          <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 3 }}>
+            <span style={{ fontSize: 9, fontFamily: f, color: "rgba(255,255,255,0.4)" }}>{day}</span>
+            <div style={{ width: 20, height: 26, borderRadius: 3, background: [0, 2, 4].includes(i) ? "rgba(13, 154, 165, 0.3)" : "rgba(255,255,255,0.06)", border: [0, 2, 4].includes(i) ? "1px solid rgba(13, 154, 165, 0.5)" : "1px solid transparent" }} />
+          </div>
+        ))}
+        <div style={{ marginLeft: 6, display: "flex", alignItems: "center", padding: "3px 6px", borderRadius: 3, background: "rgba(13, 154, 165, 0.15)" }}>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#0d9aa5" strokeWidth="2"><path d="M20 6L9 17l-5-5" /></svg>
+          <span style={{ fontSize: 9, fontFamily: f, color: "#0d9aa5", marginLeft: 3 }}>Synced</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function RoundRobinMockup() {
+  return (
+    <div style={{ background: "rgba(8, 20, 38, 0.7)", border: "1px solid rgba(13, 154, 165, 0.12)", borderRadius: 10, padding: 12, marginTop: "auto" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
+          <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#9af198" }} />
+          <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#0d9aa5" }} />
+          <div style={{ width: 6, height: 6, borderRadius: "50%", background: "rgba(255,255,255,0.3)" }} />
+        </div>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+        <div style={{ display: "flex" }}>
+          {[0, 1, 2].map(i => (
+            <div key={i} style={{ width: 20, height: 20, borderRadius: "50%", background: ["#0d9aa5", "#9af198", "#f0f4f8"][i], border: "2px solid #061c27", marginLeft: i > 0 ? -6 : 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <span style={{ fontSize: 8, fontWeight: 600, color: i === 2 ? "#061c27" : "#fff" }}>{["A", "B", "C"][i]}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PaymentMockup() {
+  return (
+    <div style={{ background: "rgba(8, 20, 38, 0.7)", border: "1px solid rgba(13, 154, 165, 0.12)", borderRadius: 10, padding: 12, marginTop: "auto" }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          <div style={{ width: 28, height: 18, borderRadius: 3, background: "linear-gradient(135deg, #635bff, #a259ff)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <span style={{ fontSize: 7, fontWeight: 700, color: "#fff" }}>STRIPE</span>
+          </div>
+          <span style={{ fontSize: 10, fontFamily: f, color: "rgba(255,255,255,0.6)" }}>•••• 4242</span>
+        </div>
+        <div style={{ padding: "3px 8px", borderRadius: 3, background: "rgba(154, 241, 152, 0.15)", display: "flex", alignItems: "center", gap: 3 }}>
+          <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#9af198" strokeWidth="2.5"><path d="M20 6L9 17l-5-5" /></svg>
+          <span style={{ fontSize: 9, fontFamily: f, color: "#9af198", fontWeight: 500 }}>Paid</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ReminderMockup() {
+  return (
+    <div style={{ background: "rgba(8, 20, 38, 0.7)", border: "1px solid rgba(13, 154, 165, 0.12)", borderRadius: 10, padding: 12, marginTop: "auto" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
+        {[{ label: "Confirmation", time: "Instant", active: true }, { label: "Reminder", time: "24h before", active: true }, { label: "Follow-up", time: "After", active: false }].map((item, i) => (
+          <div key={i} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+              <div style={{ width: 12, height: 12, borderRadius: 2, background: item.active ? "#0d9aa5" : "transparent", border: item.active ? "none" : "1px solid rgba(255,255,255,0.2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                {item.active && <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3"><path d="M20 6L9 17l-5-5" /></svg>}
+              </div>
+              <span style={{ fontSize: 9, fontFamily: f, color: item.active ? "#fff" : "rgba(255,255,255,0.4)" }}>{item.label}</span>
+            </div>
+            <span style={{ fontSize: 8, fontFamily: f, color: "rgba(255,255,255,0.35)" }}>{item.time}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ReportMockup() {
+  const bars = [65, 80, 45, 90, 70];
+  return (
+    <div style={{ background: "rgba(8, 20, 38, 0.7)", border: "1px solid rgba(13, 154, 165, 0.12)", borderRadius: 10, padding: 12, marginTop: "auto" }}>
+      <div style={{ display: "flex", alignItems: "flex-end", gap: 5, height: 36 }}>
+        {bars.map((h, i) => (
+          <div key={i} style={{ width: 14, height: `${h}%`, borderRadius: 2, background: i === 3 ? "#9af198" : "rgba(13, 154, 165, 0.5)" }} />
+        ))}
+        <div style={{ marginLeft: 6, display: "flex", flexDirection: "column", gap: 1 }}>
+          <span style={{ fontSize: 12, fontFamily: f, fontWeight: 600, color: "#9af198" }}>92%</span>
+          <span style={{ fontSize: 8, fontFamily: f, color: "rgba(255,255,255,0.4)" }}>Utilization</span>
+        </div>
+      </div>
     </div>
   );
 }
@@ -121,12 +241,12 @@ export default function AIPoweredScheduling() {
   const sectionPad = mobile ? "56px 0" : "80px 0";
 
   const baseFeatures = [
-    { title: "Self-serve booking pages", body: "Every trainer gets their own branded booking page. Members pick a session type, choose a time, and confirm. Done." },
-    { title: "Real-time availability", body: "Syncs with trainer calendars so members only see open slots. No double-booking. No manual updates." },
-    { title: "Round-robin distribution", body: "New members or unassigned sessions get routed to available trainers automatically. Balance workloads without micromanaging the schedule." },
-    { title: "Integrated payments", body: "Powered by Stripe. Members pay when they book. Packages, single sessions, memberships — all handled. Reduces no-shows and simplifies your billing." },
-    { title: "Automated reminders", body: "Confirmation emails, session reminders, and post-session follow-ups go out automatically. No one on your team has to remember to send them." },
-    { title: "Weekly reports", body: "A recurring summary of bookings, utilization, no-show rates, and revenue by trainer. Delivered to you automatically." },
+    { title: "Self-serve booking pages", body: "Every trainer gets their own branded booking page. Members pick a session type, choose a time, and confirm. Done.", mockup: <BookingPageMockup /> },
+    { title: "Real-time availability", body: "Syncs with trainer calendars so members only see open slots. No double-booking. No manual updates.", mockup: <AvailabilityMockup /> },
+    { title: "Round-robin distribution", body: "New members or unassigned sessions get routed to available trainers automatically. Balance workloads without micromanaging the schedule.", mockup: <RoundRobinMockup /> },
+    { title: "Integrated payments", body: "Powered by Stripe. Members pay when they book. Packages, single sessions, memberships — all handled. Reduces no-shows and simplifies your billing.", mockup: <PaymentMockup /> },
+    { title: "Automated reminders", body: "Confirmation emails, session reminders, and post-session follow-ups go out automatically. No one on your team has to remember to send them.", mockup: <ReminderMockup /> },
+    { title: "Weekly reports", body: "A recurring summary of bookings, utilization, no-show rates, and revenue by trainer. Delivered to you automatically.", mockup: <ReportMockup /> },
   ];
 
   return (
@@ -222,7 +342,7 @@ export default function AIPoweredScheduling() {
             marginBottom: 40,
           }}>
             {baseFeatures.map((feature, i) => (
-              <FeatureCard key={i} title={feature.title} body={feature.body} mobile={mobile} />
+              <FeatureCard key={i} title={feature.title} body={feature.body} mobile={mobile} mockup={feature.mockup} />
             ))}
           </div>
 
