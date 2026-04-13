@@ -701,7 +701,7 @@ export default function AICoach() {
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
             <div style={{ width: 8, height: 8, borderRadius: "50%", background: teal, flexShrink: 0 }} />
-            <span style={{ fontFamily: f, fontSize: 12, fontWeight: 500, letterSpacing: 2.5, textTransform: "uppercase", color: "rgba(255,255,255,0.7)" }}>AI Agents / AI Coach</span>
+            <span style={{ fontFamily: f, fontSize: 12, fontWeight: 500, letterSpacing: 2.5, textTransform: "uppercase", color: "rgba(255,255,255,0.7)" }}>AI Agents / Member Co-Pilot</span>
           </div>
 
           <h1 style={{
@@ -759,7 +759,7 @@ export default function AICoach() {
             fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
             color: "rgba(255,255,255,0.65)", margin: "0 0 40px 0",
           }}>
-            You upload your content once — your training philosophy, nutrition approach, programming principles, coaching voice. The AI Coach does the rest for every member, every day.
+            You upload your content once — your training philosophy, nutrition approach, programming principles, coaching voice. The Member Co-Pilot does the rest for every member, every day.
           </p>
 
           <div style={{
