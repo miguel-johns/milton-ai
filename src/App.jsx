@@ -1016,7 +1016,7 @@ export default function MiltonHomepage() {
     },
     { 
       icon: <AICoachIcon />, 
-      title: "AI Coach", 
+      title: "Member Co-Pilot", 
       description: "A fully autonomous AI trainer for members who don't work with a coach — delivering NASM-compliant programming, check-ins, and progressive overload without human intervention.", 
       href: "#/ai-coach",
       mockup: <AICoachMockup mobile={mobile} />
