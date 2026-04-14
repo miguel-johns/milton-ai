@@ -323,32 +323,27 @@ export default function StripeCRM() {
 
             <VisualPlaceholder height={350} mobile={mobile} />
 
-            <div style={{
-              background: "rgba(13,154,165,0.08)",
-              border: "1px solid rgba(13,154,165,0.2)",
-              borderRadius: mobile ? 16 : 24,
-              padding: mobile ? "40px 24px" : "56px 48px",
+            <h2 style={{
+              fontFamily: serif,
+              fontSize: mobile ? 26 : 36,
+              fontWeight: 400, lineHeight: 1.2, color: "#fff",
+              margin: "48px 0 16px 0",
               textAlign: "center",
-              marginTop: 48,
             }}>
-              <h2 style={{
-                fontFamily: serif,
-                fontSize: mobile ? 26 : 36,
-                fontWeight: 400, lineHeight: 1.2, color: "#fff",
-                margin: "0 0 16px 0",
-              }}>
-                Ready to cut out the middleman?
-              </h2>
-              <p style={{
-                fontFamily: f,
-                fontSize: mobile ? 15 : 17,
-                lineHeight: 1.6,
-                color: "rgba(255,255,255,0.6)",
-                maxWidth: 500,
-                margin: "0 auto 28px auto",
-              }}>
-                Book a free AI Strategy Session and we&apos;ll show you how Milton on Stripe can simplify your payments, clients, and operations.
-              </p>
+              Ready to cut out the middleman?
+            </h2>
+            <p style={{
+              fontFamily: f,
+              fontSize: mobile ? 15 : 17,
+              lineHeight: 1.6,
+              color: "rgba(255,255,255,0.6)",
+              maxWidth: 500,
+              margin: "0 auto 28px auto",
+              textAlign: "center",
+            }}>
+              Book a free AI Strategy Session and we&apos;ll show you how Milton on Stripe can simplify your payments, clients, and operations.
+            </p>
+            <div style={{ textAlign: "center" }}>
               <CTAButton mobile={mobile} />
             </div>
           </section>
