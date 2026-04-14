@@ -73,27 +73,44 @@ function CTAButton({ mobile }) {
   );
 }
 
-function MilestoneItem({ title, body, mobile }) {
+function IllustratedFeatureCard({ icon, title, body, mobile }) {
   return (
     <div style={{
-      background: "rgba(255,255,255,0.02)",
-      border: "1px solid rgba(255,255,255,0.06)",
-      borderRadius: 12,
-      padding: mobile ? "20px" : "24px",
+      background: "rgba(255,255,255,0.03)",
+      border: "1px solid rgba(255,255,255,0.08)",
+      borderRadius: mobile ? 16 : 20,
+      padding: mobile ? 24 : 32,
+      display: "flex",
+      flexDirection: "column",
+      height: "100%",
     }}>
+      <div style={{
+        width: mobile ? 56 : 64,
+        height: mobile ? 56 : 64,
+        borderRadius: 16,
+        background: "rgba(13,154,165,0.12)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        marginBottom: mobile ? 20 : 24,
+      }}>
+        {icon}
+      </div>
       <h4 style={{
         fontFamily: f,
-        fontSize: mobile ? 15 : 16,
+        fontSize: mobile ? 17 : 20,
         fontWeight: 600,
-        color: mint,
-        margin: "0 0 8px 0",
+        color: "#fff",
+        margin: "0 0 12px 0",
+        lineHeight: 1.3,
       }}>{title}</h4>
       <p style={{
         fontFamily: f,
         fontSize: mobile ? 14 : 15,
-        lineHeight: 1.6,
-        color: "rgba(255,255,255,0.6)",
+        lineHeight: 1.7,
+        color: "rgba(255,255,255,0.55)",
         margin: 0,
+        flex: 1,
       }}>{body}</p>
     </div>
   );
@@ -104,13 +121,84 @@ export default function AIAcquisition() {
   const px = mobile ? 20 : tablet ? 32 : 40;
   const sectionPad = mobile ? "56px 0" : "80px 0";
 
-  const milestones = [
-    { title: "Strength milestones", body: "New PRs, progressive overload achievements, weight milestones on key lifts." },
-    { title: "Consistency streaks", body: "Four weeks straight, 50 sessions logged, never missed a Monday." },
-    { title: "Nutrition wins", body: "Hit protein targets for a full week, logged every meal for 30 days, improved meal consistency by 40%." },
-    { title: "Body composition changes", body: "Body fat down 2%, lean mass up, waist measurement decreasing month over month." },
-    { title: "Challenge completions", body: "Finished a 28-day nutrition challenge, completed a training program, hit a goal ahead of schedule." },
-    { title: "Anniversary markers", body: "Six months as a member, one year of training, 100th session completed." },
+  const milestoneCards = [
+    { 
+      title: "Strength milestones", 
+      body: "New PRs, progressive overload achievements, key lift records.",
+      icon: (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M6.5 6.5h11v11h-11z" />
+          <path d="M6.5 11h-4v2h4" />
+          <path d="M17.5 11h4v2h-4" />
+          <path d="M11 6.5v-4h2v4" />
+          <path d="M11 17.5v4h2v-4" />
+        </svg>
+      )
+    },
+    { 
+      title: "Consistency streaks", 
+      body: "Four weeks straight, 50 sessions logged, never missed a Monday.",
+      icon: (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 2v4" />
+          <path d="M12 18v4" />
+          <path d="M4.93 4.93l2.83 2.83" />
+          <path d="M16.24 16.24l2.83 2.83" />
+          <path d="M2 12h4" />
+          <path d="M18 12h4" />
+          <circle cx="12" cy="12" r="4" />
+        </svg>
+      )
+    },
+    { 
+      title: "Nutrition wins", 
+      body: "Protein targets hit, meal logging streaks, consistency improvements.",
+      icon: (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 2a10 10 0 1 0 10 10H12V2z" />
+          <path d="M12 2a10 10 0 0 1 10 10" />
+          <path d="M12 12l7-7" />
+        </svg>
+      )
+    },
+    { 
+      title: "Body composition", 
+      body: "Body fat down, lean mass up, measurements shifting month over month.",
+      icon: (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 2v20" />
+          <path d="M2 12h20" />
+          <path d="M4 4l4 4" />
+          <path d="M4 20l4-4" />
+          <path d="M20 4l-4 4" />
+          <path d="M20 20l-4-4" />
+        </svg>
+      )
+    },
+    { 
+      title: "Challenge completions", 
+      body: "28-day nutrition challenge finished, training program completed.",
+      icon: (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.11" />
+          <circle cx="12" cy="8" r="7" />
+          <path d="M9 8l2 2 4-4" />
+        </svg>
+      )
+    },
+    { 
+      title: "Anniversary markers", 
+      body: "Six months as a member, 100th session, one year of training.",
+      icon: (
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+          <line x1="16" y1="2" x2="16" y2="6" />
+          <line x1="8" y1="2" x2="8" y2="6" />
+          <line x1="3" y1="10" x2="21" y2="10" />
+          <path d="M12 14l2 2 4-4" />
+        </svg>
+      )
+    },
   ];
 
   return (
@@ -147,14 +235,14 @@ export default function AIAcquisition() {
             fontFamily: f, fontSize: mobile ? 16 : 20, lineHeight: 1.7,
             color: "rgba(255,255,255,0.6)", maxWidth: 720, margin: "0 0 24px 0",
           }}>
-            Your best marketing doesn&apos;t come from ads. It comes from a member posting their progress on Instagram and their friend asking, &quot;Where do you train?&quot; That moment — someone sharing a real result with real people who trust them — is worth more than any campaign you&apos;ll ever run.
+            Your best marketing doesn&apos;t come from ads. It comes from a member posting their progress and their friend asking, &quot;Where do you train?&quot; That moment — a real result, shared by someone trusted — is worth more than any campaign you&apos;ll run.
           </p>
 
           <p style={{
             fontFamily: f, fontSize: mobile ? 15 : 18, lineHeight: 1.7,
             color: "rgba(255,255,255,0.55)", maxWidth: 720, margin: "0 0 40px 0",
           }}>
-            The problem is it almost never happens. Not because members aren&apos;t making progress. They are. But nobody&apos;s packaging that progress into something shareable. Nobody&apos;s making it easy. Nobody&apos;s giving them something they&apos;re proud to post. Milton&apos;s AI Acquisition Engine changes that. It makes every win visible, every milestone shareable, and every member a walking referral machine — with a single tap.
+            The problem is it almost never happens. Not because members aren&apos;t making progress. They are. But nobody&apos;s packaging it into something shareable. Milton does.
           </p>
 
           <VisualPlaceholder height={mobile ? 280 : 480} label="Hero Image" mobile={mobile} />
@@ -164,7 +252,7 @@ export default function AIAcquisition() {
           </div>
         </section>
 
-        {/* ═══════ SMALL WINS ═══════ */}
+        {/* ═══════ EVERY MILESTONE ═══════ */}
         <section style={{ padding: sectionPad, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
           <h2 style={{
             fontFamily: serif,
@@ -172,109 +260,38 @@ export default function AIAcquisition() {
             fontWeight: 400, lineHeight: 1.15, color: "#fff",
             margin: "0 0 24px 0",
           }}>
-            Small wins, made visual — <Accent>automatically</Accent>
+            Every milestone, made visible — <Accent>automatically</Accent>
           </h2>
 
           <p style={{
             fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
             color: "rgba(255,255,255,0.6)", margin: "0 0 20px 0",
           }}>
-            Most members don&apos;t realize how much progress they&apos;re making. A 10lb increase on their bench press. A consistent four-week training streak. Hitting their protein goal 25 out of 30 days. Losing two inches off their waist since January. These things happen quietly, buried in data that nobody ever surfaces.
+            Most members don&apos;t realize how much progress they&apos;re making. A 10lb PR. A four-week training streak. Hitting protein targets 25 out of 30 days. These things happen quietly, buried in data nobody ever surfaces.
           </p>
 
           <p style={{
             fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
             color: "rgba(255,255,255,0.6)", margin: "0 0 20px 0",
           }}>
-            Milton surfaces all of it. The AI Acquisition Engine monitors member progress across workouts, nutrition, body composition, consistency, and milestones — and automatically generates visual progress cards when something worth celebrating happens. Clean, branded, designed graphics that make the win feel real.
-          </p>
-
-          <p style={{
-            fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
-            color: "rgba(255,255,255,0.6)", margin: 0,
-          }}>
-            A member finishes their session and gets a notification: &quot;You just hit a new squat PR — 185lbs. That&apos;s a 40lb increase since you started.&quot; Attached is a sharp, branded graphic with their name, the milestone, and your facility&apos;s logo. They didn&apos;t have to ask for it. They didn&apos;t have to build it. It just appeared.
-          </p>
-
-          <VisualPlaceholder height={350} mobile={mobile} />
-
-          <div style={{ marginTop: 40, textAlign: "center" }}>
-            <CTAButton mobile={mobile} />
-          </div>
-        </section>
-
-        {/* ═══════ ONE TAP TO SHARE ═══════ */}
-        <section style={{ padding: sectionPad, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-          <h2 style={{
-            fontFamily: serif,
-            fontSize: mobile ? 28 : 40,
-            fontWeight: 400, lineHeight: 1.15, color: "#fff",
-            margin: "0 0 24px 0",
-          }}>
-            One tap to share — and your <Accent>brand goes with it</Accent>
-          </h2>
-
-          <p style={{
-            fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
-            color: "rgba(255,255,255,0.6)", margin: "0 0 20px 0",
-          }}>
-            Here&apos;s where the magic happens. Every progress card Milton generates is designed to be shared. One button. Post it to Instagram, text it to a friend, add it to their story, send it to their family group chat. Whatever they want to do with it — your brand is on it.
+            Milton surfaces all of it. The AI Acquisition Engine monitors progress across workouts, nutrition, body composition, consistency, and milestones — and automatically generates a branded visual card when something worth celebrating happens.
           </p>
 
           <p style={{
             fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
             color: "rgba(255,255,255,0.6)", margin: "0 0 20px 0",
           }}>
-            The member is celebrating their win. Their network sees it. And attached to every celebration is your gym&apos;s name, your logo, and your brand — showing up organically in front of people who trust the person posting it.
+            A member finishes their session and gets a notification: &quot;You just hit a new squat PR — 185lbs. That&apos;s a 40lb increase since you started.&quot; A clean, branded graphic with their name, the milestone, and your facility&apos;s logo. They didn&apos;t ask for it. It just appeared.
           </p>
 
           <p style={{
-            fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
+            fontFamily: f, fontSize: mobile ? 16 : 18, lineHeight: 1.75,
             color: mint, fontWeight: 500, margin: 0,
           }}>
-            No hashtag campaigns. No &quot;tag us for a chance to win.&quot; No begging for user-generated content. Just real results, made beautiful, shared naturally by people who are genuinely proud of what they&apos;ve accomplished. That&apos;s the most powerful marketing that exists.
+            One tap to share. Instagram, a text, a story, a family group chat. Your brand travels with it every time.
           </p>
 
           <VisualPlaceholder height={350} mobile={mobile} />
-        </section>
-
-        {/* ═══════ EVERY SHARE IS A REFERRAL ═══════ */}
-        <section style={{ padding: sectionPad, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-          <h2 style={{
-            fontFamily: serif,
-            fontSize: mobile ? 28 : 40,
-            fontWeight: 400, lineHeight: 1.15, color: "#fff",
-            margin: "0 0 24px 0",
-          }}>
-            Every share is a <Accent>referral waiting to happen</Accent>
-          </h2>
-
-          <p style={{
-            fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
-            color: "rgba(255,255,255,0.6)", margin: "0 0 20px 0",
-          }}>
-            When someone posts a progress card, their friends and family notice. They ask questions. &quot;What app is that?&quot; &quot;Where do you work out?&quot; &quot;How did you lose that much?&quot; Every one of those conversations is a warm referral — and they started because Milton made it effortless for your member to share.
-          </p>
-
-          <p style={{
-            fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
-            color: "rgba(255,255,255,0.6)", margin: "0 0 20px 0",
-          }}>
-            Milton can take it a step further. Embedded in every shared progress card is a path back to your facility — a link to book an intro session, a landing page for new members, or a special referral offer. The member shares their win. Their friend taps. And now they&apos;re on your calendar.
-          </p>
-
-          <p style={{
-            fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
-            color: mint, fontWeight: 500, margin: 0,
-          }}>
-            No referral program to manage. No tracking spreadsheets. No awkward &quot;hey, can you tell your friends about us?&quot; conversations. The results do the talking. Milton just makes sure they get heard.
-          </p>
-
-          <VisualPlaceholder height={350} mobile={mobile} />
-
-          <div style={{ marginTop: 40, textAlign: "center" }}>
-            <CTAButton mobile={mobile} />
-          </div>
         </section>
 
         {/* ═══════ MILESTONE TYPES ═══════ */}
@@ -292,30 +309,34 @@ export default function AIAcquisition() {
             fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
             color: "rgba(255,255,255,0.6)", margin: "0 0 32px 0",
           }}>
-            Milton tracks and generates progress cards across every dimension of the member journey — not just the big transformations, but the small wins that keep people motivated and sharing along the way.
+            Milton generates progress cards across every dimension of the member journey — not just big transformations, but the small wins that keep people motivated.
           </p>
 
           <div style={{
             display: "grid",
-            gridTemplateColumns: mobile ? "1fr" : "1fr 1fr",
-            gap: mobile ? 16 : 20,
+            gridTemplateColumns: mobile ? "1fr" : "repeat(2, 1fr)",
+            gap: mobile ? 16 : 24,
           }}>
-            {milestones.map((milestone, i) => (
-              <MilestoneItem key={i} title={milestone.title} body={milestone.body} mobile={mobile} />
+            {milestoneCards.map((card, i) => (
+              <IllustratedFeatureCard 
+                key={i} 
+                icon={card.icon}
+                title={card.title} 
+                body={card.body} 
+                mobile={mobile} 
+              />
             ))}
           </div>
 
           <p style={{
-            fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
-            color: mint, fontWeight: 500, margin: "32px 0 0 0", textAlign: "center",
+            fontFamily: f, fontSize: mobile ? 16 : 18, lineHeight: 1.75,
+            color: mint, fontWeight: 500, margin: "40px 0 0 0", textAlign: "center",
           }}>
-            Each one gets its own branded visual. Each one is shareable. Each one puts your facility in front of new eyes.
+            Each one gets a branded visual. Each one is shareable. Each one puts your facility in front of new eyes.
           </p>
-
-          <VisualPlaceholder height={350} mobile={mobile} />
         </section>
 
-        {/* ═══════ YOUR BRAND ON EVERY SHARE ═══════ */}
+        {/* ═══════ EVERY SHARE IS A REFERRAL ═══════ */}
         <section style={{ padding: sectionPad, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
           <h2 style={{
             fontFamily: serif,
@@ -323,53 +344,28 @@ export default function AIAcquisition() {
             fontWeight: 400, lineHeight: 1.15, color: "#fff",
             margin: "0 0 24px 0",
           }}>
-            Your brand on <Accent>every share</Accent>
+            Every share is a referral — <Accent>handled</Accent>
           </h2>
 
           <p style={{
             fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
             color: "rgba(255,255,255,0.6)", margin: "0 0 20px 0",
           }}>
-            Every progress card is generated in your brand — your colors, your logo, your facility name. When a member shares their win, it doesn&apos;t look like it came from a generic app. It looks like it came from your gym. Because it did.
+            When someone posts a progress card, their network notices. &quot;What app is that?&quot; &quot;Where do you work out?&quot; Every one of those conversations is a warm referral — and it started because Milton made sharing effortless.
           </p>
-
-          <p style={{
-            fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
-            color: mint, fontWeight: 500, margin: 0,
-          }}>
-            This is branded content at scale, created automatically, distributed by the people who love what you do. No content calendar. No designer. No social media manager. Just real results, real members, and real reach — powered by AI.
-          </p>
-
-          <VisualPlaceholder height={350} mobile={mobile} />
-
-          <div style={{ marginTop: 40, textAlign: "center" }}>
-            <CTAButton mobile={mobile} />
-          </div>
-        </section>
-
-        {/* ═══════ RESULTS THAT MARKET THEMSELVES ═══════ */}
-        <section style={{ padding: sectionPad, borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-          <h2 style={{
-            fontFamily: serif,
-            fontSize: mobile ? 28 : 40,
-            fontWeight: 400, lineHeight: 1.15, color: "#fff",
-            margin: "0 0 24px 0",
-          }}>
-            Results that <Accent>market themselves</Accent>
-          </h2>
 
           <p style={{
             fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
             color: "rgba(255,255,255,0.6)", margin: "0 0 20px 0",
           }}>
-            The best gyms in the world don&apos;t need to shout about how good they are. Their members do it for them. Milton&apos;s AI Acquisition Engine just makes that happen faster, more often, and at a scale that turns organic sharing into a genuine growth engine.
+            Embedded in every card is a path back to your facility: a link to book an intro session or a referral landing page. The member shares their win. Their friend taps. Now they&apos;re on your calendar.
           </p>
 
           <p style={{
-            fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
+            fontFamily: f, fontSize: mobile ? 16 : 18, lineHeight: 1.75,
             color: mint, fontWeight: 500, margin: 0,
           }}>
-            Every win celebrated is a story told. Every story told reaches people who trust the person telling it. And every one of those people is one tap away from becoming your next member.
+            No referral program to manage. No tracking spreadsheets. The results do the talking. Milton just makes sure they get heard.
           </p>
 
           <VisualPlaceholder height={350} mobile={mobile} />
@@ -381,28 +377,21 @@ export default function AIAcquisition() {
           borderTop: "1px solid rgba(255,255,255,0.06)",
           textAlign: "center",
         }}>
-          <div style={{
-            background: "rgba(13,154,165,0.06)",
-            border: "1px solid rgba(13,154,165,0.2)",
-            borderRadius: 20,
-            padding: mobile ? "40px 24px" : "56px 48px",
+          <h2 style={{
+            fontFamily: serif,
+            fontSize: mobile ? 26 : 36,
+            fontWeight: 400, lineHeight: 1.15, color: "#fff",
+            margin: "0 0 16px 0",
           }}>
-            <h2 style={{
-              fontFamily: serif,
-              fontSize: mobile ? 26 : 36,
-              fontWeight: 400, lineHeight: 1.15, color: "#fff",
-              margin: "0 0 16px 0",
-            }}>
-              Ready to turn wins into members?
-            </h2>
-            <p style={{
-              fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.7,
-              color: "rgba(255,255,255,0.6)", maxWidth: 540, margin: "0 auto 28px auto",
-            }}>
-              Book an AI Consultation and see how the AI Acquisition Engine can transform your members&apos; results into your strongest marketing channel.
-            </p>
-            <CTAButton mobile={mobile} />
-          </div>
+            Ready to turn wins into members?
+          </h2>
+          <p style={{
+            fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.7,
+            color: "rgba(255,255,255,0.6)", maxWidth: 540, margin: "0 auto 28px auto",
+          }}>
+            Book an AI Consultation and see how the AI Acquisition Engine can transform your members&apos; results into your strongest marketing channel.
+          </p>
+          <CTAButton mobile={mobile} />
         </section>
 
         </div>
