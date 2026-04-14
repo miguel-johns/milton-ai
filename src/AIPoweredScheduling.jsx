@@ -53,79 +53,24 @@ function VisualPlaceholder({ height = 320, label = "Visual Here", mobile }) {
   );
 }
 
-function BookingFlowCarousel({ mobile }) {
-  const [current, setCurrent] = useState(0);
-  const steps = [
-    { desktop: "/images/scheduling-book-session-desktop.jpeg", mobile: "/images/scheduling-book-session-mobile.jpeg", label: "Book a Session" },
-    { desktop: "/images/scheduling-choose-trainer-desktop.jpeg", mobile: "/images/scheduling-choose-trainer-mobile.jpeg", label: "Choose a Trainer" },
-    { desktop: "/images/scheduling-pick-date-desktop.jpeg", mobile: "/images/scheduling-pick-date-mobile.jpeg", label: "Pick a Date" },
-    { desktop: "/images/scheduling-pick-time-desktop.jpeg", mobile: "/images/scheduling-pick-time-mobile.jpeg", label: "Pick a Time" },
-    { desktop: "/images/scheduling-your-info-desktop.jpeg", mobile: "/images/scheduling-your-info-mobile.jpeg", label: "Your Info" },
-  ];
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % steps.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [steps.length]);
-
+function SchedulingImage({ desktopSrc, mobileSrc, alt, mobile }) {
   return (
-    <div style={{ position: "relative" }}>
-      <div style={{
-        width: "100%",
-        aspectRatio: mobile ? "4 / 5" : "16 / 9",
-        borderRadius: mobile ? 16 : 20,
-        overflow: "hidden",
-        position: "relative",
-        background: "#0a1a24",
-      }}>
-        {steps.map((step, i) => (
-          <img
-            key={i}
-            src={mobile ? step.mobile : step.desktop}
-            alt={step.label}
-            style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              opacity: current === i ? 1 : 0,
-              transition: "opacity 0.5s ease-in-out",
-            }}
-          />
-        ))}
-      </div>
-      <div style={{ display: "flex", justifyContent: "center", gap: 8, marginTop: 16 }}>
-        {steps.map((step, i) => (
-          <button
-            key={i}
-            onClick={() => setCurrent(i)}
-            style={{
-              width: current === i ? 24 : 8,
-              height: 8,
-              borderRadius: 4,
-              background: current === i ? teal : "rgba(255,255,255,0.2)",
-              border: "none",
-              cursor: "pointer",
-              transition: "all 0.3s ease",
-              padding: 0,
-            }}
-            aria-label={step.label}
-          />
-        ))}
-      </div>
-      <p style={{
-        fontFamily: f,
-        fontSize: mobile ? 12 : 14,
-        color: "rgba(255,255,255,0.5)",
-        textAlign: "center",
-        marginTop: 8,
-        marginBottom: 0,
-      }}>
-        {steps[current].label}
-      </p>
+    <div style={{
+      width: "100%",
+      aspectRatio: mobile ? "4 / 5" : "16 / 9",
+      borderRadius: mobile ? 16 : 20,
+      overflow: "hidden",
+      background: "#0a1a24",
+    }}>
+      <img
+        src={mobile ? mobileSrc : desktopSrc}
+        alt={alt}
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+        }}
+      />
     </div>
   );
 }
@@ -363,7 +308,12 @@ export default function AIPoweredScheduling() {
             Scheduling should be the simplest part of running a fitness business. But for most gyms, it&apos;s still a mess — back-and-forth texts, double bookings, no-shows, and staff spending time on the phone that should be spent on the floor.
           </p>
 
-          <BookingFlowCarousel mobile={mobile} />
+          <SchedulingImage 
+              desktopSrc="/images/scheduling-book-session-desktop.jpeg"
+              mobileSrc="/images/scheduling-book-session-mobile.jpeg"
+              alt="Book a Session"
+              mobile={mobile}
+            />
 
           <div style={{ marginTop: 40 }}>
             <CTAButton mobile={mobile} />
@@ -468,7 +418,12 @@ export default function AIPoweredScheduling() {
             }}>
               Milton notices a member hasn&apos;t booked in two weeks and sends a text: &quot;It&apos;s been a minute. Want me to get you on the schedule this week? Here are three times that work with your trainer.&quot; The member replies &quot;Tuesday works&quot; and Milton books it. No link. No portal. Just a conversation.
             </p>
-            <VisualPlaceholder height={280} label="Member Conversation" mobile={mobile} />
+            <SchedulingImage 
+              desktopSrc="/images/scheduling-choose-trainer-desktop.jpeg"
+              mobileSrc="/images/scheduling-choose-trainer-mobile.jpeg"
+              alt="Choose a Trainer"
+              mobile={mobile}
+            />
           </div>
 
           {/* For Coaches */}
@@ -483,7 +438,12 @@ export default function AIPoweredScheduling() {
             }}>
               Milton sees a trainer has a gap on Thursday afternoon and three clients who haven&apos;t booked this week. It reaches out to those clients on the trainer&apos;s behalf, suggests the open slot, and fills it. The trainer&apos;s schedule gets tighter without them doing a thing.
             </p>
-            <VisualPlaceholder height={280} label="Coach Schedule Optimization" mobile={mobile} />
+            <SchedulingImage 
+              desktopSrc="/images/scheduling-pick-date-desktop.jpeg"
+              mobileSrc="/images/scheduling-pick-date-mobile.jpeg"
+              alt="Pick a Date"
+              mobile={mobile}
+            />
           </div>
 
           {/* For You */}
@@ -498,7 +458,12 @@ export default function AIPoweredScheduling() {
             }}>
               Milton flags scheduling patterns you&apos;d miss on your own. A trainer who&apos;s consistently underbooked on Fridays. A member who used to come three times a week and is now down to one. A time slot that never fills and could be repurposed. It doesn&apos;t just report — it recommends what to do about it and can act on your direction.
             </p>
-            <VisualPlaceholder height={280} label="Director Insights" mobile={mobile} />
+            <SchedulingImage 
+              desktopSrc="/images/scheduling-pick-time-desktop.jpeg"
+              mobileSrc="/images/scheduling-pick-time-mobile.jpeg"
+              alt="Pick a Time"
+              mobile={mobile}
+            />
           </div>
 
           <div style={{ marginTop: 40, textAlign: "center" }}>
@@ -541,7 +506,12 @@ export default function AIPoweredScheduling() {
             Everything connected. Everything in one place.
           </p>
 
-          <VisualPlaceholder height={350} label="Connected Ecosystem" mobile={mobile} />
+          <SchedulingImage 
+            desktopSrc="/images/scheduling-your-info-desktop.jpeg"
+            mobileSrc="/images/scheduling-your-info-mobile.jpeg"
+            alt="Your Info"
+            mobile={mobile}
+          />
 
           <div style={{ marginTop: 40, textAlign: "center" }}>
             <CTAButton mobile={mobile} />
