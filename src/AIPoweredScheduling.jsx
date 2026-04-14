@@ -618,9 +618,9 @@ export default function AIPoweredScheduling() {
           </p>
 
           <SchedulingImage 
-            desktopSrc="/images/scheduling-your-info-desktop.jpeg"
-            mobileSrc="/images/scheduling-your-info-mobile.jpeg"
-            alt="Your Info"
+            desktopSrc="/images/connected-crm-desktop.jpeg"
+            mobileSrc="/images/connected-crm-desktop.jpeg"
+            alt="Clients dashboard powered by Stripe"
             mobile={mobile}
           />
 
