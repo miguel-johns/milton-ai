@@ -201,38 +201,6 @@ export default function StripeCRM() {
             </p>
           </section>
 
-          {/* ═══════ NO MORE MIDDLEMAN ═══════ */}
-          <section style={{ padding: sectionPad }}>
-            <h2 style={{
-              fontFamily: serif,
-              fontSize: mobile ? 28 : 40,
-              fontWeight: 400, lineHeight: 1.15, color: "#fff",
-              margin: "0 0 24px 0",
-            }}>
-              No more middleman between you and <Accent>your money</Accent>
-            </h2>
-
-            <p style={{
-              fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
-              color: "rgba(255,255,255,0.65)", margin: "0 0 20px 0",
-            }}>
-              Traditional gym management software charges you monthly, takes a cut of your transactions, and sits on top of Stripe (or a similar processor) anyway. You&apos;re paying twice — once for the software, once for the processing. And you&apos;re trusting a middleman to get it right.
-            </p>
-
-            <p style={{
-              fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
-              color: "rgba(255,255,255,0.65)", margin: "0 0 20px 0",
-            }}>
-              Milton eliminates that layer. Stripe handles your payments, subscriptions, invoicing, and customer records directly. Milton provides the gym-specific interface and AI automations on top. You keep more of your revenue. You get more control. And the system underneath is built by the company that powers payments for half the Fortune 100.
-            </p>
-
-            <VisualPlaceholder height={350} mobile={mobile} />
-
-            <div style={{ marginTop: 40, textAlign: "center" }}>
-              <CTAButton mobile={mobile} />
-            </div>
-          </section>
-
           {/* ═══════ EVERYTHING A GYM CRM DOES ═══════ */}
           <section style={{ padding: sectionPad }}>
             <h2 style={{
