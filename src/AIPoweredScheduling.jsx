@@ -435,9 +435,16 @@ export default function AIPoweredScheduling() {
 
           <p style={{
             fontFamily: f, fontSize: mobile ? 16 : 20, lineHeight: 1.7,
-            color: "rgba(255,255,255,0.6)", maxWidth: 720, margin: "0 0 40px 0",
+            color: "rgba(255,255,255,0.6)", maxWidth: 720, margin: "0 0 24px 0",
           }}>
             Scheduling should be the simplest part of running a fitness business. But for most gyms, it&apos;s still a mess — back-and-forth texts, double bookings, no-shows, and staff spending time on the phone that should be spent on the floor.
+          </p>
+
+          <p style={{
+            fontFamily: f, fontSize: mobile ? 16 : 20, lineHeight: 1.7,
+            color: "rgba(255,255,255,0.6)", maxWidth: 720, margin: "0 0 40px 0",
+          }}>
+            Milton&apos;s scheduling system eliminates all of it. Members book themselves. Trainers manage their own availability.
           </p>
 
           <SchedulingImage 
@@ -449,27 +456,6 @@ export default function AIPoweredScheduling() {
             />
 
           <div style={{ marginTop: 40 }}>
-            <CTAButton mobile={mobile} />
-          </div>
-        </section>
-
-        {/* ═══════ INTRO ═══════ */}
-        <section style={{ padding: sectionPad }}>
-          <p style={{
-            fontFamily: f, fontSize: mobile ? 15 : 18, lineHeight: 1.75,
-            color: "rgba(255,255,255,0.65)", margin: "0 0 24px 0",
-          }}>
-            Milton&apos;s scheduling system eliminates all of it. Members book themselves. Trainers manage their own availability. And your front desk stops being a switchboard. It works directly with Milton&apos;s Stripe-powered CRM and POS system, so bookings, payments, and client management are all connected in one place.
-          </p>
-
-          <p style={{
-            fontFamily: f, fontSize: mobile ? 17 : 20, lineHeight: 1.75,
-            color: mint, fontWeight: 500, margin: 0,
-          }}>
-            Two versions. Pick the one that fits.
-          </p>
-
-          <div style={{ marginTop: 40, textAlign: "center" }}>
             <CTAButton mobile={mobile} />
           </div>
         </section>
