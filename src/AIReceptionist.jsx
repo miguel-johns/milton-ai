@@ -23,20 +23,23 @@ const Accent = ({ children }) => (
   <span style={{ fontFamily: serif, fontStyle: "italic", color: mint }}>{children}</span>
 );
 
-function VisualPlaceholder({ height = 300, label = "Visual Placeholder", mobile }) {
+function ResponsiveImage({ desktopSrc, mobileSrc, alt, mobile }) {
   return (
     <div style={{
       width: "100%",
-      height: mobile ? height * 0.7 : height,
-      background: "rgba(13,154,165,0.08)",
-      border: "1px dashed rgba(13,154,165,0.3)",
-      borderRadius: 16,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
+      borderRadius: mobile ? 16 : 20,
+      overflow: "hidden",
       marginTop: 32,
     }}>
-      <span style={{ fontFamily: f, fontSize: 14, color: "rgba(255,255,255,0.3)" }}>{label}</span>
+      <img
+        src={mobile ? mobileSrc : desktopSrc}
+        alt={alt}
+        style={{
+          width: "100%",
+          height: "auto",
+          display: "block",
+        }}
+      />
     </div>
   );
 }
@@ -167,7 +170,12 @@ export default function AIReceptionist() {
             Milton&apos;s AI Receptionist picks up, has a real conversation, answers questions, and books or reschedules on the spot. It&apos;s not replacing your front desk. It&apos;s catching everything they can&apos;t get to.
           </p>
 
-          <VisualPlaceholder height={mobile ? 280 : 480} label="Hero Image" mobile={mobile} />
+          <ResponsiveImage 
+            desktopSrc="/images/receptionist-hero-desktop.png"
+            mobileSrc="/images/receptionist-hero-mobile.png"
+            alt="AI Receptionist handling live call - Incoming call, transcript, and calendar update"
+            mobile={mobile}
+          />
 
           <div style={{ marginTop: 40 }}>
             <CTAButton mobile={mobile} />
@@ -204,7 +212,12 @@ export default function AIReceptionist() {
             It connects directly to Milton&apos;s scheduling system and CRM. Every call becomes a contact, every booking lands on the calendar, and call notes are captured so your team sees exactly what happened — no recordings to dig through.
           </p>
 
-          <VisualPlaceholder height={350} mobile={mobile} />
+          <ResponsiveImage 
+            desktopSrc="/images/receptionist-calllog-desktop.png"
+            mobileSrc="/images/receptionist-calllog-mobile.png"
+            alt="Call log showing 0 missed calls with activity: Booked intro session, Rescheduled Thursday session, Answered pricing question, Re-engaged cold lead"
+            mobile={mobile}
+          />
         </section>
 
         {/* ═══════ EVERY CALL TYPE ═══════ */}
@@ -294,7 +307,12 @@ export default function AIReceptionist() {
             />
           </div>
 
-          <VisualPlaceholder height={350} mobile={mobile} />
+          <ResponsiveImage 
+            desktopSrc="/images/receptionist-calltypes-desktop.png"
+            mobileSrc="/images/receptionist-calltypes-mobile.png"
+            alt="Call type cards showing Books Appointments, Reschedules, Follows Up, and Re-engages Leads"
+            mobile={mobile}
+          />
         </section>
 
         {/* ═══════ CLOSING ═══════ */}
