@@ -135,6 +135,49 @@ function AIFeatureItem({ title, body, mobile }) {
   );
 }
 
+function IllustratedFeatureCard({ icon, title, body, mobile }) {
+  return (
+    <div style={{
+      background: "rgba(255,255,255,0.03)",
+      border: "1px solid rgba(255,255,255,0.08)",
+      borderRadius: mobile ? 16 : 20,
+      padding: mobile ? 24 : 32,
+      display: "flex",
+      flexDirection: "column",
+      height: "100%",
+    }}>
+      <div style={{
+        width: mobile ? 56 : 64,
+        height: mobile ? 56 : 64,
+        borderRadius: 16,
+        background: "rgba(13,154,165,0.12)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        marginBottom: mobile ? 20 : 24,
+      }}>
+        {icon}
+      </div>
+      <h4 style={{
+        fontFamily: f,
+        fontSize: mobile ? 17 : 20,
+        fontWeight: 600,
+        color: "#fff",
+        margin: "0 0 12px 0",
+        lineHeight: 1.3,
+      }}>{title}</h4>
+      <p style={{
+        fontFamily: f,
+        fontSize: mobile ? 14 : 15,
+        lineHeight: 1.7,
+        color: "rgba(255,255,255,0.55)",
+        margin: 0,
+        flex: 1,
+      }}>{body}</p>
+    </div>
+  );
+}
+
 export default function StripeCRM() {
   const { mobile, tablet } = useBreakpoint();
   const px = mobile ? 20 : tablet ? 32 : 40;
@@ -262,31 +305,69 @@ export default function StripeCRM() {
               Stripe is the engine. Milton is the brain. While Stripe handles the transactions, Milton adds the intelligence layer that turns a payment system into an actual business operating system.
             </p>
 
-            <AIFeatureItem
-              title="Automated renewal outreach"
-              body="Milton knows when a package is running low or a membership is about to expire. It reaches out proactively — via text, call, or in-app — to renew before there's a gap in revenue."
-              mobile={mobile}
-            />
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: mobile ? "1fr" : "repeat(2, 1fr)",
+              gap: mobile ? 16 : 24,
+            }}>
+              <IllustratedFeatureCard
+                icon={
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 8v4l3 3" />
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M17 17l2 2" />
+                  </svg>
+                }
+                title="Automated renewal outreach"
+                body="Milton knows when a package is running low or a membership is about to expire. It reaches out proactively — via text, call, or in-app — to renew before there's a gap in revenue."
+                mobile={mobile}
+              />
 
-            <AIFeatureItem
-              title="Failed payment recovery"
-              body="Stripe's smart retries handle the technical side. Milton handles the human side — reaching out to members with friendly, personalized messages when a payment needs attention. No awkward front desk conversations."
-              mobile={mobile}
-            />
+              <IllustratedFeatureCard
+                icon={
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="5" width="20" height="14" rx="2" />
+                    <path d="M12 12h.01" />
+                    <path d="M17 9l-5 5-2-2" />
+                  </svg>
+                }
+                title="Failed payment recovery"
+                body="Stripe's smart retries handle the technical side. Milton handles the human side — reaching out to members with friendly, personalized messages when a payment needs attention."
+                mobile={mobile}
+              />
 
-            <AIFeatureItem
-              title="Upsell and cross-sell triggers"
-              body="Milton sees the full member picture — training data, nutrition, engagement, attendance — and knows when someone is ready for the next offer. A member who's been consistent for three months might get a nudge about upgrading to a PT package. A member finishing a nutrition challenge might get an offer for ongoing tracking. The CRM data and the coaching data work together."
-              mobile={mobile}
-            />
+              <IllustratedFeatureCard
+                icon={
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 2v4" />
+                    <path d="M12 18v4" />
+                    <path d="M4.93 4.93l2.83 2.83" />
+                    <path d="M16.24 16.24l2.83 2.83" />
+                    <path d="M2 12h4" />
+                    <path d="M18 12h4" />
+                    <path d="M4.93 19.07l2.83-2.83" />
+                    <path d="M16.24 7.76l2.83-2.83" />
+                    <circle cx="12" cy="12" r="4" />
+                  </svg>
+                }
+                title="Upsell and cross-sell triggers"
+                body="Milton sees the full member picture — training, nutrition, engagement — and knows when someone is ready for the next offer. The CRM data and coaching data work together."
+                mobile={mobile}
+              />
 
-            <AIFeatureItem
-              title="Churn prediction"
-              body="Milton identifies members showing early warning signs — declining attendance, skipped payments, booking gaps — and triggers re-engagement workflows before they cancel. You see it in the dashboard. Milton's already acting on it."
-              mobile={mobile}
-            />
-
-            <VisualPlaceholder height={350} mobile={mobile} />
+              <IllustratedFeatureCard
+                icon={
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                    <line x1="12" y1="9" x2="12" y2="13" />
+                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                  </svg>
+                }
+                title="Churn prediction"
+                body="Milton identifies members showing early warning signs — declining attendance, skipped payments, booking gaps — and triggers re-engagement workflows before they cancel."
+                mobile={mobile}
+              />
+            </div>
 
             <div style={{ marginTop: 40, textAlign: "center" }}>
               <CTAButton mobile={mobile} />
