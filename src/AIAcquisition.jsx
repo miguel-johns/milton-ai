@@ -19,20 +19,23 @@ function Accent({ children }) {
   return <em style={{ fontStyle: "italic", color: mint }}>{children}</em>;
 }
 
-function VisualPlaceholder({ height = 300, label = "Visual Placeholder", mobile }) {
+function ResponsiveImage({ desktopSrc, mobileSrc, alt, mobile }) {
   return (
     <div style={{
       width: "100%",
-      height: mobile ? height * 0.7 : height,
-      background: "linear-gradient(135deg, rgba(13,154,165,0.08) 0%, rgba(154,241,152,0.05) 100%)",
-      border: "1px dashed rgba(13,154,165,0.3)",
-      borderRadius: 16,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
+      borderRadius: mobile ? 16 : 20,
+      overflow: "hidden",
       marginTop: 32,
     }}>
-      <span style={{ fontFamily: f, fontSize: 13, color: "rgba(255,255,255,0.3)", letterSpacing: 1 }}>[{label}]</span>
+      <img
+        src={mobile ? mobileSrc : desktopSrc}
+        alt={alt}
+        style={{
+          width: "100%",
+          height: "auto",
+          display: "block",
+        }}
+      />
     </div>
   );
 }
@@ -245,7 +248,12 @@ export default function AIAcquisition() {
             The problem is it almost never happens. Not because members aren&apos;t making progress. They are. But nobody&apos;s packaging it into something shareable. Milton does.
           </p>
 
-          <VisualPlaceholder height={mobile ? 280 : 480} label="Hero Image" mobile={mobile} />
+          <ResponsiveImage 
+            desktopSrc="/images/acquisition-hero-desktop.png"
+            mobileSrc="/images/acquisition-hero-mobile.png"
+            alt="Client transformation summary with share options - Instagram, Facebook, Messages, Email"
+            mobile={mobile}
+          />
 
           <div style={{ marginTop: 40 }}>
             <CTAButton mobile={mobile} />
@@ -291,7 +299,12 @@ export default function AIAcquisition() {
             One tap to share. Instagram, a text, a story, a family group chat. Your brand travels with it every time.
           </p>
 
-          <VisualPlaceholder height={350} mobile={mobile} />
+          <ResponsiveImage 
+            desktopSrc="/images/acquisition-milestones-desktop.png"
+            mobileSrc="/images/acquisition-milestones-mobile.png"
+            alt="Milestone types - New PR, Streak, Nutrition, Body comp, Challenge, 1 Year"
+            mobile={mobile}
+          />
         </section>
 
         {/* ═══════ MILESTONE TYPES ═══════ */}
@@ -368,7 +381,12 @@ export default function AIAcquisition() {
             No referral program to manage. No tracking spreadsheets. The results do the talking. Milton just makes sure they get heard.
           </p>
 
-          <VisualPlaceholder height={350} mobile={mobile} />
+          <ResponsiveImage 
+            desktopSrc="/images/acquisition-referral-desktop.png"
+            mobileSrc="/images/acquisition-referral-mobile.png"
+            alt="Share to referral flow - Progress card shared to Instagram, friend books intro session"
+            mobile={mobile}
+          />
         </section>
 
         {/* ═══════ CLOSING CTA ═══════ */}
