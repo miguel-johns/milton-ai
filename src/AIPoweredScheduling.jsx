@@ -203,15 +203,7 @@ function BookingFlowCarousel({ mobile }) {
         </button>
       </div>
 
-      {/* Step Counter */}
-      <p style={{
-        fontFamily: f,
-        fontSize: 12,
-        color: "rgba(255,255,255,0.4)",
-        textAlign: "center",
-        margin: "12px 0 0 0",
-      }}>{current + 1} of {steps.length}</p>
-    </div>
+          </div>
   );
 }
 
