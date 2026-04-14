@@ -442,7 +442,12 @@ export default function StripeCRM() {
               Built on the most <Accent>trusted financial infrastructure</Accent> in the world
             </h2>
 
-            <VisualPlaceholder height={350} mobile={mobile} />
+            <ResponsiveImage 
+              desktopSrc="/images/stripe-infrastructure-desktop.png"
+              mobileSrc="/images/stripe-infrastructure-mobile.png"
+              alt="Stripe global infrastructure - 99.99% uptime, $1T+ processed yearly, 197 countries"
+              mobile={mobile}
+            />
 
             <h2 style={{
               fontFamily: serif,
