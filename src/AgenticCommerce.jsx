@@ -73,28 +73,44 @@ function CTAButton({ mobile }) {
   );
 }
 
-function WorkflowStep({ title, body, mobile }) {
+function IllustratedFeatureCard({ icon, title, body, mobile }) {
   return (
     <div style={{
-      background: "rgba(255,255,255,0.02)",
-      border: "1px solid rgba(255,255,255,0.06)",
-      borderRadius: 16,
-      padding: mobile ? "24px 20px" : "28px 24px",
-      marginBottom: 20,
+      background: "rgba(255,255,255,0.03)",
+      border: "1px solid rgba(255,255,255,0.08)",
+      borderRadius: mobile ? 16 : 20,
+      padding: mobile ? 24 : 32,
+      display: "flex",
+      flexDirection: "column",
+      height: "100%",
     }}>
+      <div style={{
+        width: mobile ? 56 : 64,
+        height: mobile ? 56 : 64,
+        borderRadius: 16,
+        background: "rgba(13,154,165,0.12)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        marginBottom: mobile ? 20 : 24,
+      }}>
+        {icon}
+      </div>
       <h4 style={{
-        fontFamily: serif,
-        fontSize: mobile ? 20 : 24,
-        fontWeight: 400,
+        fontFamily: f,
+        fontSize: mobile ? 17 : 20,
+        fontWeight: 600,
         color: "#fff",
         margin: "0 0 12px 0",
+        lineHeight: 1.3,
       }}>{title}</h4>
       <p style={{
         fontFamily: f,
         fontSize: mobile ? 14 : 15,
         lineHeight: 1.7,
-        color: "rgba(255,255,255,0.6)",
+        color: "rgba(255,255,255,0.55)",
         margin: 0,
+        flex: 1,
       }}>{body}</p>
     </div>
   );
@@ -201,37 +217,83 @@ export default function AgenticCommerce() {
             Every step of the pipeline, running automatically.
           </p>
 
-          <WorkflowStep
-            title="Welcome"
-            body="Someone fills out a form or calls your AI Receptionist. Milton picks them up within 60 seconds with a personalized text or call. No delay. No waiting on your team."
-            mobile={mobile}
-          />
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: mobile ? "1fr" : "repeat(2, 1fr)",
+            gap: mobile ? 16 : 24,
+          }}>
+            <IllustratedFeatureCard
+              icon={
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                  <circle cx="12" cy="2" r="1" fill={teal} />
+                </svg>
+              }
+              title="Welcome"
+              body="Someone fills out a form or calls your AI Receptionist. Milton picks them up within 60 seconds with a personalized text or call. No delay. No waiting on your team."
+              mobile={mobile}
+            />
 
-          <WorkflowStep
-            title="Nurture"
-            body="Not every lead is ready today. Milton keeps the conversation going — answering questions, building trust, tracking engagement — and knows when to push and when to wait."
-            mobile={mobile}
-          />
+            <IllustratedFeatureCard
+              icon={
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+                  <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+                  <path d="M19 11h2m-1 -1v2" />
+                </svg>
+              }
+              title="Nurture"
+              body="Not every lead is ready today. Milton keeps the conversation going — answering questions, building trust, tracking engagement — and knows when to push and when to wait."
+              mobile={mobile}
+            />
 
-          <WorkflowStep
-            title="Book"
-            body="When a lead is ready, Milton has the conversation, finds a time that works, and books the session directly into your scheduling system. No link. No hope."
-            mobile={mobile}
-          />
+            <IllustratedFeatureCard
+              icon={
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                  <path d="M9 16l2 2 4-4" />
+                </svg>
+              }
+              title="Book"
+              body="When a lead is ready, Milton has the conversation, finds a time that works, and books the session directly into your scheduling system. No link. No hope."
+              mobile={mobile}
+            />
 
-          <WorkflowStep
-            title="Transact"
-            body="A member's 10-pack is down to one session. Milton texts them. They reply yes. Payment processes through Stripe. Done — no portal, no front desk, no friction."
-            mobile={mobile}
-          />
+            <IllustratedFeatureCard
+              icon={
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="5" width="20" height="14" rx="2" />
+                  <line x1="2" y1="10" x2="22" y2="10" />
+                  <path d="M12 15h.01" />
+                  <path d="M17 15h.01" />
+                  <path d="M7 15h.01" />
+                </svg>
+              }
+              title="Transact"
+              body="A member's 10-pack is down to one session. Milton texts them. They reply yes. Payment processes through Stripe. Done — no portal, no front desk, no friction."
+              mobile={mobile}
+            />
 
-          <WorkflowStep
-            title="Retain"
-            body="Packages expiring. Memberships coming up for renewal. Milton reaches out before the lapse, before the revenue disappears, before your team has to remember."
-            mobile={mobile}
-          />
-
-          <VisualPlaceholder height={350} label="Pipeline Flow Visual" mobile={mobile} />
+            <IllustratedFeatureCard
+              icon={
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 8v4l3 3" />
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M12 3v1" />
+                  <path d="M12 20v1" />
+                  <path d="M3 12h1" />
+                  <path d="M20 12h1" />
+                </svg>
+              }
+              title="Retain"
+              body="Packages expiring. Memberships coming up for renewal. Milton reaches out before the lapse, before the revenue disappears, before your team has to remember."
+              mobile={mobile}
+            />
+          </div>
         </section>
 
         {/* ═══════ BEST SALESPERSON ═══════ */}
