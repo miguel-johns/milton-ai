@@ -53,6 +53,83 @@ function VisualPlaceholder({ height = 320, label = "Visual Here", mobile }) {
   );
 }
 
+function BookingFlowCarousel({ mobile }) {
+  const [current, setCurrent] = useState(0);
+  const steps = [
+    { desktop: "/images/scheduling-book-session-desktop.jpeg", mobile: "/images/scheduling-book-session-mobile.jpeg", label: "Book a Session" },
+    { desktop: "/images/scheduling-choose-trainer-desktop.jpeg", mobile: "/images/scheduling-choose-trainer-mobile.jpeg", label: "Choose a Trainer" },
+    { desktop: "/images/scheduling-pick-date-desktop.jpeg", mobile: "/images/scheduling-pick-date-mobile.jpeg", label: "Pick a Date" },
+    { desktop: "/images/scheduling-pick-time-desktop.jpeg", mobile: "/images/scheduling-pick-time-mobile.jpeg", label: "Pick a Time" },
+    { desktop: "/images/scheduling-your-info-desktop.jpeg", mobile: "/images/scheduling-your-info-mobile.jpeg", label: "Your Info" },
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % steps.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [steps.length]);
+
+  return (
+    <div style={{ position: "relative" }}>
+      <div style={{
+        width: "100%",
+        aspectRatio: mobile ? "4 / 5" : "16 / 9",
+        borderRadius: mobile ? 16 : 20,
+        overflow: "hidden",
+        position: "relative",
+        background: "#0a1a24",
+      }}>
+        {steps.map((step, i) => (
+          <img
+            key={i}
+            src={mobile ? step.mobile : step.desktop}
+            alt={step.label}
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              opacity: current === i ? 1 : 0,
+              transition: "opacity 0.5s ease-in-out",
+            }}
+          />
+        ))}
+      </div>
+      <div style={{ display: "flex", justifyContent: "center", gap: 8, marginTop: 16 }}>
+        {steps.map((step, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            style={{
+              width: current === i ? 24 : 8,
+              height: 8,
+              borderRadius: 4,
+              background: current === i ? teal : "rgba(255,255,255,0.2)",
+              border: "none",
+              cursor: "pointer",
+              transition: "all 0.3s ease",
+              padding: 0,
+            }}
+            aria-label={step.label}
+          />
+        ))}
+      </div>
+      <p style={{
+        fontFamily: f,
+        fontSize: mobile ? 12 : 14,
+        color: "rgba(255,255,255,0.5)",
+        textAlign: "center",
+        marginTop: 8,
+        marginBottom: 0,
+      }}>
+        {steps[current].label}
+      </p>
+    </div>
+  );
+}
+
 function CTAButton({ mobile }) {
   return (
     <button
@@ -286,7 +363,7 @@ export default function AIPoweredScheduling() {
             Scheduling should be the simplest part of running a fitness business. But for most gyms, it&apos;s still a mess — back-and-forth texts, double bookings, no-shows, and staff spending time on the phone that should be spent on the floor.
           </p>
 
-          <VisualPlaceholder height={mobile ? 280 : 480} label="Hero Image" mobile={mobile} />
+          <BookingFlowCarousel mobile={mobile} />
 
           <div style={{ marginTop: 40 }}>
             <CTAButton mobile={mobile} />
