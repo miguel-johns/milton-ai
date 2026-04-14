@@ -362,14 +362,45 @@ export default function AIPoweredScheduling() {
             The base version gives your facility a clean, professional self-serve booking system. Members see real-time trainer availability, book sessions on their own, and pay at the time of booking. No phone calls. No waiting for a callback. No forgotten appointments.
           </p>
 
+          {/* Booking Flow Images */}
           <div style={{
             display: "grid",
-            gridTemplateColumns: mobile ? "1fr" : "repeat(2, 1fr)",
-            gap: mobile ? 16 : 20,
+            gridTemplateColumns: mobile ? "repeat(2, 1fr)" : "repeat(5, 1fr)",
+            gap: mobile ? 12 : 16,
             marginBottom: 40,
           }}>
-            {baseFeatures.map((feature, i) => (
-              <FeatureCard key={i} title={feature.title} body={feature.body} mobile={mobile} mockup={feature.mockup} />
+            {[
+              { desktop: "/images/base-book-session-desktop.jpeg", mobile: "/images/base-book-session-mobile.jpeg", label: "Book a Session" },
+              { desktop: "/images/base-choose-trainer-desktop.jpeg", mobile: "/images/base-choose-trainer-mobile.jpeg", label: "Choose a Trainer" },
+              { desktop: "/images/base-pick-date-desktop.jpeg", mobile: "/images/base-pick-date-mobile.jpeg", label: "Pick a Date" },
+              { desktop: "/images/base-pick-time-desktop.jpeg", mobile: "/images/base-pick-time-mobile.jpeg", label: "Pick a Time" },
+              { desktop: "/images/base-your-info-desktop.jpeg", mobile: "/images/base-your-info-mobile.jpeg", label: "Your Info" },
+            ].map((step, i) => (
+              <div key={i} style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                <div style={{
+                  aspectRatio: mobile ? "4 / 5" : "9 / 16",
+                  borderRadius: mobile ? 12 : 16,
+                  overflow: "hidden",
+                  background: "#0a1a24",
+                }}>
+                  <img
+                    src={mobile ? step.mobile : step.desktop}
+                    alt={step.label}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
+                <p style={{
+                  fontFamily: f,
+                  fontSize: mobile ? 11 : 12,
+                  color: "rgba(255,255,255,0.5)",
+                  textAlign: "center",
+                  margin: 0,
+                }}>{step.label}</p>
+              </div>
             ))}
           </div>
 
