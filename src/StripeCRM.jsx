@@ -321,27 +321,6 @@ export default function StripeCRM() {
               One system for payments, clients, and <Accent>AI</Accent>
             </h2>
 
-            <p style={{
-              fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
-              color: "rgba(255,255,255,0.65)", margin: "0 0 20px 0",
-            }}>
-              The biggest problem with most gym tech stacks is fragmentation. Your CRM is one system. Your billing is another. Your scheduling is another. Your coaching tools are another. Nothing talks to each other, and you&apos;re the one holding it all together.
-            </p>
-
-            <p style={{
-              fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
-              color: "rgba(255,255,255,0.65)", margin: "0 0 20px 0",
-            }}>
-              Milton on Stripe eliminates that. Payments, client records, subscriptions, scheduling, coaching data, nutrition tracking, and AI automation — all flowing through one connected system. When a member books a session, it shows up in the schedule and the CRM. When they pay, it hits Stripe and updates their record. When they complete a workout, it feeds the Coach Co-Pilot. When their package is running low, Milton reaches out to renew.
-            </p>
-
-            <p style={{
-              fontFamily: f, fontSize: mobile ? 16 : 18, lineHeight: 1.75,
-              color: mint, fontWeight: 500, margin: 0,
-            }}>
-              No reconciling. No exporting. No switching between tabs. Just one system that runs your business.
-            </p>
-
             <VisualPlaceholder height={350} mobile={mobile} />
 
             <div style={{ marginTop: 40, textAlign: "center" }}>
