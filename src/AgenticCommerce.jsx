@@ -19,20 +19,23 @@ function Accent({ children }) {
   return <em style={{ fontStyle: "italic", color: mint }}>{children}</em>;
 }
 
-function VisualPlaceholder({ height = 300, label = "Visual", mobile }) {
+function ResponsiveImage({ desktopSrc, mobileSrc, alt, mobile }) {
   return (
     <div style={{
       width: "100%",
-      height: mobile ? height * 0.7 : height,
-      background: "linear-gradient(135deg, rgba(13,154,165,0.08) 0%, rgba(154,241,152,0.05) 100%)",
-      border: "1px dashed rgba(13,154,165,0.3)",
-      borderRadius: 16,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
+      borderRadius: mobile ? 16 : 20,
+      overflow: "hidden",
       marginTop: 32,
     }}>
-      <span style={{ fontFamily: f, fontSize: 14, color: "rgba(255,255,255,0.3)" }}>[{label}]</span>
+      <img
+        src={mobile ? mobileSrc : desktopSrc}
+        alt={alt}
+        style={{
+          width: "100%",
+          height: "auto",
+          display: "block",
+        }}
+      />
     </div>
   );
 }
@@ -162,7 +165,12 @@ export default function AgenticCommerce() {
             Milton&apos;s Agentic Commerce knows your entire catalog, understands where every lead and member is in their journey, and works across text, phone, and app to move them toward the right offer at the right time.
           </p>
 
-          <VisualPlaceholder height={mobile ? 280 : 480} label="Hero Image" mobile={mobile} />
+          <ResponsiveImage 
+            desktopSrc="/images/agentic-hero-desktop.png"
+            mobileSrc="/images/agentic-hero-mobile.png"
+            alt="Fitness AI chat interface with personalized product recommendations"
+            mobile={mobile}
+          />
 
           <div style={{ marginTop: 40 }}>
             <CTAButton mobile={mobile} />
@@ -195,7 +203,12 @@ export default function AgenticCommerce() {
             A brand new lead gets a different conversation than a six-month member. Someone who just finished a nutrition challenge gets a different offer than someone who&apos;s never tried one. Milton reads the context and adapts — like your best salesperson would, except it never forgets and it never takes a day off.
           </p>
 
-          <VisualPlaceholder height={350} mobile={mobile} />
+          <ResponsiveImage 
+            desktopSrc="/images/agentic-catalog-desktop.png"
+            mobileSrc="/images/agentic-catalog-mobile.png"
+            alt="Product catalog with drag and drop items and personalized match recommendations"
+            mobile={mobile}
+          />
         </section>
 
         {/* ═══════ PIPELINE ═══════ */}
@@ -329,7 +342,12 @@ export default function AgenticCommerce() {
             That&apos;s Agentic Commerce. Your team still handles the high-touch moments that close big deals. Milton makes sure nothing else gets forgotten.
           </p>
 
-          <VisualPlaceholder height={350} mobile={mobile} />
+          <ResponsiveImage 
+            desktopSrc="/images/agentic-activity-desktop.png"
+            mobileSrc="/images/agentic-activity-mobile.png"
+            alt="Live activity dashboard showing leads contacted, renewals sent, and packages closed"
+            mobile={mobile}
+          />
         </section>
 
         {/* ═══════ CLOSING CTA ═══════ */}
