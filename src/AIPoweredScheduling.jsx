@@ -75,6 +75,146 @@ function SchedulingImage({ desktopSrc, mobileSrc, alt, mobile }) {
   );
 }
 
+function BookingFlowCarousel({ mobile }) {
+  const [current, setCurrent] = useState(0);
+  const steps = [
+    { desktop: "/images/base-book-session-desktop.jpeg", mobile: "/images/base-book-session-mobile.jpeg", label: "Book a Session" },
+    { desktop: "/images/base-choose-trainer-desktop.jpeg", mobile: "/images/base-choose-trainer-mobile.jpeg", label: "Choose a Trainer" },
+    { desktop: "/images/base-pick-date-desktop.jpeg", mobile: "/images/base-pick-date-mobile.jpeg", label: "Pick a Date" },
+    { desktop: "/images/base-pick-time-desktop.jpeg", mobile: "/images/base-pick-time-mobile.jpeg", label: "Pick a Time" },
+    { desktop: "/images/base-your-info-desktop.jpeg", mobile: "/images/base-your-info-mobile.jpeg", label: "Your Info" },
+  ];
+
+  const goTo = (index) => {
+    if (index < 0) setCurrent(steps.length - 1);
+    else if (index >= steps.length) setCurrent(0);
+    else setCurrent(index);
+  };
+
+  return (
+    <div style={{ marginBottom: 40 }}>
+      {/* Image Container */}
+      <div style={{
+        position: "relative",
+        width: "100%",
+        maxWidth: mobile ? "100%" : 400,
+        margin: "0 auto",
+      }}>
+        <div style={{
+          aspectRatio: mobile ? "4 / 5" : "9 / 16",
+          borderRadius: mobile ? 16 : 20,
+          overflow: "hidden",
+          background: "#0a1a24",
+        }}>
+          <img
+            src={mobile ? steps[current].mobile : steps[current].desktop}
+            alt={steps[current].label}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              transition: "opacity 0.3s ease",
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Label */}
+      <p style={{
+        fontFamily: f,
+        fontSize: mobile ? 14 : 16,
+        fontWeight: 500,
+        color: "#fff",
+        textAlign: "center",
+        margin: "16px 0 0 0",
+      }}>{steps[current].label}</p>
+
+      {/* Navigation */}
+      <div style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 16,
+        marginTop: 16,
+      }}>
+        {/* Left Arrow */}
+        <button
+          onClick={() => goTo(current - 1)}
+          style={{
+            width: 44,
+            height: 44,
+            borderRadius: "50%",
+            border: "1px solid rgba(255,255,255,0.15)",
+            background: "rgba(255,255,255,0.05)",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            transition: "all 0.2s ease",
+          }}
+          aria-label="Previous step"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+
+        {/* Dots */}
+        <div style={{ display: "flex", gap: 8 }}>
+          {steps.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              style={{
+                width: current === i ? 24 : 8,
+                height: 8,
+                borderRadius: 4,
+                background: current === i ? teal : "rgba(255,255,255,0.2)",
+                border: "none",
+                cursor: "pointer",
+                transition: "all 0.3s ease",
+                padding: 0,
+              }}
+              aria-label={`Go to ${steps[i].label}`}
+            />
+          ))}
+        </div>
+
+        {/* Right Arrow */}
+        <button
+          onClick={() => goTo(current + 1)}
+          style={{
+            width: 44,
+            height: 44,
+            borderRadius: "50%",
+            border: "1px solid rgba(255,255,255,0.15)",
+            background: "rgba(255,255,255,0.05)",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            transition: "all 0.2s ease",
+          }}
+          aria-label="Next step"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Step Counter */}
+      <p style={{
+        fontFamily: f,
+        fontSize: 12,
+        color: "rgba(255,255,255,0.4)",
+        textAlign: "center",
+        margin: "12px 0 0 0",
+      }}>{current + 1} of {steps.length}</p>
+    </div>
+  );
+}
+
 function CTAButton({ mobile }) {
   return (
     <button
@@ -362,47 +502,8 @@ export default function AIPoweredScheduling() {
             The base version gives your facility a clean, professional self-serve booking system. Members see real-time trainer availability, book sessions on their own, and pay at the time of booking. No phone calls. No waiting for a callback. No forgotten appointments.
           </p>
 
-          {/* Booking Flow Images */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: mobile ? "repeat(2, 1fr)" : "repeat(5, 1fr)",
-            gap: mobile ? 12 : 16,
-            marginBottom: 40,
-          }}>
-            {[
-              { desktop: "/images/base-book-session-desktop.jpeg", mobile: "/images/base-book-session-mobile.jpeg", label: "Book a Session" },
-              { desktop: "/images/base-choose-trainer-desktop.jpeg", mobile: "/images/base-choose-trainer-mobile.jpeg", label: "Choose a Trainer" },
-              { desktop: "/images/base-pick-date-desktop.jpeg", mobile: "/images/base-pick-date-mobile.jpeg", label: "Pick a Date" },
-              { desktop: "/images/base-pick-time-desktop.jpeg", mobile: "/images/base-pick-time-mobile.jpeg", label: "Pick a Time" },
-              { desktop: "/images/base-your-info-desktop.jpeg", mobile: "/images/base-your-info-mobile.jpeg", label: "Your Info" },
-            ].map((step, i) => (
-              <div key={i} style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                <div style={{
-                  aspectRatio: mobile ? "4 / 5" : "9 / 16",
-                  borderRadius: mobile ? 12 : 16,
-                  overflow: "hidden",
-                  background: "#0a1a24",
-                }}>
-                  <img
-                    src={mobile ? step.mobile : step.desktop}
-                    alt={step.label}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                  />
-                </div>
-                <p style={{
-                  fontFamily: f,
-                  fontSize: mobile ? 11 : 12,
-                  color: "rgba(255,255,255,0.5)",
-                  textAlign: "center",
-                  margin: 0,
-                }}>{step.label}</p>
-              </div>
-            ))}
-          </div>
+          {/* Booking Flow Carousel */}
+          <BookingFlowCarousel mobile={mobile} />
 
           <div style={{ marginTop: 40, textAlign: "center" }}>
             <CTAButton mobile={mobile} />
