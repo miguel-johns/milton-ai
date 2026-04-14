@@ -360,27 +360,6 @@ export default function StripeCRM() {
               Built on the most <Accent>trusted financial infrastructure</Accent> in the world
             </h2>
 
-            <p style={{
-              fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
-              color: "rgba(255,255,255,0.65)", margin: "0 0 20px 0",
-            }}>
-              Stripe processes payments for Amazon, Google, Shopify, and millions of businesses worldwide. It supports 135+ currencies and payment methods. It&apos;s PCI compliant out of the box. It has built-in fraud detection. And it maintains 99.999% historical uptime.
-            </p>
-
-            <p style={{
-              fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
-              color: "rgba(255,255,255,0.65)", margin: "0 0 20px 0",
-            }}>
-              That&apos;s the infrastructure running your gym&apos;s finances now. Not a fitness-specific startup that might get acquired next year. Not a legacy platform built in 2012. Stripe — the same system the biggest companies on the planet trust with their revenue.
-            </p>
-
-            <p style={{
-              fontFamily: f, fontSize: mobile ? 16 : 18, lineHeight: 1.75,
-              color: mint, fontWeight: 500, margin: 0,
-            }}>
-              Milton just makes it work for your gym.
-            </p>
-
             <VisualPlaceholder height={350} mobile={mobile} />
           </section>
 
