@@ -53,11 +53,11 @@ function VisualPlaceholder({ height = 320, label = "Visual Here", mobile }) {
   );
 }
 
-function SchedulingImage({ desktopSrc, mobileSrc, alt, mobile }) {
+function SchedulingImage({ desktopSrc, mobileSrc, alt, mobile, mobileAspectRatio = "4 / 5" }) {
   return (
     <div style={{
       width: "100%",
-      aspectRatio: mobile ? "4 / 5" : "16 / 9",
+      aspectRatio: mobile ? mobileAspectRatio : "16 / 9",
       borderRadius: mobile ? 16 : 20,
       overflow: "hidden",
       background: "#0a1a24",
@@ -445,6 +445,7 @@ export default function AIPoweredScheduling() {
               mobileSrc="/images/hero-scheduling-desktop.jpeg"
               alt="Milton AI Scheduling - Book a Session"
               mobile={mobile}
+              mobileAspectRatio="1 / 1"
             />
 
           <div style={{ marginTop: 40 }}>
