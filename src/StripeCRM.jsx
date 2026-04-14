@@ -310,24 +310,6 @@ export default function StripeCRM() {
             </div>
           </section>
 
-          {/* ═══════ ONE SYSTEM ═══════ */}
-          <section style={{ padding: sectionPad }}>
-            <h2 style={{
-              fontFamily: serif,
-              fontSize: mobile ? 28 : 40,
-              fontWeight: 400, lineHeight: 1.15, color: "#fff",
-              margin: "0 0 24px 0",
-            }}>
-              One system for payments, clients, and <Accent>AI</Accent>
-            </h2>
-
-            <VisualPlaceholder height={350} mobile={mobile} />
-
-            <div style={{ marginTop: 40, textAlign: "center" }}>
-              <CTAButton mobile={mobile} />
-            </div>
-          </section>
-
           {/* ═══════ TRUSTED INFRASTRUCTURE ═══════ */}
           <section style={{ padding: sectionPad }}>
             <h2 style={{
