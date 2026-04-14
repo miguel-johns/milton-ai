@@ -238,49 +238,106 @@ export default function StripeCRM() {
               Everything a gym CRM does — <Accent>powered by Stripe</Accent>
             </h2>
 
-            <FeatureItem
-              title="Client management"
-              body="Every member is a Stripe customer record. Contact info, payment methods, subscription status, transaction history, and notes — all in one place. Milton surfaces it in a clean, gym-friendly dashboard."
-              mobile={mobile}
-            />
+            <div style={{
+              display: "grid",
+              gridTemplateColumns: mobile ? "1fr" : "repeat(2, 1fr)",
+              gap: mobile ? 16 : 24,
+            }}>
+              <IllustratedFeatureCard
+                icon={
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                }
+                title="Client management"
+                body="Every member is a Stripe customer record. Contact info, payment methods, subscription status, transaction history, and notes — all in one place."
+                mobile={mobile}
+              />
 
-            <FeatureItem
-              title="Memberships and subscriptions"
-              body="Set up any pricing model you want. Monthly memberships, annual contracts, tiered packages, family plans, class packs, hybrid models. Stripe handles recurring billing automatically with AI-powered smart retries that recover failed payments before you even know they happened."
-              mobile={mobile}
-            />
+              <IllustratedFeatureCard
+                icon={
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 2v4" />
+                    <path d="M12 18v4" />
+                    <path d="M4.93 4.93l2.83 2.83" />
+                    <path d="M16.24 16.24l2.83 2.83" />
+                    <path d="M2 12h4" />
+                    <path d="M18 12h4" />
+                    <circle cx="12" cy="12" r="4" />
+                  </svg>
+                }
+                title="Memberships and subscriptions"
+                body="Monthly memberships, annual contracts, tiered packages, family plans, class packs. Stripe handles recurring billing with AI-powered smart retries."
+                mobile={mobile}
+              />
 
-            <FeatureItem
-              title="Session packages"
-              body="Sell 5-packs, 10-packs, or custom bundles. Milton tracks remaining sessions and alerts members (and their trainers) when they're running low."
-              mobile={mobile}
-            />
+              <IllustratedFeatureCard
+                icon={
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <path d="M3 9h18" />
+                    <path d="M9 21V9" />
+                  </svg>
+                }
+                title="Session packages"
+                body="Sell 5-packs, 10-packs, or custom bundles. Milton tracks remaining sessions and alerts members when they're running low."
+                mobile={mobile}
+              />
 
-            <FeatureItem
-              title="Point of sale"
-              body="Process payments in person with Stripe Terminal. Sell supplements, merchandise, recovery sessions, drop-ins, or anything else — right from the floor. No separate POS system. No additional hardware fees."
-              mobile={mobile}
-            />
+              <IllustratedFeatureCard
+                icon={
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="5" width="20" height="14" rx="2" />
+                    <line x1="2" y1="10" x2="22" y2="10" />
+                  </svg>
+                }
+                title="Point of sale"
+                body="Process payments in person with Stripe Terminal. Sell supplements, merchandise, drop-ins — right from the floor. No separate POS system."
+                mobile={mobile}
+              />
 
-            <FeatureItem
-              title="Invoicing"
-              body="Send professional invoices for one-time services, personal training blocks, or custom pricing. Stripe tracks payment status and sends automatic reminders for overdue balances."
-              mobile={mobile}
-            />
+              <IllustratedFeatureCard
+                icon={
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                  </svg>
+                }
+                title="Invoicing"
+                body="Send professional invoices for one-time services or custom pricing. Stripe tracks payment status and sends automatic reminders."
+                mobile={mobile}
+              />
 
-            <FeatureItem
-              title="Self-service portal"
-              body="Members manage their own payment methods, view transaction history, upgrade or downgrade their plans, and handle cancellations through a secure, branded portal. Less work for your front desk."
-              mobile={mobile}
-            />
+              <IllustratedFeatureCard
+                icon={
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 6v6l4 2" />
+                  </svg>
+                }
+                title="Self-service portal"
+                body="Members manage payment methods, view history, upgrade plans, and handle cancellations through a secure portal. Less work for your front desk."
+                mobile={mobile}
+              />
 
-            <FeatureItem
-              title="Revenue reporting"
-              body="See real-time revenue by product, by trainer, by membership type. Monthly recurring revenue, churn rate, lifetime value — all the metrics that matter, generated automatically from your Stripe data."
-              mobile={mobile}
-            />
-
-            <VisualPlaceholder height={350} mobile={mobile} />
+              <IllustratedFeatureCard
+                icon={
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="18" y1="20" x2="18" y2="10" />
+                    <line x1="12" y1="20" x2="12" y2="4" />
+                    <line x1="6" y1="20" x2="6" y2="14" />
+                  </svg>
+                }
+                title="Revenue reporting"
+                body="Real-time revenue by product, trainer, membership type. MRR, churn rate, lifetime value — all generated automatically from your Stripe data."
+                mobile={mobile}
+              />
+            </div>
 
             <div style={{ marginTop: 40, textAlign: "center" }}>
               <CTAButton mobile={mobile} />
