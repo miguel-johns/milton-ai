@@ -447,7 +447,7 @@ export default function AIPoweredScheduling() {
 
           <SchedulingImage 
               desktopSrc="/images/hero-scheduling-desktop.jpeg"
-              mobileSrc="/images/hero-scheduling-desktop.jpeg"
+              mobileSrc="/images/hero-scheduling-mobile.jpeg"
               alt="Milton AI Scheduling - Book a Session"
               mobile={mobile}
             />
@@ -616,7 +616,7 @@ export default function AIPoweredScheduling() {
 
           <SchedulingImage 
             desktopSrc="/images/connected-crm-desktop.jpeg"
-            mobileSrc="/images/connected-crm-desktop.jpeg"
+            mobileSrc="/images/connected-crm-mobile.jpeg"
             alt="Clients dashboard powered by Stripe"
             mobile={mobile}
           />
