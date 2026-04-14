@@ -309,9 +309,9 @@ export default function AIPoweredScheduling() {
           </p>
 
           <SchedulingImage 
-              desktopSrc="/images/scheduling-book-session-desktop.jpeg"
-              mobileSrc="/images/scheduling-book-session-mobile.jpeg"
-              alt="Book a Session"
+              desktopSrc="/images/hero-scheduling-desktop.jpeg"
+              mobileSrc="/images/hero-scheduling-desktop.jpeg"
+              alt="Milton AI Scheduling - Book a Session"
               mobile={mobile}
             />
 
