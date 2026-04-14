@@ -36,6 +36,27 @@ function VisualPlaceholder({ height = 300, label = "Visual Placeholder", mobile 
   );
 }
 
+function ResponsiveImage({ desktopSrc, mobileSrc, alt, mobile }) {
+  return (
+    <div style={{
+      width: "100%",
+      borderRadius: mobile ? 16 : 20,
+      overflow: "hidden",
+      marginTop: 32,
+    }}>
+      <img
+        src={mobile ? mobileSrc : desktopSrc}
+        alt={alt}
+        style={{
+          width: "100%",
+          height: "auto",
+          display: "block",
+        }}
+      />
+    </div>
+  );
+}
+
 function CTAButton({ mobile }) {
   return (
     <button
@@ -151,7 +172,12 @@ export default function StripeCRM() {
               Here&apos;s something most gym owners don&apos;t realize: Stripe already does almost everything a CRM does. It stores your customers. It manages subscriptions. It processes payments. It tracks transaction history. It handles invoicing, recurring billing, package management, and self-service portals.
             </p>
 
-            <VisualPlaceholder height={mobile ? 280 : 480} label="Hero Image" mobile={mobile} />
+            <ResponsiveImage 
+              desktopSrc="/images/stripe-hero-desktop.png"
+              mobileSrc="/images/stripe-hero-mobile.png"
+              alt="Clients dashboard powered by Stripe"
+              mobile={mobile}
+            />
 
             <div style={{ marginTop: 40 }}>
               <CTAButton mobile={mobile} />
