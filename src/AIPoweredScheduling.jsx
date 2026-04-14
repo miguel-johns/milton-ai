@@ -450,9 +450,9 @@ export default function AIPoweredScheduling() {
               Milton notices a member hasn&apos;t booked in two weeks and sends a text: &quot;It&apos;s been a minute. Want me to get you on the schedule this week? Here are three times that work with your trainer.&quot; The member replies &quot;Tuesday works&quot; and Milton books it. No link. No portal. Just a conversation.
             </p>
             <SchedulingImage 
-              desktopSrc="/images/scheduling-choose-trainer-desktop.jpeg"
-              mobileSrc="/images/scheduling-choose-trainer-mobile.jpeg"
-              alt="Choose a Trainer"
+              desktopSrc="/images/persona-members-desktop.jpeg"
+              mobileSrc="/images/persona-members-mobile.jpeg"
+              alt="Member conversation with Milton AI"
               mobile={mobile}
             />
           </div>
@@ -470,9 +470,9 @@ export default function AIPoweredScheduling() {
               Milton sees a trainer has a gap on Thursday afternoon and three clients who haven&apos;t booked this week. It reaches out to those clients on the trainer&apos;s behalf, suggests the open slot, and fills it. The trainer&apos;s schedule gets tighter without them doing a thing.
             </p>
             <SchedulingImage 
-              desktopSrc="/images/scheduling-pick-date-desktop.jpeg"
-              mobileSrc="/images/scheduling-pick-date-mobile.jpeg"
-              alt="Pick a Date"
+              desktopSrc="/images/persona-coaches-desktop.jpeg"
+              mobileSrc="/images/persona-coaches-mobile.jpeg"
+              alt="Coach schedule optimization"
               mobile={mobile}
             />
           </div>
@@ -490,9 +490,9 @@ export default function AIPoweredScheduling() {
               Milton flags scheduling patterns you&apos;d miss on your own. A trainer who&apos;s consistently underbooked on Fridays. A member who used to come three times a week and is now down to one. A time slot that never fills and could be repurposed. It doesn&apos;t just report — it recommends what to do about it and can act on your direction.
             </p>
             <SchedulingImage 
-              desktopSrc="/images/scheduling-pick-time-desktop.jpeg"
-              mobileSrc="/images/scheduling-pick-time-mobile.jpeg"
-              alt="Pick a Time"
+              desktopSrc="/images/persona-directors-desktop.jpeg"
+              mobileSrc="/images/persona-directors-mobile.jpeg"
+              alt="Director insights and recommendations"
               mobile={mobile}
             />
           </div>
