@@ -184,23 +184,6 @@ export default function StripeCRM() {
             </div>
           </section>
 
-          {/* ═══════ INTRO ═══════ */}
-          <section style={{ padding: sectionPad }}>
-            <p style={{
-              fontFamily: f, fontSize: mobile ? 15 : 18, lineHeight: 1.75,
-              color: "rgba(255,255,255,0.65)", margin: "0 0 24px 0",
-            }}>
-              The only reason gyms haven&apos;t used Stripe as their CRM is because it wasn&apos;t designed with a gym-friendly interface. So the industry built layers of software — MindBody, ABC Fitness, Wellness Living — just to make billing and client management usable for fitness businesses. You&apos;ve been paying a middleman to sit between you and Stripe.
-            </p>
-
-            <p style={{
-              fontFamily: f, fontSize: mobile ? 17 : 20, lineHeight: 1.75,
-              color: mint, fontWeight: 500, margin: 0,
-            }}>
-              That middleman is no longer necessary. Milton connects directly to Stripe and gives you the interface, the automations, and the AI intelligence to run your entire client and payment operation.
-            </p>
-          </section>
-
           {/* ═══════ EVERYTHING A GYM CRM DOES ═══════ */}
           <section style={{ padding: sectionPad }}>
             <h2 style={{
