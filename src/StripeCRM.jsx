@@ -310,7 +310,7 @@ export default function StripeCRM() {
             </div>
           </section>
 
-          {/* ═══════ TRUSTED INFRASTRUCTURE ═══════ */}
+          {/* ═══════ TRUSTED INFRASTRUCTURE + CTA ═══════ */}
           <section style={{ padding: sectionPad }}>
             <h2 style={{
               fontFamily: serif,
@@ -322,16 +322,14 @@ export default function StripeCRM() {
             </h2>
 
             <VisualPlaceholder height={350} mobile={mobile} />
-          </section>
 
-          {/* ═══════ CLOSING CTA ═══════ */}
-          <section style={{ padding: sectionPad }}>
             <div style={{
               background: "rgba(13,154,165,0.08)",
               border: "1px solid rgba(13,154,165,0.2)",
               borderRadius: mobile ? 16 : 24,
               padding: mobile ? "40px 24px" : "56px 48px",
               textAlign: "center",
+              marginTop: 48,
             }}>
               <h2 style={{
                 fontFamily: serif,
