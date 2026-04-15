@@ -1594,8 +1594,8 @@ export default function MiltonHomepage() {
           </div>
         </section>
 
-        {/* SECTION 4 — CASE STUDIES / PROOF */}
-        <section id="proof" style={{ padding: sectionPad }}>
+        {/* SECTION 4 — CASE STUDIES / PROOF (hidden) */}
+        {/* <section id="proof" style={{ padding: sectionPad }}>
           <AccentLine />
           <Headline>Results that speak for <Accent>themselves.</Accent></Headline>
           
@@ -1616,7 +1616,7 @@ export default function MiltonHomepage() {
               </a>
             ))}
           </div>
-        </section>
+        </section> */}
 
         {/* SECTION 5 — CTA */}
         <section id="cta" style={{ padding: sectionPad }}>
