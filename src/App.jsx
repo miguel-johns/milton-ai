@@ -1167,9 +1167,9 @@ export default function MiltonHomepage() {
               flexWrap: "wrap",
               opacity: 0.5,
             }}>
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: "#fff", fontWeight: 500 }}>Optimal Performance</span>
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: "#fff", fontWeight: 500 }}>Athletica</span>
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: "#fff", fontWeight: 500 }}>FitCore</span>
+<span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: "#fff", fontWeight: 500 }}>Optimal Performance</span>
+  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: "#fff", fontWeight: 500 }}>Johnny O&apos;s Gym</span>
+  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: "#fff", fontWeight: 500 }}>Elevated Fitness KC</span>
             </div>
           </div>
         </section>
