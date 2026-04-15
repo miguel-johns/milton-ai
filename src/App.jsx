@@ -1427,35 +1427,20 @@ export default function MiltonHomepage() {
                 Ready to run your gym <Accent>smarter?</Accent>
               </Headline>
               
-              <Body style={{ maxWidth: 520, margin: "0 auto 32px auto", textAlign: "center" }}>
-                Book a free strategy call — or let us build your AI-powered website first, on us.
-              </Body>
-              
-              <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-                <CTA variant="primary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "14px 28px" : "16px 36px" }} href="#/book">
-                  AI Consultation
-                </CTA>
-                <CTA variant="secondary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "14px 28px" : "16px 36px" }} href="#/book-snapshot">
-                  See your free site
-                </CTA>
-              </div>
+<Body style={{ maxWidth: 520, margin: "0 auto 32px auto", textAlign: "center" }}>
+  Book a free strategy call.
+  </Body>
+  
+  <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+  <CTA variant="primary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "14px 28px" : "16px 36px" }} href="#/book">
+  AI Consultation
+  </CTA>
+  </div>
             </div>
           </div>
         </section>
 
-        {/* SECTION 6 — THE ECOSYSTEM CLOSER */}
-        <section id="ecosystem" style={{ padding: sectionPad }}>
-          <AccentLine />
-          <Headline>Everything connects. <Accent>Everything compounds.</Accent></Headline>
-          
-          <Body>
-            Most gyms run on five disconnected tools that don&apos;t talk to each other. Milton is one system — your coach co-pilot knows what your member assistant surfaced. Your director dashboard reflects what&apos;s actually happening on the floor.
-          </Body>
-          
-          <Body style={{ marginBottom: 0 }}>
-            Every interaction feeds the intelligence that makes the next one better. <Mint>That&apos;s not a feature. That&apos;s a moat.</Mint>
-          </Body>
-        </section>
+
 
       </div>
     </>
