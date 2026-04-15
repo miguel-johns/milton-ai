@@ -1352,14 +1352,14 @@ export default function MiltonHomepage() {
               textTransform: "uppercase",
               color: "#9af198",
               marginBottom: 20,
-            }}>AI Services</h3>
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: "1fr",
-              gap: mobile ? 16 : 24,
-              width: "100%",
-              minWidth: 0,
-            }}>
+}}>AI Services</h3>
+  <div style={{
+  display: "grid",
+  gridTemplateColumns: mobile ? "1fr" : "repeat(4, 1fr)",
+  gap: mobile ? 16 : 24,
+  width: "100%",
+  minWidth: 0,
+  }}>
               {services.map((service, i) => (
                 <ServiceCard 
                   key={i}
