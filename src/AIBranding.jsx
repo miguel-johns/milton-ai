@@ -144,30 +144,6 @@ export default function AIBranding() {
           </div>
         </section>
 
-        {/* ═══════ INTRO ═══════ */}
-        <section style={{ padding: sectionPad }}>
-          <p style={{
-            fontFamily: f, fontSize: mobile ? 15 : 18, lineHeight: 1.75,
-            color: "rgba(255,255,255,0.65)", margin: "0 0 24px 0",
-          }}>
-            The website was thrown together three years ago. The logo was a favor from a friend. The photos are a mix of iPhone shots and stock images that don&apos;t look anything like your facility. And the branding — if you can call it that — is inconsistent across every touchpoint.
-          </p>
-
-          <p style={{
-            fontFamily: f, fontSize: mobile ? 15 : 18, lineHeight: 1.75,
-            color: "rgba(255,255,255,0.65)", margin: "0 0 24px 0",
-          }}>
-            None of that reflects the quality of what you actually do. Milton&apos;s AI Branding closes that gap. We use AI to build you a professional brand identity — logo, brand guide, photography, website, and digital presence — that puts you on the same visual level as the biggest names in fitness and healthcare.
-          </p>
-
-          <p style={{
-            fontFamily: f, fontSize: mobile ? 17 : 20, lineHeight: 1.75,
-            color: mint, fontWeight: 500, margin: 0,
-          }}>
-            Because that&apos;s where you belong.
-          </p>
-        </section>
-
         {/* ═══════ BUILT IN DAYS ═══════ */}
         <section style={{ padding: sectionPad }}>
           <h2 style={{
