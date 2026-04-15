@@ -19,15 +19,6 @@ function Accent({ children }) {
   return <span style={{ color: teal, fontStyle: "italic" }}>{children}</span>;
 }
 
-function SectionLabel({ children }) {
-  return (
-    <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
-      <div style={{ width: 8, height: 8, borderRadius: "50%", background: teal, flexShrink: 0 }} />
-      <span style={{ fontFamily: f, fontSize: 11, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>{children}</span>
-    </div>
-  );
-}
-
 function SectionDivider() {
   return <div style={{ height: 1, background: "rgba(255,255,255,0.06)", margin: "0 0 48px 0" }} />;
 }
@@ -50,7 +41,7 @@ function VisualPlaceholder({ height = 300, label = "Visual", mobile }) {
   );
 }
 
-function CTAButton({ mobile, text = "AI Consultation" }) {
+function CTAButton({ mobile, text = "Book Your AI Consultation" }) {
   return (
     <button
       onClick={() => window.dispatchEvent(new CustomEvent('openConsultationModal'))}
@@ -143,139 +134,79 @@ export default function AIConsultation() {
 
           <p style={{
             fontFamily: f, fontSize: mobile ? 16 : 20, lineHeight: 1.7,
-            color: "rgba(255,255,255,0.6)", maxWidth: 720, margin: "0 0 40px 0",
+            color: "rgba(255,255,255,0.6)", maxWidth: 720, margin: "0 0 24px 0",
           }}>
             Whether you work with us or not. Most AI companies want to sell you software. We want to understand your business first.
+          </p>
+
+          <p style={{
+            fontFamily: f, fontSize: mobile ? 15 : 18, lineHeight: 1.7,
+            color: "rgba(255,255,255,0.55)", maxWidth: 720, margin: "0 0 40px 0",
+          }}>
+            Milton&apos;s AI Consultation is a free, one-on-one session where we sit down with you, learn how your facility operates, and map out exactly where AI fits — and where it doesn&apos;t. You walk away with a clear picture of your current gaps and a practical AI game plan built around your specific business.
           </p>
 
           <VisualPlaceholder height={mobile ? 280 : 420} label="Hero Image" mobile={mobile} />
 
           <div style={{ marginTop: 40 }}>
-            <CTAButton mobile={mobile} text="Book Your AI Consultation" />
+            <CTAButton mobile={mobile} />
           </div>
-        </section>
-
-        {/* ═══════ INTRO ═══════ */}
-        <section style={{ padding: sectionPad }}>
-          <SectionDivider />
-          <p style={{
-            fontFamily: f, fontSize: mobile ? 15 : 18, lineHeight: 1.75,
-            color: "rgba(255,255,255,0.65)", margin: "0 0 24px 0",
-          }}>
-            Milton&apos;s AI Consultation is a free, one-on-one consultation where we sit down with you, learn how your facility operates, and map out exactly where AI fits — and where it doesn&apos;t.
-          </p>
-          <p style={{
-            fontFamily: f, fontSize: mobile ? 15 : 18, lineHeight: 1.75,
-            color: "rgba(255,255,255,0.65)", margin: "0 0 24px 0",
-          }}>
-            You walk away with a clear picture of your current tech stack, your biggest operational gaps, and a practical AI game plan built around your specific business. If you decide to work with us, great — we&apos;ll start executing. If you decide to take that plan and run with it on your own, that&apos;s fine too. Either way, you get something real for your time.
-          </p>
         </section>
 
         {/* ═══════ WHAT WE DO ON THE CALL ═══════ */}
         <section style={{ padding: sectionPad }}>
           <SectionDivider />
-          <SectionLabel>What we actually do</SectionLabel>
           <h2 style={{
             fontFamily: serif,
             fontSize: mobile ? 28 : 40,
             fontWeight: 400, lineHeight: 1.15, color: "#fff",
             margin: "0 0 24px 0",
           }}>
-            Here&apos;s what we actually do on the call
+            What we actually do <Accent>on the call</Accent>
           </h2>
 
           <p style={{
             fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
-            color: "rgba(255,255,255,0.6)", margin: "0 0 32px 0",
+            color: "rgba(255,255,255,0.6)", margin: "0 0 24px 0",
           }}>
-            This isn&apos;t a demo disguised as a consultation. We spend most of the time listening. We want to understand how you run your business before we talk about ours.
+            This isn&apos;t a demo disguised as a consultation. We spend most of the time listening.
           </p>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
-            <div>
-              <h4 style={{ fontFamily: serif, fontSize: mobile ? 20 : 24, fontWeight: 400, color: mint, margin: "0 0 12px 0" }}>We learn how you operate</h4>
-              <p style={{ fontFamily: f, fontSize: mobile ? 14 : 16, lineHeight: 1.75, color: "rgba(255,255,255,0.6)", margin: 0 }}>
-                How many locations? How many trainers? Are they W2s or contractors? What does your training model look like — one-on-one, semi-private, group, hybrid? How do you handle scheduling, billing, member communication? What does your fitness director&apos;s day actually look like? We ask the questions that matter because every facility is different — and cookie-cutter AI doesn&apos;t work.
-              </p>
-            </div>
-            <div>
-              <h4 style={{ fontFamily: serif, fontSize: mobile ? 20 : 24, fontWeight: 400, color: mint, margin: "0 0 12px 0" }}>We learn what technology you&apos;re currently using</h4>
-              <p style={{ fontFamily: f, fontSize: mobile ? 14 : 16, lineHeight: 1.75, color: "rgba(255,255,255,0.6)", margin: 0 }}>
-                MindBody? ABC Fitness? Recess? Go High Level? A combination of spreadsheets and text messages? We need to see the full picture — what&apos;s working, what&apos;s disconnected, and where your team is spending time on things that should be automated.
-              </p>
-            </div>
-            <div>
-              <h4 style={{ fontFamily: serif, fontSize: mobile ? 20 : 24, fontWeight: 400, color: mint, margin: "0 0 12px 0" }}>We learn how you&apos;re thinking about AI</h4>
-              <p style={{ fontFamily: f, fontSize: mobile ? 14 : 16, lineHeight: 1.75, color: "rgba(255,255,255,0.6)", margin: 0 }}>
-                Maybe you&apos;re already using ChatGPT or Claude for content. Maybe you&apos;ve got smart equipment on the floor. Maybe you know you need to be doing something but have no idea where to start. All of that is useful. We meet you where you are.
-              </p>
-            </div>
-          </div>
+          <p style={{
+            fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
+            color: "rgba(255,255,255,0.6)", margin: "0 0 24px 0",
+          }}>
+            <strong style={{ color: "#fff" }}>We learn how you operate:</strong> locations, trainers, training model, scheduling, billing, member communication. Every facility is different — cookie-cutter AI doesn&apos;t work.
+          </p>
+
+          <p style={{
+            fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
+            color: "rgba(255,255,255,0.6)", margin: "0 0 24px 0",
+          }}>
+            <strong style={{ color: "#fff" }}>We learn your tech stack:</strong> MindBody, ABC Fitness, Recess, spreadsheets, whatever it is. We need the full picture — what&apos;s working, what&apos;s disconnected, and where your team is doing things that should be automated.
+          </p>
+
+          <p style={{
+            fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
+            color: "rgba(255,255,255,0.6)", margin: 0,
+          }}>
+            Once we understand your business, we show you where Milton makes the biggest impact for your specific situation. Not a generic pitch deck. Maybe it&apos;s the AI Receptionist because you&apos;re losing leads to missed calls every week. Maybe it&apos;s the Coach Co-Pilot because your fitness director is buried in spreadsheets. We find the one or two things that will deliver ROI fastest and build from there.
+          </p>
 
           <VisualPlaceholder height={320} label="Consultation Visual" mobile={mobile} />
-
-          <div style={{ marginTop: 40, textAlign: "center" }}>
-            <CTAButton mobile={mobile} />
-          </div>
-        </section>
-
-        {/* ═══════ WHAT'S POSSIBLE ═══════ */}
-        <section style={{ padding: sectionPad }}>
-          <SectionDivider />
-          <SectionLabel>What&apos;s possible</SectionLabel>
-          <h2 style={{
-            fontFamily: serif,
-            fontSize: mobile ? 28 : 40,
-            fontWeight: 400, lineHeight: 1.15, color: "#fff",
-            margin: "0 0 24px 0",
-          }}>
-            Then we show you what&apos;s <Accent>possible</Accent>
-          </h2>
-
-          <p style={{
-            fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
-            color: "rgba(255,255,255,0.6)", margin: "0 0 24px 0",
-          }}>
-            Once we understand your business, we give you a brief overview of what we&apos;ve built and how it applies to your specific situation — not a generic pitch deck, but a targeted look at where Milton&apos;s AI agents and tools would make the biggest impact for you.
-          </p>
-
-          <p style={{
-            fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
-            color: "rgba(255,255,255,0.6)", margin: "0 0 24px 0",
-          }}>
-            Maybe it&apos;s nutrition — the fastest way to generate new revenue and prove the concept. Maybe it&apos;s the Coach Co-Pilot — because your trainers need better tools and your fitness director is buried in spreadsheets. Maybe it&apos;s scheduling and your AI Receptionist — because you&apos;re losing leads to missed calls every week. Maybe it&apos;s all of it, phased over time.
-          </p>
-
-          <p style={{
-            fontFamily: f, fontSize: mobile ? 16 : 18, lineHeight: 1.75,
-            color: mint, fontWeight: 500, margin: 0,
-          }}>
-            We don&apos;t try to sell you everything on the first call. We try to find the low-hanging fruit — the one or two things that will deliver ROI fastest — and build from there.
-          </p>
-
-          <VisualPlaceholder height={320} label="Possibilities Visual" mobile={mobile} />
         </section>
 
         {/* ═══════ WHAT YOU WALK AWAY WITH ═══════ */}
         <section style={{ padding: sectionPad }}>
           <SectionDivider />
-          <SectionLabel>What you get</SectionLabel>
           <h2 style={{
             fontFamily: serif,
             fontSize: mobile ? 28 : 40,
             fontWeight: 400, lineHeight: 1.15, color: "#fff",
-            margin: "0 0 24px 0",
+            margin: "0 0 32px 0",
           }}>
             What you walk away with
           </h2>
-
-          <p style={{
-            fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
-            color: "rgba(255,255,255,0.6)", margin: "0 0 32px 0",
-          }}>
-            By the end of the AI Consultation, you&apos;ll have clarity on three things:
-          </p>
 
           <div style={{ display: "grid", gridTemplateColumns: mobile ? "1fr" : "repeat(3, 1fr)", gap: 20 }}>
             <WalkawayItem 
@@ -284,93 +215,43 @@ export default function AIConsultation() {
               mobile={mobile}
             />
             <WalkawayItem 
-              title="Where AI fits in your business" 
-              body="Not in theory. Specifically. Which parts of your operation would benefit most from AI, which tools address those needs, and what the priority order should be."
+              title="Where AI fits" 
+              body="Not in theory. Specifically — which parts of your operation benefit most, which tools address those needs, and what the priority order should be."
               mobile={mobile}
             />
             <WalkawayItem 
-              title="What the next step looks like" 
-              body="If there's a fit, we'll schedule a deeper dive. If there's not a fit, you still leave with a framework you can act on."
+              title="What's next" 
+              body="If there's a fit, we'll schedule a deeper dive. If there's not, you still leave with a framework you can act on. No pressure. No obligation."
               mobile={mobile}
             />
           </div>
 
           <p style={{
-            fontFamily: f, fontSize: mobile ? 16 : 18, lineHeight: 1.75,
-            color: mint, fontWeight: 500, margin: "32px 0 0 0", textAlign: "center",
+            fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
+            color: "rgba(255,255,255,0.6)", margin: "32px 0 0 0",
           }}>
-            No pressure. No obligation. Just a real conversation with the people who are building AI for this industry.
+            We&apos;re selective about who we work with — our team meets with some partners three times a week during implementation. The consultation is how we figure out together whether there&apos;s real alignment. It&apos;s valuable for you because you get a real plan. It&apos;s valuable for us because we learn whether we can actually help.
           </p>
 
           <VisualPlaceholder height={300} label="Walkaway Visual" mobile={mobile} />
-
-          <div style={{ marginTop: 40, textAlign: "center" }}>
-            <CTAButton mobile={mobile} />
-          </div>
         </section>
 
-        {/* ═══════ WHY FREE ═══════ */}
-        <section style={{ padding: sectionPad }}>
+        {/* ═══════ CLOSING CTA ═══════ */}
+        <section style={{
+          padding: mobile ? "64px 0 100px" : "88px 0 120px",
+          textAlign: "center",
+        }}>
           <SectionDivider />
-          <SectionLabel>Why it&apos;s free</SectionLabel>
           <h2 style={{
             fontFamily: serif,
             fontSize: mobile ? 28 : 40,
             fontWeight: 400, lineHeight: 1.15, color: "#fff",
-            margin: "0 0 24px 0",
+            margin: "0 0 16px 0",
           }}>
-            Why we do this for <Accent>free</Accent>
+            One call. No cost. A real game plan for AI in your facility.
           </h2>
-
-          <p style={{
-            fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
-            color: "rgba(255,255,255,0.6)", margin: "0 0 24px 0",
-          }}>
-            We&apos;re selective about who we work with. We spend serious time with every partner — our CEO meets with some facilities three times a week during implementation. That means we can&apos;t work with everyone, and we need to make sure there&apos;s real alignment before we start.
-          </p>
-
-          <p style={{
-            fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.75,
-            color: "rgba(255,255,255,0.6)", margin: "0 0 24px 0",
-          }}>
-            The AI Consultation is how we figure that out — together. It&apos;s valuable for you because you get a real plan. It&apos;s valuable for us because we learn whether we can actually help. If the answer is yes, we&apos;ll earn your business by showing you what we can do. If the answer is no, you still walk away better off than when you walked in.
-          </p>
-
-          <p style={{
-            fontFamily: f, fontSize: mobile ? 16 : 18, lineHeight: 1.75,
-            color: mint, fontWeight: 500, margin: 0,
-          }}>
-            That&apos;s how we think partnerships should start.
-          </p>
-
-          <VisualPlaceholder height={300} label="Partnership Visual" mobile={mobile} />
-        </section>
-
-        {/* ═══════ CLOSING CTA ═══════ */}
-        <section style={{ padding: mobile ? "64px 0 100px" : "88px 0 120px" }}>
-          <SectionDivider />
-          <div style={{
-            background: "linear-gradient(135deg, rgba(13,154,165,0.12) 0%, rgba(154,241,152,0.06) 100%)",
-            border: "1px solid rgba(13,154,165,0.2)",
-            borderRadius: 20,
-            padding: mobile ? "40px 24px" : "56px 48px",
-            textAlign: "center",
-          }}>
-            <h2 style={{
-              fontFamily: serif,
-              fontSize: mobile ? 28 : 40,
-              fontWeight: 400, lineHeight: 1.15, color: "#fff",
-              margin: "0 0 16px 0",
-            }}>
-              Book your AI Consultation
-            </h2>
-            <p style={{
-              fontFamily: f, fontSize: mobile ? 15 : 17, lineHeight: 1.7,
-              color: "rgba(255,255,255,0.6)", maxWidth: 600, margin: "0 auto 32px auto",
-            }}>
-              One call. No cost. A real game plan for AI in your facility — built around how you actually operate, not how we think you should.
-            </p>
-            <CTAButton mobile={mobile} text="Book Your AI Consultation" />
+          <div style={{ marginTop: 32 }}>
+            <CTAButton mobile={mobile} />
           </div>
         </section>
 
