@@ -23,20 +23,23 @@ function SectionDivider() {
   return <div style={{ height: 1, background: "rgba(255,255,255,0.06)", margin: "0 0 48px 0" }} />;
 }
 
-function VisualPlaceholder({ height = 300, label = "Visual", mobile }) {
+function ResponsiveImage({ desktopSrc, mobileSrc, alt, mobile }) {
   return (
     <div style={{
       width: "100%",
-      height: mobile ? height * 0.65 : height,
-      background: "linear-gradient(135deg, rgba(13,154,165,0.08) 0%, rgba(154,241,152,0.04) 100%)",
-      border: "1px dashed rgba(13,154,165,0.25)",
-      borderRadius: 16,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
+      borderRadius: mobile ? 16 : 20,
+      overflow: "hidden",
       marginTop: 32,
     }}>
-      <span style={{ fontFamily: f, fontSize: 13, color: "rgba(255,255,255,0.25)", letterSpacing: 1 }}>[{label}]</span>
+      <img
+        src={mobile ? mobileSrc : desktopSrc}
+        alt={alt}
+        style={{
+          width: "100%",
+          height: "auto",
+          display: "block",
+        }}
+      />
     </div>
   );
 }
@@ -146,7 +149,12 @@ export default function AIConsultation() {
             Milton&apos;s AI Consultation is a free, one-on-one session where we sit down with you, learn how your facility operates, and map out exactly where AI fits — and where it doesn&apos;t. You walk away with a clear picture of your current gaps and a practical AI game plan built around your specific business.
           </p>
 
-          <VisualPlaceholder height={mobile ? 280 : 420} label="Hero Image" mobile={mobile} />
+          <ResponsiveImage 
+            desktopSrc="/images/consultation-hero-desktop.png"
+            mobileSrc="/images/consultation-hero-mobile.png"
+            alt="Consultation meeting in gym office with whiteboard showing brainstorming metrics"
+            mobile={mobile}
+          />
 
           <div style={{ marginTop: 40 }}>
             <CTAButton mobile={mobile} />
@@ -193,7 +201,12 @@ export default function AIConsultation() {
             Once we understand your business, we show you where Milton makes the biggest impact for your specific situation. Not a generic pitch deck. Maybe it&apos;s the AI Receptionist because you&apos;re losing leads to missed calls every week. Maybe it&apos;s the Coach Co-Pilot because your fitness director is buried in spreadsheets. We find the one or two things that will deliver ROI fastest and build from there.
           </p>
 
-          <VisualPlaceholder height={320} label="Consultation Visual" mobile={mobile} />
+          <ResponsiveImage 
+            desktopSrc="/images/consultation-call-desktop.png"
+            mobileSrc="/images/consultation-call-mobile.png"
+            alt="Gym owner reviewing dashboard analytics during video consultation"
+            mobile={mobile}
+          />
         </section>
 
         {/* ═══════ WHAT YOU WALK AWAY WITH ═══════ */}
@@ -233,7 +246,12 @@ export default function AIConsultation() {
             We&apos;re selective about who we work with — our team meets with some partners three times a week during implementation. The consultation is how we figure out together whether there&apos;s real alignment. It&apos;s valuable for you because you get a real plan. It&apos;s valuable for us because we learn whether we can actually help.
           </p>
 
-          <VisualPlaceholder height={300} label="Walkaway Visual" mobile={mobile} />
+          <ResponsiveImage 
+            desktopSrc="/images/consultation-walkaway-desktop.png"
+            mobileSrc="/images/consultation-walkaway-mobile.png"
+            alt="Gym owner reviewing AI game plan documents in facility lobby"
+            mobile={mobile}
+          />
         </section>
 
         {/* ═══════ CLOSING CTA ═══════ */}
