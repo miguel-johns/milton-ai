@@ -45,6 +45,223 @@ function AccentLine() {
   );
 }
 
+function DemoModal({ open, onClose, mobile }) {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  if (!open) return null;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    // Simulate API call - replace with actual endpoint
+    await new Promise(r => setTimeout(r, 800));
+    setLoading(false);
+    setSubmitted(true);
+  };
+
+  const handleClose = () => {
+    onClose();
+    // Reset form after animation
+    setTimeout(() => {
+      setName("");
+      setPhone("");
+      setSubmitted(false);
+    }, 300);
+  };
+
+  return (
+    <div 
+      onClick={handleClose}
+      style={{
+        position: "fixed",
+        inset: 0,
+        background: "rgba(0,0,0,0.7)",
+        backdropFilter: "blur(8px)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: 9999,
+        padding: 20,
+      }}
+    >
+      <div 
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          background: "linear-gradient(135deg, #0a3342 0%, #08455e 100%)",
+          border: "1px solid rgba(13,154,165,0.3)",
+          borderRadius: 20,
+          padding: mobile ? "32px 24px" : "40px 36px",
+          maxWidth: 420,
+          width: "100%",
+          position: "relative",
+        }}
+      >
+        <button 
+          onClick={handleClose}
+          style={{
+            position: "absolute",
+            top: 16,
+            right: 16,
+            background: "transparent",
+            border: "none",
+            color: "rgba(255,255,255,0.5)",
+            cursor: "pointer",
+            fontSize: 24,
+            lineHeight: 1,
+            padding: 4,
+          }}
+        >
+          ×
+        </button>
+
+        {submitted ? (
+          <div style={{ textAlign: "center", padding: "20px 0" }}>
+            <div style={{
+              width: 56, height: 56, borderRadius: "50%",
+              background: "rgba(154,241,152,0.15)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              margin: "0 auto 20px auto",
+            }}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9af198" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </div>
+            <h3 style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: mobile ? 22 : 26,
+              fontWeight: 700,
+              color: "#fff",
+              margin: "0 0 12px 0",
+            }}>Check your phone</h3>
+            <p style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: 15,
+              color: "rgba(255,255,255,0.6)",
+              margin: 0,
+              lineHeight: 1.6,
+            }}>
+              We&apos;re sending you a quick product walkthrough. Keep an eye out for a text from Milton.
+            </p>
+          </div>
+        ) : (
+          <>
+            <h3 style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: mobile ? 22 : 26,
+              fontWeight: 700,
+              color: "#fff",
+              margin: "0 0 8px 0",
+            }}>See Milton in action</h3>
+            <p style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: 15,
+              color: "rgba(255,255,255,0.6)",
+              margin: "0 0 28px 0",
+              lineHeight: 1.6,
+            }}>
+              Drop your info and we&apos;ll text you a quick product walkthrough — no sales call, just Milton doing its thing.
+            </p>
+
+            <form onSubmit={handleSubmit}>
+              <div style={{ marginBottom: 16 }}>
+                <label style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: 13,
+                  fontWeight: 500,
+                  color: "rgba(255,255,255,0.7)",
+                  display: "block",
+                  marginBottom: 8,
+                }}>Your name</label>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                  placeholder="John Smith"
+                  style={{
+                    width: "100%",
+                    padding: "14px 16px",
+                    borderRadius: 10,
+                    border: "1px solid rgba(255,255,255,0.15)",
+                    background: "rgba(255,255,255,0.05)",
+                    color: "#fff",
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: 15,
+                    outline: "none",
+                    boxSizing: "border-box",
+                  }}
+                />
+              </div>
+              <div style={{ marginBottom: 24 }}>
+                <label style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: 13,
+                  fontWeight: 500,
+                  color: "rgba(255,255,255,0.7)",
+                  display: "block",
+                  marginBottom: 8,
+                }}>Phone number</label>
+                <input
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  required
+                  placeholder="(555) 123-4567"
+                  style={{
+                    width: "100%",
+                    padding: "14px 16px",
+                    borderRadius: 10,
+                    border: "1px solid rgba(255,255,255,0.15)",
+                    background: "rgba(255,255,255,0.05)",
+                    color: "#fff",
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: 15,
+                    outline: "none",
+                    boxSizing: "border-box",
+                  }}
+                />
+              </div>
+              <button
+                type="submit"
+                disabled={loading}
+                style={{
+                  width: "100%",
+                  padding: "16px",
+                  borderRadius: 100,
+                  border: "none",
+                  background: "#fff",
+                  color: "#08455e",
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: 15,
+                  fontWeight: 600,
+                  cursor: loading ? "default" : "pointer",
+                  opacity: loading ? 0.7 : 1,
+                  transition: "opacity 0.2s ease",
+                }}
+              >
+                {loading ? "Sending..." : "Text me the walkthrough"}
+              </button>
+            </form>
+
+            <p style={{
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: 12,
+              color: "rgba(255,255,255,0.4)",
+              margin: "16px 0 0 0",
+              textAlign: "center",
+            }}>
+              We respect your privacy. No spam, ever.
+            </p>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function ProductCard({ icon, title, description, mobile, href, variant = "teal" }) {
   const [hovered, setHovered] = useState(false);
   const Wrapper = href ? 'a' : 'div';
@@ -978,6 +1195,7 @@ const PromptIcon = () => (
 
 export default function MiltonHomepage() {
   const { mobile, tablet } = useBreakpoint();
+  const [demoOpen, setDemoOpen] = useState(false);
   const px = mobile ? 20 : tablet ? 32 : 40;
   const sectionPad = mobile ? "80px 0" : "120px 0";
 
@@ -1143,10 +1361,10 @@ export default function MiltonHomepage() {
             AI tools, co-pilots, and expert guidance for every part of your operation.
           </p>
 
-          <div style={{ display: "flex", gap: 12, marginBottom: mobile ? 48 : 64, flexWrap: "wrap", justifyContent: "center" }}>
-            <CTA variant="primary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }} href="#/book">See it in action</CTA>
-            <CTA variant="secondary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }} href="#/book">AI Consultation</CTA>
-          </div>
+<div style={{ display: "flex", gap: 12, marginBottom: mobile ? 48 : 64, flexWrap: "wrap", justifyContent: "center" }}>
+  <CTA variant="primary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }} onClick={() => setDemoOpen(true)}>See it in action</CTA>
+  <CTA variant="secondary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }} href="#/book">AI Consultation</CTA>
+  </div>
 
           {/* Logo Carousel */}
           <div style={{ width: "100%", marginTop: 20 }}>
@@ -1443,6 +1661,8 @@ export default function MiltonHomepage() {
 
 
       </div>
+
+      <DemoModal open={demoOpen} onClose={() => setDemoOpen(false)} mobile={mobile} />
     </>
   );
 }
