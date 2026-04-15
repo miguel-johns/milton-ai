@@ -64,22 +64,23 @@ function CTAButton({ mobile }) {
   );
 }
 
-function VisualPlaceholder({ height = 300, label = "Visual", mobile }) {
+function ResponsiveImage({ desktopSrc, mobileSrc, alt, mobile }) {
   return (
     <div style={{
       width: "100%",
-      height: mobile ? height * 0.6 : height,
-      background: "rgba(13,154,165,0.08)",
-      border: "1px dashed rgba(13,154,165,0.3)",
-      borderRadius: 16,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      color: "rgba(255,255,255,0.3)",
-      fontFamily: f,
-      fontSize: 14,
+      borderRadius: mobile ? 16 : 20,
+      overflow: "hidden",
+      marginTop: 32,
     }}>
-      [{label}]
+      <img
+        src={mobile ? mobileSrc : desktopSrc}
+        alt={alt}
+        style={{
+          width: "100%",
+          height: "auto",
+          display: "block",
+        }}
+      />
     </div>
   );
 }
@@ -120,7 +121,12 @@ export default function ImplementationScience() {
             Implementation Science is our hands-on deployment methodology. We work alongside your team to configure, customize, and launch Milton — so it actually fits the way your business runs.
           </p>
 
-          <VisualPlaceholder height={mobile ? 280 : 480} label="Hero Image" mobile={mobile} />
+          <ResponsiveImage 
+            desktopSrc="/images/implementation-hero-desktop.png"
+            mobileSrc="/images/implementation-hero-mobile.png"
+            alt="Team meeting in gym office discussing performance dashboard with metrics and charts"
+            mobile={mobile}
+          />
 
           <div style={{ marginTop: 40 }}>
             <CTAButton mobile={mobile} />
@@ -153,7 +159,12 @@ export default function ImplementationScience() {
             We do it differently. Milton isn&apos;t something you figure out alone. It&apos;s something we build with you — configured to your workflows, trained on your language, and launched alongside your team.
           </p>
 
-          <VisualPlaceholder height={350} label="Implementation Process" mobile={mobile} />
+          <ResponsiveImage 
+            desktopSrc="/images/implementation-workflow-desktop.png"
+            mobileSrc="/images/implementation-workflow-mobile.png"
+            alt="Team reviewing operations process workflow on laptop with performance dashboard"
+            mobile={mobile}
+          />
 
           <div style={{ marginTop: 40, textAlign: "center" }}>
             <CTAButton mobile={mobile} />
@@ -244,7 +255,12 @@ export default function ImplementationScience() {
             We succeed when you succeed. That&apos;s why we stay involved long after launch.
           </p>
 
-          <VisualPlaceholder height={350} label="Ongoing Support Visual" mobile={mobile} />
+          <ResponsiveImage 
+            desktopSrc="/images/implementation-support-desktop.png"
+            mobileSrc="/images/implementation-support-mobile.png"
+            alt="Gym owner on phone with performance dashboard visible, representing ongoing Milton support"
+            mobile={mobile}
+          />
         </section>
 
         {/* ═══════ CLOSING CTA ═══════ */}
