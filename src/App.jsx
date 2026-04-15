@@ -1355,7 +1355,7 @@ export default function MiltonHomepage() {
 }}>AI Services</h3>
   <div style={{
   display: "grid",
-  gridTemplateColumns: mobile ? "1fr" : "repeat(4, 1fr)",
+  gridTemplateColumns: mobile ? "1fr" : "repeat(2, 1fr)",
   gap: mobile ? 16 : 24,
   width: "100%",
   minWidth: 0,
