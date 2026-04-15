@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
 import { Analytics } from '@vercel/analytics/react'
 import MiltonHomepage from './App.jsx'
+import DirectorDashboard from './DirectorDashboard.jsx'
 import PricingCalculator from './Pricing.jsx'
 import CaseStudy from './CaseStudy.jsx'
-import AIConsultation from './Consultation.jsx'
+import AIConsultationPage from './AIConsultation.jsx'
 import Insights from './Insights.jsx'
 import About from './About.jsx'
 import BookingPage from './Booking.jsx'
@@ -14,9 +15,25 @@ import SharedFooter from './SharedFooter.jsx'
 import ArticleDetail from './ArticleDetail.jsx'
 import Terms from './Terms.jsx'
 import Privacy from './Privacy.jsx'
-import ThePlatform from './ThePlatform.jsx'
+import CoachCoPilot from './CoachCoPilot.jsx'
+import AICoach from './AICoach.jsx'
+import ConnectedPartners from './ConnectedPartners.jsx'
+import WearableDevices from './WearableDevices.jsx'
+import BodyScans from './BodyScans.jsx'
+import StrengthCardioEquipment from './StrengthCardioEquipment.jsx'
+import ManagementSoftware from './ManagementSoftware.jsx'
+import NutritionFitnessApps from './NutritionFitnessApps.jsx'
+import AIPoweredScheduling from './AIPoweredScheduling.jsx'
+import AIReceptionist from './AIReceptionist.jsx'
+import AIBranding from './AIBranding.jsx'
+import AgenticCommerce from './AgenticCommerce.jsx'
+import AIAcquisition from './AIAcquisition.jsx'
+import StripeCRM from './StripeCRM.jsx'
+import ImplementationScience from './ImplementationScience.jsx'
+import InquireModal from './InquireModal.jsx'
 
 function App() {
+  const [inquireModalOpen, setInquireModalOpen] = useState(false)
   const [page, setPage] = useState(() => {
     const hash = window.location.hash.slice(1) || '/'
     return hash
@@ -32,6 +49,13 @@ function App() {
     return () => window.removeEventListener('hashchange', handleHashChange)
   }, [])
 
+  // Listen for custom event to open inquire modal from any component
+  useEffect(() => {
+    const handleOpenInquireModal = () => setInquireModalOpen(true)
+    window.addEventListener('openInquireModal', handleOpenInquireModal)
+    return () => window.removeEventListener('openInquireModal', handleOpenInquireModal)
+  }, [])
+
   // Determine which page content to render
   let PageContent;
   if (page === '/pricing') {
@@ -39,7 +63,7 @@ function App() {
   } else if (page === '/case-study/optimal-performance') {
     PageContent = <CaseStudy />
   } else if (page === '/consultation') {
-    PageContent = <AIConsultation />
+    PageContent = <AIConsultationPage />
   } else if (page === '/insights') {
     PageContent = <Insights />
   } else if (page === '/about') {
@@ -55,8 +79,38 @@ function App() {
     PageContent = <Terms />
   } else if (page === '/privacy') {
     PageContent = <Privacy />
-  } else if (page === '/the-platform') {
-    PageContent = <ThePlatform />
+  } else if (page === '/coach-copilot') {
+    PageContent = <CoachCoPilot />
+  } else if (page === '/ai-coach') {
+    PageContent = <AICoach />
+  } else if (page === '/scheduling') {
+    PageContent = <AIPoweredScheduling />
+  } else if (page === '/receptionist') {
+    PageContent = <AIReceptionist />
+  } else if (page === '/websites') {
+    PageContent = <AIBranding />
+  } else if (page === '/agentic-commerce') {
+    PageContent = <AgenticCommerce />
+  } else if (page === '/acquisition') {
+    PageContent = <AIAcquisition />
+  } else if (page === '/stripe-crm') {
+    PageContent = <StripeCRM />
+  } else if (page === '/implementation') {
+    PageContent = <ImplementationScience />
+  } else if (page === '/director-dashboard') {
+    PageContent = <DirectorDashboard />
+  } else if (page === '/partners') {
+    PageContent = <ConnectedPartners />
+  } else if (page === '/partners/wearables') {
+    PageContent = <WearableDevices />
+  } else if (page === '/partners/body-scans') {
+    PageContent = <BodyScans />
+  } else if (page === '/partners/equipment') {
+    PageContent = <StrengthCardioEquipment />
+  } else if (page === '/partners/software') {
+    PageContent = <ManagementSoftware />
+  } else if (page === '/partners/apps') {
+    PageContent = <NutritionFitnessApps />
   } else {
     PageContent = <MiltonHomepage />
   }
@@ -71,9 +125,10 @@ function App() {
         background: "radial-gradient(ellipse 80% 50% at 20% 20%, rgba(13,154,165,0.08) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 80%, rgba(154,241,152,0.04) 0%, transparent 50%), radial-gradient(ellipse 90% 60% at 50% 0%, rgba(8,69,94,0.3) 0%, transparent 70%)",
       }} />
 
-      <SharedNav />
+      <SharedNav onInquireClick={() => setInquireModalOpen(true)} />
       {PageContent}
       <SharedFooter />
+      <InquireModal isOpen={inquireModalOpen} onClose={() => setInquireModalOpen(false)} />
     </div>
   )
 }
