@@ -701,7 +701,7 @@ export default function AICoach() {
         }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
             <div style={{ width: 8, height: 8, borderRadius: "50%", background: teal, flexShrink: 0 }} />
-            <span style={{ fontFamily: f, fontSize: 12, fontWeight: 500, letterSpacing: 2.5, textTransform: "uppercase", color: "rgba(255,255,255,0.7)" }}>AI Agents / Member Co-Pilot</span>
+            <span style={{ fontFamily: f, fontSize: 12, fontWeight: 500, letterSpacing: 2.5, textTransform: "uppercase", color: "rgba(255,255,255,0.7)" }}>Member Co-Pilot</span>
           </div>
 
           <h1 style={{
