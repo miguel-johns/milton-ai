@@ -1228,12 +1228,12 @@ export default function MiltonHomepage() {
               textTransform: "uppercase",
               color: "#9af198",
               marginBottom: 20,
-            }}>Co-Pilots</h3>
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: mobile ? "1fr" : "repeat(auto-fit, minmax(340px, 1fr))",
-              gap: mobile ? 16 : 24,
-            }}>
+}}>Co-Pilots</h3>
+  <div style={{
+  display: "grid",
+  gridTemplateColumns: mobile ? "1fr" : "repeat(3, 1fr)",
+  gap: mobile ? 16 : 24,
+  }}>
               {coPilots.map((coPilot, i) => (
                 <a 
                   key={i}
