@@ -906,10 +906,37 @@ export default function ArticleDetail({ slug }) {
             margin: "0 0 20px 0",
           }}>{article.title}</h1>
           
-          <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
             <span style={{ fontFamily: f, fontSize: 14, color: "rgba(255,255,255,0.4)" }}>{article.date}</span>
             <span style={{ fontFamily: f, fontSize: 14, color: "rgba(255,255,255,0.2)" }}>·</span>
             <span style={{ fontFamily: f, fontSize: 14, color: "rgba(255,255,255,0.4)" }}>{article.readTime}</span>
+            <span style={{ fontFamily: f, fontSize: 14, color: "rgba(255,255,255,0.2)" }}>·</span>
+            <button 
+              onClick={() => {
+                const shareUrl = `${window.location.origin}/share/insights/${slug}`;
+                navigator.clipboard.writeText(shareUrl);
+                const btn = document.getElementById('share-btn');
+                if (btn) {
+                  btn.textContent = 'Copied!';
+                  setTimeout(() => { btn.textContent = 'Share'; }, 2000);
+                }
+              }}
+              id="share-btn"
+              style={{
+                fontFamily: f, fontSize: 14, fontWeight: 500,
+                color: teal, background: "transparent", border: "none",
+                cursor: "pointer", padding: 0, display: "flex", alignItems: "center", gap: 6,
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="18" cy="5" r="3"/>
+                <circle cx="6" cy="12" r="3"/>
+                <circle cx="18" cy="19" r="3"/>
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+              </svg>
+              Share
+            </button>
           </div>
         </header>
         
