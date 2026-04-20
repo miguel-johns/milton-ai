@@ -50,7 +50,8 @@ export const config = {
 
 export default function handler(request) {
   const url = new URL(request.url);
-  const slug = url.pathname.split('/').pop();
+  // Extract slug from query param or path
+  const slug = url.searchParams.get('slug') || url.pathname.split('/').filter(Boolean).pop();
   const article = articles[slug];
   
   const baseUrl = "https://getmilton.com";
