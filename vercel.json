@@ -1,5 +1,6 @@
 {
   "rewrites": [
+    { "source": "/share/insights/:slug", "destination": "/api/og/:slug" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
