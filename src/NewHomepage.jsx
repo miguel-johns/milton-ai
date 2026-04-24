@@ -101,133 +101,460 @@ function PlayIcon() {
   );
 }
 
-// Section 1 - Hero
-function HeroSection({ mobile }) {
-  const [isPlaying, setIsPlaying] = useState(false);
+// Video Access Form Modal
+function VideoAccessModal({ isOpen, onClose, mobile }) {
+  const [formData, setFormData] = useState({ name: "", email: "", company: "" });
+  const [submitted, setSubmitted] = useState(false);
+
+  if (!isOpen) return null;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Here you would send the form data to your backend
+    setSubmitted(true);
+    setTimeout(() => {
+      onClose();
+      setSubmitted(false);
+      setFormData({ name: "", email: "", company: "" });
+      // Redirect to video or show video
+      window.location.href = "#/demo-video";
+    }, 2000);
+  };
 
   return (
-    <section
+    <div
       style={{
-        background: `linear-gradient(180deg, ${colors.darkNavy} 0%, ${colors.darkNavy} 85%, rgba(232,245,243,0.1) 100%)`,
-        padding: mobile ? "120px 20px 60px" : "160px 40px 80px",
-        position: "relative",
+        position: "fixed",
+        inset: 0,
+        zIndex: 9999,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "rgba(11,22,40,0.9)",
+        backdropFilter: "blur(8px)",
+        padding: 20,
       }}
+      onClick={onClose}
     >
-      <div style={{ maxWidth: 1200, margin: "0 auto", textAlign: "center" }}>
-        <h1
+      <div
+        style={{
+          background: colors.darkNavy,
+          border: "1px solid rgba(13,154,165,0.3)",
+          borderRadius: 20,
+          padding: mobile ? 28 : 40,
+          maxWidth: 460,
+          width: "100%",
+          position: "relative",
+          boxShadow: "0 24px 64px rgba(0,0,0,0.5)",
+        }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close button */}
+        <button
+          onClick={onClose}
           style={{
-            fontFamily: fonts.heading,
-            fontSize: mobile ? 36 : 56,
-            fontWeight: 400,
-            color: "#fff",
-            lineHeight: 1.15,
-            marginBottom: 24,
-            maxWidth: 900,
-            margin: "0 auto 24px",
+            position: "absolute",
+            top: 16,
+            right: 16,
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            padding: 8,
           }}
         >
-          The <span style={{ fontWeight: 600 }}>FIRST</span> AI that makes it easier to{" "}
-          <span style={{ color: colors.teal, fontStyle: "italic" }}>manage</span> your trainers.
-        </h1>
+          <svg width="20" height="20" viewBox="0 0 24 24" stroke="rgba(255,255,255,0.6)" strokeWidth="2" fill="none">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
 
-        <p
-          style={{
-            fontFamily: fonts.body,
-            fontSize: mobile ? 16 : 20,
-            color: colors.mutedWhite,
-            lineHeight: 1.5,
-            maxWidth: 720,
-            margin: "0 auto 32px",
-            fontWeight: 400,
-          }}
-        >
-          Milton is the operating system for personal training businesses. Your trainers get
-          organized, communicate better, and coach like your best one — from day one.
-        </p>
-
-        <div
-          style={{
-            display: "flex",
-            gap: 16,
-            justifyContent: "center",
-            flexWrap: "wrap",
-            marginBottom: 48,
-          }}
-        >
-          <CTA
-            variant="primary"
-            icon={<PlayIcon />}
-            onClick={() => setIsPlaying(true)}
-          >
-            Watch the demo
-          </CTA>
-          <CTA variant="secondary" href="#/book">
-            Book a call
-          </CTA>
-        </div>
-
-        {/* Video Container */}
-        <div
-          style={{
-            maxWidth: 960,
-            margin: "0 auto",
-            aspectRatio: "16/9",
-            borderRadius: 16,
-            overflow: "hidden",
-            background: "rgba(13,154,165,0.1)",
-            border: "1px solid rgba(13,154,165,0.2)",
-            position: "relative",
-          }}
-        >
-          {!isPlaying ? (
-            <div
-              style={{
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-                background: `linear-gradient(135deg, rgba(11,22,40,0.9), rgba(13,154,165,0.2))`,
-              }}
-              onClick={() => setIsPlaying(true)}
-            >
+        {!submitted ? (
+          <>
+            <div style={{ textAlign: "center", marginBottom: 28 }}>
               <div
                 style={{
-                  width: 80,
-                  height: 80,
+                  width: 56,
+                  height: 56,
                   borderRadius: "50%",
-                  background: colors.teal,
+                  background: `rgba(13,154,165,0.15)`,
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  transition: "transform 0.3s ease",
+                  margin: "0 auto 16px",
                 }}
               >
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="#fff">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill={colors.teal}>
                   <polygon points="8,5 19,12 8,19" />
                 </svg>
               </div>
+              <h3
+                style={{
+                  fontFamily: fonts.heading,
+                  fontSize: 26,
+                  fontWeight: 400,
+                  color: "#fff",
+                  marginBottom: 8,
+                }}
+              >
+                Watch the Demo
+              </h3>
+              <p
+                style={{
+                  fontFamily: fonts.body,
+                  fontSize: 15,
+                  color: colors.mutedWhite,
+                }}
+              >
+                Enter your details to get instant access to our product walkthrough.
+              </p>
             </div>
-          ) : (
+
+            <form onSubmit={handleSubmit}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                <input
+                  type="text"
+                  placeholder="Your name"
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  style={{
+                    fontFamily: fonts.body,
+                    fontSize: 15,
+                    padding: "14px 18px",
+                    borderRadius: 10,
+                    border: "1px solid rgba(13,154,165,0.25)",
+                    background: "rgba(255,255,255,0.05)",
+                    color: "#fff",
+                    outline: "none",
+                  }}
+                />
+                <input
+                  type="email"
+                  placeholder="Work email"
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  style={{
+                    fontFamily: fonts.body,
+                    fontSize: 15,
+                    padding: "14px 18px",
+                    borderRadius: 10,
+                    border: "1px solid rgba(13,154,165,0.25)",
+                    background: "rgba(255,255,255,0.05)",
+                    color: "#fff",
+                    outline: "none",
+                  }}
+                />
+                <input
+                  type="text"
+                  placeholder="Company name"
+                  value={formData.company}
+                  onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                  style={{
+                    fontFamily: fonts.body,
+                    fontSize: 15,
+                    padding: "14px 18px",
+                    borderRadius: 10,
+                    border: "1px solid rgba(13,154,165,0.25)",
+                    background: "rgba(255,255,255,0.05)",
+                    color: "#fff",
+                    outline: "none",
+                  }}
+                />
+                <button
+                  type="submit"
+                  style={{
+                    fontFamily: fonts.body,
+                    fontSize: 15,
+                    fontWeight: 600,
+                    padding: "16px 32px",
+                    borderRadius: 100,
+                    background: colors.teal,
+                    color: "#fff",
+                    border: "none",
+                    cursor: "pointer",
+                    marginTop: 8,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 8,
+                  }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5,3 19,12 5,21" />
+                  </svg>
+                  Get Access
+                </button>
+              </div>
+            </form>
+          </>
+        ) : (
+          <div style={{ textAlign: "center", padding: "20px 0" }}>
             <div
               style={{
-                width: "100%",
-                height: "100%",
+                width: 64,
+                height: 64,
+                borderRadius: "50%",
+                background: `rgba(13,154,165,0.2)`,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                color: colors.mutedWhite,
-                fontFamily: fonts.body,
+                margin: "0 auto 20px",
               }}
             >
-              {/* Video placeholder - replace with actual video embed */}
-              <p>Video player would load here</p>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={colors.teal} strokeWidth="2">
+                <polyline points="20,6 9,17 4,12" />
+              </svg>
             </div>
-          )}
-        </div>
+            <h3
+              style={{
+                fontFamily: fonts.heading,
+                fontSize: 24,
+                fontWeight: 400,
+                color: "#fff",
+                marginBottom: 8,
+              }}
+            >
+              You&apos;re in!
+            </h3>
+            <p style={{ fontFamily: fonts.body, fontSize: 15, color: colors.mutedWhite }}>
+              Redirecting you to the demo...
+            </p>
+          </div>
+        )}
       </div>
-    </section>
+    </div>
+  );
+}
+
+// Section 1 - Hero
+function HeroSection({ mobile }) {
+  const [showVideoForm, setShowVideoForm] = useState(false);
+
+  return (
+    <>
+      <VideoAccessModal isOpen={showVideoForm} onClose={() => setShowVideoForm(false)} mobile={mobile} />
+      <section
+        style={{
+          background: colors.darkNavy,
+          padding: mobile ? "120px 20px 0" : "160px 40px 0",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        <div style={{ maxWidth: 1200, margin: "0 auto", textAlign: "center" }}>
+          <h1
+            style={{
+              fontFamily: fonts.heading,
+              fontSize: mobile ? 36 : 56,
+              fontWeight: 400,
+              color: "#fff",
+              lineHeight: 1.15,
+              marginBottom: 24,
+              maxWidth: 900,
+              margin: "0 auto 24px",
+            }}
+          >
+            The <span style={{ fontWeight: 600 }}>FIRST</span> AI that makes it easier to{" "}
+            <span style={{ color: colors.teal, fontStyle: "italic" }}>manage</span> your trainers.
+          </h1>
+
+          <p
+            style={{
+              fontFamily: fonts.body,
+              fontSize: mobile ? 16 : 20,
+              color: colors.mutedWhite,
+              lineHeight: 1.5,
+              maxWidth: 720,
+              margin: "0 auto 32px",
+              fontWeight: 400,
+            }}
+          >
+            Milton is the operating system for personal training businesses. Your trainers get
+            organized, communicate better, and coach like your best one — from day one.
+          </p>
+
+          <div
+            style={{
+              display: "flex",
+              gap: 16,
+              justifyContent: "center",
+              flexWrap: "wrap",
+              marginBottom: mobile ? 40 : 60,
+            }}
+          >
+            <CTA
+              variant="primary"
+              icon={<PlayIcon />}
+              onClick={() => setShowVideoForm(true)}
+            >
+              Watch the demo
+            </CTA>
+            <CTA variant="secondary" href="#/book">
+              Book a call
+            </CTA>
+          </div>
+
+          {/* Dashboard Preview Image - cut off at bottom */}
+          <div
+            style={{
+              maxWidth: 1000,
+              margin: "0 auto",
+              position: "relative",
+            }}
+          >
+            <div
+              style={{
+                width: "100%",
+                height: mobile ? 280 : 420,
+                borderRadius: "16px 16px 0 0",
+                overflow: "hidden",
+                background: "linear-gradient(145deg, rgba(255,255,255,0.98), rgba(248,250,247,0.95))",
+                border: "1px solid rgba(13,154,165,0.15)",
+                borderBottom: "none",
+                boxShadow: "0 -10px 60px rgba(13,154,165,0.15), 0 -4px 20px rgba(0,0,0,0.1)",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              {/* Dashboard header bar */}
+              <div
+                style={{
+                  height: 48,
+                  background: colors.darkNavy,
+                  display: "flex",
+                  alignItems: "center",
+                  padding: "0 16px",
+                  gap: 8,
+                }}
+              >
+                <div style={{ display: "flex", gap: 6 }}>
+                  <div style={{ width: 12, height: 12, borderRadius: "50%", background: "#ff5f57" }} />
+                  <div style={{ width: 12, height: 12, borderRadius: "50%", background: "#febc2e" }} />
+                  <div style={{ width: 12, height: 12, borderRadius: "50%", background: "#28c840" }} />
+                </div>
+                <div
+                  style={{
+                    flex: 1,
+                    marginLeft: 16,
+                    height: 28,
+                    background: "rgba(255,255,255,0.1)",
+                    borderRadius: 6,
+                    display: "flex",
+                    alignItems: "center",
+                    padding: "0 12px",
+                  }}
+                >
+                  <span style={{ fontFamily: fonts.body, fontSize: 12, color: "rgba(255,255,255,0.5)" }}>
+                    app.joinmilton.com/dashboard
+                  </span>
+                </div>
+              </div>
+
+              {/* Dashboard content placeholder */}
+              <div style={{ flex: 1, padding: mobile ? 16 : 24, display: "flex", gap: mobile ? 12 : 20 }}>
+                {/* Sidebar */}
+                <div
+                  style={{
+                    width: mobile ? 50 : 200,
+                    background: "rgba(11,22,40,0.03)",
+                    borderRadius: 10,
+                    padding: mobile ? 8 : 16,
+                  }}
+                >
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <div
+                      key={i}
+                      style={{
+                        height: mobile ? 8 : 12,
+                        background: i === 1 ? colors.teal : "rgba(11,22,40,0.08)",
+                        borderRadius: 4,
+                        marginBottom: mobile ? 8 : 12,
+                        width: i === 1 ? "100%" : `${70 + i * 5}%`,
+                      }}
+                    />
+                  ))}
+                </div>
+
+                {/* Main content area */}
+                <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: mobile ? 12 : 16 }}>
+                  {/* Top stats row */}
+                  <div style={{ display: "flex", gap: mobile ? 8 : 16 }}>
+                    {[colors.teal, "#6366f1", "#f59e0b"].map((color, i) => (
+                      <div
+                        key={i}
+                        style={{
+                          flex: 1,
+                          height: mobile ? 50 : 80,
+                          background: "#fff",
+                          borderRadius: 8,
+                          border: "1px solid rgba(11,22,40,0.08)",
+                          padding: mobile ? 8 : 12,
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <div style={{ height: 6, width: "60%", background: "rgba(11,22,40,0.1)", borderRadius: 3 }} />
+                        <div style={{ height: mobile ? 12 : 20, width: "40%", background: color, borderRadius: 4, opacity: 0.8 }} />
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Main chart area */}
+                  <div
+                    style={{
+                      flex: 1,
+                      background: "#fff",
+                      borderRadius: 10,
+                      border: "1px solid rgba(11,22,40,0.08)",
+                      padding: mobile ? 12 : 20,
+                      display: "flex",
+                      flexDirection: "column",
+                    }}
+                  >
+                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: mobile ? 12 : 20 }}>
+                      <div style={{ height: 8, width: 100, background: "rgba(11,22,40,0.12)", borderRadius: 4 }} />
+                      <div style={{ display: "flex", gap: 8 }}>
+                        <div style={{ height: 8, width: 50, background: "rgba(11,22,40,0.06)", borderRadius: 4 }} />
+                        <div style={{ height: 8, width: 50, background: "rgba(11,22,40,0.06)", borderRadius: 4 }} />
+                      </div>
+                    </div>
+                    {/* Chart bars */}
+                    <div style={{ flex: 1, display: "flex", alignItems: "flex-end", gap: mobile ? 4 : 8, paddingBottom: 8 }}>
+                      {[65, 45, 80, 55, 90, 70, 85, 60, 75, 50, 95, 68].map((h, i) => (
+                        <div
+                          key={i}
+                          style={{
+                            flex: 1,
+                            height: `${h}%`,
+                            background: `linear-gradient(180deg, ${colors.teal} 0%, rgba(13,154,165,0.6) 100%)`,
+                            borderRadius: "4px 4px 0 0",
+                          }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Fade out at the bottom edge */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: 60,
+                background: `linear-gradient(180deg, transparent 0%, ${colors.darkNavy} 100%)`,
+                pointerEvents: "none",
+              }}
+            />
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
 
