@@ -437,7 +437,6 @@ function HowItWorksSection({ mobile }) {
       body: [
         "Coaching is knowing where every client is on their journey. Why they're here. What's working. What isn't. What they need next — and why. The best trainers do this instinctively after ten years. Your newer trainers don't.",
         "Milton sees every client's history, every session, every weight logged, every note. Milton shows the trainer, in plain language, what's working and what to do next. Backed by actual research.",
-        "When Milton suggests progressing a client, it shows the evidence. Here's why this matters. Here's the study. Here's what your client's data looks like. The trainer doesn't just make a better call. The trainer learns why it's the right call.",
       ],
       closing: "Your trainers just got better at coaching. Not because you hired differently. Because Milton is in the session with them.",
       imageAlt: "Milton's Research-Backed Why progression panel",
