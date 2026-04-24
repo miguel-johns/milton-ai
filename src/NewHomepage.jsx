@@ -409,6 +409,7 @@ function HeroSection({ mobile }) {
                 height: mobile ? 320 : 480,
                 overflow: "hidden",
                 position: "relative",
+                borderRadius: "20px 20px 0 0",
               }}
             >
               <img
