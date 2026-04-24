@@ -89,9 +89,9 @@ export default function SharedNav({ onInquireClick }) {
   }, []);
 
   const navLinks = [
-    // Hidden: Co-Pilots & AI Agents, Connected Partners
+    // Hidden: Co-Pilots & AI Agents
     // { label: "Co-Pilots & AI Agents", hasDropdown: "agents" },
-    // { label: "Connected Partners", hasDropdown: "partners" },
+    { label: "Connected Partners", hasDropdown: "partners" },
     { label: "Insights", href: "#/insights" },
     { label: "About Us", href: "#/about" },
   ];
@@ -104,7 +104,7 @@ export default function SharedNav({ onInquireClick }) {
         display: "grid",
         gridTemplateColumns: mobile ? "1fr auto" : "1fr auto 1fr",
         alignItems: "center",
-        background: scrolled || menuOpen ? "rgba(6,28,39,0.95)" : "transparent",
+        background: scrolled || menuOpen ? "rgba(11,22,40,0.95)" : "transparent",
         backdropFilter: scrolled || menuOpen ? "blur(20px)" : "none",
         borderBottom: scrolled ? "1px solid rgba(13,154,165,0.1)" : "1px solid transparent",
         transition: "all 0.3s ease",
@@ -173,12 +173,12 @@ export default function SharedNav({ onInquireClick }) {
                       paddingTop: 12,
                     }}>
                       <div style={{
-                        background: "rgba(6,28,39,0.98)",
+                        background: "rgba(11,22,40,0.98)",
                         backdropFilter: "blur(20px)",
-                        border: "1px solid rgba(13,154,165,0.2)",
+                        border: "1px solid rgba(13,154,165,0.15)",
                         borderRadius: 12,
                         padding: "16px 0",
-                        boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
+                        boxShadow: "0 20px 40px rgba(0,0,0,0.5)",
                         display: "flex",
                         gap: 0,
                       }}>
@@ -347,12 +347,12 @@ export default function SharedNav({ onInquireClick }) {
                       paddingTop: 12,
                     }}>
                       <div style={{
-                        background: "rgba(6,28,39,0.98)",
+                        background: "rgba(11,22,40,0.98)",
                         backdropFilter: "blur(20px)",
-                        border: "1px solid rgba(13,154,165,0.2)",
+                        border: "1px solid rgba(13,154,165,0.15)",
                         borderRadius: 12,
                         padding: "16px 0",
-                        boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
+                        boxShadow: "0 20px 40px rgba(0,0,0,0.5)",
                         display: "flex",
                         gap: 0,
                       }}>
@@ -536,7 +536,7 @@ export default function SharedNav({ onInquireClick }) {
       {mobile && menuOpen && (
         <div style={{
           position: "fixed", top: 54, left: 0, right: 0, bottom: 0, zIndex: 99,
-          background: "rgba(6,28,39,0.98)", backdropFilter: "blur(20px)",
+          background: "rgba(11,22,40,0.98)", backdropFilter: "blur(20px)",
           padding: "28px 24px", display: "flex", flexDirection: "column", gap: 8,
           overflowY: "auto",
         }}>
