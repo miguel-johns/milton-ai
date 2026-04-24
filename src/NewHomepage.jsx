@@ -126,7 +126,8 @@ function HeroSection({ mobile }) {
             margin: "0 auto 24px",
           }}
         >
-          The 1st AI that makes it easier to manage your trainers.
+          The <span style={{ fontWeight: 600 }}>FIRST</span> AI that makes it easier to{" "}
+          <span style={{ color: colors.teal, fontStyle: "italic" }}>manage</span> your trainers.
         </h1>
 
         <p
