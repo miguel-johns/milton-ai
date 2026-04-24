@@ -19,16 +19,18 @@ export default function SharedFooter() {
   const f = "'DM Sans', sans-serif";
   const teal = "#0d9aa5";
 
+  const navy = "#0B1628";
+
   return (
     <footer style={{
-      borderTop: "1px solid rgba(13,154,165,0.1)",
-      padding: mobile ? "24px 20px" : "40px 40px",
+      borderTop: "1px solid rgba(13,154,165,0.15)",
+      padding: mobile ? "32px 20px" : "48px 40px",
       display: "flex", 
       justifyContent: "space-between", 
       alignItems: "center",
       flexDirection: mobile ? "column" : "row", 
       gap: mobile ? 16 : 0,
-      background: "linear-gradient(180deg, transparent, rgba(6,28,39,0.3))",
+      background: navy,
     }}>
       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
         <img
