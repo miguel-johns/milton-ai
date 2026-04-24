@@ -395,46 +395,21 @@ function HeroSection({ mobile }) {
             </CTA>
           </div>
 
-          {/* Hero Image - cut off at bottom */}
+          {/* Hero Image */}
           <div
             style={{
               maxWidth: mobile ? 400 : 600,
               margin: "0 auto",
-              position: "relative",
             }}
           >
-            <div
+            <img
+              src="/images/hero-dashboard.png"
+              alt="Milton AI Coach Interface showing daily session overview and client recommendations"
               style={{
                 width: "100%",
-                height: mobile ? 320 : 480,
-                overflow: "hidden",
-                position: "relative",
-                borderRadius: "20px 20px 0 0",
-              }}
-            >
-              <img
-                src="/images/hero-dashboard.png"
-                alt="Milton AI Coach Interface showing daily session overview and client recommendations"
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  display: "block",
-                  position: "relative",
-                  top: 0,
-                }}
-              />
-            </div>
-
-            {/* Fade out at the bottom edge */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                right: 0,
-                height: 100,
-                background: `linear-gradient(180deg, transparent 0%, ${colors.darkNavy} 100%)`,
-                pointerEvents: "none",
+                height: "auto",
+                display: "block",
+                borderRadius: 20,
               }}
             />
           </div>
