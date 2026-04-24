@@ -1,7 +1,32 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Component } from 'react'
 import ReactDOM from 'react-dom/client'
 import { Analytics } from '@vercel/analytics/react'
 import MiltonHomepage from './App.jsx'
+
+// Error boundary to catch render errors
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+  componentDidCatch(error, info) {
+    console.error("[v0] ErrorBoundary caught:", error, info);
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{ padding: 40, color: 'white', background: '#061c27', minHeight: '100vh' }}>
+          <h1>Something went wrong</h1>
+          <pre style={{ whiteSpace: 'pre-wrap', color: '#ff6b6b' }}>{this.state.error?.toString()}</pre>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 import PricingCalculator from './Pricing.jsx'
 import CaseStudy from './CaseStudy.jsx'
 import AIConsultation from './Consultation.jsx'
@@ -17,8 +42,10 @@ import Privacy from './Privacy.jsx'
 import ThePlatform from './ThePlatform.jsx'
 
 function App() {
+  console.log("[v0] App component mounting")
   const [page, setPage] = useState(() => {
     const hash = window.location.hash.slice(1) || '/'
+    console.log("[v0] Initial hash:", hash)
     return hash
   })
 
@@ -80,7 +107,9 @@ function App() {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
-    <Analytics />
+    <ErrorBoundary>
+      <App />
+      <Analytics />
+    </ErrorBoundary>
   </React.StrictMode>,
 )
