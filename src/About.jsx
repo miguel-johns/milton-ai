@@ -40,7 +40,7 @@ function VisualPlaceholder({ height = 280, mobileHeight, label = "", style = {} 
       height: mobile ? (mobileHeight || Math.min(height, 200)) : height,
       borderRadius: mobile ? 12 : 16,
       border: "1px solid rgba(13,154,165,0.25)",
-      background: "linear-gradient(135deg, rgba(13,154,165,0.08) 0%, rgba(8,69,94,0.12) 100%)",
+      background: "linear-gradient(135deg, rgba(13,154,165,0.06) 0%, rgba(11,22,40,0.4) 100%)",
       display: "flex", alignItems: "center", justifyContent: "center",
       color: "rgba(154,241,152,0.5)", fontSize: mobile ? 11 : 13,
       fontFamily: f, letterSpacing: 2, textTransform: "uppercase",
@@ -58,10 +58,10 @@ export default function AboutPage() {
   const sectionPad = mobile ? "72px 0" : "100px 0";
 
   const glass = {
-    background: "linear-gradient(145deg, rgba(13,154,165,0.07) 0%, rgba(6,28,39,0.4) 100%)",
-    border: "1px solid rgba(13,154,165,0.16)",
+    background: "linear-gradient(145deg, rgba(13,154,165,0.05) 0%, rgba(11,22,40,0.6) 100%)",
+    border: "1px solid rgba(13,154,165,0.12)",
     backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)",
-    boxShadow: "0 8px 32px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.03)",
+    boxShadow: "0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.02)",
   };
 
   const Headline = ({ children, style = {} }) => (
@@ -279,13 +279,13 @@ export default function AboutPage() {
           <SectionDivider />
 
           <div style={{
-            background: `linear-gradient(145deg, ${teal}0a, rgba(6,28,39,0.5))`,
-            border: `1px solid ${teal}22`, borderRadius: mobile ? 20 : 28,
+            background: `linear-gradient(145deg, ${teal}08, rgba(11,22,40,0.7))`,
+            border: `1px solid ${teal}18`, borderRadius: mobile ? 20 : 28,
             padding: mobile ? "28px 22px" : "40px 44px",
-            boxShadow: `0 16px 48px rgba(0,0,0,0.25), 0 0 60px ${teal}04`,
+            boxShadow: `0 16px 48px rgba(0,0,0,0.35), 0 0 60px ${teal}04`,
             position: "relative", overflow: "hidden",
           }}>
-            <div style={{ position: "absolute", top: 0, left: "15%", right: "15%", height: 1, background: `linear-gradient(90deg, transparent, ${teal}30, transparent)` }} />
+            <div style={{ position: "absolute", top: 0, left: "15%", right: "15%", height: 1, background: `linear-gradient(90deg, transparent, ${teal}25, transparent)` }} />
 
             <div style={{
               display: "grid", gridTemplateColumns: mobile ? "1fr" : "auto 1fr",

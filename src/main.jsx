@@ -121,13 +121,13 @@ function App() {
   }
 
   return (
-    <div style={{ minHeight: "100vh", background: "#061c27", color: "#fff", position: "relative", overflow: "hidden" }}>
+    <div style={{ minHeight: "100vh", background: "#0B1628", color: "#fff", position: "relative", overflow: "hidden" }}>
       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet" />
       
       {/* Aurora bg */}
       <div style={{
         position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none",
-        background: "radial-gradient(ellipse 80% 50% at 20% 20%, rgba(13,154,165,0.08) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 80%, rgba(154,241,152,0.04) 0%, transparent 50%), radial-gradient(ellipse 90% 60% at 50% 0%, rgba(8,69,94,0.3) 0%, transparent 70%)",
+        background: "radial-gradient(ellipse 80% 50% at 20% 20%, rgba(13,154,165,0.06) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 80%, rgba(154,241,152,0.03) 0%, transparent 50%), radial-gradient(ellipse 90% 60% at 50% 0%, rgba(11,22,40,0.4) 0%, transparent 70%)",
       }} />
 
       <SharedNav onInquireClick={() => setInquireModalOpen(true)} />

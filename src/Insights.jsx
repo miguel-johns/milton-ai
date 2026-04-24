@@ -143,8 +143,8 @@ function ArticleCard({ article, featured = false, mobile, tablet }) {
         display: "grid",
         gridTemplateColumns: mobile ? "1fr" : "1fr 1fr",
         gap: mobile ? 0 : 0,
-        background: "linear-gradient(145deg, rgba(13,154,165,0.08) 0%, rgba(6,28,39,0.45) 100%)",
-        border: "1px solid rgba(13,154,165,0.2)",
+        background: "linear-gradient(145deg, rgba(13,154,165,0.05) 0%, rgba(11,22,40,0.6) 100%)",
+        border: "1px solid rgba(13,154,165,0.15)",
         borderRadius: mobile ? 16 : 24,
         overflow: "hidden",
         cursor: article.slug ? "pointer" : "default",
@@ -153,7 +153,7 @@ function ArticleCard({ article, featured = false, mobile, tablet }) {
       }}>
         {/* Image */}
         <div style={{
-          background: article.image ? `url(${article.image}) center/cover no-repeat` : `linear-gradient(135deg, ${teal}12, rgba(6,28,39,0.6))`,
+          background: article.image ? `url(${article.image}) center/cover no-repeat` : `linear-gradient(135deg, ${teal}10, rgba(11,22,40,0.7))`,
           minHeight: mobile ? 200 : 320,
           display: "flex", alignItems: "center", justifyContent: "center",
           position: "relative", overflow: "hidden",
@@ -206,8 +206,8 @@ function ArticleCard({ article, featured = false, mobile, tablet }) {
   // Standard card
   return (
     <div onClick={handleClick} style={{
-      background: "linear-gradient(145deg, rgba(13,154,165,0.05) 0%, rgba(6,28,39,0.35) 100%)",
-      border: "1px solid rgba(13,154,165,0.13)",
+      background: "linear-gradient(145deg, rgba(13,154,165,0.04) 0%, rgba(11,22,40,0.5) 100%)",
+      border: "1px solid rgba(13,154,165,0.1)",
       borderRadius: mobile ? 14 : 18,
       overflow: "hidden", cursor: article.slug ? "pointer" : "default",
       transition: "border-color 0.3s ease, transform 0.3s ease",
@@ -216,7 +216,7 @@ function ArticleCard({ article, featured = false, mobile, tablet }) {
     }}>
       {/* Image */}
       <div style={{
-        background: article.image ? `url(${article.image}) center/cover no-repeat` : `linear-gradient(135deg, ${tagColor}08, rgba(6,28,39,0.5))`,
+          background: article.image ? `url(${article.image}) center/cover no-repeat` : `linear-gradient(135deg, ${tagColor}06, rgba(11,22,40,0.6))`,
         height: mobile ? 160 : 180,
         display: "flex", alignItems: "center", justifyContent: "center",
         position: "relative", overflow: "hidden",
@@ -348,8 +348,8 @@ export default function Insights() {
         {/* ═══════ FREE CONSULTATION CTA ═══════ */}
         <section style={{ paddingBottom: mobile ? 72 : 100 }}>
           <div style={{
-            background: "linear-gradient(145deg, rgba(13,154,165,0.1) 0%, rgba(6,28,39,0.5) 100%)",
-            border: "1px solid rgba(13,154,165,0.2)",
+            background: "linear-gradient(145deg, rgba(13,154,165,0.06) 0%, rgba(11,22,40,0.65) 100%)",
+            border: "1px solid rgba(13,154,165,0.15)",
             borderRadius: mobile ? 20 : 28,
             padding: mobile ? "36px 22px" : "56px 56px",
             boxShadow: "0 16px 48px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.04)",
