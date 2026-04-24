@@ -625,6 +625,36 @@ function PlaybookSection({ mobile }) {
           alignItems: "center",
         }}
       >
+        {/* Mobile-only header above image */}
+        {mobile && (
+          <div style={{ textAlign: "center", marginBottom: -20 }}>
+            <p
+              style={{
+                fontFamily: fonts.body,
+                fontSize: 12,
+                fontWeight: 600,
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                color: colors.teal,
+                marginBottom: 16,
+              }}
+            >
+              THE PLAYBOOK
+            </p>
+            <h2
+              style={{
+                fontFamily: fonts.heading,
+                fontSize: 28,
+                fontWeight: 400,
+                color: colors.darkNavy,
+                lineHeight: 1.2,
+              }}
+            >
+              Milton runs on your rules, not generic defaults.
+            </h2>
+          </div>
+        )}
+
         {/* Image */}
         <div
           style={{
@@ -655,31 +685,36 @@ function PlaybookSection({ mobile }) {
 
         {/* Text */}
         <div style={{ flex: 1 }}>
-          <p
-            style={{
-              fontFamily: fonts.body,
-              fontSize: 12,
-              fontWeight: 600,
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-              color: colors.teal,
-              marginBottom: 16,
-            }}
-          >
-            THE PLAYBOOK
-          </p>
-          <h2
-            style={{
-              fontFamily: fonts.heading,
-              fontSize: mobile ? 28 : 38,
-              fontWeight: 400,
-              color: colors.darkNavy,
-              lineHeight: 1.2,
-              marginBottom: 24,
-            }}
-          >
-            Milton runs on your rules, not generic defaults.
-          </h2>
+          {/* Desktop-only header */}
+          {!mobile && (
+            <>
+              <p
+                style={{
+                  fontFamily: fonts.body,
+                  fontSize: 12,
+                  fontWeight: 600,
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase",
+                  color: colors.teal,
+                  marginBottom: 16,
+                }}
+              >
+                THE PLAYBOOK
+              </p>
+              <h2
+                style={{
+                  fontFamily: fonts.heading,
+                  fontSize: 38,
+                  fontWeight: 400,
+                  color: colors.darkNavy,
+                  lineHeight: 1.2,
+                  marginBottom: 24,
+                }}
+              >
+                Milton runs on your rules, not generic defaults.
+              </h2>
+            </>
+          )}
           <p
             style={{
               fontFamily: fonts.body,
