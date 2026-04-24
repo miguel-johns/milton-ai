@@ -22,7 +22,7 @@ function CTA({ children, variant = "primary", style: s = {}, href, onClick }) {
     display: "inline-block", letterSpacing: 0.3, whiteSpace: "nowrap",
   };
   const styles = variant === "primary"
-    ? { ...base, background: "#fff", color: "#08455e", border: "none", ...s }
+    ? { ...base, background: "#fff", color: "#0B1628", border: "none", ...s }
     : { ...base, background: "transparent", color: "#fff", border: "1px solid rgba(255,255,255,0.3)", ...s };
   if (href) {
     return <a href={href} style={styles}>{children}</a>;

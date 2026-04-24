@@ -14,7 +14,7 @@ const f = "'DM Sans', sans-serif";
 const serif = "'Cormorant Garamond', serif";
 const teal = "#0d9aa5";
 const mint = "#9af198";
-const navy = "#08455e";
+const navy = "#0B1628";
 
 // Article content database
 const articlesContent = {
