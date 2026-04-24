@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
 import { Analytics } from '@vercel/analytics/react'
+import NewHomepage from './NewHomepage.jsx'
 import MiltonHomepage from './App.jsx'
 import DirectorDashboard from './DirectorDashboard.jsx'
 import PricingCalculator from './Pricing.jsx'
@@ -111,8 +112,12 @@ function App() {
     PageContent = <ManagementSoftware />
   } else if (page === '/partners/apps') {
     PageContent = <NutritionFitnessApps />
-  } else {
+  } else if (page === '/old-home') {
+    // Hidden route for old home page
     PageContent = <MiltonHomepage />
+  } else {
+    // New home page is the default
+    PageContent = <NewHomepage />
   }
 
   return (
