@@ -395,10 +395,10 @@ function HeroSection({ mobile }) {
             </CTA>
           </div>
 
-          {/* Dashboard Preview Image - cut off at bottom */}
+          {/* Hero Image - cut off at bottom */}
           <div
             style={{
-              maxWidth: 1000,
+              maxWidth: mobile ? 400 : 600,
               margin: "0 auto",
               position: "relative",
             }}
@@ -406,137 +406,22 @@ function HeroSection({ mobile }) {
             <div
               style={{
                 width: "100%",
-                height: mobile ? 280 : 420,
-                borderRadius: "16px 16px 0 0",
+                height: mobile ? 320 : 480,
                 overflow: "hidden",
-                background: "linear-gradient(145deg, rgba(255,255,255,0.98), rgba(248,250,247,0.95))",
-                border: "1px solid rgba(13,154,165,0.15)",
-                borderBottom: "none",
-                boxShadow: "0 -10px 60px rgba(13,154,165,0.15), 0 -4px 20px rgba(0,0,0,0.1)",
-                display: "flex",
-                flexDirection: "column",
+                position: "relative",
               }}
             >
-              {/* Dashboard header bar */}
-              <div
+              <img
+                src="/images/hero-dashboard.png"
+                alt="Milton AI Coach Interface showing daily session overview and client recommendations"
                 style={{
-                  height: 48,
-                  background: colors.darkNavy,
-                  display: "flex",
-                  alignItems: "center",
-                  padding: "0 16px",
-                  gap: 8,
+                  width: "100%",
+                  height: "auto",
+                  display: "block",
+                  position: "relative",
+                  top: 0,
                 }}
-              >
-                <div style={{ display: "flex", gap: 6 }}>
-                  <div style={{ width: 12, height: 12, borderRadius: "50%", background: "#ff5f57" }} />
-                  <div style={{ width: 12, height: 12, borderRadius: "50%", background: "#febc2e" }} />
-                  <div style={{ width: 12, height: 12, borderRadius: "50%", background: "#28c840" }} />
-                </div>
-                <div
-                  style={{
-                    flex: 1,
-                    marginLeft: 16,
-                    height: 28,
-                    background: "rgba(255,255,255,0.1)",
-                    borderRadius: 6,
-                    display: "flex",
-                    alignItems: "center",
-                    padding: "0 12px",
-                  }}
-                >
-                  <span style={{ fontFamily: fonts.body, fontSize: 12, color: "rgba(255,255,255,0.5)" }}>
-                    app.joinmilton.com/dashboard
-                  </span>
-                </div>
-              </div>
-
-              {/* Dashboard content placeholder */}
-              <div style={{ flex: 1, padding: mobile ? 16 : 24, display: "flex", gap: mobile ? 12 : 20 }}>
-                {/* Sidebar */}
-                <div
-                  style={{
-                    width: mobile ? 50 : 200,
-                    background: "rgba(11,22,40,0.03)",
-                    borderRadius: 10,
-                    padding: mobile ? 8 : 16,
-                  }}
-                >
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <div
-                      key={i}
-                      style={{
-                        height: mobile ? 8 : 12,
-                        background: i === 1 ? colors.teal : "rgba(11,22,40,0.08)",
-                        borderRadius: 4,
-                        marginBottom: mobile ? 8 : 12,
-                        width: i === 1 ? "100%" : `${70 + i * 5}%`,
-                      }}
-                    />
-                  ))}
-                </div>
-
-                {/* Main content area */}
-                <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: mobile ? 12 : 16 }}>
-                  {/* Top stats row */}
-                  <div style={{ display: "flex", gap: mobile ? 8 : 16 }}>
-                    {[colors.teal, "#6366f1", "#f59e0b"].map((color, i) => (
-                      <div
-                        key={i}
-                        style={{
-                          flex: 1,
-                          height: mobile ? 50 : 80,
-                          background: "#fff",
-                          borderRadius: 8,
-                          border: "1px solid rgba(11,22,40,0.08)",
-                          padding: mobile ? 8 : 12,
-                          display: "flex",
-                          flexDirection: "column",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <div style={{ height: 6, width: "60%", background: "rgba(11,22,40,0.1)", borderRadius: 3 }} />
-                        <div style={{ height: mobile ? 12 : 20, width: "40%", background: color, borderRadius: 4, opacity: 0.8 }} />
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Main chart area */}
-                  <div
-                    style={{
-                      flex: 1,
-                      background: "#fff",
-                      borderRadius: 10,
-                      border: "1px solid rgba(11,22,40,0.08)",
-                      padding: mobile ? 12 : 20,
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: mobile ? 12 : 20 }}>
-                      <div style={{ height: 8, width: 100, background: "rgba(11,22,40,0.12)", borderRadius: 4 }} />
-                      <div style={{ display: "flex", gap: 8 }}>
-                        <div style={{ height: 8, width: 50, background: "rgba(11,22,40,0.06)", borderRadius: 4 }} />
-                        <div style={{ height: 8, width: 50, background: "rgba(11,22,40,0.06)", borderRadius: 4 }} />
-                      </div>
-                    </div>
-                    {/* Chart bars */}
-                    <div style={{ flex: 1, display: "flex", alignItems: "flex-end", gap: mobile ? 4 : 8, paddingBottom: 8 }}>
-                      {[65, 45, 80, 55, 90, 70, 85, 60, 75, 50, 95, 68].map((h, i) => (
-                        <div
-                          key={i}
-                          style={{
-                            flex: 1,
-                            height: `${h}%`,
-                            background: `linear-gradient(180deg, ${colors.teal} 0%, rgba(13,154,165,0.6) 100%)`,
-                            borderRadius: "4px 4px 0 0",
-                          }}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
+              />
             </div>
 
             {/* Fade out at the bottom edge */}
@@ -546,7 +431,7 @@ function HeroSection({ mobile }) {
                 bottom: 0,
                 left: 0,
                 right: 0,
-                height: 60,
+                height: 100,
                 background: `linear-gradient(180deg, transparent 0%, ${colors.darkNavy} 100%)`,
                 pointerEvents: "none",
               }}
