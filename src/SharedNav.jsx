@@ -89,9 +89,9 @@ export default function SharedNav({ onInquireClick }) {
   }, []);
 
   const navLinks = [
-    // Hidden: Co-Pilots & AI Agents
+    // Hidden: Co-Pilots & AI Agents, Connected Partners
     // { label: "Co-Pilots & AI Agents", hasDropdown: "agents" },
-    { label: "Connected Partners", hasDropdown: "partners" },
+    // { label: "Connected Partners", hasDropdown: "partners" },
     { label: "Insights", href: "#/insights" },
     { label: "About Us", href: "#/about" },
   ];
