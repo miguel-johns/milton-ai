@@ -92,6 +92,7 @@ export default function SharedNav({ onInquireClick }) {
     // Hidden: Co-Pilots & AI Agents, Connected Partners
     // { label: "Co-Pilots & AI Agents", hasDropdown: "agents" },
     // { label: "Connected Partners", hasDropdown: "partners" },
+    { label: "For Trainer Managers", href: "#/for-trainer-managers" },
     { label: "Insights", href: "#/insights" },
     { label: "About Us", href: "#/about" },
   ];
