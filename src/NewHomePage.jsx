@@ -269,10 +269,10 @@ export default function NewHomePage() {
           }}>
             In the meantime, anything else you want me to know?{' '}
             <a 
-              href="mailto:hello@getmilton.com"
+              href="mailto:milton@getmilton.com"
               style={{ color: colors.accentDeep, textDecoration: 'none' }}
             >
-              hello@getmilton.com
+              milton@getmilton.com
             </a>
           </p>
         </div>
