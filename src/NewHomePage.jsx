@@ -1568,6 +1568,17 @@ export default function NewHomePage() {
           from { opacity: 0; }
           to { opacity: 1; }
         }
+        button {
+          transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+        }
+        button:hover:not(:disabled) {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(11, 22, 40, 0.12);
+        }
+        button:active:not(:disabled) {
+          transform: translateY(0);
+          box-shadow: 0 2px 6px rgba(11, 22, 40, 0.08);
+        }
       `}</style>
     </div>
   )
