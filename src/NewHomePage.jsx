@@ -99,6 +99,18 @@ export default function NewHomePage() {
     e.preventDefault()
     setCaptureError(null)
 
+    // Validate first name
+    if (!captureForm.firstName || !captureForm.firstName.trim()) {
+      setCaptureError('First name is required')
+      return
+    }
+
+    // Validate business name
+    if (!captureForm.businessName || !captureForm.businessName.trim()) {
+      setCaptureError('Business name is required')
+      return
+    }
+
     // Validate phone
     const phoneDigits = captureForm.phone.replace(/\D/g, '')
     if (phoneDigits.length < 10) {
@@ -115,21 +127,17 @@ export default function NewHomePage() {
     setCaptureSubmitting(true)
 
     try {
-      const formData = new FormData()
-      formData.append('prompt', prompt)
-      formData.append('phone', captureForm.phone)
-      formData.append('email', captureForm.email)
-      formData.append('firstName', captureForm.firstName)
-      formData.append('businessName', captureForm.businessName)
-      formData.append('chips', JSON.stringify(Array.from(addedChips)))
-      
-      if (attachedFile) {
-        formData.append('file', attachedFile)
-      }
-
       const res = await fetch('/api/submit-lead', {
         method: 'POST',
-        body: formData,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          prompt,
+          phone: captureForm.phone,
+          email: captureForm.email,
+          firstName: captureForm.firstName,
+          businessName: captureForm.businessName,
+          chips: Array.from(addedChips),
+        }),
       })
 
       const data = await res.json()
@@ -328,7 +336,8 @@ export default function NewHomePage() {
               }}>
                 <input
                   type="text"
-                  placeholder="First name"
+                  placeholder="First name *"
+                  required
                   value={captureForm.firstName}
                   onChange={(e) => setCaptureForm(f => ({ ...f, firstName: e.target.value }))}
                   style={{
@@ -346,7 +355,8 @@ export default function NewHomePage() {
                 />
                 <input
                   type="text"
-                  placeholder="Business name (optional)"
+                  placeholder="Business name *"
+                  required
                   value={captureForm.businessName}
                   onChange={(e) => setCaptureForm(f => ({ ...f, businessName: e.target.value }))}
                   style={{
