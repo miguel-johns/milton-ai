@@ -423,9 +423,10 @@ export default function NewHomePage() {
               {/* Action row */}
               <div style={{
                 display: 'flex',
+                flexDirection: mobile ? 'column-reverse' : 'row',
                 justifyContent: 'space-between',
-                alignItems: 'center',
-                gap: 12,
+                alignItems: mobile ? 'stretch' : 'center',
+                gap: mobile ? 8 : 12,
               }}>
                 <button
                   type="button"
@@ -442,6 +443,7 @@ export default function NewHomePage() {
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
+                    justifyContent: 'center',
                     gap: 6,
                   }}
                 >
@@ -458,7 +460,7 @@ export default function NewHomePage() {
                     background: `linear-gradient(135deg, ${colors.ink} 0%, ${colors.accent} 100%)`,
                     color: colors.paper,
                     border: 'none',
-                    padding: '12px 20px',
+                    padding: mobile ? '14px 20px' : '12px 20px',
                     borderRadius: 10,
                     fontFamily: fonts.sans,
                     fontSize: 14,
@@ -466,11 +468,13 @@ export default function NewHomePage() {
                     cursor: captureSubmitting ? 'not-allowed' : 'pointer',
                     display: 'flex',
                     alignItems: 'center',
+                    justifyContent: 'center',
                     gap: 8,
                     opacity: captureSubmitting ? 0.7 : 1,
+                    width: mobile ? '100%' : 'auto',
                   }}
                 >
-                  {captureSubmitting ? 'Sending...' : "Text me when you're ready"}
+                  {captureSubmitting ? 'Sending...' : (mobile ? 'Text me' : "Text me when you're ready")}
                   {!captureSubmitting && (
                     <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M5 12h14M13 6l6 6-6 6"/>
