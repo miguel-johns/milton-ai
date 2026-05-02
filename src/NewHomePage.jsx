@@ -1,4 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
+import { createClient } from '@supabase/supabase-js'
+
+// Initialize Supabase client - use VITE_ prefixed vars for client-side access
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+const supabase = supabaseUrl && supabaseAnonKey ? createClient(supabaseUrl, supabaseAnonKey) : null
 
 // Custom hook for responsive breakpoints
 function useBreakpoint() {
@@ -127,23 +133,30 @@ export default function NewHomePage() {
     setCaptureSubmitting(true)
 
     try {
-      const res = await fetch('/api/submit-lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          prompt,
-          phone: captureForm.phone,
-          email: captureForm.email,
-          firstName: captureForm.firstName,
-          businessName: captureForm.businessName,
+      if (!supabase) {
+        throw new Error('Database connection not configured')
+      }
+
+      // Insert lead directly into Supabase
+      const { error } = await supabase
+        .from('leads')
+        .insert({
+          name: captureForm.firstName.trim(),
+          email: captureForm.email.toLowerCase().trim(),
+          phone: captureForm.phone.trim(),
+          company: captureForm.businessName.trim(),
+          prompt: prompt || null,
           chips: Array.from(addedChips),
-        }),
-      })
+          has_file: false,
+        })
 
-      const data = await res.json()
-
-      if (!res.ok) {
-        throw new Error(data.error || 'Something went wrong')
+      if (error) {
+        // Handle duplicate email
+        if (error.code === '23505') {
+          throw new Error('This email is already registered')
+        }
+        console.error('[v0] Supabase error:', error)
+        throw new Error('Failed to save your information')
       }
 
       setSuccessScreen(true)
