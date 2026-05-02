@@ -568,7 +568,7 @@ export default function NewHomePage() {
             color: colors.inkSoft,
             alignItems: 'center',
           }}>
-            <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>For Coaches</a>
+            <a href="/coaches" style={{ color: 'inherit', textDecoration: 'none' }}>For Coaches</a>
             <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>For Gyms</a>
             <a href="#" style={{
               color: 'inherit',
@@ -664,7 +664,7 @@ export default function NewHomePage() {
             display: 'flex',
             flexDirection: 'column',
           }}>
-            <a href="#" onClick={() => setMobileMenuOpen(false)} style={{
+            <a href="/coaches" onClick={() => setMobileMenuOpen(false)} style={{
               display: 'block',
               padding: '14px 16px',
               fontSize: 16,
