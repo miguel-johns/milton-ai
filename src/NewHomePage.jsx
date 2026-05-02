@@ -376,7 +376,7 @@ export default function NewHomePage() {
 
               <input
                 type="tel"
-                placeholder="Mobile number"
+                placeholder="Mobile number *"
                 required
                 value={captureForm.phone}
                 onChange={(e) => setCaptureForm(f => ({ ...f, phone: e.target.value }))}
@@ -397,7 +397,7 @@ export default function NewHomePage() {
 
               <input
                 type="email"
-                placeholder="Email"
+                placeholder="Email *"
                 required
                 value={captureForm.email}
                 onChange={(e) => setCaptureForm(f => ({ ...f, email: e.target.value }))}
