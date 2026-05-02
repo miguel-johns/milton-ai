@@ -45,6 +45,9 @@ export default function NewHomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [chatModalOpen, setChatModalOpen] = useState(false)
   const [chatSubmitted, setChatSubmitted] = useState(false)
+  const [leadForm, setLeadForm] = useState({ name: '', email: '', phone: '', company: '' })
+  const [leadSubmitting, setLeadSubmitting] = useState(false)
+  const [leadError, setLeadError] = useState(null)
   const fileInputRef = useRef(null)
   const textareaRef = useRef(null)
 
@@ -85,7 +88,37 @@ export default function NewHomePage() {
 
   const closeChatModal = () => {
     setChatModalOpen(false)
-    setTimeout(() => setChatSubmitted(false), 300)
+    setTimeout(() => {
+      setChatSubmitted(false)
+      setLeadForm({ name: '', email: '', phone: '', company: '' })
+      setLeadError(null)
+    }, 300)
+  }
+
+  const handleLeadSubmit = async (e) => {
+    e.preventDefault()
+    setLeadError(null)
+    setLeadSubmitting(true)
+
+    try {
+      const res = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(leadForm),
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Something went wrong')
+      }
+
+      setChatSubmitted(true)
+    } catch (err) {
+      setLeadError(err.message)
+    } finally {
+      setLeadSubmitting(false)
+    }
   }
 
   // Render listening state
@@ -1016,70 +1049,132 @@ export default function NewHomePage() {
                   borderBottomLeftRadius: 4,
                   marginBottom: 16,
                 }}>
-                  {"Hi! What's on your mind? A real person from the team will get back to you."}
+                  {"Hi! Leave your info and a real person from the team will get back to you."}
                 </p>
 
-                <textarea 
-                  placeholder="Tell us how we can help..."
-                  rows={4}
-                  style={{
-                    width: '100%',
-                    border: `1px solid ${colors.line}`,
-                    borderRadius: 10,
-                    padding: '12px 14px',
-                    fontFamily: fonts.sans,
-                    fontSize: 14,
-                    color: colors.ink,
-                    background: colors.paper,
-                    marginBottom: 10,
-                    resize: 'none',
-                    lineHeight: 1.5,
-                    outline: 'none',
-                    boxSizing: 'border-box',
-                  }}
-                />
-                <input 
-                  type="email"
-                  placeholder="Your email"
-                  style={{
-                    width: '100%',
-                    border: `1px solid ${colors.line}`,
-                    borderRadius: 10,
-                    padding: '12px 14px',
-                    fontFamily: fonts.sans,
-                    fontSize: 14,
-                    color: colors.ink,
-                    background: colors.paper,
-                    marginBottom: 10,
-                    outline: 'none',
-                    boxSizing: 'border-box',
-                  }}
-                />
-                <button 
-                  onClick={() => setChatSubmitted(true)}
-                  style={{
-                    width: '100%',
-                    background: colors.ink,
-                    color: colors.paper,
-                    border: 'none',
-                    padding: '12px 18px',
-                    borderRadius: 10,
-                    fontFamily: fonts.sans,
-                    fontSize: 14,
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: 8,
-                    marginTop: 4,
-                  }}
-                >
-                  Send
-                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M5 12h14M13 6l6 6-6 6"/>
-                  </svg>
-                </button>
+                <form onSubmit={handleLeadSubmit}>
+                  <input 
+                    type="text"
+                    placeholder="Your name *"
+                    required
+                    value={leadForm.name}
+                    onChange={(e) => setLeadForm(f => ({ ...f, name: e.target.value }))}
+                    style={{
+                      width: '100%',
+                      border: `1px solid ${colors.line}`,
+                      borderRadius: 10,
+                      padding: '12px 14px',
+                      fontFamily: fonts.sans,
+                      fontSize: 14,
+                      color: colors.ink,
+                      background: colors.paper,
+                      marginBottom: 10,
+                      outline: 'none',
+                      boxSizing: 'border-box',
+                    }}
+                  />
+                  <input 
+                    type="email"
+                    placeholder="Your email *"
+                    required
+                    value={leadForm.email}
+                    onChange={(e) => setLeadForm(f => ({ ...f, email: e.target.value }))}
+                    style={{
+                      width: '100%',
+                      border: `1px solid ${colors.line}`,
+                      borderRadius: 10,
+                      padding: '12px 14px',
+                      fontFamily: fonts.sans,
+                      fontSize: 14,
+                      color: colors.ink,
+                      background: colors.paper,
+                      marginBottom: 10,
+                      outline: 'none',
+                      boxSizing: 'border-box',
+                    }}
+                  />
+                  <input 
+                    type="tel"
+                    placeholder="Phone (optional)"
+                    value={leadForm.phone}
+                    onChange={(e) => setLeadForm(f => ({ ...f, phone: e.target.value }))}
+                    style={{
+                      width: '100%',
+                      border: `1px solid ${colors.line}`,
+                      borderRadius: 10,
+                      padding: '12px 14px',
+                      fontFamily: fonts.sans,
+                      fontSize: 14,
+                      color: colors.ink,
+                      background: colors.paper,
+                      marginBottom: 10,
+                      outline: 'none',
+                      boxSizing: 'border-box',
+                    }}
+                  />
+                  <input 
+                    type="text"
+                    placeholder="Company (optional)"
+                    value={leadForm.company}
+                    onChange={(e) => setLeadForm(f => ({ ...f, company: e.target.value }))}
+                    style={{
+                      width: '100%',
+                      border: `1px solid ${colors.line}`,
+                      borderRadius: 10,
+                      padding: '12px 14px',
+                      fontFamily: fonts.sans,
+                      fontSize: 14,
+                      color: colors.ink,
+                      background: colors.paper,
+                      marginBottom: 10,
+                      outline: 'none',
+                      boxSizing: 'border-box',
+                    }}
+                  />
+
+                  {leadError && (
+                    <p style={{
+                      fontSize: 13,
+                      color: '#DC2626',
+                      marginBottom: 10,
+                      padding: '8px 12px',
+                      background: '#FEF2F2',
+                      borderRadius: 8,
+                    }}>
+                      {leadError}
+                    </p>
+                  )}
+
+                  <button 
+                    type="submit"
+                    disabled={leadSubmitting}
+                    style={{
+                      width: '100%',
+                      background: leadSubmitting ? colors.inkSoft : colors.ink,
+                      color: colors.paper,
+                      border: 'none',
+                      padding: '12px 18px',
+                      borderRadius: 10,
+                      fontFamily: fonts.sans,
+                      fontSize: 14,
+                      fontWeight: 600,
+                      cursor: leadSubmitting ? 'not-allowed' : 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: 8,
+                      marginTop: 4,
+                      opacity: leadSubmitting ? 0.7 : 1,
+                    }}
+                  >
+                    {leadSubmitting ? 'Sending...' : 'Send'}
+                    {!leadSubmitting && (
+                      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14M13 6l6 6-6 6"/>
+                      </svg>
+                    )}
+                  </button>
+                </form>
               </>
             ) : (
               <div style={{ textAlign: 'center', padding: '8px 0 12px' }}>
