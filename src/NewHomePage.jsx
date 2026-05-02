@@ -549,14 +549,6 @@ export default function NewHomePage() {
             }}
           />
           <span>Milton</span>
-          <span style={{
-            width: 7,
-            height: 7,
-            background: colors.mint,
-            borderRadius: '50%',
-            marginLeft: 1,
-            boxShadow: '0 0 12px rgba(154, 241, 152, 0.6)',
-          }} />
         </a>
 
         {/* Desktop Nav */}
