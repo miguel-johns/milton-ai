@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
 import { Analytics } from '@vercel/analytics/react'
 import NewHomePage from './NewHomePage.jsx'
+import CoachesPage from './CoachesPage.jsx'
 
 // Note: The following imports are kept for reference but their routes are currently hidden.
 // These pages can be re-enabled by adding their routes back to the App component.
@@ -15,8 +16,33 @@ import NewHomePage from './NewHomePage.jsx'
 // - StripeCRM, ImplementationScience
 
 function App() {
-  // Currently only the new home page is accessible
-  // All other routes have been hidden as requested
+  const [route, setRoute] = useState(window.location.pathname)
+
+  useEffect(() => {
+    const handlePopState = () => setRoute(window.location.pathname)
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [])
+
+  // Handle link clicks for SPA navigation
+  useEffect(() => {
+    const handleClick = (e) => {
+      const anchor = e.target.closest('a')
+      if (anchor && anchor.href && anchor.origin === window.location.origin) {
+        e.preventDefault()
+        const path = anchor.pathname
+        window.history.pushState({}, '', path)
+        setRoute(path)
+      }
+    }
+    document.addEventListener('click', handleClick)
+    return () => document.removeEventListener('click', handleClick)
+  }, [])
+
+  // Route matching
+  if (route === '/coaches') return <CoachesPage />
+  
+  // Default to home page
   return <NewHomePage />
 }
 
