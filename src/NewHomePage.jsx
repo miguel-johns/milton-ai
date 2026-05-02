@@ -41,7 +41,11 @@ export default function NewHomePage() {
   const [prompt, setPrompt] = useState('')
   const [attachedFile, setAttachedFile] = useState(null)
   const [addedChips, setAddedChips] = useState(new Set())
-  const [listening, setListening] = useState(false)
+  const [captureScreen, setCaptureScreen] = useState(false)
+  const [successScreen, setSuccessScreen] = useState(false)
+  const [captureForm, setCaptureForm] = useState({ firstName: '', businessName: '', phone: '', email: '' })
+  const [captureSubmitting, setCaptureSubmitting] = useState(false)
+  const [captureError, setCaptureError] = useState(null)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [chatModalOpen, setChatModalOpen] = useState(false)
   const [chatSubmitted, setChatSubmitted] = useState(false)
@@ -83,7 +87,63 @@ export default function NewHomePage() {
   }
 
   const handleSend = () => {
-    setListening(true)
+    setCaptureScreen(true)
+  }
+
+  const handleCaptureBack = () => {
+    setCaptureScreen(false)
+    setCaptureError(null)
+  }
+
+  const handleCaptureSubmit = async (e) => {
+    e.preventDefault()
+    setCaptureError(null)
+
+    // Validate phone
+    const phoneDigits = captureForm.phone.replace(/\D/g, '')
+    if (phoneDigits.length < 10) {
+      setCaptureError('Phone number must have at least 10 digits')
+      return
+    }
+
+    // Validate email
+    if (!captureForm.email || !captureForm.email.includes('@')) {
+      setCaptureError('Please enter a valid email address')
+      return
+    }
+
+    setCaptureSubmitting(true)
+
+    try {
+      const formData = new FormData()
+      formData.append('prompt', prompt)
+      formData.append('phone', captureForm.phone)
+      formData.append('email', captureForm.email)
+      formData.append('firstName', captureForm.firstName)
+      formData.append('businessName', captureForm.businessName)
+      formData.append('chips', JSON.stringify(Array.from(addedChips)))
+      
+      if (attachedFile) {
+        formData.append('file', attachedFile)
+      }
+
+      const res = await fetch('/api/submit-lead', {
+        method: 'POST',
+        body: formData,
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Something went wrong')
+      }
+
+      setSuccessScreen(true)
+    } catch (err) {
+      setCaptureError(err.message)
+    } finally {
+      setCaptureSubmitting(false)
+    }
   }
 
   const closeChatModal = () => {
@@ -121,8 +181,8 @@ export default function NewHomePage() {
     }
   }
 
-  // Render listening state
-  if (listening) {
+  // Render success screen
+  if (successScreen) {
     return (
       <div style={{
         minHeight: '100vh',
@@ -138,41 +198,304 @@ export default function NewHomePage() {
           justifyContent: 'center',
           padding: '40px 24px',
           textAlign: 'center',
+          animation: 'fadeUp 0.4s ease-out',
         }}>
+          {/* Animated checkmark */}
+          <div style={{
+            width: 64,
+            height: 64,
+            borderRadius: '50%',
+            background: colors.accentSoft,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginBottom: 24,
+            animation: 'springPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
+          }}>
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke={colors.accent} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+
           <h2 style={{
             fontFamily: fonts.serif,
-            fontSize: 48,
+            fontSize: mobile ? 36 : 48,
             fontStyle: 'italic',
             color: colors.ink,
             marginBottom: 16,
             fontWeight: 500,
             letterSpacing: '-0.02em',
-          }}>Got it.</h2>
+          }}>Talk soon.</h2>
+          
           <p style={{
-            fontSize: 16,
+            fontFamily: fonts.serif,
+            fontStyle: 'italic',
+            fontSize: mobile ? 17 : 18,
             color: colors.inkSoft,
-            maxWidth: 480,
-            lineHeight: 1.6,
-            margin: '0 auto',
+            maxWidth: 420,
+            lineHeight: 1.65,
+            margin: '0 auto 20px',
           }}>
-            {"I'm reading what you sent and starting to learn how you coach. This takes a few minutes. I'll have some follow-up questions to fill in the gaps."}
+            {"I've got what you sent and I'm starting to learn how you coach. You'll hear from me within 24 hours"}
+            {captureForm.firstName && `, ${captureForm.firstName}`}.
           </p>
-          <div style={{ marginTop: 32, display: 'flex', gap: 8 }}>
-            {[0, 1, 2].map(i => (
-              <span key={i} style={{
-                width: 8,
-                height: 8,
-                borderRadius: '50%',
-                background: colors.accent,
-                animation: `pulse 1.4s infinite ease-in-out ${i * 0.2}s`,
-              }} />
-            ))}
+          
+          <p style={{
+            fontSize: 14,
+            color: colors.inkMute,
+            maxWidth: 400,
+            lineHeight: 1.55,
+          }}>
+            In the meantime, anything else you want me to know?{' '}
+            <a 
+              href="mailto:hello@getmilton.com"
+              style={{ color: colors.accentDeep, textDecoration: 'none' }}
+            >
+              hello@getmilton.com
+            </a>
+          </p>
+        </div>
+        <style>{`
+          @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          @keyframes springPop {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { transform: scale(1.1); }
+            100% { opacity: 1; transform: scale(1); }
+          }
+        `}</style>
+      </div>
+    )
+  }
+
+  // Render capture screen
+  if (captureScreen) {
+    return (
+      <div style={{
+        minHeight: '100vh',
+        background: colors.bg,
+        fontFamily: fonts.sans,
+      }}>
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+        <div style={{
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '40px 24px',
+          animation: 'fadeUp 0.4s ease-out',
+        }}>
+          <div style={{ maxWidth: 540, width: '100%' }}>
+            <h2 style={{
+              fontFamily: fonts.serif,
+              fontSize: mobile ? 36 : 48,
+              color: colors.ink,
+              marginBottom: 16,
+              fontWeight: 500,
+              letterSpacing: '-0.02em',
+            }}>
+              Got <span style={{ fontStyle: 'italic', color: colors.accent }}>it.</span>
+            </h2>
+            
+            <p style={{
+              fontFamily: fonts.serif,
+              fontStyle: 'italic',
+              fontSize: mobile ? 16 : 17,
+              color: colors.inkSoft,
+              lineHeight: 1.65,
+              marginBottom: 28,
+            }}>
+              {"I'm reading what you sent and starting to build skills around how you coach. This part takes a few hours of human review before I'm ready for you. What's the best number to text when you are?"}
+            </p>
+
+            {/* Form card */}
+            <form onSubmit={handleCaptureSubmit} style={{
+              background: colors.paper,
+              border: `1px solid ${colors.line}`,
+              borderRadius: 20,
+              padding: mobile ? '20px 18px' : '24px 28px',
+              boxShadow: '0 1px 2px rgba(11, 22, 40, 0.03), 0 8px 24px rgba(11, 22, 40, 0.06)',
+            }}>
+              {/* Row: First name + Business name */}
+              <div style={{
+                display: 'flex',
+                gap: 12,
+                marginBottom: 12,
+                flexDirection: mobile ? 'column' : 'row',
+              }}>
+                <input
+                  type="text"
+                  placeholder="First name"
+                  value={captureForm.firstName}
+                  onChange={(e) => setCaptureForm(f => ({ ...f, firstName: e.target.value }))}
+                  style={{
+                    flex: 1,
+                    border: `1px solid ${colors.line}`,
+                    borderRadius: 10,
+                    padding: '12px 14px',
+                    fontFamily: fonts.sans,
+                    fontSize: 15,
+                    color: colors.ink,
+                    background: colors.bg,
+                    outline: 'none',
+                    boxSizing: 'border-box',
+                  }}
+                />
+                <input
+                  type="text"
+                  placeholder="Business name (optional)"
+                  value={captureForm.businessName}
+                  onChange={(e) => setCaptureForm(f => ({ ...f, businessName: e.target.value }))}
+                  style={{
+                    flex: 1,
+                    border: `1px solid ${colors.line}`,
+                    borderRadius: 10,
+                    padding: '12px 14px',
+                    fontFamily: fonts.sans,
+                    fontSize: 15,
+                    color: colors.ink,
+                    background: colors.bg,
+                    outline: 'none',
+                    boxSizing: 'border-box',
+                  }}
+                />
+              </div>
+
+              <input
+                type="tel"
+                placeholder="Mobile number"
+                required
+                value={captureForm.phone}
+                onChange={(e) => setCaptureForm(f => ({ ...f, phone: e.target.value }))}
+                style={{
+                  width: '100%',
+                  border: `1px solid ${colors.line}`,
+                  borderRadius: 10,
+                  padding: '12px 14px',
+                  fontFamily: fonts.sans,
+                  fontSize: 15,
+                  color: colors.ink,
+                  background: colors.bg,
+                  marginBottom: 12,
+                  outline: 'none',
+                  boxSizing: 'border-box',
+                }}
+              />
+
+              <input
+                type="email"
+                placeholder="Email"
+                required
+                value={captureForm.email}
+                onChange={(e) => setCaptureForm(f => ({ ...f, email: e.target.value }))}
+                style={{
+                  width: '100%',
+                  border: `1px solid ${colors.line}`,
+                  borderRadius: 10,
+                  padding: '12px 14px',
+                  fontFamily: fonts.sans,
+                  fontSize: 15,
+                  color: colors.ink,
+                  background: colors.bg,
+                  marginBottom: 16,
+                  outline: 'none',
+                  boxSizing: 'border-box',
+                }}
+              />
+
+              {/* Error message */}
+              {captureError && (
+                <p style={{
+                  fontSize: 13,
+                  color: '#DC2626',
+                  marginBottom: 12,
+                  padding: '10px 14px',
+                  background: '#FEF2F2',
+                  borderRadius: 8,
+                }}>
+                  {captureError}
+                </p>
+              )}
+
+              {/* Action row */}
+              <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                gap: 12,
+              }}>
+                <button
+                  type="button"
+                  onClick={handleCaptureBack}
+                  style={{
+                    background: 'transparent',
+                    color: colors.inkSoft,
+                    border: 'none',
+                    padding: '10px 14px',
+                    borderRadius: 10,
+                    fontFamily: fonts.sans,
+                    fontSize: 14,
+                    fontWeight: 500,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 6,
+                  }}
+                >
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M19 12H5M12 6l-6 6 6 6"/>
+                  </svg>
+                  Back
+                </button>
+
+                <button
+                  type="submit"
+                  disabled={captureSubmitting}
+                  style={{
+                    background: `linear-gradient(135deg, ${colors.ink} 0%, ${colors.accent} 100%)`,
+                    color: colors.paper,
+                    border: 'none',
+                    padding: '12px 20px',
+                    borderRadius: 10,
+                    fontFamily: fonts.sans,
+                    fontSize: 14,
+                    fontWeight: 600,
+                    cursor: captureSubmitting ? 'not-allowed' : 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    opacity: captureSubmitting ? 0.7 : 1,
+                  }}
+                >
+                  {captureSubmitting ? 'Sending...' : "Text me when you're ready"}
+                  {!captureSubmitting && (
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12h14M13 6l6 6-6 6"/>
+                    </svg>
+                  )}
+                </button>
+              </div>
+            </form>
+
+            {/* Fineprint */}
+            <p style={{
+              fontSize: 12,
+              color: colors.inkMute,
+              textAlign: 'center',
+              marginTop: 16,
+              lineHeight: 1.5,
+            }}>
+              {"I'll text you once. No marketing spam. We don't share your info."}
+            </p>
           </div>
         </div>
         <style>{`
-          @keyframes pulse {
-            0%, 100% { opacity: 0.25; transform: scale(0.85); }
-            50% { opacity: 1; transform: scale(1.15); }
+          @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
           }
         `}</style>
       </div>
