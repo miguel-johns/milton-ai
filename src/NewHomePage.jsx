@@ -569,7 +569,7 @@ export default function NewHomePage() {
             alignItems: 'center',
           }}>
             <a href="/coaches" style={{ color: 'inherit', textDecoration: 'none' }}>For Coaches</a>
-            <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>For Gyms</a>
+            <a href="/gyms" style={{ color: 'inherit', textDecoration: 'none' }}>For Gyms</a>
             <a href="#" style={{
               color: 'inherit',
               textDecoration: 'none',
@@ -673,7 +673,7 @@ export default function NewHomePage() {
               textDecoration: 'none',
               borderRadius: 10,
             }}>For Coaches</a>
-            <a href="#" onClick={() => setMobileMenuOpen(false)} style={{
+            <a href="/gyms" onClick={() => setMobileMenuOpen(false)} style={{
               display: 'block',
               padding: '14px 16px',
               fontSize: 16,
