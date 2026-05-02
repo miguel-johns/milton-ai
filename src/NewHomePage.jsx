@@ -33,8 +33,8 @@ const fonts = {
   sans: "'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
 }
 
-// Logo image as base64 (Milton avatar)
-const logoImage = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
+// Milton logo image
+const logoImage = "/images/milton-logo.png"
 
 export default function NewHomePage() {
   const { mobile } = useBreakpoint()
