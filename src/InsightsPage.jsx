@@ -127,8 +127,7 @@ const articles = [
   },
 ]
 
-
-
+function ArticleCard({ article, featured = false, mobile }) {
   if (featured) {
     return (
       <a href={`/insights/${article.slug}`} style={{
