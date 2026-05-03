@@ -584,10 +584,10 @@ export default function NewHomePage() {
             color: colors.inkSoft,
             alignItems: 'center',
           }}>
-            <a href="/coaches" style={{ color: 'inherit', textDecoration: 'none' }}>For Coaches</a>
-            <a href="/gyms" style={{ color: 'inherit', textDecoration: 'none' }}>For Gyms</a>
-            <a href="/insights" style={{ color: 'inherit', textDecoration: 'none' }}>Insights</a>
-            <a href="#" style={{
+            <a href="/coaches" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>For Coaches</a>
+            <a href="/gyms" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>For Gyms</a>
+            <a href="/insights" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>Insights</a>
+            <a href="#" className="nav-btn" style={{
               color: 'inherit',
               textDecoration: 'none',
               border: `1px solid ${colors.line}`,
@@ -1472,6 +1472,20 @@ export default function NewHomePage() {
         button:active:not(:disabled) {
           transform: translateY(0);
           box-shadow: 0 2px 6px rgba(11, 22, 40, 0.08);
+        }
+        .nav-link {
+          transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+          color: #2BBFAA !important;
+        }
+        .nav-btn {
+          transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+        .nav-btn:hover {
+          background: rgba(43, 191, 170, 0.12) !important;
+          border-color: #2BBFAA !important;
+          color: #2BBFAA !important;
         }
       `}</style>
     </div>

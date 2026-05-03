@@ -356,9 +356,9 @@ export default function InsightsPage() {
               fontWeight: 500,
               color: colors.inkSoft,
             }}>
-              <a href="/coaches" style={{ color: 'inherit', textDecoration: 'none' }}>For Coaches</a>
-              <a href="/gyms" style={{ color: 'inherit', textDecoration: 'none' }}>For Gyms</a>
-              <a href="/insights" style={{ color: colors.accent, textDecoration: 'none' }}>Insights</a>
+              <a href="/coaches" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>For Coaches</a>
+              <a href="/gyms" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>For Gyms</a>
+              <a href="/insights" className="nav-link" style={{ color: colors.accent, textDecoration: 'none' }}>Insights</a>
             </nav>
           )}
 
@@ -727,8 +727,19 @@ export default function InsightsPage() {
           transform: translateY(0);
           box-shadow: 0 2px 6px rgba(11, 22, 40, 0.08);
         }
-        a:hover {
-          opacity: 0.8;
+        .nav-link {
+          transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+          color: #2BBFAA !important;
+        }
+        .nav-btn {
+          transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+        .nav-btn:hover {
+          background: rgba(43, 191, 170, 0.12) !important;
+          border-color: #2BBFAA !important;
+          color: #2BBFAA !important;
         }
       `}</style>
     </div>

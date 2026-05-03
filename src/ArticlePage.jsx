@@ -243,10 +243,10 @@ export default function ArticlePage({ slug }) {
           {/* Desktop nav */}
           {!mobile && (
             <nav style={{ display: 'flex', alignItems: 'center', gap: 32, fontSize: 15, color: colors.inkSoft }}>
-              <a href="/coaches" style={{ color: 'inherit', textDecoration: 'none' }}>For Coaches</a>
-              <a href="/gyms" style={{ color: 'inherit', textDecoration: 'none' }}>For Gyms</a>
-              <a href="/insights" style={{ color: colors.ink, textDecoration: 'none', fontWeight: 600 }}>Insights</a>
-              <a href="#" style={{
+              <a href="/coaches" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>For Coaches</a>
+              <a href="/gyms" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>For Gyms</a>
+              <a href="/insights" className="nav-link" style={{ color: colors.ink, textDecoration: 'none', fontWeight: 600 }}>Insights</a>
+              <a href="#" className="nav-btn" style={{
                 background: colors.ink,
                 color: colors.paper,
                 padding: '10px 20px',
@@ -560,6 +560,20 @@ export default function ArticlePage({ slug }) {
         button:active:not(:disabled) {
           transform: translateY(0);
           box-shadow: 0 2px 6px rgba(11, 22, 40, 0.08);
+        }
+        .nav-link {
+          transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+          color: #2BBFAA !important;
+        }
+        .nav-btn {
+          transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+        .nav-btn:hover {
+          background: rgba(43, 191, 170, 0.12) !important;
+          border-color: #2BBFAA !important;
+          color: #2BBFAA !important;
         }
       `}</style>
     </div>

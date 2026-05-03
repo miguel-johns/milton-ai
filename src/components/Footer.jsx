@@ -39,6 +39,29 @@ function SocialIcon({ name }) {
 
 export default function Footer({ mobile, onOpenChat }) {
   return (
+    <>
+    <style>{`
+      .footer-link {
+        transition: color 0.2s ease;
+      }
+      .footer-link:hover {
+        color: ${colors.accent} !important;
+      }
+      .footer-social {
+        transition: color 0.2s ease, background 0.2s ease;
+      }
+      .footer-social:hover {
+        color: ${colors.accent} !important;
+        background: ${colors.accentSoft};
+      }
+      .footer-chat-btn {
+        transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+      }
+      .footer-chat-btn:hover {
+        background: ${colors.accentSoft} !important;
+        border-color: ${colors.accent} !important;
+      }
+    `}</style>
     <footer style={{
       padding: mobile ? '48px 20px 32px' : '64px 40px 48px',
       borderTop: `1px solid ${colors.line}`,
@@ -89,6 +112,7 @@ export default function Footer({ mobile, onOpenChat }) {
           flexDirection: mobile ? 'column' : 'row',
         }}>
           <button 
+            className="footer-chat-btn"
             onClick={onOpenChat}
             style={{
               display: 'inline-flex',
@@ -117,6 +141,7 @@ export default function Footer({ mobile, onOpenChat }) {
                 key={social}
                 href="#"
                 aria-label={social}
+                className="footer-social"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -150,11 +175,12 @@ export default function Footer({ mobile, onOpenChat }) {
         }}>
           <span>© 2026 Milton AI</span>
           <span style={{ opacity: 0.5 }}>·</span>
-          <a href="#" style={{ color: colors.inkMute, textDecoration: 'none' }}>Terms of Service</a>
+          <a href="#" className="footer-link" style={{ color: colors.inkMute, textDecoration: 'none' }}>Terms of Service</a>
           <span style={{ opacity: 0.5 }}>·</span>
-          <a href="#" style={{ color: colors.inkMute, textDecoration: 'none' }}>Privacy Policy</a>
+          <a href="#" className="footer-link" style={{ color: colors.inkMute, textDecoration: 'none' }}>Privacy Policy</a>
         </div>
       </div>
     </footer>
+    </>
   )
 }
