@@ -225,14 +225,6 @@ export default function GymsPage() {
             boxShadow: '0 0 0 1px rgba(11, 22, 40, 0.04), 0 1px 3px rgba(11, 22, 40, 0.06)',
           }} />
           <span>Milton</span>
-          <span style={{
-            width: 7,
-            height: 7,
-            background: colors.mint,
-            borderRadius: '50%',
-            marginLeft: 1,
-            boxShadow: '0 0 12px rgba(154, 241, 152, 0.6)',
-          }} />
         </a>
 
         {/* Desktop nav */}
