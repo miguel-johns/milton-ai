@@ -140,7 +140,7 @@ function ArticleCard({ article, featured = false, mobile }) {
 
   if (featured) {
     return (
-      <a href={`#/insights/${article.slug}`} style={{
+      <a href={`/insights/${article.slug}`} style={{
         display: 'grid',
         gridTemplateColumns: mobile ? '1fr' : '1fr 1fr',
         background: colors.paper,
@@ -249,7 +249,7 @@ function ArticleCard({ article, featured = false, mobile }) {
 
   // Standard card
   return (
-    <a href={`#/insights/${article.slug}`} style={{
+    <a href={`/insights/${article.slug}`} style={{
       background: colors.paper,
       border: `1px solid ${colors.line}`,
       borderRadius: mobile ? 14 : 18,

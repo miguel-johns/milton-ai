@@ -5,6 +5,7 @@ import NewHomePage from './NewHomePage.jsx'
 import CoachesPage from './CoachesPage.jsx'
 import GymsPage from './GymsPage.jsx'
 import InsightsPage from './InsightsPage.jsx'
+import ArticlePage from './ArticlePage.jsx'
 
 // Note: The following imports are kept for reference but their routes are currently hidden.
 // These pages can be re-enabled by adding their routes back to the App component.
@@ -45,6 +46,12 @@ function App() {
   if (route === '/coaches') return <CoachesPage />
   if (route === '/gyms') return <GymsPage />
   if (route === '/insights') return <InsightsPage />
+  
+  // Article pages - match /insights/:slug
+  if (route.startsWith('/insights/')) {
+    const slug = route.replace('/insights/', '')
+    return <ArticlePage slug={slug} />
+  }
   
   // Default to home page
   return <NewHomePage />
