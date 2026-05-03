@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import Footer from './components/Footer'
 
 function useBreakpoint() {
   const [w, setW] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200)
@@ -48,6 +49,7 @@ import { articlesContent } from './ArticleDetail.jsx'
 export default function ArticlePage({ slug }) {
   const { mobile, tablet } = useBreakpoint()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [chatModalOpen, setChatModalOpen] = useState(false)
 
   const article = articlesContent[slug]
 
@@ -457,64 +459,119 @@ export default function ArticlePage({ slug }) {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer style={{
-        borderTop: `1px solid ${colors.line}`,
-        padding: mobile ? '40px 20px' : '60px 40px',
-        background: colors.paper,
-      }}>
+      <Footer mobile={mobile} onOpenChat={() => setChatModalOpen(true)} />
+
+      {/* Chat Modal */}
+      {chatModalOpen && (
         <div style={{
-          maxWidth: 1200,
-          margin: '0 auto',
+          position: 'fixed',
+          inset: 0,
+          zIndex: 100,
           display: 'flex',
-          flexDirection: mobile ? 'column' : 'row',
-          justifyContent: 'space-between',
-          alignItems: mobile ? 'center' : 'flex-start',
-          gap: 32,
+          alignItems: mobile ? 'flex-end' : 'center',
+          justifyContent: 'center',
+          padding: mobile ? 0 : 20,
         }}>
-          <div style={{ textAlign: mobile ? 'center' : 'left' }}>
-            <a href="/" style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 10,
-              textDecoration: 'none',
-              fontFamily: fonts.serif,
-              fontSize: 22,
-              fontWeight: 600,
-              color: colors.ink,
-              marginBottom: 12,
-              justifyContent: mobile ? 'center' : 'flex-start',
-            }}>
-              <img src={logoImage} alt="Milton" style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover' }} />
-              <span>Milton</span>
-            </a>
-            <p style={{ color: colors.inkMute, fontSize: 14 }}>AI-powered coaching intelligence.</p>
-          </div>
-
+          <div 
+            onClick={() => setChatModalOpen(false)}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'rgba(11, 22, 40, 0.42)',
+              backdropFilter: 'blur(6px)',
+            }} 
+          />
           <div style={{
-            display: 'flex',
-            gap: mobile ? 24 : 48,
-            fontSize: 14,
-            color: colors.inkSoft,
+            position: 'relative',
+            width: '100%',
+            maxWidth: 400,
+            background: colors.paper,
+            borderRadius: mobile ? '20px 20px 0 0' : 20,
+            boxShadow: '0 24px 64px rgba(11, 22, 40, 0.18)',
+            padding: '28px 24px',
           }}>
-            <a href="/coaches" style={{ color: 'inherit', textDecoration: 'none' }}>For Coaches</a>
-            <a href="/gyms" style={{ color: 'inherit', textDecoration: 'none' }}>For Gyms</a>
-            <a href="/insights" style={{ color: 'inherit', textDecoration: 'none' }}>Insights</a>
+            <button
+              onClick={() => setChatModalOpen(false)}
+              style={{
+                position: 'absolute',
+                top: 14,
+                right: 14,
+                width: 32,
+                height: 32,
+                borderRadius: 8,
+                border: 'none',
+                background: 'transparent',
+                color: colors.inkMute,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <path d="M18 6L6 18M6 6l12 12"/>
+              </svg>
+            </button>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 20 }}>
+              <img 
+                src={logoImage}
+                alt="Milton"
+                style={{
+                  width: 44,
+                  height: 44,
+                  borderRadius: '50%',
+                  objectFit: 'cover',
+                }}
+              />
+              <div>
+                <h3 style={{ fontFamily: fonts.sans, fontSize: 16, fontWeight: 600, color: colors.ink, marginBottom: 4 }}>Talk to a human</h3>
+                <p style={{ fontFamily: fonts.sans, fontSize: 12, color: colors.inkMute }}>
+                  Usually replies within a few hours
+                </p>
+              </div>
+            </div>
+
+            <p style={{
+              fontFamily: fonts.sans,
+              fontSize: 14,
+              lineHeight: 1.55,
+              color: colors.ink,
+              background: colors.bg,
+              padding: '14px 16px',
+              borderRadius: 12,
+              marginBottom: 16,
+            }}>
+              {"Have questions about Milton? Reach out and a real person will get back to you."}
+            </p>
+
+            <a 
+              href="mailto:milton@getmilton.com"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 8,
+                width: '100%',
+                padding: '14px 20px',
+                background: colors.ink,
+                color: colors.bg,
+                borderRadius: 12,
+                fontFamily: fonts.sans,
+                fontSize: 15,
+                fontWeight: 600,
+                textDecoration: 'none',
+              }}
+            >
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              Email us
+            </a>
           </div>
         </div>
-
-        <div style={{
-          maxWidth: 1200,
-          margin: '32px auto 0',
-          paddingTop: 24,
-          borderTop: `1px solid ${colors.lineSoft}`,
-          textAlign: 'center',
-          color: colors.inkMute,
-          fontSize: 13,
-        }}>
-          &copy; {new Date().getFullYear()} Milton. All rights reserved.
-        </div>
-      </footer>
+      )}
 
       <style>{`
         button {

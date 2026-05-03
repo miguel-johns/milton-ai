@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import Footer from './components/Footer'
 
 function useBreakpoint() {
   const [w, setW] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200)
@@ -629,100 +630,7 @@ export default function InsightsPage() {
         </section>
       </main>
 
-      {/* ═══════ FOOTER ═══════ */}
-      <footer style={{
-        borderTop: `1px solid ${colors.lineSoft}`,
-        padding: mobile ? '40px 20px' : '56px 40px',
-        background: colors.bg,
-      }}>
-        <div style={{
-          maxWidth: 1200,
-          margin: '0 auto',
-          display: 'flex',
-          flexDirection: mobile ? 'column' : 'row',
-          justifyContent: 'space-between',
-          alignItems: mobile ? 'center' : 'flex-start',
-          gap: 32,
-        }}>
-          {/* Logo */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
-          }}>
-            <img src={logoImage} alt="Milton" style={{
-              width: 32,
-              height: 32,
-              borderRadius: '50%',
-              objectFit: 'cover',
-            }} />
-            <span style={{
-              fontFamily: fonts.serif,
-              fontSize: 20,
-              fontWeight: 500,
-              color: colors.ink,
-            }}>Milton</span>
-          </div>
-
-          {/* Links */}
-          <div style={{
-            display: 'flex',
-            gap: mobile ? 24 : 40,
-            fontFamily: fonts.sans,
-            fontSize: 14,
-            color: colors.inkSoft,
-          }}>
-            <a href="/coaches" style={{ color: 'inherit', textDecoration: 'none' }}>For Coaches</a>
-            <a href="/gyms" style={{ color: 'inherit', textDecoration: 'none' }}>For Gyms</a>
-            <a href="/insights" style={{ color: colors.accent, textDecoration: 'none' }}>Insights</a>
-          </div>
-
-          {/* Talk to human */}
-          <button
-            onClick={() => setChatModalOpen(true)}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 8,
-              background: colors.paper,
-              border: `1px solid ${colors.line}`,
-              borderRadius: 100,
-              padding: '10px 18px',
-              fontFamily: fonts.sans,
-              fontSize: 14,
-              fontWeight: 500,
-              color: colors.ink,
-              cursor: 'pointer',
-              boxShadow: '0 2px 8px rgba(11, 22, 40, 0.04)',
-            }}
-          >
-            <span style={{
-              width: 8,
-              height: 8,
-              background: colors.mint,
-              borderRadius: '50%',
-              boxShadow: '0 0 8px rgba(154, 241, 152, 0.5)',
-            }} />
-            Talk to a human
-          </button>
-        </div>
-
-        <div style={{
-          maxWidth: 1200,
-          margin: '32px auto 0',
-          paddingTop: 24,
-          borderTop: `1px solid ${colors.lineSoft}`,
-          textAlign: 'center',
-        }}>
-          <p style={{
-            fontFamily: fonts.sans,
-            fontSize: 13,
-            color: colors.inkMute,
-          }}>
-            © 2026 Milton AI. All rights reserved.
-          </p>
-        </div>
-      </footer>
+      <Footer mobile={mobile} onOpenChat={() => setChatModalOpen(true)} />
 
       {/* ═══════ CHAT MODAL ═══════ */}
       {chatModalOpen && (
