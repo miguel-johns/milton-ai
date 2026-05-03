@@ -197,6 +197,7 @@ export default function CoachesPage() {
           }}>
             <a href="/coaches" style={{ color: colors.ink, textDecoration: 'none', fontWeight: 600 }}>For Coaches</a>
             <a href="/gyms" style={{ color: 'inherit', textDecoration: 'none' }}>For Gyms</a>
+            <a href="/insights" style={{ color: 'inherit', textDecoration: 'none' }}>Insights</a>
             <a href="#" style={{
               color: 'inherit',
               textDecoration: 'none',
@@ -312,6 +313,16 @@ export default function CoachesPage() {
               textDecoration: 'none',
               borderRadius: 10,
             }}>For Gyms</a>
+            <a href="/insights" style={{
+              display: 'block',
+              padding: '14px 16px',
+              fontFamily: fonts.sans,
+              fontSize: 16,
+              fontWeight: 500,
+              color: colors.ink,
+              textDecoration: 'none',
+              borderRadius: 10,
+            }}>Insights</a>
             <a href="#" style={{
               display: 'block',
               padding: '14px 16px',
