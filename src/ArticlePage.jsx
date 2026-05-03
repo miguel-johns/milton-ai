@@ -34,15 +34,6 @@ const fonts = {
 
 const logoImage = "/images/milton-logo.png"
 
-// Tag color mapping
-const tagColors = {
-  "AI IN FITNESS": { bg: colors.accentSoft, text: colors.accent },
-  "TRAINER DEVELOPMENT": { bg: colors.mintSoft, text: '#22C55E' },
-  "FITNESS DIRECTOR PLAYBOOK": { bg: '#F3E8FF', text: '#9333EA' },
-  "INDUSTRY DATA": { bg: '#FEF3C7', text: '#D97706' },
-  "MILTON UPDATES": { bg: '#DBEAFE', text: '#2563EB' },
-}
-
 // Import article content from ArticleDetail
 import { articlesContent } from './ArticleDetail.jsx'
 
@@ -84,9 +75,7 @@ export default function ArticlePage({ slug }) {
       </div>
     )
   }
-
-  const tagStyle = tagColors[article.category] || { bg: colors.accentSoft, text: colors.accent }
-
+  
   const renderContent = (block, index) => {
     switch (block.type) {
       case 'paragraph':
@@ -369,19 +358,6 @@ export default function ArticlePage({ slug }) {
           </svg>
           Back to Insights
         </a>
-
-        {/* Category tag */}
-        <span style={{
-          display: 'inline-block',
-          background: tagStyle.bg,
-          color: tagStyle.text,
-          padding: '6px 14px',
-          borderRadius: 20,
-          fontSize: 12,
-          fontWeight: 600,
-          letterSpacing: '0.05em',
-          marginBottom: 20,
-        }}>{article.category}</span>
 
         {/* Title */}
         <h1 style={{
