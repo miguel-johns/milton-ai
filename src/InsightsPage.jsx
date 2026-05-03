@@ -127,17 +127,7 @@ const articles = [
   },
 ]
 
-// Tag color mapping for the new light theme
-const tagColors = {
-  "AI IN FITNESS": { bg: colors.accentSoft, text: colors.accent },
-  "TRAINER DEVELOPMENT": { bg: colors.mintSoft, text: '#22C55E' },
-  "FITNESS DIRECTOR PLAYBOOK": { bg: '#F3E8FF', text: '#9333EA' },
-  "INDUSTRY DATA": { bg: '#FEF3C7', text: '#D97706' },
-  "MILTON UPDATES": { bg: '#DBEAFE', text: '#2563EB' },
-}
 
-function ArticleCard({ article, featured = false, mobile }) {
-  const tagStyle = tagColors[article.tag] || { bg: colors.accentSoft, text: colors.accent }
 
   if (featured) {
     return (
@@ -192,19 +182,6 @@ function ArticleCard({ article, featured = false, mobile }) {
 
         {/* Content */}
         <div style={{ padding: mobile ? '28px 22px' : '40px 40px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-          <span style={{
-            fontFamily: fonts.sans,
-            fontSize: 10,
-            fontWeight: 600,
-            letterSpacing: 1.2,
-            color: tagStyle.text,
-            background: tagStyle.bg,
-            borderRadius: 100,
-            padding: '5px 12px',
-            alignSelf: 'flex-start',
-            marginBottom: 16,
-          }}>{article.tag}</span>
-
           <h2 style={{
             fontFamily: fonts.serif,
             fontSize: mobile ? 24 : 30,
@@ -263,7 +240,7 @@ function ArticleCard({ article, featured = false, mobile }) {
     }}>
       {/* Image placeholder */}
       <div style={{
-        background: `linear-gradient(135deg, ${tagStyle.bg} 0%, ${colors.bg2} 100%)`,
+        background: `linear-gradient(135deg, ${colors.accentSoft} 0%, ${colors.bg2} 100%)`,
         height: mobile ? 160 : 180,
         display: 'flex',
         alignItems: 'center',
@@ -279,7 +256,7 @@ function ArticleCard({ article, featured = false, mobile }) {
           justifyContent: 'center',
           boxShadow: '0 2px 8px rgba(11, 22, 40, 0.06)',
         }}>
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke={tagStyle.text} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke={colors.accent} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
             <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
           </svg>
@@ -288,19 +265,6 @@ function ArticleCard({ article, featured = false, mobile }) {
 
       {/* Content */}
       <div style={{ padding: mobile ? '20px 18px' : '24px 24px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-        <span style={{
-          fontFamily: fonts.sans,
-          fontSize: 9,
-          fontWeight: 600,
-          letterSpacing: 1.2,
-          color: tagStyle.text,
-          background: tagStyle.bg,
-          borderRadius: 100,
-          padding: '4px 10px',
-          alignSelf: 'flex-start',
-          marginBottom: 12,
-        }}>{article.tag}</span>
-
         <h3 style={{
           fontFamily: fonts.sans,
           fontSize: mobile ? 16 : 17,
