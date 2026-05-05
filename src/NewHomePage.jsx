@@ -1098,6 +1098,7 @@ export default function NewHomePage() {
                 width: '100%',
                 maxWidth: 800,
                 height: 'auto',
+                mixBlendMode: 'multiply',
               }}
             />
           )}
@@ -1110,6 +1111,7 @@ export default function NewHomePage() {
                 width: '100%',
                 maxWidth: 400,
                 height: 'auto',
+                mixBlendMode: 'multiply',
               }}
             />
           )}
