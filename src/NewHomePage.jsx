@@ -1160,6 +1160,8 @@ export default function NewHomePage() {
               illustration={<Step1Illustration />}
               desktopImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Image%20-%20Home%201%20-%20Desktop-LPYUb84Ppi0Pw6HigelOJnpiTIDXuE.png"
               desktopImageAlt="Milton daily brief showing morning sessions and clients needing attention"
+              mobileImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile%20Image%201%20-%20Home-CeJo2MoS7DnhTokNdVNVQTwjDGnskv.png"
+              mobileImageAlt="Milton daily brief showing morning sessions and clients needing attention"
             />
 
             {/* Step 2 */}
@@ -1171,6 +1173,8 @@ export default function NewHomePage() {
               illustration={<Step2Illustration />}
               desktopImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Image%202%20-%20Desktop-JCL00GSY7SDAitHNgMNiP6PhDm0NwK.png"
               desktopImageAlt="Milton workout drafting view with exercise table for Kathleen Reyes"
+              mobileImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile%20Website%202%20-%20Home-XWObqEbRBhssrC5np1orsQig5rHT5c.png"
+              mobileImageAlt="Milton workout drafting view with exercise table for Kathleen Reyes"
               reverse
             />
 
@@ -1183,6 +1187,8 @@ export default function NewHomePage() {
               illustration={<Step3Illustration />}
               desktopImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Image%203%20-%20Desktop-OW5PorhrO96DNBx2hZKojcdRLadRtM.png"
               desktopImageAlt="Milton client notes showing what I know about Sarah Chen"
+              mobileImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile%20Website%20Image%203%20-%20Home-hklflGxzRHCTqYWy5OAADER5t1wnPS.png"
+              mobileImageAlt="Milton client notes showing what I know about Sarah Chen"
             />
 
             {/* Step 4 */}
@@ -1194,6 +1200,8 @@ export default function NewHomePage() {
               illustration={<Step4Illustration />}
               desktopImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Home%204%20Good%20-%20Desktop-k0KLVFJQjIffg9bMl7PgIGjPnFDILz.png"
               desktopImageAlt="Milton audience preview showing four clients flagged for sleep issues"
+              mobileImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile%20Website%204%20-%20Home-KIO6Id5hLylDnlsfu4BlPXVPL7nE9b.png"
+              mobileImageAlt="Milton audience preview showing four clients flagged for sleep issues"
               reverse
             />
 
@@ -1206,6 +1214,8 @@ export default function NewHomePage() {
               illustration={<Step5Illustration />}
               desktopImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Image%205-%20Desktop-jiPbh7bW4Hd9rSuSajyodHo02SrZyL.png"
               desktopImageAlt="Milton quarterly report with body weight progress chart for Sarah"
+              mobileImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile%20Website%205%20-%20Home-rSBU3YxzrEBiLk9933IwCR9S2m0cgp.png"
+              mobileImageAlt="Milton quarterly report with body weight progress chart for Sarah"
             />
           </div>
         </section>
@@ -1913,8 +1923,20 @@ export default function NewHomePage() {
 }
 
 // Step component
-function Step({ number, title, description, illustration, desktopImage, desktopImageAlt, mobile, reverse }) {
-  const imageContent = mobile ? illustration : (
+function Step({ number, title, description, illustration, desktopImage, desktopImageAlt, mobileImage, mobileImageAlt, mobile, reverse }) {
+  const imageContent = mobile ? (
+    mobileImage ? (
+      <img 
+        src={mobileImage}
+        alt={mobileImageAlt || title}
+        style={{
+          width: '100%',
+          maxWidth: 320,
+          height: 'auto',
+        }}
+      />
+    ) : illustration
+  ) : (
     desktopImage ? (
       <img 
         src={desktopImage}
