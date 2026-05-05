@@ -232,26 +232,6 @@ export default function GymsPage() {
     },
   ]
 
-  // Daily tasks data
-  const dailyTasks = [
-    {
-      title: 'Prep',
-      description: "Every trainer walks in knowing who's coming, what they need, and what changed since last session.",
-    },
-    {
-      title: 'Adjust',
-      description: 'A client comes in stiff or sore. Milton suggests the swap. The trainer approves. The methodology stays intact.',
-    },
-    {
-      title: 'Coach',
-      description: 'Session notes write themselves. Cues and rules show up in real time. Nothing slips through, even with new hires.',
-    },
-    {
-      title: 'Follow up',
-      description: "Texts, check-ins, and recovery nudges go out in your gym's voice. Clients feel coached all week, not just during their hour.",
-    },
-  ]
-
   return (
     <div style={{
       minHeight: '100vh',
@@ -796,63 +776,6 @@ export default function GymsPage() {
           </div>
           )
         })}
-
-        {/* What Milton Does Every Day */}
-        <section style={{
-          maxWidth: 1080,
-          margin: '0 auto',
-          padding: mobile ? '56px 20px' : '80px 32px',
-        }}>
-          <h2 style={{
-            fontFamily: fonts.serif,
-            fontSize: mobile ? 28 : 36,
-            fontWeight: 500,
-            color: colors.ink,
-            textAlign: 'center',
-            marginBottom: mobile ? 36 : 48,
-          }}>
-            Open Milton. See what to do. Done.
-          </h2>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: mobile ? '1fr' : 'repeat(4, 1fr)',
-            gap: mobile ? 20 : 24,
-            marginBottom: mobile ? 36 : 48,
-          }}>
-            {dailyTasks.map((task, i) => (
-              <div key={i} style={{
-                background: colors.paper,
-                border: `1px solid ${colors.line}`,
-                borderRadius: 16,
-                padding: mobile ? '24px 20px' : '28px 24px',
-              }}>
-                <h3 style={{
-                  fontFamily: fonts.serif,
-                  fontSize: 20,
-                  fontWeight: 500,
-                  color: colors.accent,
-                  marginBottom: 10,
-                }}>
-                  {task.title}
-                </h3>
-                <p style={{
-                  fontFamily: fonts.sans,
-                  fontSize: 14,
-                  lineHeight: 1.6,
-                  color: colors.inkSoft,
-                }}>
-                  {task.description}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <ImagePlaceholder 
-            aspectRatio="16 / 7"
-            hint="A visual showing the flow from prep to follow-up in Milton for gym teams."
-          />
-        </section>
 
         {/* Pull Quote */}
         <section style={{
