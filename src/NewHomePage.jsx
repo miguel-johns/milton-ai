@@ -63,12 +63,12 @@ export default function NewHomePage() {
   const textareaRef = useRef(null)
 
   const chips = [
-    { text: "I'm a solo trainer.", label: "I'm a solo trainer" },
-    { text: "I run a team of trainers.", label: "I run a team of trainers" },
-    { text: "I'm a fitness director at a commercial gym.", label: "I'm a fitness director" },
-    { text: "I do nutrition coaching with my clients.", label: "I do nutrition coaching" },
-    { text: "I coach hybrid clients, both in-person and online.", label: "I coach hybrid clients" },
-    { text: "I write custom workout programs for my clients.", label: "I write workout programs" },
+    { text: "I'm a solo trainer.", label: "Solo trainer", labelFull: "I'm a solo trainer" },
+    { text: "I run a team of trainers.", label: "Team lead", labelFull: "I run a team of trainers" },
+    { text: "I'm a fitness director at a commercial gym.", label: "Fitness director", labelFull: "I'm a fitness director" },
+    { text: "I do nutrition coaching with my clients.", label: "Nutrition", labelFull: "I do nutrition coaching" },
+    { text: "I coach hybrid clients, both in-person and online.", label: "Hybrid clients", labelFull: "I coach hybrid clients" },
+    { text: "I write custom workout programs for my clients.", label: "Programs", labelFull: "I write workout programs" },
   ]
 
   const canSend = prompt.trim().length >= 4 || attachedFile !== null
@@ -984,7 +984,7 @@ export default function NewHomePage() {
                 }}
               >
                 {addedChips.has(chip.text) && <span style={{ fontSize: 11 }}>✓</span>}
-                {chip.label}
+                {mobile ? chip.label : chip.labelFull}
               </button>
             ))}
           </div>
