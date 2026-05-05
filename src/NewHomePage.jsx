@@ -1208,6 +1208,179 @@ export default function NewHomePage() {
           </div>
         </section>
 
+        {/* Audience Split Section */}
+        <section style={{
+          maxWidth: 920,
+          margin: '0 auto',
+          padding: mobile ? '64px 20px' : '88px 24px',
+        }}>
+          <h2 style={{
+            fontFamily: fonts.serif,
+            fontSize: mobile ? 26 : 32,
+            fontWeight: 500,
+            color: colors.ink,
+            textAlign: 'center',
+            lineHeight: 1.3,
+            marginBottom: mobile ? 36 : 48,
+          }}>
+            Built for the way coaches actually work.
+          </h2>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: mobile ? '1fr' : '1fr 1fr',
+            gap: mobile ? 20 : 24,
+          }}>
+            {/* Solo Coaches Card */}
+            <a 
+              href="/coaches"
+              style={{
+                display: 'block',
+                background: colors.paper,
+                border: `1px solid ${colors.line}`,
+                borderRadius: 16,
+                padding: mobile ? '28px 24px' : '36px 32px',
+                textDecoration: 'none',
+                transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = colors.accent;
+                e.currentTarget.style.boxShadow = '0 4px 20px rgba(43, 191, 170, 0.12)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = colors.line;
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+            >
+              <h3 style={{
+                fontFamily: fonts.serif,
+                fontSize: mobile ? 20 : 22,
+                fontWeight: 500,
+                color: colors.ink,
+                marginBottom: 12,
+              }}>
+                Solo coaches
+              </h3>
+              <p style={{
+                fontFamily: fonts.sans,
+                fontSize: 15,
+                lineHeight: 1.65,
+                color: colors.inkSoft,
+                marginBottom: 20,
+              }}>
+                {"You're"} working off memory and a Google sheet. Milton turns that into a system, automatically. Look like the coach you already are.
+              </p>
+              <span style={{
+                fontFamily: fonts.sans,
+                fontSize: 14,
+                fontWeight: 600,
+                color: colors.accent,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+              }}>
+                See Milton for solo coaches
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3 8h10M9 4l4 4-4 4" />
+                </svg>
+              </span>
+            </a>
+
+            {/* Gyms Card */}
+            <a 
+              href="/gyms"
+              style={{
+                display: 'block',
+                background: colors.paper,
+                border: `1px solid ${colors.line}`,
+                borderRadius: 16,
+                padding: mobile ? '28px 24px' : '36px 32px',
+                textDecoration: 'none',
+                transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = colors.accent;
+                e.currentTarget.style.boxShadow = '0 4px 20px rgba(43, 191, 170, 0.12)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = colors.line;
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+            >
+              <h3 style={{
+                fontFamily: fonts.serif,
+                fontSize: mobile ? 20 : 22,
+                fontWeight: 500,
+                color: colors.ink,
+                marginBottom: 12,
+              }}>
+                Gyms and studios
+              </h3>
+              <p style={{
+                fontFamily: fonts.sans,
+                fontSize: 15,
+                lineHeight: 1.65,
+                color: colors.inkSoft,
+                marginBottom: 20,
+              }}>
+                Your trainers {"aren't"} doing everything you need them to yet. Milton closes the gap, so every session feels like you ran it.
+              </p>
+              <span style={{
+                fontFamily: fonts.sans,
+                fontSize: 14,
+                fontWeight: 600,
+                color: colors.accent,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+              }}>
+                See Milton for gym owners
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3 8h10M9 4l4 4-4 4" />
+                </svg>
+              </span>
+            </a>
+          </div>
+        </section>
+
+        {/* Pull Quote Section */}
+        <section style={{
+          maxWidth: 800,
+          margin: '0 auto',
+          padding: mobile ? '48px 20px 72px' : '64px 24px 96px',
+          textAlign: 'center',
+        }}>
+          <svg 
+            width="48" 
+            height="48" 
+            viewBox="0 0 48 48" 
+            fill="none"
+            style={{ marginBottom: 24, opacity: 0.15 }}
+          >
+            <path d="M14 24c-3.3 0-6-2.7-6-6s2.7-6 6-6c1.1 0 2 .9 2 2s-.9 2-2 2-2 .9-2 2 .9 2 2 2h2c3.3 0 6 2.7 6 6v4c0 3.3-2.7 6-6 6h-2c-1.1 0-2-.9-2-2s.9-2 2-2h2c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2h-2zm20 0c-3.3 0-6-2.7-6-6s2.7-6 6-6c1.1 0 2 .9 2 2s-.9 2-2 2-2 .9-2 2 .9 2 2 2h2c3.3 0 6 2.7 6 6v4c0 3.3-2.7 6-6 6h-2c-1.1 0-2-.9-2-2s.9-2 2-2h2c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2h-2z" fill={colors.ink} />
+          </svg>
+          <blockquote style={{
+            fontFamily: fonts.serif,
+            fontSize: mobile ? 20 : 26,
+            fontWeight: 400,
+            fontStyle: 'italic',
+            color: colors.ink,
+            lineHeight: 1.5,
+            marginBottom: 24,
+          }}>
+            {"\"He's definitely not going to learn a new software. So I usually have to learn it and build the workflows for the team. With Milton, it's already set up and ready to go.\""}
+          </blockquote>
+          <cite style={{
+            fontFamily: fonts.sans,
+            fontSize: 15,
+            fontWeight: 500,
+            color: colors.inkSoft,
+            fontStyle: 'normal',
+          }}>
+            — Bethany, Optimal Performance
+          </cite>
+        </section>
+
         {/* Pricing Section */}
         <section style={{
           maxWidth: 920,
