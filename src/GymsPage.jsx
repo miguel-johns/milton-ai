@@ -215,6 +215,9 @@ export default function GymsPage() {
         "If they leave the home screen, we've failed them",
       ],
       imageHint: 'Clean, simple interface showing today\'s sessions and tasks.',
+      desktopImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Image%20-%20Home%201%20-%20Desktop-LPYUb84Ppi0Pw6HigelOJnpiTIDXuE.png',
+      mobileImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile%20Image%201%20-%20Home-CeJo2MoS7DnhTokNdVNVQTwjDGnskv.png',
+      imageAlt: 'Milton daily brief showing morning sessions and clients needing attention',
     },
     {
       title: 'Stop being the bottleneck in your own gym.',
