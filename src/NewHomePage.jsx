@@ -292,7 +292,7 @@ export default function NewHomePage() {
     )
   }
 
-  // Render capture screen
+  // Render capture screen (waitlist)
   if (captureScreen) {
     return (
       <div style={{
@@ -311,213 +311,285 @@ export default function NewHomePage() {
           animation: 'fadeUp 0.4s ease-out',
         }}>
           <div style={{ maxWidth: 540, width: '100%' }}>
+            {/* Status badges */}
+            <div style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: 12,
+              marginBottom: 24,
+            }}>
+              <span style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                background: 'rgba(251, 191, 36, 0.12)',
+                color: '#92700C',
+                padding: '8px 14px',
+                borderRadius: 100,
+                fontSize: 11,
+                fontWeight: 600,
+                letterSpacing: '0.05em',
+                textTransform: 'uppercase',
+              }}>
+                <span style={{
+                  width: 6,
+                  height: 6,
+                  borderRadius: '50%',
+                  background: '#92700C',
+                }} />
+                Waitlist active · High volume
+              </span>
+              <span style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                background: colors.bg2,
+                color: colors.inkMute,
+                padding: '8px 14px',
+                borderRadius: 100,
+                fontSize: 11,
+                fontWeight: 500,
+                letterSpacing: '0.05em',
+                textTransform: 'uppercase',
+              }}>
+                Current wait · 2 to 3 weeks
+              </span>
+            </div>
+
+            {/* Main heading */}
             <h2 style={{
               fontFamily: fonts.serif,
-              fontSize: mobile ? 36 : 48,
-              color: colors.ink,
-              marginBottom: 16,
+              fontSize: mobile ? 28 : 36,
               fontWeight: 500,
-              letterSpacing: '-0.02em',
-            }}>
-              Got <span style={{ fontStyle: 'italic', color: colors.accent }}>it.</span>
-            </h2>
-            
-            <p style={{
-              fontFamily: fonts.serif,
               fontStyle: 'italic',
-              fontSize: mobile ? 16 : 17,
-              color: colors.inkSoft,
-              lineHeight: 1.65,
-              marginBottom: 28,
+              color: colors.ink,
+              lineHeight: 1.2,
+              marginBottom: 12,
+              letterSpacing: '-0.01em',
             }}>
-              {"I'm reading what you sent and starting to build skills around how you coach. This part takes a few hours of human review before I'm ready for you. What's the best number to text when you are?"}
+              {"We're so sorry. We've capped onboarding for today."}
+            </h2>
+
+            <p style={{
+              fontSize: 15,
+              lineHeight: 1.5,
+              color: colors.inkSoft,
+              marginBottom: 20,
+            }}>
+              {"You're on the waitlist. We'll text you the second your spot opens."}
             </p>
+
+            <div style={{
+              borderTop: `1px solid ${colors.line}`,
+              paddingTop: 20,
+              marginBottom: 20,
+            }}>
+              <p style={{
+                fontSize: 14,
+                lineHeight: 1.65,
+                color: colors.ink,
+                marginBottom: 16,
+              }}>
+                Every coach gets a real human review before Milton starts learning your voice. {"We're"} seeing more signups in a day than we used to see in a month, and {"we'd"} rather hold the line on quality than rush you in.
+              </p>
+
+              <p style={{
+                fontSize: 14,
+                lineHeight: 1.65,
+                color: colors.ink,
+              }}>
+                <strong>Honest moment.</strong> We did not see this coming. Apparently, the second you tell coaches that AI can replace the seven tools they pay for and barely use, they show up.
+              </p>
+            </div>
 
             {/* Form card */}
             <form onSubmit={handleCaptureSubmit} style={{
               background: colors.paper,
               border: `1px solid ${colors.line}`,
-              borderRadius: 20,
-              padding: mobile ? '20px 18px' : '24px 28px',
-              boxShadow: '0 1px 2px rgba(11, 22, 40, 0.03), 0 8px 24px rgba(11, 22, 40, 0.06)',
+              borderRadius: 12,
+              padding: 20,
+              marginBottom: 20,
             }}>
-              {/* Row: First name + Business name */}
-              <div style={{
-                display: 'flex',
-                gap: 12,
-                marginBottom: 12,
-                flexDirection: mobile ? 'column' : 'row',
-              }}>
-                <input
+              {/* Name field */}
+              <div style={{ marginBottom: 12 }}>
+                <label style={{
+                  display: 'block',
+                  fontSize: 13,
+                  color: colors.inkMute,
+                  marginBottom: 6,
+                }}>
+                  Your name
+                </label>
+                <input 
                   type="text"
-                  placeholder="First name *"
+                  placeholder="First Last"
                   required
                   value={captureForm.firstName}
                   onChange={(e) => setCaptureForm(f => ({ ...f, firstName: e.target.value }))}
                   style={{
-                    flex: 1,
+                    width: '100%',
                     border: `1px solid ${colors.line}`,
-                    borderRadius: 10,
+                    borderRadius: 8,
                     padding: '12px 14px',
                     fontFamily: fonts.sans,
                     fontSize: 15,
                     color: colors.ink,
-                    background: colors.bg,
-                    outline: 'none',
-                    boxSizing: 'border-box',
-                  }}
-                />
-                <input
-                  type="text"
-                  placeholder="Business name *"
-                  required
-                  value={captureForm.businessName}
-                  onChange={(e) => setCaptureForm(f => ({ ...f, businessName: e.target.value }))}
-                  style={{
-                    flex: 1,
-                    border: `1px solid ${colors.line}`,
-                    borderRadius: 10,
-                    padding: '12px 14px',
-                    fontFamily: fonts.sans,
-                    fontSize: 15,
-                    color: colors.ink,
-                    background: colors.bg,
+                    background: colors.paper,
                     outline: 'none',
                     boxSizing: 'border-box',
                   }}
                 />
               </div>
 
-              <input
-                type="tel"
-                placeholder="Mobile number *"
-                required
-                value={captureForm.phone}
-                onChange={(e) => setCaptureForm(f => ({ ...f, phone: e.target.value }))}
-                style={{
-                  width: '100%',
-                  border: `1px solid ${colors.line}`,
-                  borderRadius: 10,
-                  padding: '12px 14px',
-                  fontFamily: fonts.sans,
-                  fontSize: 15,
-                  color: colors.ink,
-                  background: colors.bg,
-                  marginBottom: 12,
-                  outline: 'none',
-                  boxSizing: 'border-box',
-                }}
-              />
+              {/* Business name field */}
+              <div style={{ marginBottom: 12 }}>
+                <label style={{
+                  display: 'block',
+                  fontSize: 13,
+                  color: colors.inkMute,
+                  marginBottom: 6,
+                }}>
+                  Business name
+                </label>
+                <input 
+                  type="text"
+                  placeholder="Your gym or coaching business"
+                  required
+                  value={captureForm.businessName}
+                  onChange={(e) => setCaptureForm(f => ({ ...f, businessName: e.target.value }))}
+                  style={{
+                    width: '100%',
+                    border: `1px solid ${colors.line}`,
+                    borderRadius: 8,
+                    padding: '12px 14px',
+                    fontFamily: fonts.sans,
+                    fontSize: 15,
+                    color: colors.ink,
+                    background: colors.paper,
+                    outline: 'none',
+                    boxSizing: 'border-box',
+                  }}
+                />
+              </div>
 
-              <input
-                type="email"
-                placeholder="Email *"
-                required
-                value={captureForm.email}
-                onChange={(e) => setCaptureForm(f => ({ ...f, email: e.target.value }))}
-                style={{
-                  width: '100%',
-                  border: `1px solid ${colors.line}`,
-                  borderRadius: 10,
-                  padding: '12px 14px',
-                  fontFamily: fonts.sans,
-                  fontSize: 15,
-                  color: colors.ink,
-                  background: colors.bg,
-                  marginBottom: 16,
-                  outline: 'none',
-                  boxSizing: 'border-box',
-                }}
-              />
+              {/* Phone field with inline button */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'flex-end',
+                justifyContent: 'space-between',
+                marginBottom: 6,
+              }}>
+                <label style={{
+                  fontSize: 13,
+                  color: colors.inkMute,
+                }}>
+                  Best number to text
+                </label>
+                <span style={{
+                  fontSize: 11,
+                  color: colors.inkMute,
+                  fontFamily: 'monospace',
+                }}>
+                  ~ 2 to 3 week wait
+                </span>
+              </div>
+              <div style={{
+                display: 'flex',
+                gap: 10,
+                marginBottom: 8,
+              }}>
+                <input 
+                  type="tel"
+                  placeholder="(555) 555 0100"
+                  required
+                  value={captureForm.phone}
+                  onChange={(e) => setCaptureForm(f => ({ ...f, phone: e.target.value }))}
+                  style={{
+                    flex: 1,
+                    border: `1px solid ${colors.line}`,
+                    borderRadius: 8,
+                    padding: '12px 14px',
+                    fontFamily: fonts.sans,
+                    fontSize: 15,
+                    color: colors.ink,
+                    background: colors.paper,
+                    outline: 'none',
+                    boxSizing: 'border-box',
+                  }}
+                />
+                <button 
+                  type="submit"
+                  disabled={captureSubmitting}
+                  style={{
+                    background: colors.paper,
+                    color: colors.ink,
+                    border: `1px solid ${colors.line}`,
+                    padding: '12px 20px',
+                    borderRadius: 8,
+                    fontFamily: fonts.sans,
+                    fontSize: 14,
+                    fontWeight: 500,
+                    cursor: captureSubmitting ? 'not-allowed' : 'pointer',
+                    whiteSpace: 'nowrap',
+                    opacity: captureSubmitting ? 0.7 : 1,
+                  }}
+                >
+                  {captureSubmitting ? 'Saving...' : 'Hold my spot'}
+                </button>
+              </div>
+
+              <p style={{
+                fontSize: 12,
+                color: colors.inkMute,
+              }}>
+                One text when {"you're"} up. Nothing else.
+              </p>
 
               {/* Error message */}
               {captureError && (
                 <p style={{
                   fontSize: 13,
                   color: '#DC2626',
-                  marginBottom: 12,
-                  padding: '10px 14px',
+                  marginTop: 10,
+                  padding: '8px 12px',
                   background: '#FEF2F2',
                   borderRadius: 8,
                 }}>
                   {captureError}
                 </p>
               )}
-
-              {/* Action row */}
-              <div style={{
-                display: 'flex',
-                flexDirection: mobile ? 'column-reverse' : 'row',
-                justifyContent: 'space-between',
-                alignItems: mobile ? 'stretch' : 'center',
-                gap: mobile ? 8 : 12,
-              }}>
-                <button
-                  type="button"
-                  onClick={handleCaptureBack}
-                  style={{
-                    background: 'transparent',
-                    color: colors.inkSoft,
-                    border: 'none',
-                    padding: '10px 14px',
-                    borderRadius: 10,
-                    fontFamily: fonts.sans,
-                    fontSize: 14,
-                    fontWeight: 500,
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: 6,
-                  }}
-                >
-                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M19 12H5M12 6l-6 6 6 6"/>
-                  </svg>
-                  Back
-                </button>
-
-                <button
-                  type="submit"
-                  disabled={captureSubmitting}
-                  style={{
-                    background: `linear-gradient(135deg, ${colors.ink} 0%, ${colors.accent} 100%)`,
-                    color: colors.paper,
-                    border: 'none',
-                    padding: mobile ? '14px 20px' : '12px 20px',
-                    borderRadius: 10,
-                    fontFamily: fonts.sans,
-                    fontSize: 14,
-                    fontWeight: 600,
-                    cursor: captureSubmitting ? 'not-allowed' : 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: 8,
-                    opacity: captureSubmitting ? 0.7 : 1,
-                    width: mobile ? '100%' : 'auto',
-                  }}
-                >
-                  {captureSubmitting ? 'Sending...' : (mobile ? 'Text me' : "Text me when you're ready")}
-                  {!captureSubmitting && (
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M5 12h14M13 6l6 6-6 6"/>
-                    </svg>
-                  )}
-                </button>
-              </div>
             </form>
 
-            {/* Fineprint */}
-            <p style={{
-              fontSize: 12,
-              color: colors.inkMute,
-              textAlign: 'center',
-              marginTop: 16,
-              lineHeight: 1.5,
+            {/* Footer */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
             }}>
-              {"I'll text you once. No marketing spam. We don't share your info."}
-            </p>
+              <button
+                type="button"
+                onClick={handleCaptureBack}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  color: colors.inkMute,
+                  fontSize: 13,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  padding: 0,
+                }}
+              >
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                Back
+              </button>
+              <span style={{ fontSize: 12, color: colors.inkMute }}>
+                Queue refreshed daily
+              </span>
+            </div>
           </div>
         </div>
         <style>{`
