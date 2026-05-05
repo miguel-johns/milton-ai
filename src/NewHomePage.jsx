@@ -945,18 +945,21 @@ export default function NewHomePage() {
           <div style={{
             display: 'flex',
             flexWrap: 'wrap',
-            gap: 8,
+            gap: mobile ? 6 : 8,
             justifyContent: 'center',
             marginTop: 28,
+            maxWidth: mobile ? '100%' : 600,
+            marginLeft: 'auto',
+            marginRight: 'auto',
           }}>
             <div style={{
               width: '100%',
               textAlign: 'center',
-              fontSize: 12,
+              fontSize: 11,
               color: colors.inkMute,
               letterSpacing: '0.06em',
               textTransform: 'uppercase',
-              marginBottom: 4,
+              marginBottom: mobile ? 6 : 4,
             }}>
               Or start with one of these
             </div>
@@ -967,16 +970,17 @@ export default function NewHomePage() {
                 style={{
                   background: addedChips.has(chip.text) ? colors.accentSoft : colors.paper,
                   border: `1px solid ${addedChips.has(chip.text) ? 'rgba(43, 191, 170, 0.35)' : colors.line}`,
-                  padding: '9px 16px',
+                  padding: mobile ? '7px 12px' : '9px 16px',
                   borderRadius: 100,
                   fontFamily: fonts.sans,
-                  fontSize: 13,
+                  fontSize: mobile ? 12 : 13,
                   color: addedChips.has(chip.text) ? colors.accent : colors.inkSoft,
                   cursor: 'pointer',
                   whiteSpace: 'nowrap',
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: 6,
+                  flexShrink: 0,
                 }}
               >
                 {addedChips.has(chip.text) && <span style={{ fontSize: 11 }}>✓</span>}
