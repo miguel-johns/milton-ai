@@ -48,171 +48,196 @@ export default function AboutPage() {
       fontFamily: fonts.sans,
       color: colors.ink,
     }}>
-      {/* ═══════ NAV ═══════ */}
+      {/* Header */}
       <header style={{
-        position: 'sticky',
-        top: 0,
-        zIndex: 50,
-        background: 'rgba(250, 251, 252, 0.92)',
-        backdropFilter: 'blur(12px)',
-        borderBottom: `1px solid ${colors.lineSoft}`,
+        padding: mobile ? '20px' : '28px 40px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
       }}>
-        <nav style={{
-          maxWidth: 1200,
-          margin: '0 auto',
-          padding: mobile ? '14px 20px' : '16px 40px',
+        <a href="/" style={{
+          fontFamily: fonts.sans,
+          fontSize: 20,
+          fontWeight: 600,
+          letterSpacing: '-0.02em',
+          color: colors.ink,
+          textDecoration: 'none',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'space-between',
+          gap: 8,
         }}>
-          {/* Logo */}
-          <a href="/" style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
-            textDecoration: 'none',
-            fontFamily: fonts.serif,
-            fontSize: 22,
-            fontWeight: 600,
-            color: colors.ink,
-          }}>
-            <img 
-              src={logoImage}
-              alt="Milton"
-              style={{
-                width: 36,
-                height: 36,
-                borderRadius: '50%',
-                objectFit: 'cover',
-              }}
-            />
-            <span>Milton</span>
-          </a>
+          <img 
+            src={logoImage}
+            alt="Milton"
+            style={{
+              width: 32,
+              height: 32,
+              borderRadius: '50%',
+              objectFit: 'cover',
+              boxShadow: '0 0 0 1px rgba(11, 22, 40, 0.04), 0 1px 3px rgba(11, 22, 40, 0.06)',
+            }}
+          />
+          <span>Milton</span>
+        </a>
 
-          {/* Desktop Nav */}
-          {!mobile && (
-            <div style={{
+        {/* Desktop Nav */}
+        {!mobile && (
+          <nav style={{
+            display: 'flex',
+            gap: 28,
+            fontSize: 14,
+            color: colors.inkSoft,
+            alignItems: 'center',
+          }}>
+            <a href="/coaches" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>For Coaches</a>
+            <a href="/gyms" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>For Gyms</a>
+            <a href="/insights" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>Insights</a>
+            <a href="/about" className="nav-link" style={{ color: colors.ink, textDecoration: 'none', fontWeight: 600 }}>About</a>
+            <a href="#" className="nav-btn" style={{
+              color: 'inherit',
+              textDecoration: 'none',
+              border: `1px solid ${colors.line}`,
+              padding: '8px 16px',
+              borderRadius: 8,
+              background: colors.paper,
+            }}>Sign in</a>
+          </nav>
+        )}
+
+        {/* Mobile menu toggle */}
+        {mobile && (
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            style={{
+              width: 40,
+              height: 40,
+              border: `1px solid ${colors.line}`,
+              background: colors.paper,
+              borderRadius: 10,
+              cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: 32,
-              fontFamily: fonts.sans,
-              fontSize: 15,
-              fontWeight: 500,
-              color: colors.inkSoft,
-            }}>
-              <a href="/coaches" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>For Coaches</a>
-              <a href="/gyms" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>For Gyms</a>
-              <a href="/insights" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>Insights</a>
-              <a href="/about" className="nav-link" style={{ color: colors.ink, textDecoration: 'none', fontWeight: 600 }}>About</a>
-              <a href="#" className="nav-btn" style={{
-                color: 'inherit',
-                textDecoration: 'none',
-                border: `1px solid ${colors.line}`,
-                padding: '8px 16px',
-                borderRadius: 8,
-                background: colors.paper,
-              }}>Sign in</a>
-            </div>
-          )}
-
-          {/* Mobile Menu Button */}
-          {mobile && (
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              style={{
-                background: 'none',
-                border: 'none',
-                padding: 8,
-                cursor: 'pointer',
-                color: colors.ink,
-              }}
-            >
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                {mobileMenuOpen ? (
-                  <path d="M18 6L6 18M6 6l12 12" />
-                ) : (
-                  <path d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
-            </button>
-          )}
-        </nav>
-
-        {/* Mobile Menu */}
-        {mobile && mobileMenuOpen && (
-          <>
-            <div
-              onClick={() => setMobileMenuOpen(false)}
-              style={{
-                position: 'fixed',
-                inset: 0,
-                background: 'rgba(11, 22, 40, 0.3)',
-                zIndex: 40,
-              }}
-            />
-            <div style={{
-              position: 'absolute',
-              top: '100%',
-              left: 0,
-              right: 0,
-              background: colors.paper,
-              borderBottom: `1px solid ${colors.line}`,
-              padding: '12px 20px 20px',
-              zIndex: 50,
-              boxShadow: '0 8px 32px rgba(11, 22, 40, 0.08)',
-            }}>
-              <a href="/coaches" onClick={() => setMobileMenuOpen(false)} style={{
-                display: 'block',
-                padding: '14px 16px',
-                fontSize: 16,
-                fontWeight: 500,
-                color: colors.ink,
-                textDecoration: 'none',
-                borderRadius: 10,
-              }}>For Coaches</a>
-              <a href="/gyms" onClick={() => setMobileMenuOpen(false)} style={{
-                display: 'block',
-                padding: '14px 16px',
-                fontSize: 16,
-                fontWeight: 500,
-                color: colors.ink,
-                textDecoration: 'none',
-                borderRadius: 10,
-              }}>For Gyms</a>
-              <a href="/insights" onClick={() => setMobileMenuOpen(false)} style={{
-                display: 'block',
-                padding: '14px 16px',
-                fontSize: 16,
-                fontWeight: 500,
-                color: colors.ink,
-                textDecoration: 'none',
-                borderRadius: 10,
-              }}>Insights</a>
-              <a href="/about" onClick={() => setMobileMenuOpen(false)} style={{
-                display: 'block',
-                padding: '14px 16px',
-                fontSize: 16,
-                fontWeight: 600,
-                color: colors.accent,
-                textDecoration: 'none',
-                borderRadius: 10,
-              }}>About</a>
-              <a href="#" onClick={() => setMobileMenuOpen(false)} style={{
-                display: 'block',
-                padding: '14px 16px',
-                fontSize: 16,
-                fontWeight: 600,
-                color: colors.bg,
-                textDecoration: 'none',
-                borderRadius: 10,
+              justifyContent: 'center',
+              position: 'relative',
+              zIndex: 60,
+            }}
+          >
+            <div style={{ position: 'relative', width: 18, height: 14 }}>
+              <span style={{
+                position: 'absolute',
+                left: 0,
+                width: 18,
+                height: 1.5,
                 background: colors.ink,
-                textAlign: 'center',
-                marginTop: 6,
-              }}>Sign in</a>
+                borderRadius: 1,
+                top: mobileMenuOpen ? 6 : 0,
+                transform: mobileMenuOpen ? 'rotate(45deg)' : 'none',
+                transition: 'all 0.3s',
+              }} />
+              <span style={{
+                position: 'absolute',
+                left: 0,
+                width: 18,
+                height: 1.5,
+                background: mobileMenuOpen ? 'transparent' : colors.ink,
+                borderRadius: 1,
+                top: 6,
+                transition: 'all 0.3s',
+              }} />
+              <span style={{
+                position: 'absolute',
+                left: 0,
+                width: 18,
+                height: 1.5,
+                background: colors.ink,
+                borderRadius: 1,
+                top: mobileMenuOpen ? 6 : 12,
+                transform: mobileMenuOpen ? 'rotate(-45deg)' : 'none',
+                transition: 'all 0.3s',
+              }} />
             </div>
-          </>
+          </button>
         )}
       </header>
+
+      {/* Mobile menu */}
+      {mobile && mobileMenuOpen && (
+        <>
+          <div 
+            onClick={() => setMobileMenuOpen(false)}
+            style={{
+              position: 'fixed',
+              inset: 0,
+              background: 'rgba(11, 22, 40, 0.18)',
+              backdropFilter: 'blur(2px)',
+              zIndex: 50,
+            }}
+          />
+          <div style={{
+            position: 'fixed',
+            top: 76,
+            left: 16,
+            right: 16,
+            background: colors.paper,
+            border: `1px solid ${colors.line}`,
+            borderRadius: 16,
+            boxShadow: '0 1px 2px rgba(11, 22, 40, 0.04), 0 16px 40px rgba(11, 22, 40, 0.10)',
+            zIndex: 55,
+            padding: 8,
+            display: 'flex',
+            flexDirection: 'column',
+          }}>
+            <a href="/coaches" onClick={() => setMobileMenuOpen(false)} style={{
+              display: 'block',
+              padding: '14px 16px',
+              fontSize: 16,
+              fontWeight: 500,
+              color: colors.ink,
+              textDecoration: 'none',
+              borderRadius: 10,
+            }}>For Coaches</a>
+            <a href="/gyms" onClick={() => setMobileMenuOpen(false)} style={{
+              display: 'block',
+              padding: '14px 16px',
+              fontSize: 16,
+              fontWeight: 500,
+              color: colors.ink,
+              textDecoration: 'none',
+              borderRadius: 10,
+            }}>For Gyms</a>
+            <a href="/insights" onClick={() => setMobileMenuOpen(false)} style={{
+              display: 'block',
+              padding: '14px 16px',
+              fontSize: 16,
+              fontWeight: 500,
+              color: colors.ink,
+              textDecoration: 'none',
+              borderRadius: 10,
+            }}>Insights</a>
+            <a href="/about" onClick={() => setMobileMenuOpen(false)} style={{
+              display: 'block',
+              padding: '14px 16px',
+              fontSize: 16,
+              fontWeight: 600,
+              color: colors.ink,
+              textDecoration: 'none',
+              borderRadius: 10,
+            }}>About</a>
+            <a href="#" onClick={() => setMobileMenuOpen(false)} style={{
+              display: 'block',
+              padding: '14px 16px',
+              fontSize: 16,
+              fontWeight: 600,
+              color: colors.bg,
+              textDecoration: 'none',
+              borderRadius: 10,
+              background: colors.ink,
+              textAlign: 'center',
+              marginTop: 6,
+            }}>Sign in</a>
+          </div>
+        </>
+      )}
 
       <main>
         {/* ═══════ HERO ═══════ */}

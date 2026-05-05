@@ -308,101 +308,144 @@ export default function InsightsPage() {
     }}>
       <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-      {/* ═══════ HEADER ═══════ */}
+      {/* Header */}
       <header style={{
-        position: 'sticky',
-        top: 0,
-        zIndex: 100,
-        background: 'rgba(250, 251, 252, 0.92)',
-        backdropFilter: 'blur(12px)',
-        borderBottom: `1px solid ${colors.lineSoft}`,
+        padding: mobile ? '20px' : '28px 40px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
       }}>
-        <div style={{
-          maxWidth: 1200,
-          margin: '0 auto',
-          padding: mobile ? '14px 20px' : '16px 40px',
+        <a href="/" style={{
+          fontFamily: fonts.sans,
+          fontSize: 20,
+          fontWeight: 600,
+          letterSpacing: '-0.02em',
+          color: colors.ink,
+          textDecoration: 'none',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'space-between',
+          gap: 8,
         }}>
-          {/* Logo */}
-          <a href="/" style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
-            textDecoration: 'none',
-            fontFamily: fonts.serif,
-            fontSize: 22,
-            fontWeight: 500,
-            color: colors.ink,
-          }}>
-            <img src={logoImage} alt="Milton" style={{
-              width: 36,
-              height: 36,
+          <img 
+            src={logoImage}
+            alt="Milton"
+            style={{
+              width: 32,
+              height: 32,
               borderRadius: '50%',
               objectFit: 'cover',
-            }} />
-            <span>Milton</span>
-          </a>
+              boxShadow: '0 0 0 1px rgba(11, 22, 40, 0.04), 0 1px 3px rgba(11, 22, 40, 0.06)',
+            }}
+          />
+          <span>Milton</span>
+        </a>
 
-          {/* Desktop Nav */}
-          {!mobile && (
-            <nav style={{
+        {/* Desktop Nav */}
+        {!mobile && (
+          <nav style={{
+            display: 'flex',
+            gap: 28,
+            fontSize: 14,
+            color: colors.inkSoft,
+            alignItems: 'center',
+          }}>
+            <a href="/coaches" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>For Coaches</a>
+            <a href="/gyms" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>For Gyms</a>
+            <a href="/insights" className="nav-link" style={{ color: colors.ink, textDecoration: 'none', fontWeight: 600 }}>Insights</a>
+            <a href="/about" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>About</a>
+            <a href="#" className="nav-btn" style={{
+              color: 'inherit',
+              textDecoration: 'none',
+              border: `1px solid ${colors.line}`,
+              padding: '8px 16px',
+              borderRadius: 8,
+              background: colors.paper,
+            }}>Sign in</a>
+          </nav>
+        )}
+
+        {/* Mobile menu toggle */}
+        {mobile && (
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            style={{
+              width: 40,
+              height: 40,
+              border: `1px solid ${colors.line}`,
+              background: colors.paper,
+              borderRadius: 10,
+              cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
-              gap: 32,
-              fontFamily: fonts.sans,
-              fontSize: 14,
-              fontWeight: 500,
-              color: colors.inkSoft,
-            }}>
-              <a href="/coaches" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>For Coaches</a>
-              <a href="/gyms" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>For Gyms</a>
-              <a href="/insights" className="nav-link" style={{ color: colors.accent, textDecoration: 'none' }}>Insights</a>
-              <a href="/about" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>About</a>
-            </nav>
-          )}
+              justifyContent: 'center',
+              position: 'relative',
+              zIndex: 60,
+            }}
+          >
+            <div style={{ position: 'relative', width: 18, height: 14 }}>
+              <span style={{
+                position: 'absolute',
+                left: 0,
+                width: 18,
+                height: 1.5,
+                background: colors.ink,
+                borderRadius: 1,
+                top: mobileMenuOpen ? 6 : 0,
+                transform: mobileMenuOpen ? 'rotate(45deg)' : 'none',
+                transition: 'all 0.3s',
+              }} />
+              <span style={{
+                position: 'absolute',
+                left: 0,
+                width: 18,
+                height: 1.5,
+                background: mobileMenuOpen ? 'transparent' : colors.ink,
+                borderRadius: 1,
+                top: 6,
+                transition: 'all 0.3s',
+              }} />
+              <span style={{
+                position: 'absolute',
+                left: 0,
+                width: 18,
+                height: 1.5,
+                background: colors.ink,
+                borderRadius: 1,
+                top: mobileMenuOpen ? 6 : 12,
+                transform: mobileMenuOpen ? 'rotate(-45deg)' : 'none',
+                transition: 'all 0.3s',
+              }} />
+            </div>
+          </button>
+        )}
+      </header>
 
-          {/* Mobile menu button */}
-          {mobile && (
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              style={{
-                background: 'transparent',
-                border: 'none',
-                padding: 8,
-                cursor: 'pointer',
-              }}
-            >
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke={colors.ink} strokeWidth="2" strokeLinecap="round">
-                {mobileMenuOpen ? (
-                  <>
-                    <line x1="18" y1="6" x2="6" y2="18" />
-                    <line x1="6" y1="6" x2="18" y2="18" />
-                  </>
-                ) : (
-                  <>
-                    <line x1="3" y1="6" x2="21" y2="6" />
-                    <line x1="3" y1="12" x2="21" y2="12" />
-                    <line x1="3" y1="18" x2="21" y2="18" />
-                  </>
-                )}
-              </svg>
-            </button>
-          )}
-        </div>
-
-        {/* Mobile dropdown menu */}
-        {mobile && mobileMenuOpen && (
+      {/* Mobile menu */}
+      {mobile && mobileMenuOpen && (
+        <>
+          <div 
+            onClick={() => setMobileMenuOpen(false)}
+            style={{
+              position: 'fixed',
+              inset: 0,
+              background: 'rgba(11, 22, 40, 0.18)',
+              backdropFilter: 'blur(2px)',
+              zIndex: 50,
+            }}
+          />
           <div style={{
-            position: 'absolute',
-            top: '100%',
-            left: 0,
-            right: 0,
+            position: 'fixed',
+            top: 76,
+            left: 16,
+            right: 16,
             background: colors.paper,
-            borderBottom: `1px solid ${colors.line}`,
-            padding: '12px 20px 20px',
-            boxShadow: '0 8px 24px rgba(11, 22, 40, 0.08)',
+            border: `1px solid ${colors.line}`,
+            borderRadius: 16,
+            boxShadow: '0 1px 2px rgba(11, 22, 40, 0.04), 0 16px 40px rgba(11, 22, 40, 0.10)',
+            zIndex: 55,
+            padding: 8,
+            display: 'flex',
+            flexDirection: 'column',
           }}>
             <a href="/coaches" onClick={() => setMobileMenuOpen(false)} style={{
               display: 'block',
@@ -426,8 +469,8 @@ export default function InsightsPage() {
               display: 'block',
               padding: '14px 16px',
               fontSize: 16,
-              fontWeight: 500,
-              color: colors.accent,
+              fontWeight: 600,
+              color: colors.ink,
               textDecoration: 'none',
               borderRadius: 10,
             }}>Insights</a>
@@ -440,9 +483,21 @@ export default function InsightsPage() {
               textDecoration: 'none',
               borderRadius: 10,
             }}>About</a>
+            <a href="#" onClick={() => setMobileMenuOpen(false)} style={{
+              display: 'block',
+              padding: '14px 16px',
+              fontSize: 16,
+              fontWeight: 600,
+              color: colors.bg,
+              textDecoration: 'none',
+              borderRadius: 10,
+              background: colors.ink,
+              textAlign: 'center',
+              marginTop: 6,
+            }}>Sign in</a>
           </div>
-        )}
-      </header>
+        </>
+      )}
 
       {/* ═══════ MAIN CONTENT ═══════ */}
       <main style={{
