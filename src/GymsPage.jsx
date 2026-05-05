@@ -202,6 +202,9 @@ export default function GymsPage() {
         'Your gym scales without your coaching diluting',
       ],
       imageHint: 'A trainer following methodology cues on screen during a session.',
+      desktopImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Image%204%20Desktop-ID4AXAH9c4SHGoxdPe7CoiN0ZdvvIm.png',
+      mobileImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Image%204%20Mobile-44CBNeRTIyZa6qdWKYWfGG1lUwE3dW.png',
+      imageAlt: 'Milton personalized drafts showing messages ready to send to clients',
     },
     {
       title: 'The software your trainers will actually use.',
