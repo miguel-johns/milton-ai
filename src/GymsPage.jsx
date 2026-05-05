@@ -996,7 +996,7 @@ export default function GymsPage() {
             background: colors.paper,
             borderRadius: 20,
             boxShadow: '0 24px 64px rgba(11, 22, 40, 0.18), 0 4px 16px rgba(11, 22, 40, 0.08)',
-            padding: mobile ? '28px 22px 22px' : '32px 28px 28px',
+            padding: mobile ? '40px 24px 36px' : '48px 36px 44px',
           }}>
             <button
               onClick={closeChatModal}
