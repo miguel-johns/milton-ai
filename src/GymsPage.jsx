@@ -719,8 +719,8 @@ export default function GymsPage() {
               gap: mobile ? 32 : 56,
               alignItems: 'center',
             }}>
-              {/* Text content - alternate sides, image first on mobile */}
-              <div style={{ order: mobile ? 2 : (idx % 2 === 0 ? 1 : 2) }}>
+              {/* Text content - alternate sides, title first on mobile */}
+              <div style={{ order: mobile ? 1 : (idx % 2 === 0 ? 1 : 2) }}>
                 <h2 style={{
                   fontFamily: fonts.serif,
                   fontSize: mobile ? 28 : 34,
@@ -768,8 +768,8 @@ export default function GymsPage() {
                 </ul>
               </div>
 
-              {/* Image placeholder - first on mobile */}
-              <div style={{ order: mobile ? 1 : (idx % 2 === 0 ? 2 : 1) }}>
+              {/* Image placeholder - after title on mobile */}
+              <div style={{ order: mobile ? 2 : (idx % 2 === 0 ? 2 : 1) }}>
                 <ImagePlaceholder 
                   aspectRatio="4 / 3"
                   hint={section.imageHint}
