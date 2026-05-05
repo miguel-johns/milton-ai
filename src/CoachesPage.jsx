@@ -28,7 +28,7 @@ const logoImage = "/images/milton-logo.png"
 
 export default function CoachesPage() {
   const [mobile, setMobile] = useState(window.innerWidth <= 640)
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [chatModalOpen, setChatModalOpen] = useState(false)
   const [chatSubmitted, setChatSubmitted] = useState(false)
   const [leadForm, setLeadForm] = useState({ name: '', email: '', phone: '', company: '' })
@@ -76,69 +76,75 @@ export default function CoachesPage() {
     }
   }
 
-  // Scene data
-  const scenes = [
+  // Prompt input state
+  const [promptValue, setPromptValue] = useState('')
+  const [closingPromptValue, setClosingPromptValue] = useState('')
+
+  // Feature sections data
+  const featureSections = [
     {
-      num: 'One',
-      title: 'First, you make it yours.',
-      body: [
-        'Tell Milton how you coach. Upload your programs, your methodology, the way you write to clients. He reads it all and turns it into a system that thinks like you do.',
-        <>Then add your first client. Not someone else. <strong>You.</strong> The fastest way to feel what Milton actually does is to be the one being coached. In your own program, in your own voice. Nothing teaches you a tool like using it on yourself.</>,
+      title: 'Coaching, finally organized for you.',
+      subtitle: 'Turn the way you already coach into a system, without changing how you work.',
+      bullets: [
+        'Every session, note, and adjustment tracked automatically',
+        'No setup weekend, no workflows to build',
+        "The work you've been doing in your head finally has a home",
       ],
-      imageLabel: 'Scene 1 · Make it yours',
-      imageHint: 'Sources Milton absorbed and you as the first client.',
+      imageLabel: 'Organized coaching',
+      imageHint: 'A clean dashboard showing sessions, notes, and client progress.',
     },
     {
-      num: 'Two',
-      title: 'Then you bring it to clients.',
-      body: [
-        'Building a program used to mean a blank spreadsheet. Now it\'s a sentence.',
+      title: 'Look like the coach you already are.',
+      subtitle: "The coaching has always been great. Now your clients can see it.",
+      bullets: [
+        "Progress laid out in a view they'll actually open",
+        "Last session's notes and cues visible to them",
+        'The work that earned referrals, finally on display',
       ],
-      quote: '"Build a 4-week strength block for Sarah, focused on her squat goal."',
-      bodyAfterQuote: 'Milton writes the block in your style, with your progressions and your cueing. You review, adjust, send. The first time it takes a minute. By the third time, less than that.',
-      imageLabel: 'Scene 2 · Build by talking',
-      imageHint: 'Chat-driven program builder. A sentence becomes a program.',
+      imageLabel: 'Client view',
+      imageHint: 'What clients see: their progress, notes, and next session.',
     },
     {
-      num: 'Three',
-      title: "Every morning, Milton's already worked.",
-      body: [
-        "Before you open your laptop, Milton has already gone through every client's data, flagged who needs attention today, and prepared a brief.",
-        "You don't start your day at zero. You start it at the third or fourth question you would have eventually asked yourself.",
+      title: "The first AI tool for coaches who don't want to learn AI.",
+      subtitle: "You don't have to figure out AI. Milton already did.",
+      bullets: [
+        'No prompts to write, no models to pick',
+        'Tell Milton how you coach, in plain language',
+        'The AI happens behind the scenes, every day',
       ],
-      imageLabel: 'Scene 3 · Your morning brief',
-      imageHint: 'The dashboard waiting for you when you log in.',
+      imageLabel: 'AI that stays hidden',
+      imageHint: 'Simple interface with AI working invisibly in the background.',
     },
     {
-      num: 'Four',
-      title: "In every session, you're prepared.",
-      body: [
-        'Walk into a session and Milton has already pulled up the client\'s plan, their progression, and the last thing they told you. The history is right there. No flipping through notes. No "remind me where we left off."',
-        "If something needs to change mid-session, a client's nursing a knee, hit a PR, lost motivation, you tell Milton out loud and the program updates in real time. The next session reflects it.",
+      title: 'Charge more, or take on more clients. Without the extra work.',
+      subtitle: 'A third option for growing your business.',
+      bullets: [
+        'Personalized check-ins, nudges, and adjustments handled for you',
+        'Grow your roster without giving up your evenings',
+        'Charge for the work clients can finally see',
       ],
-      imageLabel: 'Scene 4 · Pre-session prep',
-      imageHint: "A client's plan, progression, and last note in one view.",
+      imageLabel: 'Scale your coaching',
+      imageHint: 'A roster of clients, each getting personalized attention.',
+    },
+  ]
+
+  // Daily tasks data
+  const dailyTasks = [
+    {
+      title: 'Prep',
+      description: "Who's coming in. What they need today. What you said last time. All ready before they walk in.",
     },
     {
-      num: 'Five',
-      title: 'Your clients feel it too.',
-      body: [
-        "Coaching used to end when the session ended. Now it doesn't.",
-        "Your clients get their workouts on their phone. Milton checks in between sessions. When something needs your attention, you get a notification with a draft message already written in your voice. Approve, edit, send. Under a minute.",
-        "The result: clients stay engaged. You stay sane.",
-      ],
-      imageLabel: 'Scene 5 · Client engagement',
-      imageHint: 'Your client on mobile, your draft message ready to send.',
+      title: 'Adjust',
+      description: 'Tight back, missed sleep, low energy. Milton swaps the workout. You approve. Done.',
     },
     {
-      num: 'Six',
-      title: 'The compound effect.',
-      body: [
-        "Every session you run, every note you take, every adjustment you make, Milton remembers all of it. The next morning's brief is a little smarter. The next program suggestion is a little more you.",
-        "After six months, Milton coaches alongside you the way a senior trainer who's worked with you for years would. By that point, you don't think of it as software anymore.",
-      ],
-      imageLabel: 'Scene 6 · Six months in',
-      imageHint: 'A coach at the end of a good day. The work has paid off.',
+      title: 'Coach',
+      description: 'Session notes write themselves. Cues, reminders, and client-specific details show up when you need them.',
+    },
+    {
+      title: 'Follow up',
+      description: 'Texts, stretches, check-ins. Sent in your voice. Without you opening another app.',
     },
   ]
 
@@ -214,7 +220,7 @@ export default function CoachesPage() {
         {/* Mobile menu toggle */}
         {mobile && (
           <button
-            onClick={() => setMenuOpen(!menuOpen)}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             style={{
               width: 40,
               height: 40,
@@ -233,7 +239,7 @@ export default function CoachesPage() {
               display: 'block',
               width: 18,
               height: 1.5,
-              background: menuOpen ? 'transparent' : colors.ink,
+              background: mobileMenuOpen ? 'transparent' : colors.ink,
               borderRadius: 1,
               position: 'relative',
               transition: 'all 0.3s',
@@ -246,8 +252,8 @@ export default function CoachesPage() {
                 height: 1.5,
                 background: colors.ink,
                 borderRadius: 1,
-                top: menuOpen ? 0 : -6,
-                transform: menuOpen ? 'rotate(45deg)' : 'none',
+                top: mobileMenuOpen ? 0 : -6,
+                transform: mobileMenuOpen ? 'rotate(45deg)' : 'none',
                 transition: 'all 0.3s',
               }} />
               <span style={{
@@ -258,8 +264,8 @@ export default function CoachesPage() {
                 height: 1.5,
                 background: colors.ink,
                 borderRadius: 1,
-                top: menuOpen ? 0 : 6,
-                transform: menuOpen ? 'rotate(-45deg)' : 'none',
+                top: mobileMenuOpen ? 0 : 6,
+                transform: mobileMenuOpen ? 'rotate(-45deg)' : 'none',
                 transition: 'all 0.3s',
               }} />
             </span>
@@ -268,10 +274,10 @@ export default function CoachesPage() {
       </header>
 
       {/* Mobile menu */}
-      {menuOpen && (
+      {mobileMenuOpen && (
         <>
           <div 
-            onClick={() => setMenuOpen(false)}
+            onClick={() => setMobileMenuOpen(false)}
             style={{
               position: 'fixed',
               inset: 0,
@@ -355,192 +361,371 @@ export default function CoachesPage() {
       <main>
         {/* Hero */}
         <section style={{
-          maxWidth: 760,
+          maxWidth: 720,
           margin: '0 auto',
-          padding: mobile ? '56px 20px 48px' : '80px 24px 64px',
+          padding: mobile ? '48px 20px 32px' : '72px 24px 48px',
           textAlign: 'center',
-          position: 'relative',
-          zIndex: 1,
         }}>
-          {/* Eyebrow */}
-          <div style={{
-            textAlign: 'center',
-            marginBottom: 28,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 14,
-          }}>
-            <span style={{ width: 28, height: 1, background: colors.line }} />
-            <span style={{
-              fontFamily: fonts.sans,
-              fontSize: 11,
-              letterSpacing: '0.22em',
-              textTransform: 'uppercase',
-              color: colors.inkMute,
-              fontWeight: 500,
-            }}>For Coaches</span>
-            <span style={{ width: 28, height: 1, background: colors.line }} />
-          </div>
-
           <h1 style={{
             fontFamily: fonts.serif,
-            fontSize: 'clamp(48px, 7vw, 84px)',
-            lineHeight: 1.02,
+            fontSize: mobile ? 42 : 56,
+            lineHeight: 1.08,
             letterSpacing: '-0.025em',
             fontWeight: 500,
             color: colors.ink,
-            marginBottom: 16,
-            animation: 'fadeUp 0.7s ease-out 0.1s both',
+            marginBottom: 20,
           }}>
-            <em style={{ fontStyle: 'italic', fontWeight: 500 }}>A day with Milton.</em>
+            Stop coaching from memory.
           </h1>
 
           <p style={{
-            fontFamily: fonts.serif,
-            fontStyle: 'italic',
-            fontWeight: 400,
-            fontSize: 'clamp(20px, 2.5vw, 26px)',
-            lineHeight: 1.4,
+            fontFamily: fonts.sans,
+            fontSize: mobile ? 16 : 18,
+            lineHeight: 1.6,
             color: colors.inkSoft,
-            maxWidth: 540,
-            margin: '0 auto',
-            animation: 'fadeUp 0.7s ease-out 0.2s both',
+            maxWidth: 560,
+            margin: '0 auto 32px',
           }}>
-            {"From your first upload to your hundredth session, here's what changes."}
+            Right now, the most important details about your clients live in your head, your notebook, or a sheet you {"haven't"} opened in weeks. Milton remembers everything, so you can stay in the coaching.
+          </p>
+
+          {/* Prompt Box */}
+          <div style={{
+            maxWidth: 560,
+            margin: '0 auto',
+            background: colors.paper,
+            borderRadius: 16,
+            border: `1px solid ${colors.line}`,
+            padding: 6,
+            boxShadow: '0 1px 3px rgba(11, 22, 40, 0.04), 0 8px 24px rgba(11, 22, 40, 0.06)',
+          }}>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 12,
+              padding: '12px 16px',
+            }}>
+              <img 
+                src={logoImage}
+                alt="Milton"
+                style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: '50%',
+                  objectFit: 'cover',
+                  flexShrink: 0,
+                }}
+              />
+              <input
+                type="text"
+                placeholder="Tell me how you coach..."
+                value={promptValue}
+                onChange={(e) => setPromptValue(e.target.value)}
+                style={{
+                  flex: 1,
+                  border: 'none',
+                  background: 'transparent',
+                  fontFamily: fonts.sans,
+                  fontSize: 15,
+                  color: colors.ink,
+                  outline: 'none',
+                }}
+              />
+              <button
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 10,
+                  border: 'none',
+                  background: colors.ink,
+                  color: colors.paper,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                }}
+              >
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M13 6l6 6-6 6"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          {/* Line below prompt */}
+          <p style={{
+            fontFamily: fonts.sans,
+            fontSize: 13,
+            color: colors.inkMute,
+            textAlign: 'center',
+            marginTop: 16,
+          }}>
+            No tabs to learn. No app for your clients. No setup weekend. Just better coaching, starting today.
           </p>
         </section>
 
-        {/* Hero media placeholder */}
-        <div style={{
-          maxWidth: 1040,
-          margin: '0 auto',
-          padding: mobile ? '0 20px' : '0 32px 32px',
-        }}>
-          <ImagePlaceholder 
-            aspectRatio="16 / 9"
-            label="Hero · The day begins"
-            hint="A coach in their element. Editorial wide shot to set the tone."
-          />
-        </div>
-
-        {/* Scenes */}
-        {scenes.map((scene, idx) => (
+        {/* Feature Sections */}
+        {featureSections.map((section, idx) => (
           <section key={idx} style={{
             maxWidth: 1080,
             margin: '0 auto',
             padding: mobile ? '56px 20px' : '80px 32px',
-            textAlign: 'center',
-            position: 'relative',
-            zIndex: 1,
           }}>
             <div style={{
-              fontFamily: fonts.serif,
-              fontStyle: 'italic',
-              fontWeight: 500,
-              fontSize: 22,
-              color: colors.accent,
-              marginBottom: 8,
-              letterSpacing: '-0.005em',
-            }}>{scene.num}</div>
-
-            <h2 style={{
-              fontFamily: fonts.serif,
-              fontSize: 'clamp(34px, 4.6vw, 52px)',
-              lineHeight: 1.1,
-              letterSpacing: '-0.02em',
-              fontWeight: 500,
-              color: colors.ink,
-              margin: '0 auto 24px',
-              maxWidth: 720,
+              display: 'grid',
+              gridTemplateColumns: mobile ? '1fr' : '1fr 1fr',
+              gap: mobile ? 32 : 56,
+              alignItems: 'center',
             }}>
-              <em style={{ fontStyle: 'italic', fontWeight: 500 }}>{scene.title}</em>
-            </h2>
+              {/* Text content - alternate sides */}
+              <div style={{ order: mobile ? 1 : (idx % 2 === 0 ? 1 : 2) }}>
+                <h2 style={{
+                  fontFamily: fonts.serif,
+                  fontSize: mobile ? 28 : 34,
+                  lineHeight: 1.15,
+                  fontWeight: 500,
+                  color: colors.ink,
+                  marginBottom: 12,
+                }}>
+                  {section.title}
+                </h2>
+                <p style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 16,
+                  lineHeight: 1.6,
+                  color: colors.inkSoft,
+                  marginBottom: 20,
+                }}>
+                  {section.subtitle}
+                </p>
+                <ul style={{
+                  listStyle: 'none',
+                  padding: 0,
+                  margin: 0,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 12,
+                }}>
+                  {section.bullets.map((bullet, i) => (
+                    <li key={i} style={{
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: 12,
+                      fontFamily: fonts.sans,
+                      fontSize: 15,
+                      color: colors.inkSoft,
+                      lineHeight: 1.5,
+                    }}>
+                      <svg viewBox="0 0 20 20" width="18" height="18" fill="none" style={{ flexShrink: 0, marginTop: 2 }}>
+                        <circle cx="10" cy="10" r="10" fill={colors.accentSoft} />
+                        <path d="M6 10l3 3 5-5" stroke={colors.accent} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-            {scene.body.map((text, i) => (
-              <p key={i} style={{
-                fontSize: 17,
-                lineHeight: 1.7,
-                color: colors.inkSoft,
-                margin: '0 auto 18px',
-                maxWidth: 600,
-              }}>{text}</p>
-            ))}
-
-            {scene.quote && (
-              <p style={{
-                fontFamily: fonts.serif,
-                fontStyle: 'italic',
-                fontSize: 'clamp(22px, 2.6vw, 28px)',
-                lineHeight: 1.4,
-                color: colors.ink,
-                margin: '12px auto 22px',
-                maxWidth: 600,
-              }}>
-                <em>{scene.quote}</em>
-              </p>
-            )}
-
-            {scene.bodyAfterQuote && (
-              <p style={{
-                fontSize: 17,
-                lineHeight: 1.7,
-                color: colors.inkSoft,
-                margin: '0 auto 18px',
-                maxWidth: 600,
-              }}>{scene.bodyAfterQuote}</p>
-            )}
-
-            <div style={{ margin: mobile ? '36px auto 0' : '48px auto 0', maxWidth: 1040 }}>
-              <ImagePlaceholder 
-                aspectRatio="16 / 9"
-                label={scene.imageLabel}
-                hint={scene.imageHint}
-              />
+              {/* Image placeholder */}
+              <div style={{ order: mobile ? 2 : (idx % 2 === 0 ? 2 : 1) }}>
+                <ImagePlaceholder 
+                  aspectRatio="4 / 3"
+                  label={section.imageLabel}
+                  hint={section.imageHint}
+                />
+              </div>
             </div>
           </section>
         ))}
 
-        {/* Finale */}
+        {/* What Milton Does Every Day */}
         <section style={{
           maxWidth: 1080,
           margin: '0 auto',
-          padding: mobile ? '32px 20px 80px' : '40px 32px 120px',
+          padding: mobile ? '56px 20px' : '80px 32px',
+        }}>
+          <h2 style={{
+            fontFamily: fonts.serif,
+            fontSize: mobile ? 28 : 36,
+            fontWeight: 500,
+            color: colors.ink,
+            textAlign: 'center',
+            marginBottom: mobile ? 36 : 48,
+          }}>
+            Open Milton. See what to do. Done.
+          </h2>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: mobile ? '1fr' : 'repeat(4, 1fr)',
+            gap: mobile ? 20 : 24,
+            marginBottom: mobile ? 36 : 48,
+          }}>
+            {dailyTasks.map((task, i) => (
+              <div key={i} style={{
+                background: colors.paper,
+                border: `1px solid ${colors.line}`,
+                borderRadius: 16,
+                padding: mobile ? '24px 20px' : '28px 24px',
+              }}>
+                <h3 style={{
+                  fontFamily: fonts.serif,
+                  fontSize: 20,
+                  fontWeight: 500,
+                  color: colors.accent,
+                  marginBottom: 10,
+                }}>
+                  {task.title}
+                </h3>
+                <p style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 14,
+                  lineHeight: 1.6,
+                  color: colors.inkSoft,
+                }}>
+                  {task.description}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <ImagePlaceholder 
+            aspectRatio="16 / 7"
+            label="Daily workflow"
+            hint="A visual showing the flow from prep to follow-up in Milton."
+          />
+        </section>
+
+        {/* Pull Quote */}
+        <section style={{
+          maxWidth: 800,
+          margin: '0 auto',
+          padding: mobile ? '48px 20px' : '64px 24px',
           textAlign: 'center',
         }}>
-          <p style={{
+          <svg 
+            width="48" 
+            height="48" 
+            viewBox="0 0 48 48" 
+            fill="none"
+            style={{ marginBottom: 24, opacity: 0.12 }}
+          >
+            <path d="M14 24c-3.3 0-6-2.7-6-6s2.7-6 6-6c1.1 0 2 .9 2 2s-.9 2-2 2-2 .9-2 2 .9 2 2 2h2c3.3 0 6 2.7 6 6v4c0 3.3-2.7 6-6 6h-2c-1.1 0-2-.9-2-2s.9-2 2-2h2c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2h-2zm20 0c-3.3 0-6-2.7-6-6s2.7-6 6-6c1.1 0 2 .9 2 2s-.9 2-2 2-2 .9-2 2 .9 2 2 2h2c3.3 0 6 2.7 6 6v4c0 3.3-2.7 6-6 6h-2c-1.1 0-2-.9-2-2s.9-2 2-2h2c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2h-2z" fill={colors.ink} />
+          </svg>
+          <blockquote style={{
             fontFamily: fonts.serif,
+            fontSize: mobile ? 20 : 26,
+            fontWeight: 400,
             fontStyle: 'italic',
-            fontWeight: 500,
-            fontSize: 'clamp(26px, 3.4vw, 36px)',
             color: colors.ink,
-            lineHeight: 1.3,
-            margin: '0 auto 36px',
-            maxWidth: 600,
-            letterSpacing: '-0.015em',
+            lineHeight: 1.45,
+            marginBottom: 24,
           }}>
-            <em>{"That's the day with Milton."}</em>
-          </p>
-
-          <a href="/" style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 10,
-            background: colors.ink,
-            color: colors.paper,
-            padding: '14px 24px',
-            borderRadius: 12,
+            {"\"I've been coaching for twelve years. I've tried every app. I quit every one of them within a month. Milton is the first one that didn't make me feel like I was working for the software.\""}
+          </blockquote>
+          <cite style={{
             fontFamily: fonts.sans,
             fontSize: 15,
-            fontWeight: 600,
-            textDecoration: 'none',
-            transition: 'all 0.2s',
+            fontWeight: 500,
+            color: colors.inkSoft,
+            fontStyle: 'normal',
           }}>
-            Begin your day with Milton
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M5 12h14M13 6l6 6-6 6"/>
-            </svg>
-          </a>
+            — Coach testimonial
+          </cite>
+        </section>
+
+        {/* Closing CTA */}
+        <section style={{
+          maxWidth: 720,
+          margin: '0 auto',
+          padding: mobile ? '48px 20px 72px' : '64px 24px 96px',
+          textAlign: 'center',
+        }}>
+          <h2 style={{
+            fontFamily: fonts.serif,
+            fontSize: mobile ? 32 : 42,
+            fontWeight: 500,
+            color: colors.ink,
+            lineHeight: 1.15,
+            marginBottom: 20,
+          }}>
+            Your Google sheet, leveled up to a system.
+          </h2>
+          <p style={{
+            fontFamily: fonts.sans,
+            fontSize: mobile ? 15 : 17,
+            lineHeight: 1.65,
+            color: colors.inkSoft,
+            maxWidth: 560,
+            margin: '0 auto 32px',
+          }}>
+            No setup. No client app. No new way of coaching. Just everything you already do, finally organized, finally visible, finally working as hard as you do.
+          </p>
+
+          {/* Closing Prompt Box */}
+          <div style={{
+            maxWidth: 560,
+            margin: '0 auto',
+            background: colors.paper,
+            borderRadius: 16,
+            border: `1px solid ${colors.line}`,
+            padding: 6,
+            boxShadow: '0 1px 3px rgba(11, 22, 40, 0.04), 0 8px 24px rgba(11, 22, 40, 0.06)',
+          }}>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 12,
+              padding: '12px 16px',
+            }}>
+              <img 
+                src={logoImage}
+                alt="Milton"
+                style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: '50%',
+                  objectFit: 'cover',
+                  flexShrink: 0,
+                }}
+              />
+              <input
+                type="text"
+                placeholder="Tell me how you coach..."
+                value={closingPromptValue}
+                onChange={(e) => setClosingPromptValue(e.target.value)}
+                style={{
+                  flex: 1,
+                  border: 'none',
+                  background: 'transparent',
+                  fontFamily: fonts.sans,
+                  fontSize: 15,
+                  color: colors.ink,
+                  outline: 'none',
+                }}
+              />
+              <button
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 10,
+                  border: 'none',
+                  background: colors.ink,
+                  color: colors.paper,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                }}
+              >
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M13 6l6 6-6 6"/>
+                </svg>
+              </button>
+            </div>
+          </div>
         </section>
       </main>
 
