@@ -986,44 +986,6 @@ export default function NewHomePage() {
           </div>
         </section>
 
-        {/* Differentiation Section */}
-        <section style={{
-          maxWidth: 720,
-          margin: '0 auto',
-          padding: mobile ? '64px 24px' : '88px 24px',
-          textAlign: 'center',
-        }}>
-          <h2 style={{
-            fontFamily: fonts.serif,
-            fontSize: mobile ? 26 : 32,
-            fontWeight: 500,
-            color: colors.ink,
-            lineHeight: 1.3,
-            marginBottom: 24,
-          }}>
-            Other apps make you set them up.<br />
-            Milton comes ready.
-          </h2>
-          <p style={{
-            fontFamily: fonts.sans,
-            fontSize: mobile ? 15 : 17,
-            lineHeight: 1.7,
-            color: colors.inkSoft,
-            marginBottom: 20,
-          }}>
-            {"You've"} already got a way you coach. The cues you give. The rules you follow. The way you talk to clients. Milton learns all of that, then handles the parts that take your time. The notes. The follow-ups. The adjustments. The remembering.
-          </p>
-          <p style={{
-            fontFamily: fonts.sans,
-            fontSize: mobile ? 15 : 17,
-            lineHeight: 1.7,
-            color: colors.ink,
-            fontWeight: 500,
-          }}>
-            You {"don't"} change how you coach. Milton adapts to it.
-          </p>
-        </section>
-
         {/* Comparison Table Section */}
         <section style={{
           maxWidth: 800,
