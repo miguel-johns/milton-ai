@@ -410,7 +410,7 @@ export default function CoachesPage() {
             maxWidth: 560,
             margin: '0 auto 32px',
           }}>
-            Right now, the most important details about your clients live in your head, your notebook, or a sheet you {"haven't"} opened in weeks. Milton remembers everything, so you can stay in the coaching.
+            Right now, the most important details about your clients live in your head, your notebook, or a static Google Sheet. Milton remembers everything, so you can stay in the coaching.
           </p>
 
           {/* Composer */}
