@@ -792,7 +792,7 @@ export default function NewHomePage() {
             maxWidth: 520,
             marginBottom: 28,
           }}>
-            Tell me how you coach. Share a program template, your methodology, or just describe your business in a few sentences. {"I'll"} learn how you work and design an AI system that fits.
+            Try anything. Your methodology, your client types, your rules, your style. I learn it from the first sentence.
           </p>
 
           {/* Composer */}
