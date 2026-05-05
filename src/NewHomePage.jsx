@@ -1148,7 +1148,7 @@ export default function NewHomePage() {
               textTransform: 'uppercase',
               color: colors.inkMute,
               fontWeight: 500,
-            }}>Hire Milton</span>
+            }}>Open Milton. See what to do. Done.</span>
             <span style={{ width: 28, height: 1, background: colors.line }} />
           </div>
 
