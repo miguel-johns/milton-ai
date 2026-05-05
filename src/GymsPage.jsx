@@ -1169,6 +1169,7 @@ export default function GymsPage() {
                       <input 
                         type="text"
                         placeholder="Your gym or coaching business"
+                        required
                         value={leadForm.businessName || ''}
                         onChange={(e) => setLeadForm(f => ({ ...f, businessName: e.target.value }))}
                         style={{
