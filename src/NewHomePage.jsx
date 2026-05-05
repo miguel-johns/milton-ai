@@ -1076,6 +1076,8 @@ export default function NewHomePage() {
               description="Before each client walks in, I'll have your brief ready. Goals, last session, what to focus on today, what to ask. You stop running on memory."
               mobile={mobile}
               illustration={<Step1Illustration />}
+              desktopImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Image%20-%20Home%201%20-%20Desktop-LPYUb84Ppi0Pw6HigelOJnpiTIDXuE.png"
+              desktopImageAlt="Milton daily brief showing morning sessions and clients needing attention"
             />
 
             {/* Step 2 */}
@@ -1085,6 +1087,8 @@ export default function NewHomePage() {
               description="When an injury changes things, a client plateaus, or life gets in the way, I'll suggest the adjustment. You approve, the program updates."
               mobile={mobile}
               illustration={<Step2Illustration />}
+              desktopImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Image%202%20-%20Desktop-JCL00GSY7SDAitHNgMNiP6PhDm0NwK.png"
+              desktopImageAlt="Milton workout drafting view with exercise table for Kathleen Reyes"
               reverse
             />
 
@@ -1095,6 +1099,8 @@ export default function NewHomePage() {
               description="Talk it out or jot a few notes. I'll structure what got done, what felt off, and what to follow up on. Nothing slips between sessions."
               mobile={mobile}
               illustration={<Step3Illustration />}
+              desktopImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Image%203%20-%20Desktop-OW5PorhrO96DNBx2hZKojcdRLadRtM.png"
+              desktopImageAlt="Milton client notes showing what I know about Sarah Chen"
             />
 
             {/* Step 4 */}
@@ -1104,6 +1110,8 @@ export default function NewHomePage() {
               description="Recap messages, check-ins, accountability nudges. Drafted in your voice and ready to send when you are."
               mobile={mobile}
               illustration={<Step4Illustration />}
+              desktopImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Home%204%20Good%20-%20Desktop-k0KLVFJQjIffg9bMl7PgIGjPnFDILz.png"
+              desktopImageAlt="Milton audience preview showing four clients flagged for sleep issues"
               reverse
             />
 
@@ -1114,6 +1122,8 @@ export default function NewHomePage() {
               description="Patterns across all your clients. What programs land, who's progressing, who needs attention. So you coach on evidence, not just feel."
               mobile={mobile}
               illustration={<Step5Illustration />}
+              desktopImage="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Image%205-%20Desktop-jiPbh7bW4Hd9rSuSajyodHo02SrZyL.png"
+              desktopImageAlt="Milton quarterly report with body weight progress chart for Sarah"
             />
           </div>
         </section>
@@ -1714,7 +1724,23 @@ export default function NewHomePage() {
 }
 
 // Step component
-function Step({ number, title, description, illustration, mobile, reverse }) {
+function Step({ number, title, description, illustration, desktopImage, desktopImageAlt, mobile, reverse }) {
+  const imageContent = mobile ? illustration : (
+    desktopImage ? (
+      <img 
+        src={desktopImage}
+        alt={desktopImageAlt || title}
+        style={{
+          width: '100%',
+          maxWidth: 520,
+          height: 'auto',
+          borderRadius: 12,
+          boxShadow: '0 4px 24px rgba(11, 22, 40, 0.08)',
+        }}
+      />
+    ) : illustration
+  );
+
   return (
     <div style={{
       display: 'grid',
@@ -1745,7 +1771,7 @@ function Step({ number, title, description, illustration, mobile, reverse }) {
             }}>{title}</h3>
           </div>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            {illustration}
+            {imageContent}
           </div>
           <p style={{
             fontSize: 15.5,
@@ -1784,13 +1810,13 @@ function Step({ number, title, description, illustration, mobile, reverse }) {
                 }}>{description}</p>
               </div>
               <div style={{ display: 'flex', justifyContent: 'center' }}>
-                {illustration}
+                {imageContent}
               </div>
             </>
           ) : (
             <>
               <div style={{ display: 'flex', justifyContent: 'center' }}>
-                {illustration}
+                {imageContent}
               </div>
               <div>
                 <span style={{
