@@ -189,6 +189,9 @@ export default function GymsPage() {
         'The gap between your best coach and your newest one finally closes',
       ],
       imageHint: 'A gym floor with multiple trainers working with clients.',
+      desktopImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Image%203%20Desktop-RPklFUJbs2kBZloG77Jrk4stypakXW.png',
+      mobileImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Image%203%20Mobile-tCFWaPA9NsFuzAI8Z416LbC3C4o06X.png',
+      imageAlt: 'Milton reading and learning from uploaded coaching documents',
     },
     {
       title: 'Your methodology. Every session. Every trainer.',
@@ -716,10 +719,23 @@ export default function GymsPage() {
             {mobile ? (
               /* Mobile layout: Image first, then Title and Description/Bullets */
               <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-                <ImagePlaceholder 
-                  aspectRatio="4 / 3"
-                  hint={section.imageHint}
-                />
+                {section.mobileImage ? (
+                  <img 
+                    src={section.mobileImage}
+                    alt={section.imageAlt || section.title}
+                    style={{
+                      width: '100%',
+                      maxWidth: 400,
+                      height: 'auto',
+                      margin: '0 auto',
+                    }}
+                  />
+                ) : (
+                  <ImagePlaceholder 
+                    aspectRatio="4 / 3"
+                    hint={section.imageHint}
+                  />
+                )}
                 
                 <div>
                   <h2 style={{
@@ -826,10 +842,24 @@ export default function GymsPage() {
                 </div>
 
                 <div style={{ order: idx % 2 === 0 ? 2 : 1 }}>
-                  <ImagePlaceholder 
-                    aspectRatio="4 / 3"
-                    hint={section.imageHint}
-                  />
+                  {section.desktopImage ? (
+                    <img 
+                      src={section.desktopImage}
+                      alt={section.imageAlt || section.title}
+                      style={{
+                        width: '100%',
+                        maxWidth: 520,
+                        height: 'auto',
+                        borderRadius: 12,
+                        boxShadow: '0 4px 24px rgba(11, 22, 40, 0.08)',
+                      }}
+                    />
+                  ) : (
+                    <ImagePlaceholder 
+                      aspectRatio="4 / 3"
+                      hint={section.imageHint}
+                    />
+                  )}
                 </div>
               </div>
             )}
