@@ -1024,6 +1024,108 @@ export default function NewHomePage() {
           </p>
         </section>
 
+        {/* Comparison Table Section */}
+        <section style={{
+          maxWidth: 800,
+          margin: '0 auto',
+          padding: mobile ? '48px 20px 72px' : '64px 24px 96px',
+        }}>
+          <h2 style={{
+            fontFamily: fonts.serif,
+            fontSize: mobile ? 24 : 30,
+            fontWeight: 500,
+            color: colors.ink,
+            textAlign: 'center',
+            lineHeight: 1.3,
+            marginBottom: mobile ? 36 : 48,
+          }}>
+            The first tool that fits to you,<br />not the other way around.
+          </h2>
+
+          {/* Comparison Table */}
+          <div style={{
+            background: colors.paper,
+            borderRadius: 16,
+            border: `1px solid ${colors.line}`,
+            overflow: 'hidden',
+            boxShadow: '0 2px 8px rgba(11, 22, 40, 0.04)',
+          }}>
+            {/* Table Header */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              borderBottom: `1px solid ${colors.line}`,
+            }}>
+              <div style={{
+                padding: mobile ? '16px 20px' : '18px 28px',
+                fontFamily: fonts.sans,
+                fontSize: mobile ? 12 : 13,
+                fontWeight: 600,
+                color: colors.inkMute,
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
+                background: colors.bg2,
+                borderRight: `1px solid ${colors.line}`,
+              }}>
+                Other coaching tools
+              </div>
+              <div style={{
+                padding: mobile ? '16px 20px' : '18px 28px',
+                fontFamily: fonts.sans,
+                fontSize: mobile ? 12 : 13,
+                fontWeight: 600,
+                color: colors.accent,
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
+                background: colors.accentSoft,
+              }}>
+                Milton
+              </div>
+            </div>
+
+            {/* Table Rows */}
+            {[
+              { other: 'You learn the software', milton: 'The software learns you' },
+              { other: 'You build the workflows', milton: 'It comes ready' },
+              { other: 'You match a template', milton: 'It matches you' },
+              { other: 'Tabs, menus, setup', milton: 'Open it. See what to do. Done.' },
+              { other: 'Months to feel useful', milton: 'Useful in minutes' },
+            ].map((row, i, arr) => (
+              <div
+                key={i}
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr',
+                  borderBottom: i < arr.length - 1 ? `1px solid ${colors.lineSoft}` : 'none',
+                }}
+              >
+                <div style={{
+                  padding: mobile ? '16px 20px' : '20px 28px',
+                  fontFamily: fonts.sans,
+                  fontSize: mobile ? 14 : 15,
+                  color: colors.inkMute,
+                  borderRight: `1px solid ${colors.lineSoft}`,
+                  display: 'flex',
+                  alignItems: 'center',
+                }}>
+                  {row.other}
+                </div>
+                <div style={{
+                  padding: mobile ? '16px 20px' : '20px 28px',
+                  fontFamily: fonts.sans,
+                  fontSize: mobile ? 14 : 15,
+                  color: colors.ink,
+                  fontWeight: 500,
+                  display: 'flex',
+                  alignItems: 'center',
+                }}>
+                  {row.milton}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* After Section - Steps */}
         <section style={{
           maxWidth: 1080,
