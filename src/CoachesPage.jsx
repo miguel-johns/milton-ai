@@ -664,18 +664,8 @@ export default function CoachesPage() {
             padding: mobile ? '56px 20px' : '80px 32px',
           }}>
             {mobile ? (
-              /* Mobile layout: Title, then Image, then Description/Bullets */
+              /* Mobile layout: Image first, then Title and Description/Bullets */
               <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-                <h2 style={{
-                  fontFamily: fonts.serif,
-                  fontSize: 28,
-                  lineHeight: 1.15,
-                  fontWeight: 500,
-                  color: colors.ink,
-                }}>
-                  {section.title}
-                </h2>
-                
                 <ImagePlaceholder 
                   aspectRatio="4 / 3"
                   label={section.imageLabel}
@@ -683,6 +673,16 @@ export default function CoachesPage() {
                 />
                 
                 <div>
+                  <h2 style={{
+                    fontFamily: fonts.serif,
+                    fontSize: 28,
+                    lineHeight: 1.15,
+                    fontWeight: 500,
+                    color: colors.ink,
+                    marginBottom: 12,
+                  }}>
+                    {section.title}
+                  </h2>
                   <p style={{
                     fontFamily: fonts.sans,
                     fontSize: 16,
