@@ -838,44 +838,6 @@ export default function GymsPage() {
           )
         })}
 
-        {/* Pull Quote */}
-        <section style={{
-          maxWidth: 800,
-          margin: '0 auto',
-          padding: mobile ? '48px 20px' : '64px 24px',
-          textAlign: 'center',
-        }}>
-          <svg 
-            width="48" 
-            height="48" 
-            viewBox="0 0 48 48" 
-            fill="none"
-            style={{ marginBottom: 24, opacity: 0.12 }}
-          >
-            <path d="M14 24c-3.3 0-6-2.7-6-6s2.7-6 6-6c1.1 0 2 .9 2 2s-.9 2-2 2-2 .9-2 2 .9 2 2 2h2c3.3 0 6 2.7 6 6v4c0 3.3-2.7 6-6 6h-2c-1.1 0-2-.9-2-2s.9-2 2-2h2c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2h-2zm20 0c-3.3 0-6-2.7-6-6s2.7-6 6-6c1.1 0 2 .9 2 2s-.9 2-2 2-2 .9-2 2 .9 2 2 2h2c3.3 0 6 2.7 6 6v4c0 3.3-2.7 6-6 6h-2c-1.1 0-2-.9-2-2s.9-2 2-2h2c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2h-2z" fill={colors.ink} />
-          </svg>
-          <blockquote style={{
-            fontFamily: fonts.serif,
-            fontSize: mobile ? 20 : 26,
-            fontWeight: 400,
-            fontStyle: 'italic',
-            color: colors.ink,
-            lineHeight: 1.45,
-            marginBottom: 24,
-          }}>
-            {"\"He's definitely not going to learn a new software. So I usually have to learn it and build the workflows for the team. With Milton, it's already set up and ready to go.\""}
-          </blockquote>
-          <cite style={{
-            fontFamily: fonts.sans,
-            fontSize: 15,
-            fontWeight: 500,
-            color: colors.inkSoft,
-            fontStyle: 'normal',
-          }}>
-            — Bethany, Optimal Performance
-          </cite>
-        </section>
-
         {/* Closing CTA */}
         <section style={{
           maxWidth: 720,
