@@ -1063,6 +1063,15 @@ export default function NewHomePage() {
         </section>
 
         {/* Comparison Section */}
+        <div style={{
+          background: `
+            radial-gradient(ellipse 60% 50% at 10% 25%, rgba(43, 191, 170, 0.12), transparent 50%),
+            radial-gradient(ellipse 50% 40% at 85% 75%, rgba(43, 191, 170, 0.08), transparent 45%),
+            radial-gradient(ellipse 70% 60% at 95% 15%, rgba(154, 241, 152, 0.1), transparent 50%),
+            radial-gradient(ellipse 55% 45% at 5% 85%, rgba(248, 230, 200, 0.15), transparent 45%),
+            #FFFFFF
+          `,
+        }}>
         <section style={{
           maxWidth: 900,
           margin: '0 auto',
@@ -1107,6 +1116,7 @@ export default function NewHomePage() {
             />
           )}
         </section>
+        </div>
 
         {/* After Section - Steps */}
         <section style={{
