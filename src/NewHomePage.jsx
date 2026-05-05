@@ -1004,16 +1004,32 @@ export default function NewHomePage() {
             The first tool that fits to you,<br />not the other way around.
           </h2>
 
-          <img 
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Image-s7koJKQWEtyL9Af85MuQx9OoNjuAqd.png"
-            alt="Comparison showing other coaching tools vs Milton - You learn the software becomes The software learns you, You build workflows becomes It comes ready, You match a template becomes It matches you, Tabs menus setup becomes Open it see what to do done, Months to feel useful becomes Useful in minutes"
-            style={{
-              width: '100%',
-              maxWidth: 800,
-              height: 'auto',
-              borderRadius: 12,
-            }}
-          />
+          {/* Desktop image */}
+          {!mobile && (
+            <img 
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Image-s7koJKQWEtyL9Af85MuQx9OoNjuAqd.png"
+              alt="Comparison showing other coaching tools vs Milton - You learn the software becomes The software learns you, You build workflows becomes It comes ready, You match a template becomes It matches you, Tabs menus setup becomes Open it see what to do done, Months to feel useful becomes Useful in minutes"
+              style={{
+                width: '100%',
+                maxWidth: 800,
+                height: 'auto',
+                borderRadius: 12,
+              }}
+            />
+          )}
+          {/* Mobile image */}
+          {mobile && (
+            <img 
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Home%20Compare%20Mobile-a0Yn3qn374HXK8ICQr34pKRfgvyJjD.png"
+              alt="Comparison showing other coaching tools vs Milton - You learn the software becomes The software learns you, You build workflows becomes It comes ready, You match a template becomes It matches you, Tabs menus setup becomes Open it see what to do done, Months to feel useful becomes Useful in minutes"
+              style={{
+                width: '100%',
+                maxWidth: 400,
+                height: 'auto',
+                borderRadius: 12,
+              }}
+            />
+          )}
         </section>
 
         {/* After Section - Steps */}
