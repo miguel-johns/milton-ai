@@ -139,6 +139,9 @@ export default function CoachesPage() {
       ],
       imageLabel: 'Organized coaching',
       imageHint: 'A clean dashboard showing sessions, notes, and client progress.',
+      desktopImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Image%20-%20Home%201%20-%20Desktop-LPYUb84Ppi0Pw6HigelOJnpiTIDXuE.png',
+      mobileImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile%20Image%201%20-%20Home-CeJo2MoS7DnhTokNdVNVQTwjDGnskv.png',
+      imageAlt: 'Milton daily brief showing morning sessions and clients needing attention',
     },
     {
       title: 'Look like the coach you already are.',
@@ -666,11 +669,24 @@ export default function CoachesPage() {
             {mobile ? (
               /* Mobile layout: Image first, then Title and Description/Bullets */
               <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-                <ImagePlaceholder 
-                  aspectRatio="4 / 3"
-                  label={section.imageLabel}
-                  hint={section.imageHint}
-                />
+                {section.mobileImage ? (
+                  <img 
+                    src={section.mobileImage}
+                    alt={section.imageAlt || section.title}
+                    style={{
+                      width: '100%',
+                      maxWidth: 400,
+                      height: 'auto',
+                      margin: '0 auto',
+                    }}
+                  />
+                ) : (
+                  <ImagePlaceholder 
+                    aspectRatio="4 / 3"
+                    label={section.imageLabel}
+                    hint={section.imageHint}
+                  />
+                )}
                 
                 <div>
                   <h2 style={{
@@ -777,11 +793,25 @@ export default function CoachesPage() {
                 </div>
 
                 <div style={{ order: idx % 2 === 0 ? 2 : 1 }}>
-                  <ImagePlaceholder 
-                    aspectRatio="4 / 3"
-                    label={section.imageLabel}
-                    hint={section.imageHint}
-                  />
+                  {section.desktopImage ? (
+                    <img 
+                      src={section.desktopImage}
+                      alt={section.imageAlt || section.title}
+                      style={{
+                        width: '100%',
+                        maxWidth: 520,
+                        height: 'auto',
+                        borderRadius: 12,
+                        boxShadow: '0 4px 24px rgba(11, 22, 40, 0.08)',
+                      }}
+                    />
+                  ) : (
+                    <ImagePlaceholder 
+                      aspectRatio="4 / 3"
+                      label={section.imageLabel}
+                      hint={section.imageHint}
+                    />
+                  )}
                 </div>
               </div>
             )}
