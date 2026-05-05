@@ -81,10 +81,33 @@ export default function CoachesPage() {
   const [closingPrompt, setClosingPrompt] = useState('')
   const [attachedFile, setAttachedFile] = useState(null)
   const [closingAttachedFile, setClosingAttachedFile] = useState(null)
+  const [addedChips, setAddedChips] = useState(new Set())
   const textareaRef = useRef(null)
   const closingTextareaRef = useRef(null)
   const fileInputRef = useRef(null)
   const closingFileInputRef = useRef(null)
+
+  // Prompt chips for coaches
+  const chips = [
+    { text: "I'm a solo trainer.", label: "Solo trainer", labelFull: "I'm a solo trainer" },
+    { text: "I run a team of trainers.", label: "Team lead", labelFull: "I run a team of trainers" },
+    { text: "I do nutrition coaching with my clients.", label: "Nutrition", labelFull: "I do nutrition coaching" },
+    { text: "I coach hybrid clients, both in-person and online.", label: "Hybrid clients", labelFull: "I coach hybrid clients" },
+    { text: "I write custom workout programs for my clients.", label: "Programs", labelFull: "I write workout programs" },
+  ]
+
+  const handleChipClick = (chipText) => {
+    const newAddedChips = new Set(addedChips)
+    if (newAddedChips.has(chipText)) {
+      newAddedChips.delete(chipText)
+      setPrompt(prev => prev.replace(chipText, '').replace(/\s\s+/g, ' ').trim())
+    } else {
+      newAddedChips.add(chipText)
+      setPrompt(prev => (prev.trim() ? prev.trim() + ' ' + chipText : chipText))
+    }
+    setAddedChips(newAddedChips)
+    textareaRef.current?.focus()
+  }
 
   const handleFileChange = (e, isClosing = false) => {
     const file = e.target.files?.[0]
@@ -558,6 +581,54 @@ export default function CoachesPage() {
                 </svg>
               </button>
             </div>
+          </div>
+
+          {/* Prompt chips */}
+          <div style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: mobile ? 8 : 10,
+            justifyContent: 'center',
+            marginTop: mobile ? 16 : 20,
+            maxWidth: 600,
+            marginLeft: 'auto',
+            marginRight: 'auto',
+          }}>
+            <div style={{
+              width: '100%',
+              textAlign: 'center',
+              fontSize: 11,
+              color: colors.inkMute,
+              letterSpacing: '0.06em',
+              textTransform: 'uppercase',
+              marginBottom: mobile ? 6 : 4,
+            }}>
+              Or start with one of these
+            </div>
+            {chips.map((chip, i) => (
+              <button
+                key={i}
+                onClick={() => handleChipClick(chip.text)}
+                style={{
+                  background: addedChips.has(chip.text) ? colors.accentSoft : colors.paper,
+                  border: `1px solid ${addedChips.has(chip.text) ? 'rgba(43, 191, 170, 0.35)' : colors.line}`,
+                  padding: mobile ? '7px 12px' : '9px 16px',
+                  borderRadius: 100,
+                  fontFamily: fonts.sans,
+                  fontSize: mobile ? 12 : 13,
+                  color: addedChips.has(chip.text) ? colors.accent : colors.inkSoft,
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  flexShrink: 0,
+                }}
+              >
+                {addedChips.has(chip.text) && <span style={{ fontSize: 11 }}>✓</span>}
+                {mobile ? chip.label : chip.labelFull}
+              </button>
+            ))}
           </div>
 
           {/* Line below prompt */}
