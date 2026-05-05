@@ -424,7 +424,7 @@ export default function CoachesPage() {
             color: colors.ink,
             marginBottom: 20,
           }}>
-            Stop coaching from memory.
+            Just a little more efficient.
           </h1>
 
           <p style={{
