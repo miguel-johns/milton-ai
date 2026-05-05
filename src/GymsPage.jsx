@@ -457,6 +457,16 @@ export default function GymsPage() {
 
       <main>
         {/* ===== Hero ===== */}
+        <div style={{
+          background: `
+            radial-gradient(ellipse 80% 60% at 90% 20%, rgba(248, 230, 200, 0.7), transparent 60%),
+            radial-gradient(ellipse 70% 70% at 95% 65%, rgba(154, 241, 152, 0.35), transparent 55%),
+            radial-gradient(ellipse 90% 80% at 5% 80%, rgba(43, 191, 170, 0.18), transparent 60%),
+            radial-gradient(ellipse 60% 50% at 10% 20%, rgba(247, 244, 237, 1), transparent 70%),
+            #F2F0EA
+          `,
+          minHeight: '100vh',
+        }}>
         <section style={{
           maxWidth: 720,
           margin: '0 auto',
@@ -692,6 +702,7 @@ export default function GymsPage() {
             Tell Milton how your gym coaches. The standards, the cues, the rules. Milton learns it once, then helps every trainer deliver it.
           </p>
         </section>
+        </div>
 
         {/* Feature Sections */}
         {featureSections.map((section, idx) => (
