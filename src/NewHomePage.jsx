@@ -1468,116 +1468,28 @@ export default function NewHomePage() {
 
             {!chatSubmitted ? (
               <>
-                {/* Status badges */}
-                <div style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  gap: 8,
-                  marginBottom: 20,
-                }}>
-                  <span style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: 6,
-                    background: 'rgba(251, 191, 36, 0.12)',
-                    color: '#B45309',
-                    padding: '6px 12px',
-                    borderRadius: 100,
-                    fontSize: 12,
-                    fontWeight: 500,
-                  }}>
-                    <span style={{
-                      width: 6,
-                      height: 6,
-                      borderRadius: '50%',
-                      background: '#F59E0B',
-                    }} />
-                    Waitlist active
-                  </span>
-                  <span style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: 6,
-                    background: colors.bg2,
-                    color: colors.inkMute,
-                    padding: '6px 12px',
-                    borderRadius: 100,
-                    fontSize: 12,
-                    fontWeight: 500,
-                  }}>
-                    High volume
-                  </span>
-                </div>
-
-                {/* Current wait */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  marginBottom: 16,
-                }}>
-                  <span style={{ fontSize: 13, color: colors.inkMute }}>Current wait</span>
-                  <span style={{ fontSize: 13, fontWeight: 600, color: colors.ink }}>2 to 3 weeks</span>
-                </div>
-
-                {/* Main message */}
+                {/* Main heading */}
                 <h3 style={{
                   fontFamily: fonts.serif,
-                  fontSize: 22,
+                  fontSize: 24,
                   fontWeight: 500,
                   color: colors.ink,
-                  lineHeight: 1.25,
-                  marginBottom: 12,
+                  marginBottom: 16,
                   letterSpacing: '-0.01em',
                 }}>
-                  {"We're so sorry. We've capped onboarding for today."}
+                  Got it.
                 </h3>
 
                 <p style={{
                   fontSize: 14,
                   lineHeight: 1.6,
                   color: colors.inkSoft,
-                  marginBottom: 16,
-                }}>
-                  {"You're on the waitlist. We'll text you the second your spot opens."}
-                </p>
-
-                <p style={{
-                  fontSize: 14,
-                  lineHeight: 1.6,
-                  color: colors.inkSoft,
-                  marginBottom: 16,
-                }}>
-                  Every coach gets a real human review before Milton starts learning your voice. {"We're"} seeing more signups in a day than we used to see in a month, and {"we'd"} rather hold the line on quality than rush you in.
-                </p>
-
-                <p style={{
-                  fontSize: 14,
-                  lineHeight: 1.6,
-                  color: colors.ink,
-                  fontStyle: 'italic',
                   marginBottom: 20,
                 }}>
-                  <strong>Honest moment.</strong> We did not see this coming. Apparently, the second you tell coaches that AI can replace the seven tools they pay for and barely use, they show up.
+                  {"I'm reading what you sent and starting to build skills around how you coach. This part takes a few hours of human review before I'm ready for you. What's the best number to text when you are?"}
                 </p>
 
                 <form onSubmit={handleLeadSubmit}>
-                  <label style={{
-                    display: 'block',
-                    fontSize: 13,
-                    color: colors.inkMute,
-                    marginBottom: 8,
-                  }}>
-                    Best number to text
-                    <span style={{ 
-                      fontSize: 11, 
-                      color: colors.inkMute,
-                      marginLeft: 8,
-                      fontWeight: 400,
-                    }}>
-                      ~ 2 to 3 week wait
-                    </span>
-                  </label>
                   <input 
                     type="tel"
                     placeholder="(555) 555-5555"
@@ -1633,26 +1545,12 @@ export default function NewHomePage() {
                       opacity: leadSubmitting ? 0.7 : 1,
                     }}
                   >
-                    {leadSubmitting ? 'Saving...' : 'Hold my spot'}
+                    {leadSubmitting ? 'Saving...' : "Text me when you're ready"}
                   </button>
                 </form>
 
-                <p style={{
-                  fontSize: 12,
-                  color: colors.inkMute,
-                  textAlign: 'center',
-                  marginTop: 12,
-                }}>
-                  One text when {"you're"} up. Nothing else.
-                </p>
-
                 <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  marginTop: 20,
-                  paddingTop: 16,
-                  borderTop: `1px solid ${colors.line}`,
+                  marginTop: 16,
                 }}>
                   <button
                     onClick={closeChatModal}
@@ -1673,9 +1571,6 @@ export default function NewHomePage() {
                     </svg>
                     Back
                   </button>
-                  <span style={{ fontSize: 12, color: colors.inkMute }}>
-                    Queue refreshed daily
-                  </span>
                 </div>
               </>
             ) : (
