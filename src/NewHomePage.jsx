@@ -784,16 +784,6 @@ export default function NewHomePage() {
             The first coaching tool you don&apos;t have to learn. No setup. No workflows. Milton fits to you.
           </p>
           
-          <p style={{
-            fontSize: 15,
-            lineHeight: 1.65,
-            color: colors.inkSoft,
-            textAlign: 'center',
-            maxWidth: 520,
-            marginBottom: 28,
-          }}>
-            Tell me how you coach. Share a program template, your methodology, or just describe your business in a few sentences. {"I'll"} learn how you work and design an AI system that fits.
-          </p>
 
           {/* Composer */}
           <div style={{
@@ -941,6 +931,16 @@ export default function NewHomePage() {
             </div>
           </div>
 
+
+          <p style={{
+            fontFamily: fonts.sans,
+            fontSize: 13,
+            color: colors.inkMute,
+            textAlign: 'center',
+            marginTop: 14,
+          }}>
+            Try anything. Your methodology, your client types, your rules, your style. I learn it from the first sentence.
+          </p>
           {/* Chips */}
           <div style={{
             display: 'flex',
