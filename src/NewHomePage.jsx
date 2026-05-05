@@ -1468,89 +1468,260 @@ export default function NewHomePage() {
 
             {!chatSubmitted ? (
               <>
+                {/* Status badges */}
+                <div style={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: 12,
+                  marginBottom: 24,
+                }}>
+                  <span style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    background: 'rgba(251, 191, 36, 0.12)',
+                    color: '#92700C',
+                    padding: '8px 14px',
+                    borderRadius: 100,
+                    fontSize: 11,
+                    fontWeight: 600,
+                    letterSpacing: '0.05em',
+                    textTransform: 'uppercase',
+                  }}>
+                    <span style={{
+                      width: 6,
+                      height: 6,
+                      borderRadius: '50%',
+                      background: '#92700C',
+                    }} />
+                    Waitlist active · High volume
+                  </span>
+                  <span style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    background: colors.bg2,
+                    color: colors.inkMute,
+                    padding: '8px 14px',
+                    borderRadius: 100,
+                    fontSize: 11,
+                    fontWeight: 500,
+                    letterSpacing: '0.05em',
+                    textTransform: 'uppercase',
+                  }}>
+                    Current wait · 2 to 3 weeks
+                  </span>
+                </div>
+
                 {/* Main heading */}
                 <h3 style={{
                   fontFamily: fonts.serif,
-                  fontSize: 24,
+                  fontSize: 28,
                   fontWeight: 500,
+                  fontStyle: 'italic',
                   color: colors.ink,
-                  marginBottom: 16,
+                  lineHeight: 1.2,
+                  marginBottom: 12,
                   letterSpacing: '-0.01em',
                 }}>
-                  Got it.
+                  {"We're so sorry. We've capped onboarding for today."}
                 </h3>
 
                 <p style={{
-                  fontSize: 14,
-                  lineHeight: 1.6,
+                  fontSize: 15,
+                  lineHeight: 1.5,
                   color: colors.inkSoft,
                   marginBottom: 20,
                 }}>
-                  {"I'm reading what you sent and starting to build skills around how you coach. This part takes a few hours of human review before I'm ready for you. What's the best number to text when you are?"}
+                  {"You're on the waitlist. We'll text you the second your spot opens."}
                 </p>
 
-                <form onSubmit={handleLeadSubmit}>
-                  <input 
-                    type="tel"
-                    placeholder="(555) 555-5555"
-                    required
-                    value={leadForm.phone}
-                    onChange={(e) => setLeadForm(f => ({ ...f, phone: e.target.value }))}
-                    style={{
-                      width: '100%',
-                      border: `1px solid ${colors.line}`,
-                      borderRadius: 10,
-                      padding: '14px 16px',
-                      fontFamily: fonts.sans,
-                      fontSize: 16,
-                      color: colors.ink,
-                      background: colors.paper,
-                      marginBottom: 12,
-                      outline: 'none',
-                      boxSizing: 'border-box',
-                    }}
-                  />
-
-                  {leadError && (
-                    <p style={{
-                      fontSize: 13,
-                      color: '#DC2626',
-                      marginBottom: 10,
-                      padding: '8px 12px',
-                      background: '#FEF2F2',
-                      borderRadius: 8,
-                    }}>
-                      {leadError}
-                    </p>
-                  )}
-
-                  <button 
-                    type="submit"
-                    disabled={leadSubmitting}
-                    style={{
-                      width: '100%',
-                      background: leadSubmitting ? colors.inkSoft : colors.ink,
-                      color: colors.paper,
-                      border: 'none',
-                      padding: '14px 18px',
-                      borderRadius: 10,
-                      fontFamily: fonts.sans,
-                      fontSize: 15,
-                      fontWeight: 600,
-                      cursor: leadSubmitting ? 'not-allowed' : 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: 8,
-                      opacity: leadSubmitting ? 0.7 : 1,
-                    }}
-                  >
-                    {leadSubmitting ? 'Saving...' : "Text me when you're ready"}
-                  </button>
-                </form>
-
                 <div style={{
-                  marginTop: 16,
+                  borderTop: `1px solid ${colors.line}`,
+                  paddingTop: 20,
+                  marginBottom: 20,
+                }}>
+                  <p style={{
+                    fontSize: 14,
+                    lineHeight: 1.65,
+                    color: colors.ink,
+                    marginBottom: 16,
+                  }}>
+                    Every coach gets a real human review before Milton starts learning your voice. {"We're"} seeing more signups in a day than we used to see in a month, and {"we'd"} rather hold the line on quality than rush you in.
+                  </p>
+
+                  <p style={{
+                    fontSize: 14,
+                    lineHeight: 1.65,
+                    color: colors.ink,
+                  }}>
+                    <strong>Honest moment.</strong> We did not see this coming. Apparently, the second you tell coaches that AI can replace the seven tools they pay for and barely use, they show up.
+                  </p>
+                </div>
+
+                {/* Form card */}
+                <div style={{
+                  background: colors.paper,
+                  border: `1px solid ${colors.line}`,
+                  borderRadius: 12,
+                  padding: 20,
+                  marginBottom: 20,
+                }}>
+                  <form onSubmit={handleLeadSubmit}>
+                    {/* Name field */}
+                    <div style={{ marginBottom: 12 }}>
+                      <label style={{
+                        display: 'block',
+                        fontSize: 13,
+                        color: colors.inkMute,
+                        marginBottom: 6,
+                      }}>
+                        Your name
+                      </label>
+                      <input 
+                        type="text"
+                        placeholder="First Last"
+                        required
+                        value={leadForm.name || ''}
+                        onChange={(e) => setLeadForm(f => ({ ...f, name: e.target.value }))}
+                        style={{
+                          width: '100%',
+                          border: `1px solid ${colors.line}`,
+                          borderRadius: 8,
+                          padding: '12px 14px',
+                          fontFamily: fonts.sans,
+                          fontSize: 15,
+                          color: colors.ink,
+                          background: colors.paper,
+                          outline: 'none',
+                          boxSizing: 'border-box',
+                        }}
+                      />
+                    </div>
+
+                    {/* Business name field */}
+                    <div style={{ marginBottom: 12 }}>
+                      <label style={{
+                        display: 'block',
+                        fontSize: 13,
+                        color: colors.inkMute,
+                        marginBottom: 6,
+                      }}>
+                        Business name
+                      </label>
+                      <input 
+                        type="text"
+                        placeholder="Your gym or coaching business"
+                        value={leadForm.businessName || ''}
+                        onChange={(e) => setLeadForm(f => ({ ...f, businessName: e.target.value }))}
+                        style={{
+                          width: '100%',
+                          border: `1px solid ${colors.line}`,
+                          borderRadius: 8,
+                          padding: '12px 14px',
+                          fontFamily: fonts.sans,
+                          fontSize: 15,
+                          color: colors.ink,
+                          background: colors.paper,
+                          outline: 'none',
+                          boxSizing: 'border-box',
+                        }}
+                      />
+                    </div>
+
+                    {/* Phone field with inline button */}
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'flex-end',
+                      justifyContent: 'space-between',
+                      marginBottom: 6,
+                    }}>
+                      <label style={{
+                        fontSize: 13,
+                        color: colors.inkMute,
+                      }}>
+                        Best number to text
+                      </label>
+                      <span style={{
+                        fontSize: 11,
+                        color: colors.inkMute,
+                        fontFamily: 'monospace',
+                      }}>
+                        ~ 2 to 3 week wait
+                      </span>
+                    </div>
+                    <div style={{
+                      display: 'flex',
+                      gap: 10,
+                      marginBottom: 8,
+                    }}>
+                      <input 
+                        type="tel"
+                        placeholder="(555) 555 0100"
+                        required
+                        value={leadForm.phone}
+                        onChange={(e) => setLeadForm(f => ({ ...f, phone: e.target.value }))}
+                        style={{
+                          flex: 1,
+                          border: `1px solid ${colors.line}`,
+                          borderRadius: 8,
+                          padding: '12px 14px',
+                          fontFamily: fonts.sans,
+                          fontSize: 15,
+                          color: colors.ink,
+                          background: colors.paper,
+                          outline: 'none',
+                          boxSizing: 'border-box',
+                        }}
+                      />
+                      <button 
+                        type="submit"
+                        disabled={leadSubmitting}
+                        style={{
+                          background: colors.paper,
+                          color: colors.ink,
+                          border: `1px solid ${colors.line}`,
+                          padding: '12px 20px',
+                          borderRadius: 8,
+                          fontFamily: fonts.sans,
+                          fontSize: 14,
+                          fontWeight: 500,
+                          cursor: leadSubmitting ? 'not-allowed' : 'pointer',
+                          whiteSpace: 'nowrap',
+                          opacity: leadSubmitting ? 0.7 : 1,
+                        }}
+                      >
+                        {leadSubmitting ? 'Saving...' : 'Hold my spot'}
+                      </button>
+                    </div>
+
+                    <p style={{
+                      fontSize: 12,
+                      color: colors.inkMute,
+                    }}>
+                      One text when {"you're"} up. Nothing else.
+                    </p>
+
+                    {leadError && (
+                      <p style={{
+                        fontSize: 13,
+                        color: '#DC2626',
+                        marginTop: 10,
+                        padding: '8px 12px',
+                        background: '#FEF2F2',
+                        borderRadius: 8,
+                      }}>
+                        {leadError}
+                      </p>
+                    )}
+                  </form>
+                </div>
+
+                {/* Footer */}
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
                 }}>
                   <button
                     onClick={closeChatModal}
@@ -1571,6 +1742,9 @@ export default function NewHomePage() {
                     </svg>
                     Back
                   </button>
+                  <span style={{ fontSize: 12, color: colors.inkMute }}>
+                    Queue refreshed daily
+                  </span>
                 </div>
               </>
             ) : (
