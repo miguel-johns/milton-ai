@@ -1020,7 +1020,7 @@ export default function NewHomePage() {
           {/* Mobile image */}
           {mobile && (
             <img 
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Home%20Compare%20Mobile-a0Yn3qn374HXK8ICQr34pKRfgvyJjD.png"
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile%20Web%20Compare-wi6999wHCWXHnSaYDbTX5X74KLY4Tj.png"
               alt="Comparison showing other coaching tools vs Milton - You learn the software becomes The software learns you, You build workflows becomes It comes ready, You match a template becomes It matches you, Tabs menus setup becomes Open it see what to do done, Months to feel useful becomes Useful in minutes"
               style={{
                 width: '100%',
