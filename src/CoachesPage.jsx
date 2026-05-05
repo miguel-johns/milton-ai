@@ -655,8 +655,26 @@ export default function CoachesPage() {
         </div>
 
         {/* Feature Sections */}
-        {featureSections.map((section, idx) => (
-          <section key={idx} style={{
+        {featureSections.map((section, idx) => {
+          // Subtle gradient backgrounds for sections 1 and 3
+          const hasGradient = idx === 1 || idx === 3
+          const gradientStyle = hasGradient ? {
+            background: idx === 1
+              ? `
+                radial-gradient(ellipse 70% 50% at 85% 30%, rgba(248, 230, 200, 0.35), transparent 55%),
+                radial-gradient(ellipse 60% 60% at 10% 70%, rgba(43, 191, 170, 0.08), transparent 50%),
+                #F7F4ED
+              `
+              : `
+                radial-gradient(ellipse 60% 50% at 15% 25%, rgba(154, 241, 152, 0.15), transparent 50%),
+                radial-gradient(ellipse 70% 60% at 90% 75%, rgba(248, 230, 200, 0.4), transparent 55%),
+                #F7F4ED
+              `,
+          } : {}
+
+          return (
+          <div key={idx} style={gradientStyle}>
+          <section style={{
             maxWidth: 1080,
             margin: '0 auto',
             padding: mobile ? '56px 20px' : '80px 32px',
@@ -726,7 +744,9 @@ export default function CoachesPage() {
               </div>
             </div>
           </section>
-        ))}
+          </div>
+          )
+        })}
 
         {/* What Milton Does Every Day */}
         <section style={{
