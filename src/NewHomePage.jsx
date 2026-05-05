@@ -1438,6 +1438,8 @@ export default function NewHomePage() {
             position: 'relative',
             width: '100%',
             maxWidth: 440,
+            maxHeight: mobile ? 'calc(100vh - 32px)' : 'calc(100vh - 40px)',
+            overflowY: 'auto',
             background: colors.paper,
             borderRadius: 20,
             boxShadow: '0 24px 64px rgba(11, 22, 40, 0.18), 0 4px 16px rgba(11, 22, 40, 0.08)',
