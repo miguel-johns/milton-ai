@@ -435,7 +435,7 @@ export default function CoachesPage() {
             maxWidth: 560,
             margin: '0 auto 32px',
           }}>
-            Right now, the most important details about your clients live in your head, your notebook, or a static Google Sheet. Milton remembers everything, and increases your efficiency.
+            A lot less stress.
           </p>
 
           {/* Composer */}
