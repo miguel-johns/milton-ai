@@ -781,7 +781,7 @@ export default function NewHomePage() {
             textAlign: 'center',
             marginBottom: 36,
           }}>
-            The first coaching tool you don&apos;t have to learn. No setup. No workflows. I fit to you.
+            The first coaching tool you don&apos;t have to learn. No setup. No workflows. Milton fits to you.
           </p>
           
           <p style={{
@@ -792,7 +792,7 @@ export default function NewHomePage() {
             maxWidth: 520,
             marginBottom: 28,
           }}>
-            Try anything. Your methodology, your client types, your rules, your style. I learn it from the first sentence.
+            Tell me how you coach. Share a program template, your methodology, or just describe your business in a few sentences. {"I'll"} learn how you work and design an AI system that fits.
           </p>
 
           {/* Composer */}
