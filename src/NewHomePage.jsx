@@ -781,7 +781,7 @@ export default function NewHomePage() {
             textAlign: 'center',
             marginBottom: 36,
           }}>
-            The first coaching tool you don&apos;t have to learn. No setup. No workflows. Milton fits to you.
+            The first coaching tool you don&apos;t have to learn. No setup. No workflows. I fit to you.
           </p>
           
           <p style={{
