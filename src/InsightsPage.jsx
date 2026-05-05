@@ -359,6 +359,7 @@ export default function InsightsPage() {
               <a href="/coaches" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>For Coaches</a>
               <a href="/gyms" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>For Gyms</a>
               <a href="/insights" className="nav-link" style={{ color: colors.accent, textDecoration: 'none' }}>Insights</a>
+              <a href="/about" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>About</a>
             </nav>
           )}
 
@@ -430,6 +431,15 @@ export default function InsightsPage() {
               textDecoration: 'none',
               borderRadius: 10,
             }}>Insights</a>
+            <a href="/about" onClick={() => setMobileMenuOpen(false)} style={{
+              display: 'block',
+              padding: '14px 16px',
+              fontSize: 16,
+              fontWeight: 500,
+              color: colors.ink,
+              textDecoration: 'none',
+              borderRadius: 10,
+            }}>About</a>
           </div>
         )}
       </header>

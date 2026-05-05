@@ -199,6 +199,7 @@ export default function CoachesPage() {
             <a href="/coaches" className="nav-link" style={{ color: colors.ink, textDecoration: 'none', fontWeight: 600 }}>For Coaches</a>
             <a href="/gyms" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>For Gyms</a>
             <a href="/insights" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>Insights</a>
+            <a href="/about" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>About</a>
             <a href="#" className="nav-btn" style={{
               color: 'inherit',
               textDecoration: 'none',
@@ -324,6 +325,16 @@ export default function CoachesPage() {
               textDecoration: 'none',
               borderRadius: 10,
             }}>Insights</a>
+            <a href="/about" style={{
+              display: 'block',
+              padding: '14px 16px',
+              fontFamily: fonts.sans,
+              fontSize: 16,
+              fontWeight: 500,
+              color: colors.ink,
+              textDecoration: 'none',
+              borderRadius: 10,
+            }}>About</a>
             <a href="#" style={{
               display: 'block',
               padding: '14px 16px',

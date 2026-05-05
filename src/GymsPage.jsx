@@ -240,6 +240,7 @@ export default function GymsPage() {
             <a href="/coaches" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>For Coaches</a>
             <a href="/gyms" className="nav-link" style={{ color: colors.ink, textDecoration: 'none', fontWeight: 600 }}>For Gyms</a>
             <a href="/insights" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>Insights</a>
+            <a href="/about" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>About</a>
             <a href="#" className="nav-btn" style={{
               border: `1px solid ${colors.line}`,
               padding: '8px 16px',
@@ -365,6 +366,15 @@ export default function GymsPage() {
               textDecoration: 'none',
               borderRadius: 10,
             }}>Insights</a>
+            <a href="/about" onClick={() => setMobileMenuOpen(false)} style={{
+              display: 'block',
+              padding: '14px 16px',
+              fontSize: 16,
+              fontWeight: 500,
+              color: colors.ink,
+              textDecoration: 'none',
+              borderRadius: 10,
+            }}>About</a>
             <a href="#" onClick={() => setMobileMenuOpen(false)} style={{
               display: 'block',
               padding: '14px 16px',
