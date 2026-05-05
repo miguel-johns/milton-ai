@@ -241,6 +241,9 @@ export default function GymsPage() {
         'Your gym, your rules, finally enforceable at scale',
       ],
       imageHint: 'Admin panel showing permissions and rules configuration.',
+      desktopImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Image%202%20-%20Desktop-JCL00GSY7SDAitHNgMNiP6PhDm0NwK.png',
+      mobileImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile%20Website%202%20-%20Home-XWObqEbRBhssrC5np1orsQig5rHT5c.png',
+      imageAlt: 'Milton workout drafting view with exercise table for Kathleen Reyes shoulder rehab',
     },
   ]
 
