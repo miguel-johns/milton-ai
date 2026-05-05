@@ -228,6 +228,9 @@ export default function GymsPage() {
         'Clients get a consistent experience, with or without you on the floor',
       ],
       imageHint: 'Gym owner working with clients, not stuck at a desk.',
+      desktopImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gym%20Image%204%20Desktop-Zd0R4JAeXvXqsc0eK4jRjVTRyOEwtN.png',
+      mobileImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Gym%20Image%204%20Mobile-SL1dUMPKF0QjtmT1pWlEK6kuQ020lQ.png',
+      imageAlt: 'Milton Coach Portrait showing what Milton learned about your coaching methodology and standards',
     },
     {
       title: 'You set the rules. Milton enforces them.',
