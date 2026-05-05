@@ -153,6 +153,9 @@ export default function CoachesPage() {
       ],
       imageLabel: 'Client view',
       imageHint: 'What clients see: their progress, notes, and next session.',
+      desktopImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Image%205-%20Desktop-jiPbh7bW4Hd9rSuSajyodHo02SrZyL.png',
+      mobileImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile%20Website%205%20-%20Home-rSBU3YxzrEBiLk9933IwCR9S2m0cgp.png',
+      imageAlt: 'Milton quarterly report with body weight progress chart for Sarah',
     },
     {
       title: "The first AI tool for coaches who don't want to learn AI.",
