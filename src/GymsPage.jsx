@@ -454,11 +454,11 @@ export default function GymsPage() {
         {/* ===== Hero ===== */}
         <div style={{
           background: `
-            radial-gradient(ellipse 80% 60% at 90% 20%, rgba(248, 230, 200, 0.7), transparent 60%),
-            radial-gradient(ellipse 70% 70% at 95% 65%, rgba(154, 241, 152, 0.35), transparent 55%),
-            radial-gradient(ellipse 90% 80% at 5% 80%, rgba(43, 191, 170, 0.18), transparent 60%),
-            radial-gradient(ellipse 60% 50% at 10% 20%, rgba(247, 244, 237, 1), transparent 70%),
-            #F2F0EA
+            radial-gradient(ellipse 60% 50% at 10% 25%, rgba(43, 191, 170, 0.12), transparent 50%),
+            radial-gradient(ellipse 50% 40% at 85% 75%, rgba(43, 191, 170, 0.08), transparent 45%),
+            radial-gradient(ellipse 70% 60% at 95% 15%, rgba(154, 241, 152, 0.1), transparent 50%),
+            radial-gradient(ellipse 55% 45% at 5% 85%, rgba(248, 230, 200, 0.15), transparent 45%),
+            #FFFFFF
           `,
           minHeight: '100vh',
         }}>
