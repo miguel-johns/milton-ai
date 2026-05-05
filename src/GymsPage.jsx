@@ -686,19 +686,23 @@ export default function GymsPage() {
 
         {/* Feature Sections */}
         {featureSections.map((section, idx) => {
-          // Subtle gradient backgrounds for sections 1 and 3
+          // Subtle gradient backgrounds for sections 1 and 3 - white dominant with Milton teal/green hints
           const hasGradient = idx === 1 || idx === 3
           const gradientStyle = hasGradient ? {
             background: idx === 1
               ? `
-                radial-gradient(ellipse 70% 50% at 85% 30%, rgba(248, 230, 200, 0.35), transparent 55%),
-                radial-gradient(ellipse 60% 60% at 10% 70%, rgba(43, 191, 170, 0.08), transparent 50%),
-                #F7F4ED
+                radial-gradient(ellipse 60% 50% at 10% 25%, rgba(43, 191, 170, 0.12), transparent 50%),
+                radial-gradient(ellipse 50% 40% at 85% 75%, rgba(43, 191, 170, 0.08), transparent 45%),
+                radial-gradient(ellipse 70% 60% at 95% 15%, rgba(154, 241, 152, 0.1), transparent 50%),
+                radial-gradient(ellipse 55% 45% at 5% 85%, rgba(248, 230, 200, 0.15), transparent 45%),
+                #FFFFFF
               `
               : `
-                radial-gradient(ellipse 60% 50% at 15% 25%, rgba(154, 241, 152, 0.15), transparent 50%),
-                radial-gradient(ellipse 70% 60% at 90% 75%, rgba(248, 230, 200, 0.4), transparent 55%),
-                #F7F4ED
+                radial-gradient(ellipse 55% 45% at 90% 20%, rgba(43, 191, 170, 0.1), transparent 48%),
+                radial-gradient(ellipse 60% 50% at 5% 70%, rgba(43, 191, 170, 0.08), transparent 50%),
+                radial-gradient(ellipse 50% 40% at 15% 15%, rgba(154, 241, 152, 0.12), transparent 45%),
+                radial-gradient(ellipse 65% 55% at 85% 85%, rgba(248, 230, 200, 0.12), transparent 50%),
+                #FFFFFF
               `,
           } : {}
 
