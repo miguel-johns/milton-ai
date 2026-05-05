@@ -643,13 +643,24 @@ export default function GymsPage() {
             </div>
           </div>
 
+          {/* Line below prompt */}
+          <p style={{
+            fontFamily: fonts.sans,
+            fontSize: 13,
+            color: colors.inkMute,
+            textAlign: 'center',
+            marginTop: 16,
+          }}>
+            Tell Milton how your gym coaches. The standards, the cues, the rules. Milton learns it once, then helps every trainer deliver it.
+          </p>
+
           {/* Prompt chips */}
           <div style={{
             display: 'flex',
             flexWrap: 'wrap',
             gap: mobile ? 8 : 10,
             justifyContent: 'center',
-            marginTop: mobile ? 16 : 20,
+            marginTop: mobile ? 20 : 24,
             maxWidth: 600,
             marginLeft: 'auto',
             marginRight: 'auto',
@@ -690,17 +701,6 @@ export default function GymsPage() {
               </button>
             ))}
           </div>
-
-          {/* Line below prompt */}
-          <p style={{
-            fontFamily: fonts.sans,
-            fontSize: 13,
-            color: colors.inkMute,
-            textAlign: 'center',
-            marginTop: 16,
-          }}>
-            Tell Milton how your gym coaches. The standards, the cues, the rules. Milton learns it once, then helps every trainer deliver it.
-          </p>
         </section>
         </div>
 

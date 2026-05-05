@@ -593,13 +593,24 @@ export default function CoachesPage() {
             </div>
           </div>
 
+          {/* Line below prompt */}
+          <p style={{
+            fontFamily: fonts.sans,
+            fontSize: 13,
+            color: colors.inkMute,
+            textAlign: 'center',
+            marginTop: 16,
+          }}>
+            No tabs to learn. No app for your clients. No setup weekend. Just better coaching, starting today.
+          </p>
+
           {/* Prompt chips */}
           <div style={{
             display: 'flex',
             flexWrap: 'wrap',
             gap: mobile ? 8 : 10,
             justifyContent: 'center',
-            marginTop: mobile ? 16 : 20,
+            marginTop: mobile ? 20 : 24,
             maxWidth: 600,
             marginLeft: 'auto',
             marginRight: 'auto',
@@ -640,17 +651,6 @@ export default function CoachesPage() {
               </button>
             ))}
           </div>
-
-          {/* Line below prompt */}
-          <p style={{
-            fontFamily: fonts.sans,
-            fontSize: 13,
-            color: colors.inkMute,
-            textAlign: 'center',
-            marginTop: 16,
-          }}>
-            No tabs to learn. No app for your clients. No setup weekend. Just better coaching, starting today.
-          </p>
         </section>
         </div>
 
