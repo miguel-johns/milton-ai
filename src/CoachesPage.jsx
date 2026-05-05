@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Footer from './components/Footer'
 
 // Design tokens matching Milton design system
@@ -77,8 +77,32 @@ export default function CoachesPage() {
   }
 
   // Prompt input state
-  const [promptValue, setPromptValue] = useState('')
-  const [closingPromptValue, setClosingPromptValue] = useState('')
+  const [prompt, setPrompt] = useState('')
+  const [closingPrompt, setClosingPrompt] = useState('')
+  const [attachedFile, setAttachedFile] = useState(null)
+  const [closingAttachedFile, setClosingAttachedFile] = useState(null)
+  const textareaRef = useRef(null)
+  const closingTextareaRef = useRef(null)
+  const fileInputRef = useRef(null)
+  const closingFileInputRef = useRef(null)
+
+  const handleFileChange = (e, isClosing = false) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      if (isClosing) {
+        setClosingAttachedFile(file)
+      } else {
+        setAttachedFile(file)
+      }
+    }
+  }
+
+  const handleSend = () => {
+    setChatModalOpen(true)
+  }
+
+  const canSend = prompt.trim().length > 0 || attachedFile
+  const canSendClosing = closingPrompt.trim().length > 0 || closingAttachedFile
 
   // Feature sections data
   const featureSections = [
@@ -389,64 +413,147 @@ export default function CoachesPage() {
             Right now, the most important details about your clients live in your head, your notebook, or a sheet you {"haven't"} opened in weeks. Milton remembers everything, so you can stay in the coaching.
           </p>
 
-          {/* Prompt Box */}
+          {/* Composer */}
           <div style={{
             maxWidth: 560,
             margin: '0 auto',
             background: colors.paper,
-            borderRadius: 16,
             border: `1px solid ${colors.line}`,
-            padding: 6,
-            boxShadow: '0 1px 3px rgba(11, 22, 40, 0.04), 0 8px 24px rgba(11, 22, 40, 0.06)',
+            borderRadius: 20,
+            padding: mobile ? '14px 16px 12px' : '18px 20px 14px',
+            boxShadow: '0 1px 2px rgba(11, 22, 40, 0.03), 0 8px 24px rgba(11, 22, 40, 0.06)',
           }}>
+            {/* File pill */}
+            {attachedFile && (
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                background: colors.accentSoft,
+                border: '1px solid rgba(43, 191, 170, 0.25)',
+                color: colors.accent,
+                padding: '6px 10px 6px 12px',
+                borderRadius: 8,
+                fontSize: 13,
+                marginBottom: 12,
+                fontWeight: 500,
+              }}>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                  <path d="M14 2v6h6"/>
+                </svg>
+                <span>{attachedFile.name}</span>
+                <button 
+                  onClick={() => {
+                    setAttachedFile(null)
+                    if (fileInputRef.current) fileInputRef.current.value = ''
+                  }}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: 'inherit',
+                    cursor: 'pointer',
+                    fontSize: 18,
+                    lineHeight: 1,
+                    padding: '0 2px',
+                    opacity: 0.6,
+                  }}
+                >
+                  ×
+                </button>
+              </div>
+            )}
+
+            <textarea
+              ref={textareaRef}
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
+              onKeyDown={(e) => {
+                if ((e.metaKey || e.ctrlKey) && e.key === 'Enter' && canSend) {
+                  handleSend()
+                }
+              }}
+              placeholder="Describe your coaching business, your clients, your methodology..."
+              rows={2}
+              style={{
+                width: '100%',
+                border: 'none',
+                outline: 'none',
+                resize: 'none',
+                fontFamily: fonts.sans,
+                fontSize: 16,
+                lineHeight: 1.55,
+                color: colors.ink,
+                background: 'transparent',
+                minHeight: 56,
+                maxHeight: 240,
+              }}
+            />
+
             <div style={{
               display: 'flex',
               alignItems: 'center',
+              justifyContent: 'space-between',
+              marginTop: 10,
               gap: 12,
-              padding: '12px 16px',
             }}>
-              <img 
-                src={logoImage}
-                alt="Milton"
-                style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: '50%',
-                  objectFit: 'cover',
-                  flexShrink: 0,
-                }}
-              />
-              <input
-                type="text"
-                placeholder="Tell me how you coach..."
-                value={promptValue}
-                onChange={(e) => setPromptValue(e.target.value)}
-                style={{
-                  flex: 1,
-                  border: 'none',
-                  background: 'transparent',
-                  fontFamily: fonts.sans,
-                  fontSize: 15,
-                  color: colors.ink,
-                  outline: 'none',
-                }}
-              />
+              <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+                <button 
+                  onClick={() => fileInputRef.current?.click()}
+                  style={{
+                    width: 36,
+                    height: 36,
+                    borderRadius: 10,
+                    border: `1px solid ${colors.line}`,
+                    background: colors.paper,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: colors.inkSoft,
+                  }}
+                  title="Upload a program template"
+                >
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/>
+                  </svg>
+                </button>
+                {!mobile && (
+                  <span style={{ fontSize: 12, color: colors.inkMute, marginLeft: 4 }}>
+                    Attach a program, PDF, or doc
+                  </span>
+                )}
+                <input 
+                  ref={fileInputRef}
+                  type="file"
+                  onChange={(e) => handleFileChange(e, false)}
+                  accept=".pdf,.doc,.docx,.txt,image/*"
+                  style={{ display: 'none' }}
+                />
+              </div>
+
               <button
+                onClick={handleSend}
+                disabled={!canSend}
                 style={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: 10,
-                  border: 'none',
                   background: colors.ink,
-                  color: colors.paper,
-                  cursor: 'pointer',
+                  color: colors.bg,
+                  border: 'none',
+                  padding: '10px 18px',
+                  borderRadius: 10,
+                  fontFamily: fonts.sans,
+                  fontSize: 14,
+                  fontWeight: 500,
+                  cursor: canSend ? 'pointer' : 'not-allowed',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
+                  gap: 8,
+                  opacity: canSend ? 1 : 0.35,
+                  letterSpacing: '0.01em',
                 }}
               >
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                Begin
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14M13 6l6 6-6 6"/>
                 </svg>
               </button>
@@ -663,64 +770,147 @@ export default function CoachesPage() {
             No setup. No client app. No new way of coaching. Just everything you already do, finally organized, finally visible, finally working as hard as you do.
           </p>
 
-          {/* Closing Prompt Box */}
+          {/* Closing Composer */}
           <div style={{
             maxWidth: 560,
             margin: '0 auto',
             background: colors.paper,
-            borderRadius: 16,
             border: `1px solid ${colors.line}`,
-            padding: 6,
-            boxShadow: '0 1px 3px rgba(11, 22, 40, 0.04), 0 8px 24px rgba(11, 22, 40, 0.06)',
+            borderRadius: 20,
+            padding: mobile ? '14px 16px 12px' : '18px 20px 14px',
+            boxShadow: '0 1px 2px rgba(11, 22, 40, 0.03), 0 8px 24px rgba(11, 22, 40, 0.06)',
           }}>
+            {/* File pill */}
+            {closingAttachedFile && (
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                background: colors.accentSoft,
+                border: '1px solid rgba(43, 191, 170, 0.25)',
+                color: colors.accent,
+                padding: '6px 10px 6px 12px',
+                borderRadius: 8,
+                fontSize: 13,
+                marginBottom: 12,
+                fontWeight: 500,
+              }}>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                  <path d="M14 2v6h6"/>
+                </svg>
+                <span>{closingAttachedFile.name}</span>
+                <button 
+                  onClick={() => {
+                    setClosingAttachedFile(null)
+                    if (closingFileInputRef.current) closingFileInputRef.current.value = ''
+                  }}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: 'inherit',
+                    cursor: 'pointer',
+                    fontSize: 18,
+                    lineHeight: 1,
+                    padding: '0 2px',
+                    opacity: 0.6,
+                  }}
+                >
+                  ×
+                </button>
+              </div>
+            )}
+
+            <textarea
+              ref={closingTextareaRef}
+              value={closingPrompt}
+              onChange={(e) => setClosingPrompt(e.target.value)}
+              onKeyDown={(e) => {
+                if ((e.metaKey || e.ctrlKey) && e.key === 'Enter' && canSendClosing) {
+                  handleSend()
+                }
+              }}
+              placeholder="Describe your coaching business, your clients, your methodology..."
+              rows={2}
+              style={{
+                width: '100%',
+                border: 'none',
+                outline: 'none',
+                resize: 'none',
+                fontFamily: fonts.sans,
+                fontSize: 16,
+                lineHeight: 1.55,
+                color: colors.ink,
+                background: 'transparent',
+                minHeight: 56,
+                maxHeight: 240,
+              }}
+            />
+
             <div style={{
               display: 'flex',
               alignItems: 'center',
+              justifyContent: 'space-between',
+              marginTop: 10,
               gap: 12,
-              padding: '12px 16px',
             }}>
-              <img 
-                src={logoImage}
-                alt="Milton"
-                style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: '50%',
-                  objectFit: 'cover',
-                  flexShrink: 0,
-                }}
-              />
-              <input
-                type="text"
-                placeholder="Tell me how you coach..."
-                value={closingPromptValue}
-                onChange={(e) => setClosingPromptValue(e.target.value)}
-                style={{
-                  flex: 1,
-                  border: 'none',
-                  background: 'transparent',
-                  fontFamily: fonts.sans,
-                  fontSize: 15,
-                  color: colors.ink,
-                  outline: 'none',
-                }}
-              />
+              <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+                <button 
+                  onClick={() => closingFileInputRef.current?.click()}
+                  style={{
+                    width: 36,
+                    height: 36,
+                    borderRadius: 10,
+                    border: `1px solid ${colors.line}`,
+                    background: colors.paper,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: colors.inkSoft,
+                  }}
+                  title="Upload a program template"
+                >
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/>
+                  </svg>
+                </button>
+                {!mobile && (
+                  <span style={{ fontSize: 12, color: colors.inkMute, marginLeft: 4 }}>
+                    Attach a program, PDF, or doc
+                  </span>
+                )}
+                <input 
+                  ref={closingFileInputRef}
+                  type="file"
+                  onChange={(e) => handleFileChange(e, true)}
+                  accept=".pdf,.doc,.docx,.txt,image/*"
+                  style={{ display: 'none' }}
+                />
+              </div>
+
               <button
+                onClick={handleSend}
+                disabled={!canSendClosing}
                 style={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: 10,
-                  border: 'none',
                   background: colors.ink,
-                  color: colors.paper,
-                  cursor: 'pointer',
+                  color: colors.bg,
+                  border: 'none',
+                  padding: '10px 18px',
+                  borderRadius: 10,
+                  fontFamily: fonts.sans,
+                  fontSize: 14,
+                  fontWeight: 500,
+                  cursor: canSendClosing ? 'pointer' : 'not-allowed',
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
+                  gap: 8,
+                  opacity: canSendClosing ? 1 : 0.35,
+                  letterSpacing: '0.01em',
                 }}
               >
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                Begin
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14M13 6l6 6-6 6"/>
                 </svg>
               </button>
