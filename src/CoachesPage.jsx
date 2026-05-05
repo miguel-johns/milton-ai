@@ -167,6 +167,9 @@ export default function CoachesPage() {
       ],
       imageLabel: 'AI that stays hidden',
       imageHint: 'Simple interface with AI working invisibly in the background.',
+      desktopImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Image%203%20Desktop-RPklFUJbs2kBZloG77Jrk4stypakXW.png',
+      mobileImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Image%203%20Mobile-tCFWaPA9NsFuzAI8Z416LbC3C4o06X.png',
+      imageAlt: 'Milton reading and learning from uploaded coaching documents',
     },
     {
       title: 'Charge more, or take on more clients. Without the extra work.',
@@ -178,6 +181,9 @@ export default function CoachesPage() {
       ],
       imageLabel: 'Scale your coaching',
       imageHint: 'A roster of clients, each getting personalized attention.',
+      desktopImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Image%204%20Desktop-ID4AXAH9c4SHGoxdPe7CoiN0ZdvvIm.png',
+      mobileImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Image%204%20Mobile-44CBNeRTIyZa6qdWKYWfGG1lUwE3dW.png',
+      imageAlt: 'Milton personalized drafts showing 4 SMS messages ready to send to clients',
     },
   ]
 
