@@ -181,13 +181,8 @@ export default function GymsPage() {
   // Feature sections data
   const featureSections = [
     {
-      title: "You can't be on every floor at once.",
-      subtitle: "You know what good looks like. You just can't clone yourself.",
-      bullets: [
-        'Every trainer sees what you\'d see',
-        'Every client gets what you\'d give',
-        'The gap between your best coach and your newest one finally closes',
-      ],
+      title: "The session is where your gym wins or loses.",
+      paragraph: "You already know this. Every dollar, every retention number, every referral comes from what happens in that hour between a trainer and a client. Milton makes sure every one of those hours runs like your best trainer ran it.",
       imageHint: 'A gym floor with multiple trainers working with clients.',
       desktopImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Image%203%20Desktop-RPklFUJbs2kBZloG77Jrk4stypakXW.png',
       mobileImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Coach%20Image%203%20Mobile-tCFWaPA9NsFuzAI8Z416LbC3C4o06X.png',
@@ -760,41 +755,54 @@ export default function GymsPage() {
                   }}>
                     {section.title}
                   </h2>
-                  <p style={{
-                    fontFamily: fonts.sans,
-                    fontSize: 16,
-                    lineHeight: 1.6,
-                    color: colors.inkSoft,
-                    marginBottom: 20,
-                  }}>
-                    {section.subtitle}
-                  </p>
-                  <ul style={{
-                    listStyle: 'none',
-                    padding: 0,
-                    margin: 0,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: 12,
-                  }}>
-                    {section.bullets.map((bullet, i) => (
-                      <li key={i} style={{
-                        display: 'flex',
-                        alignItems: 'flex-start',
-                        gap: 12,
+                  {section.paragraph ? (
+                    <p style={{
+                      fontFamily: fonts.sans,
+                      fontSize: 16,
+                      lineHeight: 1.6,
+                      color: colors.inkSoft,
+                    }}>
+                      {section.paragraph}
+                    </p>
+                  ) : (
+                    <>
+                      <p style={{
                         fontFamily: fonts.sans,
-                        fontSize: 15,
+                        fontSize: 16,
+                        lineHeight: 1.6,
                         color: colors.inkSoft,
-                        lineHeight: 1.5,
+                        marginBottom: 20,
                       }}>
-                        <svg viewBox="0 0 20 20" width="18" height="18" fill="none" style={{ flexShrink: 0, marginTop: 2 }}>
-                          <circle cx="10" cy="10" r="10" fill={colors.accentSoft} />
-                          <path d="M6 10l3 3 5-5" stroke={colors.accent} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
+                        {section.subtitle}
+                      </p>
+                      <ul style={{
+                        listStyle: 'none',
+                        padding: 0,
+                        margin: 0,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: 12,
+                      }}>
+                        {section.bullets && section.bullets.map((bullet, i) => (
+                          <li key={i} style={{
+                            display: 'flex',
+                            alignItems: 'flex-start',
+                            gap: 12,
+                            fontFamily: fonts.sans,
+                            fontSize: 15,
+                            color: colors.inkSoft,
+                            lineHeight: 1.5,
+                          }}>
+                            <svg viewBox="0 0 20 20" width="18" height="18" fill="none" style={{ flexShrink: 0, marginTop: 2 }}>
+                              <circle cx="10" cy="10" r="10" fill={colors.accentSoft} />
+                              <path d="M6 10l3 3 5-5" stroke={colors.accent} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                            {bullet}
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
                 </div>
               </div>
             ) : (
@@ -816,41 +824,54 @@ export default function GymsPage() {
                   }}>
                     {section.title}
                   </h2>
-                  <p style={{
-                    fontFamily: fonts.sans,
-                    fontSize: 16,
-                    lineHeight: 1.6,
-                    color: colors.inkSoft,
-                    marginBottom: 20,
-                  }}>
-                    {section.subtitle}
-                  </p>
-                  <ul style={{
-                    listStyle: 'none',
-                    padding: 0,
-                    margin: 0,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: 12,
-                  }}>
-                    {section.bullets.map((bullet, i) => (
-                      <li key={i} style={{
-                        display: 'flex',
-                        alignItems: 'flex-start',
-                        gap: 12,
+                  {section.paragraph ? (
+                    <p style={{
+                      fontFamily: fonts.sans,
+                      fontSize: 16,
+                      lineHeight: 1.6,
+                      color: colors.inkSoft,
+                    }}>
+                      {section.paragraph}
+                    </p>
+                  ) : (
+                    <>
+                      <p style={{
                         fontFamily: fonts.sans,
-                        fontSize: 15,
+                        fontSize: 16,
+                        lineHeight: 1.6,
                         color: colors.inkSoft,
-                        lineHeight: 1.5,
+                        marginBottom: 20,
                       }}>
-                        <svg viewBox="0 0 20 20" width="18" height="18" fill="none" style={{ flexShrink: 0, marginTop: 2 }}>
-                          <circle cx="10" cy="10" r="10" fill={colors.accentSoft} />
-                          <path d="M6 10l3 3 5-5" stroke={colors.accent} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
+                        {section.subtitle}
+                      </p>
+                      <ul style={{
+                        listStyle: 'none',
+                        padding: 0,
+                        margin: 0,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: 12,
+                      }}>
+                        {section.bullets && section.bullets.map((bullet, i) => (
+                          <li key={i} style={{
+                            display: 'flex',
+                            alignItems: 'flex-start',
+                            gap: 12,
+                            fontFamily: fonts.sans,
+                            fontSize: 15,
+                            color: colors.inkSoft,
+                            lineHeight: 1.5,
+                          }}>
+                            <svg viewBox="0 0 20 20" width="18" height="18" fill="none" style={{ flexShrink: 0, marginTop: 2 }}>
+                              <circle cx="10" cy="10" r="10" fill={colors.accentSoft} />
+                              <path d="M6 10l3 3 5-5" stroke={colors.accent} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                            {bullet}
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
                 </div>
 
                 <div style={{ order: idx % 2 === 0 ? 2 : 1 }}>
