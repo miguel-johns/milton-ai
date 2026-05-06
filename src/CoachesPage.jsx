@@ -424,7 +424,7 @@ export default function CoachesPage() {
             color: colors.ink,
             marginBottom: 20,
           }}>
-            Just a little more efficient.
+            A little more efficient.
           </h1>
 
           <p style={{
