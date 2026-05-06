@@ -1871,23 +1871,27 @@ export default function NewHomePage() {
 
 // Just Talk To It Section component
 function JustTalkSection({ mobile }) {
-  const [activeTab, setActiveTab] = useState(0)
-  
-  const tabs = [
+  const cards = [
     {
       label: 'Program',
       prompt: '"Build a six-week strength block. Post-knee surgery, age 45."',
       caption: 'Milton builds the program on the canvas. NASM-aligned, evidence-backed, ready to send.',
+      desktopImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Image%202%20-%20Desktop-JCL00GSY7SDAitHNgMNiP6PhDm0NwK.png',
+      mobileImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile%20Website%202%20-%20Home-XWObqEbRBhssrC5np1orsQig5rHT5c.png',
     },
     {
       label: 'Communicate',
       prompt: '"Who\'s gone quiet this week? Draft a check-in."',
       caption: 'Milton surfaces the at-risk clients and writes the message in your voice.',
+      desktopImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Image%203%20-%20Desktop-MoijGfb6NwmhGUKPo0jxX3CdOUqVtP.png',
+      mobileImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile%20Website%203%20-%20Home-eGUMkLlBG7CWdNF2TvUz95P0XNH2x9.png',
     },
     {
       label: 'Know',
       prompt: '"Sarah\'s last three sessions. What should I adjust?"',
       caption: 'Milton remembers every session and tells you what to do next.',
+      desktopImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Image%204%20-%20Desktop-pjDRqhJpBH4lFmrPBryKn4rLLMlXaM.png',
+      mobileImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile%20Website%204%20-%20Home-A2PvGNMVRH1xLi4PdP42B5A6RYRfxf.png',
     },
   ]
 
@@ -1903,7 +1907,7 @@ function JustTalkSection({ mobile }) {
       padding: mobile ? '64px 20px' : '96px 24px',
     }}>
       <div style={{
-        maxWidth: 900,
+        maxWidth: 1100,
         margin: '0 auto',
       }}>
         {/* Title */}
@@ -1925,90 +1929,96 @@ function JustTalkSection({ mobile }) {
           fontSize: mobile ? 16 : 18,
           color: colors.ink,
           textAlign: 'center',
-          marginBottom: mobile ? 32 : 48,
           maxWidth: 600,
           margin: '0 auto',
-          marginBottom: mobile ? 32 : 48,
+          marginBottom: mobile ? 40 : 56,
           lineHeight: 1.5,
         }}>
           You tell Milton what you need. Milton generates exactly that. Right there. Ready to use.
         </p>
         
-        {/* Tabbed Carousel */}
+        {/* Three Cards */}
         <div style={{
-          background: colors.paper,
-          borderRadius: 16,
-          boxShadow: '0 4px 24px rgba(11, 22, 40, 0.08)',
-          overflow: 'hidden',
+          display: 'grid',
+          gridTemplateColumns: mobile ? '1fr' : 'repeat(3, 1fr)',
+          gap: mobile ? 24 : 24,
         }}>
-          {/* Tab Labels */}
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: mobile ? 8 : 24,
-            padding: mobile ? '16px 12px' : '20px 24px',
-            borderBottom: `1px solid ${colors.lineSoft}`,
-          }}>
-            {tabs.map((tab, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveTab(i)}
-                style={{
-                  fontFamily: fonts.sans,
-                  fontSize: mobile ? 14 : 16,
-                  fontWeight: activeTab === i ? 600 : 400,
-                  color: activeTab === i ? colors.accent : colors.inkSoft,
-                  background: 'none',
-                  border: 'none',
-                  cursor: 'pointer',
-                  padding: '8px 16px',
-                  borderRadius: 8,
-                  transition: 'all 0.2s ease',
-                  backgroundColor: activeTab === i ? colors.accentSoft : 'transparent',
-                }}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-          
-          {/* Tab Content */}
-          <div style={{
-            padding: mobile ? '24px 16px 32px' : '32px 40px 40px',
-          }}>
-            {/* Prompt Display */}
-            <div style={{
-              background: colors.bg,
-              borderRadius: 12,
-              padding: mobile ? '20px 16px' : '24px 32px',
-              marginBottom: 20,
-              border: `1px solid ${colors.lineSoft}`,
-            }}>
-              <p style={{
-                fontFamily: fonts.sans,
-                fontSize: mobile ? 16 : 18,
-                fontStyle: 'italic',
-                color: colors.ink,
-                textAlign: 'center',
-                lineHeight: 1.5,
-                margin: 0,
+          {cards.map((card, i) => (
+            <div
+              key={i}
+              style={{
+                background: colors.paper,
+                borderRadius: 16,
+                boxShadow: '0 4px 24px rgba(11, 22, 40, 0.08)',
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              {/* Card Image */}
+              <div style={{
+                width: '100%',
+                aspectRatio: '4 / 3',
+                overflow: 'hidden',
+                background: colors.bg,
               }}>
-                {tabs[activeTab].prompt}
-              </p>
+                <img 
+                  src={mobile ? card.mobileImage : card.desktopImage}
+                  alt={card.label}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'top center',
+                  }}
+                />
+              </div>
+              
+              {/* Card Content */}
+              <div style={{
+                padding: mobile ? '20px 16px 24px' : '24px 20px 28px',
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'column',
+              }}>
+                {/* Label */}
+                <span style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 12,
+                  fontWeight: 600,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.08em',
+                  color: colors.accent,
+                  marginBottom: 12,
+                }}>
+                  {card.label}
+                </span>
+                
+                {/* Prompt */}
+                <p style={{
+                  fontFamily: fonts.sans,
+                  fontSize: mobile ? 15 : 16,
+                  fontStyle: 'italic',
+                  color: colors.ink,
+                  lineHeight: 1.5,
+                  marginBottom: 12,
+                }}>
+                  {card.prompt}
+                </p>
+                
+                {/* Caption */}
+                <p style={{
+                  fontFamily: fonts.sans,
+                  fontSize: mobile ? 13 : 14,
+                  color: colors.inkSoft,
+                  lineHeight: 1.5,
+                  marginTop: 'auto',
+                }}>
+                  {card.caption}
+                </p>
+              </div>
             </div>
-            
-            {/* Caption */}
-            <p style={{
-              fontFamily: fonts.sans,
-              fontSize: mobile ? 14 : 15,
-              color: colors.inkSoft,
-              textAlign: 'center',
-              lineHeight: 1.5,
-              margin: 0,
-            }}>
-              {tabs[activeTab].caption}
-            </p>
-          </div>
+          ))}
         </div>
         
         {/* Closing Line */}
