@@ -1871,30 +1871,6 @@ export default function NewHomePage() {
 
 // Just Talk To It Section component
 function JustTalkSection({ mobile }) {
-  const cards = [
-    {
-      label: 'Program',
-      prompt: '"Build a six-week strength block. Post-knee surgery, age 45."',
-      caption: 'Milton builds the program on the canvas. NASM-aligned, evidence-backed, ready to send.',
-      desktopImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Image%202%20-%20Desktop-JCL00GSY7SDAitHNgMNiP6PhDm0NwK.png',
-      mobileImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile%20Website%202%20-%20Home-XWObqEbRBhssrC5np1orsQig5rHT5c.png',
-    },
-    {
-      label: 'Communicate',
-      prompt: '"Who\'s gone quiet this week? Draft a check-in."',
-      caption: 'Milton surfaces the at-risk clients and writes the message in your voice.',
-      desktopImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Image%203%20-%20Desktop-MoijGfb6NwmhGUKPo0jxX3CdOUqVtP.png',
-      mobileImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile%20Website%203%20-%20Home-eGUMkLlBG7CWdNF2TvUz95P0XNH2x9.png',
-    },
-    {
-      label: 'Know',
-      prompt: '"Sarah\'s last three sessions. What should I adjust?"',
-      caption: 'Milton remembers every session and tells you what to do next.',
-      desktopImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Image%204%20-%20Desktop-pjDRqhJpBH4lFmrPBryKn4rLLMlXaM.png',
-      mobileImage: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile%20Website%204%20-%20Home-A2PvGNMVRH1xLi4PdP42B5A6RYRfxf.png',
-    },
-  ]
-
   return (
     <section style={{
       background: `
@@ -1907,7 +1883,7 @@ function JustTalkSection({ mobile }) {
       padding: mobile ? '64px 20px' : '96px 24px',
     }}>
       <div style={{
-        maxWidth: 1100,
+        maxWidth: 900,
         margin: '0 auto',
       }}>
         {/* Title */}
@@ -1937,88 +1913,61 @@ function JustTalkSection({ mobile }) {
           You tell Milton what you need. Milton generates exactly that. Right there. Ready to use.
         </p>
         
-        {/* Three Cards */}
+        {/* Video Placeholder */}
         <div style={{
-          display: 'grid',
-          gridTemplateColumns: mobile ? '1fr' : 'repeat(3, 1fr)',
-          gap: mobile ? 24 : 24,
+          width: '100%',
+          aspectRatio: '16 / 9',
+          background: colors.bg,
+          borderRadius: 16,
+          boxShadow: '0 4px 24px rgba(11, 22, 40, 0.08)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          border: `1px solid ${colors.lineSoft}`,
+          cursor: 'pointer',
+          position: 'relative',
+          overflow: 'hidden',
         }}>
-          {cards.map((card, i) => (
-            <div
-              key={i}
-              style={{
-                background: colors.paper,
-                borderRadius: 16,
-                boxShadow: '0 4px 24px rgba(11, 22, 40, 0.08)',
-                overflow: 'hidden',
-                display: 'flex',
-                flexDirection: 'column',
-              }}
+          {/* Play Button */}
+          <div style={{
+            width: mobile ? 64 : 80,
+            height: mobile ? 64 : 80,
+            borderRadius: '50%',
+            background: colors.accent,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: '0 4px 16px rgba(43, 191, 170, 0.3)',
+          }}>
+            <svg 
+              viewBox="0 0 24 24" 
+              width={mobile ? 28 : 32} 
+              height={mobile ? 28 : 32} 
+              fill="none"
+              style={{ marginLeft: 3 }}
             >
-              {/* Card Image */}
-              <div style={{
-                width: '100%',
-                aspectRatio: '4 / 3',
-                overflow: 'hidden',
-                background: colors.bg,
-              }}>
-                <img 
-                  src={mobile ? card.mobileImage : card.desktopImage}
-                  alt={card.label}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    objectPosition: 'top center',
-                  }}
-                />
-              </div>
-              
-              {/* Card Content */}
-              <div style={{
-                padding: mobile ? '20px 16px 24px' : '24px 20px 28px',
-                flex: 1,
-                display: 'flex',
-                flexDirection: 'column',
-              }}>
-                {/* Label */}
-                <span style={{
-                  fontFamily: fonts.sans,
-                  fontSize: 12,
-                  fontWeight: 600,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.08em',
-                  color: colors.accent,
-                  marginBottom: 12,
-                }}>
-                  {card.label}
-                </span>
-                
-                {/* Prompt */}
-                <p style={{
-                  fontFamily: fonts.sans,
-                  fontSize: mobile ? 15 : 16,
-                  fontStyle: 'italic',
-                  color: colors.ink,
-                  lineHeight: 1.5,
-                  marginBottom: 12,
-                }}>
-                  {card.prompt}
-                </p>
-                
-                {/* Caption */}
-                <p style={{
-                  fontFamily: fonts.sans,
-                  fontSize: mobile ? 13 : 14,
-                  color: colors.inkSoft,
-                  lineHeight: 1.5,
-                  marginTop: 'auto',
-                }}>
-                  {card.caption}
-                </p>
-              </div>
-            </div>
-          ))}
+              <path 
+                d="M8 5.14v14.72a1 1 0 001.53.848l11.06-7.36a1 1 0 000-1.696L9.53 4.292A1 1 0 008 5.14z" 
+                fill="#FFFFFF"
+              />
+            </svg>
+          </div>
+          
+          {/* Video Label */}
+          <span style={{
+            position: 'absolute',
+            bottom: mobile ? 16 : 24,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            fontFamily: fonts.sans,
+            fontSize: mobile ? 13 : 14,
+            color: colors.inkSoft,
+            background: 'rgba(255, 255, 255, 0.9)',
+            padding: '8px 16px',
+            borderRadius: 8,
+          }}>
+            Watch Milton in action
+          </span>
         </div>
         
         {/* Closing Line */}
