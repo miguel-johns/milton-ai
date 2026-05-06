@@ -1065,62 +1065,6 @@ export default function NewHomePage() {
         {/* Just Talk To It Section */}
         <JustTalkSection mobile={mobile} />
 
-        {/* Comparison Section */}
-        <div style={{
-          background: `
-            radial-gradient(ellipse 60% 50% at 10% 25%, rgba(43, 191, 170, 0.12), transparent 50%),
-            radial-gradient(ellipse 50% 40% at 85% 75%, rgba(43, 191, 170, 0.08), transparent 45%),
-            radial-gradient(ellipse 70% 60% at 95% 15%, rgba(154, 241, 152, 0.1), transparent 50%),
-            radial-gradient(ellipse 55% 45% at 5% 85%, rgba(248, 230, 200, 0.15), transparent 45%),
-            #FFFFFF
-          `,
-        }}>
-        <section style={{
-          maxWidth: 900,
-          margin: '0 auto',
-          padding: mobile ? '48px 20px 72px' : '64px 24px 96px',
-          textAlign: 'center',
-        }}>
-          <h2 style={{
-            fontFamily: fonts.serif,
-            fontSize: mobile ? 24 : 30,
-            fontWeight: 500,
-            color: colors.ink,
-            lineHeight: 1.3,
-            marginBottom: mobile ? 32 : 40,
-          }}>
-            The first tool that fits to you,<br />not the other way around.
-          </h2>
-
-          {/* Desktop image */}
-          {!mobile && (
-            <img 
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Website%20Image-s7koJKQWEtyL9Af85MuQx9OoNjuAqd.png"
-              alt="Comparison showing other coaching tools vs Milton - You learn the software becomes The software learns you, You build workflows becomes It comes ready, You match a template becomes It matches you, Tabs menus setup becomes Open it see what to do done, Months to feel useful becomes Useful in minutes"
-              style={{
-                width: '100%',
-                maxWidth: 800,
-                height: 'auto',
-                mixBlendMode: 'multiply',
-              }}
-            />
-          )}
-          {/* Mobile image */}
-          {mobile && (
-            <img 
-              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Mobile%20Web%20Compare-wi6999wHCWXHnSaYDbTX5X74KLY4Tj.png"
-              alt="Comparison showing other coaching tools vs Milton - You learn the software becomes The software learns you, You build workflows becomes It comes ready, You match a template becomes It matches you, Tabs menus setup becomes Open it see what to do done, Months to feel useful becomes Useful in minutes"
-              style={{
-                width: '100%',
-                maxWidth: 400,
-                height: 'auto',
-                mixBlendMode: 'multiply',
-              }}
-            />
-          )}
-        </section>
-        </div>
-
         {/* After Section - Steps */}
         <section style={{
           maxWidth: 1080,
