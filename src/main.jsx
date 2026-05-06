@@ -44,6 +44,7 @@ function App() {
   }, [])
 
   // Route matching
+  if (route === '/' || route === '') return <NewHomePage />
   if (route === '/coaches') return <CoachesPage />
   if (route === '/gyms') return <GymsPage />
   if (route === '/insights') return <InsightsPage />
@@ -55,7 +56,7 @@ function App() {
     return <ArticlePage slug={slug} />
   }
   
-  // Default to home page
+  // Default to home page for any unmatched routes
   return <NewHomePage />
 }
 
