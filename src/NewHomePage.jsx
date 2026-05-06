@@ -1934,39 +1934,6 @@ function JustTalkSection({ mobile }) {
           You tell Milton what you need. Milton generates exactly that. Right there. Ready to use.
         </p>
         
-        {/* Bullets */}
-        <ul style={{
-          listStyle: 'none',
-          padding: 0,
-          margin: '0 auto',
-          marginBottom: mobile ? 40 : 56,
-          maxWidth: 600,
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 16,
-        }}>
-          {[
-            'No tabs to learn, no menus to memorize, no templates to match.',
-            'Coaching, communication, and client history in one conversation.',
-            'Useful in minutes, not months.',
-          ].map((bullet, i) => (
-            <li key={i} style={{
-              display: 'flex',
-              alignItems: 'flex-start',
-              gap: 12,
-              fontFamily: fonts.sans,
-              fontSize: mobile ? 15 : 16,
-              color: colors.ink,
-              lineHeight: 1.5,
-            }}>
-              <svg viewBox="0 0 20 20" width="20" height="20" fill="none" style={{ flexShrink: 0, marginTop: 2 }}>
-                <path d="M4 10l5 5L16 5" stroke={colors.accent} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              {bullet}
-            </li>
-          ))}
-        </ul>
-        
         {/* Tabbed Carousel */}
         <div style={{
           background: colors.paper,
