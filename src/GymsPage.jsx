@@ -488,7 +488,7 @@ export default function GymsPage() {
             maxWidth: 560,
             margin: '0 auto 32px',
           }}>
-            Your trainers {"aren't"} doing everything you need them to yet. Milton closes the gap, so every session feels like you ran it.
+            Now every session feels like the best session.
           </p>
 
           {/* Composer */}
