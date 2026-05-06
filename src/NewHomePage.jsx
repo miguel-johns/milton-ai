@@ -1062,6 +1062,9 @@ export default function NewHomePage() {
           </div>
         </section>
 
+        {/* Just Talk To It Section */}
+        <JustTalkSection mobile={mobile} />
+
         {/* Comparison Section */}
         <div style={{
           background: `
@@ -1919,6 +1922,198 @@ export default function NewHomePage() {
         }
       `}</style>
     </div>
+  )
+}
+
+// Just Talk To It Section component
+function JustTalkSection({ mobile }) {
+  const [activeTab, setActiveTab] = useState(0)
+  
+  const tabs = [
+    {
+      label: 'Program',
+      prompt: '"Build a six-week strength block. Post-knee surgery, age 45."',
+      caption: 'Milton builds the program on the canvas. NASM-aligned, evidence-backed, ready to send.',
+    },
+    {
+      label: 'Communicate',
+      prompt: '"Who\'s gone quiet this week? Draft a check-in."',
+      caption: 'Milton surfaces the at-risk clients and writes the message in your voice.',
+    },
+    {
+      label: 'Know',
+      prompt: '"Sarah\'s last three sessions. What should I adjust?"',
+      caption: 'Milton remembers every session and tells you what to do next.',
+    },
+  ]
+
+  return (
+    <section style={{
+      background: `
+        radial-gradient(ellipse 60% 50% at 10% 25%, rgba(43, 191, 170, 0.12), transparent 50%),
+        radial-gradient(ellipse 50% 40% at 85% 75%, rgba(43, 191, 170, 0.08), transparent 45%),
+        radial-gradient(ellipse 70% 60% at 95% 15%, rgba(154, 241, 152, 0.1), transparent 50%),
+        radial-gradient(ellipse 55% 45% at 5% 85%, rgba(248, 230, 200, 0.15), transparent 45%),
+        #FFFFFF
+      `,
+      padding: mobile ? '64px 20px' : '96px 24px',
+    }}>
+      <div style={{
+        maxWidth: 900,
+        margin: '0 auto',
+      }}>
+        {/* Title */}
+        <h2 style={{
+          fontFamily: fonts.serif,
+          fontSize: mobile ? 32 : 42,
+          fontWeight: 500,
+          color: colors.ink,
+          textAlign: 'center',
+          marginBottom: 16,
+          lineHeight: 1.2,
+        }}>
+          {"You don't set up Milton. You just talk to it."}
+        </h2>
+        
+        {/* Subheader */}
+        <p style={{
+          fontFamily: fonts.sans,
+          fontSize: mobile ? 16 : 18,
+          color: colors.ink,
+          textAlign: 'center',
+          marginBottom: mobile ? 32 : 48,
+          maxWidth: 600,
+          margin: '0 auto',
+          marginBottom: mobile ? 32 : 48,
+          lineHeight: 1.5,
+        }}>
+          You tell Milton what you need. Milton generates exactly that. Right there. Ready to use.
+        </p>
+        
+        {/* Bullets */}
+        <ul style={{
+          listStyle: 'none',
+          padding: 0,
+          margin: '0 auto',
+          marginBottom: mobile ? 40 : 56,
+          maxWidth: 600,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 16,
+        }}>
+          {[
+            'No tabs to learn, no menus to memorize, no templates to match.',
+            'Coaching, communication, and client history in one conversation.',
+            'Useful in minutes, not months.',
+          ].map((bullet, i) => (
+            <li key={i} style={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: 12,
+              fontFamily: fonts.sans,
+              fontSize: mobile ? 15 : 16,
+              color: colors.ink,
+              lineHeight: 1.5,
+            }}>
+              <svg viewBox="0 0 20 20" width="20" height="20" fill="none" style={{ flexShrink: 0, marginTop: 2 }}>
+                <path d="M4 10l5 5L16 5" stroke={colors.accent} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              {bullet}
+            </li>
+          ))}
+        </ul>
+        
+        {/* Tabbed Carousel */}
+        <div style={{
+          background: colors.paper,
+          borderRadius: 16,
+          boxShadow: '0 4px 24px rgba(11, 22, 40, 0.08)',
+          overflow: 'hidden',
+        }}>
+          {/* Tab Labels */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: mobile ? 8 : 24,
+            padding: mobile ? '16px 12px' : '20px 24px',
+            borderBottom: `1px solid ${colors.lineSoft}`,
+          }}>
+            {tabs.map((tab, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveTab(i)}
+                style={{
+                  fontFamily: fonts.sans,
+                  fontSize: mobile ? 14 : 16,
+                  fontWeight: activeTab === i ? 600 : 400,
+                  color: activeTab === i ? colors.accent : colors.inkSoft,
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  padding: '8px 16px',
+                  borderRadius: 8,
+                  transition: 'all 0.2s ease',
+                  backgroundColor: activeTab === i ? colors.accentSoft : 'transparent',
+                }}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+          
+          {/* Tab Content */}
+          <div style={{
+            padding: mobile ? '24px 16px 32px' : '32px 40px 40px',
+          }}>
+            {/* Prompt Display */}
+            <div style={{
+              background: colors.bg,
+              borderRadius: 12,
+              padding: mobile ? '20px 16px' : '24px 32px',
+              marginBottom: 20,
+              border: `1px solid ${colors.lineSoft}`,
+            }}>
+              <p style={{
+                fontFamily: fonts.sans,
+                fontSize: mobile ? 16 : 18,
+                fontStyle: 'italic',
+                color: colors.ink,
+                textAlign: 'center',
+                lineHeight: 1.5,
+                margin: 0,
+              }}>
+                {tabs[activeTab].prompt}
+              </p>
+            </div>
+            
+            {/* Caption */}
+            <p style={{
+              fontFamily: fonts.sans,
+              fontSize: mobile ? 14 : 15,
+              color: colors.inkSoft,
+              textAlign: 'center',
+              lineHeight: 1.5,
+              margin: 0,
+            }}>
+              {tabs[activeTab].caption}
+            </p>
+          </div>
+        </div>
+        
+        {/* Closing Line */}
+        <p style={{
+          fontFamily: fonts.serif,
+          fontSize: mobile ? 18 : 22,
+          fontStyle: 'italic',
+          color: colors.ink,
+          textAlign: 'center',
+          marginTop: mobile ? 40 : 56,
+          lineHeight: 1.4,
+        }}>
+          You have enough on your plate. Milton takes some off.
+        </p>
+      </div>
+    </section>
   )
 }
 
