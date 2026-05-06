@@ -435,7 +435,7 @@ export default function CoachesPage() {
             maxWidth: 560,
             margin: '0 auto 32px',
           }}>
-            A lot less stress.
+            A lot less effort.
           </p>
 
           {/* Composer */}
