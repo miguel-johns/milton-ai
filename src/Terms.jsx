@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Navbar from './components/Navbar';
+import SharedNav from './SharedNav';
 import Footer from './components/Footer';
 
 function useBreakpoint() {
@@ -65,7 +65,7 @@ export default function Terms() {
 
   return (
     <div style={{ minHeight: '100vh', background: colors.paper }}>
-      <Navbar />
+      <SharedNav />
       
       {/* Hero */}
       <div style={{
