@@ -185,9 +185,9 @@ export default function Footer({ mobile, onOpenChat }) {
         }}>
           <span>© 2026 Milton AI</span>
           <span style={{ opacity: 0.5 }}>·</span>
-          <a href="#" className="footer-link" style={{ color: colors.inkMute, textDecoration: 'none' }}>Terms of Service</a>
+          <a href="/terms" className="footer-link" style={{ color: colors.inkMute, textDecoration: 'none' }}>Terms of Service</a>
           <span style={{ opacity: 0.5 }}>·</span>
-          <a href="#" className="footer-link" style={{ color: colors.inkMute, textDecoration: 'none' }}>Privacy Policy</a>
+          <a href="/privacy" className="footer-link" style={{ color: colors.inkMute, textDecoration: 'none' }}>Privacy Policy</a>
         </div>
       </div>
     </footer>
