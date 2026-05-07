@@ -50,6 +50,7 @@ const articles = [
     category: "ai-fitness",
     tag: "AI IN FITNESS",
     slug: "ai-landscape-fitness",
+    image: "/images/blog/ai-landscape-fitness.jpg",
     title: "The AI Landscape in Fitness: What's Real, What's Hype, and What to Do About It",
     excerpt: "We walked the floor at HFA 2026 and talked to every AI vendor in the space. Here's our honest breakdown of what's actually working in gyms right now — and what's still just a good demo.",
     date: "Mar 24, 2026",
@@ -60,6 +61,7 @@ const articles = [
     category: "director",
     tag: "FITNESS DIRECTOR PLAYBOOK",
     slug: "four-pillars-fitness-director",
+    image: "/images/blog/four-pillars.jpg",
     title: "The 4 Pillars Every Fitness Director Should Be Tracking — But Probably Isn't",
     excerpt: "Self-management, coaching skill, communication, teamwork. A framework developed over 20 years of managing trainers, now powered by AI diagnostics.",
     date: "Mar 12, 2026",
@@ -70,6 +72,7 @@ const articles = [
     category: "industry",
     tag: "INDUSTRY DATA",
     slug: "six-month-retention-cliff",
+    image: "/images/blog/retention-cliff.jpg",
     title: "The 6-Month Retention Cliff: Why It Matters and How to See It Coming",
     excerpt: "If you keep a client past six months, they'll likely stay two years. But most gyms can't see the cliff until the client is already gone. Here's how to change that.",
     date: "Mar 7, 2026",
@@ -80,6 +83,7 @@ const articles = [
     category: "ai-fitness",
     tag: "AI IN FITNESS",
     slug: "ai-receptionist-vs-copilot",
+    image: "/images/blog/ai-receptionist-vs-copilot.jpg",
     title: "AI Receptionist vs. AI Co-Pilot: Why the Industry Is Solving the Wrong Problem",
     excerpt: "Every AI startup at HFA was selling the same thing — an AI that picks up your phone. Nobody was building the thing gym owners actually need: intelligence for the people already doing the work.",
     date: "Mar 3, 2026",
@@ -90,6 +94,7 @@ const articles = [
     category: "trainer-dev",
     tag: "TRAINER DEVELOPMENT",
     slug: "best-trainer-leaving-signals",
+    image: "/images/blog/best-trainer-leaving.jpg",
     title: "Your Best Trainer Is About to Leave. Here Are the Signals You're Missing.",
     excerpt: "Trainer churn rarely happens overnight. There are behavioral signals weeks before the resignation — and most fitness directors aren't tracking them.",
     date: "Feb 19, 2026",
@@ -100,6 +105,7 @@ const articles = [
     category: "director",
     tag: "FITNESS DIRECTOR PLAYBOOK",
     slug: "spreadsheets-to-dashboard-migration",
+    image: "/images/blog/data-sources-dashboard.jpg",
     title: "From 8 Data Sources to 1 Dashboard: A Fitness Director's Migration Story",
     excerpt: "How one fitness director replaced 20 years of manual tracking with an AI-powered command center — and what she learned along the way.",
     date: "Feb 12, 2026",
@@ -110,6 +116,7 @@ const articles = [
     category: "milton",
     tag: "MILTON UPDATES",
     slug: "introducing-fitness-director-copilot",
+    image: "/images/blog/fitness-director-copilot.jpg",
     title: "Introducing the Fitness Director Co-Pilot",
     excerpt: "We're launching the most requested feature in Milton's history — a single intelligent dashboard that shows every trainer's performance, gaps, and development path.",
     date: "Feb 5, 2026",
@@ -120,6 +127,7 @@ const articles = [
     category: "industry",
     tag: "INDUSTRY DATA",
     slug: "revenue-per-trainer-how-to-move-it",
+    image: "/images/blog/revenue-per-trainer.jpg",
     title: "Revenue Per Trainer: You Know the Number. Here's How to Move It.",
     excerpt: "A trainer plateaus at $8,000/month. You know they could be at $12,000. Revenue is a scoreboard — it tells you who's winning, but not how to coach the game.",
     date: "Jan 29, 2026",
@@ -141,28 +149,32 @@ function ArticleCard({ article, featured = false, mobile }) {
         boxShadow: '0 4px 24px rgba(11, 22, 40, 0.06)',
         transition: 'box-shadow 0.2s ease, transform 0.2s ease',
       }}>
-        {/* Image placeholder */}
+        {/* Image */}
         <div style={{
-          background: `linear-gradient(135deg, ${colors.accentSoft} 0%, ${colors.bg2} 100%)`,
+          background: article.image 
+            ? `url(${article.image}) center/cover no-repeat`
+            : `linear-gradient(135deg, ${colors.accentSoft} 0%, ${colors.bg2} 100%)`,
           minHeight: mobile ? 200 : 320,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           position: 'relative',
         }}>
-          <div style={{
-            width: 80,
-            height: 80,
-            borderRadius: '50%',
-            background: colors.paper,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 4px 12px rgba(11, 22, 40, 0.08)',
-          }}>
-            <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke={colors.accent} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-            </svg>
-          </div>
+          {!article.image && (
+            <div style={{
+              width: 80,
+              height: 80,
+              borderRadius: '50%',
+              background: colors.paper,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 4px 12px rgba(11, 22, 40, 0.08)',
+            }}>
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke={colors.accent} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+              </svg>
+            </div>
+          )}
           <span style={{
             position: 'absolute',
             top: mobile ? 16 : 20,
@@ -237,29 +249,33 @@ function ArticleCard({ article, featured = false, mobile }) {
       display: 'flex',
       flexDirection: 'column',
     }}>
-      {/* Image placeholder */}
+      {/* Image */}
       <div style={{
-        background: `linear-gradient(135deg, ${colors.accentSoft} 0%, ${colors.bg2} 100%)`,
+        background: article.image 
+          ? `url(${article.image}) center/cover no-repeat`
+          : `linear-gradient(135deg, ${colors.accentSoft} 0%, ${colors.bg2} 100%)`,
         height: mobile ? 160 : 180,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
       }}>
-        <div style={{
-          width: 56,
-          height: 56,
-          borderRadius: '50%',
-          background: colors.paper,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          boxShadow: '0 2px 8px rgba(11, 22, 40, 0.06)',
-        }}>
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke={colors.accent} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-          </svg>
-        </div>
+        {!article.image && (
+          <div style={{
+            width: 56,
+            height: 56,
+            borderRadius: '50%',
+            background: colors.paper,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: '0 2px 8px rgba(11, 22, 40, 0.06)',
+          }}>
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke={colors.accent} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+            </svg>
+          </div>
+        )}
       </div>
 
       {/* Content */}
