@@ -45,6 +45,11 @@ function App() {
     return () => document.removeEventListener('click', handleClick)
   }, [])
 
+  // Scroll to top when route changes
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [route])
+
   // Route matching
   if (route === '/' || route === '') return <NewHomePage />
   if (route === '/coaches') return <CoachesPage />
