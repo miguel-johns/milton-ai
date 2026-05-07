@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import SharedNav from './SharedNav';
 import Footer from './components/Footer';
 
 function useBreakpoint() {
@@ -18,21 +17,26 @@ function useBreakpoint() {
 
 const colors = {
   ink: '#0B1628',
-  inkSoft: '#3D4F60',
+  inkSoft: '#475569',
+  inkMute: '#94A3B8',
   accent: '#2BBFAA',
   accentSoft: 'rgba(43, 191, 170, 0.1)',
   paper: '#FFFFFF',
   bg: '#F7F4ED',
+  line: '#E2E8F0',
   lineSoft: 'rgba(11, 22, 40, 0.08)',
 };
 
 const fonts = {
   sans: "'DM Sans', system-ui, sans-serif",
-  serif: "'Instrument Serif', Georgia, serif",
+  serif: "'Cormorant Garamond', Georgia, serif",
 };
+
+const logoImage = "/images/milton-logo.png";
 
 export default function Privacy() {
   const { mobile } = useBreakpoint();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const sectionStyle = {
     marginBottom: 32,
@@ -73,7 +77,164 @@ export default function Privacy() {
 
   return (
     <div style={{ minHeight: '100vh', background: colors.paper }}>
-      <SharedNav />
+      {/* Google Fonts */}
+      <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+      {/* Header */}
+      <header style={{
+        padding: mobile ? '20px' : '28px 40px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      }}>
+        <a href="/" style={{
+          fontFamily: fonts.sans,
+          fontSize: 20,
+          fontWeight: 600,
+          letterSpacing: '-0.02em',
+          color: colors.ink,
+          textDecoration: 'none',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 8,
+        }}>
+          <img 
+            src={logoImage}
+            alt="Milton"
+            style={{
+              width: 32,
+              height: 32,
+              borderRadius: '50%',
+              objectFit: 'cover',
+              boxShadow: '0 0 0 1px rgba(11, 22, 40, 0.04), 0 1px 3px rgba(11, 22, 40, 0.06)',
+            }}
+          />
+          <span>Milton</span>
+        </a>
+
+        {/* Desktop Nav */}
+        {!mobile && (
+          <nav style={{
+            display: 'flex',
+            gap: 28,
+            fontSize: 14,
+            color: colors.inkSoft,
+            alignItems: 'center',
+          }}>
+            <a href="/coaches" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>For Coaches</a>
+            <a href="/gyms" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>For Gyms</a>
+            <a href="/insights" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>Insights</a>
+            <a href="/about" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>About</a>
+            <a href="#" className="nav-btn" style={{
+              color: 'inherit',
+              textDecoration: 'none',
+              border: `1px solid ${colors.line}`,
+              padding: '8px 16px',
+              borderRadius: 8,
+              background: colors.paper,
+            }}>Sign in</a>
+          </nav>
+        )}
+
+        {/* Mobile menu toggle */}
+        {mobile && (
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            style={{
+              width: 40,
+              height: 40,
+              border: `1px solid ${colors.line}`,
+              background: colors.paper,
+              borderRadius: 10,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              position: 'relative',
+              zIndex: 60,
+            }}
+          >
+            <span style={{
+              display: 'block',
+              width: 18,
+              height: 1.5,
+              background: mobileMenuOpen ? 'transparent' : colors.ink,
+              borderRadius: 1,
+              position: 'relative',
+              transition: 'all 0.3s',
+            }}>
+              <span style={{
+                position: 'absolute',
+                left: 0,
+                width: 18,
+                height: 1.5,
+                background: colors.ink,
+                borderRadius: 1,
+                top: mobileMenuOpen ? 0 : -6,
+                transform: mobileMenuOpen ? 'rotate(45deg)' : 'none',
+                transition: 'all 0.3s',
+              }} />
+              <span style={{
+                position: 'absolute',
+                left: 0,
+                width: 18,
+                height: 1.5,
+                background: colors.ink,
+                borderRadius: 1,
+                top: mobileMenuOpen ? 0 : 6,
+                transform: mobileMenuOpen ? 'rotate(-45deg)' : 'none',
+                transition: 'all 0.3s',
+              }} />
+            </span>
+          </button>
+        )}
+      </header>
+
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <>
+          <div 
+            onClick={() => setMobileMenuOpen(false)}
+            style={{
+              position: 'fixed',
+              inset: 0,
+              background: 'rgba(11, 22, 40, 0.3)',
+              zIndex: 40,
+            }}
+          />
+          <div style={{
+            position: 'fixed',
+            top: 0,
+            right: 0,
+            width: '80%',
+            maxWidth: 320,
+            height: '100vh',
+            background: colors.paper,
+            zIndex: 50,
+            padding: '80px 24px 24px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 8,
+          }}>
+            <a href="/coaches" style={{ fontFamily: fonts.sans, fontSize: 18, color: colors.ink, textDecoration: 'none', padding: '12px 0' }}>For Coaches</a>
+            <a href="/gyms" style={{ fontFamily: fonts.sans, fontSize: 18, color: colors.ink, textDecoration: 'none', padding: '12px 0' }}>For Gyms</a>
+            <a href="/insights" style={{ fontFamily: fonts.sans, fontSize: 18, color: colors.ink, textDecoration: 'none', padding: '12px 0' }}>Insights</a>
+            <a href="/about" style={{ fontFamily: fonts.sans, fontSize: 18, color: colors.ink, textDecoration: 'none', padding: '12px 0' }}>About</a>
+            <div style={{ height: 1, background: colors.line, margin: '12px 0' }} />
+            <a href="#" style={{
+              fontFamily: fonts.sans,
+              fontSize: 16,
+              color: colors.paper,
+              background: colors.accent,
+              textDecoration: 'none',
+              padding: '14px 20px',
+              borderRadius: 10,
+              textAlign: 'center',
+              marginTop: 8,
+            }}>Sign in</a>
+          </div>
+        </>
+      )}
       
       {/* Hero */}
       <div style={{
