@@ -259,8 +259,7 @@ export default function NewHomePage() {
             lineHeight: 1.65,
             margin: '0 auto 20px',
           }}>
-            {"I've got what you sent and I'm starting to learn how you coach. You'll hear from me within 24 hours"}
-            {captureForm.firstName && `, ${captureForm.firstName}`}.
+            {"I've got what you sent and I'm starting to learn how you coach. You'll hear from us within 24 hours."}
           </p>
           
           <p style={{
@@ -268,15 +267,36 @@ export default function NewHomePage() {
             color: colors.inkMute,
             maxWidth: 400,
             lineHeight: 1.55,
+            marginBottom: 28,
           }}>
-            In the meantime, anything else you want me to know?{' '}
-            <a 
-              href="mailto:milton@getmilton.com"
-              style={{ color: colors.accentDeep, textDecoration: 'none' }}
-            >
-              milton@getmilton.com
-            </a>
+            So be on the lookout for our text messages and emails.
           </p>
+
+          <p style={{
+            fontSize: 14,
+            color: colors.inkSoft,
+            marginBottom: 16,
+          }}>
+            We look forward to getting you started.
+          </p>
+
+          <a 
+            href="/"
+            style={{
+              display: 'inline-block',
+              fontFamily: fonts.sans,
+              fontSize: 14,
+              fontWeight: 600,
+              color: colors.paper,
+              background: colors.accent,
+              padding: '12px 28px',
+              borderRadius: 8,
+              textDecoration: 'none',
+              transition: 'background 0.2s ease',
+            }}
+          >
+            Back Home
+          </a>
         </div>
         <style>{`
           @keyframes fadeUp {
