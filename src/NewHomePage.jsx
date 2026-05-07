@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { createClient } from '@supabase/supabase-js'
 import Footer from './components/Footer'
+import MiltonTheater from './components/MiltonTheater'
 
 // Initialize Supabase client - use VITE_ prefixed vars for client-side access
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
@@ -1883,7 +1884,7 @@ function JustTalkSection({ mobile }) {
       padding: mobile ? '64px 20px' : '96px 24px',
     }}>
       <div style={{
-        maxWidth: 900,
+        maxWidth: 1340,
         margin: '0 auto',
       }}>
         {/* Title */}
@@ -1913,62 +1914,8 @@ function JustTalkSection({ mobile }) {
           You tell Milton what you need. Milton generates exactly that. Right there. Ready to use.
         </p>
         
-        {/* Video Placeholder */}
-        <div style={{
-          width: '100%',
-          aspectRatio: '16 / 9',
-          background: colors.bg,
-          borderRadius: 16,
-          boxShadow: '0 4px 24px rgba(11, 22, 40, 0.08)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: `1px solid ${colors.lineSoft}`,
-          cursor: 'pointer',
-          position: 'relative',
-          overflow: 'hidden',
-        }}>
-          {/* Play Button */}
-          <div style={{
-            width: mobile ? 64 : 80,
-            height: mobile ? 64 : 80,
-            borderRadius: '50%',
-            background: colors.accent,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 4px 16px rgba(43, 191, 170, 0.3)',
-          }}>
-            <svg 
-              viewBox="0 0 24 24" 
-              width={mobile ? 28 : 32} 
-              height={mobile ? 28 : 32} 
-              fill="none"
-              style={{ marginLeft: 3 }}
-            >
-              <path 
-                d="M8 5.14v14.72a1 1 0 001.53.848l11.06-7.36a1 1 0 000-1.696L9.53 4.292A1 1 0 008 5.14z" 
-                fill="#FFFFFF"
-              />
-            </svg>
-          </div>
-          
-          {/* Video Label */}
-          <span style={{
-            position: 'absolute',
-            bottom: mobile ? 16 : 24,
-            left: '50%',
-            transform: 'translateX(-50%)',
-            fontFamily: fonts.sans,
-            fontSize: mobile ? 13 : 14,
-            color: colors.inkSoft,
-            background: 'rgba(255, 255, 255, 0.9)',
-            padding: '8px 16px',
-            borderRadius: 8,
-          }}>
-            Watch Milton in action
-          </span>
-        </div>
+        {/* Interactive Theater */}
+        <MiltonTheater mobile={mobile} />
         
         {/* Closing Line */}
         <p style={{
