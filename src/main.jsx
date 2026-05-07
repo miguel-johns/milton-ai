@@ -7,6 +7,8 @@ import GymsPage from './GymsPage.jsx'
 import InsightsPage from './InsightsPage.jsx'
 import ArticlePage from './ArticlePage.jsx'
 import AboutPage from './AboutPage.jsx'
+import Terms from './Terms.jsx'
+import Privacy from './Privacy.jsx'
 
 // Note: The following imports are kept for reference but their routes are currently hidden.
 // These pages can be re-enabled by adding their routes back to the App component.
@@ -49,6 +51,8 @@ function App() {
   if (route === '/gyms') return <GymsPage />
   if (route === '/insights') return <InsightsPage />
   if (route === '/about') return <AboutPage />
+  if (route === '/terms') return <Terms />
+  if (route === '/privacy') return <Privacy />
   
   // Article pages - match /insights/:slug
   if (route.startsWith('/insights/')) {
