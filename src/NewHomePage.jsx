@@ -473,6 +473,37 @@ export default function NewHomePage() {
                 />
               </div>
 
+              {/* Email field */}
+              <div style={{ marginBottom: 12 }}>
+                <label style={{
+                  display: 'block',
+                  fontSize: 13,
+                  color: colors.inkMute,
+                  marginBottom: 6,
+                }}>
+                  Email address
+                </label>
+                <input 
+                  type="email"
+                  placeholder="you@example.com"
+                  required
+                  value={captureForm.email}
+                  onChange={(e) => setCaptureForm(f => ({ ...f, email: e.target.value }))}
+                  style={{
+                    width: '100%',
+                    border: `1px solid ${colors.line}`,
+                    borderRadius: 8,
+                    padding: '12px 14px',
+                    fontFamily: fonts.sans,
+                    fontSize: 15,
+                    color: colors.ink,
+                    background: colors.paper,
+                    outline: 'none',
+                    boxSizing: 'border-box',
+                  }}
+                />
+              </div>
+
               {/* Phone field with inline button */}
               <div style={{
                 display: 'flex',
