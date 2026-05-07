@@ -136,11 +136,21 @@ export default function Footer({ mobile, onOpenChat }) {
           </button>
 
           <nav style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
-            {['Facebook', 'Instagram', 'X', 'Threads', 'TikTok', 'YouTube', 'LinkedIn'].map((social) => (
+            {[
+              { name: 'Facebook', url: 'https://www.facebook.com/people/Milton-AI/61577932761346/' },
+              { name: 'Instagram', url: 'https://www.instagram.com/milton_ai' },
+              { name: 'YouTube', url: 'https://www.youtube.com/@MiltonAI' },
+              { name: 'TikTok', url: 'https://www.tiktok.com/@getmilton' },
+              { name: 'Threads', url: 'https://www.threads.com/@milton_ai' },
+              { name: 'X', url: 'https://x.com/getmilton_ai' },
+              { name: 'LinkedIn', url: 'https://www.linkedin.com/company/milton-ai/' },
+            ].map((social) => (
               <a 
-                key={social}
-                href="#"
-                aria-label={social}
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.name}
                 className="footer-social"
                 style={{
                   display: 'inline-flex',
@@ -152,7 +162,7 @@ export default function Footer({ mobile, onOpenChat }) {
                   color: colors.inkSoft,
                 }}
               >
-                <SocialIcon name={social} />
+                <SocialIcon name={social.name} />
               </a>
             ))}
           </nav>
