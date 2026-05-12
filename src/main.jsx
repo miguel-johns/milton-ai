@@ -9,6 +9,7 @@ import ArticlePage from './ArticlePage.jsx'
 import AboutPage from './AboutPage.jsx'
 import Terms from './Terms.jsx'
 import Privacy from './Privacy.jsx'
+import SCWPage from './SCWPage.jsx'
 
 // Note: The following imports are kept for reference but their routes are currently hidden.
 // These pages can be re-enabled by adding their routes back to the App component.
@@ -58,6 +59,7 @@ function App() {
   if (route === '/about') return <AboutPage />
   if (route === '/terms') return <Terms />
   if (route === '/privacy') return <Privacy />
+  if (route === '/scw') return <SCWPage />
   
   // Article pages - match /insights/:slug
   if (route.startsWith('/insights/')) {
