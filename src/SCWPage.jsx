@@ -56,8 +56,6 @@ function SocialIcon({ name }) {
 export default function SCWPage() {
   const { mobile } = useBreakpoint();
   const [submitted, setSubmitted] = useState(false);
-  const [showDemoModal, setShowDemoModal] = useState(false);
-  const [showConfirmationPopup, setShowConfirmationPopup] = useState(false);
   const [loading, setLoading] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -66,11 +64,26 @@ export default function SCWPage() {
     email: "",
   });
 
+  // Load Calendly script when submitted
+  useEffect(() => {
+    if (submitted) {
+      const script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      document.body.appendChild(script);
+      
+      return () => {
+        const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
+        if (existingScript) {
+          existingScript.remove();
+        }
+      };
+    }
+  }, [submitted]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    
-    console.log("[v0] Form submitted with data:", formData);
     
     try {
       const payload = {
@@ -81,7 +94,6 @@ export default function SCWPage() {
         prompt: "SCW Nutrition Coaching Summit Guide Request",
         chips: ["scw-summit", "nutrition-coaching"],
       };
-      console.log("[v0] Sending payload:", payload);
       
       const response = await fetch("/api/submit-lead", {
         method: "POST",
@@ -89,23 +101,14 @@ export default function SCWPage() {
         body: JSON.stringify(payload),
       });
 
-      console.log("[v0] Response status:", response.status);
       const data = await response.json();
-      console.log("[v0] Response data:", data);
 
       if (response.ok) {
         setSubmitted(true);
-        setShowConfirmationPopup(true);
-        // Auto-open calendar booking after a short delay
-        setTimeout(() => {
-          setShowDemoModal(true);
-        }, 1500);
       } else {
-        console.error("[v0] API error:", data.error);
         alert(data.error || "Something went wrong. Please try again.");
       }
     } catch (error) {
-      console.error("[v0] Error submitting form:", error);
       alert("Network error. Please check your connection and try again.");
     } finally {
       setLoading(false);
@@ -725,11 +728,10 @@ export default function SCWPage() {
               The link is on its way to your phone right now. The backup copy is in your inbox too.
             </p>
 
-            {/* Transition Line */}
+            {/* Calendly Booking Section */}
             <div style={{
-              padding: "32px 0",
+              padding: "32px 0 0 0",
               borderTop: `1px solid ${colors.line}`,
-              marginBottom: 0,
             }}>
               <p style={{
                 fontSize: 15,
@@ -740,44 +742,18 @@ export default function SCWPage() {
                 While you&apos;re here, want to see what this looks like when it&apos;s not a workaround? Fifteen minutes, no pressure, totally optional.
               </p>
 
-              <button
-                onClick={() => setShowDemoModal(true)}
+              {/* Calendly Embed */}
+              <div 
+                className="calendly-inline-widget" 
+                data-url="https://calendly.com/miguel-johns/milton-discovery-call?hide_gdpr_banner=1&primary_color=005b5b"
                 style={{
-                  padding: "16px 32px",
-                  fontSize: 15,
-                  fontWeight: 600,
-                  background: colors.ink,
-                  color: "#fff",
-                  border: "none",
-                  borderRadius: 8,
-                  cursor: "pointer",
-                  marginBottom: 16,
-                  transition: "transform 0.2s",
+                  minWidth: 320,
+                  height: mobile ? 580 : 700,
+                  borderRadius: 12,
+                  overflow: "hidden",
+                  border: `1px solid ${colors.line}`,
                 }}
-                onMouseEnter={(e) => e.target.style.transform = "translateY(-1px)"}
-                onMouseLeave={(e) => e.target.style.transform = "translateY(0)"}
-              >
-                Show me Milton →
-              </button>
-
-              <p style={{
-                fontSize: 13,
-                color: colors.inkMute,
-              }}>
-                <button
-                  onClick={() => window.location.href = "/"}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    color: colors.inkMute,
-                    textDecoration: "underline",
-                    cursor: "pointer",
-                    fontSize: 13,
-                  }}
-                >
-                  No thanks, just the guide →
-                </button>
-              </p>
+              />
             </div>
           </section>
         )}
@@ -888,199 +864,6 @@ export default function SCWPage() {
           </div>
         </div>
       </footer>
-
-      {/* Confirmation Popup */}
-      {showConfirmationPopup && !showDemoModal && (
-        <div 
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(0,0,0,0.5)",
-            backdropFilter: "blur(4px)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 9998,
-            padding: 20,
-          }}
-        >
-          <div 
-            style={{
-              background: colors.paper,
-              borderRadius: 16,
-              padding: mobile ? "40px 28px" : "48px 40px",
-              maxWidth: 420,
-              width: "100%",
-              textAlign: "center",
-              boxShadow: "0 24px 48px rgba(0,0,0,0.15)",
-              animation: "popIn 0.3s ease-out",
-            }}
-          >
-            <style>{`
-              @keyframes popIn {
-                from { transform: scale(0.9); opacity: 0; }
-                to { transform: scale(1); opacity: 1; }
-              }
-            `}</style>
-            
-            {/* Success checkmark */}
-            <div style={{
-              width: 72,
-              height: 72,
-              borderRadius: "50%",
-              background: colors.accentSoft,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              margin: "0 auto 24px auto",
-            }}>
-              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={colors.accent} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-            </div>
-
-            <h3 style={{
-              fontFamily: fonts.serif,
-              fontSize: mobile ? 28 : 34,
-              fontWeight: 500,
-              color: colors.ink,
-              marginBottom: 12,
-              letterSpacing: "-0.02em",
-            }}>
-              You&apos;re in!
-            </h3>
-            
-            <p style={{
-              fontSize: 16,
-              lineHeight: 1.6,
-              color: colors.inkSoft,
-              marginBottom: 8,
-            }}>
-              Check your texts — the guide is on its way.
-            </p>
-            <p style={{
-              fontSize: 14,
-              color: colors.inkMute,
-            }}>
-              Opening calendar booking...
-            </p>
-          </div>
-        </div>
-      )}
-
-      {/* Demo Modal */}
-      {showDemoModal && (
-        <DemoModal 
-          mobile={mobile} 
-          onClose={() => {
-            setShowDemoModal(false);
-            setShowConfirmationPopup(false);
-          }} 
-        />
-      )}
-    </div>
-  );
-}
-
-function DemoModal({ mobile, onClose }) {
-  useEffect(() => {
-    // Load Calendly widget script
-    const script = document.createElement('script');
-    script.src = 'https://assets.calendly.com/assets/external/widget.js';
-    script.async = true;
-    document.body.appendChild(script);
-    
-    return () => {
-      // Cleanup script on unmount
-      const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
-      if (existingScript) {
-        existingScript.remove();
-      }
-    };
-  }, []);
-
-  return (
-    <div 
-      onClick={onClose}
-      style={{
-        position: "fixed",
-        inset: 0,
-        background: "rgba(0,0,0,0.6)",
-        backdropFilter: "blur(4px)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        zIndex: 9999,
-        padding: mobile ? 12 : 20,
-      }}
-    >
-      <div 
-        onClick={(e) => e.stopPropagation()}
-        style={{
-          background: colors.paper,
-          borderRadius: 16,
-          padding: mobile ? "16px" : "24px",
-          maxWidth: 700,
-          width: "100%",
-          maxHeight: "90vh",
-          position: "relative",
-          boxShadow: "0 24px 48px rgba(0,0,0,0.15)",
-          overflow: "hidden",
-        }}
-      >
-        <button 
-          onClick={onClose}
-          style={{
-            position: "absolute",
-            top: 12,
-            right: 12,
-            background: colors.paper,
-            border: "none",
-            color: colors.inkMute,
-            cursor: "pointer",
-            fontSize: 24,
-            lineHeight: 1,
-            padding: 8,
-            borderRadius: 8,
-            zIndex: 10,
-          }}
-        >
-          ×
-        </button>
-
-        <h3 style={{
-          fontFamily: "'Cormorant Garamond', serif",
-          fontSize: mobile ? 22 : 28,
-          fontWeight: 500,
-          color: colors.ink,
-          marginBottom: 8,
-          paddingRight: 40,
-        }}>
-          Book your Milton demo
-        </h3>
-        
-        <p style={{
-          fontSize: 14,
-          lineHeight: 1.5,
-          color: colors.inkMute,
-          marginBottom: 16,
-        }}>
-          15 minutes. No pitch deck — just the product, built for your clients.
-        </p>
-
-        {/* Calendly Embed */}
-        <div 
-          className="calendly-inline-widget" 
-          data-url="https://calendly.com/miguel-johns/milton-discovery-call?hide_gdpr_banner=1&primary_color=005b5b"
-          style={{
-            minWidth: 320,
-            height: mobile ? 500 : 600,
-            border: `1px solid ${colors.line}`,
-            borderRadius: 8,
-            overflow: "hidden",
-          }}
-        />
-      </div>
     </div>
   );
 }
