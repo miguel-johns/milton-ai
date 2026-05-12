@@ -983,6 +983,22 @@ export default function SCWPage() {
 }
 
 function DemoModal({ mobile, onClose }) {
+  useEffect(() => {
+    // Load Calendly widget script
+    const script = document.createElement('script');
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    script.async = true;
+    document.body.appendChild(script);
+    
+    return () => {
+      // Cleanup script on unmount
+      const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]');
+      if (existingScript) {
+        existingScript.remove();
+      }
+    };
+  }, []);
+
   return (
     <div 
       onClick={onClose}
@@ -995,34 +1011,38 @@ function DemoModal({ mobile, onClose }) {
         alignItems: "center",
         justifyContent: "center",
         zIndex: 9999,
-        padding: 20,
+        padding: mobile ? 12 : 20,
       }}
     >
       <div 
         onClick={(e) => e.stopPropagation()}
         style={{
           background: colors.paper,
-          borderRadius: 12,
-          padding: mobile ? "32px 24px" : "40px 36px",
-          maxWidth: 480,
+          borderRadius: 16,
+          padding: mobile ? "16px" : "24px",
+          maxWidth: 700,
           width: "100%",
+          maxHeight: "90vh",
           position: "relative",
           boxShadow: "0 24px 48px rgba(0,0,0,0.15)",
+          overflow: "hidden",
         }}
       >
         <button 
           onClick={onClose}
           style={{
             position: "absolute",
-            top: 16,
-            right: 16,
-            background: "transparent",
+            top: 12,
+            right: 12,
+            background: colors.paper,
             border: "none",
             color: colors.inkMute,
             cursor: "pointer",
             fontSize: 24,
             lineHeight: 1,
-            padding: 4,
+            padding: 8,
+            borderRadius: 8,
+            zIndex: 10,
           }}
         >
           ×
@@ -1030,44 +1050,36 @@ function DemoModal({ mobile, onClose }) {
 
         <h3 style={{
           fontFamily: "'Cormorant Garamond', serif",
-          fontSize: mobile ? 26 : 32,
+          fontSize: mobile ? 22 : 28,
           fontWeight: 500,
           color: colors.ink,
-          marginBottom: 12,
+          marginBottom: 8,
+          paddingRight: 40,
         }}>
-          See Milton in action
+          Book your Milton demo
         </h3>
         
         <p style={{
-          fontSize: 15,
-          lineHeight: 1.6,
+          fontSize: 14,
+          lineHeight: 1.5,
           color: colors.inkMute,
-          marginBottom: 28,
+          marginBottom: 16,
         }}>
-          Book a 15-minute walkthrough. No pitch deck, just the product doing what you saw in the demo — but built for your clients, your brand.
+          15 minutes. No pitch deck — just the product, built for your clients.
         </p>
 
-        <a
-          href="https://cal.com/getmilton/demo"
-          target="_blank"
-          rel="noopener noreferrer"
+        {/* Calendly Embed */}
+        <div 
+          className="calendly-inline-widget" 
+          data-url="https://calendly.com/miguel-johns/milton-discovery-call?hide_gdpr_banner=1&primary_color=005b5b"
           style={{
-            display: "block",
-            width: "100%",
-            padding: "16px 24px",
-            fontSize: 15,
-            fontWeight: 600,
-            background: colors.ink,
-            color: "#fff",
-            border: "none",
+            minWidth: 320,
+            height: mobile ? 500 : 600,
+            border: `1px solid ${colors.line}`,
             borderRadius: 8,
-            textAlign: "center",
-            textDecoration: "none",
-            cursor: "pointer",
+            overflow: "hidden",
           }}
-        >
-          Book a time →
-        </a>
+        />
       </div>
     </div>
   );
