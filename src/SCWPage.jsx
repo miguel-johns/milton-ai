@@ -662,26 +662,6 @@ export default function SCWPage() {
               </div>
             </section>
 
-            {/* Bonus Line */}
-            <section style={{
-              textAlign: "center",
-              padding: mobile ? "32px 0" : "40px 0",
-              borderTop: "1px solid #E8E6E3",
-              borderBottom: "1px solid #E8E6E3",
-              marginBottom: mobile ? 48 : 64,
-            }}>
-              <p style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: mobile ? 16 : 18,
-                fontStyle: "italic",
-                lineHeight: 1.7,
-                color: "#4A4A4A",
-                maxWidth: 560,
-                margin: "0 auto",
-              }}>
-                Plus the brand setup, the report card prompt, and the three-prompt system for niche guides like the Costco run and the road trip.
-              </p>
-            </section>
           </>
         ) : (
           /* Post-Submit Confirmation */
@@ -795,36 +775,6 @@ export default function SCWPage() {
           margin: '0 auto',
           textAlign: 'center',
         }}>
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: 16,
-            marginBottom: mobile ? 28 : 36,
-          }}>
-            <img 
-              src={logoImage}
-              alt="Milton"
-              style={{
-                width: 44,
-                height: 44,
-                borderRadius: '50%',
-                objectFit: 'cover',
-                boxShadow: '0 0 0 1px rgba(11, 22, 40, 0.04), 0 1px 3px rgba(11, 22, 40, 0.06)',
-              }}
-            />
-            <p style={{
-              fontFamily: fonts.serif,
-              fontStyle: 'italic',
-              fontSize: mobile ? 16 : 18,
-              lineHeight: 1.4,
-              color: colors.inkSoft,
-              maxWidth: 380,
-            }}>
-              <em>Milton learns your way of coaching. It does not replace it.</em>
-            </p>
-          </div>
-
           <div style={{
             display: 'flex',
             alignItems: 'center',
