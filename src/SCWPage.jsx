@@ -739,7 +739,7 @@ export default function SCWPage() {
                 color: colors.inkMute,
                 marginBottom: 24,
               }}>
-                While you&apos;re here, want to see what this looks like when it&apos;s not a workaround? Fifteen minutes, no pressure, totally optional.
+                While you&apos;re here, want to see what this looks like when it&apos;s not a workaround? 30 minutes, no pressure, totally optional.
               </p>
 
               {/* Calendly Embed */}
