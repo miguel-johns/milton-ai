@@ -775,18 +775,35 @@ export default function SCWPage() {
           margin: '0 auto',
           textAlign: 'center',
         }}>
-          <img 
-            src={logoImage}
-            alt="Milton"
-            style={{
-              width: 44,
-              height: 44,
-              borderRadius: '50%',
-              objectFit: 'cover',
-              boxShadow: '0 0 0 1px rgba(11, 22, 40, 0.04), 0 1px 3px rgba(11, 22, 40, 0.06)',
-              marginBottom: mobile ? 20 : 28,
-            }}
-          />
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 16,
+            marginBottom: mobile ? 28 : 36,
+          }}>
+            <img 
+              src={logoImage}
+              alt="Milton"
+              style={{
+                width: 44,
+                height: 44,
+                borderRadius: '50%',
+                objectFit: 'cover',
+                boxShadow: '0 0 0 1px rgba(11, 22, 40, 0.04), 0 1px 3px rgba(11, 22, 40, 0.06)',
+              }}
+            />
+            <p style={{
+              fontFamily: fonts.serif,
+              fontStyle: 'italic',
+              fontSize: mobile ? 16 : 18,
+              lineHeight: 1.4,
+              color: colors.inkSoft,
+              maxWidth: 380,
+            }}>
+              <em>Milton learns your way of coaching. It does not replace it.</em>
+            </p>
+          </div>
           <div style={{
             display: 'flex',
             alignItems: 'center',
