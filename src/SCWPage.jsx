@@ -356,22 +356,18 @@ export default function SCWPage() {
               borderTop: `1px solid ${colors.line}`,
               borderBottom: `1px solid ${colors.line}`,
             }}>
-              <div style={{
-                width: 56,
-                height: 56,
-                borderRadius: "50%",
-                background: `linear-gradient(135deg, ${colors.ink}, ${colors.inkSoft})`,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#fff",
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: 22,
-                fontWeight: 600,
-                flexShrink: 0,
-              }}>
-                MJ
-              </div>
+              <img 
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Migs%20Email%20Profile-sDpO8RbOxng0ZN2GcWdgrzNZkAzoCv.png"
+                alt="Miguel Johns"
+                style={{
+                  width: 56,
+                  height: 56,
+                  borderRadius: "50%",
+                  objectFit: "cover",
+                  flexShrink: 0,
+                  boxShadow: "0 0 0 1px rgba(11, 22, 40, 0.04), 0 1px 3px rgba(11, 22, 40, 0.06)",
+                }}
+              />
               <div>
                 <p style={{
                   fontSize: 15,
