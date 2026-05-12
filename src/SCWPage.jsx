@@ -70,19 +70,28 @@ export default function SCWPage() {
     e.preventDefault();
     setLoading(true);
     
+    console.log("[v0] Form submitted with data:", formData);
+    
     try {
+      const payload = {
+        firstName: formData.firstName,
+        phone: formData.phone,
+        email: formData.email,
+        businessName: "SCW Summit Lead",
+        prompt: "SCW Nutrition Coaching Summit Guide Request",
+        chips: ["scw-summit", "nutrition-coaching"],
+      };
+      console.log("[v0] Sending payload:", payload);
+      
       const response = await fetch("/api/submit-lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          firstName: formData.firstName,
-          phone: formData.phone,
-          email: formData.email,
-          businessName: "SCW Summit Lead",
-          prompt: "SCW Nutrition Coaching Summit Guide Request",
-          chips: ["scw-summit", "nutrition-coaching"],
-        }),
+        body: JSON.stringify(payload),
       });
+
+      console.log("[v0] Response status:", response.status);
+      const data = await response.json();
+      console.log("[v0] Response data:", data);
 
       if (response.ok) {
         setSubmitted(true);
@@ -91,9 +100,13 @@ export default function SCWPage() {
         setTimeout(() => {
           setShowDemoModal(true);
         }, 1500);
+      } else {
+        console.error("[v0] API error:", data.error);
+        alert(data.error || "Something went wrong. Please try again.");
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
+      console.error("[v0] Error submitting form:", error);
+      alert("Network error. Please check your connection and try again.");
     } finally {
       setLoading(false);
     }
