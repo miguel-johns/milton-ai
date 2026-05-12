@@ -34,10 +34,10 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Phone number must have at least 10 digits' })
     }
 
-    // Initialize Supabase client
+    // Initialize Supabase client with service role for server-side operations
     const supabase = createClient(
       process.env.SUPABASE_URL,
-      process.env.SUPABASE_ANON_KEY
+      process.env.SUPABASE_SERVICE_ROLE_KEY
     )
 
     // Parse chips if it's a JSON string
