@@ -57,6 +57,7 @@ export default function SCWPage() {
   const { mobile } = useBreakpoint();
   const [submitted, setSubmitted] = useState(false);
   const [showDemoModal, setShowDemoModal] = useState(false);
+  const [showConfirmationPopup, setShowConfirmationPopup] = useState(false);
   const [loading, setLoading] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -85,6 +86,11 @@ export default function SCWPage() {
 
       if (response.ok) {
         setSubmitted(true);
+        setShowConfirmationPopup(true);
+        // Auto-open calendar booking after a short delay
+        setTimeout(() => {
+          setShowDemoModal(true);
+        }, 1500);
       }
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -874,11 +880,93 @@ export default function SCWPage() {
         </div>
       </footer>
 
+      {/* Confirmation Popup */}
+      {showConfirmationPopup && !showDemoModal && (
+        <div 
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0,0,0,0.5)",
+            backdropFilter: "blur(4px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            zIndex: 9998,
+            padding: 20,
+          }}
+        >
+          <div 
+            style={{
+              background: colors.paper,
+              borderRadius: 16,
+              padding: mobile ? "40px 28px" : "48px 40px",
+              maxWidth: 420,
+              width: "100%",
+              textAlign: "center",
+              boxShadow: "0 24px 48px rgba(0,0,0,0.15)",
+              animation: "popIn 0.3s ease-out",
+            }}
+          >
+            <style>{`
+              @keyframes popIn {
+                from { transform: scale(0.9); opacity: 0; }
+                to { transform: scale(1); opacity: 1; }
+              }
+            `}</style>
+            
+            {/* Success checkmark */}
+            <div style={{
+              width: 72,
+              height: 72,
+              borderRadius: "50%",
+              background: colors.accentSoft,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              margin: "0 auto 24px auto",
+            }}>
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke={colors.accent} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+            </div>
+
+            <h3 style={{
+              fontFamily: fonts.serif,
+              fontSize: mobile ? 28 : 34,
+              fontWeight: 500,
+              color: colors.ink,
+              marginBottom: 12,
+              letterSpacing: "-0.02em",
+            }}>
+              You&apos;re in!
+            </h3>
+            
+            <p style={{
+              fontSize: 16,
+              lineHeight: 1.6,
+              color: colors.inkSoft,
+              marginBottom: 8,
+            }}>
+              Check your texts — the guide is on its way.
+            </p>
+            <p style={{
+              fontSize: 14,
+              color: colors.inkMute,
+            }}>
+              Opening calendar booking...
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Demo Modal */}
       {showDemoModal && (
         <DemoModal 
           mobile={mobile} 
-          onClose={() => setShowDemoModal(false)} 
+          onClose={() => {
+            setShowDemoModal(false);
+            setShowConfirmationPopup(false);
+          }} 
         />
       )}
     </div>

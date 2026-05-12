@@ -74,6 +74,57 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'Failed to save your information' })
     }
 
+    // Send Slack notification
+    const slackWebhookUrl = process.env.SLACK_WEBHOOK_URL
+    if (slackWebhookUrl) {
+      try {
+        // Determine lead source tag
+        const isScwLead = parsedChips && parsedChips.includes('scw-summit')
+        const leadTag = isScwLead ? 'SCW Guide Leads' : 'Web Leads'
+        
+        const slackMessage = {
+          blocks: [
+            {
+              type: 'header',
+              text: {
+                type: 'plain_text',
+                text: `🎯 New Lead: ${leadTag}`,
+                emoji: true
+              }
+            },
+            {
+              type: 'section',
+              fields: [
+                { type: 'mrkdwn', text: `*Name:*\n${firstName.trim()}` },
+                { type: 'mrkdwn', text: `*Company:*\n${businessName.trim()}` },
+                { type: 'mrkdwn', text: `*Email:*\n${email.toLowerCase().trim()}` },
+                { type: 'mrkdwn', text: `*Phone:*\n${phone.trim()}` }
+              ]
+            },
+            ...(prompt ? [{
+              type: 'section',
+              text: { type: 'mrkdwn', text: `*Source:*\n${prompt}` }
+            }] : []),
+            {
+              type: 'context',
+              elements: [
+                { type: 'mrkdwn', text: `Tags: ${parsedChips.join(', ') || 'none'}` }
+              ]
+            }
+          ]
+        }
+
+        await fetch(slackWebhookUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(slackMessage)
+        })
+      } catch (slackError) {
+        console.error('Slack notification error:', slackError)
+        // Don't fail the request if Slack fails
+      }
+    }
+
     return res.status(200).json({ 
       success: true,
       message: 'Lead captured successfully',
