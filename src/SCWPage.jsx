@@ -775,6 +775,18 @@ export default function SCWPage() {
           margin: '0 auto',
           textAlign: 'center',
         }}>
+          <img 
+            src={logoImage}
+            alt="Milton"
+            style={{
+              width: 44,
+              height: 44,
+              borderRadius: '50%',
+              objectFit: 'cover',
+              boxShadow: '0 0 0 1px rgba(11, 22, 40, 0.04), 0 1px 3px rgba(11, 22, 40, 0.06)',
+              marginBottom: mobile ? 20 : 28,
+            }}
+          />
           <div style={{
             display: 'flex',
             alignItems: 'center',
