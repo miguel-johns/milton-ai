@@ -16,19 +16,24 @@ function useBreakpoint() {
 
 // Design tokens matching the main site
 const colors = {
-  bg: '#FAF9F7',
+  bg: '#FAFBFC',
+  bg2: '#F0F7F5',
   paper: '#FFFFFF',
-  ink: '#1A1A1A',
-  inkSoft: '#4A4A4A',
-  inkMute: '#6B6B6B',
-  line: '#E8E6E3',
+  ink: '#0B1628',
+  inkSoft: '#475569',
+  inkMute: '#94A3B8',
+  line: '#E2E8F0',
+  lineSoft: '#F1F5F9',
   accent: '#2BBFAA',
-  accentSoft: 'rgba(43, 191, 170, 0.12)',
+  accentDeep: '#08455E',
+  accentSoft: '#E6F8F4',
+  mint: '#9AF198',
+  mintSoft: '#ECFAEA',
 };
 
 const fonts = {
   serif: "'Cormorant Garamond', Georgia, serif",
-  sans: "'DM Sans', system-ui, -apple-system, sans-serif",
+  sans: "'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
   mono: "'DM Mono', 'SF Mono', monospace",
 };
 
@@ -296,7 +301,7 @@ export default function SCWPage() {
                 fontWeight: 500,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
-                color: "#6B6B6B",
+                color: colors.inkMute,
                 marginBottom: 20,
               }}>
                 SCW Nutrition Coaching Summit · Take-Home Guide
@@ -308,7 +313,7 @@ export default function SCWPage() {
                 fontSize: mobile ? 42 : 56,
                 fontWeight: 500,
                 lineHeight: 1.1,
-                color: "#1A1A1A",
+                color: colors.ink,
                 marginBottom: 16,
                 letterSpacing: "-0.02em",
               }}>
@@ -319,7 +324,7 @@ export default function SCWPage() {
               <p style={{
                 fontSize: mobile ? 18 : 20,
                 lineHeight: 1.5,
-                color: "#4A4A4A",
+                color: colors.inkSoft,
                 marginBottom: 12,
               }}>
                 Every prompt I just used. Every system instruction. Every demo workflow. Yours.
@@ -329,7 +334,7 @@ export default function SCWPage() {
               <p style={{
                 fontSize: mobile ? 15 : 16,
                 lineHeight: 1.6,
-                color: "#6B6B6B",
+                color: colors.inkMute,
               }}>
                 Drop your number below and we&apos;ll text you the guide before you leave the room.
               </p>
@@ -342,14 +347,14 @@ export default function SCWPage() {
               gap: 16,
               marginBottom: mobile ? 40 : 56,
               padding: "20px 0",
-              borderTop: "1px solid #E8E6E3",
-              borderBottom: "1px solid #E8E6E3",
+              borderTop: `1px solid ${colors.line}`,
+              borderBottom: `1px solid ${colors.line}`,
             }}>
               <div style={{
                 width: 56,
                 height: 56,
                 borderRadius: "50%",
-                background: "linear-gradient(135deg, #1A1A1A, #3A3A3A)",
+                background: `linear-gradient(135deg, ${colors.ink}, ${colors.inkSoft})`,
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -365,14 +370,14 @@ export default function SCWPage() {
                 <p style={{
                   fontSize: 15,
                   fontWeight: 600,
-                  color: "#1A1A1A",
+                  color: colors.ink,
                   marginBottom: 2,
                 }}>
                   Miguel Johns
                 </p>
                 <p style={{
                   fontSize: 14,
-                  color: "#6B6B6B",
+                  color: colors.inkMute,
                   lineHeight: 1.4,
                 }}>
                   Coach · Founder · Builder. The lecture you just heard, in one guide.
@@ -388,7 +393,7 @@ export default function SCWPage() {
                 fontWeight: 500,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
-                color: "#1A1A1A",
+                color: colors.ink,
                 marginBottom: 24,
               }}>
                 Send Me the Guide
@@ -400,7 +405,7 @@ export default function SCWPage() {
                     display: "block",
                     fontSize: 13,
                     fontWeight: 500,
-                    color: "#4A4A4A",
+                    color: colors.inkSoft,
                     marginBottom: 8,
                   }}>
                     First name
@@ -416,13 +421,13 @@ export default function SCWPage() {
                       fontSize: 16,
                       border: "1px solid #D4D2CE",
                       borderRadius: 8,
-                      background: "#fff",
-                      color: "#1A1A1A",
+                      background: colors.paper,
+                      color: colors.ink,
                       outline: "none",
                       transition: "border-color 0.2s",
                     }}
-                    onFocus={(e) => e.target.style.borderColor = "#1A1A1A"}
-                    onBlur={(e) => e.target.style.borderColor = "#D4D2CE"}
+                    onFocus={(e) => e.target.style.borderColor = colors.ink}
+                    onBlur={(e) => e.target.style.borderColor = colors.line}
                   />
                 </div>
 
@@ -431,7 +436,7 @@ export default function SCWPage() {
                     display: "block",
                     fontSize: 13,
                     fontWeight: 500,
-                    color: "#4A4A4A",
+                    color: colors.inkSoft,
                     marginBottom: 8,
                   }}>
                     Mobile number
@@ -447,17 +452,17 @@ export default function SCWPage() {
                       fontSize: 16,
                       border: "1px solid #D4D2CE",
                       borderRadius: 8,
-                      background: "#fff",
-                      color: "#1A1A1A",
+                      background: colors.paper,
+                      color: colors.ink,
                       outline: "none",
                       transition: "border-color 0.2s",
                     }}
-                    onFocus={(e) => e.target.style.borderColor = "#1A1A1A"}
-                    onBlur={(e) => e.target.style.borderColor = "#D4D2CE"}
+                    onFocus={(e) => e.target.style.borderColor = colors.ink}
+                    onBlur={(e) => e.target.style.borderColor = colors.line}
                   />
                   <p style={{
                     fontSize: 12,
-                    color: "#8A8A8A",
+                    color: colors.inkMute,
                     marginTop: 8,
                     lineHeight: 1.5,
                   }}>
@@ -470,7 +475,7 @@ export default function SCWPage() {
                     display: "block",
                     fontSize: 13,
                     fontWeight: 500,
-                    color: "#4A4A4A",
+                    color: colors.inkSoft,
                     marginBottom: 8,
                   }}>
                     Email
@@ -486,13 +491,13 @@ export default function SCWPage() {
                       fontSize: 16,
                       border: "1px solid #D4D2CE",
                       borderRadius: 8,
-                      background: "#fff",
-                      color: "#1A1A1A",
+                      background: colors.paper,
+                      color: colors.ink,
                       outline: "none",
                       transition: "border-color 0.2s",
                     }}
-                    onFocus={(e) => e.target.style.borderColor = "#1A1A1A"}
-                    onBlur={(e) => e.target.style.borderColor = "#D4D2CE"}
+                    onFocus={(e) => e.target.style.borderColor = colors.ink}
+                    onBlur={(e) => e.target.style.borderColor = colors.line}
                   />
                 </div>
 
@@ -504,7 +509,7 @@ export default function SCWPage() {
                     padding: "16px 24px",
                     fontSize: 15,
                     fontWeight: 600,
-                    background: "#1A1A1A",
+                    background: colors.ink,
                     color: "#fff",
                     border: "none",
                     borderRadius: 8,
@@ -520,7 +525,7 @@ export default function SCWPage() {
 
                 <p style={{
                   fontSize: 12,
-                  color: "#8A8A8A",
+                  color: colors.inkMute,
                   marginTop: 16,
                   textAlign: "center",
                   lineHeight: 1.5,
@@ -538,7 +543,7 @@ export default function SCWPage() {
                 fontWeight: 500,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
-                color: "#6B6B6B",
+                color: colors.inkMute,
                 marginBottom: 12,
               }}>
                 What You Get
@@ -549,7 +554,7 @@ export default function SCWPage() {
                 fontSize: mobile ? 28 : 34,
                 fontWeight: 500,
                 lineHeight: 1.2,
-                color: "#1A1A1A",
+                color: colors.ink,
                 marginBottom: mobile ? 32 : 40,
                 letterSpacing: "-0.01em",
               }}>
@@ -564,13 +569,13 @@ export default function SCWPage() {
                 {/* Workflow 1 */}
                 <div style={{
                   paddingLeft: 24,
-                  borderLeft: "2px solid #1A1A1A",
+                  borderLeft: `2px solid ${colors.accent}`,
                 }}>
                   <p style={{
                     fontFamily: "'DM Mono', 'SF Mono', monospace",
                     fontSize: 12,
                     fontWeight: 500,
-                    color: "#1A1A1A",
+                    color: colors.ink,
                     marginBottom: 8,
                   }}>
                     01 · CAPTURE
@@ -580,7 +585,7 @@ export default function SCWPage() {
                     fontSize: mobile ? 22 : 26,
                     fontWeight: 500,
                     fontStyle: "italic",
-                    color: "#1A1A1A",
+                    color: colors.ink,
                     marginBottom: 8,
                   }}>
                     The week, in.
@@ -588,7 +593,7 @@ export default function SCWPage() {
                   <p style={{
                     fontSize: 15,
                     lineHeight: 1.65,
-                    color: "#6B6B6B",
+                    color: colors.inkMute,
                   }}>
                     A week of mixed inputs into one chat. Out comes the per-input read, the behavior pattern, and one coaching question for next session.
                   </p>
@@ -597,13 +602,13 @@ export default function SCWPage() {
                 {/* Workflow 2 */}
                 <div style={{
                   paddingLeft: 24,
-                  borderLeft: "2px solid #1A1A1A",
+                  borderLeft: `2px solid ${colors.accent}`,
                 }}>
                   <p style={{
                     fontFamily: "'DM Mono', 'SF Mono', monospace",
                     fontSize: 12,
                     fontWeight: 500,
-                    color: "#1A1A1A",
+                    color: colors.ink,
                     marginBottom: 8,
                   }}>
                     02 · PLAN
@@ -613,7 +618,7 @@ export default function SCWPage() {
                     fontSize: mobile ? 22 : 26,
                     fontWeight: 500,
                     fontStyle: "italic",
-                    color: "#1A1A1A",
+                    color: colors.ink,
                     marginBottom: 8,
                   }}>
                     The four weeks.
@@ -621,7 +626,7 @@ export default function SCWPage() {
                   <p style={{
                     fontSize: 15,
                     lineHeight: 1.65,
-                    color: "#6B6B6B",
+                    color: colors.inkMute,
                   }}>
                     From the week&apos;s story to a personalized review and a four-week plan, plus the one-page client handout you can send tonight.
                   </p>
@@ -630,13 +635,13 @@ export default function SCWPage() {
                 {/* Workflow 3 */}
                 <div style={{
                   paddingLeft: 24,
-                  borderLeft: "2px solid #1A1A1A",
+                  borderLeft: `2px solid ${colors.accent}`,
                 }}>
                   <p style={{
                     fontFamily: "'DM Mono', 'SF Mono', monospace",
                     fontSize: 12,
                     fontWeight: 500,
-                    color: "#1A1A1A",
+                    color: colors.ink,
                     marginBottom: 8,
                   }}>
                     03 · VISUALIZE
@@ -646,7 +651,7 @@ export default function SCWPage() {
                     fontSize: mobile ? 22 : 26,
                     fontWeight: 500,
                     fontStyle: "italic",
-                    color: "#1A1A1A",
+                    color: colors.ink,
                     marginBottom: 8,
                   }}>
                     The library.
@@ -654,7 +659,7 @@ export default function SCWPage() {
                   <p style={{
                     fontSize: 15,
                     lineHeight: 1.65,
-                    color: "#6B6B6B",
+                    color: colors.inkMute,
                   }}>
                     Recipe cards, plate diagrams, niche food guides. On brand, on demand. Fifty assets in an afternoon.
                   </p>
@@ -671,13 +676,13 @@ export default function SCWPage() {
               width: 64,
               height: 64,
               borderRadius: "50%",
-              background: "#E8F5E8",
+              background: colors.accentSoft,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               margin: "0 auto 24px auto",
             }}>
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2D8A2D" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={colors.accent} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="20 6 9 17 4 12" />
               </svg>
             </div>
@@ -687,7 +692,7 @@ export default function SCWPage() {
               fontSize: mobile ? 32 : 42,
               fontWeight: 500,
               lineHeight: 1.2,
-              color: "#1A1A1A",
+              color: colors.ink,
               marginBottom: 16,
               letterSpacing: "-0.02em",
             }}>
@@ -697,7 +702,7 @@ export default function SCWPage() {
             <p style={{
               fontSize: mobile ? 16 : 18,
               lineHeight: 1.6,
-              color: "#6B6B6B",
+              color: colors.inkMute,
               marginBottom: 40,
               maxWidth: 440,
               margin: "0 auto 40px auto",
@@ -708,13 +713,13 @@ export default function SCWPage() {
             {/* Transition Line */}
             <div style={{
               padding: "32px 0",
-              borderTop: "1px solid #E8E6E3",
+              borderTop: `1px solid ${colors.line}`,
               marginBottom: 0,
             }}>
               <p style={{
                 fontSize: 15,
                 lineHeight: 1.6,
-                color: "#6B6B6B",
+                color: colors.inkMute,
                 marginBottom: 24,
               }}>
                 While you&apos;re here, want to see what this looks like when it&apos;s not a workaround? Fifteen minutes, no pressure, totally optional.
@@ -726,7 +731,7 @@ export default function SCWPage() {
                   padding: "16px 32px",
                   fontSize: 15,
                   fontWeight: 600,
-                  background: "#1A1A1A",
+                  background: colors.ink,
                   color: "#fff",
                   border: "none",
                   borderRadius: 8,
@@ -742,14 +747,14 @@ export default function SCWPage() {
 
               <p style={{
                 fontSize: 13,
-                color: "#8A8A8A",
+                color: colors.inkMute,
               }}>
                 <button
                   onClick={() => window.location.href = "/"}
                   style={{
                     background: "none",
                     border: "none",
-                    color: "#8A8A8A",
+                    color: colors.inkMute,
                     textDecoration: "underline",
                     cursor: "pointer",
                     fontSize: 13,
@@ -899,7 +904,7 @@ function DemoModal({ mobile, onClose }) {
       <div 
         onClick={(e) => e.stopPropagation()}
         style={{
-          background: "#fff",
+          background: colors.paper,
           borderRadius: 12,
           padding: mobile ? "32px 24px" : "40px 36px",
           maxWidth: 480,
@@ -916,7 +921,7 @@ function DemoModal({ mobile, onClose }) {
             right: 16,
             background: "transparent",
             border: "none",
-            color: "#8A8A8A",
+            color: colors.inkMute,
             cursor: "pointer",
             fontSize: 24,
             lineHeight: 1,
@@ -930,7 +935,7 @@ function DemoModal({ mobile, onClose }) {
           fontFamily: "'Cormorant Garamond', serif",
           fontSize: mobile ? 26 : 32,
           fontWeight: 500,
-          color: "#1A1A1A",
+          color: colors.ink,
           marginBottom: 12,
         }}>
           See Milton in action
@@ -939,7 +944,7 @@ function DemoModal({ mobile, onClose }) {
         <p style={{
           fontSize: 15,
           lineHeight: 1.6,
-          color: "#6B6B6B",
+          color: colors.inkMute,
           marginBottom: 28,
         }}>
           Book a 15-minute walkthrough. No pitch deck, just the product doing what you saw in the demo — but built for your clients, your brand.
@@ -955,7 +960,7 @@ function DemoModal({ mobile, onClose }) {
             padding: "16px 24px",
             fontSize: 15,
             fontWeight: 600,
-            background: "#1A1A1A",
+            background: colors.ink,
             color: "#fff",
             border: "none",
             borderRadius: 8,
