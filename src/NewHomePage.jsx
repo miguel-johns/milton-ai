@@ -393,29 +393,23 @@ export default function NewHomePage() {
             {/* Steps */}
             <div style={{
               display: 'grid',
-              gridTemplateColumns: mobile ? '1fr' : 'repeat(4, 1fr)',
+              gridTemplateColumns: mobile ? '1fr' : 'repeat(3, 1fr)',
               gap: mobile ? 32 : 24,
             }}>
               <HowItWorksStep
                 number="1"
-                title="We connect it."
-                description="Milton plugs into the tools you already use."
-                mobile={mobile}
-              />
-              <HowItWorksStep
-                number="2"
                 title="You upload."
                 description="Your member base and your coaching methodology."
                 mobile={mobile}
               />
               <HowItWorksStep
-                number="3"
+                number="2"
                 title="Milton learns."
                 description="Your members, your programs, your standards."
                 mobile={mobile}
               />
               <HowItWorksStep
-                number="4"
+                number="3"
                 title="You talk."
                 description="Build programs, run challenges, prep for sessions. By talking."
                 mobile={mobile}
