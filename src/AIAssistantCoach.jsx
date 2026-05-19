@@ -245,39 +245,22 @@ export default function AIAssistantCoach() {
           </div>
         </section>
 
-        {/* Hero media placeholder */}
+        {/* Hero media */}
         <section style={{
-          maxWidth: 1000,
+          maxWidth: 1100,
           margin: '0 auto',
           padding: mobile ? '0 16px 48px' : '0 24px 100px',
         }}>
-          <div style={{
-            background: colors.paper,
-            border: `1px solid ${colors.line}`,
-            borderRadius: 20,
-            padding: mobile ? 24 : 48,
-            minHeight: mobile ? 200 : 400,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 4px 24px rgba(0, 0, 0, 0.06)',
-          }}>
-            <div style={{
+          <img 
+            src="/images/milton-hero.png"
+            alt="Milton AI assistant showing your daily brief with sessions, client appointments, and items needing attention"
+            style={{
               width: '100%',
-              height: '100%',
-              background: `linear-gradient(135deg, ${colors.accentSoft}, ${colors.mintSoft})`,
-              borderRadius: 12,
-              minHeight: mobile ? 160 : 320,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: colors.inkMute,
-              fontFamily: fonts.sans,
-              fontSize: 14,
-            }}>
-              Hero media
-            </div>
-          </div>
+              height: 'auto',
+              borderRadius: mobile ? 16 : 24,
+              display: 'block',
+            }}
+          />
         </section>
 
         {/* Intro Section */}
