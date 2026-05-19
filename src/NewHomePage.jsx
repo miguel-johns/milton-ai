@@ -1142,42 +1142,55 @@ function WaySection({ mobile, number, label, headline, body, revenueLabel, reven
 // How It Works Step Component
 function HowItWorksStep({ number, title, description, mobile }) {
   return (
-    <div style={{
-      background: colors.paper,
-      borderRadius: 16,
-      border: `1px solid ${colors.line}`,
-      padding: mobile ? '28px 24px' : '32px 28px',
-      textAlign: mobile ? 'center' : 'left',
-      boxShadow: '0 2px 8px rgba(11, 22, 40, 0.04)',
-    }}>
-      <span style={{
-        display: 'block',
-        fontFamily: fonts.serif,
-        fontSize: mobile ? 48 : 56,
-        fontWeight: 700,
-        color: colors.accent,
-        lineHeight: 1,
-        marginBottom: 16,
-      }}>
-        {number}
-      </span>
-      <h4 style={{
-        fontFamily: fonts.sans,
-        fontSize: 18,
-        fontWeight: 600,
-        color: colors.ink,
-        marginBottom: 10,
-      }}>
-        {title}
-      </h4>
-      <p style={{
-        fontFamily: fonts.sans,
-        fontSize: 15,
-        lineHeight: 1.6,
-        color: colors.inkSoft,
-      }}>
-        {description}
-      </p>
-    </div>
+    <>
+      <style>{`
+        .how-it-works-card {
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .how-it-works-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 8px 24px rgba(11, 22, 40, 0.1);
+        }
+      `}</style>
+      <div 
+        className="how-it-works-card"
+        style={{
+          background: colors.paper,
+          borderRadius: 16,
+          border: `1px solid ${colors.line}`,
+          padding: mobile ? '28px 24px' : '32px 28px',
+          textAlign: mobile ? 'center' : 'left',
+          boxShadow: '0 2px 8px rgba(11, 22, 40, 0.04)',
+        }}>
+        <span style={{
+          display: 'block',
+          fontFamily: fonts.serif,
+          fontSize: mobile ? 48 : 56,
+          fontWeight: 700,
+          color: colors.accent,
+          lineHeight: 1,
+          marginBottom: 16,
+        }}>
+          {number}
+        </span>
+        <h4 style={{
+          fontFamily: fonts.sans,
+          fontSize: 18,
+          fontWeight: 600,
+          color: colors.ink,
+          marginBottom: 10,
+        }}>
+          {title}
+        </h4>
+        <p style={{
+          fontFamily: fonts.sans,
+          fontSize: 15,
+          lineHeight: 1.6,
+          color: colors.inkSoft,
+        }}>
+          {description}
+        </p>
+      </div>
+    </>
   )
 }
