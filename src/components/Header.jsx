@@ -18,6 +18,7 @@ const colors = {
   ink: '#0B1628',
   muted: '#64748B',
   line: '#E2E8F0',
+  accent: '#2BBFAA',
 }
 
 const fonts = {
@@ -33,6 +34,31 @@ export default function Header({ currentPage = 'home' }) {
 
   return (
     <>
+      <style>{`
+        .header-nav-link {
+          transition: color 0.2s ease;
+        }
+        .header-nav-link:hover {
+          color: ${colors.accent} !important;
+        }
+        .header-cta-btn {
+          transition: background 0.2s ease, transform 0.15s ease;
+        }
+        .header-cta-btn:hover {
+          background: #0a1220 !important;
+          transform: translateY(-1px);
+        }
+        .header-mobile-link {
+          transition: background 0.2s ease, color 0.2s ease;
+        }
+        .header-mobile-link:hover {
+          background: rgba(43, 191, 170, 0.08);
+          color: ${colors.accent} !important;
+        }
+        .header-mobile-cta:hover {
+          background: #0a1220 !important;
+        }
+      `}</style>
       <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       
       <header style={{
@@ -78,6 +104,7 @@ export default function Header({ currentPage = 'home' }) {
           <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
             <a 
               href="/insights"
+              className="header-nav-link"
               style={{
                 fontFamily: fonts.sans,
                 fontSize: 14,
@@ -91,6 +118,7 @@ export default function Header({ currentPage = 'home' }) {
             </a>
             <a 
               href="/about"
+              className="header-nav-link"
               style={{
                 fontFamily: fonts.sans,
                 fontSize: 14,
@@ -106,6 +134,7 @@ export default function Header({ currentPage = 'home' }) {
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
+              className="header-cta-btn"
               style={{
                 background: colors.ink,
                 color: colors.paper,
@@ -214,7 +243,8 @@ export default function Header({ currentPage = 'home' }) {
           }}>
             <a 
               href="/insights"
-              onClick={() => setMobileMenuOpen(false)} 
+              onClick={() => setMobileMenuOpen(false)}
+              className="header-mobile-link"
               style={{
                 display: 'block',
                 padding: '14px 16px',
@@ -229,7 +259,8 @@ export default function Header({ currentPage = 'home' }) {
             </a>
             <a 
               href="/about"
-              onClick={() => setMobileMenuOpen(false)} 
+              onClick={() => setMobileMenuOpen(false)}
+              className="header-mobile-link"
               style={{
                 display: 'block',
                 padding: '14px 16px',
@@ -246,7 +277,8 @@ export default function Header({ currentPage = 'home' }) {
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => setMobileMenuOpen(false)} 
+              onClick={() => setMobileMenuOpen(false)}
+              className="header-mobile-cta"
               style={{
                 display: 'block',
                 padding: '14px 16px',
@@ -258,6 +290,7 @@ export default function Header({ currentPage = 'home' }) {
                 background: colors.ink,
                 textAlign: 'center',
                 marginTop: 4,
+                transition: 'background 0.2s ease',
               }}
             >
               Start free trial
