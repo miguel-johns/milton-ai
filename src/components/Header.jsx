@@ -27,6 +27,7 @@ const fonts = {
 
 const logoImage = "/images/milton-logo.png"
 const CALENDLY_URL = "https://calendly.com/miguel-getmilton/30min"
+const STRIPE_URL = "https://buy.stripe.com/8x2eVe0mT1bT6nueDUeUU0X"
 
 export default function Header({ currentPage = 'home' }) {
   const { mobile } = useBreakpoint()
@@ -131,7 +132,7 @@ export default function Header({ currentPage = 'home' }) {
               About
             </a>
             <a 
-              href={CALENDLY_URL}
+              href={STRIPE_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="header-cta-btn"
@@ -274,7 +275,7 @@ export default function Header({ currentPage = 'home' }) {
               About
             </a>
             <a 
-              href={CALENDLY_URL}
+              href={STRIPE_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}

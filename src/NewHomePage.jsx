@@ -46,6 +46,8 @@ const logoImage = "/images/milton-logo.png"
 
 // Calendly booking URL
 const CALENDLY_URL = "https://calendly.com/miguel-getmilton/30min"
+// Stripe checkout URL
+const STRIPE_URL = "https://buy.stripe.com/8x2eVe0mT1bT6nueDUeUU0X"
 
 export default function NewHomePage() {
   const { mobile } = useBreakpoint()
@@ -166,7 +168,7 @@ export default function NewHomePage() {
             alignItems: 'center',
           }}>
             <a 
-              href={CALENDLY_URL}
+              href={STRIPE_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="cta-link"
@@ -447,7 +449,7 @@ export default function NewHomePage() {
               alignItems: 'center',
             }}>
               <a 
-                href={CALENDLY_URL}
+                href={STRIPE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="cta-link"
