@@ -66,7 +66,7 @@ function FeatureCard({ number, label, title, body, children, mobile }) {
     <div style={{
       display: 'flex',
       flexDirection: 'column',
-      gap: mobile ? 24 : 32,
+      gap: mobile ? 20 : 32,
     }}>
       {/* Label */}
       <div style={{
@@ -84,24 +84,26 @@ function FeatureCard({ number, label, title, body, children, mobile }) {
       <div style={{
         display: 'grid',
         gridTemplateColumns: mobile ? '1fr' : '1fr 1fr',
-        gap: mobile ? 32 : 64,
+        gap: mobile ? 24 : 64,
         alignItems: 'center',
       }}>
         {/* Text side */}
         <div>
           <h2 style={{
             fontFamily: fonts.serif,
-            fontSize: mobile ? 28 : 36,
-            lineHeight: 1.15,
+            fontSize: mobile ? 24 : 36,
+            lineHeight: 1.2,
             fontWeight: 500,
             color: colors.ink,
-            marginBottom: 16,
+            marginBottom: 12,
+            wordWrap: 'break-word',
+            overflowWrap: 'break-word',
           }}>
             {title}
           </h2>
           <p style={{
             fontFamily: fonts.sans,
-            fontSize: mobile ? 15 : 16,
+            fontSize: mobile ? 14 : 16,
             lineHeight: 1.7,
             color: colors.inkSoft,
           }}>
@@ -114,8 +116,8 @@ function FeatureCard({ number, label, title, body, children, mobile }) {
           background: colors.paper,
           border: `1px solid ${colors.line}`,
           borderRadius: 16,
-          padding: mobile ? 20 : 32,
-          minHeight: mobile ? 200 : 280,
+          padding: mobile ? 16 : 32,
+          minHeight: mobile ? 180 : 280,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -127,7 +129,7 @@ function FeatureCard({ number, label, title, body, children, mobile }) {
               height: '100%',
               background: `linear-gradient(135deg, ${colors.accentSoft}, ${colors.mintSoft})`,
               borderRadius: 12,
-              minHeight: mobile ? 160 : 200,
+              minHeight: mobile ? 140 : 200,
             }} />
           )}
         </div>
@@ -186,7 +188,7 @@ export default function AIAssistantCoach() {
       <main>
         {/* Hero Section */}
         <section style={{
-          padding: mobile ? '64px 20px 80px' : '100px 24px 120px',
+          padding: mobile ? '48px 16px 64px' : '100px 24px 120px',
           maxWidth: 900,
           margin: '0 auto',
           textAlign: 'center',
@@ -208,7 +210,7 @@ export default function AIAssistantCoach() {
           {/* Headline */}
           <h1 style={{
             fontFamily: fonts.serif,
-            fontSize: mobile ? 38 : 56,
+            fontSize: mobile ? 32 : 56,
             lineHeight: 1.1,
             letterSpacing: '-0.02em',
             fontWeight: 500,
@@ -247,7 +249,7 @@ export default function AIAssistantCoach() {
         <section style={{
           maxWidth: 1000,
           margin: '0 auto',
-          padding: mobile ? '0 20px 64px' : '0 24px 100px',
+          padding: mobile ? '0 16px 48px' : '0 24px 100px',
         }}>
           <div style={{
             background: colors.paper,
@@ -280,7 +282,7 @@ export default function AIAssistantCoach() {
 
         {/* Intro Section */}
         <section style={{
-          padding: mobile ? '64px 20px' : '100px 40px',
+          padding: mobile ? '48px 16px' : '100px 40px',
           textAlign: 'center',
           background: colors.bg2,
         }}>
@@ -301,7 +303,7 @@ export default function AIAssistantCoach() {
             {/* Headline */}
             <h2 style={{
               fontFamily: fonts.serif,
-              fontSize: mobile ? 32 : 44,
+              fontSize: mobile ? 28 : 44,
               lineHeight: 1.15,
               fontWeight: 500,
               color: colors.ink,
@@ -326,7 +328,7 @@ export default function AIAssistantCoach() {
         <div style={{
           maxWidth: 1100,
           margin: '0 auto',
-          padding: mobile ? '0 20px 64px' : '0 40px 100px',
+          padding: mobile ? '0 16px 48px' : '0 40px 100px',
         }}>
           {features.map((feature, idx) => (
             <section 
@@ -367,7 +369,7 @@ export default function AIAssistantCoach() {
         {/* Final CTA Section */}
         <section style={{
           background: colors.bg2,
-          padding: mobile ? '64px 20px 80px' : '100px 40px 120px',
+          padding: mobile ? '48px 16px 64px' : '100px 40px 120px',
           textAlign: 'center',
         }}>
           <div style={{ maxWidth: 700, margin: '0 auto' }}>
@@ -387,7 +389,7 @@ export default function AIAssistantCoach() {
             {/* Headline */}
             <h2 style={{
               fontFamily: fonts.serif,
-              fontSize: mobile ? 32 : 48,
+              fontSize: mobile ? 28 : 48,
               lineHeight: 1.12,
               fontWeight: 500,
               color: colors.ink,
