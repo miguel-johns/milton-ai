@@ -56,6 +56,7 @@ export default function NewHomePage() {
   const [leadForm, setLeadForm] = useState({ name: '', email: '', phone: '', company: '' })
   const [leadSubmitting, setLeadSubmitting] = useState(false)
   const [leadError, setLeadError] = useState(null)
+  const [calendlyModalOpen, setCalendlyModalOpen] = useState(false)
 
   const closeChatModal = () => {
     setChatModalOpen(false)
@@ -186,10 +187,8 @@ export default function NewHomePage() {
             >
               Start free trial
             </a>
-            <a 
-              href={CALENDLY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button 
+              onClick={() => setCalendlyModalOpen(true)}
               className="cta-link"
               style={{
                 background: 'transparent',
@@ -201,10 +200,11 @@ export default function NewHomePage() {
                 fontWeight: 500,
                 textDecoration: 'none',
                 border: `1px solid ${colors.line}`,
+                cursor: 'pointer',
               }}
             >
               Book a call
-            </a>
+            </button>
           </div>
 
           {/* Hero video - YouTube embed */}
@@ -467,10 +467,8 @@ export default function NewHomePage() {
               >
                 Start free trial
               </a>
-              <a 
-                href={CALENDLY_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button 
+                onClick={() => setCalendlyModalOpen(true)}
                 className="cta-link"
                 style={{
                   background: 'transparent',
@@ -482,10 +480,11 @@ export default function NewHomePage() {
                   fontWeight: 500,
                   textDecoration: 'none',
                   border: `1px solid ${colors.line}`,
+                  cursor: 'pointer',
                 }}
               >
                 Book a call
-              </a>
+              </button>
             </div>
           </div>
         </section>
@@ -792,6 +791,77 @@ export default function NewHomePage() {
           box-shadow: 0 4px 12px rgba(11, 22, 40, 0.12);
         }
       `}</style>
+
+      {/* Calendly Modal */}
+      {calendlyModalOpen && (
+        <div 
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 100,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: mobile ? 16 : 20,
+          }}
+        >
+          <div 
+            onClick={() => setCalendlyModalOpen(false)}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'rgba(11, 22, 40, 0.42)',
+              backdropFilter: 'blur(6px)',
+            }}
+          />
+          <div style={{
+            position: 'relative',
+            width: '100%',
+            maxWidth: 700,
+            height: mobile ? 'calc(100vh - 32px)' : 750,
+            maxHeight: 'calc(100vh - 40px)',
+            background: colors.paper,
+            borderRadius: 20,
+            boxShadow: '0 24px 64px rgba(11, 22, 40, 0.18), 0 4px 16px rgba(11, 22, 40, 0.08)',
+            overflow: 'hidden',
+            display: 'flex',
+            flexDirection: 'column',
+          }}>
+            <button 
+              onClick={() => setCalendlyModalOpen(false)}
+              style={{
+                position: 'absolute',
+                top: 14,
+                right: 14,
+                width: 32,
+                height: 32,
+                borderRadius: 8,
+                border: 'none',
+                background: 'rgba(255,255,255,0.9)',
+                color: colors.inkMute,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                zIndex: 10,
+              }}
+            >
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <path d="M18 6L6 18M6 6l12 12"/>
+              </svg>
+            </button>
+            <iframe 
+              src="https://calendly.com/miguel-johns/milton-demo?hide_gdpr_banner=1&primary_color=006c55"
+              style={{
+                width: '100%',
+                height: '100%',
+                border: 'none',
+              }}
+              title="Schedule a call with Milton"
+            />
+          </div>
+        </div>
+      )}
     </div>
   )
 }
