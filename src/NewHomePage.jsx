@@ -1143,43 +1143,49 @@ function WaySection({ mobile, number, label, headline, body, revenueLabel, reven
 function HowItWorksStep({ number, title, description, mobile }) {
   return (
     <div style={{
+      background: colors.paper,
+      borderRadius: 16,
+      border: `1px solid ${colors.line}`,
+      padding: mobile ? '28px 24px' : '32px 28px',
       textAlign: mobile ? 'center' : 'left',
+      boxShadow: '0 2px 8px rgba(11, 22, 40, 0.04)',
     }}>
       <div style={{
-        width: 40,
-        height: 40,
-        borderRadius: '50%',
-        background: colors.accentSoft,
+        width: 56,
+        height: 56,
+        borderRadius: 14,
+        background: `linear-gradient(135deg, ${colors.accent} 0%, ${colors.accentDeep} 100%)`,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        marginBottom: 16,
+        marginBottom: 20,
         marginLeft: mobile ? 'auto' : 0,
         marginRight: mobile ? 'auto' : 0,
+        boxShadow: '0 4px 12px rgba(43, 191, 170, 0.3)',
       }}>
         <span style={{
           fontFamily: fonts.serif,
           fontStyle: 'italic',
-          fontSize: 18,
-          fontWeight: 500,
-          color: colors.accentDeep,
+          fontSize: 24,
+          fontWeight: 600,
+          color: '#FFFFFF',
         }}>
           {number}
         </span>
       </div>
       <h4 style={{
         fontFamily: fonts.sans,
-        fontSize: 17,
+        fontSize: 18,
         fontWeight: 600,
         color: colors.ink,
-        marginBottom: 8,
+        marginBottom: 10,
       }}>
         {title}
       </h4>
       <p style={{
         fontFamily: fonts.sans,
-        fontSize: 14,
-        lineHeight: 1.55,
+        fontSize: 15,
+        lineHeight: 1.6,
         color: colors.inkSoft,
       }}>
         {description}
