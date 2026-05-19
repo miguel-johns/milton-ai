@@ -1,21 +1,33 @@
 import { useState, useEffect } from 'react'
 import Footer from './components/Footer'
+import Header from './components/Header'
 
-// Design tokens matching Milton dark design system
+// Custom hook for responsive breakpoints (matching NewHomePage)
+function useBreakpoint() {
+  const [w, setW] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200)
+  useEffect(() => {
+    const h = () => setW(window.innerWidth)
+    window.addEventListener('resize', h)
+    return () => window.removeEventListener('resize', h)
+  }, [])
+  return { mobile: w < 640, tablet: w >= 640 && w < 1024, desktop: w >= 1024, w }
+}
+
+// Design tokens matching NewHomePage light theme
 const colors = {
-  bg: '#061c27',
-  bgDeep: '#051722',
-  paper: '#0a2a3a',
-  ink: '#ffffff',
-  inkSoft: 'rgba(255, 255, 255, 0.7)',
-  inkMute: 'rgba(255, 255, 255, 0.5)',
-  line: 'rgba(13, 154, 165, 0.2)',
-  lineSoft: 'rgba(13, 154, 165, 0.1)',
-  accent: '#0d9aa5',
-  accentLight: '#2BBFAA',
-  accentSoft: 'rgba(13, 154, 165, 0.15)',
-  mint: '#9af198',
-  mintSoft: 'rgba(154, 241, 152, 0.15)',
+  bg: '#FAFBFC',
+  bg2: '#F0F7F5',
+  paper: '#FFFFFF',
+  ink: '#0B1628',
+  inkSoft: '#475569',
+  inkMute: '#94A3B8',
+  line: '#E2E8F0',
+  lineSoft: '#F1F5F9',
+  accent: '#2BBFAA',
+  accentDeep: '#08455E',
+  accentSoft: '#E6F8F4',
+  mint: '#9AF198',
+  mintSoft: '#ECFAEA',
 }
 
 const fonts = {
@@ -23,7 +35,6 @@ const fonts = {
   sans: "'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
 }
 
-const logoImage = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Milton%20Face%20Logo-whMWzOXBgBgulGUqdRthSEMsjeyWPe.png"
 const STRIPE_URL = "https://buy.stripe.com/8x2eVe0mT1bT6nueDUeUU0X"
 const CALENDLY_URL = "https://calendly.com/miguel-getmilton/30min"
 
@@ -33,7 +44,7 @@ function CTA({ children, variant = "primary", style: s = {}, href, onClick }) {
     fontSize: 15,
     fontWeight: 600,
     padding: "14px 32px",
-    borderRadius: 100,
+    borderRadius: 10,
     cursor: "pointer",
     transition: "all 0.25s ease",
     textDecoration: "none",
@@ -42,8 +53,8 @@ function CTA({ children, variant = "primary", style: s = {}, href, onClick }) {
     whiteSpace: "nowrap",
   }
   const styles = variant === "primary"
-    ? { ...base, background: "#fff", color: "#08455e", border: "none", ...s }
-    : { ...base, background: "transparent", color: "#fff", border: "1px solid rgba(255,255,255,0.3)", ...s }
+    ? { ...base, background: colors.ink, color: colors.paper, border: "none", ...s }
+    : { ...base, background: "transparent", color: colors.ink, border: `1px solid ${colors.line}`, ...s }
   if (href) {
     return <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel={href.startsWith('http') ? 'noopener noreferrer' : undefined} style={styles}>{children}</a>
   }
@@ -108,6 +119,7 @@ function FeatureCard({ number, label, title, body, children, mobile }) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
         }}>
           {children || (
             <div style={{
@@ -125,14 +137,7 @@ function FeatureCard({ number, label, title, body, children, mobile }) {
 }
 
 export default function AIAssistantCoach() {
-  const [mobile, setMobile] = useState(typeof window !== 'undefined' ? window.innerWidth <= 768 : false)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
-  useEffect(() => {
-    const handleResize = () => setMobile(window.innerWidth <= 768)
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
+  const { mobile } = useBreakpoint()
 
   // Feature sections data from the provided content
   const features = [
@@ -145,7 +150,7 @@ export default function AIAssistantCoach() {
     {
       number: '02',
       label: '02 / Memory',
-      title: 'An AI assistant coach holds all your client history in its memory so you don\'t have to hold it in yours.',
+      title: "An AI assistant coach holds all your client history in its memory so you don't have to hold it in yours.",
       body: 'Every session, every check-in, every injury, every PR. You walk in already knowing where they left off.',
     },
     {
@@ -157,13 +162,13 @@ export default function AIAssistantCoach() {
     {
       number: '04',
       label: '04 / Attention',
-      title: 'An AI assistant coach surfaces the important information that needs your attention so you don\'t waste time digging around to hold clients accountable.',
-      body: 'Open Milton and it tells you who needs a check-in, who missed a session, and who\'s about to fall off. No digging. No guessing.',
+      title: "An AI assistant coach surfaces the important information that needs your attention so you don't waste time digging around to hold clients accountable.",
+      body: "Open Milton and it tells you who needs a check-in, who missed a session, and who's about to fall off. No digging. No guessing.",
     },
     {
       number: '05',
       label: '05 / Story',
-      title: 'An AI assistant coach helps you tell a story about your client\'s progress so you can keep them motivated and showing up.',
+      title: "An AI assistant coach helps you tell a story about your client's progress so you can keep them motivated and showing up.",
       body: 'It pulls the numbers, the trends, the wins, and gives you the words. Every check-in feels like progress, not paperwork.',
     },
   ]
@@ -175,275 +180,75 @@ export default function AIAssistantCoach() {
       fontFamily: fonts.sans,
       color: colors.ink,
     }}>
-      <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-
-      {/* Header */}
-      <header style={{
-        padding: mobile ? '16px 20px' : '20px 40px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        position: 'sticky',
-        top: 0,
-        background: 'rgba(6, 28, 39, 0.95)',
-        backdropFilter: 'blur(20px)',
-        zIndex: 100,
-        borderBottom: `1px solid ${colors.lineSoft}`,
-      }}>
-        <a href="/" style={{
-          fontFamily: fonts.sans,
-          fontSize: 20,
-          fontWeight: 700,
-          letterSpacing: 2,
-          color: colors.ink,
-          textDecoration: 'none',
-          display: 'flex',
-          alignItems: 'center',
-          gap: 10,
-        }}>
-          <img 
-            src={logoImage}
-            alt="Milton"
-            style={{
-              width: mobile ? 36 : 44,
-              height: mobile ? 36 : 44,
-              borderRadius: 8,
-              objectFit: 'cover',
-            }}
-          />
-          <span>MILTON</span>
-        </a>
-
-        {/* Desktop Nav */}
-        {!mobile && (
-          <nav style={{
-            display: 'flex',
-            gap: 32,
-            fontSize: 14,
-            color: colors.inkSoft,
-            alignItems: 'center',
-          }}>
-            <a href="/coaches" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s' }}>For Coaches</a>
-            <a href="/gyms" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s' }}>For Gyms</a>
-            <a href="/ai-assistant-coach" style={{ color: colors.ink, textDecoration: 'none', fontWeight: 600 }}>Your AI Assistant Coach</a>
-            <a href="/insights" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s' }}>Insights</a>
-            <a href="/about" style={{ color: 'inherit', textDecoration: 'none', transition: 'color 0.2s' }}>About</a>
-            <CTA href={STRIPE_URL}>Start free trial</CTA>
-          </nav>
-        )}
-
-        {/* Mobile menu toggle */}
-        {mobile && (
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            style={{
-              width: 40,
-              height: 40,
-              border: `1px solid ${colors.line}`,
-              background: 'transparent',
-              borderRadius: 10,
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              position: 'relative',
-              zIndex: 60,
-            }}
-          >
-            <div style={{ position: 'relative', width: 18, height: 14 }}>
-              <span style={{
-                position: 'absolute',
-                left: 0,
-                width: 18,
-                height: 1.5,
-                background: colors.ink,
-                borderRadius: 1,
-                top: mobileMenuOpen ? 6 : 0,
-                transform: mobileMenuOpen ? 'rotate(45deg)' : 'none',
-                transition: 'all 0.3s',
-              }} />
-              <span style={{
-                position: 'absolute',
-                left: 0,
-                width: 18,
-                height: 1.5,
-                background: mobileMenuOpen ? 'transparent' : colors.ink,
-                borderRadius: 1,
-                top: 6,
-                transition: 'all 0.3s',
-              }} />
-              <span style={{
-                position: 'absolute',
-                left: 0,
-                width: 18,
-                height: 1.5,
-                background: colors.ink,
-                borderRadius: 1,
-                top: mobileMenuOpen ? 6 : 12,
-                transform: mobileMenuOpen ? 'rotate(-45deg)' : 'none',
-                transition: 'all 0.3s',
-              }} />
-            </div>
-          </button>
-        )}
-      </header>
-
-      {/* Mobile menu */}
-      {mobileMenuOpen && (
-        <>
-          <div 
-            onClick={() => setMobileMenuOpen(false)}
-            style={{
-              position: 'fixed',
-              inset: 0,
-              background: 'rgba(0, 0, 0, 0.6)',
-              backdropFilter: 'blur(4px)',
-              zIndex: 50,
-            }} 
-          />
-          <div style={{
-            position: 'fixed',
-            top: 76,
-            left: 16,
-            right: 16,
-            background: colors.paper,
-            border: `1px solid ${colors.line}`,
-            borderRadius: 16,
-            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4)',
-            zIndex: 55,
-            padding: 8,
-            display: 'flex',
-            flexDirection: 'column',
-          }}>
-            <a href="/coaches" onClick={() => setMobileMenuOpen(false)} style={{
-              display: 'block',
-              padding: '14px 16px',
-              fontSize: 16,
-              fontWeight: 500,
-              color: colors.ink,
-              textDecoration: 'none',
-              borderRadius: 10,
-            }}>For Coaches</a>
-            <a href="/gyms" onClick={() => setMobileMenuOpen(false)} style={{
-              display: 'block',
-              padding: '14px 16px',
-              fontSize: 16,
-              fontWeight: 500,
-              color: colors.ink,
-              textDecoration: 'none',
-              borderRadius: 10,
-            }}>For Gyms</a>
-            <a href="/ai-assistant-coach" onClick={() => setMobileMenuOpen(false)} style={{
-              display: 'block',
-              padding: '14px 16px',
-              fontSize: 16,
-              fontWeight: 600,
-              color: colors.accent,
-              textDecoration: 'none',
-              borderRadius: 10,
-              background: colors.accentSoft,
-            }}>Your AI Assistant Coach</a>
-            <a href="/insights" onClick={() => setMobileMenuOpen(false)} style={{
-              display: 'block',
-              padding: '14px 16px',
-              fontSize: 16,
-              fontWeight: 500,
-              color: colors.ink,
-              textDecoration: 'none',
-              borderRadius: 10,
-            }}>Insights</a>
-            <a href="/about" onClick={() => setMobileMenuOpen(false)} style={{
-              display: 'block',
-              padding: '14px 16px',
-              fontSize: 16,
-              fontWeight: 500,
-              color: colors.ink,
-              textDecoration: 'none',
-              borderRadius: 10,
-            }}>About</a>
-            <a href={STRIPE_URL} target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)} style={{
-              display: 'block',
-              padding: '14px 16px',
-              fontSize: 16,
-              fontWeight: 600,
-              color: colors.bg,
-              textDecoration: 'none',
-              borderRadius: 10,
-              background: '#fff',
-              textAlign: 'center',
-              marginTop: 6,
-            }}>Start free trial</a>
-          </div>
-        </>
-      )}
+      <Header currentPage="ai-assistant-coach" />
 
       <main>
         {/* Hero Section */}
         <section style={{
-          background: `
-            radial-gradient(ellipse 80% 50% at 50% -20%, rgba(13, 154, 165, 0.15), transparent 60%),
-            radial-gradient(ellipse 60% 40% at 100% 100%, rgba(154, 241, 152, 0.1), transparent 50%),
-            ${colors.bg}
-          `,
-          padding: mobile ? '64px 20px 48px' : '100px 40px 80px',
+          padding: mobile ? '64px 20px 80px' : '100px 24px 120px',
+          maxWidth: 900,
+          margin: '0 auto',
           textAlign: 'center',
         }}>
-          <div style={{ maxWidth: 800, margin: '0 auto' }}>
-            {/* Eyebrow */}
-            <div style={{
-              fontFamily: fonts.sans,
-              fontSize: 12,
-              fontWeight: 600,
-              letterSpacing: '0.15em',
-              textTransform: 'uppercase',
-              color: colors.accent,
-              marginBottom: 24,
-            }}>
-              For coaches
-            </div>
+          {/* Eyebrow */}
+          <span style={{
+            display: 'inline-block',
+            fontFamily: fonts.sans,
+            fontSize: 12,
+            fontWeight: 600,
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            color: colors.accent,
+            marginBottom: 20,
+          }}>
+            For coaches
+          </span>
 
-            {/* Headline */}
-            <h1 style={{
-              fontFamily: fonts.serif,
-              fontSize: mobile ? 38 : 56,
-              lineHeight: 1.1,
-              fontWeight: 500,
-              color: colors.ink,
-              marginBottom: 24,
-              letterSpacing: '-0.02em',
-            }}>
-              What it&apos;s like having an AI assistant coach.
-            </h1>
+          {/* Headline */}
+          <h1 style={{
+            fontFamily: fonts.serif,
+            fontSize: mobile ? 38 : 56,
+            lineHeight: 1.1,
+            letterSpacing: '-0.02em',
+            fontWeight: 500,
+            marginBottom: 24,
+            color: colors.ink,
+          }}>
+            What it&apos;s like having an AI assistant coach.
+          </h1>
 
-            {/* Sub */}
-            <p style={{
-              fontFamily: fonts.sans,
-              fontSize: mobile ? 17 : 20,
-              lineHeight: 1.6,
-              color: colors.inkSoft,
-              maxWidth: 600,
-              margin: '0 auto 40px',
-            }}>
-              It learns how you coach. Then it does the rest.
-            </p>
+          {/* Sub */}
+          <p style={{
+            fontFamily: fonts.sans,
+            fontSize: mobile ? 17 : 20,
+            lineHeight: 1.6,
+            color: colors.inkSoft,
+            maxWidth: 600,
+            margin: '0 auto 40px',
+          }}>
+            It learns how you coach. Then it does the rest.
+          </p>
 
-            {/* CTAs */}
-            <div style={{
-              display: 'flex',
-              flexDirection: mobile ? 'column' : 'row',
-              gap: 16,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-              <CTA href={STRIPE_URL}>Start free trial</CTA>
-              <CTA variant="secondary" href={CALENDLY_URL}>Book a call</CTA>
-            </div>
-          </div>
-
-          {/* Hero media placeholder */}
+          {/* CTAs */}
           <div style={{
-            maxWidth: 1000,
-            margin: '64px auto 0',
+            display: 'flex',
+            flexDirection: mobile ? 'column' : 'row',
+            gap: 16,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+            <CTA href={STRIPE_URL}>Start free trial</CTA>
+            <CTA variant="secondary" href={CALENDLY_URL}>Book a call</CTA>
+          </div>
+        </section>
+
+        {/* Hero media placeholder */}
+        <section style={{
+          maxWidth: 1000,
+          margin: '0 auto',
+          padding: mobile ? '0 20px 64px' : '0 24px 100px',
+        }}>
+          <div style={{
             background: colors.paper,
             border: `1px solid ${colors.line}`,
             borderRadius: 20,
@@ -452,6 +257,7 @@ export default function AIAssistantCoach() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            boxShadow: '0 4px 24px rgba(0, 0, 0, 0.06)',
           }}>
             <div style={{
               width: '100%',
@@ -475,7 +281,7 @@ export default function AIAssistantCoach() {
         <section style={{
           padding: mobile ? '64px 20px' : '100px 40px',
           textAlign: 'center',
-          borderTop: `1px solid ${colors.lineSoft}`,
+          background: colors.bg2,
         }}>
           <div style={{ maxWidth: 700, margin: '0 auto' }}>
             {/* Eyebrow */}
@@ -485,7 +291,7 @@ export default function AIAssistantCoach() {
               fontWeight: 600,
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
-              color: colors.mint,
+              color: colors.accent,
               marginBottom: 24,
             }}>
               What changes
@@ -559,13 +365,9 @@ export default function AIAssistantCoach() {
 
         {/* Final CTA Section */}
         <section style={{
-          background: `
-            radial-gradient(ellipse 80% 50% at 50% 100%, rgba(13, 154, 165, 0.15), transparent 60%),
-            ${colors.bgDeep}
-          `,
+          background: colors.bg2,
           padding: mobile ? '64px 20px 80px' : '100px 40px 120px',
           textAlign: 'center',
-          borderTop: `1px solid ${colors.lineSoft}`,
         }}>
           <div style={{ maxWidth: 700, margin: '0 auto' }}>
             {/* Eyebrow */}
@@ -575,7 +377,7 @@ export default function AIAssistantCoach() {
               fontWeight: 600,
               letterSpacing: '0.15em',
               textTransform: 'uppercase',
-              color: colors.mint,
+              color: colors.accent,
               marginBottom: 24,
             }}>
               The whole point
@@ -624,7 +426,7 @@ export default function AIAssistantCoach() {
   )
 }
 
-// Mockup Components
+// Mockup Components with light theme colors
 function MethodologyMockup({ mobile }) {
   const docs = [
     { name: 'Warm-up Protocol.pdf', type: 'PDF' },
@@ -649,9 +451,9 @@ function MethodologyMockup({ mobile }) {
           alignItems: 'center',
           gap: 12,
           padding: '12px 14px',
-          background: 'rgba(255,255,255,0.03)',
+          background: colors.bg,
           borderRadius: 10,
-          border: '1px solid rgba(255,255,255,0.06)',
+          border: `1px solid ${colors.lineSoft}`,
         }}>
           <div style={{
             width: 36,
@@ -677,7 +479,7 @@ function MethodologyMockup({ mobile }) {
             padding: '4px 8px',
             borderRadius: 4,
             background: colors.mintSoft,
-            color: colors.mint,
+            color: colors.accentDeep,
           }}>Learned</span>
         </div>
       ))}
@@ -709,9 +511,9 @@ function MemoryMockup({ mobile }) {
           alignItems: 'flex-start',
           gap: 12,
           padding: '12px 14px',
-          background: 'rgba(255,255,255,0.03)',
+          background: colors.bg,
           borderRadius: 10,
-          border: '1px solid rgba(255,255,255,0.06)',
+          border: `1px solid ${colors.lineSoft}`,
         }}>
           <span style={{
             fontSize: 11,
@@ -757,9 +559,9 @@ function ProgramMockup({ mobile }) {
           alignItems: 'center',
           gap: 12,
           padding: '10px 14px',
-          background: 'rgba(255,255,255,0.03)',
+          background: colors.bg,
           borderRadius: 10,
-          border: '1px solid rgba(255,255,255,0.06)',
+          border: `1px solid ${colors.lineSoft}`,
         }}>
           <span style={{
             width: 6,
@@ -783,9 +585,9 @@ function AttentionMockup({ mobile }) {
     { client: 'Kyle D.', issue: 'Goal deadline in 5 days', priority: 'low' },
   ]
   const priorityColors = {
-    high: { bg: 'rgba(255, 100, 100, 0.1)', color: '#ff8a8a' },
-    medium: { bg: 'rgba(255, 200, 50, 0.1)', color: '#f0c832' },
-    low: { bg: colors.accentSoft, color: colors.accent },
+    high: { bg: '#FEE2E2', color: '#DC2626' },
+    medium: { bg: '#FEF3C7', color: '#D97706' },
+    low: { bg: colors.accentSoft, color: colors.accentDeep },
   }
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: '100%' }}>
@@ -805,9 +607,9 @@ function AttentionMockup({ mobile }) {
           alignItems: 'center',
           gap: 12,
           padding: '12px 14px',
-          background: 'rgba(255,255,255,0.03)',
+          background: colors.bg,
           borderRadius: 10,
-          border: '1px solid rgba(255,255,255,0.06)',
+          border: `1px solid ${colors.lineSoft}`,
         }}>
           <div style={{
             width: 36,
@@ -849,9 +651,9 @@ function StoryMockup({ mobile }) {
       </div>
       <div style={{
         padding: '16px',
-        background: 'rgba(255,255,255,0.03)',
+        background: colors.bg,
         borderRadius: 10,
-        border: '1px solid rgba(255,255,255,0.06)',
+        border: `1px solid ${colors.lineSoft}`,
       }}>
         <p style={{
           fontSize: 14,
@@ -874,7 +676,7 @@ function StoryMockup({ mobile }) {
           borderRadius: 10,
           textAlign: 'center',
         }}>
-          <div style={{ fontSize: 20, fontWeight: 700, color: colors.mint }}>+25 lbs</div>
+          <div style={{ fontSize: 20, fontWeight: 700, color: colors.accentDeep }}>+25 lbs</div>
           <div style={{ fontSize: 11, color: colors.inkMute, marginTop: 2 }}>Deadlift</div>
         </div>
         <div style={{
@@ -884,7 +686,7 @@ function StoryMockup({ mobile }) {
           borderRadius: 10,
           textAlign: 'center',
         }}>
-          <div style={{ fontSize: 20, fontWeight: 700, color: colors.accent }}>86%</div>
+          <div style={{ fontSize: 20, fontWeight: 700, color: colors.accentDeep }}>86%</div>
           <div style={{ fontSize: 11, color: colors.inkMute, marginTop: 2 }}>Attendance</div>
         </div>
       </div>
