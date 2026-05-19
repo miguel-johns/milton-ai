@@ -312,6 +312,7 @@ function ArticleCard({ article, featured = false, mobile }) {
 export default function InsightsPage() {
   const { mobile, tablet } = useBreakpoint()
   const [activeCategory, setActiveCategory] = useState("all")
+  const [chatModalOpen, setChatModalOpen] = useState(false)
 
   const featuredArticle = articles.find(a => a.featured)
 

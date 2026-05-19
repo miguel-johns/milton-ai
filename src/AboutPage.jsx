@@ -39,6 +39,7 @@ const logoImage = "/images/milton-logo.png"
 
 export default function AboutPage() {
   const { mobile, tablet } = useBreakpoint()
+  const [chatModalOpen, setChatModalOpen] = useState(false)
 
   return (
     <div style={{
