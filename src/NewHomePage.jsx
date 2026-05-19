@@ -288,6 +288,16 @@ export default function NewHomePage() {
           revenueLabel="Example revenue"
           revenueAmount="$17,880 / year"
           revenueNote="30 members at $149, run quarterly"
+          media={<ChatDemo mobile={mobile} messages={[
+            { sender: 'user', text: "I want to run a 30-day nutrition challenge." },
+            { sender: 'milton', text: "Great. I'll build the challenge structure, draft the welcome email, and create the daily text check-ins." },
+            { sender: 'user', text: "Can you make it simple for beginners?" },
+            { sender: 'milton', text: "Yes. I'll focus week one on logging meals, drinking water, and hitting a simple protein target." },
+            { sender: 'user', text: "What do I need to do each week?" },
+            { sender: 'milton', text: "Review the weekly summary, celebrate wins, and check in with anyone falling behind." },
+            { sender: 'user', text: "Okay, build it." },
+            { sender: 'milton', text: "Done. Your challenge outline, welcome email, signup form, and first week of texts are ready." },
+          ]} />}
         />
 
         {/* Way 02 - New Service */}
@@ -301,7 +311,14 @@ export default function NewHomePage() {
           revenueAmount="$4,950 / month"
           revenueNote="50 members at $99, from your existing base"
           reverse
-          media={<ChatDemo mobile={mobile} />}
+          media={<ChatDemo mobile={mobile} messages={[
+            { sender: 'user', text: "I want to launch AI personal training for members who don't buy 1-on-1 coaching." },
+            { sender: 'milton', text: "Great. I can help you build the offer, create the onboarding flow, and generate the first 30 days of workouts, nutrition check-ins, and progress tracking." },
+            { sender: 'user', text: "What does my trainer actually do?" },
+            { sender: 'milton', text: "One monthly check-in per member. I handle the workouts, meal tracking, daily follow-ups, and progress reports." },
+            { sender: 'user', text: "Build the launch plan." },
+            { sender: 'milton', text: "Done. Here's your 14-day rollout: offer page, trainer script, member invite text, onboarding form, and first progress report template." },
+          ]} />}
         />
 
         {/* Way 03 - Every Offer */}
@@ -867,17 +884,8 @@ export default function NewHomePage() {
   )
 }
 
-// Chat Demo Component for Way 02
-function ChatDemo({ mobile }) {
-  const messages = [
-    { sender: 'owner', text: "I want to launch AI personal training for members who don't buy 1-on-1 coaching." },
-    { sender: 'milton', text: "Great. I can help you build the offer, create the onboarding flow, and generate the first 30 days of workouts, nutrition check-ins, and progress tracking." },
-    { sender: 'owner', text: "What does my trainer actually do?" },
-    { sender: 'milton', text: "One monthly check-in per member. I handle the workouts, meal tracking, daily follow-ups, and progress reports." },
-    { sender: 'owner', text: "Build the launch plan." },
-    { sender: 'milton', text: "Done. Here's your 14-day rollout: offer page, trainer script, member invite text, onboarding form, and first progress report template." },
-  ]
-
+// Chat Demo Component for Way sections
+function ChatDemo({ mobile, messages, senderLabel = 'owner' }) {
   return (
     <div style={{
       background: colors.paper,
