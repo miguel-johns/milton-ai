@@ -331,6 +331,16 @@ export default function NewHomePage() {
           revenueLabel="Example payback"
           revenueAmount="1 extra month"
           revenueNote="One extra month of retention from one member covers Milton"
+          media={<ChatDemo mobile={mobile} messages={[
+            { sender: 'user', text: "I want my clients to get more support between sessions." },
+            { sender: 'milton', text: "Great. I can build personalized programs, track meals, and send daily check-ins between appointments." },
+            { sender: 'user', text: "Can you help me see what's going on before each session?" },
+            { sender: 'milton', text: "Yes. I'll organize their progress, habits, and check-in data into a simple summary for you." },
+            { sender: 'user', text: "What does that change for me?" },
+            { sender: 'milton', text: "You walk into every session with context. Clients feel more supported, stay longer, and are more likely to upgrade." },
+            { sender: 'user', text: "Okay, set it up." },
+            { sender: 'milton', text: "Done. Your programs, follow-ups, and session summaries are ready." },
+          ]} />}
         />
 
         {/* How It Works */}
