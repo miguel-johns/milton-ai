@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/react'
 import NewHomePage from './NewHomePage.jsx'
 import CoachesPage from './CoachesPage.jsx'
 import GymsPage from './GymsPage.jsx'
+import AIAssistantCoach from './AIAssistantCoach.jsx'
 import InsightsPage from './InsightsPage.jsx'
 import ArticlePage from './ArticlePage.jsx'
 import AboutPage from './AboutPage.jsx'
@@ -55,6 +56,7 @@ function App() {
   if (route === '/' || route === '') return <NewHomePage />
   if (route === '/coaches') return <CoachesPage />
   if (route === '/gyms') return <GymsPage />
+  if (route === '/ai-assistant-coach') return <AIAssistantCoach />
   if (route === '/insights') return <InsightsPage />
   if (route === '/about') return <AboutPage />
   if (route === '/terms') return <Terms />
