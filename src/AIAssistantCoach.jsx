@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import Footer from './components/Footer'
 import Header from './components/Header'
+import TestimonialVideos from './components/TestimonialVideos'
 
 // Custom hook for responsive breakpoints (matching NewHomePage)
 function useBreakpoint() {
@@ -262,6 +263,9 @@ export default function AIAssistantCoach() {
             }}
           />
         </section>
+
+        {/* Testimonial Videos */}
+        <TestimonialVideos mobile={mobile} />
 
         {/* Intro Section */}
         <section style={{
