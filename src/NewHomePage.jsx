@@ -872,8 +872,6 @@ function ChatDemo({ mobile }) {
   const messages = [
     { sender: 'owner', text: "I want to launch AI personal training for members who don't buy 1-on-1 coaching." },
     { sender: 'milton', text: "Great. I can help you build the offer, create the onboarding flow, and generate the first 30 days of workouts, nutrition check-ins, and progress tracking." },
-    { sender: 'owner', text: "Can we price it at $99/month?" },
-    { sender: 'milton', text: "Yes. For 50 members, that creates $4,950/month in new recurring revenue." },
     { sender: 'owner', text: "What does my trainer actually do?" },
     { sender: 'milton', text: "One monthly check-in per member. I handle the workouts, meal tracking, daily follow-ups, and progress reports." },
     { sender: 'owner', text: "Build the launch plan." },
