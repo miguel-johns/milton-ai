@@ -301,6 +301,7 @@ export default function NewHomePage() {
           revenueAmount="$4,950 / month"
           revenueNote="50 members at $99, from your existing base"
           reverse
+          media={<ChatDemo mobile={mobile} />}
         />
 
         {/* Way 03 - Every Offer */}
@@ -866,8 +867,111 @@ export default function NewHomePage() {
   )
 }
 
+// Chat Demo Component for Way 02
+function ChatDemo({ mobile }) {
+  const messages = [
+    { sender: 'owner', text: "I want to launch AI personal training for members who don't buy 1-on-1 coaching." },
+    { sender: 'milton', text: "Great. I can help you build the offer, create the onboarding flow, and generate the first 30 days of workouts, nutrition check-ins, and progress tracking." },
+    { sender: 'owner', text: "Can we price it at $99/month?" },
+    { sender: 'milton', text: "Yes. For 50 members, that creates $4,950/month in new recurring revenue." },
+    { sender: 'owner', text: "What does my trainer actually do?" },
+    { sender: 'milton', text: "One monthly check-in per member. I handle the workouts, meal tracking, daily follow-ups, and progress reports." },
+    { sender: 'owner', text: "Build the launch plan." },
+    { sender: 'milton', text: "Done. Here's your 14-day rollout: offer page, trainer script, member invite text, onboarding form, and first progress report template." },
+  ]
+
+  return (
+    <div style={{
+      background: colors.paper,
+      borderRadius: 16,
+      border: `1px solid ${colors.line}`,
+      boxShadow: '0 2px 12px rgba(11, 22, 40, 0.06)',
+      overflow: 'hidden',
+    }}>
+      {/* Chat header */}
+      <div style={{
+        padding: '14px 18px',
+        borderBottom: `1px solid ${colors.line}`,
+        display: 'flex',
+        alignItems: 'center',
+        gap: 10,
+        background: colors.bg,
+      }}>
+        <div style={{
+          width: 28,
+          height: 28,
+          borderRadius: '50%',
+          background: colors.accentSoft,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+          <img 
+            src="/images/milton-logo.png"
+            alt="Milton"
+            style={{
+              width: 28,
+              height: 28,
+              borderRadius: '50%',
+              objectFit: 'cover',
+            }}
+          />
+        </div>
+        <span style={{
+          fontFamily: fonts.sans,
+          fontSize: 14,
+          fontWeight: 600,
+          color: colors.ink,
+        }}>
+          Milton
+        </span>
+        <span style={{
+          width: 6,
+          height: 6,
+          borderRadius: '50%',
+          background: colors.accent,
+          marginLeft: -4,
+        }} />
+      </div>
+
+      {/* Messages */}
+      <div style={{
+        padding: mobile ? '16px 14px' : '20px 18px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 12,
+        maxHeight: mobile ? 340 : 380,
+        overflowY: 'auto',
+      }}>
+        {messages.map((msg, i) => (
+          <div 
+            key={i}
+            style={{
+              display: 'flex',
+              justifyContent: msg.sender === 'owner' ? 'flex-end' : 'flex-start',
+            }}
+          >
+            <div style={{
+              maxWidth: '85%',
+              padding: '10px 14px',
+              borderRadius: msg.sender === 'owner' ? '14px 14px 4px 14px' : '14px 14px 14px 4px',
+              background: msg.sender === 'owner' ? colors.ink : colors.accentSoft,
+              color: msg.sender === 'owner' ? colors.paper : colors.ink,
+              fontFamily: fonts.sans,
+              fontSize: mobile ? 13 : 14,
+              lineHeight: 1.5,
+            }}>
+              {msg.text}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 // Way Section Component
-function WaySection({ mobile, number, label, headline, body, revenueLabel, revenueAmount, revenueNote, reverse }) {
+function WaySection({ mobile, number, label, headline, body, revenueLabel, revenueAmount, revenueNote, reverse, media }) {
   return (
     <section style={{
       padding: mobile ? '64px 20px' : '80px 24px',
@@ -976,25 +1080,27 @@ function WaySection({ mobile, number, label, headline, body, revenueLabel, reven
           </div>
         </div>
 
-        {/* Media placeholder */}
+        {/* Media */}
         <div style={{ order: mobile ? 2 : (reverse ? 1 : 2) }}>
-          <div style={{
-            background: `linear-gradient(135deg, ${colors.bg2} 0%, ${colors.accentSoft} 100%)`,
-            borderRadius: 16,
-            aspectRatio: '4/3',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            border: `1px solid ${colors.line}`,
-          }}>
-            <span style={{
-              fontFamily: fonts.sans,
-              fontSize: 14,
-              color: colors.inkMute,
+          {media || (
+            <div style={{
+              background: `linear-gradient(135deg, ${colors.bg2} 0%, ${colors.accentSoft} 100%)`,
+              borderRadius: 16,
+              aspectRatio: '4/3',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              border: `1px solid ${colors.line}`,
             }}>
-              [Media]
-            </span>
-          </div>
+              <span style={{
+                fontFamily: fonts.sans,
+                fontSize: 14,
+                color: colors.inkMute,
+              }}>
+                [Media]
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </section>
