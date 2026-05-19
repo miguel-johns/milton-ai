@@ -169,6 +169,7 @@ export default function NewHomePage() {
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
+              className="cta-link"
               style={{
                 background: colors.ink,
                 color: colors.bg,
@@ -187,6 +188,7 @@ export default function NewHomePage() {
               href={CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
+              className="cta-link"
               style={{
                 background: 'transparent',
                 color: colors.ink,
@@ -448,6 +450,7 @@ export default function NewHomePage() {
                 href={CALENDLY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="cta-link"
                 style={{
                   background: colors.ink,
                   color: colors.bg,
@@ -466,6 +469,7 @@ export default function NewHomePage() {
                 href={CALENDLY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="cta-link"
                 style={{
                   background: 'transparent',
                   color: colors.ink,
@@ -778,10 +782,10 @@ export default function NewHomePage() {
           transform: translateY(0);
           box-shadow: 0 2px 6px rgba(11, 22, 40, 0.08);
         }
-        a {
+        .cta-link {
           transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
         }
-        a:hover {
+        .cta-link:hover {
           transform: translateY(-2px);
           box-shadow: 0 4px 12px rgba(11, 22, 40, 0.12);
         }
