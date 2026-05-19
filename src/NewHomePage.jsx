@@ -386,7 +386,7 @@ export default function NewHomePage() {
                 maxWidth: 560,
                 margin: '0 auto',
               }}>
-                We connect Milton to your systems. You upload your client base and your methodology. Milton learns both. From that day on, you talk.
+              Nothing to build out. You upload your client base and your methodology. Milton learns both. From that day on, you talk.
               </p>
             </div>
 
