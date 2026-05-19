@@ -976,15 +976,15 @@ function ChatDemo({ mobile, messages, senderLabel = 'owner' }) {
             key={i}
             style={{
               display: 'flex',
-              justifyContent: msg.sender === 'owner' ? 'flex-end' : 'flex-start',
+              justifyContent: msg.sender === 'user' ? 'flex-end' : 'flex-start',
             }}
           >
             <div style={{
               maxWidth: '85%',
               padding: '10px 14px',
-              borderRadius: msg.sender === 'owner' ? '14px 14px 4px 14px' : '14px 14px 14px 4px',
-              background: msg.sender === 'owner' ? colors.ink : colors.accentSoft,
-              color: msg.sender === 'owner' ? colors.paper : colors.ink,
+              borderRadius: msg.sender === 'user' ? '14px 14px 4px 14px' : '14px 14px 14px 4px',
+              background: msg.sender === 'user' ? colors.ink : colors.accentSoft,
+              color: msg.sender === 'user' ? colors.paper : colors.ink,
               fontFamily: fonts.sans,
               fontSize: mobile ? 13 : 14,
               lineHeight: 1.5,
