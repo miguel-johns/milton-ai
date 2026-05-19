@@ -369,33 +369,31 @@ export default function NewHomePage() {
             </a>
           </div>
 
-          {/* Hero video */}
+          {/* Hero video - YouTube embed */}
           <div style={{
             marginTop: 64,
             borderRadius: 20,
             overflow: 'hidden',
             border: `1px solid ${colors.line}`,
             boxShadow: '0 4px 24px rgba(11, 22, 40, 0.08)',
+            position: 'relative',
+            paddingBottom: '56.25%', // 16:9 aspect ratio
+            height: 0,
           }}>
-            <video 
-              autoPlay 
-              loop 
-              muted 
-              playsInline
+            <iframe
+              src="https://www.youtube.com/embed/6Z_pgR0R0BI?rel=0"
+              title="Milton AI Demo"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
               style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
                 width: '100%',
-                display: 'block',
+                height: '100%',
               }}
-            >
-              <source 
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/mltn-RmwMuLE7YqziZ0Yaqh38BTLtLvnVCH.mov" 
-                type="video/quicktime" 
-              />
-              <source 
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/mltn-RmwMuLE7YqziZ0Yaqh38BTLtLvnVCH.mov" 
-                type="video/mp4" 
-              />
-            </video>
+            />
           </div>
         </section>
 
