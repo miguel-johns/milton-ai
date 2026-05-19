@@ -145,26 +145,54 @@ export default function NewHomePage() {
           <span>Milton</span>
         </a>
 
-        {/* Desktop CTA */}
+        {/* Desktop nav links */}
         {!mobile && (
-          <a 
-            href={CALENDLY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              background: colors.ink,
-              color: colors.bg,
-              padding: '12px 24px',
-              borderRadius: 10,
-              fontFamily: fonts.sans,
-              fontSize: 14,
-              fontWeight: 600,
-              textDecoration: 'none',
-              letterSpacing: '0.01em',
-            }}
-          >
-            Start free trial
-          </a>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
+            <a 
+              href="/insights"
+              style={{
+                fontFamily: fonts.sans,
+                fontSize: 14,
+                fontWeight: 500,
+                color: colors.muted,
+                textDecoration: 'none',
+                letterSpacing: '0.01em',
+              }}
+            >
+              Insights
+            </a>
+            <a 
+              href="/about"
+              style={{
+                fontFamily: fonts.sans,
+                fontSize: 14,
+                fontWeight: 500,
+                color: colors.muted,
+                textDecoration: 'none',
+                letterSpacing: '0.01em',
+              }}
+            >
+              About
+            </a>
+            <a 
+              href={CALENDLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                background: colors.ink,
+                color: colors.bg,
+                padding: '12px 24px',
+                borderRadius: 10,
+                fontFamily: fonts.sans,
+                fontSize: 14,
+                fontWeight: 600,
+                textDecoration: 'none',
+                letterSpacing: '0.01em',
+              }}
+            >
+              Start free trial
+            </a>
+          </div>
         )}
 
         {/* Mobile menu toggle */}
@@ -249,7 +277,38 @@ export default function NewHomePage() {
             padding: 8,
             display: 'flex',
             flexDirection: 'column',
+            gap: 4,
           }}>
+            <a 
+              href="/insights"
+              onClick={() => setMobileMenuOpen(false)} 
+              style={{
+                display: 'block',
+                padding: '14px 16px',
+                fontSize: 16,
+                fontWeight: 500,
+                color: colors.ink,
+                textDecoration: 'none',
+                borderRadius: 10,
+              }}
+            >
+              Insights
+            </a>
+            <a 
+              href="/about"
+              onClick={() => setMobileMenuOpen(false)} 
+              style={{
+                display: 'block',
+                padding: '14px 16px',
+                fontSize: 16,
+                fontWeight: 500,
+                color: colors.ink,
+                textDecoration: 'none',
+                borderRadius: 10,
+              }}
+            >
+              About
+            </a>
             <a 
               href={CALENDLY_URL}
               target="_blank"
@@ -265,6 +324,7 @@ export default function NewHomePage() {
                 borderRadius: 10,
                 background: colors.ink,
                 textAlign: 'center',
+                marginTop: 4,
               }}
             >
               Start free trial
