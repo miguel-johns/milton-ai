@@ -886,6 +886,25 @@ function ChatDemo({ mobile }) {
       boxShadow: '0 2px 12px rgba(11, 22, 40, 0.06)',
       overflow: 'hidden',
     }}>
+      <style>{`
+        .chat-messages-scroll::-webkit-scrollbar {
+          width: 4px;
+        }
+        .chat-messages-scroll::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .chat-messages-scroll::-webkit-scrollbar-thumb {
+          background: rgba(0, 0, 0, 0.15);
+          border-radius: 4px;
+        }
+        .chat-messages-scroll::-webkit-scrollbar-thumb:hover {
+          background: rgba(0, 0, 0, 0.25);
+        }
+        .chat-messages-scroll {
+          scrollbar-width: thin;
+          scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
+        }
+      `}</style>
       {/* Chat header */}
       <div style={{
         padding: '14px 18px',
@@ -933,14 +952,17 @@ function ChatDemo({ mobile }) {
       </div>
 
       {/* Messages */}
-      <div style={{
-        padding: mobile ? '16px 14px' : '20px 18px',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 12,
-        maxHeight: mobile ? 340 : 380,
-        overflowY: 'auto',
-      }}>
+      <div 
+        className="chat-messages-scroll"
+        style={{
+          padding: mobile ? '16px 14px' : '20px 18px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 12,
+          maxHeight: mobile ? 340 : 380,
+          overflowY: 'auto',
+        }}
+      >
         {messages.map((msg, i) => (
           <div 
             key={i}
