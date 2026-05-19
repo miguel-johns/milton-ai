@@ -293,6 +293,7 @@ export default function GymsPage() {
           }}>
             <a href="/coaches" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>For Coaches</a>
             <a href="/gyms" className="nav-link" style={{ color: colors.ink, textDecoration: 'none', fontWeight: 600 }}>For Gyms</a>
+            <a href="/ai-assistant-coach" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>Your AI Assistant Coach</a>
             <a href="/insights" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>Insights</a>
             <a href="/about" className="nav-link" style={{ color: 'inherit', textDecoration: 'none' }}>About</a>
             <a href="#" className="nav-btn" style={{
@@ -411,6 +412,15 @@ export default function GymsPage() {
               borderRadius: 10,
               background: colors.bg2,
             }}>For Gyms</a>
+            <a href="/ai-assistant-coach" onClick={() => setMobileMenuOpen(false)} style={{
+              display: 'block',
+              padding: '14px 16px',
+              fontSize: 16,
+              fontWeight: 500,
+              color: colors.ink,
+              textDecoration: 'none',
+              borderRadius: 10,
+            }}>Your AI Assistant Coach</a>
             <a href="/insights" onClick={() => setMobileMenuOpen(false)} style={{
               display: 'block',
               padding: '14px 16px',

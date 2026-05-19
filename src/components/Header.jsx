@@ -104,6 +104,20 @@ export default function Header({ currentPage = 'home' }) {
         {!mobile && (
           <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
             <a 
+              href="/ai-assistant-coach"
+              className="header-nav-link"
+              style={{
+                fontFamily: fonts.sans,
+                fontSize: 14,
+                fontWeight: currentPage === 'ai-assistant-coach' ? 600 : 500,
+                color: currentPage === 'ai-assistant-coach' ? colors.ink : colors.muted,
+                textDecoration: 'none',
+                letterSpacing: '0.01em',
+              }}
+            >
+              Your AI Assistant Coach
+            </a>
+            <a 
               href="/insights"
               className="header-nav-link"
               style={{
@@ -242,6 +256,22 @@ export default function Header({ currentPage = 'home' }) {
             flexDirection: 'column',
             gap: 4,
           }}>
+            <a 
+              href="/ai-assistant-coach"
+              onClick={() => setMobileMenuOpen(false)}
+              className="header-mobile-link"
+              style={{
+                display: 'block',
+                padding: '14px 16px',
+                fontSize: 16,
+                fontWeight: currentPage === 'ai-assistant-coach' ? 600 : 500,
+                color: colors.ink,
+                textDecoration: 'none',
+                borderRadius: 10,
+              }}
+            >
+              Your AI Assistant Coach
+            </a>
             <a 
               href="/insights"
               onClick={() => setMobileMenuOpen(false)}
