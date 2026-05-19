@@ -1150,29 +1150,17 @@ function HowItWorksStep({ number, title, description, mobile }) {
       textAlign: mobile ? 'center' : 'left',
       boxShadow: '0 2px 8px rgba(11, 22, 40, 0.04)',
     }}>
-      <div style={{
-        width: 56,
-        height: 56,
-        borderRadius: 14,
-        background: `linear-gradient(135deg, ${colors.accent} 0%, ${colors.accentDeep} 100%)`,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: 20,
-        marginLeft: mobile ? 'auto' : 0,
-        marginRight: mobile ? 'auto' : 0,
-        boxShadow: '0 4px 12px rgba(43, 191, 170, 0.3)',
+      <span style={{
+        display: 'block',
+        fontFamily: fonts.serif,
+        fontSize: mobile ? 48 : 56,
+        fontWeight: 700,
+        color: colors.accent,
+        lineHeight: 1,
+        marginBottom: 16,
       }}>
-        <span style={{
-          fontFamily: fonts.serif,
-          fontStyle: 'italic',
-          fontSize: 24,
-          fontWeight: 600,
-          color: '#FFFFFF',
-        }}>
-          {number}
-        </span>
-      </div>
+        {number}
+      </span>
       <h4 style={{
         fontFamily: fonts.sans,
         fontSize: 18,
