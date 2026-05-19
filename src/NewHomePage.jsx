@@ -369,25 +369,33 @@ export default function NewHomePage() {
             </a>
           </div>
 
-          {/* Hero media placeholder */}
+          {/* Hero video */}
           <div style={{
             marginTop: 64,
-            background: `linear-gradient(135deg, ${colors.accentSoft} 0%, ${colors.mintSoft} 100%)`,
             borderRadius: 20,
-            padding: mobile ? 40 : 60,
+            overflow: 'hidden',
             border: `1px solid ${colors.line}`,
+            boxShadow: '0 4px 24px rgba(11, 22, 40, 0.08)',
           }}>
-            <img 
-              src={logoImage}
-              alt="Milton AI"
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline
               style={{
-                width: mobile ? 100 : 140,
-                height: mobile ? 100 : 140,
-                borderRadius: '50%',
-                margin: '0 auto',
+                width: '100%',
                 display: 'block',
               }}
-            />
+            >
+              <source 
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/mltn-RmwMuLE7YqziZ0Yaqh38BTLtLvnVCH.mov" 
+                type="video/quicktime" 
+              />
+              <source 
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/mltn-RmwMuLE7YqziZ0Yaqh38BTLtLvnVCH.mov" 
+                type="video/mp4" 
+              />
+            </video>
           </div>
         </section>
 
