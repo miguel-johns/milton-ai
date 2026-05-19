@@ -34,9 +34,19 @@
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
       body { font-family: 'DM Sans', sans-serif; -webkit-font-smoothing: antialiased; }
-      a { -webkit-tap-highlight-color: transparent; }
-      a:focus, a:active { outline: none; background: transparent; }
-      button:focus { outline: none; }
+      a, button { 
+        -webkit-tap-highlight-color: transparent;
+        outline: none;
+      }
+      a:focus, a:active, a:focus-visible,
+      button:focus, button:active, button:focus-visible { 
+        outline: none !important; 
+        background-color: transparent !important;
+        box-shadow: none !important;
+      }
+      a:hover, button:hover {
+        background-color: transparent;
+      }
     </style>
   </head>
   <body>
