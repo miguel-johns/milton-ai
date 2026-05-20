@@ -2,32 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Them — program building</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
-  html, body { 
-    margin: 0; 
-    padding: 0; 
-    background: transparent; 
-    width: 100%; 
-    height: 100%; 
-    overflow: hidden;
-  }
-  body { 
-    font-family: 'DM Sans', system-ui, sans-serif; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .scale-wrapper {
-    width: 580px;
-    height: 340px;
-    transform-origin: center center;
-  }
+  /* Reset only the bare minimum needed; body has no padding, no background.
+     The .card below is the entire visual. Drop it into any container. */
+  html, body { margin: 0; padding: 0; background: transparent; }
+  body { font-family: 'DM Sans', system-ui, sans-serif; }
 
   .card {
     --card-bg: #EAEEF3;
@@ -41,10 +24,10 @@
     --ink: #3F4856;
     --cursor: #2A323F;
 
-    width: 100%;
-    height: 100%;
+    width: 560px;
+    height: 360px;
     background: var(--card-bg);
-    border-radius: 12px;
+    border-radius: 20px;
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
@@ -52,20 +35,21 @@
   }
   .card *, .card *::before, .card *::after { box-sizing: border-box; }
 
+  /* ---------- Top step bar ---------- */
   .card .step-bar {
     position: absolute;
-    top: 16px;
-    left: 20px;
-    right: 20px;
+    top: 20px;
+    left: 24px;
+    right: 24px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     z-index: 60;
     height: 14px;
   }
   .card .step-num {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 8px;
+    font-size: 9.5px;
     letter-spacing: 0.16em;
     color: var(--muted-3);
     font-weight: 500;
@@ -78,7 +62,7 @@
   }
   .card .step-action {
     font-family: 'DM Sans', sans-serif;
-    font-size: 10px;
+    font-size: 11.5px;
     letter-spacing: 0.02em;
     color: var(--ink);
     font-weight: 500;
@@ -89,36 +73,38 @@
     transform: translateY(-3px);
   }
 
+  /* ---------- UI area ---------- */
   .card .ui {
     position: absolute;
-    top: 42px;
-    left: 20px;
-    right: 20px;
-    bottom: 20px;
+    top: 50px;
+    left: 24px;
+    right: 24px;
+    bottom: 24px;
   }
 
+  /* Sidebar */
   .card .sidebar {
     position: absolute;
     left: 0;
     top: 0;
     bottom: 0;
-    width: 80px;
+    width: 100px;
     background: var(--surface);
-    border-radius: 6px;
-    padding: 8px 6px;
+    border-radius: 8px;
+    padding: 10px 8px;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 6px;
   }
   .card .lib-header {
-    height: 4px;
+    height: 5px;
     width: 60%;
     background: var(--muted-2);
     border-radius: 2px;
-    margin-bottom: 3px;
+    margin-bottom: 4px;
   }
   .card .lib-item {
-    height: 11px;
+    height: 13px;
     background: var(--muted-1);
     border-radius: 3px;
     position: relative;
@@ -127,8 +113,8 @@
   .card .lib-item::before {
     content: '';
     position: absolute;
-    left: 3px;
-    top: 3px;
+    left: 4px;
+    top: 4px;
     width: 5px;
     height: 5px;
     border-radius: 50%;
@@ -136,33 +122,34 @@
   }
   .card .lib-item.taken { opacity: 0.35; }
 
+  /* Canvas */
   .card .canvas {
     position: absolute;
-    left: 88px;
-    right: 100px;
+    left: 108px;
+    right: 124px;
     top: 0;
     bottom: 0;
     background: var(--surface);
-    border-radius: 6px;
-    padding: 12px;
+    border-radius: 8px;
+    padding: 14px;
     overflow: hidden;
   }
   .card .canvas-header {
-    height: 4px;
+    height: 5px;
     width: 38%;
     background: var(--muted-2);
     border-radius: 2px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     transition: opacity 0.3s;
   }
   .card .canvas-empty {
     position: absolute;
-    left: 12px;
-    right: 12px;
-    top: 28px;
-    bottom: 12px;
+    left: 14px;
+    right: 14px;
+    top: 32px;
+    bottom: 14px;
     border: 1.4px dashed var(--muted-1);
-    border-radius: 5px;
+    border-radius: 6px;
     opacity: 1;
     transition: opacity 0.35s ease;
   }
@@ -172,7 +159,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60px;
+    width: 80px;
     height: 4px;
     background: var(--muted-1);
     border-radius: 2px;
@@ -180,12 +167,12 @@
   .card .canvas-blocks {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 6px;
     position: relative;
     z-index: 2;
   }
   .card .canvas-block {
-    height: 10px;
+    height: 11px;
     background: var(--muted-2);
     border-radius: 3px;
     opacity: 0;
@@ -193,18 +180,19 @@
     transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
+  /* Dropdown */
   .card .dropdown {
     position: absolute;
     top: 8px;
     left: 8px;
-    width: 120px;
+    width: 140px;
     background: var(--surface);
-    border-radius: 5px;
-    padding: 5px;
+    border-radius: 6px;
+    padding: 6px;
     box-shadow: 0 6px 24px rgba(20, 30, 50, 0.12);
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 4px;
     z-index: 30;
     opacity: 0;
     transform: translateY(-4px);
@@ -212,36 +200,37 @@
     pointer-events: none;
   }
   .card .dropdown-item {
-    height: 10px;
+    height: 11px;
     background: var(--muted-1);
     border-radius: 2px;
     transition: background 0.2s;
   }
   .card .dropdown-item.selected { background: var(--muted-3); }
 
+  /* Week grid */
   .card .week-grid {
     position: absolute;
-    left: 12px;
-    right: 12px;
-    top: 28px;
-    bottom: 12px;
+    left: 14px;
+    right: 14px;
+    top: 32px;
+    bottom: 14px;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 2px;
+    gap: 3px;
     opacity: 0;
     transition: opacity 0.35s ease;
     pointer-events: none;
   }
   .card .week-day {
     background: var(--muted-0);
-    border-radius: 2px;
-    padding: 3px 2px;
+    border-radius: 3px;
+    padding: 4px 2px;
     display: flex;
     flex-direction: column;
     gap: 2px;
   }
   .card .week-day-bar {
-    height: 3px;
+    height: 4px;
     background: var(--muted-1);
     border-radius: 1px;
     opacity: 0;
@@ -250,18 +239,19 @@
   .card .week-day-bar.filled { opacity: 1; background: var(--muted-2); }
   .card .week-day-bar.adjusted { background: var(--muted-3); }
 
+  /* Assign popover */
   .card .assign-pop {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
-    width: 110px;
+    bottom: 12px;
+    right: 12px;
+    width: 130px;
     background: var(--surface);
-    border-radius: 5px;
-    padding: 5px;
+    border-radius: 6px;
+    padding: 6px;
     box-shadow: 0 6px 24px rgba(20, 30, 50, 0.12);
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 4px;
     z-index: 30;
     opacity: 0;
     transform: translateY(4px);
@@ -271,27 +261,28 @@
   .card .assign-item {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 5px;
     padding: 2px;
     border-radius: 2px;
     transition: background 0.2s;
   }
   .card .assign-item.selected { background: var(--muted-0); }
   .card .assign-avatar {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: var(--muted-2);
     flex-shrink: 0;
   }
   .card .assign-name {
-    height: 4px;
+    height: 5px;
     flex: 1;
     background: var(--muted-1);
     border-radius: 1.5px;
   }
   .card .assign-item.selected .assign-name { background: var(--muted-3); }
 
+  /* Final notification */
   .card .notification {
     position: absolute;
     inset: 0;
@@ -300,7 +291,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 14px;
     opacity: 0;
     z-index: 25;
     transition: opacity 0.45s ease;
@@ -309,8 +300,8 @@
   .card .notif-card {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 12px;
+    gap: 10px;
+    padding: 10px 14px;
     background: var(--card-bg);
     border-radius: 999px;
     opacity: 0;
@@ -318,15 +309,15 @@
     transition: opacity 0.35s ease, transform 0.35s ease, background 0.4s ease;
   }
   .card .notif-dot {
-    width: 6px;
-    height: 6px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
     background: var(--muted-3);
     transition: background 0.4s ease;
   }
   .card .notif-text {
     font-family: 'DM Sans', sans-serif;
-    font-size: 10px;
+    font-size: 11px;
     color: var(--muted-4);
     letter-spacing: 0.03em;
     transition: color 0.4s ease;
@@ -334,7 +325,7 @@
   .card .notif-final {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: 15px;
+    font-size: 18px;
     color: var(--muted-3);
     opacity: 0;
     transform: translateY(4px);
@@ -342,28 +333,29 @@
     letter-spacing: 0.01em;
   }
 
+  /* Inputs panel */
   .card .inputs {
     position: absolute;
     right: 0;
     top: 0;
     bottom: 0;
-    width: 92px;
+    width: 112px;
     background: var(--surface);
-    border-radius: 6px;
-    padding: 10px 8px;
+    border-radius: 8px;
+    padding: 12px 10px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
   }
-  .card .input-row { display: flex; flex-direction: column; gap: 3px; }
+  .card .input-row { display: flex; flex-direction: column; gap: 4px; }
   .card .input-label {
-    height: 3px;
+    height: 4px;
     width: 50%;
     background: var(--muted-2);
     border-radius: 1.5px;
   }
   .card .input-field {
-    height: 16px;
+    height: 18px;
     background: var(--muted-1);
     border-radius: 3px;
     position: relative;
@@ -373,8 +365,8 @@
   .card .input-field::after {
     content: '';
     position: absolute;
-    left: 5px;
-    top: 5px;
+    left: 6px;
+    top: 6px;
     height: 6px;
     width: 0%;
     background: var(--muted-3);
@@ -384,7 +376,7 @@
   .card .input-field.filled::after { width: 60%; }
   .card .save-row { margin-top: auto; }
   .card .save-btn {
-    height: 20px;
+    height: 22px;
     background: var(--muted-1);
     border-radius: 4px;
     transition: background 0.25s ease, transform 0.15s ease;
@@ -395,13 +387,14 @@
     transform: scale(0.96);
   }
 
+  /* Cursor */
   .card .cursor {
     position: absolute;
-    width: 12px;
-    height: 16px;
+    width: 14px;
+    height: 18px;
     z-index: 80;
-    top: 16px;
-    left: 16px;
+    top: 18px;
+    left: 18px;
     transition: top 0.6s cubic-bezier(0.45, 0.05, 0.25, 0.95),
                 left 0.6s cubic-bezier(0.45, 0.05, 0.25, 0.95);
     pointer-events: none;
@@ -415,10 +408,11 @@
     filter: drop-shadow(0 1px 2px rgba(0,0,0,0.18));
   }
 
+  /* Click ripple */
   .card .click {
     position: absolute;
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
     border: 1.5px solid var(--cursor);
     border-radius: 50%;
     z-index: 70;
@@ -435,7 +429,6 @@
 </head>
 <body>
 
-<div class="scale-wrapper" id="scaleWrapper">
 <div class="card" id="themCard">
   <div class="step-bar">
     <span class="step-num" id="stepNum">STEP 01 / 10</span>
@@ -507,34 +500,13 @@
   </div>
   <div class="click" id="click"></div>
 </div>
-</div><!-- end scale-wrapper -->
-
-<script>
-// Responsive scaling - scale content to fit viewport
-(function() {
-  const wrapper = document.getElementById('scaleWrapper');
-  const baseWidth = 580;
-  const baseHeight = 340;
-  
-  function resize() {
-    const vw = window.innerWidth;
-    const vh = window.innerHeight;
-    const scaleX = vw / baseWidth;
-    const scaleY = vh / baseHeight;
-    const scale = Math.min(scaleX, scaleY, 1.2); // Allow slight scale up but cap it
-    wrapper.style.transform = 'scale(' + scale + ')';
-  }
-  
-  resize();
-  window.addEventListener('resize', resize);
-})();
-</script>
 
 <script>
 (function () {
   const root = document.getElementById('themCard');
   const $ = (id) => root.querySelector('#' + id);
 
+  // Build the week grid (7 days × 4 slots each)
   const weekGrid = $('weekGrid');
   for (let d = 0; d < 7; d++) {
     const day = document.createElement('div');
@@ -606,58 +578,58 @@
     notifText.style.color = '';
     notifFinal.style.opacity = 0; notifFinal.style.transform = 'translateY(4px)';
     saveBtn.classList.remove('pressed');
-    moveCursor(16, 16, true);
+    moveCursor(18, 18, true);
   }
 
   function run() {
     reset();
 
-    setTimeout(() => { setStep(1, 'Open the builder'); moveCursor(40, 50, true); }, 100);
-    setTimeout(() => fireClick(40, 50), 600);
+    setTimeout(() => { setStep(1, 'Open the builder'); moveCursor(50, 60, true); }, 100);
+    setTimeout(() => fireClick(50, 60), 600);
     setTimeout(() => { canvasBlocks.style.opacity = 1; }, 800);
 
-    setTimeout(() => { setStep(2, 'Pick a template'); moveCursor(120, 60); }, 1300);
+    setTimeout(() => { setStep(2, 'Pick a template'); moveCursor(150, 70); }, 1300);
     setTimeout(() => { dropdown.style.opacity = 1; dropdown.style.transform = 'translateY(0)'; }, 1700);
-    setTimeout(() => moveCursor(145, 85, true), 1900);
-    setTimeout(() => fireClick(145, 85), 2250);
+    setTimeout(() => moveCursor(180, 100, true), 1900);
+    setTimeout(() => fireClick(180, 100), 2250);
     setTimeout(() => { dropdown.style.opacity = 0; dropdown.style.transform = 'translateY(-4px)'; }, 2400);
 
     setTimeout(() => { setStep(3, 'Drag in exercises'); canvasEmpty.style.opacity = 0; }, 2700);
 
-    setTimeout(() => moveCursor(50, 90, true), 2900);
-    setTimeout(() => moveCursor(170, 90), 3150);
+    setTimeout(() => moveCursor(60, 110, true), 2900);
+    setTimeout(() => moveCursor(220, 110), 3150);
     setTimeout(() => {
       libItems[1].classList.add('taken');
       blocks[0].style.opacity = 1; blocks[0].style.transform = 'translateX(0)';
     }, 3500);
 
-    setTimeout(() => moveCursor(50, 110, true), 3750);
-    setTimeout(() => moveCursor(170, 105), 4000);
+    setTimeout(() => moveCursor(60, 135, true), 3750);
+    setTimeout(() => moveCursor(220, 130), 4000);
     setTimeout(() => {
       libItems[2].classList.add('taken');
       blocks[1].style.opacity = 1; blocks[1].style.transform = 'translateX(0)';
     }, 4350);
 
-    setTimeout(() => moveCursor(50, 135, true), 4600);
-    setTimeout(() => moveCursor(170, 120), 4850);
+    setTimeout(() => moveCursor(60, 165, true), 4600);
+    setTimeout(() => moveCursor(220, 150), 4850);
     setTimeout(() => {
       libItems[4].classList.add('taken');
       blocks[2].style.opacity = 1; blocks[2].style.transform = 'translateX(0)';
     }, 5200);
 
     setTimeout(() => setStep(4, 'Set reps, sets, tempo, rest'), 5500);
-    setTimeout(() => moveCursor(380, 90), 5700);
-    setTimeout(() => { inputs[0].classList.add('filled'); fireClick(380, 90); }, 6050);
-    setTimeout(() => moveCursor(380, 118, true), 6250);
-    setTimeout(() => { inputs[1].classList.add('filled'); fireClick(380, 118); }, 6550);
-    setTimeout(() => moveCursor(380, 148, true), 6750);
-    setTimeout(() => { inputs[2].classList.add('filled'); fireClick(380, 148); }, 7050);
-    setTimeout(() => moveCursor(380, 176, true), 7250);
-    setTimeout(() => { inputs[3].classList.add('filled'); fireClick(380, 176); }, 7550);
+    setTimeout(() => moveCursor(465, 110), 5700);
+    setTimeout(() => { inputs[0].classList.add('filled'); fireClick(465, 110); }, 6050);
+    setTimeout(() => moveCursor(465, 145, true), 6250);
+    setTimeout(() => { inputs[1].classList.add('filled'); fireClick(465, 145); }, 6550);
+    setTimeout(() => moveCursor(465, 180, true), 6750);
+    setTimeout(() => { inputs[2].classList.add('filled'); fireClick(465, 180); }, 7050);
+    setTimeout(() => moveCursor(465, 215, true), 7250);
+    setTimeout(() => { inputs[3].classList.add('filled'); fireClick(465, 215); }, 7550);
 
     setTimeout(() => setStep(5, 'Save as a block'), 7850);
-    setTimeout(() => moveCursor(380, 230), 8050);
-    setTimeout(() => { saveBtn.classList.add('pressed'); fireClick(380, 230); }, 8450);
+    setTimeout(() => moveCursor(465, 290), 8050);
+    setTimeout(() => { saveBtn.classList.add('pressed'); fireClick(465, 290); }, 8450);
     setTimeout(() => saveBtn.classList.remove('pressed'), 8650);
 
     setTimeout(() => {
@@ -665,7 +637,7 @@
       canvasBlocks.style.opacity = 0;
       weekGrid.style.opacity = 1;
     }, 8950);
-    setTimeout(() => moveCursor(150, 110, true), 9200);
+    setTimeout(() => moveCursor(180, 130, true), 9200);
 
     const fillSequence = [
       {d:0,s:0,t:9400},{d:0,s:1,t:9500},
@@ -679,8 +651,8 @@
     });
 
     setTimeout(() => setStep(7, 'Duplicate'), 9950);
-    setTimeout(() => moveCursor(230, 130, true), 10150);
-    setTimeout(() => fireClick(230, 130), 10400);
+    setTimeout(() => moveCursor(280, 150, true), 10150);
+    setTimeout(() => fireClick(280, 150), 10400);
 
     const duplicateSequence = [
       {d:3,s:0,t:10500},{d:3,s:1,t:10560},
@@ -694,36 +666,40 @@
     });
 
     setTimeout(() => setStep(8, 'Adjust'), 11000);
-    setTimeout(() => moveCursor(200, 145, true), 11150);
+    setTimeout(() => moveCursor(240, 175, true), 11150);
     setTimeout(() => {
       weekGrid.querySelectorAll('.week-day')[2].children[0].classList.add('adjusted');
-      fireClick(200, 145);
+      fireClick(240, 175);
     }, 11400);
-    setTimeout(() => moveCursor(270, 165, true), 11550);
+    setTimeout(() => moveCursor(330, 200, true), 11550);
     setTimeout(() => {
       weekGrid.querySelectorAll('.week-day')[4].children[1].classList.add('adjusted');
-      fireClick(270, 165);
-    }, 11750);
+      fireClick(330, 200);
+    }, 11800);
 
-    setTimeout(() => setStep(9, 'Assign to client'), 12000);
-    setTimeout(() => { assignPop.style.opacity = 1; assignPop.style.transform = 'translateY(0)'; }, 12300);
-    setTimeout(() => moveCursor(280, 220, true), 12500);
-    setTimeout(() => fireClick(280, 220), 12800);
-    setTimeout(() => { assignPop.style.opacity = 0; assignPop.style.transform = 'translateY(4px)'; }, 13000);
+    setTimeout(() => setStep(9, 'Assign to client'), 12050);
+    setTimeout(() => moveCursor(420, 240), 12250);
+    setTimeout(() => { assignPop.style.opacity = 1; assignPop.style.transform = 'translateY(0)'; }, 12550);
+    setTimeout(() => moveCursor(400, 260, true), 12700);
+    setTimeout(() => fireClick(400, 260), 13000);
+    setTimeout(() => { assignPop.style.opacity = 0; assignPop.style.transform = 'translateY(4px)'; }, 13200);
 
     setTimeout(() => {
-      setStep(10, 'Done');
+      setStep(10, 'Hope they open it');
       notification.style.opacity = 1;
-      notifCard.style.opacity = 1;
-      notifCard.style.transform = 'translateY(0)';
-    }, 13300);
+      moveCursor(280, 180, true);
+    }, 13500);
+    setTimeout(() => { notifCard.style.opacity = 1; notifCard.style.transform = 'translateY(0)'; }, 13800);
 
+    setTimeout(() => { notifText.textContent = 'Awaiting client'; notifDot.style.background = 'var(--muted-2)'; }, 14700);
     setTimeout(() => {
+      notifCard.style.opacity = 0.45;
+      notifText.style.color = 'var(--muted-3)';
       notifFinal.style.opacity = 1;
       notifFinal.style.transform = 'translateY(0)';
-    }, 14000);
+    }, 15500);
 
-    setTimeout(run, 17000);
+    setTimeout(run, 17500);
   }
 
   run();
