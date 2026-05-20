@@ -702,6 +702,7 @@ export default function UsVsThemPage() {
             number="03"
             title="NUTRITION"
             themContent="Set up macro targets. Build a meal template. Assign to client. Show them how to log. Remind them to log. Review their log. Adjust. Reassign."
+            themMedia={{ type: 'iframe', src: '/animations/them-nutrition.html' }}
             miltonContent="Set Jenna up on a 1,800 calorie cut and check her meals daily."
             mobile={mobile}
           />
