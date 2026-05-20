@@ -2,17 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Them — program building</title>
+<title>Them — the old way</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
-  /* Reset only the bare minimum needed; body has no padding, no background.
-     The .card below is the entire visual. Drop it into any container. */
-  html, body { margin: 0; padding: 0; background: transparent; }
-  body { font-family: 'DM Sans', system-ui, sans-serif; }
-
-  .card {
+  :root {
     --card-bg: #EAEEF3;
     --surface: #FFFFFF;
     --line: #E1E6EE;
@@ -23,20 +18,34 @@
     --muted-4: #5F6878;
     --ink: #3F4856;
     --cursor: #2A323F;
+  }
 
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #F4F6F8;
+    font-family: 'DM Sans', system-ui, sans-serif;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 24px;
+  }
+
+  /* ---------- Card frame ---------- */
+  .card {
     width: 560px;
     height: 360px;
     background: var(--card-bg);
     border-radius: 20px;
     position: relative;
     overflow: hidden;
-    box-sizing: border-box;
-    color: var(--ink);
+    box-shadow: 0 1px 2px rgba(20, 30, 50, 0.03);
   }
-  .card *, .card *::before, .card *::after { box-sizing: border-box; }
 
   /* ---------- Top step bar ---------- */
-  .card .step-bar {
+  .step-bar {
     position: absolute;
     top: 20px;
     left: 24px;
@@ -47,20 +56,21 @@
     z-index: 60;
     height: 14px;
   }
-  .card .step-num {
+  .step-num {
     font-family: 'JetBrains Mono', monospace;
     font-size: 9.5px;
     letter-spacing: 0.16em;
     color: var(--muted-3);
     font-weight: 500;
     text-transform: uppercase;
+    transition: color 0.3s;
   }
-  .card .step-divider {
+  .step-divider {
     width: 1px;
     height: 10px;
     background: var(--muted-2);
   }
-  .card .step-action {
+  .step-action {
     font-family: 'DM Sans', sans-serif;
     font-size: 11.5px;
     letter-spacing: 0.02em;
@@ -68,13 +78,13 @@
     font-weight: 500;
     transition: opacity 0.25s ease, transform 0.25s ease;
   }
-  .card .step-action.fading {
+  .step-action.fading {
     opacity: 0;
     transform: translateY(-3px);
   }
 
   /* ---------- UI area ---------- */
-  .card .ui {
+  .ui {
     position: absolute;
     top: 50px;
     left: 24px;
@@ -82,8 +92,8 @@
     bottom: 24px;
   }
 
-  /* Sidebar */
-  .card .sidebar {
+  /* ----- Sidebar (exercise library) ----- */
+  .sidebar {
     position: absolute;
     left: 0;
     top: 0;
@@ -96,21 +106,21 @@
     flex-direction: column;
     gap: 6px;
   }
-  .card .lib-header {
+  .lib-header {
     height: 5px;
     width: 60%;
     background: var(--muted-2);
     border-radius: 2px;
     margin-bottom: 4px;
   }
-  .card .lib-item {
+  .lib-item {
     height: 13px;
     background: var(--muted-1);
     border-radius: 3px;
     position: relative;
     transition: opacity 0.4s, background 0.3s;
   }
-  .card .lib-item::before {
+  .lib-item::before {
     content: '';
     position: absolute;
     left: 4px;
@@ -120,10 +130,10 @@
     border-radius: 50%;
     background: var(--muted-2);
   }
-  .card .lib-item.taken { opacity: 0.35; }
+  .lib-item.taken { opacity: 0.35; }
 
-  /* Canvas */
-  .card .canvas {
+  /* ----- Canvas (center) ----- */
+  .canvas {
     position: absolute;
     left: 108px;
     right: 124px;
@@ -134,7 +144,7 @@
     padding: 14px;
     overflow: hidden;
   }
-  .card .canvas-header {
+  .canvas-header {
     height: 5px;
     width: 38%;
     background: var(--muted-2);
@@ -142,7 +152,7 @@
     margin-bottom: 12px;
     transition: opacity 0.3s;
   }
-  .card .canvas-empty {
+  .canvas-empty {
     position: absolute;
     left: 14px;
     right: 14px;
@@ -153,7 +163,7 @@
     opacity: 1;
     transition: opacity 0.35s ease;
   }
-  .card .canvas-empty::before {
+  .canvas-empty::before {
     content: '';
     position: absolute;
     top: 50%;
@@ -164,14 +174,16 @@
     background: var(--muted-1);
     border-radius: 2px;
   }
-  .card .canvas-blocks {
+
+  /* program blocks stacked in canvas */
+  .canvas-blocks {
     display: flex;
     flex-direction: column;
     gap: 6px;
     position: relative;
     z-index: 2;
   }
-  .card .canvas-block {
+  .canvas-block {
     height: 11px;
     background: var(--muted-2);
     border-radius: 3px;
@@ -180,8 +192,8 @@
     transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Dropdown */
-  .card .dropdown {
+  /* dropdown (template picker) */
+  .dropdown {
     position: absolute;
     top: 8px;
     left: 8px;
@@ -199,16 +211,16 @@
     transition: opacity 0.22s, transform 0.22s;
     pointer-events: none;
   }
-  .card .dropdown-item {
+  .dropdown-item {
     height: 11px;
     background: var(--muted-1);
     border-radius: 2px;
     transition: background 0.2s;
   }
-  .card .dropdown-item.selected { background: var(--muted-3); }
+  .dropdown-item.selected { background: var(--muted-3); }
 
-  /* Week grid */
-  .card .week-grid {
+  /* week grid (replaces canvas blocks at the week step) */
+  .week-grid {
     position: absolute;
     left: 14px;
     right: 14px;
@@ -221,7 +233,7 @@
     transition: opacity 0.35s ease;
     pointer-events: none;
   }
-  .card .week-day {
+  .week-day {
     background: var(--muted-0);
     border-radius: 3px;
     padding: 4px 2px;
@@ -229,18 +241,18 @@
     flex-direction: column;
     gap: 2px;
   }
-  .card .week-day-bar {
+  .week-day-bar {
     height: 4px;
     background: var(--muted-1);
     border-radius: 1px;
     opacity: 0;
     transition: opacity 0.25s ease, background 0.2s;
   }
-  .card .week-day-bar.filled { opacity: 1; background: var(--muted-2); }
-  .card .week-day-bar.adjusted { background: var(--muted-3); }
+  .week-day-bar.filled { opacity: 1; background: var(--muted-2); }
+  .week-day-bar.adjusted { background: var(--muted-3); }
 
-  /* Assign popover */
-  .card .assign-pop {
+  /* assign-to-client popover */
+  .assign-pop {
     position: absolute;
     bottom: 12px;
     right: 12px;
@@ -258,7 +270,7 @@
     transition: opacity 0.22s, transform 0.22s;
     pointer-events: none;
   }
-  .card .assign-item {
+  .assign-item {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -266,24 +278,24 @@
     border-radius: 2px;
     transition: background 0.2s;
   }
-  .card .assign-item.selected { background: var(--muted-0); }
-  .card .assign-avatar {
+  .assign-item.selected { background: var(--muted-0); }
+  .assign-avatar {
     width: 10px;
     height: 10px;
     border-radius: 50%;
     background: var(--muted-2);
     flex-shrink: 0;
   }
-  .card .assign-name {
+  .assign-name {
     height: 5px;
     flex: 1;
     background: var(--muted-1);
     border-radius: 1.5px;
   }
-  .card .assign-item.selected .assign-name { background: var(--muted-3); }
+  .assign-item.selected .assign-name { background: var(--muted-3); }
 
-  /* Final notification */
-  .card .notification {
+  /* final notification scene */
+  .notification {
     position: absolute;
     inset: 0;
     background: var(--surface);
@@ -297,7 +309,7 @@
     transition: opacity 0.45s ease;
     pointer-events: none;
   }
-  .card .notif-card {
+  .notif-card {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -308,21 +320,21 @@
     transform: translateY(6px);
     transition: opacity 0.35s ease, transform 0.35s ease, background 0.4s ease;
   }
-  .card .notif-dot {
+  .notif-dot {
     width: 7px;
     height: 7px;
     border-radius: 50%;
     background: var(--muted-3);
     transition: background 0.4s ease;
   }
-  .card .notif-text {
+  .notif-text {
     font-family: 'DM Sans', sans-serif;
     font-size: 11px;
     color: var(--muted-4);
     letter-spacing: 0.03em;
     transition: color 0.4s ease;
   }
-  .card .notif-final {
+  .notif-final {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-size: 18px;
@@ -333,8 +345,8 @@
     letter-spacing: 0.01em;
   }
 
-  /* Inputs panel */
-  .card .inputs {
+  /* ----- Inputs panel (right) ----- */
+  .inputs {
     position: absolute;
     right: 0;
     top: 0;
@@ -347,14 +359,18 @@
     flex-direction: column;
     gap: 10px;
   }
-  .card .input-row { display: flex; flex-direction: column; gap: 4px; }
-  .card .input-label {
+  .input-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .input-label {
     height: 4px;
     width: 50%;
     background: var(--muted-2);
     border-radius: 1.5px;
   }
-  .card .input-field {
+  .input-field {
     height: 18px;
     background: var(--muted-1);
     border-radius: 3px;
@@ -362,7 +378,7 @@
     overflow: hidden;
     transition: background 0.25s;
   }
-  .card .input-field::after {
+  .input-field::after {
     content: '';
     position: absolute;
     left: 6px;
@@ -373,22 +389,27 @@
     border-radius: 1px;
     transition: width 0.5s cubic-bezier(0.5, 0, 0.3, 1);
   }
-  .card .input-field.filled::after { width: 60%; }
-  .card .save-row { margin-top: auto; }
-  .card .save-btn {
+  .input-field.filled::after { width: 60%; }
+  .input-field.flash {
+    background: var(--muted-2);
+  }
+  .save-row {
+    margin-top: auto;
+  }
+  .save-btn {
     height: 22px;
     background: var(--muted-1);
     border-radius: 4px;
     transition: background 0.25s ease, transform 0.15s ease;
     position: relative;
   }
-  .card .save-btn.pressed {
+  .save-btn.pressed {
     background: var(--muted-3);
     transform: scale(0.96);
   }
 
-  /* Cursor */
-  .card .cursor {
+  /* ----- Cursor ----- */
+  .cursor {
     position: absolute;
     width: 14px;
     height: 18px;
@@ -399,17 +420,17 @@
                 left 0.6s cubic-bezier(0.45, 0.05, 0.25, 0.95);
     pointer-events: none;
   }
-  .card .cursor.fast {
+  .cursor.fast {
     transition: top 0.28s cubic-bezier(0.6, 0, 0.3, 1),
                 left 0.28s cubic-bezier(0.6, 0, 0.3, 1);
   }
-  .card .cursor svg {
+  .cursor svg {
     display: block;
     filter: drop-shadow(0 1px 2px rgba(0,0,0,0.18));
   }
 
-  /* Click ripple */
-  .card .click {
+  /* click ripple */
+  .click {
     position: absolute;
     width: 26px;
     height: 26px;
@@ -420,124 +441,171 @@
     transform: translate(-50%, -50%) scale(0.4);
     pointer-events: none;
   }
-  .card .click.fire { animation: ripple-them 0.5s ease-out; }
-  @keyframes ripple-them {
+  .click.fire {
+    animation: ripple 0.5s ease-out;
+  }
+  @keyframes ripple {
     0%   { opacity: 0.5; transform: translate(-50%, -50%) scale(0.3); }
     100% { opacity: 0;   transform: translate(-50%, -50%) scale(1.5); }
+  }
+
+  /* Caption beneath the card (the matching paragraph) */
+  .caption {
+    width: 560px;
+    margin-top: 22px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--muted-4);
+    letter-spacing: 0.005em;
+  }
+
+  .wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 </style>
 </head>
 <body>
-
-<div class="card" id="themCard">
-  <div class="step-bar">
-    <span class="step-num" id="stepNum">STEP 01 / 10</span>
-    <span class="step-divider"></span>
-    <span class="step-action" id="stepAction">Open the builder</span>
-  </div>
-
-  <div class="ui">
-    <div class="sidebar">
-      <div class="lib-header"></div>
-      <div class="lib-item" id="li1"></div>
-      <div class="lib-item" id="li2"></div>
-      <div class="lib-item" id="li3"></div>
-      <div class="lib-item" id="li4"></div>
-      <div class="lib-item" id="li5"></div>
-      <div class="lib-item" id="li6"></div>
-      <div class="lib-item" id="li7"></div>
-    </div>
-
-    <div class="canvas">
-      <div class="canvas-header" id="canvasHeader"></div>
-      <div class="canvas-empty" id="canvasEmpty"></div>
-
-      <div class="canvas-blocks" id="canvasBlocks">
-        <div class="canvas-block" id="b1"></div>
-        <div class="canvas-block" id="b2"></div>
-        <div class="canvas-block" id="b3"></div>
-        <div class="canvas-block" id="b4"></div>
+  <div class="wrap">
+    <div class="card" id="card">
+      <!-- Step indicator -->
+      <div class="step-bar">
+        <span class="step-num" id="stepNum">STEP 01 / 10</span>
+        <span class="step-divider"></span>
+        <span class="step-action" id="stepAction">Open the builder</span>
       </div>
 
-      <div class="week-grid" id="weekGrid"></div>
-
-      <div class="dropdown" id="dropdown">
-        <div class="dropdown-item"></div>
-        <div class="dropdown-item selected" id="ddSel"></div>
-        <div class="dropdown-item"></div>
-        <div class="dropdown-item"></div>
-      </div>
-
-      <div class="assign-pop" id="assignPop">
-        <div class="assign-item"><div class="assign-avatar"></div><div class="assign-name"></div></div>
-        <div class="assign-item selected" id="assignSel"><div class="assign-avatar"></div><div class="assign-name"></div></div>
-        <div class="assign-item"><div class="assign-avatar"></div><div class="assign-name"></div></div>
-      </div>
-
-      <div class="notification" id="notification">
-        <div class="notif-card" id="notifCard">
-          <div class="notif-dot" id="notifDot"></div>
-          <div class="notif-text" id="notifText">Sent to client</div>
+      <!-- Main schematic UI -->
+      <div class="ui">
+        <div class="sidebar">
+          <div class="lib-header"></div>
+          <div class="lib-item" id="li1"></div>
+          <div class="lib-item" id="li2"></div>
+          <div class="lib-item" id="li3"></div>
+          <div class="lib-item" id="li4"></div>
+          <div class="lib-item" id="li5"></div>
+          <div class="lib-item" id="li6"></div>
+          <div class="lib-item" id="li7"></div>
         </div>
-        <div class="notif-final" id="notifFinal">Not opened.</div>
+
+        <div class="canvas">
+          <div class="canvas-header" id="canvasHeader"></div>
+          <div class="canvas-empty" id="canvasEmpty"></div>
+
+          <div class="canvas-blocks" id="canvasBlocks">
+            <div class="canvas-block" id="b1"></div>
+            <div class="canvas-block" id="b2"></div>
+            <div class="canvas-block" id="b3"></div>
+            <div class="canvas-block" id="b4"></div>
+          </div>
+
+          <div class="week-grid" id="weekGrid">
+            <!-- 7 day columns inserted by JS -->
+          </div>
+
+          <div class="dropdown" id="dropdown">
+            <div class="dropdown-item"></div>
+            <div class="dropdown-item" id="ddSel"></div>
+            <div class="dropdown-item"></div>
+            <div class="dropdown-item"></div>
+          </div>
+
+          <div class="assign-pop" id="assignPop">
+            <div class="assign-item"><div class="assign-avatar"></div><div class="assign-name"></div></div>
+            <div class="assign-item" id="assignSel"><div class="assign-avatar"></div><div class="assign-name"></div></div>
+            <div class="assign-item"><div class="assign-avatar"></div><div class="assign-name"></div></div>
+          </div>
+
+          <div class="notification" id="notification">
+            <div class="notif-card" id="notifCard">
+              <div class="notif-dot" id="notifDot"></div>
+              <div class="notif-text" id="notifText">Sent to client</div>
+            </div>
+            <div class="notif-final" id="notifFinal">Not opened.</div>
+          </div>
+        </div>
+
+        <div class="inputs">
+          <div class="input-row">
+            <div class="input-label"></div>
+            <div class="input-field" id="in1"></div>
+          </div>
+          <div class="input-row">
+            <div class="input-label"></div>
+            <div class="input-field" id="in2"></div>
+          </div>
+          <div class="input-row">
+            <div class="input-label"></div>
+            <div class="input-field" id="in3"></div>
+          </div>
+          <div class="input-row">
+            <div class="input-label"></div>
+            <div class="input-field" id="in4"></div>
+          </div>
+          <div class="save-row">
+            <div class="save-btn" id="saveBtn"></div>
+          </div>
+        </div>
       </div>
+
+      <!-- Cursor + click ripple -->
+      <div class="cursor" id="cursor">
+        <svg viewBox="0 0 14 18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M1 1 L1 13.5 L4 10.5 L6.5 16 L8.5 15 L6 9.5 L10.5 9 Z"
+                fill="#2A323F" stroke="#ffffff" stroke-width="0.6" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="click" id="click"></div>
     </div>
 
-    <div class="inputs">
-      <div class="input-row"><div class="input-label"></div><div class="input-field" id="in1"></div></div>
-      <div class="input-row"><div class="input-label"></div><div class="input-field" id="in2"></div></div>
-      <div class="input-row"><div class="input-label"></div><div class="input-field" id="in3"></div></div>
-      <div class="input-row"><div class="input-label"></div><div class="input-field" id="in4"></div></div>
-      <div class="save-row"><div class="save-btn" id="saveBtn"></div></div>
-    </div>
+    <p class="caption">
+      Open the builder. Pick a template. Drag in exercises. Set reps, sets, tempo, rest.
+      Save as a block. Build a week. Duplicate. Adjust. Assign to client. Hope they open it.
+    </p>
   </div>
-
-  <div class="cursor" id="cursor">
-    <svg viewBox="0 0 14 18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d="M1 1 L1 13.5 L4 10.5 L6.5 16 L8.5 15 L6 9.5 L10.5 9 Z"
-            fill="#2A323F" stroke="#ffffff" stroke-width="0.6" stroke-linejoin="round"/>
-    </svg>
-  </div>
-  <div class="click" id="click"></div>
-</div>
 
 <script>
 (function () {
-  const root = document.getElementById('themCard');
-  const $ = (id) => root.querySelector('#' + id);
-
   // Build the week grid (7 days × 4 slots each)
-  const weekGrid = $('weekGrid');
+  const weekGrid = document.getElementById('weekGrid');
   for (let d = 0; d < 7; d++) {
     const day = document.createElement('div');
     day.className = 'week-day';
     for (let s = 0; s < 4; s++) {
       const bar = document.createElement('div');
       bar.className = 'week-day-bar';
+      bar.dataset.day = d;
+      bar.dataset.slot = s;
       day.appendChild(bar);
     }
     weekGrid.appendChild(day);
   }
 
-  const cursor       = $('cursor');
-  const click        = $('click');
-  const stepNum      = $('stepNum');
-  const stepAct      = $('stepAction');
-  const dropdown     = $('dropdown');
-  const assignPop    = $('assignPop');
-  const canvasEmpty  = $('canvasEmpty');
-  const canvasBlocks = $('canvasBlocks');
-  const canvasHeader = $('canvasHeader');
-  const notification = $('notification');
-  const notifCard    = $('notifCard');
-  const notifDot     = $('notifDot');
-  const notifText    = $('notifText');
-  const notifFinal   = $('notifFinal');
-  const saveBtn      = $('saveBtn');
-  const blocks       = [$('b1'), $('b2'), $('b3'), $('b4')];
-  const inputs       = [$('in1'), $('in2'), $('in3'), $('in4')];
-  const libItems     = [1,2,3,4,5,6,7].map(i => $('li' + i));
+  const cursor   = document.getElementById('cursor');
+  const click    = document.getElementById('click');
+  const stepNum  = document.getElementById('stepNum');
+  const stepAct  = document.getElementById('stepAction');
+  const dropdown = document.getElementById('dropdown');
+  const assignPop= document.getElementById('assignPop');
+  const canvasEmpty = document.getElementById('canvasEmpty');
+  const canvasBlocks = document.getElementById('canvasBlocks');
+  const canvasHeader = document.getElementById('canvasHeader');
+  const notification = document.getElementById('notification');
+  const notifCard = document.getElementById('notifCard');
+  const notifDot  = document.getElementById('notifDot');
+  const notifText = document.getElementById('notifText');
+  const notifFinal= document.getElementById('notifFinal');
+  const saveBtn   = document.getElementById('saveBtn');
+  const blocks    = [document.getElementById('b1'), document.getElementById('b2'),
+                     document.getElementById('b3'), document.getElementById('b4')];
+  const inputs    = [document.getElementById('in1'), document.getElementById('in2'),
+                     document.getElementById('in3'), document.getElementById('in4')];
+  const libItems  = [1,2,3,4,5,6,7].map(i => document.getElementById('li' + i));
+  const dayBars   = Array.from(weekGrid.querySelectorAll('.week-day-bar'));
 
+  // Helpers
   function moveCursor(x, y, fast) {
     cursor.classList.toggle('fast', !!fast);
     cursor.style.left = x + 'px';
@@ -561,62 +629,91 @@
   function reset() {
     libItems.forEach(li => li.classList.remove('taken'));
     blocks.forEach(b => { b.style.opacity = 0; b.style.transform = 'translateX(-32px)'; });
-    inputs.forEach(i => { i.classList.remove('filled'); });
-    dropdown.style.opacity = 0; dropdown.style.transform = 'translateY(-4px)';
-    assignPop.style.opacity = 0; assignPop.style.transform = 'translateY(4px)';
+    inputs.forEach(i => { i.classList.remove('filled'); i.classList.remove('flash'); });
+    dropdown.style.opacity = 0;
+    dropdown.style.transform = 'translateY(-4px)';
+    assignPop.style.opacity = 0;
+    assignPop.style.transform = 'translateY(4px)';
     canvasEmpty.style.opacity = 1;
     canvasBlocks.style.opacity = 0;
     canvasHeader.style.opacity = 1;
     weekGrid.style.opacity = 0;
-    weekGrid.querySelectorAll('.week-day-bar').forEach(b => {
-      b.classList.remove('filled'); b.classList.remove('adjusted');
-    });
+    dayBars.forEach(b => { b.classList.remove('filled'); b.classList.remove('adjusted'); });
     notification.style.opacity = 0;
-    notifCard.style.opacity = 0; notifCard.style.transform = 'translateY(6px)';
+    notifCard.style.opacity = 0;
+    notifCard.style.transform = 'translateY(6px)';
+    notifCard.style.background = '';
     notifDot.style.background = '';
     notifText.textContent = 'Sent to client';
     notifText.style.color = '';
-    notifFinal.style.opacity = 0; notifFinal.style.transform = 'translateY(4px)';
+    notifFinal.style.opacity = 0;
+    notifFinal.style.transform = 'translateY(4px)';
     saveBtn.classList.remove('pressed');
     moveCursor(18, 18, true);
   }
 
+  // ---------- Scene runner ----------
   function run() {
     reset();
 
-    setTimeout(() => { setStep(1, 'Open the builder'); moveCursor(50, 60, true); }, 100);
+    // Scene 1: Open the builder
+    setTimeout(() => {
+      setStep(1, 'Open the builder');
+      moveCursor(50, 60, true);
+    }, 100);
     setTimeout(() => fireClick(50, 60), 600);
     setTimeout(() => { canvasBlocks.style.opacity = 1; }, 800);
 
-    setTimeout(() => { setStep(2, 'Pick a template'); moveCursor(150, 70); }, 1300);
-    setTimeout(() => { dropdown.style.opacity = 1; dropdown.style.transform = 'translateY(0)'; }, 1700);
+    // Scene 2: Pick a template
+    setTimeout(() => {
+      setStep(2, 'Pick a template');
+      moveCursor(150, 70);
+    }, 1300);
+    setTimeout(() => {
+      dropdown.style.opacity = 1;
+      dropdown.style.transform = 'translateY(0)';
+    }, 1700);
     setTimeout(() => moveCursor(180, 100, true), 1900);
     setTimeout(() => fireClick(180, 100), 2250);
-    setTimeout(() => { dropdown.style.opacity = 0; dropdown.style.transform = 'translateY(-4px)'; }, 2400);
+    setTimeout(() => {
+      dropdown.style.opacity = 0;
+      dropdown.style.transform = 'translateY(-4px)';
+    }, 2400);
 
-    setTimeout(() => { setStep(3, 'Drag in exercises'); canvasEmpty.style.opacity = 0; }, 2700);
+    // Scene 3: Drag in exercises (3 drags)
+    setTimeout(() => {
+      setStep(3, 'Drag in exercises');
+      canvasEmpty.style.opacity = 0;
+    }, 2700);
 
+    // Drag 1
     setTimeout(() => moveCursor(60, 110, true), 2900);
     setTimeout(() => moveCursor(220, 110), 3150);
     setTimeout(() => {
       libItems[1].classList.add('taken');
-      blocks[0].style.opacity = 1; blocks[0].style.transform = 'translateX(0)';
+      blocks[0].style.opacity = 1;
+      blocks[0].style.transform = 'translateX(0)';
     }, 3500);
 
+    // Drag 2
     setTimeout(() => moveCursor(60, 135, true), 3750);
     setTimeout(() => moveCursor(220, 130), 4000);
     setTimeout(() => {
       libItems[2].classList.add('taken');
-      blocks[1].style.opacity = 1; blocks[1].style.transform = 'translateX(0)';
+      blocks[1].style.opacity = 1;
+      blocks[1].style.transform = 'translateX(0)';
     }, 4350);
 
+    // Drag 3
     setTimeout(() => moveCursor(60, 165, true), 4600);
     setTimeout(() => moveCursor(220, 150), 4850);
     setTimeout(() => {
       libItems[4].classList.add('taken');
-      blocks[2].style.opacity = 1; blocks[2].style.transform = 'translateX(0)';
+      blocks[2].style.opacity = 1;
+      blocks[2].style.transform = 'translateX(0)';
     }, 5200);
 
+    // Scene 4: Set reps, sets, tempo, rest
     setTimeout(() => setStep(4, 'Set reps, sets, tempo, rest'), 5500);
     setTimeout(() => moveCursor(465, 110), 5700);
     setTimeout(() => { inputs[0].classList.add('filled'); fireClick(465, 110); }, 6050);
@@ -627,11 +724,16 @@
     setTimeout(() => moveCursor(465, 215, true), 7250);
     setTimeout(() => { inputs[3].classList.add('filled'); fireClick(465, 215); }, 7550);
 
+    // Scene 5: Save as a block
     setTimeout(() => setStep(5, 'Save as a block'), 7850);
     setTimeout(() => moveCursor(465, 290), 8050);
-    setTimeout(() => { saveBtn.classList.add('pressed'); fireClick(465, 290); }, 8450);
+    setTimeout(() => {
+      saveBtn.classList.add('pressed');
+      fireClick(465, 290);
+    }, 8450);
     setTimeout(() => saveBtn.classList.remove('pressed'), 8650);
 
+    // Scene 6: Build a week
     setTimeout(() => {
       setStep(6, 'Build a week');
       canvasBlocks.style.opacity = 0;
@@ -639,6 +741,7 @@
     }, 8950);
     setTimeout(() => moveCursor(180, 130, true), 9200);
 
+    // Fill day bars one-by-one quickly (Mon-Fri, 2 bars each)
     const fillSequence = [
       {d:0,s:0,t:9400},{d:0,s:1,t:9500},
       {d:1,s:0,t:9600},{d:1,s:1,t:9700},
@@ -646,10 +749,12 @@
     ];
     fillSequence.forEach(({d,s,t}) => {
       setTimeout(() => {
-        weekGrid.querySelectorAll('.week-day')[d].children[s].classList.add('filled');
+        const bar = weekGrid.querySelectorAll('.week-day')[d].children[s];
+        bar.classList.add('filled');
       }, t);
     });
 
+    // Scene 7: Duplicate (fill remaining days fast)
     setTimeout(() => setStep(7, 'Duplicate'), 9950);
     setTimeout(() => moveCursor(280, 150, true), 10150);
     setTimeout(() => fireClick(280, 150), 10400);
@@ -661,10 +766,12 @@
     ];
     duplicateSequence.forEach(({d,s,t}) => {
       setTimeout(() => {
-        weekGrid.querySelectorAll('.week-day')[d].children[s].classList.add('filled');
+        const bar = weekGrid.querySelectorAll('.week-day')[d].children[s];
+        bar.classList.add('filled');
       }, t);
     });
 
+    // Scene 8: Adjust (recolor a few bars)
     setTimeout(() => setStep(8, 'Adjust'), 11000);
     setTimeout(() => moveCursor(240, 175, true), 11150);
     setTimeout(() => {
@@ -677,21 +784,36 @@
       fireClick(330, 200);
     }, 11800);
 
+    // Scene 9: Assign to client
     setTimeout(() => setStep(9, 'Assign to client'), 12050);
     setTimeout(() => moveCursor(420, 240), 12250);
-    setTimeout(() => { assignPop.style.opacity = 1; assignPop.style.transform = 'translateY(0)'; }, 12550);
+    setTimeout(() => {
+      assignPop.style.opacity = 1;
+      assignPop.style.transform = 'translateY(0)';
+    }, 12550);
     setTimeout(() => moveCursor(400, 260, true), 12700);
     setTimeout(() => fireClick(400, 260), 13000);
-    setTimeout(() => { assignPop.style.opacity = 0; assignPop.style.transform = 'translateY(4px)'; }, 13200);
+    setTimeout(() => {
+      assignPop.style.opacity = 0;
+      assignPop.style.transform = 'translateY(4px)';
+    }, 13200);
 
+    // Scene 10: Hope they open it
     setTimeout(() => {
       setStep(10, 'Hope they open it');
       notification.style.opacity = 1;
       moveCursor(280, 180, true);
     }, 13500);
-    setTimeout(() => { notifCard.style.opacity = 1; notifCard.style.transform = 'translateY(0)'; }, 13800);
+    setTimeout(() => {
+      notifCard.style.opacity = 1;
+      notifCard.style.transform = 'translateY(0)';
+    }, 13800);
 
-    setTimeout(() => { notifText.textContent = 'Awaiting client'; notifDot.style.background = 'var(--muted-2)'; }, 14700);
+    // "Sent" → grey out → "Not opened."
+    setTimeout(() => {
+      notifText.textContent = 'Awaiting client';
+      notifDot.style.background = 'var(--muted-2)';
+    }, 14700);
     setTimeout(() => {
       notifCard.style.opacity = 0.45;
       notifText.style.color = 'var(--muted-3)';
@@ -699,9 +821,11 @@
       notifFinal.style.transform = 'translateY(0)';
     }, 15500);
 
+    // Loop
     setTimeout(run, 17500);
   }
 
+  // Kick it off
   run();
 })();
 </script>
