@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { createClient } from '@supabase/supabase-js'
 import Footer from './components/Footer'
 import Header from './components/Header'
+import TestimonialVideos from './components/TestimonialVideos'
 
 // Initialize Supabase client - use VITE_ prefixed vars for client-side access
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
@@ -234,6 +235,9 @@ export default function NewHomePage() {
             />
           </div>
         </section>
+
+        {/* Testimonial Videos */}
+        <TestimonialVideos mobile={mobile} />
 
         {/* Three Ways - Intro */}
         <section style={{
