@@ -5,6 +5,7 @@ import NewHomePage from './NewHomePage.jsx'
 import CoachesPage from './CoachesPage.jsx'
 import GymsPage from './GymsPage.jsx'
 import AIAssistantCoach from './AIAssistantCoach.jsx'
+import UsVsThemPage from './UsVsThemPage.jsx'
 import InsightsPage from './InsightsPage.jsx'
 import ArticlePage from './ArticlePage.jsx'
 import AboutPage from './AboutPage.jsx'
@@ -53,10 +54,11 @@ function App() {
   }, [route])
 
   // Route matching
-  if (route === '/' || route === '') return <NewHomePage />
+  if (route === '/' || route === '') return <AIAssistantCoach />
+  if (route === '/milton-makes-money') return <NewHomePage />
   if (route === '/coaches') return <CoachesPage />
   if (route === '/gyms') return <GymsPage />
-  if (route === '/ai-assistant-coach') return <AIAssistantCoach />
+  if (route === '/us-vs-them') return <UsVsThemPage />
   if (route === '/insights') return <InsightsPage />
   if (route === '/about') return <AboutPage />
   if (route === '/terms') return <Terms />
@@ -70,7 +72,7 @@ function App() {
   }
   
   // Default to home page for any unmatched routes
-  return <NewHomePage />
+  return <AIAssistantCoach />
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(

@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Them — nutrition coaching</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; background: transparent; }
+  body { font-family: 'DM Sans', system-ui, sans-serif; }
+
+  .card-wrap {
+    width: 100%;
+    max-width: 560px;
+    aspect-ratio: 560 / 360;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+
+  .card {
+    --card-bg: #EAEEF3;
+    --surface: #FFFFFF;
+    --line: #E1E6EE;
+    --muted-0: #E4E9F0;
+    --muted-1: #D2D9E3;
+    --muted-2: #AEB7C6;
+    --muted-3: #828C9D;
+    --muted-4: #5F6878;
+    --ink: #3F4856;
+    --cursor: #2A323F;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: top left;
+    width: 560px;
+    height: 360px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    box-sizing: border-box;
+    color: var(--ink);
+  }
+  .card *, .card *::before, .card *::after { box-sizing: border-box; }
+
+  /* ---------- Step bar ---------- */
+  .card .step-bar {
+    position: absolute;
+    top: 20px;
+    left: 24px;
+    right: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 60;
+    height: 14px;
+  }
+  .card .step-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.16em;
+    color: var(--muted-3);
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .card .step-divider { width: 1px; height: 10px; background: var(--muted-2); }
+  .card .step-action {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11.5px;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    font-weight: 500;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .card .step-action.fading { opacity: 0; transform: translateY(-3px); }
+  .card .cycle-icon {
+    width: 11px;
+    height: 11px;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    color: var(--muted-3);
+  }
+  .card .cycle-icon.visible { opacity: 1; }
+
+  /* ---------- UI area ---------- */
+  .card .ui {
+    position: absolute;
+    top: 50px;
+    left: 24px;
+    right: 24px;
+    bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* ----- Macros strip ----- */
+  .card .macros {
+    display: flex;
+    gap: 10px;
+    height: 56px;
+    flex-shrink: 0;
+  }
+  .card .macro {
+    flex: 1;
+    background: var(--surface);
+    border-radius: 7px;
+    padding: 9px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    transition: background 0.25s ease;
+  }
+  .card .macro-label {
+    height: 4px;
+    width: 28px;
+    background: var(--muted-2);
+    border-radius: 1.5px;
+  }
+  .card .macro-value {
+    height: 11px;
+    width: 0%;
+    background: var(--muted-1);
+    border-radius: 2px;
+    transition: width 0.5s cubic-bezier(0.5, 0, 0.3, 1), background 0.25s ease;
+  }
+  .card .macro.filled .macro-value { width: 65%; background: var(--muted-3); }
+  .card .macro.adjusted .macro-value { width: 78%; background: var(--muted-4); }
+  .card .macro.flash { background: var(--muted-0); }
+
+  /* ----- Bottom row: meal panel + client panel ----- */
+  .card .bottom-row {
+    display: flex;
+    gap: 10px;
+    flex: 1;
+    min-height: 0;
+  }
+
+  /* Meal panel (left) */
+  .card .meal-panel {
+    flex: 1.65;
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card .meal-slot {
+    background: var(--muted-0);
+    border-radius: 6px;
+    padding: 6px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+    min-height: 0;
+  }
+  .card .slot-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card .slot-name {
+    height: 5px;
+    width: 50px;
+    background: var(--muted-2);
+    border-radius: 1.5px;
+  }
+  .card .slot-target {
+    height: 4px;
+    width: 24px;
+    background: var(--muted-1);
+    border-radius: 1.5px;
+  }
+  .card .slot-items {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    flex: 1;
+  }
+  .card .meal-item {
+    height: 9px;
+    background: var(--muted-1);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0 5px;
+    opacity: 0;
+    transform: translateX(-12px);
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.25s ease;
+  }
+  .card .meal-item.visible { opacity: 1; transform: translateX(0); }
+  .card .meal-item-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--muted-2);
+    flex-shrink: 0;
+    transition: background 0.25s ease;
+  }
+  .card .meal-item-bar {
+    flex: 1;
+    height: 3px;
+    background: var(--muted-2);
+    border-radius: 1px;
+  }
+  /* Log review states */
+  .card .meal-item.logged .meal-item-dot { background: var(--muted-4); }
+  .card .meal-item.missed { opacity: 0.4; }
+  .card .meal-item.missed .meal-item-dot { background: var(--muted-1); }
+
+  /* Client panel (right) */
+  .card .client-panel {
+    flex: 1;
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 10px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    position: relative;
+    overflow: hidden;
+  }
+  .card .client-header {
+    height: 5px;
+    width: 60%;
+    background: var(--muted-2);
+    border-radius: 1.5px;
+    margin: 0 4px 4px 4px;
+  }
+  .card .client-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 6px;
+    border-radius: 4px;
+    transition: background 0.25s ease;
+    flex: 1;
+    min-height: 0;
+  }
+  .card .client-row.selected { background: var(--muted-0); }
+  .card .client-row.previously-selected { background: transparent; }
+  .card .ca {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--muted-2);
+    flex-shrink: 0;
+    transition: background 0.25s ease;
+  }
+  .card .client-row.selected .ca { background: var(--muted-4); }
+  .card .cn {
+    flex: 1;
+    height: 4px;
+    background: var(--muted-1);
+    border-radius: 1.5px;
+    transition: background 0.25s ease;
+  }
+  .card .client-row.selected .cn { background: var(--muted-3); }
+  .card .cs {
+    height: 4px;
+    width: 16px;
+    background: var(--muted-1);
+    border-radius: 1.5px;
+  }
+
+  /* ----- Tutorial bubble overlay (scene 4) ----- */
+  .card .tutorial {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translate(-50%, -6px);
+    width: 170px;
+    background: var(--surface);
+    border-radius: 6px;
+    padding: 8px 10px;
+    box-shadow: 0 8px 28px rgba(20, 30, 50, 0.16);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 25;
+    pointer-events: none;
+    border: 1px solid var(--muted-1);
+  }
+  .card .tutorial.visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  .card .tutorial-header {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 2px;
+  }
+  .card .tutorial-icon {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--muted-3);
+  }
+  .card .tutorial-title {
+    height: 5px;
+    width: 60px;
+    background: var(--muted-3);
+    border-radius: 1.5px;
+  }
+  .card .tutorial-line {
+    height: 3.5px;
+    background: var(--muted-1);
+    border-radius: 1px;
+  }
+  .card .tutorial::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 30px;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid var(--surface);
+    filter: drop-shadow(0 1px 1px rgba(20, 30, 50, 0.08));
+  }
+
+  /* ----- Reminder toast overlay (scene 5) ----- */
+  .card .reminder {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--surface);
+    border: 1px solid var(--muted-1);
+    border-radius: 999px;
+    padding: 5px 9px 5px 7px;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 26;
+    pointer-events: none;
+    box-shadow: 0 4px 14px rgba(20, 30, 50, 0.1);
+  }
+  .card .reminder.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .card .reminder-bell {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--muted-3);
+    position: relative;
+    flex-shrink: 0;
+  }
+  .card .reminder-bell::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--ink);
+    border: 1px solid var(--surface);
+  }
+  .card .reminder-text {
+    height: 4px;
+    width: 50px;
+    background: var(--muted-2);
+    border-radius: 1.5px;
+  }
+
+  /* ----- Cursor + click ripple ----- */
+  .card .cursor {
+    position: absolute;
+    width: 14px;
+    height: 18px;
+    z-index: 80;
+    top: 18px;
+    left: 18px;
+    transition: top 0.6s cubic-bezier(0.45, 0.05, 0.25, 0.95),
+                left 0.6s cubic-bezier(0.45, 0.05, 0.25, 0.95);
+    pointer-events: none;
+  }
+  .card .cursor.fast {
+    transition: top 0.28s cubic-bezier(0.6, 0, 0.3, 1),
+                left 0.28s cubic-bezier(0.6, 0, 0.3, 1);
+  }
+  .card .cursor svg {
+    display: block;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.18));
+  }
+  .card .click {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border: 1.5px solid var(--cursor);
+    border-radius: 50%;
+    z-index: 70;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4);
+    pointer-events: none;
+  }
+  .card .click.fire { animation: ripple-them3 0.5s ease-out; }
+  @keyframes ripple-them3 {
+    0%   { opacity: 0.5; transform: translate(-50%, -50%) scale(0.3); }
+    100% { opacity: 0;   transform: translate(-50%, -50%) scale(1.5); }
+  }
+</style>
+</head>
+<body>
+
+<div class="card-wrap">
+<div class="card" id="themCard">
+  <div class="step-bar">
+    <span class="step-num" id="stepNum">STEP 01 / 08</span>
+    <span class="step-divider"></span>
+    <span class="step-action" id="stepAction">
+      <span id="stepText">Set up macro targets</span>
+      <svg class="cycle-icon" id="cycleIcon" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M2 6 A4 4 0 0 1 9.2 3.7 M10 6 A4 4 0 0 1 2.8 8.3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <path d="M9.2 3.7 L9.6 2 L11 3.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M2.8 8.3 L2.4 10 L1 8.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </span>
+  </div>
+
+  <div class="ui">
+    <!-- Macros strip -->
+    <div class="macros">
+      <div class="macro" id="m1"><div class="macro-label"></div><div class="macro-value"></div></div>
+      <div class="macro" id="m2"><div class="macro-label"></div><div class="macro-value"></div></div>
+      <div class="macro" id="m3"><div class="macro-label"></div><div class="macro-value"></div></div>
+      <div class="macro" id="m4"><div class="macro-label"></div><div class="macro-value"></div></div>
+    </div>
+
+    <!-- Bottom row -->
+    <div class="bottom-row">
+      <!-- Meal panel -->
+      <div class="meal-panel">
+        <div class="meal-slot" id="slot1">
+          <div class="slot-header">
+            <div class="slot-name"></div>
+            <div class="slot-target"></div>
+          </div>
+          <div class="slot-items">
+            <div class="meal-item" id="i1-1"><div class="meal-item-dot"></div><div class="meal-item-bar"></div></div>
+            <div class="meal-item" id="i1-2"><div class="meal-item-dot"></div><div class="meal-item-bar"></div></div>
+          </div>
+        </div>
+        <div class="meal-slot" id="slot2">
+          <div class="slot-header">
+            <div class="slot-name"></div>
+            <div class="slot-target"></div>
+          </div>
+          <div class="slot-items">
+            <div class="meal-item" id="i2-1"><div class="meal-item-dot"></div><div class="meal-item-bar"></div></div>
+            <div class="meal-item" id="i2-2"><div class="meal-item-dot"></div><div class="meal-item-bar"></div></div>
+          </div>
+        </div>
+        <div class="meal-slot" id="slot3">
+          <div class="slot-header">
+            <div class="slot-name"></div>
+            <div class="slot-target"></div>
+          </div>
+          <div class="slot-items">
+            <div class="meal-item" id="i3-1"><div class="meal-item-dot"></div><div class="meal-item-bar"></div></div>
+            <div class="meal-item" id="i3-2"><div class="meal-item-dot"></div><div class="meal-item-bar"></div></div>
+          </div>
+        </div>
+
+        <!-- Tutorial bubble overlay (scene 4) -->
+        <div class="tutorial" id="tutorial">
+          <div class="tutorial-header">
+            <div class="tutorial-icon"></div>
+            <div class="tutorial-title"></div>
+          </div>
+          <div class="tutorial-line" style="width: 90%"></div>
+          <div class="tutorial-line" style="width: 78%"></div>
+          <div class="tutorial-line" style="width: 65%"></div>
+        </div>
+
+        <!-- Reminder toast (scene 5) -->
+        <div class="reminder" id="reminder">
+          <div class="reminder-bell"></div>
+          <div class="reminder-text"></div>
+        </div>
+      </div>
+
+      <!-- Client panel -->
+      <div class="client-panel">
+        <div class="client-header"></div>
+        <div class="client-row" id="c1"><div class="ca"></div><div class="cn"></div><div class="cs"></div></div>
+        <div class="client-row" id="c2"><div class="ca"></div><div class="cn"></div><div class="cs"></div></div>
+        <div class="client-row" id="c3"><div class="ca"></div><div class="cn"></div><div class="cs"></div></div>
+        <div class="client-row" id="c4"><div class="ca"></div><div class="cn"></div><div class="cs"></div></div>
+        <div class="client-row" id="c5"><div class="ca"></div><div class="cn"></div><div class="cs"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cursor + click ripple -->
+  <div class="cursor" id="cursor">
+    <svg viewBox="0 0 14 18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M1 1 L1 13.5 L4 10.5 L6.5 16 L8.5 15 L6 9.5 L10.5 9 Z"
+            fill="#2A323F" stroke="#ffffff" stroke-width="0.6" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <div class="click" id="click"></div>
+</div>
+</div>
+
+<script>
+(function () {
+  const root = document.getElementById('themCard');
+  const $ = (id) => root.querySelector('#' + id);
+
+  // Responsive scaling: scale the 560x360 card to fit its wrapper
+  function fitCard() {
+    const wrap = root.parentElement;
+    if (!wrap) return;
+    const scale = Math.min(1, wrap.clientWidth / 560);
+    root.style.transform = 'scale(' + scale + ')';
+  }
+  fitCard();
+  if (window.ResizeObserver) {
+    new ResizeObserver(fitCard).observe(root.parentElement);
+  } else {
+    window.addEventListener('resize', fitCard);
+  }
+
+  const cursor   = $('cursor');
+  const click    = $('click');
+  const stepNum  = $('stepNum');
+  const stepAct  = $('stepAction');
+  const stepText = $('stepText');
+  const cycleIcon= $('cycleIcon');
+
+  const macros   = [$('m1'), $('m2'), $('m3'), $('m4')];
+  const slots    = [$('slot1'), $('slot2'), $('slot3')];
+  const items    = {
+    s1: [$('i1-1'), $('i1-2')],
+    s2: [$('i2-1'), $('i2-2')],
+    s3: [$('i3-1'), $('i3-2')],
+  };
+  const allItems = [...items.s1, ...items.s2, ...items.s3];
+  const clients  = [$('c1'), $('c2'), $('c3'), $('c4'), $('c5')];
+  const tutorial = $('tutorial');
+  const reminder = $('reminder');
+
+  function moveCursor(x, y, fast) {
+    cursor.classList.toggle('fast', !!fast);
+    cursor.style.left = x + 'px';
+    cursor.style.top = y + 'px';
+  }
+  function fireClick(x, y) {
+    click.style.left = x + 'px';
+    click.style.top = y + 'px';
+    click.classList.remove('fire');
+    void click.offsetWidth;
+    click.classList.add('fire');
+  }
+  function setStep(n, text, showCycle) {
+    stepAct.classList.add('fading');
+    setTimeout(() => {
+      stepNum.textContent = 'STEP ' + String(n).padStart(2, '0') + ' / 08';
+      stepText.textContent = text;
+      cycleIcon.classList.toggle('visible', !!showCycle);
+      stepAct.classList.remove('fading');
+    }, 180);
+  }
+
+  function reset() {
+    macros.forEach(m => { m.classList.remove('filled'); m.classList.remove('adjusted'); m.classList.remove('flash'); });
+    allItems.forEach(i => { i.classList.remove('visible'); i.classList.remove('logged'); i.classList.remove('missed'); });
+    clients.forEach(c => { c.classList.remove('selected'); c.classList.remove('previously-selected'); });
+    tutorial.classList.remove('visible');
+    reminder.classList.remove('visible');
+    cycleIcon.classList.remove('visible');
+    moveCursor(18, 18, true);
+  }
+
+  function run() {
+    reset();
+
+    // ----- Scene 1: Set up macro targets -----
+    setTimeout(() => { setStep(1, 'Set up macro targets'); moveCursor(85, 78, true); }, 100);
+    setTimeout(() => { macros[0].classList.add('filled'); fireClick(85, 78); }, 600);
+    setTimeout(() => moveCursor(205, 78, true), 850);
+    setTimeout(() => { macros[1].classList.add('filled'); fireClick(205, 78); }, 1150);
+    setTimeout(() => moveCursor(325, 78, true), 1350);
+    setTimeout(() => { macros[2].classList.add('filled'); fireClick(325, 78); }, 1650);
+    setTimeout(() => moveCursor(440, 78, true), 1850);
+    setTimeout(() => { macros[3].classList.add('filled'); fireClick(440, 78); }, 2150);
+
+    // ----- Scene 2: Build a meal template -----
+    setTimeout(() => setStep(2, 'Build a meal template'), 2400);
+    setTimeout(() => moveCursor(150, 150, true), 2600);
+    setTimeout(() => { items.s1[0].classList.add('visible'); fireClick(150, 150); }, 2950);
+    setTimeout(() => { items.s1[1].classList.add('visible'); }, 3200);
+    setTimeout(() => moveCursor(150, 220, true), 3350);
+    setTimeout(() => { items.s2[0].classList.add('visible'); fireClick(150, 220); }, 3650);
+    setTimeout(() => { items.s2[1].classList.add('visible'); }, 3900);
+    setTimeout(() => moveCursor(150, 295, true), 4050);
+    setTimeout(() => { items.s3[0].classList.add('visible'); fireClick(150, 295); }, 4350);
+    setTimeout(() => { items.s3[1].classList.add('visible'); }, 4600);
+
+    // ----- Scene 3: Assign to client -----
+    setTimeout(() => setStep(3, 'Assign to client'), 4850);
+    setTimeout(() => moveCursor(450, 200), 5050);
+    setTimeout(() => { clients[2].classList.add('selected'); fireClick(450, 200); }, 5450);
+
+    // ----- Scene 4: Show them how to log -----
+    setTimeout(() => setStep(4, 'Show them how to log'), 5800);
+    setTimeout(() => moveCursor(220, 175, true), 6000);
+    setTimeout(() => tutorial.classList.add('visible'), 6250);
+    setTimeout(() => fireClick(220, 175), 6500);
+
+    // ----- Scene 5: Remind them to log -----
+    setTimeout(() => {
+      setStep(5, 'Remind them to log');
+      tutorial.classList.remove('visible');
+    }, 7100);
+    setTimeout(() => moveCursor(310, 145, true), 7300);
+    setTimeout(() => reminder.classList.add('visible'), 7550);
+    setTimeout(() => fireClick(310, 145), 7700);
+
+    // ----- Scene 6: Review their log -----
+    setTimeout(() => {
+      setStep(6, 'Review their log');
+      reminder.classList.remove('visible');
+    }, 8400);
+    setTimeout(() => moveCursor(180, 150, true), 8600);
+    setTimeout(() => {
+      // Mark items as logged or missed
+      items.s1[0].classList.add('logged');
+      items.s1[1].classList.add('logged');
+      items.s2[0].classList.add('logged');
+      items.s2[1].classList.add('missed');
+      items.s3[0].classList.add('missed');
+      items.s3[1].classList.add('missed');
+      fireClick(180, 150);
+    }, 8900);
+    setTimeout(() => moveCursor(180, 290, true), 9250);
+    setTimeout(() => fireClick(180, 290), 9550);
+
+    // ----- Scene 7: Adjust -----
+    setTimeout(() => setStep(7, 'Adjust'), 9900);
+    setTimeout(() => moveCursor(205, 78, true), 10100);
+    setTimeout(() => {
+      macros[1].classList.remove('filled');
+      macros[1].classList.add('adjusted');
+      macros[1].classList.add('flash');
+      fireClick(205, 78);
+    }, 10450);
+    setTimeout(() => macros[1].classList.remove('flash'), 10700);
+    setTimeout(() => moveCursor(325, 78, true), 10850);
+    setTimeout(() => {
+      macros[2].classList.remove('filled');
+      macros[2].classList.add('adjusted');
+      macros[2].classList.add('flash');
+      fireClick(325, 78);
+    }, 11200);
+    setTimeout(() => macros[2].classList.remove('flash'), 11450);
+
+    // ----- Scene 8: Reassign (with cycle icon) -----
+    setTimeout(() => setStep(8, 'Reassign', true), 11700);
+    setTimeout(() => moveCursor(450, 240, true), 11900);
+    setTimeout(() => {
+      // Deselect previous, select different
+      clients[2].classList.remove('selected');
+      clients[2].classList.add('previously-selected');
+      clients[3].classList.add('selected');
+      fireClick(450, 240);
+    }, 12250);
+
+    // Hold briefly, then loop
+    setTimeout(run, 14000);
+  }
+
+  run();
+})();
+</script>
+</body>
+</html>

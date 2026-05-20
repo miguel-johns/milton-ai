@@ -184,7 +184,7 @@ export default function AIAssistantCoach() {
       fontFamily: fonts.sans,
       color: colors.ink,
     }}>
-      <Header currentPage="ai-assistant-coach" />
+      <Header currentPage="home" />
 
       <main>
         {/* Hero Section */}
@@ -205,7 +205,7 @@ export default function AIAssistantCoach() {
             color: colors.accent,
             marginBottom: 20,
           }}>
-            For coaches
+          Your AI Assistant Coach
           </span>
 
           {/* Headline */}
@@ -218,7 +218,7 @@ export default function AIAssistantCoach() {
             marginBottom: 24,
             color: colors.ink,
           }}>
-            What it&apos;s like having an AI assistant coach.
+            Coach more clients. Do less work.
           </h1>
 
           {/* Sub */}
@@ -230,7 +230,7 @@ export default function AIAssistantCoach() {
             maxWidth: 600,
             margin: '0 auto 40px',
           }}>
-            It learns how you coach. Then it does the rest.
+            Milton is an AI assistant coach. It learns how you coach, then handles the rest.
           </p>
 
           {/* CTAs */}
@@ -284,7 +284,7 @@ export default function AIAssistantCoach() {
               color: colors.accent,
               marginBottom: 24,
             }}>
-              What changes
+              Life with Milton
             </div>
 
             {/* Headline */}
@@ -352,6 +352,192 @@ export default function AIAssistantCoach() {
             </section>
           ))}
         </div>
+
+        {/* The New Revenue Section */}
+        <section style={{
+          padding: mobile ? '64px 16px' : '100px 40px',
+          background: colors.bg,
+        }}>
+          <div style={{
+            maxWidth: 1100,
+            margin: '0 auto',
+          }}>
+            {/* Eyebrow */}
+            <div style={{
+              fontFamily: fonts.sans,
+              fontSize: 12,
+              fontWeight: 600,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: colors.accent,
+              marginBottom: 16,
+              textAlign: 'center',
+            }}>
+              The New Revenue
+            </div>
+            
+            {/* Headline */}
+            <h2 style={{
+              fontFamily: fonts.serif,
+              fontSize: mobile ? 28 : 44,
+              lineHeight: 1.15,
+              fontWeight: 500,
+              color: colors.ink,
+              marginBottom: mobile ? 40 : 64,
+              textAlign: 'center',
+              maxWidth: 700,
+              marginLeft: 'auto',
+              marginRight: 'auto',
+            }}>
+              And here is how Milton makes you new money.
+            </h2>
+
+            {/* Revenue Cards */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: mobile ? '1fr' : 'repeat(3, 1fr)',
+              gap: mobile ? 20 : 24,
+            }}>
+              {/* Card 1 */}
+              <div style={{
+                background: colors.paper,
+                border: `1px solid ${colors.line}`,
+                borderRadius: 16,
+                padding: mobile ? 24 : 32,
+              }}>
+                <div style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 12,
+                  fontWeight: 600,
+                  letterSpacing: '0.1em',
+                  color: colors.accent,
+                  marginBottom: 12,
+                }}>
+                  01
+                </div>
+                <h3 style={{
+                  fontFamily: fonts.serif,
+                  fontSize: mobile ? 20 : 24,
+                  fontWeight: 500,
+                  color: colors.ink,
+                  marginBottom: 16,
+                  lineHeight: 1.3,
+                }}>
+                  Run an AI-powered challenge.
+                </h3>
+                <div style={{
+                  fontFamily: fonts.serif,
+                  fontSize: mobile ? 32 : 40,
+                  fontWeight: 500,
+                  color: colors.ink,
+                  marginBottom: 8,
+                }}>
+                  $17,880 <span style={{ fontSize: mobile ? 16 : 18, color: colors.inkMute }}>/year</span>
+                </div>
+                <p style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 14,
+                  color: colors.inkSoft,
+                  lineHeight: 1.5,
+                }}>
+                  30 members at $149, run quarterly.
+                </p>
+              </div>
+
+              {/* Card 2 */}
+              <div style={{
+                background: colors.paper,
+                border: `1px solid ${colors.line}`,
+                borderRadius: 16,
+                padding: mobile ? 24 : 32,
+              }}>
+                <div style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 12,
+                  fontWeight: 600,
+                  letterSpacing: '0.1em',
+                  color: colors.accent,
+                  marginBottom: 12,
+                }}>
+                  02
+                </div>
+                <h3 style={{
+                  fontFamily: fonts.serif,
+                  fontSize: mobile ? 20 : 24,
+                  fontWeight: 500,
+                  color: colors.ink,
+                  marginBottom: 16,
+                  lineHeight: 1.3,
+                }}>
+                  Sell AI personal training as a new service.
+                </h3>
+                <div style={{
+                  fontFamily: fonts.serif,
+                  fontSize: mobile ? 32 : 40,
+                  fontWeight: 500,
+                  color: colors.ink,
+                  marginBottom: 8,
+                }}>
+                  $4,950 <span style={{ fontSize: mobile ? 16 : 18, color: colors.inkMute }}>/month</span>
+                </div>
+                <p style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 14,
+                  color: colors.inkSoft,
+                  lineHeight: 1.5,
+                }}>
+                  50 members at $99, from your existing base.
+                </p>
+              </div>
+
+              {/* Card 3 */}
+              <div style={{
+                background: colors.paper,
+                border: `1px solid ${colors.line}`,
+                borderRadius: 16,
+                padding: mobile ? 24 : 32,
+              }}>
+                <div style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 12,
+                  fontWeight: 600,
+                  letterSpacing: '0.1em',
+                  color: colors.accent,
+                  marginBottom: 12,
+                }}>
+                  03
+                </div>
+                <h3 style={{
+                  fontFamily: fonts.serif,
+                  fontSize: mobile ? 20 : 24,
+                  fontWeight: 500,
+                  color: colors.ink,
+                  marginBottom: 16,
+                  lineHeight: 1.3,
+                }}>
+                  Make every offer you already sell worth more.
+                </h3>
+                <div style={{
+                  fontFamily: fonts.serif,
+                  fontSize: mobile ? 32 : 40,
+                  fontWeight: 500,
+                  color: colors.ink,
+                  marginBottom: 8,
+                }}>
+                  1 extra month
+                </div>
+                <p style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 14,
+                  color: colors.inkSoft,
+                  lineHeight: 1.5,
+                }}>
+                  of retention from one member covers Milton.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Final CTA Section */}
         <section style={{

@@ -109,7 +109,7 @@ export default function NewHomePage() {
       fontFamily: fonts.sans,
       color: colors.ink,
     }}>
-      <Header currentPage="home" />
+      <Header currentPage="milton-makes-money" />
 
       <main>
         {/* Hero Section */}
