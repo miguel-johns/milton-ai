@@ -148,31 +148,31 @@ export default function AIAssistantCoach() {
     {
       number: '01',
       label: '01 / Methodology',
-      title: 'An AI assistant coach learns your methodologies, protocols, and guides so it can coach exactly like you.',
+      title: 'Milton learns your methodologies, protocols, and guides so it can coach exactly like you.',
       body: 'Upload how you do it. Milton learns the way you write programs, the way you talk to clients, the standards you hold. From then on, what it produces sounds like you.',
     },
     {
       number: '02',
       label: '02 / Memory',
-      title: "An AI assistant coach holds all your client history in its memory so you don't have to hold it in yours.",
+      title: "Milton holds all your client history in its memory so you don't have to hold it in yours.",
       body: 'Every session, every check-in, every injury, every PR. You walk in already knowing where they left off.',
     },
     {
       number: '03',
       label: '03 / Programs & meals',
-      title: 'An AI assistant coach helps you create custom workouts for your clients and makes it easy to track meals, so their plan is always evolving and getting results.',
+      title: 'Milton helps you create custom workouts for your clients and makes it easy to track meals, so their plan is always evolving and getting results.',
       body: 'Ask for a program. Ask for a meal plan. Ask for an adjustment. Faster than opening a spreadsheet, and built on your methodology, not a template.',
     },
     {
       number: '04',
       label: '04 / Attention',
-      title: "An AI assistant coach surfaces the important information that needs your attention so you don't waste time digging around to hold clients accountable.",
+      title: "Milton surfaces the important information that needs your attention so you don't waste time digging around to hold clients accountable.",
       body: "Open Milton and it tells you who needs a check-in, who missed a session, and who's about to fall off. No digging. No guessing.",
     },
     {
       number: '05',
       label: '05 / Story',
-      title: "An AI assistant coach helps you tell a story about your client's progress so you can keep them motivated and showing up.",
+      title: "Milton helps you tell a story about your client's progress so you can keep them motivated and showing up.",
       body: 'It pulls the numbers, the trends, the wins, and gives you the words. Every check-in feels like progress, not paperwork.',
     },
   ]
