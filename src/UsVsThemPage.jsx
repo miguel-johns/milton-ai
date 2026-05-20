@@ -152,9 +152,9 @@ function ComparisonCard({ number, title, themContent, miltonContent, themMedia, 
           <div style={{
             background: colors.paper,
             border: `1px solid ${colors.line}`,
-            borderRadius: mobile ? 12 : 16,
+            borderRadius: 16,
             overflow: 'hidden',
-            aspectRatio: mobile ? '4/3' : '16/10',
+            aspectRatio: '16/10',
             position: 'relative',
           }}>
             {themMedia?.type === 'video' ? (
@@ -288,9 +288,9 @@ function ComparisonCard({ number, title, themContent, miltonContent, themMedia, 
           <div style={{
             background: colors.accentSoft,
             border: `1px solid ${colors.accent}30`,
-            borderRadius: mobile ? 12 : 16,
+            borderRadius: 16,
             overflow: 'hidden',
-            aspectRatio: mobile ? '4/3' : '16/10',
+            aspectRatio: '16/10',
             position: 'relative',
           }}>
             {miltonMedia?.type === 'video' ? (
