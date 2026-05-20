@@ -693,6 +693,7 @@ export default function UsVsThemPage() {
             number="02"
             title="CLIENT CHECK-INS"
             themContent="Open the dashboard. Filter by client. Read their last check-in. Open their messages. Type a reply. Pull up their progress. Copy a stat. Paste it in. Send."
+            themMedia={{ type: 'iframe', src: '/animations/them-client-checkins.html' }}
             miltonContent="How's Sarah doing this week?"
             mobile={mobile}
           />

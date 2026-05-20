@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Them — client messaging</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; background: transparent; }
+  body { font-family: 'DM Sans', system-ui, sans-serif; }
+
+  .card-wrap {
+    width: 100%;
+    max-width: 560px;
+    aspect-ratio: 560 / 360;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+
+  .card {
+    --card-bg: #EAEEF3;
+    --surface: #FFFFFF;
+    --line: #E1E6EE;
+    --muted-0: #E4E9F0;
+    --muted-1: #D2D9E3;
+    --muted-2: #AEB7C6;
+    --muted-3: #828C9D;
+    --muted-4: #5F6878;
+    --ink: #3F4856;
+    --cursor: #2A323F;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: top left;
+    width: 560px;
+    height: 360px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    box-sizing: border-box;
+    color: var(--ink);
+  }
+  .card *, .card *::before, .card *::after { box-sizing: border-box; }
+
+  /* ---------- Step bar ---------- */
+  .card .step-bar {
+    position: absolute;
+    top: 20px;
+    left: 24px;
+    right: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 60;
+    height: 14px;
+  }
+  .card .step-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.16em;
+    color: var(--muted-3);
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .card .step-divider { width: 1px; height: 10px; background: var(--muted-2); }
+  .card .step-action {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11.5px;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    font-weight: 500;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .card .step-action.fading { opacity: 0; transform: translateY(-3px); }
+
+  /* ---------- UI area ---------- */
+  .card .ui {
+    position: absolute;
+    top: 50px;
+    left: 24px;
+    right: 24px;
+    bottom: 24px;
+  }
+
+  /* ----- Sidebar nav ----- */
+  .card .nav {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    background: var(--surface);
+    border-radius: 8px;
+    padding: 12px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .card .nav-logo {
+    height: 6px;
+    width: 50%;
+    background: var(--muted-2);
+    border-radius: 2px;
+    margin: 2px 4px 12px 4px;
+  }
+  .card .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 6px;
+    border-radius: 5px;
+    transition: background 0.25s ease;
+    position: relative;
+  }
+  .card .nav-item::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--muted-2);
+    flex-shrink: 0;
+    transition: background 0.25s ease;
+  }
+  .card .nav-item .nav-label {
+    flex: 1;
+    height: 5px;
+    background: var(--muted-1);
+    border-radius: 1.5px;
+    transition: background 0.25s ease;
+  }
+  .card .nav-item.active {
+    background: var(--muted-0);
+  }
+  .card .nav-item.active::before { background: var(--muted-4); }
+  .card .nav-item.active .nav-label { background: var(--muted-3); }
+
+  /* ----- Main content area ----- */
+  .card .main {
+    position: absolute;
+    left: 108px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: var(--surface);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .card .main-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 36px;
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--line);
+    z-index: 4;
+  }
+  .card .main-title {
+    height: 6px;
+    width: 70px;
+    background: var(--muted-2);
+    border-radius: 2px;
+  }
+  .card .filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 7px;
+    border-radius: 4px;
+    background: var(--muted-0);
+    transition: background 0.2s ease;
+  }
+  .card .filter-btn.active { background: var(--muted-1); }
+  .card .filter-btn-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--muted-3); }
+  .card .filter-btn-bar { width: 26px; height: 4px; background: var(--muted-2); border-radius: 1.5px; }
+
+  .card .main-body {
+    position: absolute;
+    top: 36px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  /* ----- Views (only one visible at a time) ----- */
+  .card .view {
+    position: absolute;
+    inset: 0;
+    padding: 14px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .card .view.active { opacity: 1; }
+
+  /* Dashboard view */
+  .card .view-dashboard { display: flex; flex-direction: column; gap: 5px; }
+  .card .client-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 8px;
+    background: var(--muted-0);
+    border-radius: 5px;
+    transition: opacity 0.25s ease, background 0.25s ease;
+  }
+  .card .client-row.hidden { opacity: 0.18; }
+  .card .client-row.focused { background: var(--muted-1); }
+  .card .client-avatar {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--muted-2);
+    flex-shrink: 0;
+  }
+  .card .client-name {
+    flex: 1;
+    height: 5px;
+    background: var(--muted-2);
+    border-radius: 1.5px;
+    max-width: 100px;
+  }
+  .card .client-stat {
+    height: 5px;
+    width: 30px;
+    background: var(--muted-1);
+    border-radius: 1.5px;
+  }
+
+  /* Filter dropdown overlay */
+  .card .filter-dropdown {
+    position: absolute;
+    top: 32px;
+    right: 14px;
+    width: 130px;
+    background: var(--surface);
+    border-radius: 5px;
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    box-shadow: 0 6px 24px rgba(20, 30, 50, 0.12);
+    z-index: 5;
+    opacity: 0;
+    transform: translateY(-3px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+  }
+  .card .filter-dropdown.open { opacity: 1; transform: translateY(0); }
+  .card .filter-option {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 4px;
+    border-radius: 2px;
+  }
+  .card .filter-option.selected { background: var(--muted-0); }
+  .card .filter-option-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted-2); flex-shrink: 0; }
+  .card .filter-option-bar { flex: 1; height: 4px; background: var(--muted-1); border-radius: 1.5px; }
+  .card .filter-option.selected .filter-option-bar { background: var(--muted-3); }
+
+  /* Check-in view */
+  .card .view-checkin { display: flex; flex-direction: column; gap: 14px; }
+  .card .checkin-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card .checkin-avatar { width: 18px; height: 18px; border-radius: 50%; background: var(--muted-2); }
+  .card .checkin-meta { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+  .card .checkin-name { height: 5px; width: 70px; background: var(--muted-3); border-radius: 1.5px; }
+  .card .checkin-date { height: 4px; width: 50px; background: var(--muted-1); border-radius: 1.5px; }
+  .card .checkin-body { display: flex; flex-direction: column; gap: 6px; }
+  .card .checkin-line { height: 5px; background: var(--muted-1); border-radius: 1.5px; }
+
+  /* Messages view */
+  .card .view-messages { display: flex; flex-direction: column; gap: 7px; padding-bottom: 50px; }
+  .card .msg {
+    height: 11px;
+    background: var(--muted-1);
+    border-radius: 6px;
+  }
+  .card .msg.left { width: 130px; align-self: flex-start; }
+  .card .msg.left.wide { width: 170px; }
+  .card .msg.right { background: var(--muted-2); align-self: flex-end; width: 110px; }
+  .card .msg.right.short { width: 80px; }
+
+  /* Reply input bar (sits at bottom of messages view) */
+  .card .reply-bar {
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    height: 30px;
+    background: var(--muted-0);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    padding: 6px 8px;
+    gap: 6px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 3;
+  }
+  .card .reply-bar.visible { opacity: 1; }
+  .card .reply-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 100%;
+  }
+  .card .reply-word {
+    height: 5px;
+    background: var(--muted-2);
+    border-radius: 1.5px;
+    opacity: 0;
+    transition: opacity 0.18s ease;
+  }
+  .card .reply-word.w1 { width: 22px; }
+  .card .reply-word.w2 { width: 16px; }
+  .card .reply-word.w3 { width: 28px; }
+  .card .reply-word.w4 { width: 14px; }
+  .card .reply-word.visible { opacity: 1; }
+  .card .reply-stat {
+    height: 9px;
+    width: 30px;
+    background: var(--muted-3);
+    border-radius: 2px;
+    opacity: 0;
+    transform: translateY(-2px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .card .reply-stat.visible { opacity: 1; transform: translateY(0); }
+  .card .send-btn {
+    height: 18px;
+    width: 18px;
+    background: var(--muted-2);
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+  .card .send-btn.active { background: var(--muted-4); }
+  .card .send-btn.pressed { background: var(--muted-3); transform: scale(0.9); }
+
+  /* Sent confirmation toast */
+  .card .sent-toast {
+    position: absolute;
+    bottom: 52px;
+    left: 50%;
+    transform: translate(-50%, 6px);
+    background: var(--surface);
+    border: 1px solid var(--muted-1);
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: var(--muted-3);
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 6;
+    pointer-events: none;
+    box-shadow: 0 2px 8px rgba(20, 30, 50, 0.06);
+  }
+  .card .sent-toast.visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  /* Progress view */
+  .card .view-progress {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .card .progress-summary {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .card .summary-card {
+    flex: 1;
+    background: var(--muted-0);
+    border-radius: 5px;
+    padding: 7px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .card .summary-label { height: 4px; width: 50%; background: var(--muted-2); border-radius: 1.5px; }
+  .card .summary-value { height: 8px; width: 80%; background: var(--muted-3); border-radius: 2px; }
+  .card .progress-chart {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 4px;
+  }
+  .card .chart-bar {
+    width: 22px;
+    background: var(--muted-1);
+    border-radius: 3px 3px 0 0;
+    position: relative;
+    transition: background 0.25s ease;
+  }
+  .card .chart-bar.highlight { background: var(--muted-3); }
+
+  /* Copied badge */
+  .card .copied-badge {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-4px) scale(0.9);
+    background: var(--surface);
+    border: 1px solid var(--muted-2);
+    padding: 3px 7px;
+    border-radius: 999px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.14em;
+    color: var(--muted-4);
+    text-transform: uppercase;
+    opacity: 0;
+    white-space: nowrap;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    box-shadow: 0 2px 8px rgba(20, 30, 50, 0.08);
+  }
+  .card .copied-badge.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-8px) scale(1);
+  }
+
+  /* ----- Cursor + click ripple ----- */
+  .card .cursor {
+    position: absolute;
+    width: 14px;
+    height: 18px;
+    z-index: 80;
+    top: 18px;
+    left: 18px;
+    transition: top 0.6s cubic-bezier(0.45, 0.05, 0.25, 0.95),
+                left 0.6s cubic-bezier(0.45, 0.05, 0.25, 0.95);
+    pointer-events: none;
+  }
+  .card .cursor.fast {
+    transition: top 0.28s cubic-bezier(0.6, 0, 0.3, 1),
+                left 0.28s cubic-bezier(0.6, 0, 0.3, 1);
+  }
+  .card .cursor svg {
+    display: block;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.18));
+  }
+  .card .click {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border: 1.5px solid var(--cursor);
+    border-radius: 50%;
+    z-index: 70;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4);
+    pointer-events: none;
+  }
+  .card .click.fire { animation: ripple-them2 0.5s ease-out; }
+  @keyframes ripple-them2 {
+    0%   { opacity: 0.5; transform: translate(-50%, -50%) scale(0.3); }
+    100% { opacity: 0;   transform: translate(-50%, -50%) scale(1.5); }
+  }
+</style>
+</head>
+<body>
+
+<div class="card-wrap">
+<div class="card" id="themCard">
+  <div class="step-bar">
+    <span class="step-num" id="stepNum">STEP 01 / 09</span>
+    <span class="step-divider"></span>
+    <span class="step-action" id="stepAction">Open the dashboard</span>
+  </div>
+
+  <div class="ui">
+    <!-- Sidebar nav -->
+    <div class="nav">
+      <div class="nav-logo"></div>
+      <div class="nav-item active" id="nav1"><div class="nav-label"></div></div>
+      <div class="nav-item" id="nav2"><div class="nav-label"></div></div>
+      <div class="nav-item" id="nav3"><div class="nav-label"></div></div>
+      <div class="nav-item" id="nav4"><div class="nav-label"></div></div>
+      <div class="nav-item" id="nav5"><div class="nav-label"></div></div>
+    </div>
+
+    <!-- Main content -->
+    <div class="main">
+      <div class="main-header">
+        <div class="main-title" id="mainTitle"></div>
+        <div class="filter-btn" id="filterBtn">
+          <div class="filter-btn-dot"></div>
+          <div class="filter-btn-bar"></div>
+        </div>
+      </div>
+
+      <div class="main-body">
+        <!-- Dashboard -->
+        <div class="view view-dashboard active" id="viewDashboard">
+          <div class="client-row" id="row1"><div class="client-avatar"></div><div class="client-name"></div><div class="client-stat"></div></div>
+          <div class="client-row" id="row2"><div class="client-avatar"></div><div class="client-name"></div><div class="client-stat"></div></div>
+          <div class="client-row" id="row3"><div class="client-avatar"></div><div class="client-name"></div><div class="client-stat"></div></div>
+          <div class="client-row" id="row4"><div class="client-avatar"></div><div class="client-name"></div><div class="client-stat"></div></div>
+          <div class="client-row" id="row5"><div class="client-avatar"></div><div class="client-name"></div><div class="client-stat"></div></div>
+        </div>
+
+        <!-- Check-in -->
+        <div class="view view-checkin" id="viewCheckin">
+          <div class="checkin-header">
+            <div class="checkin-avatar"></div>
+            <div class="checkin-meta">
+              <div class="checkin-name"></div>
+              <div class="checkin-date"></div>
+            </div>
+          </div>
+          <div class="checkin-body">
+            <div class="checkin-line" style="width: 95%;"></div>
+            <div class="checkin-line" style="width: 88%;"></div>
+            <div class="checkin-line" style="width: 92%;"></div>
+            <div class="checkin-line" style="width: 70%;"></div>
+            <div class="checkin-line" style="width: 80%;"></div>
+            <div class="checkin-line" style="width: 60%;"></div>
+          </div>
+        </div>
+
+        <!-- Messages -->
+        <div class="view view-messages" id="viewMessages">
+          <div class="msg left"></div>
+          <div class="msg right"></div>
+          <div class="msg left wide"></div>
+          <div class="msg right short"></div>
+          <div class="msg left"></div>
+        </div>
+
+        <!-- Progress -->
+        <div class="view view-progress" id="viewProgress">
+          <div class="progress-summary">
+            <div class="summary-card"><div class="summary-label"></div><div class="summary-value"></div></div>
+            <div class="summary-card"><div class="summary-label"></div><div class="summary-value"></div></div>
+            <div class="summary-card"><div class="summary-label"></div><div class="summary-value"></div></div>
+          </div>
+          <div class="progress-chart">
+            <div class="chart-bar" style="height: 38%;"></div>
+            <div class="chart-bar" style="height: 55%;"></div>
+            <div class="chart-bar" style="height: 42%;"></div>
+            <div class="chart-bar" id="targetBar" style="height: 78%;">
+              <div class="copied-badge" id="copiedBadge">COPIED</div>
+            </div>
+            <div class="chart-bar" style="height: 60%;"></div>
+            <div class="chart-bar" style="height: 70%;"></div>
+          </div>
+        </div>
+
+        <!-- Filter dropdown -->
+        <div class="filter-dropdown" id="filterDropdown">
+          <div class="filter-option"><div class="filter-option-dot"></div><div class="filter-option-bar"></div></div>
+          <div class="filter-option selected" id="filterPick"><div class="filter-option-dot"></div><div class="filter-option-bar"></div></div>
+          <div class="filter-option"><div class="filter-option-dot"></div><div class="filter-option-bar"></div></div>
+          <div class="filter-option"><div class="filter-option-dot"></div><div class="filter-option-bar"></div></div>
+        </div>
+
+        <!-- Reply input (lives at bottom of messages view) -->
+        <div class="reply-bar" id="replyBar">
+          <div class="reply-content">
+            <div class="reply-word w1" id="rw1"></div>
+            <div class="reply-word w2" id="rw2"></div>
+            <div class="reply-word w3" id="rw3"></div>
+            <div class="reply-word w4" id="rw4"></div>
+            <div class="reply-stat" id="replyStat"></div>
+          </div>
+          <div class="send-btn" id="sendBtn"></div>
+        </div>
+
+        <!-- Sent toast -->
+        <div class="sent-toast" id="sentToast">Sent</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cursor + click ripple -->
+  <div class="cursor" id="cursor">
+    <svg viewBox="0 0 14 18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M1 1 L1 13.5 L4 10.5 L6.5 16 L8.5 15 L6 9.5 L10.5 9 Z"
+            fill="#2A323F" stroke="#ffffff" stroke-width="0.6" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <div class="click" id="click"></div>
+</div>
+</div>
+
+<script>
+(function () {
+  const root = document.getElementById('themCard');
+  const $ = (id) => root.querySelector('#' + id);
+
+  // Responsive scaling: scale the 560x360 card to fit its wrapper
+  function fitCard() {
+    const wrap = root.parentElement;
+    if (!wrap) return;
+    const scale = Math.min(1, wrap.clientWidth / 560);
+    root.style.transform = 'scale(' + scale + ')';
+  }
+  fitCard();
+  if (window.ResizeObserver) {
+    new ResizeObserver(fitCard).observe(root.parentElement);
+  } else {
+    window.addEventListener('resize', fitCard);
+  }
+
+  const cursor       = $('cursor');
+  const click        = $('click');
+  const stepNum      = $('stepNum');
+  const stepAct      = $('stepAction');
+
+  const navItems     = [$('nav1'), $('nav2'), $('nav3'), $('nav4'), $('nav5')];
+  const views = {
+    dashboard: $('viewDashboard'),
+    checkin:   $('viewCheckin'),
+    messages:  $('viewMessages'),
+    progress:  $('viewProgress'),
+  };
+  const rows         = [$('row1'), $('row2'), $('row3'), $('row4'), $('row5')];
+  const filterBtn    = $('filterBtn');
+  const filterDropdown = $('filterDropdown');
+  const replyBar     = $('replyBar');
+  const replyWords   = [$('rw1'), $('rw2'), $('rw3'), $('rw4')];
+  const replyStat    = $('replyStat');
+  const sendBtn      = $('sendBtn');
+  const sentToast    = $('sentToast');
+  const targetBar    = $('targetBar');
+  const copiedBadge  = $('copiedBadge');
+
+  function moveCursor(x, y, fast) {
+    cursor.classList.toggle('fast', !!fast);
+    cursor.style.left = x + 'px';
+    cursor.style.top  = y + 'px';
+  }
+
+  function fireClick(x, y) {
+    click.style.left = x + 'px';
+    click.style.top  = y + 'px';
+    click.classList.remove('fire');
+    void click.offsetWidth;
+    click.classList.add('fire');
+  }
+
+  function setStep(num, total, action, immediate) {
+    stepNum.textContent = 'STEP ' + String(num).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+    if (immediate) {
+      stepAct.textContent = action;
+      return;
+    }
+    stepAct.classList.add('fading');
+    setTimeout(() => {
+      stepAct.textContent = action;
+      stepAct.classList.remove('fading');
+    }, 200);
+  }
+
+  function activateNav(idx) {
+    navItems.forEach((n, i) => n.classList.toggle('active', i === idx));
+  }
+
+  function showView(name) {
+    Object.entries(views).forEach(([k, v]) => v.classList.toggle('active', k === name));
+  }
+
+  /* ==================== Timeline ==================== */
+  const TOTAL = 9;
+  const timeline = [
+    { t: 0,    action: () => { setStep(1, TOTAL, 'Open the dashboard', true); moveCursor(60, 90, false); activateNav(0); showView('dashboard'); } },
+    { t: 1200, action: () => { fireClick(60, 90); } },
+
+    { t: 1800, action: () => { setStep(2, TOTAL, 'Click filters'); moveCursor(475, 68, false); } },
+    { t: 2600, action: () => { fireClick(475, 68); filterBtn.classList.add('active'); filterDropdown.classList.add('open'); } },
+
+    { t: 3200, action: () => { setStep(3, TOTAL, 'Filter by overdue'); moveCursor(438, 110, true); } },
+    { t: 3700, action: () => { fireClick(438, 110); filterDropdown.classList.remove('open'); filterBtn.classList.remove('active'); rows.forEach((r, i) => r.classList.toggle('hidden', i !== 2)); } },
+
+    { t: 4400, action: () => { setStep(4, TOTAL, 'Find client'); moveCursor(300, 136, false); } },
+    { t: 5100, action: () => { fireClick(300, 136); rows[2].classList.add('focused'); } },
+
+    { t: 5700, action: () => { setStep(5, TOTAL, 'Open check-in'); moveCursor(60, 125, false); activateNav(1); } },
+    { t: 6400, action: () => { fireClick(60, 125); showView('checkin'); } },
+
+    { t: 7100, action: () => { setStep(6, TOTAL, 'Open messages'); moveCursor(60, 160, false); activateNav(2); } },
+    { t: 7800, action: () => { fireClick(60, 160); showView('messages'); replyBar.classList.add('visible'); } },
+
+    { t: 8400, action: () => { setStep(7, TOTAL, 'Type reply'); moveCursor(180, 322, false); } },
+    { t: 9000, action: () => { fireClick(180, 322); replyWords[0].classList.add('visible'); } },
+    { t: 9250, action: () => { replyWords[1].classList.add('visible'); } },
+    { t: 9500, action: () => { replyWords[2].classList.add('visible'); } },
+    { t: 9750, action: () => { replyWords[3].classList.add('visible'); replyStat.classList.add('visible'); sendBtn.classList.add('active'); } },
+
+    { t: 10400, action: () => { setStep(8, TOTAL, 'Send message'); moveCursor(480, 322, true); } },
+    { t: 10900, action: () => { fireClick(480, 322); sendBtn.classList.add('pressed'); } },
+    { t: 11050, action: () => { sendBtn.classList.remove('pressed'); sentToast.classList.add('visible'); } },
+    { t: 11600, action: () => { sentToast.classList.remove('visible'); } },
+
+    { t: 12200, action: () => { setStep(9, TOTAL, 'Copy progress for post'); moveCursor(60, 195, false); activateNav(3); } },
+    { t: 12900, action: () => { fireClick(60, 195); showView('progress'); replyBar.classList.remove('visible'); replyWords.forEach(w => w.classList.remove('visible')); replyStat.classList.remove('visible'); sendBtn.classList.remove('active'); } },
+    { t: 13500, action: () => { moveCursor(355, 220, false); } },
+    { t: 14100, action: () => { fireClick(355, 220); targetBar.classList.add('highlight'); copiedBadge.classList.add('visible'); } },
+    { t: 14800, action: () => { copiedBadge.classList.remove('visible'); targetBar.classList.remove('highlight'); } },
+
+    { t: 15500, action: () => loop() },
+  ];
+
+  function loop() {
+    rows.forEach(r => { r.classList.remove('hidden', 'focused'); });
+    filterDropdown.classList.remove('open');
+    filterBtn.classList.remove('active');
+    showView('dashboard');
+    activateNav(0);
+    replyBar.classList.remove('visible');
+    replyWords.forEach(w => w.classList.remove('visible'));
+    replyStat.classList.remove('visible');
+    sendBtn.classList.remove('active', 'pressed');
+    sentToast.classList.remove('visible');
+    copiedBadge.classList.remove('visible');
+    targetBar.classList.remove('highlight');
+
+    timeline.forEach(e => setTimeout(e.action, e.t));
+  }
+
+  loop();
+})();
+</script>
+</body>
+</html>
