@@ -535,37 +535,94 @@ export default function UsVsThemPage() {
           </div>
         </section>
 
-        {/* Hero media placeholder */}
+        {/* Hero media - Milton chat bubble visual */}
         <section style={{
-          maxWidth: 1100,
+          maxWidth: 800,
           margin: '0 auto',
           padding: mobile ? '0 16px 48px' : '0 24px 100px',
         }}>
           <div style={{
-            background: colors.paper,
-            border: `1px solid ${colors.line}`,
+            background: colors.accentSoft,
+            border: `1px solid ${colors.accent}30`,
             borderRadius: 20,
-            padding: mobile ? 24 : 48,
-            minHeight: mobile ? 200 : 400,
+            padding: mobile ? 32 : 56,
             display: 'flex',
+            flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: '0 4px 24px rgba(0, 0, 0, 0.06)',
+            gap: mobile ? 20 : 28,
           }}>
+            {/* Chat message mockup */}
             <div style={{
+              background: colors.paper,
+              borderRadius: 16,
+              padding: mobile ? '20px 24px' : '28px 36px',
+              maxWidth: 500,
               width: '100%',
-              height: '100%',
-              background: `linear-gradient(135deg, ${colors.accentSoft}, ${colors.mintSoft})`,
-              borderRadius: 12,
-              minHeight: mobile ? 160 : 320,
+              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+            }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 12,
+                marginBottom: 16,
+              }}>
+                <div style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: '50%',
+                  background: colors.accent,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+                    <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                    <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                  </svg>
+                </div>
+                <span style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 13,
+                  fontWeight: 600,
+                  color: colors.inkMute,
+                  letterSpacing: '0.02em',
+                }}>
+                  Just say it
+                </span>
+              </div>
+              <p style={{
+                fontFamily: fonts.serif,
+                fontSize: mobile ? 20 : 26,
+                fontStyle: 'italic',
+                color: colors.ink,
+                margin: 0,
+                lineHeight: 1.35,
+              }}>
+                {`"Build Sarah a 4-week program for her shoulder rehab. She can train 3 days a week."`}
+              </p>
+            </div>
+
+            {/* Response indicator */}
+            <div style={{
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
-              color: colors.inkMute,
-              fontFamily: fonts.sans,
-              fontSize: 14,
+              gap: 8,
             }}>
-              Hero media
+              <div style={{
+                width: 8,
+                height: 8,
+                borderRadius: '50%',
+                background: colors.mint,
+              }} />
+              <span style={{
+                fontFamily: fonts.sans,
+                fontSize: 14,
+                fontWeight: 500,
+                color: colors.ink,
+              }}>
+                Done. Program sent to Sarah.
+              </span>
             </div>
           </div>
         </section>
