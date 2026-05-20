@@ -720,6 +720,7 @@ export default function UsVsThemPage() {
             number="05"
             title="REPORTING"
             themContent="Export the data. Open a spreadsheet. Build a chart. Format it. Write the takeaways. Send the email."
+            themMedia={{ type: 'iframe', src: '/animations/them-reporting.html' }}
             miltonContent="Send Collins his 30-day progress report."
             mobile={mobile}
           />
