@@ -118,6 +118,20 @@ export default function Header({ currentPage = 'home' }) {
               Your AI Assistant Coach
             </a>
             <a 
+              href="/us-vs-them"
+              className="header-nav-link"
+              style={{
+                fontFamily: fonts.sans,
+                fontSize: 14,
+                fontWeight: currentPage === 'us-vs-them' ? 600 : 500,
+                color: currentPage === 'us-vs-them' ? colors.ink : colors.muted,
+                textDecoration: 'none',
+                letterSpacing: '0.01em',
+              }}
+            >
+              Us vs. Them
+            </a>
+            <a 
               href="/insights"
               className="header-nav-link"
               style={{
@@ -271,6 +285,22 @@ export default function Header({ currentPage = 'home' }) {
               }}
             >
               Your AI Assistant Coach
+            </a>
+            <a 
+              href="/us-vs-them"
+              onClick={() => setMobileMenuOpen(false)}
+              className="header-mobile-link"
+              style={{
+                display: 'block',
+                padding: '14px 16px',
+                fontSize: 16,
+                fontWeight: currentPage === 'us-vs-them' ? 600 : 500,
+                color: colors.ink,
+                textDecoration: 'none',
+                borderRadius: 10,
+              }}
+            >
+              Us vs. Them
             </a>
             <a 
               href="/insights"
