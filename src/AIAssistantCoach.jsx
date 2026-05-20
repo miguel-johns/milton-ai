@@ -353,6 +353,192 @@ export default function AIAssistantCoach() {
           ))}
         </div>
 
+        {/* While You're Here - Revenue Section */}
+        <section style={{
+          padding: mobile ? '64px 16px' : '100px 40px',
+          background: colors.bg,
+        }}>
+          <div style={{
+            maxWidth: 1100,
+            margin: '0 auto',
+          }}>
+            {/* Eyebrow */}
+            <div style={{
+              fontFamily: fonts.sans,
+              fontSize: 12,
+              fontWeight: 600,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: colors.accent,
+              marginBottom: 16,
+              textAlign: 'center',
+            }}>
+              While you&apos;re here
+            </div>
+            
+            {/* Headline */}
+            <h2 style={{
+              fontFamily: fonts.serif,
+              fontSize: mobile ? 28 : 44,
+              lineHeight: 1.15,
+              fontWeight: 500,
+              color: colors.ink,
+              marginBottom: mobile ? 40 : 64,
+              textAlign: 'center',
+              maxWidth: 700,
+              marginLeft: 'auto',
+              marginRight: 'auto',
+            }}>
+              And once you stop fighting your software, here&apos;s what it pays for.
+            </h2>
+
+            {/* Revenue Cards */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: mobile ? '1fr' : 'repeat(3, 1fr)',
+              gap: mobile ? 20 : 24,
+            }}>
+              {/* Card 1 */}
+              <div style={{
+                background: colors.paper,
+                border: `1px solid ${colors.line}`,
+                borderRadius: 16,
+                padding: mobile ? 24 : 32,
+              }}>
+                <div style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 12,
+                  fontWeight: 600,
+                  letterSpacing: '0.1em',
+                  color: colors.accent,
+                  marginBottom: 12,
+                }}>
+                  01
+                </div>
+                <h3 style={{
+                  fontFamily: fonts.serif,
+                  fontSize: mobile ? 20 : 24,
+                  fontWeight: 500,
+                  color: colors.ink,
+                  marginBottom: 16,
+                  lineHeight: 1.3,
+                }}>
+                  Run an AI-powered challenge.
+                </h3>
+                <div style={{
+                  fontFamily: fonts.serif,
+                  fontSize: mobile ? 32 : 40,
+                  fontWeight: 500,
+                  color: colors.ink,
+                  marginBottom: 8,
+                }}>
+                  $17,880 <span style={{ fontSize: mobile ? 16 : 18, color: colors.inkMute }}>/year</span>
+                </div>
+                <p style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 14,
+                  color: colors.inkSoft,
+                  lineHeight: 1.5,
+                }}>
+                  30 members at $149, run quarterly.
+                </p>
+              </div>
+
+              {/* Card 2 */}
+              <div style={{
+                background: colors.paper,
+                border: `1px solid ${colors.line}`,
+                borderRadius: 16,
+                padding: mobile ? 24 : 32,
+              }}>
+                <div style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 12,
+                  fontWeight: 600,
+                  letterSpacing: '0.1em',
+                  color: colors.accent,
+                  marginBottom: 12,
+                }}>
+                  02
+                </div>
+                <h3 style={{
+                  fontFamily: fonts.serif,
+                  fontSize: mobile ? 20 : 24,
+                  fontWeight: 500,
+                  color: colors.ink,
+                  marginBottom: 16,
+                  lineHeight: 1.3,
+                }}>
+                  Sell AI personal training as a new service.
+                </h3>
+                <div style={{
+                  fontFamily: fonts.serif,
+                  fontSize: mobile ? 32 : 40,
+                  fontWeight: 500,
+                  color: colors.ink,
+                  marginBottom: 8,
+                }}>
+                  $4,950 <span style={{ fontSize: mobile ? 16 : 18, color: colors.inkMute }}>/month</span>
+                </div>
+                <p style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 14,
+                  color: colors.inkSoft,
+                  lineHeight: 1.5,
+                }}>
+                  50 members at $99, from your existing base.
+                </p>
+              </div>
+
+              {/* Card 3 */}
+              <div style={{
+                background: colors.paper,
+                border: `1px solid ${colors.line}`,
+                borderRadius: 16,
+                padding: mobile ? 24 : 32,
+              }}>
+                <div style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 12,
+                  fontWeight: 600,
+                  letterSpacing: '0.1em',
+                  color: colors.accent,
+                  marginBottom: 12,
+                }}>
+                  03
+                </div>
+                <h3 style={{
+                  fontFamily: fonts.serif,
+                  fontSize: mobile ? 20 : 24,
+                  fontWeight: 500,
+                  color: colors.ink,
+                  marginBottom: 16,
+                  lineHeight: 1.3,
+                }}>
+                  Make every offer you already sell worth more.
+                </h3>
+                <div style={{
+                  fontFamily: fonts.serif,
+                  fontSize: mobile ? 32 : 40,
+                  fontWeight: 500,
+                  color: colors.ink,
+                  marginBottom: 8,
+                }}>
+                  1 extra month
+                </div>
+                <p style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 14,
+                  color: colors.inkSoft,
+                  lineHeight: 1.5,
+                }}>
+                  of retention from one member covers Milton.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Final CTA Section */}
         <section style={{
           background: colors.bg2,
