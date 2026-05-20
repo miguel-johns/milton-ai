@@ -602,28 +602,6 @@ export default function UsVsThemPage() {
                 {`"Build Sarah a 4-week program for her shoulder rehab. She can train 3 days a week."`}
               </p>
             </div>
-
-            {/* Response indicator */}
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 8,
-            }}>
-              <div style={{
-                width: 8,
-                height: 8,
-                borderRadius: '50%',
-                background: colors.mint,
-              }} />
-              <span style={{
-                fontFamily: fonts.sans,
-                fontSize: 14,
-                fontWeight: 500,
-                color: colors.ink,
-              }}>
-                Done. Program sent to Sarah.
-              </span>
-            </div>
           </div>
         </section>
 
