@@ -181,6 +181,17 @@ function ComparisonCard({ number, title, themContent, miltonContent, themMedia, 
                 }}
                 title={`Them - ${title}`}
               />
+            ) : themMedia?.type === 'iframe' ? (
+              <iframe
+                src={themMedia.src}
+                frameBorder="0"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  border: 'none',
+                }}
+                title={`Them - ${title}`}
+              />
             ) : themMedia?.type === 'image' ? (
               <img
                 src={themMedia.src}
@@ -303,6 +314,17 @@ function ComparisonCard({ number, title, themContent, miltonContent, themMedia, 
                 style={{
                   width: '100%',
                   height: '100%',
+                }}
+                title={`Milton - ${title}`}
+              />
+            ) : miltonMedia?.type === 'iframe' ? (
+              <iframe
+                src={miltonMedia.src}
+                frameBorder="0"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  border: 'none',
                 }}
                 title={`Milton - ${title}`}
               />
@@ -662,6 +684,7 @@ export default function UsVsThemPage() {
             number="01"
             title="PROGRAM BUILDING"
             themContent="Open the builder. Pick a template. Drag in exercises. Set reps, sets, tempo, rest. Save as a block. Build a week. Duplicate. Adjust. Assign to client. Hope they open it."
+            themMedia={{ type: 'iframe', src: '/animations/them-program-building.html' }}
             miltonContent="Build Omar a 4-week strength program with basketball mixed in."
             mobile={mobile}
           />
