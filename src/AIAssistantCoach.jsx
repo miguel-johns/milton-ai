@@ -353,7 +353,7 @@ export default function AIAssistantCoach() {
           ))}
         </div>
 
-        {/* While You're Here - Revenue Section */}
+        {/* The New Revenue Section */}
         <section style={{
           padding: mobile ? '64px 16px' : '100px 40px',
           background: colors.bg,
@@ -373,7 +373,7 @@ export default function AIAssistantCoach() {
               marginBottom: 16,
               textAlign: 'center',
             }}>
-              While you&apos;re here
+              The New Revenue
             </div>
             
             {/* Headline */}
@@ -389,7 +389,7 @@ export default function AIAssistantCoach() {
               marginLeft: 'auto',
               marginRight: 'auto',
             }}>
-              And once you stop fighting your software, here&apos;s what it pays for.
+              And here is how Milton makes you new money.
             </h2>
 
             {/* Revenue Cards */}
