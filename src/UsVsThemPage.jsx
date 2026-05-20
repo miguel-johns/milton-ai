@@ -711,6 +711,7 @@ export default function UsVsThemPage() {
             number="04"
             title="CHALLENGES"
             themContent="Create a program. Build the marketing. Set the pricing. Build a sign-up flow. Set up the messaging cadence. Manually track who's in, who's out, who's winning."
+            themMedia={{ type: 'iframe', src: '/animations/them-challenges.html' }}
             miltonContent="Run a 30-day nutrition challenge for my members."
             mobile={mobile}
           />

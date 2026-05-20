@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Them — running a challenge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  html, body { margin: 0; padding: 0; background: transparent; }
+  body { font-family: 'DM Sans', system-ui, sans-serif; }
+
+  .card-wrap {
+    width: 100%;
+    max-width: 560px;
+    aspect-ratio: 560 / 360;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+
+  .card {
+    --card-bg: #EAEEF3;
+    --surface: #FFFFFF;
+    --line: #E1E6EE;
+    --muted-0: #E4E9F0;
+    --muted-1: #D2D9E3;
+    --muted-2: #AEB7C6;
+    --muted-3: #828C9D;
+    --muted-4: #5F6878;
+    --ink: #3F4856;
+    --cursor: #2A323F;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: top left;
+    width: 560px;
+    height: 360px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    box-sizing: border-box;
+    color: var(--ink);
+  }
+  .card *, .card *::before, .card *::after { box-sizing: border-box; }
+
+  /* ---------- Step bar ---------- */
+  .card .step-bar {
+    position: absolute;
+    top: 18px;
+    left: 24px;
+    right: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 60;
+    height: 14px;
+  }
+  .card .step-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.16em;
+    color: var(--muted-3);
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .card .step-divider { width: 1px; height: 10px; background: var(--muted-2); }
+  .card .step-action {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11.5px;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    font-weight: 500;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .card .step-action.fading { opacity: 0; transform: translateY(-3px); }
+
+  /* ---------- Tabs ---------- */
+  .card .tabs {
+    position: absolute;
+    top: 44px;
+    left: 24px;
+    right: 24px;
+    display: flex;
+    gap: 4px;
+    height: 26px;
+    z-index: 10;
+  }
+  .card .tab {
+    flex: 1;
+    background: var(--muted-0);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    gap: 5px;
+    transition: background 0.25s ease;
+    opacity: 0.85;
+  }
+  .card .tab.active {
+    background: var(--surface);
+    opacity: 1;
+    box-shadow: 0 1px 3px rgba(20, 30, 50, 0.06);
+  }
+  .card .tab-icon {
+    width: 11px;
+    height: 11px;
+    color: var(--muted-2);
+    flex-shrink: 0;
+    transition: color 0.25s ease;
+  }
+  .card .tab.active .tab-icon { color: var(--muted-4); }
+  .card .tab-label {
+    flex: 1;
+    height: 4px;
+    background: var(--muted-1);
+    border-radius: 1.5px;
+    transition: background 0.25s ease;
+    max-width: 38px;
+  }
+  .card .tab.active .tab-label { background: var(--muted-3); }
+  .card .tab-icon svg { display: block; width: 100%; height: 100%; }
+
+  /* ---------- Main content ---------- */
+  .card .main {
+    position: absolute;
+    top: 80px;
+    left: 24px;
+    right: 24px;
+    bottom: 24px;
+    background: var(--surface);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  /* All views are absolutely positioned inside .main, one visible at a time */
+  .card .view {
+    position: absolute;
+    inset: 0;
+    padding: 14px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .card .view.active { opacity: 1; }
+
+  /* ----- view-program ----- */
+  .card .view-program {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .card .prog-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .card .prog-title { height: 6px; width: 90px; background: var(--muted-3); border-radius: 2px; }
+  .card .prog-meta { height: 4px; width: 50px; background: var(--muted-1); border-radius: 1.5px; }
+  .card .prog-block {
+    height: 26px;
+    background: var(--muted-0);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 10px;
+    opacity: 0;
+    transform: translateX(-14px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .card .prog-block.visible { opacity: 1; transform: translateX(0); }
+  .card .prog-block-num {
+    width: 14px;
+    height: 6px;
+    background: var(--muted-2);
+    border-radius: 1.5px;
+  }
+  .card .prog-block-bar {
+    flex: 1;
+    height: 5px;
+    background: var(--muted-2);
+    border-radius: 1.5px;
+  }
+  .card .prog-block-stat {
+    height: 5px;
+    width: 24px;
+    background: var(--muted-1);
+    border-radius: 1.5px;
+  }
+
+  /* ----- view-marketing ----- */
+  .card .view-marketing {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .card .post-image {
+    height: 96px;
+    background: var(--muted-0);
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .card .post-image::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--muted-1);
+  }
+  .card .post-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 60%;
+    height: 60%;
+    background: linear-gradient(135deg, transparent 40%, var(--muted-1) 100%);
+  }
+  .card .post-caption {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .card .caption-line {
+    height: 4px;
+    background: var(--muted-1);
+    border-radius: 1.5px;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .card .caption-line.visible { opacity: 1; }
+  .card .channels {
+    display: flex;
+    gap: 6px;
+    margin-top: 4px;
+  }
+  .card .channel-pill {
+    height: 14px;
+    background: var(--muted-0);
+    border-radius: 999px;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .card .channel-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--muted-2);
+  }
+  .card .channel-bar {
+    height: 3px;
+    width: 22px;
+    background: var(--muted-2);
+    border-radius: 1px;
+  }
+
+  /* ----- view-pricing ----- */
+  .card .view-pricing {
+    display: flex;
+    gap: 8px;
+  }
+  .card .pricing-tier {
+    flex: 1;
+    background: var(--muted-0);
+    border-radius: 6px;
+    padding: 10px 9px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .card .pricing-tier.featured { background: var(--muted-1); }
+  .card .tier-name { height: 5px; width: 40px; background: var(--muted-2); border-radius: 1.5px; }
+  .card .tier-price {
+    height: 14px;
+    width: 0%;
+    background: var(--muted-2);
+    border-radius: 2px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.25s ease;
+  }
+  .card .pricing-tier.filled .tier-price { width: 70%; background: var(--muted-4); }
+  .card .tier-feature {
+    height: 3.5px;
+    background: var(--muted-1);
+    border-radius: 1px;
+  }
+  .card .tier-cta {
+    height: 16px;
+    background: var(--muted-1);
+    border-radius: 3px;
+    margin-top: auto;
+  }
+  .card .pricing-tier.filled .tier-cta { background: var(--muted-3); }
+
+  /* ----- view-signup ----- */
+  .card .view-signup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    padding: 16px 20px;
+  }
+  .card .signup-title {
+    height: 7px;
+    width: 130px;
+    background: var(--muted-3);
+    border-radius: 2px;
+  }
+  .card .signup-sub {
+    height: 4px;
+    width: 90px;
+    background: var(--muted-1);
+    border-radius: 1.5px;
+    margin-bottom: 4px;
+  }
+  .card .signup-field {
+    width: 100%;
+    height: 22px;
+    background: var(--muted-0);
+    border-radius: 4px;
+    padding: 6px 9px;
+    display: flex;
+    align-items: center;
+    transition: background 0.25s ease;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.25s ease;
+  }
+  .card .signup-field.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .card .signup-field.filled { background: var(--muted-1); }
+  .card .signup-field-bar {
+    height: 4px;
+    background: var(--muted-2);
+    border-radius: 1.5px;
+    width: 50%;
+    transition: background 0.25s ease;
+  }
+  .card .signup-field.filled .signup-field-bar { background: var(--muted-4); width: 70%; }
+  .card .signup-btn {
+    width: 100%;
+    height: 22px;
+    background: var(--muted-1);
+    border-radius: 4px;
+    margin-top: 4px;
+    transition: background 0.2s ease, transform 0.15s ease;
+    opacity: 0;
+    transition: opacity 0.3s ease, background 0.2s ease, transform 0.15s ease;
+  }
+  .card .signup-btn.visible { opacity: 1; }
+  .card .signup-btn.pressed {
+    background: var(--muted-4);
+    transform: scale(0.97);
+  }
+
+  /* ----- view-cadence ----- */
+  .card .view-cadence {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px 16px;
+  }
+  .card .email-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+    position: relative;
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .card .email-row.visible { opacity: 1; transform: translateX(0); }
+  .card .email-day {
+    width: 36px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .card .email-day-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--muted-3);
+    flex-shrink: 0;
+  }
+  .card .email-day-label {
+    height: 4px;
+    width: 22px;
+    background: var(--muted-2);
+    border-radius: 1.5px;
+  }
+  .card .email-subject {
+    flex: 1;
+    height: 5px;
+    background: var(--muted-1);
+    border-radius: 1.5px;
+  }
+  .card .email-status {
+    width: 24px;
+    height: 5px;
+    background: var(--muted-1);
+    border-radius: 1.5px;
+  }
+  .card .email-connector {
+    position: absolute;
+    left: 23px;
+    top: 26px;
+    bottom: -6px;
+    width: 1.5px;
+    background: var(--muted-1);
+  }
+  .card .email-row:last-child .email-connector { display: none; }
+
+  /* ----- view-tracking (spreadsheet) ----- */
+  .card .view-tracking {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 10px;
+  }
+  .card .table-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.3fr;
+    gap: 6px;
+    padding: 0 6px 7px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 4px;
+  }
+  .card .table-header-cell {
+    height: 4px;
+    background: var(--muted-3);
+    border-radius: 1.5px;
+    max-width: 40px;
+  }
+  .card .table-header-cell:nth-child(1) { max-width: 50px; }
+  .card .table-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.3fr;
+    gap: 6px;
+    padding: 5px 6px;
+    align-items: center;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+  }
+  .card .table-row.winning {
+    background: var(--muted-0);
+  }
+  .card .cell {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 14px;
+  }
+  .card .row-avatar {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--muted-2);
+    flex-shrink: 0;
+  }
+  .card .row-name {
+    flex: 1;
+    height: 4px;
+    background: var(--muted-2);
+    border-radius: 1.5px;
+    max-width: 70px;
+  }
+  .card .cell-mark {
+    width: 11px;
+    height: 11px;
+    color: var(--muted-4);
+    opacity: 0;
+    transform: scale(0.6);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .card .cell-mark.visible { opacity: 1; transform: scale(1); }
+  .card .cell-mark svg { display: block; width: 100%; height: 100%; }
+  .card .cell-mark.out { color: var(--muted-2); }
+  .card .star {
+    width: 12px;
+    height: 12px;
+    color: var(--muted-4);
+    opacity: 0;
+    transform: scale(0.4) rotate(-30deg);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+  .card .star.visible { opacity: 1; transform: scale(1) rotate(0deg); }
+  .card .star svg { display: block; width: 100%; height: 100%; }
+  .card .score-bar {
+    height: 4px;
+    background: var(--muted-1);
+    border-radius: 1.5px;
+    flex: 1;
+    max-width: 30px;
+    transition: background 0.3s ease;
+  }
+  .card .table-row.winning .score-bar { background: var(--muted-3); }
+
+  /* ---------- Cursor + click ---------- */
+  .card .cursor {
+    position: absolute;
+    width: 14px;
+    height: 18px;
+    z-index: 80;
+    top: 18px;
+    left: 18px;
+    transition: top 0.6s cubic-bezier(0.45, 0.05, 0.25, 0.95),
+                left 0.6s cubic-bezier(0.45, 0.05, 0.25, 0.95);
+    pointer-events: none;
+  }
+  .card .cursor.fast {
+    transition: top 0.26s cubic-bezier(0.6, 0, 0.3, 1),
+                left 0.26s cubic-bezier(0.6, 0, 0.3, 1);
+  }
+  .card .cursor.snappy {
+    transition: top 0.18s cubic-bezier(0.6, 0, 0.3, 1),
+                left 0.18s cubic-bezier(0.6, 0, 0.3, 1);
+  }
+  .card .cursor svg {
+    display: block;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.18));
+  }
+  .card .click {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border: 1.5px solid var(--cursor);
+    border-radius: 50%;
+    z-index: 70;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4);
+    pointer-events: none;
+  }
+  .card .click.fire { animation: ripple-them4 0.5s ease-out; }
+  @keyframes ripple-them4 {
+    0%   { opacity: 0.5; transform: translate(-50%, -50%) scale(0.3); }
+    100% { opacity: 0;   transform: translate(-50%, -50%) scale(1.5); }
+  }
+</style>
+</head>
+<body>
+
+<div class="card-wrap">
+<div class="card" id="themCard">
+  <!-- Step indicator -->
+  <div class="step-bar">
+    <span class="step-num" id="stepNum">STEP 01 / 08</span>
+    <span class="step-divider"></span>
+    <span class="step-action" id="stepAction">Create a program</span>
+  </div>
+
+  <!-- Browser-style tabs -->
+  <div class="tabs">
+    <div class="tab active" id="tab1">
+      <span class="tab-icon">
+        <svg viewBox="0 0 11 11"><path d="M1.5 2 L9.5 2 M1.5 5.5 L9.5 5.5 M1.5 9 L9.5 9" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+      </span>
+      <span class="tab-label"></span>
+    </div>
+    <div class="tab" id="tab2">
+      <span class="tab-icon">
+        <svg viewBox="0 0 11 11"><circle cx="2.5" cy="2.5" r="1.4" fill="currentColor"/><circle cx="8.5" cy="2.5" r="1.4" fill="currentColor"/><circle cx="2.5" cy="8.5" r="1.4" fill="currentColor"/><circle cx="8.5" cy="8.5" r="1.4" fill="currentColor"/></svg>
+      </span>
+      <span class="tab-label"></span>
+    </div>
+    <div class="tab" id="tab3">
+      <span class="tab-icon">
+        <svg viewBox="0 0 11 11"><path d="M5.5 1.5 L5.5 9.5 M3 3.5 Q3 2 5.5 2 Q8 2 8 4 Q8 5.5 5.5 5.5 Q3 5.5 3 7 Q3 9 5.5 9 Q8 9 8 7.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg>
+      </span>
+      <span class="tab-label"></span>
+    </div>
+    <div class="tab" id="tab4">
+      <span class="tab-icon">
+        <svg viewBox="0 0 11 11"><rect x="1.5" y="2" width="8" height="7" rx="1" stroke="currentColor" stroke-width="1.1" fill="none"/><path d="M3 4.5 L6.5 4.5 M3 6.5 L7.5 6.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+      </span>
+      <span class="tab-label"></span>
+    </div>
+    <div class="tab" id="tab5">
+      <span class="tab-icon">
+        <svg viewBox="0 0 11 11"><rect x="1.5" y="2.5" width="8" height="6" rx="0.8" stroke="currentColor" stroke-width="1.1" fill="none"/><path d="M1.8 3 L5.5 6 L9.2 3" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      </span>
+      <span class="tab-label"></span>
+    </div>
+    <div class="tab" id="tab6">
+      <span class="tab-icon">
+        <svg viewBox="0 0 11 11"><rect x="1.5" y="1.5" width="8" height="8" rx="0.5" stroke="currentColor" stroke-width="1" fill="none"/><path d="M1.5 4.5 L9.5 4.5 M1.5 7 L9.5 7 M4.5 1.5 L4.5 9.5 M7 1.5 L7 9.5" stroke="currentColor" stroke-width="1" fill="none"/></svg>
+      </span>
+      <span class="tab-label"></span>
+    </div>
+  </div>
+
+  <!-- Main content (one view active at a time) -->
+  <div class="main">
+    <!-- View: Program -->
+    <div class="view view-program active" id="viewProgram">
+      <div class="prog-header">
+        <div class="prog-title"></div>
+        <div class="prog-meta"></div>
+      </div>
+      <div class="prog-block" id="pb1"><div class="prog-block-num"></div><div class="prog-block-bar"></div><div class="prog-block-stat"></div></div>
+      <div class="prog-block" id="pb2"><div class="prog-block-num"></div><div class="prog-block-bar"></div><div class="prog-block-stat"></div></div>
+      <div class="prog-block" id="pb3"><div class="prog-block-num"></div><div class="prog-block-bar"></div><div class="prog-block-stat"></div></div>
+      <div class="prog-block" id="pb4"><div class="prog-block-num"></div><div class="prog-block-bar"></div><div class="prog-block-stat"></div></div>
+    </div>
+
+    <!-- View: Marketing -->
+    <div class="view view-marketing" id="viewMarketing">
+      <div class="post-image"></div>
+      <div class="post-caption">
+        <div class="caption-line" id="cl1" style="width: 92%;"></div>
+        <div class="caption-line" id="cl2" style="width: 78%;"></div>
+        <div class="caption-line" id="cl3" style="width: 60%;"></div>
+      </div>
+      <div class="channels">
+        <div class="channel-pill"><div class="channel-dot"></div><div class="channel-bar"></div></div>
+        <div class="channel-pill"><div class="channel-dot"></div><div class="channel-bar"></div></div>
+        <div class="channel-pill"><div class="channel-dot"></div><div class="channel-bar"></div></div>
+      </div>
+    </div>
+
+    <!-- View: Pricing -->
+    <div class="view view-pricing" id="viewPricing">
+      <div class="pricing-tier" id="pt1">
+        <div class="tier-name"></div>
+        <div class="tier-price"></div>
+        <div class="tier-feature" style="width: 80%;"></div>
+        <div class="tier-feature" style="width: 70%;"></div>
+        <div class="tier-feature" style="width: 75%;"></div>
+        <div class="tier-cta"></div>
+      </div>
+      <div class="pricing-tier featured" id="pt2">
+        <div class="tier-name"></div>
+        <div class="tier-price"></div>
+        <div class="tier-feature" style="width: 85%;"></div>
+        <div class="tier-feature" style="width: 75%;"></div>
+        <div class="tier-feature" style="width: 80%;"></div>
+        <div class="tier-feature" style="width: 65%;"></div>
+        <div class="tier-cta"></div>
+      </div>
+      <div class="pricing-tier" id="pt3">
+        <div class="tier-name"></div>
+        <div class="tier-price"></div>
+        <div class="tier-feature" style="width: 88%;"></div>
+        <div class="tier-feature" style="width: 72%;"></div>
+        <div class="tier-feature" style="width: 80%;"></div>
+        <div class="tier-cta"></div>
+      </div>
+    </div>
+
+    <!-- View: Signup -->
+    <div class="view view-signup" id="viewSignup">
+      <div class="signup-title"></div>
+      <div class="signup-sub"></div>
+      <div class="signup-field" id="sf1"><div class="signup-field-bar"></div></div>
+      <div class="signup-field" id="sf2"><div class="signup-field-bar"></div></div>
+      <div class="signup-field" id="sf3"><div class="signup-field-bar"></div></div>
+      <div class="signup-field" id="sf4"><div class="signup-field-bar"></div></div>
+      <div class="signup-btn" id="signupBtn"></div>
+    </div>
+
+    <!-- View: Cadence -->
+    <div class="view view-cadence" id="viewCadence">
+      <div class="email-row" id="er1">
+        <div class="email-connector"></div>
+        <div class="email-day"><div class="email-day-dot"></div><div class="email-day-label"></div></div>
+        <div class="email-subject" style="max-width: 180px;"></div>
+        <div class="email-status"></div>
+      </div>
+      <div class="email-row" id="er2">
+        <div class="email-connector"></div>
+        <div class="email-day"><div class="email-day-dot"></div><div class="email-day-label"></div></div>
+        <div class="email-subject" style="max-width: 160px;"></div>
+        <div class="email-status"></div>
+      </div>
+      <div class="email-row" id="er3">
+        <div class="email-connector"></div>
+        <div class="email-day"><div class="email-day-dot"></div><div class="email-day-label"></div></div>
+        <div class="email-subject" style="max-width: 200px;"></div>
+        <div class="email-status"></div>
+      </div>
+      <div class="email-row" id="er4">
+        <div class="email-connector"></div>
+        <div class="email-day"><div class="email-day-dot"></div><div class="email-day-label"></div></div>
+        <div class="email-subject" style="max-width: 170px;"></div>
+        <div class="email-status"></div>
+      </div>
+      <div class="email-row" id="er5">
+        <div class="email-day"><div class="email-day-dot"></div><div class="email-day-label"></div></div>
+        <div class="email-subject" style="max-width: 190px;"></div>
+        <div class="email-status"></div>
+      </div>
+    </div>
+
+    <!-- View: Tracking spreadsheet -->
+    <div class="view view-tracking" id="viewTracking">
+      <div class="table-header">
+        <div class="table-header-cell" style="max-width: 50px;"></div>
+        <div class="table-header-cell"></div>
+        <div class="table-header-cell"></div>
+        <div class="table-header-cell"></div>
+      </div>
+      <div class="table-row" id="tr1">
+        <div class="cell"><div class="row-avatar"></div><div class="row-name"></div></div>
+        <div class="cell"><div class="cell-mark in" id="in1"><svg viewBox="0 0 11 11"><path d="M2.5 5.5 L4.5 7.5 L8.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div></div>
+        <div class="cell"><div class="cell-mark out" id="out1"><svg viewBox="0 0 11 11"><path d="M2.5 2.5 L8.5 8.5 M8.5 2.5 L2.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div></div>
+        <div class="cell"><div class="score-bar"></div><div class="star" id="star1"><svg viewBox="0 0 12 12"><path d="M6 0.5 L7.3 4.2 L11.2 4.4 L8.2 6.8 L9.1 10.6 L6 8.5 L2.9 10.6 L3.8 6.8 L0.8 4.4 L4.7 4.2 Z" fill="currentColor"/></svg></div></div>
+      </div>
+      <div class="table-row" id="tr2">
+        <div class="cell"><div class="row-avatar"></div><div class="row-name"></div></div>
+        <div class="cell"><div class="cell-mark in" id="in2"><svg viewBox="0 0 11 11"><path d="M2.5 5.5 L4.5 7.5 L8.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div></div>
+        <div class="cell"><div class="cell-mark out" id="out2"><svg viewBox="0 0 11 11"><path d="M2.5 2.5 L8.5 8.5 M8.5 2.5 L2.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div></div>
+        <div class="cell"><div class="score-bar"></div><div class="star" id="star2"><svg viewBox="0 0 12 12"><path d="M6 0.5 L7.3 4.2 L11.2 4.4 L8.2 6.8 L9.1 10.6 L6 8.5 L2.9 10.6 L3.8 6.8 L0.8 4.4 L4.7 4.2 Z" fill="currentColor"/></svg></div></div>
+      </div>
+      <div class="table-row" id="tr3">
+        <div class="cell"><div class="row-avatar"></div><div class="row-name"></div></div>
+        <div class="cell"><div class="cell-mark in" id="in3"><svg viewBox="0 0 11 11"><path d="M2.5 5.5 L4.5 7.5 L8.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div></div>
+        <div class="cell"><div class="cell-mark out" id="out3"><svg viewBox="0 0 11 11"><path d="M2.5 2.5 L8.5 8.5 M8.5 2.5 L2.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div></div>
+        <div class="cell"><div class="score-bar"></div></div>
+      </div>
+      <div class="table-row" id="tr4">
+        <div class="cell"><div class="row-avatar"></div><div class="row-name"></div></div>
+        <div class="cell"><div class="cell-mark in" id="in4"><svg viewBox="0 0 11 11"><path d="M2.5 5.5 L4.5 7.5 L8.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div></div>
+        <div class="cell"><div class="cell-mark out" id="out4"><svg viewBox="0 0 11 11"><path d="M2.5 2.5 L8.5 8.5 M8.5 2.5 L2.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div></div>
+        <div class="cell"><div class="score-bar"></div></div>
+      </div>
+      <div class="table-row" id="tr5">
+        <div class="cell"><div class="row-avatar"></div><div class="row-name"></div></div>
+        <div class="cell"><div class="cell-mark in" id="in5"><svg viewBox="0 0 11 11"><path d="M2.5 5.5 L4.5 7.5 L8.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div></div>
+        <div class="cell"><div class="cell-mark out" id="out5"><svg viewBox="0 0 11 11"><path d="M2.5 2.5 L8.5 8.5 M8.5 2.5 L2.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div></div>
+        <div class="cell"><div class="score-bar"></div></div>
+      </div>
+      <div class="table-row" id="tr6">
+        <div class="cell"><div class="row-avatar"></div><div class="row-name"></div></div>
+        <div class="cell"><div class="cell-mark in" id="in6"><svg viewBox="0 0 11 11"><path d="M2.5 5.5 L4.5 7.5 L8.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div></div>
+        <div class="cell"><div class="cell-mark out" id="out6"><svg viewBox="0 0 11 11"><path d="M2.5 2.5 L8.5 8.5 M8.5 2.5 L2.5 8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div></div>
+        <div class="cell"><div class="score-bar"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cursor + click ripple -->
+  <div class="cursor" id="cursor">
+    <svg viewBox="0 0 14 18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M1 1 L1 13.5 L4 10.5 L6.5 16 L8.5 15 L6 9.5 L10.5 9 Z"
+            fill="#2A323F" stroke="#ffffff" stroke-width="0.6" stroke-linejoin="round"/>
+    </svg>
+  </div>
+  <div class="click" id="click"></div>
+</div>
+</div>
+
+<script>
+(function () {
+  const root = document.getElementById('themCard');
+  const $ = (id) => root.querySelector('#' + id);
+
+  // Responsive scaling
+  function fitCard() {
+    const wrap = root.parentElement;
+    if (!wrap) return;
+    const scale = Math.min(1, wrap.clientWidth / 560);
+    root.style.transform = 'scale(' + scale + ')';
+  }
+  fitCard();
+  if (window.ResizeObserver) {
+    new ResizeObserver(fitCard).observe(root.parentElement);
+  } else {
+    window.addEventListener('resize', fitCard);
+  }
+
+  const cursor   = $('cursor');
+  const click    = $('click');
+  const stepNum  = $('stepNum');
+  const stepAct  = $('stepAction');
+
+  const tabs     = [$('tab1'), $('tab2'), $('tab3'), $('tab4'), $('tab5'), $('tab6')];
+  const tabCenters = [65, 151, 237, 323, 409, 495]; // x positions for cursor
+
+  const views = {
+    program:   $('viewProgram'),
+    marketing: $('viewMarketing'),
+    pricing:   $('viewPricing'),
+    signup:    $('viewSignup'),
+    cadence:   $('viewCadence'),
+    tracking:  $('viewTracking'),
+  };
+
+  const progBlocks = [$('pb1'), $('pb2'), $('pb3'), $('pb4')];
+  const captionLines = [$('cl1'), $('cl2'), $('cl3')];
+  const priceTiers = [$('pt1'), $('pt2'), $('pt3')];
+  const signupFields = [$('sf1'), $('sf2'), $('sf3'), $('sf4')];
+  const signupBtn = $('signupBtn');
+  const emailRows = [$('er1'), $('er2'), $('er3'), $('er4'), $('er5')];
+
+  // Spreadsheet refs
+  const tableRows = [$('tr1'), $('tr2'), $('tr3'), $('tr4'), $('tr5'), $('tr6')];
+  const inMarks   = [$('in1'), $('in2'), $('in3'), $('in4'), $('in5'), $('in6')];
+  const outMarks  = [$('out1'), $('out2'), $('out3'), $('out4'), $('out5'), $('out6')];
+  const stars     = [$('star1'), $('star2')];
+
+  // Spreadsheet row y-coordinates in card-space (for cursor)
+  // Tracking view starts around y=92, header ~16px, then rows ~22px each
+  const rowYs = [128, 152, 176, 200, 224, 248];
+
+  function moveCursor(x, y, mode) {
+    cursor.classList.remove('fast', 'snappy');
+    if (mode === 'fast') cursor.classList.add('fast');
+    else if (mode === 'snappy') cursor.classList.add('snappy');
+    cursor.style.left = x + 'px';
+    cursor.style.top = y + 'px';
+  }
+  function fireClick(x, y) {
+    click.style.left = x + 'px';
+    click.style.top = y + 'px';
+    click.classList.remove('fire');
+    void click.offsetWidth;
+    click.classList.add('fire');
+  }
+  function setStep(n, text) {
+    stepAct.classList.add('fading');
+    setTimeout(() => {
+      stepNum.textContent = 'STEP ' + String(n).padStart(2, '0') + ' / 08';
+      stepAct.textContent = text;
+      stepAct.classList.remove('fading');
+    }, 180);
+  }
+  function setActiveTab(idx) {
+    tabs.forEach((t, i) => t.classList.toggle('active', i === idx));
+  }
+  function showView(name) {
+    Object.entries(views).forEach(([k, v]) => v.classList.toggle('active', k === name));
+  }
+
+  function reset() {
+    setActiveTab(0);
+    showView('program');
+    progBlocks.forEach(b => b.classList.remove('visible'));
+    captionLines.forEach(l => l.classList.remove('visible'));
+    priceTiers.forEach(t => t.classList.remove('filled'));
+    signupFields.forEach(f => { f.classList.remove('visible'); f.classList.remove('filled'); });
+    signupBtn.classList.remove('visible');
+    signupBtn.classList.remove('pressed');
+    emailRows.forEach(r => r.classList.remove('visible'));
+    tableRows.forEach(r => r.classList.remove('winning'));
+    inMarks.forEach(m => m.classList.remove('visible'));
+    outMarks.forEach(m => m.classList.remove('visible'));
+    stars.forEach(s => s.classList.remove('visible'));
+    moveCursor(20, 22, 'snappy');
+  }
+
+  function run() {
+    reset();
+
+    // ============ Scene 1: Create a program ============
+    setTimeout(() => { setStep(1, 'Create a program'); moveCursor(65, 56, 'fast'); }, 100);
+    setTimeout(() => fireClick(65, 56), 500);
+    setTimeout(() => moveCursor(250, 140, 'fast'), 700);
+    setTimeout(() => { progBlocks[0].classList.add('visible'); fireClick(250, 140); }, 980);
+    setTimeout(() => { progBlocks[1].classList.add('visible'); }, 1150);
+    setTimeout(() => { progBlocks[2].classList.add('visible'); }, 1320);
+    setTimeout(() => { progBlocks[3].classList.add('visible'); }, 1490);
+
+    // ============ Scene 2: Build the marketing ============
+    setTimeout(() => { setStep(2, 'Build the marketing'); moveCursor(151, 56, 'fast'); }, 1750);
+    setTimeout(() => fireClick(151, 56), 2150);
+    setTimeout(() => { setActiveTab(1); showView('marketing'); }, 2300);
+    setTimeout(() => moveCursor(250, 220, 'fast'), 2500);
+    setTimeout(() => { captionLines[0].classList.add('visible'); fireClick(250, 220); }, 2780);
+    setTimeout(() => { captionLines[1].classList.add('visible'); }, 2940);
+    setTimeout(() => { captionLines[2].classList.add('visible'); }, 3100);
+
+    // ============ Scene 3: Set the pricing ============
+    setTimeout(() => { setStep(3, 'Set the pricing'); moveCursor(237, 56, 'fast'); }, 3400);
+    setTimeout(() => fireClick(237, 56), 3800);
+    setTimeout(() => { setActiveTab(2); showView('pricing'); }, 3950);
+    setTimeout(() => moveCursor(115, 145, 'fast'), 4150);
+    setTimeout(() => { priceTiers[0].classList.add('filled'); fireClick(115, 145); }, 4430);
+    setTimeout(() => moveCursor(280, 145, 'snappy'), 4630);
+    setTimeout(() => { priceTiers[1].classList.add('filled'); fireClick(280, 145); }, 4830);
+    setTimeout(() => moveCursor(445, 145, 'snappy'), 5030);
+    setTimeout(() => { priceTiers[2].classList.add('filled'); fireClick(445, 145); }, 5230);
+
+    // ============ Scene 4: Build a sign-up flow ============
+    setTimeout(() => { setStep(4, 'Build a sign-up flow'); moveCursor(323, 56, 'fast'); }, 5500);
+    setTimeout(() => fireClick(323, 56), 5900);
+    setTimeout(() => { setActiveTab(3); showView('signup'); }, 6050);
+    setTimeout(() => signupFields[0].classList.add('visible'), 6250);
+    setTimeout(() => signupFields[1].classList.add('visible'), 6380);
+    setTimeout(() => signupFields[2].classList.add('visible'), 6510);
+    setTimeout(() => signupFields[3].classList.add('visible'), 6640);
+    setTimeout(() => signupBtn.classList.add('visible'), 6770);
+    setTimeout(() => moveCursor(280, 230, 'fast'), 6900);
+    setTimeout(() => {
+      signupFields[0].classList.add('filled');
+      signupFields[1].classList.add('filled');
+      fireClick(280, 230);
+    }, 7150);
+
+    // ============ Scene 5: Set up the messaging cadence ============
+    setTimeout(() => { setStep(5, 'Set up the messaging cadence'); moveCursor(409, 56, 'fast'); }, 7500);
+    setTimeout(() => fireClick(409, 56), 7900);
+    setTimeout(() => { setActiveTab(4); showView('cadence'); }, 8050);
+    setTimeout(() => { emailRows[0].classList.add('visible'); }, 8250);
+    setTimeout(() => { emailRows[1].classList.add('visible'); }, 8400);
+    setTimeout(() => { emailRows[2].classList.add('visible'); }, 8550);
+    setTimeout(() => { emailRows[3].classList.add('visible'); }, 8700);
+    setTimeout(() => { emailRows[4].classList.add('visible'); }, 8850);
+    setTimeout(() => moveCursor(280, 200, 'fast'), 9000);
+
+    // ============ Scene 6: Manually track who's in ============
+    setTimeout(() => { setStep(6, "Manually track who's in"); moveCursor(495, 56, 'fast'); }, 9350);
+    setTimeout(() => fireClick(495, 56), 9750);
+    setTimeout(() => { setActiveTab(5); showView('tracking'); }, 9900);
+    // Cursor goes down "In" column marking rows 1,2,3,5 as in (4 and 6 will be marked "out" later)
+    setTimeout(() => moveCursor(265, 128, 'fast'), 10100);
+    setTimeout(() => { inMarks[0].classList.add('visible'); fireClick(265, 128); }, 10380);
+    setTimeout(() => moveCursor(265, 152, 'snappy'), 10500);
+    setTimeout(() => { inMarks[1].classList.add('visible'); fireClick(265, 152); }, 10680);
+    setTimeout(() => moveCursor(265, 176, 'snappy'), 10800);
+    setTimeout(() => { inMarks[2].classList.add('visible'); fireClick(265, 176); }, 10980);
+    setTimeout(() => moveCursor(265, 224, 'snappy'), 11100);
+    setTimeout(() => { inMarks[4].classList.add('visible'); fireClick(265, 224); }, 11280);
+
+    // ============ Scene 7: Manually track who's out ============
+    setTimeout(() => { setStep(7, "Manually track who's out"); }, 11550);
+    setTimeout(() => moveCursor(345, 200, 'fast'), 11700);
+    setTimeout(() => { outMarks[3].classList.add('visible'); fireClick(345, 200); }, 11980);
+    setTimeout(() => moveCursor(345, 248, 'snappy'), 12100);
+    setTimeout(() => { outMarks[5].classList.add('visible'); fireClick(345, 248); }, 12280);
+
+    // ============ Scene 8: Manually track who's winning ============
+    setTimeout(() => { setStep(8, "Manually track who's winning"); }, 12500);
+    setTimeout(() => moveCursor(440, 152, 'fast'), 12700);
+    setTimeout(() => {
+      tableRows[1].classList.add('winning');
+      stars[1].classList.add('visible');
+      fireClick(440, 152);
+    }, 13000);
+
+    // Hold, then loop
+    setTimeout(run, 15000);
+  }
+
+  run();
+})();
+</script>
+</body>
+</html>
