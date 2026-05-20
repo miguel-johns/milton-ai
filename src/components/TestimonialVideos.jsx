@@ -20,9 +20,14 @@ const fonts = {
   sans: "'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
 }
 
-// Placeholder testimonial data
+// Testimonial data - videos will be added as they become available
 const testimonials = [
-  { id: 1, name: 'Coach Sarah', role: 'Personal Trainer', placeholder: true },
+  { 
+    id: 1, 
+    name: 'Coach Sarah', 
+    role: 'Personal Trainer', 
+    videoUrl: 'https://www.loom.com/embed/2e7b5b670846418abf50d4e245d89955',
+  },
   { id: 2, name: 'Coach Mike', role: 'Strength Coach', placeholder: true },
   { id: 3, name: 'Coach Emma', role: 'Nutrition Coach', placeholder: true },
   { id: 4, name: 'Coach James', role: 'Athletic Trainer', placeholder: true },
@@ -135,73 +140,92 @@ export default function TestimonialVideos({ mobile }) {
                 border: `1px solid ${colors.line}`,
                 boxShadow: '0 4px 16px rgba(11, 22, 40, 0.06)',
               }}>
-                {/* Placeholder content */}
-                <div style={{
-                  position: 'absolute',
-                  inset: 0,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  background: `linear-gradient(180deg, ${colors.accentSoft} 0%, ${colors.bg} 100%)`,
-                }}>
-                  {/* Play button placeholder */}
+                {testimonial.videoUrl ? (
+                  /* Loom embed */
+                  <iframe
+                    src={testimonial.videoUrl}
+                    frameBorder="0"
+                    allowFullScreen
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                    }}
+                    title={`Testimonial from ${testimonial.name}`}
+                  />
+                ) : (
+                  /* Placeholder content */
                   <div style={{
-                    width: 64,
-                    height: 64,
-                    borderRadius: '50%',
-                    background: colors.paper,
+                    position: 'absolute',
+                    inset: 0,
                     display: 'flex',
+                    flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    boxShadow: '0 4px 12px rgba(11, 22, 40, 0.1)',
-                    marginBottom: 16,
+                    background: `linear-gradient(180deg, ${colors.accentSoft} 0%, ${colors.bg} 100%)`,
                   }}>
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill={colors.ink}
-                    >
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
+                    {/* Play button placeholder */}
+                    <div style={{
+                      width: 64,
+                      height: 64,
+                      borderRadius: '50%',
+                      background: colors.paper,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      boxShadow: '0 4px 12px rgba(11, 22, 40, 0.1)',
+                      marginBottom: 16,
+                    }}>
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill={colors.ink}
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                    <span style={{
+                      fontFamily: fonts.sans,
+                      fontSize: 13,
+                      fontWeight: 500,
+                      color: colors.inkMute,
+                    }}>
+                      Video coming soon
+                    </span>
                   </div>
-                  <span style={{
-                    fontFamily: fonts.sans,
-                    fontSize: 13,
-                    fontWeight: 500,
-                    color: colors.inkMute,
-                  }}>
-                    Video coming soon
-                  </span>
-                </div>
+                )}
 
-                {/* Name overlay at bottom */}
-                <div style={{
-                  position: 'absolute',
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  padding: mobile ? '16px 12px' : '20px 16px',
-                  background: 'linear-gradient(to top, rgba(11, 22, 40, 0.8), transparent)',
-                }}>
+                {/* Name overlay at bottom - only show for placeholders */}
+                {testimonial.placeholder && (
                   <div style={{
-                    fontFamily: fonts.sans,
-                    fontSize: mobile ? 14 : 15,
-                    fontWeight: 600,
-                    color: '#FFFFFF',
-                    marginBottom: 2,
+                    position: 'absolute',
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    padding: mobile ? '16px 12px' : '20px 16px',
+                    background: 'linear-gradient(to top, rgba(11, 22, 40, 0.8), transparent)',
                   }}>
-                    {testimonial.name}
+                    <div style={{
+                      fontFamily: fonts.sans,
+                      fontSize: mobile ? 14 : 15,
+                      fontWeight: 600,
+                      color: '#FFFFFF',
+                      marginBottom: 2,
+                    }}>
+                      {testimonial.name}
+                    </div>
+                    <div style={{
+                      fontFamily: fonts.sans,
+                      fontSize: mobile ? 12 : 13,
+                      color: 'rgba(255, 255, 255, 0.7)',
+                    }}>
+                      {testimonial.role}
+                    </div>
                   </div>
-                  <div style={{
-                    fontFamily: fonts.sans,
-                    fontSize: mobile ? 12 : 13,
-                    color: 'rgba(255, 255, 255, 0.7)',
-                  }}>
-                    {testimonial.role}
-                  </div>
-                </div>
+                )}
               </div>
             </div>
           ))}
