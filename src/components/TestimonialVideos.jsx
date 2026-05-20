@@ -28,7 +28,12 @@ const testimonials = [
     role: 'Personal Trainer', 
     videoUrl: 'https://www.loom.com/embed/2e7b5b670846418abf50d4e245d89955',
   },
-  { id: 2, name: 'Coach Mike', role: 'Strength Coach', placeholder: true },
+  { 
+    id: 2, 
+    name: 'Coach Mike', 
+    role: 'Strength Coach', 
+    videoUrl: 'https://www.loom.com/embed/c0bbd003d4bc4e17ab4c0283185e25b7',
+  },
   { id: 3, name: 'Coach Emma', role: 'Nutrition Coach', placeholder: true },
   { id: 4, name: 'Coach James', role: 'Athletic Trainer', placeholder: true },
 ]
