@@ -218,7 +218,7 @@ export default function AIAssistantCoach() {
             marginBottom: 24,
             color: colors.ink,
           }}>
-            What it&apos;s like having an AI assistant coach.
+            Life with Milton
           </h1>
 
           {/* Sub */}
