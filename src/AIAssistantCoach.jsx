@@ -205,7 +205,7 @@ export default function AIAssistantCoach() {
             color: colors.accent,
             marginBottom: 20,
           }}>
-            For coaches
+          Your AI Assistant Coach
           </span>
 
           {/* Headline */}
