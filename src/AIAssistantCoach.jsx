@@ -284,7 +284,7 @@ export default function AIAssistantCoach() {
               color: colors.accent,
               marginBottom: 24,
             }}>
-              What changes
+              Life with Milton
             </div>
 
             {/* Headline */}
