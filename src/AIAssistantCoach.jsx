@@ -218,7 +218,7 @@ export default function AIAssistantCoach() {
             marginBottom: 24,
             color: colors.ink,
           }}>
-            Life with Milton
+            Coach more clients. Do less work.
           </h1>
 
           {/* Sub */}
@@ -230,7 +230,7 @@ export default function AIAssistantCoach() {
             maxWidth: 600,
             margin: '0 auto 40px',
           }}>
-            It learns how you coach. Then it does the rest.
+            Milton is an AI assistant coach. It learns how you coach, then handles the rest.
           </p>
 
           {/* CTAs */}
