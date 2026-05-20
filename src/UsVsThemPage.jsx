@@ -90,8 +90,8 @@ function CTA({ children, href, variant = 'primary', onClick, style = {} }) {
   )
 }
 
-// Comparison Card component for the "Us vs Them" sections
-function ComparisonCard({ number, title, themContent, miltonContent, mobile }) {
+// Comparison Card component for the "Us vs Them" sections - Visual version
+function ComparisonCard({ number, title, themContent, miltonContent, themMedia, miltonMedia, mobile }) {
   return (
     <div style={{
       display: 'flex',
@@ -107,38 +107,135 @@ function ComparisonCard({ number, title, themContent, miltonContent, mobile }) {
         letterSpacing: '0.1em',
         textTransform: 'uppercase',
         color: colors.accent,
+        textAlign: 'center',
       }}>
         {number} — {title}
       </div>
 
-      {/* Comparison grid */}
+      {/* Visual comparison grid */}
       <div style={{
         display: 'grid',
         gridTemplateColumns: mobile ? '1fr' : '1fr 1fr',
-        gap: mobile ? 16 : 24,
+        gap: mobile ? 20 : 32,
       }}>
-        {/* Them card */}
+        {/* Them side */}
         <div style={{
-          background: colors.paper,
-          border: `1px solid ${colors.line}`,
-          borderRadius: 16,
-          padding: mobile ? 20 : 28,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 16,
         }}>
+          {/* Them label */}
           <div style={{
-            fontFamily: fonts.sans,
-            fontSize: 13,
-            fontWeight: 600,
-            letterSpacing: '0.05em',
-            textTransform: 'uppercase',
-            color: colors.inkMute,
-            marginBottom: 12,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 8,
           }}>
-            Them
+            <div style={{
+              width: 8,
+              height: 8,
+              borderRadius: '50%',
+              background: colors.inkMute,
+            }} />
+            <span style={{
+              fontFamily: fonts.sans,
+              fontSize: 13,
+              fontWeight: 600,
+              letterSpacing: '0.05em',
+              textTransform: 'uppercase',
+              color: colors.inkMute,
+            }}>
+              Them
+            </span>
           </div>
+
+          {/* Them media container */}
+          <div style={{
+            background: colors.paper,
+            border: `1px solid ${colors.line}`,
+            borderRadius: 16,
+            overflow: 'hidden',
+            aspectRatio: '16/10',
+            position: 'relative',
+          }}>
+            {themMedia?.type === 'video' ? (
+              <video
+                src={themMedia.src}
+                autoPlay
+                loop
+                muted
+                playsInline
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                }}
+              />
+            ) : themMedia?.type === 'loom' ? (
+              <iframe
+                src={themMedia.src}
+                frameBorder="0"
+                allowFullScreen
+                style={{
+                  width: '100%',
+                  height: '100%',
+                }}
+                title={`Them - ${title}`}
+              />
+            ) : themMedia?.type === 'image' ? (
+              <img
+                src={themMedia.src}
+                alt={`Traditional software - ${title}`}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                }}
+              />
+            ) : (
+              /* Placeholder */
+              <div style={{
+                width: '100%',
+                height: '100%',
+                background: `linear-gradient(135deg, ${colors.lineSoft} 0%, #E8EAED 100%)`,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 12,
+              }}>
+                {/* Fake UI elements */}
+                <div style={{
+                  width: '80%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 8,
+                }}>
+                  <div style={{ height: 8, background: colors.line, borderRadius: 4, width: '60%' }} />
+                  <div style={{ height: 6, background: colors.line, borderRadius: 3, width: '80%' }} />
+                  <div style={{ height: 6, background: colors.line, borderRadius: 3, width: '70%' }} />
+                  <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
+                    <div style={{ height: 24, background: colors.line, borderRadius: 6, width: 60 }} />
+                    <div style={{ height: 24, background: colors.line, borderRadius: 6, width: 60 }} />
+                    <div style={{ height: 24, background: colors.line, borderRadius: 6, width: 60 }} />
+                  </div>
+                </div>
+                <span style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 11,
+                  color: colors.inkMute,
+                  marginTop: 8,
+                }}>
+                  Complex UI walkthrough
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* Them description */}
           <p style={{
             fontFamily: fonts.sans,
-            fontSize: mobile ? 14 : 15,
-            lineHeight: 1.7,
+            fontSize: mobile ? 13 : 14,
+            lineHeight: 1.6,
             color: colors.inkSoft,
             margin: 0,
           }}>
@@ -146,63 +243,153 @@ function ComparisonCard({ number, title, themContent, miltonContent, mobile }) {
           </p>
         </div>
 
-        {/* Milton card */}
+        {/* Milton side */}
         <div style={{
-          background: colors.accentSoft,
-          border: `1px solid ${colors.accent}20`,
-          borderRadius: 16,
-          padding: mobile ? 20 : 28,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 16,
         }}>
+          {/* Milton label */}
           <div style={{
-            fontFamily: fonts.sans,
-            fontSize: 13,
-            fontWeight: 600,
-            letterSpacing: '0.05em',
-            textTransform: 'uppercase',
-            color: colors.accent,
-            marginBottom: 12,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 8,
           }}>
-            Milton
+            <div style={{
+              width: 8,
+              height: 8,
+              borderRadius: '50%',
+              background: colors.accent,
+            }} />
+            <span style={{
+              fontFamily: fonts.sans,
+              fontSize: 13,
+              fontWeight: 600,
+              letterSpacing: '0.05em',
+              textTransform: 'uppercase',
+              color: colors.accent,
+            }}>
+              Milton
+            </span>
           </div>
+
+          {/* Milton media container */}
+          <div style={{
+            background: colors.accentSoft,
+            border: `1px solid ${colors.accent}30`,
+            borderRadius: 16,
+            overflow: 'hidden',
+            aspectRatio: '16/10',
+            position: 'relative',
+          }}>
+            {miltonMedia?.type === 'video' ? (
+              <video
+                src={miltonMedia.src}
+                autoPlay
+                loop
+                muted
+                playsInline
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                }}
+              />
+            ) : miltonMedia?.type === 'loom' ? (
+              <iframe
+                src={miltonMedia.src}
+                frameBorder="0"
+                allowFullScreen
+                style={{
+                  width: '100%',
+                  height: '100%',
+                }}
+                title={`Milton - ${title}`}
+              />
+            ) : miltonMedia?.type === 'image' ? (
+              <img
+                src={miltonMedia.src}
+                alt={`Milton - ${title}`}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                }}
+              />
+            ) : (
+              /* Placeholder - chat bubble style */
+              <div style={{
+                width: '100%',
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: mobile ? 16 : 24,
+              }}>
+                {/* Chat message mockup */}
+                <div style={{
+                  background: colors.paper,
+                  borderRadius: 12,
+                  padding: mobile ? '12px 16px' : '16px 20px',
+                  maxWidth: '90%',
+                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
+                }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    marginBottom: 8,
+                  }}>
+                    <div style={{
+                      width: 24,
+                      height: 24,
+                      borderRadius: '50%',
+                      background: colors.accent,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                        <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                        <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                      </svg>
+                    </div>
+                    <span style={{
+                      fontFamily: fonts.sans,
+                      fontSize: 11,
+                      fontWeight: 600,
+                      color: colors.inkMute,
+                    }}>
+                      Voice command
+                    </span>
+                  </div>
+                  <p style={{
+                    fontFamily: fonts.serif,
+                    fontSize: mobile ? 14 : 16,
+                    fontStyle: 'italic',
+                    color: colors.ink,
+                    margin: 0,
+                    lineHeight: 1.4,
+                  }}>
+                    {`"${miltonContent}"`}
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Milton one-liner */}
           <p style={{
             fontFamily: fonts.serif,
-            fontSize: mobile ? 18 : 22,
-            lineHeight: 1.4,
+            fontSize: mobile ? 15 : 17,
+            fontStyle: 'italic',
+            lineHeight: 1.5,
             color: colors.ink,
             margin: 0,
-            fontStyle: 'italic',
           }}>
-            {`"${miltonContent}"`}
+            One sentence. Done.
           </p>
-        </div>
-      </div>
-
-      {/* Media placeholder */}
-      <div style={{
-        background: colors.paper,
-        border: `1px solid ${colors.line}`,
-        borderRadius: 16,
-        padding: mobile ? 24 : 40,
-        minHeight: mobile ? 180 : 280,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
-      }}>
-        <div style={{
-          width: '100%',
-          height: '100%',
-          background: `linear-gradient(135deg, ${colors.accentSoft}, ${colors.mintSoft})`,
-          borderRadius: 12,
-          minHeight: mobile ? 140 : 200,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: colors.inkMute,
-          fontFamily: fonts.sans,
-          fontSize: 14,
-        }}>
-          Media
         </div>
       </div>
     </div>
