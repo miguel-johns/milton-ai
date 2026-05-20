@@ -54,10 +54,10 @@ function App() {
   }, [route])
 
   // Route matching
-  if (route === '/' || route === '') return <NewHomePage />
+  if (route === '/' || route === '') return <AIAssistantCoach />
+  if (route === '/milton-makes-money') return <NewHomePage />
   if (route === '/coaches') return <CoachesPage />
   if (route === '/gyms') return <GymsPage />
-  if (route === '/ai-assistant-coach') return <AIAssistantCoach />
   if (route === '/us-vs-them') return <UsVsThemPage />
   if (route === '/insights') return <InsightsPage />
   if (route === '/about') return <AboutPage />
@@ -72,7 +72,7 @@ function App() {
   }
   
   // Default to home page for any unmatched routes
-  return <NewHomePage />
+  return <AIAssistantCoach />
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(

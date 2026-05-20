@@ -184,7 +184,7 @@ export default function AIAssistantCoach() {
       fontFamily: fonts.sans,
       color: colors.ink,
     }}>
-      <Header currentPage="ai-assistant-coach" />
+      <Header currentPage="home" />
 
       <main>
         {/* Hero Section */}
