@@ -252,16 +252,28 @@ export default function AIAssistantCoach() {
           margin: '0 auto',
           padding: mobile ? '0 16px 48px' : '0 24px 100px',
         }}>
-          <img 
-            src="/images/milton-hero.png"
-            alt="Milton AI assistant showing your daily brief with sessions, client appointments, and items needing attention"
-            style={{
-              width: '100%',
-              height: 'auto',
-              borderRadius: mobile ? 16 : 24,
-              display: 'block',
-            }}
-          />
+          <div style={{
+            position: 'relative',
+            paddingBottom: mobile ? '177.78%' : '56.25%', // 9:16 for mobile, 16:9 for desktop
+            height: 0,
+            borderRadius: mobile ? 16 : 24,
+            overflow: 'hidden',
+            background: colors.paper,
+          }}>
+            <iframe
+              src={mobile ? '/animations/milton-experience-hero-mobile.html' : '/animations/milton-experience-hero-desktop.html'}
+              title="Milton AI Experience"
+              frameBorder="0"
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                border: 'none',
+              }}
+            />
+          </div>
         </section>
 
         {/* Testimonial Videos */}
