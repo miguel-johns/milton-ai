@@ -208,7 +208,7 @@ export default function NewHomePage() {
             </button>
           </div>
 
-          {/* Hero animation - responsive desktop/mobile versions */}
+          {/* Hero video - YouTube embed */}
           <div style={{
             marginTop: 64,
             borderRadius: 20,
@@ -216,21 +216,21 @@ export default function NewHomePage() {
             border: `1px solid ${colors.line}`,
             boxShadow: '0 4px 24px rgba(11, 22, 40, 0.08)',
             position: 'relative',
-            paddingBottom: mobile ? '177.78%' : '56.25%', // 9:16 for mobile, 16:9 for desktop
+            paddingBottom: '56.25%', // 16:9 aspect ratio
             height: 0,
-            background: colors.paper,
           }}>
             <iframe
-              src={mobile ? '/animations/milton-experience-hero-mobile.html' : '/animations/milton-experience-hero-desktop.html'}
-              title="Milton AI Experience"
+              src="https://www.youtube.com/embed/6Z_pgR0R0BI?rel=0"
+              title="Milton AI Demo"
               frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
               style={{
                 position: 'absolute',
                 top: 0,
                 left: 0,
                 width: '100%',
                 height: '100%',
-                border: 'none',
               }}
             />
           </div>
