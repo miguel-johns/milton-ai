@@ -197,39 +197,7 @@ export default function ForGymsPage() {
           </div>
         </section>
 
-        {/* Trust Section */}
-        <section style={{
-          maxWidth: 700,
-          margin: '0 auto',
-          padding: mobile ? '40px 20px' : '60px 40px',
-          textAlign: 'center',
-        }}>
-          <p style={{
-            fontFamily: fonts.sans,
-            fontSize: 15,
-            color: colors.inkMute,
-            marginBottom: 24,
-          }}>
-            Trusted by leading fitness facilities
-          </p>
-          <div style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-            gap: mobile ? 24 : 40,
-          }}>
-            {['500+ Gyms', '1M+ Members', '98% Retention'].map((stat, i) => (
-              <div key={i} style={{
-                fontFamily: fonts.sans,
-                fontSize: 16,
-                fontWeight: 600,
-                color: colors.ink,
-              }}>
-                {stat}
-              </div>
-            ))}
-          </div>
-        </section>
+
       </main>
 
       <Footer />
