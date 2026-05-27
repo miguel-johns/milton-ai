@@ -35,11 +35,19 @@ const fonts = {
   sans: "'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
 }
 
-// Stripe checkout URL
-const STRIPE_URL = "https://buy.stripe.com/8x2eVe0mT1bT6nueDUeUU0X"
-
 export default function ForCoachesPage() {
   const { mobile } = useBreakpoint()
+
+  // Load Stripe Buy Button script
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.src = 'https://js.stripe.com/v3/buy-button.js'
+    script.async = true
+    document.body.appendChild(script)
+    return () => {
+      document.body.removeChild(script)
+    }
+  }, [])
 
   return (
     <div style={{ 
@@ -94,17 +102,16 @@ export default function ForCoachesPage() {
             border: `1px solid ${colors.line}`,
             overflow: 'hidden',
             boxShadow: '0 4px 24px rgba(0, 0, 0, 0.06)',
+            padding: mobile ? '40px 20px' : '60px 40px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            minHeight: mobile ? 200 : 250,
           }}>
-            {/* Stripe Pricing Table Embed */}
-            <iframe
-              src={STRIPE_URL}
-              style={{
-                width: '100%',
-                height: mobile ? 700 : 600,
-                border: 'none',
-              }}
-              title="Milton Checkout"
-              loading="lazy"
+            {/* Stripe Buy Button */}
+            <stripe-buy-button
+              buy-button-id="buy_btn_1Tbnh4KiPCT0UZDq9NbnM5bk"
+              publishable-key="pk_live_51MKZN0KiPCT0UZDqlFgbDoTliM6hXSCzi0Ol3B7QyM1aUV6nSpSQO1fHkEijnOQg0muhaL1QO0SI4ggn3U6L09pC003nURdg7T"
             />
           </div>
 
