@@ -596,22 +596,6 @@ export default function ForCoachesPage() {
           </div>
         </Section>
 
-        {/* The Reframe Section */}
-        <Section bg={colors.bg2}>
-          <div style={{ maxWidth: 800, margin: '0 auto' }}>
-            <Eyebrow>THE TRUTH ABOUT CHARGING MORE</Eyebrow>
-            <Heading as="h2" style={{ marginBottom: mobile ? 24 : 32 }}>
-              {"You're not undercharging because you're not good. You're undercharging because your service doesn't feel premium yet."}
-            </Heading>
-            <Body style={{ marginBottom: mobile ? 16 : 20 }}>
-              The coach charging $200 a session {"isn't"} twice as smart as the one charging $100. They just deliver an experience that feels worth it. Weekly check-ins that actually reference what happened in the session. Programs that progress instead of repeat. Reports that tell a client the story of their progress, not just a list of numbers. A coach who seems to remember everything.
-            </Body>
-            <Body>
-              {"That's"} not a talent gap. {"That's"} a time gap. <strong style={{ color: colors.ink }}>Milton closes it.</strong>
-            </Body>
-          </div>
-        </Section>
-
         {/* From/To Comparison Section */}
         <Section>
           <div style={{
