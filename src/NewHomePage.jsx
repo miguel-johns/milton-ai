@@ -49,6 +49,8 @@ const logoImage = "/images/milton-logo.png"
 const CALENDLY_URL = "https://calendly.com/miguel-getmilton/30min"
 // Stripe checkout URL
 const STRIPE_URL = "https://buy.stripe.com/8x2eVe0mT1bT6nueDUeUU0X"
+// Hero video URL (upload via: node --env-file-if-exists=/vercel/share/.env.project scripts/upload-video.js your-video.mp4)
+const HERO_VIDEO_URL = "" // Add your Vercel Blob URL here after uploading
 
 export default function NewHomePage() {
   const { mobile } = useBreakpoint()
@@ -208,7 +210,7 @@ export default function NewHomePage() {
             </button>
           </div>
 
-          {/* Hero video - YouTube embed */}
+          {/* Hero video - Auto-playing video or YouTube fallback */}
           <div style={{
             marginTop: 64,
             borderRadius: 20,
@@ -219,20 +221,39 @@ export default function NewHomePage() {
             paddingBottom: '56.25%', // 16:9 aspect ratio
             height: 0,
           }}>
-            <iframe
-              src="https://www.youtube.com/embed/6Z_pgR0R0BI?rel=0"
-              title="Milton AI Demo"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-              }}
-            />
+            {HERO_VIDEO_URL ? (
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                }}
+              >
+                <source src={HERO_VIDEO_URL} type="video/mp4" />
+              </video>
+            ) : (
+              <iframe
+                src="https://www.youtube.com/embed/6Z_pgR0R0BI?rel=0"
+                title="Milton AI Demo"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                }}
+              />
+            )}
           </div>
         </section>
 
