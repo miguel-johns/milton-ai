@@ -125,7 +125,7 @@ function TrialCard({ mobile }: { mobile: boolean }) {
   )
 }
 
-function FeatureCard({ title, description, mobile }: { title: string; description: string; mobile: boolean }) {
+function FeatureCard({ title, description, image, mobile }: { title: string; description: string; image: string; mobile: boolean }) {
   return (
     <div style={{
       background: colors.paper,
@@ -133,7 +133,31 @@ function FeatureCard({ title, description, mobile }: { title: string; descriptio
       border: `1px solid ${colors.line}`,
       padding: mobile ? '24px 20px' : '28px 24px',
       height: '100%',
+      display: 'flex',
+      flexDirection: 'column',
     }}>
+      <div style={{
+        width: '100%',
+        height: mobile ? 120 : 140,
+        marginBottom: 20,
+        borderRadius: 12,
+        overflow: 'hidden',
+        background: colors.bg2,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+        <img 
+          src={image} 
+          alt=""
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'contain',
+            padding: 16,
+          }}
+        />
+      </div>
       <h3 style={{
         fontFamily: fonts.serif,
         fontSize: mobile ? 20 : 22,
@@ -246,21 +270,25 @@ export default function ForCoachesPage() {
             }}>
               <FeatureCard
                 mobile={mobile}
+                image="/images/programming-illustration.png"
                 title="Create custom programming in seconds."
                 description="Customized to your methodology. Powered by AI."
               />
               <FeatureCard
                 mobile={mobile}
+                image="/images/retention-illustration.png"
                 title="Sell more and retain more."
                 description="Milton handles the stuff that makes clients stay, refer, and gladly pay more."
               />
               <FeatureCard
                 mobile={mobile}
+                image="/images/reports-illustration.png"
                 title="Over-deliver on the small things."
                 description="Check-ins and reports that feel like you spent hours creating them."
               />
               <FeatureCard
                 mobile={mobile}
+                image="/images/voice-illustration.png"
                 title="Get stuff done. Easy."
                 description="Just talk to Milton to take care of the grunt work."
               />
