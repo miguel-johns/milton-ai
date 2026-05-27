@@ -176,6 +176,24 @@ export default function Header({ currentPage = 'home' }) {
             >
               For Coaches
             </a>
+            <a 
+              href="/for-gyms"
+              className="header-cta-btn"
+              style={{
+                background: 'transparent',
+                color: colors.ink,
+                padding: '12px 24px',
+                borderRadius: 10,
+                fontFamily: fonts.sans,
+                fontSize: 14,
+                fontWeight: 500,
+                textDecoration: 'none',
+                letterSpacing: '0.01em',
+                border: `1px solid ${colors.line}`,
+              }}
+            >
+              For Gyms
+            </a>
           </div>
         )}
 
@@ -351,6 +369,27 @@ export default function Header({ currentPage = 'home' }) {
               }}
             >
               For Coaches
+            </a>
+            <a 
+              href="/for-gyms"
+              onClick={() => setMobileMenuOpen(false)}
+              className="header-mobile-cta-secondary"
+              style={{
+                display: 'block',
+                padding: '14px 16px',
+                fontSize: 16,
+                fontWeight: 500,
+                color: colors.ink,
+                textDecoration: 'none',
+                borderRadius: 10,
+                background: 'transparent',
+                border: `1px solid ${colors.line}`,
+                textAlign: 'center',
+                marginTop: 8,
+                transition: 'background 0.2s ease',
+              }}
+            >
+              For Gyms
             </a>
           </div>
         </>
