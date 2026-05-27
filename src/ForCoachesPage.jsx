@@ -78,7 +78,7 @@ export default function ForCoachesPage() {
             margin: '0 auto 40px',
             lineHeight: 1.6,
           }}>
-            Join thousands of coaches using Milton to automate client engagement and grow their business.
+            See for yourself how Milton can help you serve more clients and grow your business.
           </p>
         </section>
 
