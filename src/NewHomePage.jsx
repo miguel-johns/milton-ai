@@ -170,7 +170,7 @@ export default function NewHomePage() {
             alignItems: 'center',
           }}>
             <a 
-              href="/coaches"
+              href="/for-coaches"
               className="cta-link"
               style={{
                 background: colors.ink,
@@ -187,7 +187,7 @@ export default function NewHomePage() {
               For Coaches
             </a>
             <a 
-              href="/gyms"
+              href="/for-gyms"
               className="cta-link"
               style={{
                 background: 'transparent',
@@ -472,7 +472,7 @@ export default function NewHomePage() {
               alignItems: 'center',
             }}>
               <a 
-                href="/coaches"
+                href="/for-coaches"
                 className="cta-link"
                 style={{
                   background: colors.ink,
@@ -489,7 +489,7 @@ export default function NewHomePage() {
                 For Coaches
               </a>
               <a 
-                href="/gyms"
+                href="/for-gyms"
                 className="cta-link"
                 style={{
                   background: 'transparent',

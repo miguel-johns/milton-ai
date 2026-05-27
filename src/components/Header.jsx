@@ -160,7 +160,7 @@ export default function Header({ currentPage = 'home' }) {
               About
             </a>
             <a 
-              href="/coaches"
+              href="/for-coaches"
               className="header-cta-btn"
               style={{
                 background: colors.ink,
@@ -333,7 +333,7 @@ export default function Header({ currentPage = 'home' }) {
               About
             </a>
             <a 
-              href="/coaches"
+              href="/for-coaches"
               onClick={() => setMobileMenuOpen(false)}
               className="header-mobile-cta"
               style={{
