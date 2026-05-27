@@ -77,10 +77,10 @@ function CalendlyEmbed({ mobile }: { mobile: boolean }) {
     }}>
       <div
         className="calendly-inline-widget"
-        data-url="https://calendly.com/migueljohns/milton-demo?hide_gdpr_banner=1&background_color=ffffff&text_color=0b1628&primary_color=2bbfaa"
+        data-url="https://calendly.com/miguel-johns/milton-demo?hide_gdpr_banner=1&primary_color=1aa4a4"
         style={{
-          minWidth: mobile ? 280 : 320,
-          height: mobile ? 580 : 630,
+          minWidth: 320,
+          height: 700,
         }}
       />
     </div>
