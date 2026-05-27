@@ -125,52 +125,274 @@ function TrialCard({ mobile }: { mobile: boolean }) {
   )
 }
 
-function FeatureCard({ title, description, image, mobile }: { title: string; description: string; image: string; mobile: boolean }) {
+// Mockup components for feature cards
+function ProgrammingMockup({ mobile }: { mobile: boolean }) {
+  const exercises = [
+    { name: 'Barbell Back Squat', sets: '4 x 6', color: colors.accent },
+    { name: 'Romanian Deadlift', sets: '3 x 10', color: colors.mint },
+    { name: 'Walking Lunges', sets: '3 x 12', color: colors.accent },
+  ]
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, width: '100%' }}>
+      <div style={{
+        fontSize: 9,
+        fontWeight: 600,
+        letterSpacing: '0.08em',
+        textTransform: 'uppercase',
+        color: colors.accent,
+        marginBottom: 2,
+      }}>
+        Lower Body Strength
+      </div>
+      {exercises.map((ex, i) => (
+        <div key={i} style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 8,
+          padding: '8px 10px',
+          background: colors.bg,
+          borderRadius: 8,
+          border: `1px solid ${colors.lineSoft}`,
+        }}>
+          <span style={{
+            width: 5,
+            height: 5,
+            borderRadius: '50%',
+            background: ex.color,
+            flexShrink: 0,
+          }} />
+          <span style={{ fontSize: 11, color: colors.ink, flex: 1 }}>{ex.name}</span>
+          <span style={{ fontSize: 10, color: colors.inkMute, fontWeight: 500 }}>{ex.sets}</span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function RetentionMockup({ mobile }: { mobile: boolean }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, width: '100%' }}>
+      <div style={{
+        fontSize: 9,
+        fontWeight: 600,
+        letterSpacing: '0.08em',
+        textTransform: 'uppercase',
+        color: colors.accent,
+        marginBottom: 2,
+      }}>
+        Client Retention
+      </div>
+      <div style={{
+        display: 'flex',
+        gap: 8,
+      }}>
+        <div style={{
+          flex: 1,
+          padding: '10px 8px',
+          background: colors.mintSoft,
+          borderRadius: 8,
+          textAlign: 'center',
+        }}>
+          <div style={{ fontSize: 16, fontWeight: 700, color: colors.accentDeep }}>92%</div>
+          <div style={{ fontSize: 9, color: colors.inkMute }}>Retention</div>
+        </div>
+        <div style={{
+          flex: 1,
+          padding: '10px 8px',
+          background: colors.accentSoft,
+          borderRadius: 8,
+          textAlign: 'center',
+        }}>
+          <div style={{ fontSize: 16, fontWeight: 700, color: colors.accentDeep }}>+8</div>
+          <div style={{ fontSize: 9, color: colors.inkMute }}>Referrals</div>
+        </div>
+      </div>
+      <div style={{
+        padding: '8px 10px',
+        background: colors.bg,
+        borderRadius: 8,
+        border: `1px solid ${colors.lineSoft}`,
+        display: 'flex',
+        alignItems: 'center',
+        gap: 8,
+      }}>
+        <div style={{
+          width: 20,
+          height: 20,
+          borderRadius: '50%',
+          background: colors.accentSoft,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke={colors.accent} strokeWidth="3">
+            <path d="M20 6L9 17l-5-5"/>
+          </svg>
+        </div>
+        <span style={{ fontSize: 10, color: colors.inkSoft }}>Check-in sent to Sarah K.</span>
+      </div>
+    </div>
+  )
+}
+
+function ReportsMockup({ mobile }: { mobile: boolean }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, width: '100%' }}>
+      <div style={{
+        fontSize: 9,
+        fontWeight: 600,
+        letterSpacing: '0.08em',
+        textTransform: 'uppercase',
+        color: colors.accent,
+        marginBottom: 2,
+      }}>
+        Progress Report
+      </div>
+      <div style={{
+        padding: '10px',
+        background: colors.bg,
+        borderRadius: 8,
+        border: `1px solid ${colors.lineSoft}`,
+      }}>
+        <p style={{
+          fontSize: 10,
+          color: colors.inkSoft,
+          margin: 0,
+          lineHeight: 1.5,
+          fontStyle: 'italic',
+        }}>
+          &quot;Your deadlift is up 25 lbs since January. This is the consistency that changes everything.&quot;
+        </p>
+      </div>
+      <div style={{
+        display: 'flex',
+        gap: 6,
+      }}>
+        <div style={{
+          flex: 1,
+          padding: '8px',
+          background: colors.mintSoft,
+          borderRadius: 6,
+          textAlign: 'center',
+        }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: colors.accentDeep }}>+25 lbs</div>
+          <div style={{ fontSize: 8, color: colors.inkMute }}>Deadlift</div>
+        </div>
+        <div style={{
+          flex: 1,
+          padding: '8px',
+          background: colors.accentSoft,
+          borderRadius: 6,
+          textAlign: 'center',
+        }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: colors.accentDeep }}>86%</div>
+          <div style={{ fontSize: 8, color: colors.inkMute }}>Attendance</div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function VoiceMockup({ mobile }: { mobile: boolean }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, width: '100%' }}>
+      <div style={{
+        fontSize: 9,
+        fontWeight: 600,
+        letterSpacing: '0.08em',
+        textTransform: 'uppercase',
+        color: colors.accent,
+        marginBottom: 2,
+      }}>
+        Just talk to Milton
+      </div>
+      <div style={{
+        padding: '10px',
+        background: colors.accentSoft,
+        borderRadius: 8,
+        display: 'flex',
+        alignItems: 'center',
+        gap: 10,
+      }}>
+        <div style={{
+          width: 28,
+          height: 28,
+          borderRadius: '50%',
+          background: colors.accent,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill={colors.paper} stroke="none">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2" fill="none" stroke={colors.paper} strokeWidth="2"/>
+            <line x1="12" y1="19" x2="12" y2="23" stroke={colors.paper} strokeWidth="2"/>
+          </svg>
+        </div>
+        <span style={{ fontSize: 11, color: colors.accentDeep, fontStyle: 'italic' }}>
+          &quot;Create a leg day for Mike...&quot;
+        </span>
+      </div>
+      <div style={{
+        padding: '8px 10px',
+        background: colors.bg,
+        borderRadius: 8,
+        border: `1px solid ${colors.lineSoft}`,
+        display: 'flex',
+        alignItems: 'center',
+        gap: 6,
+      }}>
+        <span style={{
+          fontSize: 10,
+          padding: '2px 6px',
+          borderRadius: 4,
+          background: colors.mintSoft,
+          color: colors.accentDeep,
+          fontWeight: 600,
+        }}>Done</span>
+        <span style={{ fontSize: 10, color: colors.inkSoft }}>Program created for Mike T.</span>
+      </div>
+    </div>
+  )
+}
+
+function FeatureCard({ title, description, children, mobile }: { title: string; description: string; children: React.ReactNode; mobile: boolean }) {
   return (
     <div style={{
       background: colors.paper,
       borderRadius: 16,
       border: `1px solid ${colors.line}`,
-      padding: mobile ? '24px 20px' : '28px 24px',
+      padding: mobile ? '20px 16px' : '24px 20px',
       height: '100%',
       display: 'flex',
       flexDirection: 'column',
     }}>
       <div style={{
         width: '100%',
-        height: mobile ? 120 : 140,
-        marginBottom: 20,
+        marginBottom: 16,
+        padding: mobile ? 12 : 16,
         borderRadius: 12,
-        overflow: 'hidden',
-        background: colors.bg2,
+        background: colors.paper,
+        border: `1px solid ${colors.lineSoft}`,
+        minHeight: mobile ? 130 : 150,
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
       }}>
-        <img 
-          src={image} 
-          alt=""
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'contain',
-            padding: 16,
-          }}
-        />
+        {children}
       </div>
       <h3 style={{
         fontFamily: fonts.serif,
-        fontSize: mobile ? 20 : 22,
+        fontSize: mobile ? 18 : 20,
         fontWeight: 500,
         color: colors.ink,
-        margin: '0 0 8px 0',
+        margin: '0 0 6px 0',
         lineHeight: 1.3,
       }}>
         {title}
       </h3>
       <p style={{
         fontFamily: fonts.sans,
-        fontSize: 15,
+        fontSize: 14,
         color: colors.inkSoft,
         margin: 0,
         lineHeight: 1.6,
@@ -270,28 +492,32 @@ export default function ForCoachesPage() {
             }}>
               <FeatureCard
                 mobile={mobile}
-                image="/images/programming-illustration.png"
                 title="Create custom programming in seconds."
                 description="Customized to your methodology. Powered by AI."
-              />
+              >
+                <ProgrammingMockup mobile={mobile} />
+              </FeatureCard>
               <FeatureCard
                 mobile={mobile}
-                image="/images/retention-illustration.png"
                 title="Sell more and retain more."
                 description="Milton handles the stuff that makes clients stay, refer, and gladly pay more."
-              />
+              >
+                <RetentionMockup mobile={mobile} />
+              </FeatureCard>
               <FeatureCard
                 mobile={mobile}
-                image="/images/reports-illustration.png"
                 title="Over-deliver on the small things."
                 description="Check-ins and reports that feel like you spent hours creating them."
-              />
+              >
+                <ReportsMockup mobile={mobile} />
+              </FeatureCard>
               <FeatureCard
                 mobile={mobile}
-                image="/images/voice-illustration.png"
                 title="Get stuff done. Easy."
                 description="Just talk to Milton to take care of the grunt work."
-              />
+              >
+                <VoiceMockup mobile={mobile} />
+              </FeatureCard>
             </div>
           </div>
         </section>
