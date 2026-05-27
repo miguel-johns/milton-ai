@@ -552,8 +552,8 @@ export default function UsVsThemPage() {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-            <CTA href={STRIPE_URL}>Start free trial</CTA>
-            <CTA variant="secondary" onClick={() => setCalendlyModalOpen(true)}>Book a call</CTA>
+            <CTA href="/for-coaches">For Coaches</CTA>
+            <CTA variant="secondary" href="/for-gyms">For Gyms</CTA>
           </div>
         </section>
 
@@ -912,8 +912,8 @@ export default function UsVsThemPage() {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-              <CTA href={STRIPE_URL}>Start free trial</CTA>
-              <CTA variant="secondary" onClick={() => setCalendlyModalOpen(true)}>Book a call</CTA>
+              <CTA href="/for-coaches">For Coaches</CTA>
+              <CTA variant="secondary" href="/for-gyms">For Gyms</CTA>
             </div>
           </div>
         </section>

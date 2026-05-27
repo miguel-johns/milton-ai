@@ -160,9 +160,7 @@ export default function Header({ currentPage = 'home' }) {
               About
             </a>
             <a 
-              href={STRIPE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/for-coaches"
               className="header-cta-btn"
               style={{
                 background: colors.ink,
@@ -176,7 +174,25 @@ export default function Header({ currentPage = 'home' }) {
                 letterSpacing: '0.01em',
               }}
             >
-              Start free trial
+              For Coaches
+            </a>
+            <a 
+              href="/for-gyms"
+              className="header-cta-btn"
+              style={{
+                background: 'transparent',
+                color: colors.ink,
+                padding: '12px 24px',
+                borderRadius: 10,
+                fontFamily: fonts.sans,
+                fontSize: 14,
+                fontWeight: 500,
+                textDecoration: 'none',
+                letterSpacing: '0.01em',
+                border: `1px solid ${colors.line}`,
+              }}
+            >
+              For Gyms
             </a>
           </div>
         )}
@@ -260,12 +276,14 @@ export default function Header({ currentPage = 'home' }) {
             top: 80,
             left: 20,
             right: 20,
+            maxHeight: 'calc(100vh - 100px)',
+            overflowY: 'auto',
             background: colors.paper,
             borderRadius: 16,
             border: `1px solid ${colors.line}`,
             boxShadow: '0 1px 2px rgba(11, 22, 40, 0.04), 0 16px 40px rgba(11, 22, 40, 0.10)',
             zIndex: 55,
-            padding: 8,
+            padding: '8px 8px 16px 8px',
             display: 'flex',
             flexDirection: 'column',
             gap: 4,
@@ -335,9 +353,7 @@ export default function Header({ currentPage = 'home' }) {
               About
             </a>
             <a 
-              href={STRIPE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/for-coaches"
               onClick={() => setMobileMenuOpen(false)}
               className="header-mobile-cta"
               style={{
@@ -354,7 +370,28 @@ export default function Header({ currentPage = 'home' }) {
                 transition: 'background 0.2s ease',
               }}
             >
-              Start free trial
+              For Coaches
+            </a>
+            <a 
+              href="/for-gyms"
+              onClick={() => setMobileMenuOpen(false)}
+              className="header-mobile-cta-secondary"
+              style={{
+                display: 'block',
+                padding: '14px 16px',
+                fontSize: 16,
+                fontWeight: 500,
+                color: colors.ink,
+                textDecoration: 'none',
+                borderRadius: 10,
+                background: colors.paper,
+                border: `1px solid ${colors.ink}`,
+                textAlign: 'center',
+                marginTop: 8,
+                transition: 'background 0.2s ease',
+              }}
+            >
+              For Gyms
             </a>
           </div>
         </>

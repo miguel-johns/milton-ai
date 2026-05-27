@@ -4,6 +4,8 @@ import { Analytics } from '@vercel/analytics/react'
 import NewHomePage from './NewHomePage.jsx'
 import CoachesPage from './CoachesPage.jsx'
 import GymsPage from './GymsPage.jsx'
+import ForCoachesPage from './ForCoachesPage.jsx'
+import ForGymsPage from './ForGymsPage.jsx'
 import AIAssistantCoach from './AIAssistantCoach.jsx'
 import UsVsThemPage from './UsVsThemPage.jsx'
 import InsightsPage from './InsightsPage.jsx'
@@ -58,6 +60,8 @@ function App() {
   if (route === '/milton-makes-money') return <NewHomePage />
   if (route === '/coaches') return <CoachesPage />
   if (route === '/gyms') return <GymsPage />
+  if (route === '/for-coaches') return <ForCoachesPage />
+  if (route === '/for-gyms') return <ForGymsPage />
   if (route === '/us-vs-them') return <UsVsThemPage />
   if (route === '/insights') return <InsightsPage />
   if (route === '/about') return <AboutPage />
