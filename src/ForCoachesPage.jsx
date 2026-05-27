@@ -750,45 +750,55 @@ export default function ForCoachesPage() {
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: mobile ? '1fr' : tablet ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)',
-            gap: mobile ? 20 : 24,
+            gridTemplateColumns: mobile ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)',
+            gap: mobile ? 16 : 24,
           }}>
-            <FeatureCard
-              index={0}
-              icon={icons.report}
-              title="Story-based progress reports"
-              description="Every month, your client gets a beautifully written recap of where they started, what they've done, what's changed, and where they're going. It's the kind of thing that turns clients into evangelists. You couldn't write 20 of these a month if you tried. Milton writes them in your voice, automatically."
-            />
-            <FeatureCard
-              index={1}
-              icon={icons.program}
-              title="Progressive programming, every session"
-              description="Milton remembers what your client did last week, what they struggled with, what they hit. Next week's program builds on it. No more recycled templates. Every session feels custom because it is."
-            />
-            <FeatureCard
-              index={2}
-              icon={icons.checkin}
-              title="Check-ins that feel personal"
-              description="Milton drafts check-ins that reference the actual session, the actual client, the actual conversation. You approve and send. Clients feel seen. You spent 30 seconds."
-            />
-            <FeatureCard
-              index={3}
-              icon={icons.timeline}
-              title="Historical timelines"
-              description="Every client gets a visual story of their journey with you. PRs, milestones, sessions, breakthroughs. The kind of thing that makes a client think twice before canceling."
-            />
-            <FeatureCard
-              index={4}
-              icon={icons.nutrition}
-              title="Stupid-simple nutrition tracking"
-              description="No barcodes, no databases, no client homework. They talk, Milton tracks. The thing every coach wants to offer but nobody actually delivers well."
-            />
-            <FeatureCard
-              index={5}
-              icon={icons.followup}
-              title="The follow-ups you forget"
-              description="The lead who ghosted three weeks ago. The client who skipped two sessions. The prospect who said 'maybe next month.' Milton tracks all of it and tells you who to message today."
-            />
+            {[
+              { icon: icons.report, title: "Story-based progress reports" },
+              { icon: icons.program, title: "Progressive programming" },
+              { icon: icons.checkin, title: "Personal check-ins" },
+              { icon: icons.timeline, title: "Historical timelines" },
+              { icon: icons.nutrition, title: "Simple nutrition tracking" },
+              { icon: icons.followup, title: "Automated follow-ups" },
+            ].map((item, index) => (
+              <div
+                key={index}
+                style={{
+                  background: colors.paper,
+                  border: `1px solid ${colors.line}`,
+                  borderRadius: 16,
+                  padding: mobile ? '24px 16px' : '32px 24px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  textAlign: 'center',
+                  gap: 12,
+                }}
+              >
+                <div style={{
+                  width: 48,
+                  height: 48,
+                  borderRadius: 12,
+                  background: index === 0 ? `linear-gradient(135deg, ${colors.accent}, ${colors.mint})` : colors.accentSoft,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: index === 0 ? colors.paper : colors.accent,
+                }}>
+                  {item.icon}
+                </div>
+                <h3 style={{
+                  fontFamily: fonts.sans,
+                  fontSize: mobile ? 15 : 17,
+                  fontWeight: 600,
+                  color: colors.ink,
+                  margin: 0,
+                  lineHeight: 1.3,
+                }}>
+                  {item.title}
+                </h3>
+              </div>
+            ))}
           </div>
         </Section>
 
