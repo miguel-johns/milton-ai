@@ -38,8 +38,6 @@ export async function createCheckoutSession(productId: string) {
         trial_period_days: product.trialDays,
       },
     }),
-    success_url: `${baseUrl}/for-coaches?success=true`,
-    cancel_url: `${baseUrl}/for-coaches?canceled=true`,
     ui_mode: 'embedded',
     return_url: `${baseUrl}/for-coaches?session_id={CHECKOUT_SESSION_ID}`,
   })
