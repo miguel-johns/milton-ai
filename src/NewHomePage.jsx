@@ -170,9 +170,7 @@ export default function NewHomePage() {
             alignItems: 'center',
           }}>
             <a 
-              href={STRIPE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/coaches"
               className="cta-link"
               style={{
                 background: colors.ink,
@@ -186,10 +184,10 @@ export default function NewHomePage() {
                 letterSpacing: '0.01em',
               }}
             >
-              Start free trial
+              For Coaches
             </a>
-            <button 
-              onClick={() => setCalendlyModalOpen(true)}
+            <a 
+              href="/gyms"
               className="cta-link"
               style={{
                 background: 'transparent',
@@ -201,11 +199,10 @@ export default function NewHomePage() {
                 fontWeight: 500,
                 textDecoration: 'none',
                 border: `1px solid ${colors.line}`,
-                cursor: 'pointer',
               }}
             >
-              Book a call
-            </button>
+              For Gyms
+            </a>
           </div>
 
           {/* Hero video - YouTube embed */}
@@ -475,9 +472,7 @@ export default function NewHomePage() {
               alignItems: 'center',
             }}>
               <a 
-                href={STRIPE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/coaches"
                 className="cta-link"
                 style={{
                   background: colors.ink,
@@ -491,10 +486,10 @@ export default function NewHomePage() {
                   letterSpacing: '0.01em',
                 }}
               >
-                Start free trial
+                For Coaches
               </a>
-              <button 
-                onClick={() => setCalendlyModalOpen(true)}
+              <a 
+                href="/gyms"
                 className="cta-link"
                 style={{
                   background: 'transparent',
@@ -506,11 +501,10 @@ export default function NewHomePage() {
                   fontWeight: 500,
                   textDecoration: 'none',
                   border: `1px solid ${colors.line}`,
-                  cursor: 'pointer',
                 }}
               >
-                Book a call
-              </button>
+                For Gyms
+              </a>
             </div>
           </div>
         </section>

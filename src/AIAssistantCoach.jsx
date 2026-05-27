@@ -241,8 +241,8 @@ export default function AIAssistantCoach() {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-            <CTA href={STRIPE_URL}>Start free trial</CTA>
-            <CTA variant="secondary" onClick={() => setCalendlyModalOpen(true)}>Book a call</CTA>
+            <CTA href="/coaches">For Coaches</CTA>
+            <CTA variant="secondary" href="/gyms">For Gyms</CTA>
           </div>
         </section>
 

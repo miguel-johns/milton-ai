@@ -160,9 +160,7 @@ export default function Header({ currentPage = 'home' }) {
               About
             </a>
             <a 
-              href={STRIPE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/coaches"
               className="header-cta-btn"
               style={{
                 background: colors.ink,
@@ -176,7 +174,7 @@ export default function Header({ currentPage = 'home' }) {
                 letterSpacing: '0.01em',
               }}
             >
-              Start free trial
+              For Coaches
             </a>
           </div>
         )}
@@ -335,9 +333,7 @@ export default function Header({ currentPage = 'home' }) {
               About
             </a>
             <a 
-              href={STRIPE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/coaches"
               onClick={() => setMobileMenuOpen(false)}
               className="header-mobile-cta"
               style={{
@@ -354,7 +350,7 @@ export default function Header({ currentPage = 'home' }) {
                 transition: 'background 0.2s ease',
               }}
             >
-              Start free trial
+              For Coaches
             </a>
           </div>
         </>
