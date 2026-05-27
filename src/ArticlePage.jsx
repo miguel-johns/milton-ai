@@ -425,23 +425,47 @@ export default function ArticlePage({ slug }) {
             maxWidth: 400,
             margin: '0 auto 24px',
           }}>Start a conversation and experience how AI can transform your coaching practice.</p>
-          <a href="/" style={{
-            display: 'inline-flex',
+          <div style={{
+            display: 'flex',
+            flexDirection: mobile ? 'column' : 'row',
             alignItems: 'center',
-            gap: 8,
-            background: colors.ink,
-            color: colors.paper,
-            padding: '14px 28px',
-            borderRadius: 12,
-            textDecoration: 'none',
-            fontWeight: 600,
-            fontSize: 15,
+            justifyContent: 'center',
+            gap: 12,
           }}>
-            Talk to Milton
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M5 12h14M13 6l6 6-6 6" />
-            </svg>
-          </a>
+            <a href="/for-coaches" style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 8,
+              background: colors.ink,
+              color: colors.paper,
+              padding: '14px 28px',
+              borderRadius: 12,
+              textDecoration: 'none',
+              fontWeight: 600,
+              fontSize: 15,
+              width: mobile ? '100%' : 'auto',
+            }}>
+              For Coaches
+            </a>
+            <a href="/for-gyms" style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 8,
+              background: 'transparent',
+              color: colors.ink,
+              padding: '14px 28px',
+              borderRadius: 12,
+              textDecoration: 'none',
+              fontWeight: 500,
+              fontSize: 15,
+              border: `1px solid ${colors.line}`,
+              width: mobile ? '100%' : 'auto',
+            }}>
+              For Gyms
+            </a>
+          </div>
         </div>
       </main>
 
