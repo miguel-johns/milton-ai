@@ -135,68 +135,6 @@ export default function ForCoachesPage() {
           </div>
         </section>
 
-        {/* FAQ Section */}
-        <section style={{
-          maxWidth: 700,
-          margin: '0 auto',
-          padding: mobile ? '40px 20px' : '60px 40px',
-          borderTop: `1px solid ${colors.line}`,
-        }}>
-          <h2 style={{
-            fontFamily: fonts.serif,
-            fontSize: mobile ? 28 : 32,
-            fontWeight: 500,
-            color: colors.ink,
-            textAlign: 'center',
-            marginBottom: 40,
-          }}>
-            Frequently Asked Questions
-          </h2>
-          
-          {[
-            {
-              q: "What's included in the free trial?",
-              a: "Full access to all Milton features including AI-powered client messaging, automated check-ins, and smart scheduling for 14 days."
-            },
-            {
-              q: "Do I need a credit card to start?",
-              a: "Yes, we require a card to prevent abuse, but you won't be charged during your trial period. Cancel anytime before it ends."
-            },
-            {
-              q: "How long does setup take?",
-              a: "Most coaches are up and running in under 10 minutes. Our onboarding flow guides you through connecting your existing tools."
-            },
-            {
-              q: "Can I switch plans later?",
-              a: "Absolutely. You can upgrade, downgrade, or cancel your subscription at any time from your account settings."
-            },
-          ].map((faq, i) => (
-            <div key={i} style={{
-              marginBottom: 24,
-              paddingBottom: 24,
-              borderBottom: i < 3 ? `1px solid ${colors.lineSoft}` : 'none',
-            }}>
-              <h3 style={{
-                fontFamily: fonts.sans,
-                fontSize: 16,
-                fontWeight: 600,
-                color: colors.ink,
-                marginBottom: 8,
-              }}>
-                {faq.q}
-              </h3>
-              <p style={{
-                fontFamily: fonts.sans,
-                fontSize: 15,
-                color: colors.inkSoft,
-                lineHeight: 1.6,
-                margin: 0,
-              }}>
-                {faq.a}
-              </p>
-            </div>
-          ))}
-        </section>
       </main>
 
       <Footer />
