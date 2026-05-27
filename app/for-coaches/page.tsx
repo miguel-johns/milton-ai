@@ -61,12 +61,16 @@ function TrialCard({ mobile }: { mobile: boolean }) {
       background: colors.paper,
       borderRadius: 16,
       border: `1px solid ${colors.line}`,
-      padding: mobile ? '24px 20px' : '32px',
       boxShadow: '0 4px 24px rgba(0, 0, 0, 0.08)',
       width: '100%',
-      maxWidth: 380,
+      maxWidth: mobile ? '100%' : 420,
+      overflow: 'hidden',
     }}>
-      <div style={{ marginBottom: 20 }}>
+      {/* Header */}
+      <div style={{ 
+        padding: mobile ? '16px 20px' : '20px 24px',
+        borderBottom: `1px solid ${colors.lineSoft}`,
+      }}>
         <h3 style={{
           fontFamily: fonts.sans,
           fontSize: 18,
@@ -87,39 +91,48 @@ function TrialCard({ mobile }: { mobile: boolean }) {
         </p>
       </div>
 
-      {/* Stripe Embedded Checkout */}
-      <div style={{ marginBottom: 16 }}>
+      {/* Stripe Embedded Checkout - scrollable container */}
+      <div style={{ 
+        maxHeight: mobile ? 400 : 450,
+        overflowY: 'auto',
+      }}>
         <Checkout productId="milton-subscription" />
       </div>
 
-      <p style={{
-        fontFamily: fonts.sans,
-        fontSize: 13,
-        color: colors.inkMute,
-        margin: '0 0 16px 0',
-        textAlign: 'center',
-      }}>
-        Cancel anytime in one click.
-      </p>
-
-      {/* Payment methods */}
+      {/* Footer */}
       <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: 8,
-        paddingTop: 16,
+        padding: mobile ? '12px 20px 16px' : '16px 24px 20px',
         borderTop: `1px solid ${colors.lineSoft}`,
+        background: colors.bg,
       }}>
-        {['Amex', 'Mastercard', 'Visa', 'Apple Pay', 'Link'].map((method) => (
-          <span key={method} style={{
-            fontFamily: fonts.sans,
-            fontSize: 11,
-            color: colors.inkMute,
-          }}>
-            {method}
-          </span>
-        ))}
+        <p style={{
+          fontFamily: fonts.sans,
+          fontSize: 12,
+          color: colors.inkMute,
+          margin: '0 0 12px 0',
+          textAlign: 'center',
+        }}>
+          Cancel anytime in one click.
+        </p>
+
+        {/* Payment methods */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: 12,
+          flexWrap: 'wrap',
+        }}>
+          {['Amex', 'Mastercard', 'Visa', 'Apple Pay', 'Link'].map((method) => (
+            <span key={method} style={{
+              fontFamily: fonts.sans,
+              fontSize: 10,
+              color: colors.inkMute,
+            }}>
+              {method}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   )

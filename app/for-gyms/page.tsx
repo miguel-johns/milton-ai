@@ -72,17 +72,64 @@ function CalendlyEmbed({ mobile }: { mobile: boolean }) {
       border: `1px solid ${colors.line}`,
       boxShadow: '0 4px 24px rgba(0, 0, 0, 0.08)',
       width: '100%',
-      maxWidth: mobile ? '100%' : 400,
+      maxWidth: mobile ? '100%' : 420,
       overflow: 'hidden',
     }}>
-      <div
-        className="calendly-inline-widget"
-        data-url="https://calendly.com/miguel-johns/milton-demo?hide_gdpr_banner=1&primary_color=1aa4a4"
-        style={{
-          minWidth: 320,
-          height: 700,
-        }}
-      />
+      {/* Header */}
+      <div style={{ 
+        padding: mobile ? '16px 20px' : '20px 24px',
+        borderBottom: `1px solid ${colors.lineSoft}`,
+      }}>
+        <h3 style={{
+          fontFamily: fonts.sans,
+          fontSize: 18,
+          fontWeight: 600,
+          color: colors.ink,
+          margin: '0 0 4px 0',
+        }}>
+          Book a Demo
+        </h3>
+        <p style={{
+          fontFamily: fonts.sans,
+          fontSize: 14,
+          color: colors.inkSoft,
+          margin: 0,
+        }}>
+          30 minutes with Miguel Johns
+        </p>
+      </div>
+
+      {/* Calendly widget - scrollable container */}
+      <div style={{ 
+        maxHeight: mobile ? 400 : 480,
+        overflowY: 'auto',
+      }}>
+        <div
+          className="calendly-inline-widget"
+          data-url="https://calendly.com/miguel-johns/milton-demo?hide_gdpr_banner=1&primary_color=1aa4a4"
+          style={{
+            minWidth: 320,
+            height: 600,
+          }}
+        />
+      </div>
+
+      {/* Footer */}
+      <div style={{
+        padding: mobile ? '12px 20px' : '16px 24px',
+        borderTop: `1px solid ${colors.lineSoft}`,
+        background: colors.bg,
+        textAlign: 'center',
+      }}>
+        <p style={{
+          fontFamily: fonts.sans,
+          fontSize: 12,
+          color: colors.inkMute,
+          margin: 0,
+        }}>
+          No slide deck. No SDR. A real conversation about your gym.
+        </p>
+      </div>
     </div>
   )
 }
