@@ -2,6 +2,7 @@
 
 import { stripe } from '@/lib/stripe'
 import { PRODUCTS } from '@/lib/products'
+import type Stripe from 'stripe'
 
 export async function createCheckoutSession(productId: string) {
   const product = PRODUCTS.find((p) => p.id === productId)
@@ -12,7 +13,7 @@ export async function createCheckoutSession(productId: string) {
 
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
 
-  const session = await stripe.checkout.sessions.create({
+  const params: Stripe.Checkout.SessionCreateParams = {
     mode: product.interval ? 'subscription' : 'payment',
     payment_method_types: ['card'],
     line_items: [
@@ -38,9 +39,13 @@ export async function createCheckoutSession(productId: string) {
         trial_period_days: product.trialDays,
       },
     }),
-    ui_mode: 'embedded',
     return_url: `${baseUrl}/for-coaches?session_id={CHECKOUT_SESSION_ID}`,
-  })
+  }
+
+  // @ts-expect-error - ui_mode 'embedded' is valid but not in older type definitions
+  params.ui_mode = 'embedded'
+
+  const session = await stripe.checkout.sessions.create(params)
 
   return {
     clientSecret: session.client_secret,
