@@ -569,18 +569,47 @@ export default function ForCoachesPage() {
               fontSize: mobile ? 32 : 40,
               fontWeight: 500,
               color: colors.paper,
-              margin: '0 0 40px 0',
+              margin: '0 0 16px 0',
               lineHeight: 1.2,
             }}>
               Try Milton free for 7 days.
             </h2>
-
-            <div style={{
-              display: 'flex',
-              justifyContent: 'center',
+            <p style={{
+              fontFamily: fonts.sans,
+              fontSize: 16,
+              color: 'rgba(255,255,255,0.7)',
+              margin: '0 0 32px 0',
             }}>
-              <TrialCard mobile={mobile} />
-            </div>
+              $99/month after trial. Cancel anytime.
+            </p>
+
+            <button
+              onClick={() => {
+                document.getElementById('checkout')?.scrollIntoView({ behavior: 'smooth' })
+              }}
+              style={{
+                padding: '16px 48px',
+                borderRadius: 10,
+                border: 'none',
+                background: colors.paper,
+                color: colors.accentDeep,
+                fontFamily: fonts.sans,
+                fontSize: 16,
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'transform 0.15s ease, box-shadow 0.15s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)'
+                e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.2)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.boxShadow = 'none'
+              }}
+            >
+              Start Free Trial
+            </button>
           </div>
         </section>
       </main>
