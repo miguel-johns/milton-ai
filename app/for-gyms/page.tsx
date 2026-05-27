@@ -54,108 +54,35 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
   )
 }
 
-function DemoCard({ mobile }: { mobile: boolean }) {
+function CalendlyEmbed({ mobile }: { mobile: boolean }) {
+  useEffect(() => {
+    const script = document.createElement('script')
+    script.src = 'https://assets.calendly.com/assets/external/widget.js'
+    script.async = true
+    document.body.appendChild(script)
+    return () => {
+      document.body.removeChild(script)
+    }
+  }, [])
+
   return (
     <div style={{
       background: colors.paper,
       borderRadius: 16,
       border: `1px solid ${colors.line}`,
-      padding: mobile ? '24px 20px' : '32px',
       boxShadow: '0 4px 24px rgba(0, 0, 0, 0.08)',
       width: '100%',
-      maxWidth: 380,
+      maxWidth: mobile ? '100%' : 400,
+      overflow: 'hidden',
     }}>
-      <div style={{ marginBottom: 20 }}>
-        <h3 style={{
-          fontFamily: fonts.sans,
-          fontSize: 18,
-          fontWeight: 600,
-          color: colors.ink,
-          margin: '0 0 4px 0',
-        }}>
-          Milton Demo
-        </h3>
-        <p style={{
-          fontFamily: fonts.sans,
-          fontSize: 14,
-          color: colors.inkSoft,
-          margin: 0,
-        }}>
-          30 minutes with Miguel Johns
-        </p>
-      </div>
-
-      {/* Calendly embed placeholder - replace with actual embed */}
-      <div style={{
-        background: colors.bg2,
-        borderRadius: 12,
-        padding: '40px 20px',
-        marginBottom: 16,
-        textAlign: 'center',
-        border: `1px solid ${colors.lineSoft}`,
-        minHeight: 200,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: 16,
-      }}>
-        <div style={{
-          width: 48,
-          height: 48,
-          borderRadius: '50%',
-          background: colors.accentSoft,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={colors.accent} strokeWidth="2">
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-            <line x1="16" y1="2" x2="16" y2="6"/>
-            <line x1="8" y1="2" x2="8" y2="6"/>
-            <line x1="3" y1="10" x2="21" y2="10"/>
-          </svg>
-        </div>
-        <a
-          href="https://calendly.com/migueljohns/milton-demo"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: 'inline-block',
-            padding: '14px 32px',
-            borderRadius: 10,
-            border: 'none',
-            background: colors.ink,
-            color: colors.paper,
-            fontFamily: fonts.sans,
-            fontSize: 15,
-            fontWeight: 600,
-            textDecoration: 'none',
-            cursor: 'pointer',
-            transition: 'background 0.2s ease, transform 0.15s ease',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = '#1a2536'
-            e.currentTarget.style.transform = 'translateY(-1px)'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = colors.ink
-            e.currentTarget.style.transform = 'translateY(0)'
-          }}
-        >
-          Book my demo
-        </a>
-      </div>
-
-      <p style={{
-        fontFamily: fonts.sans,
-        fontSize: 13,
-        color: colors.inkMute,
-        margin: 0,
-        textAlign: 'center',
-      }}>
-        No slide deck. No SDR. A real conversation about your gym.
-      </p>
+      <div
+        className="calendly-inline-widget"
+        data-url="https://calendly.com/migueljohns/milton-demo?hide_gdpr_banner=1&background_color=ffffff&text_color=0b1628&primary_color=2bbfaa"
+        style={{
+          minWidth: mobile ? 280 : 320,
+          height: mobile ? 580 : 630,
+        }}
+      />
     </div>
   )
 }
@@ -478,7 +405,7 @@ export default function ForGymsPage() {
               display: 'flex',
               justifyContent: 'center',
             }}>
-              <DemoCard mobile={mobile} />
+              <CalendlyEmbed mobile={mobile} />
             </div>
           </div>
         </section>
