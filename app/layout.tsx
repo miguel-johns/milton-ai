@@ -3,7 +3,7 @@ import { Analytics } from '@vercel/analytics/react'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Milton - AI Assistant Coach for Personal Trainers',
+  title: 'Milton AI - Coach like you have a team behind you',
   description: 'Milton is the AI assistant coach that handles the work great coaches wish they had time to do.',
 }
 
