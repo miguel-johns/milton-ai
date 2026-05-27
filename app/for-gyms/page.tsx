@@ -501,7 +501,7 @@ export default function ForGymsPage() {
           padding: mobile ? '60px 20px' : '80px 40px',
         }}>
           <div style={{
-            maxWidth: 800,
+            maxWidth: 900,
             margin: '0 auto',
             textAlign: 'center',
           }}>
@@ -524,35 +524,9 @@ export default function ForGymsPage() {
               Backed by a 30-day money-back guarantee.
             </p>
 
-            <a
-              href="https://calendly.com/migueljohns/milton-demo"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: 'inline-block',
-                padding: '16px 48px',
-                borderRadius: 10,
-                border: 'none',
-                background: colors.paper,
-                color: colors.accentDeep,
-                fontFamily: fonts.sans,
-                fontSize: 16,
-                fontWeight: 600,
-                textDecoration: 'none',
-                cursor: 'pointer',
-                transition: 'transform 0.15s ease, box-shadow 0.15s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-2px)'
-                e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.2)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)'
-                e.currentTarget.style.boxShadow = 'none'
-              }}
-            >
-              Book my demo
-            </a>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <CalendlyEmbed mobile={mobile} />
+            </div>
           </div>
         </section>
       </main>
