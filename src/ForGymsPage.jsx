@@ -36,7 +36,7 @@ const fonts = {
 }
 
 // Calendly booking URL
-const CALENDLY_URL = "https://calendly.com/miguel-getmilton/30min"
+const CALENDLY_URL = "https://calendly.com/miguel-johns/milton-demo?hide_gdpr_banner=1&primary_color=008469"
 
 export default function ForGymsPage() {
   const { mobile } = useBreakpoint()
@@ -109,10 +109,10 @@ export default function ForGymsPage() {
             {/* Calendly Inline Widget */}
             <div 
               className="calendly-inline-widget" 
-              data-url={`${CALENDLY_URL}?hide_gdpr_banner=1&background_color=ffffff&text_color=0B1628&primary_color=2BBFAA`}
+              data-url={CALENDLY_URL}
               style={{ 
                 minWidth: 320, 
-                height: mobile ? 700 : 680,
+                height: mobile ? 700 : 700,
               }} 
             />
           </div>

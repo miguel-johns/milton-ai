@@ -276,6 +276,8 @@ export default function Header({ currentPage = 'home' }) {
             top: 80,
             left: 20,
             right: 20,
+            maxHeight: 'calc(100vh - 100px)',
+            overflowY: 'auto',
             background: colors.paper,
             borderRadius: 16,
             border: `1px solid ${colors.line}`,
