@@ -231,13 +231,7 @@ export default function NewHomePage() {
             alignItems: 'center',
           }}>
             <div style={{ maxWidth: mobile ? 'none' : 600 }}>
-              <span style={{
-                fontFamily: fonts.mono,
-                fontSize: '0.72rem',
-                letterSpacing: '0.22em',
-                textTransform: 'uppercase',
-                color: colors.teal,
-              }}>For fitness pros</span>
+              <div style={{ height: 20 }} />
 
               <h1 style={{
                 fontFamily: fonts.display,

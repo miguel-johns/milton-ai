@@ -162,7 +162,7 @@ export default function ForGymsPage() {
             alignItems: 'center',
           }}>
             <div style={{ maxWidth: mobile ? 'none' : 600 }}>
-              <span style={labelStyle}>For gym owners</span>
+              <div style={{ height: 20 }} />
               <h1 style={{ ...displayStyle, fontSize: mobile ? '2.6rem' : 'clamp(2.6rem,5.6vw,4.8rem)', margin: '22px 0 26px' }}>
                 Run your whole gym<br />by just <em style={{ fontStyle: 'normal', color: colors.mint }}>talking.</em>
               </h1>
