@@ -86,10 +86,10 @@ export default function ForGymsPage() {
   ];
 
   const cards = [
-    { num: '01', title: 'Just talk to it', text: <>Say <b style={{ color: colors.cream, fontWeight: 500 }}>"help me prep for today,"</b> and Milton gets you ready in seconds. It pulls up your client, their last workout, and what to focus on. No setup needed.</> },
-    { num: '02', title: 'It learns your way', text: <>Hand Milton your old workouts and notes. <b style={{ color: colors.cream, fontWeight: 500 }}>It learns how you coach.</b> Now all six trainers coach the same way, with no clunky tools to manage.</> },
-    { num: '03', title: 'It does the busy work', text: <>Milton writes the workouts, sends the check-ins, and <b style={{ color: colors.cream, fontWeight: 500 }}>remembers every client.</b> You just say "yes," or change it. Done in minutes, not hours.</> },
-    { num: '04', title: 'It helps you grow', text: <>Milton makes it easy to run challenges, follow up with leads, and keep members happy. <b style={{ color: colors.cream, fontWeight: 500 }}>More money. Less stress. Less time in the weeds.</b></> },
+    { num: '01', title: 'Just talk to it', text: <>Say <b style={{ color: colors.cream, fontWeight: 500 }}>"help me prep for today,"</b> and Milton gets you ready in seconds. It pulls up your client, their last workout, and what to focus on. No setup needed.</>, image: '/images/gym-page-1.png' },
+    { num: '02', title: 'It learns your way', text: <>Hand Milton your old workouts and notes. <b style={{ color: colors.cream, fontWeight: 500 }}>It learns how you coach.</b> Now all six trainers coach the same way, with no clunky tools to manage.</>, image: '/images/gym-page-2.png' },
+    { num: '03', title: 'It does the busy work', text: <>Milton writes the workouts, sends the check-ins, and <b style={{ color: colors.cream, fontWeight: 500 }}>remembers every client.</b> You just say "yes," or change it. Done in minutes, not hours.</>, image: '/images/gym-page-3.png' },
+    { num: '04', title: 'It helps you grow', text: <>Milton makes it easy to run challenges, follow up with leads, and keep members happy. <b style={{ color: colors.cream, fontWeight: 500 }}>More money. Less stress. Less time in the weeds.</b></>, image: '/images/gym-page-4.png' },
   ];
 
   const riskCards = [
@@ -255,10 +255,17 @@ export default function ForGymsPage() {
                 padding: '34px 32px',
                 transition: 'transform 0.2s ease, border-color 0.2s ease',
               }}>
-                <div style={{ ...phStyle, aspectRatio: '16/10', width: '100%', marginBottom: 20 }}>
-                  <svg style={{ width: 42, height: 42, color: colors.teal }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.6" /><path d="M21 15l-5-5L5 21" /></svg>
-                  <span style={{ fontFamily: fonts.mono, fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: colors.teal }}>Image</span>
-                </div>
+                <img 
+                  src={card.image} 
+                  alt={card.title}
+                  style={{ 
+                    width: '100%', 
+                    aspectRatio: '16/10', 
+                    objectFit: 'cover', 
+                    borderRadius: 12, 
+                    marginBottom: 20 
+                  }}
+                />
                 <span style={{ fontFamily: fonts.mono, fontSize: '0.75rem', letterSpacing: '0.18em', color: colors.teal }}>{card.num}</span>
                 <h3 style={{ fontFamily: fonts.display, fontWeight: 800, fontStretch: '125%', fontSize: '1.7rem', margin: '12px 0 12px', lineHeight: 1.02, letterSpacing: '-0.005em' }}>{card.title}</h3>
                 <p style={{ color: colors.creamDim, fontSize: '1.08rem' }}>{card.text}</p>
@@ -306,11 +313,17 @@ export default function ForGymsPage() {
               </p>
             </div>
             <Reveal>
-              <div style={{ ...phStyle, aspectRatio: '16/9', width: '100%', boxShadow: '0 26px 60px rgba(0,0,0,0.4)' }}>
-                <svg style={{ width: 48, height: 48, color: colors.teal }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none" /><path d="M21 15l-5-5L5 21" /></svg>
-                <span style={{ fontFamily: fonts.mono, fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: colors.teal }}>Image</span>
-                <span style={{ fontFamily: fonts.mono, fontSize: '0.6rem', letterSpacing: '0.12em', color: colors.creamDim, opacity: 0.75 }}>Group session image goes here</span>
-              </div>
+              <img 
+                src="/images/gym-page-5.png" 
+                alt="Group fitness class with personal coaching"
+                style={{ 
+                  width: '100%', 
+                  aspectRatio: '16/9', 
+                  objectFit: 'cover', 
+                  borderRadius: 16, 
+                  boxShadow: '0 26px 60px rgba(0,0,0,0.4)' 
+                }}
+              />
             </Reveal>
           </div>
         </div>
