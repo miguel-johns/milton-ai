@@ -201,6 +201,11 @@ export default function NewHomePage() {
 
   return (
     <div style={{ background: colors.navy, color: colors.cream, fontFamily: fonts.sans, fontSize: 18, lineHeight: 1.6 }}>
+      <style>{`
+        @keyframes blink {
+          50% { opacity: 0; }
+        }
+      `}</style>
       <Header />
 
       {/* HERO */}
@@ -384,11 +389,7 @@ export default function NewHomePage() {
             gridTemplateColumns: mobile ? '1fr' : 'repeat(3, 1fr)',
             gap: 22,
           }}>
-            <FeatureCard
-              num="01"
-              title="Just talk to it"
-              description={<>Say what you need. Milton gets it done. <b style={{ color: colors.cream, fontWeight: 500 }}>No setup. No learning curve.</b></>}
-            />
+            <ChatConversationCard />
             <FeatureCard
               num="02"
               title="It learns your way"
@@ -643,3 +644,171 @@ function FeatureCard({ num, title, description, delay = 0 }) {
     </Reveal>
   )
 }
+
+// Chat conversation card for "Just talk to it"
+function ChatConversationCard({ delay = 0 }) {
+  const [hovered, setHovered] = useState(false)
+  
+  return (
+    <Reveal delay={delay}>
+      <div
+        style={{
+          background: `
+            radial-gradient(120% 90% at 78% 8%, rgba(43,191,170,.16) 0%, transparent 46%),
+            radial-gradient(90% 80% at 8% 100%, rgba(154,241,152,.10) 0%, transparent 50%),
+            linear-gradient(160deg, #0C1A2E 0%, #0B1628 60%, #091221 100%)
+          `,
+          border: `1px solid ${hovered ? colors.teal : 'rgba(43,191,170,.22)'}`,
+          borderRadius: 20,
+          padding: '24px 20px 20px',
+          transition: 'transform 0.2s ease, border-color 0.2s ease',
+          transform: hovered ? 'translateY(-5px)' : 'none',
+          overflow: 'hidden',
+          position: 'relative',
+        }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        {/* Grid texture overlay */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: `
+            linear-gradient(rgba(43,191,170,.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(43,191,170,.05) 1px, transparent 1px)
+          `,
+          backgroundSize: '32px 32px',
+          maskImage: 'radial-gradient(100% 100% at 70% 0%, #000 0%, transparent 75%)',
+          WebkitMaskImage: 'radial-gradient(100% 100% at 70% 0%, #000 0%, transparent 75%)',
+          opacity: 0.6,
+          pointerEvents: 'none',
+        }} />
+
+        {/* Conversation thread */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 16, position: 'relative', zIndex: 1 }}>
+          {/* Coach message */}
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <div style={{
+              background: 'linear-gradient(160deg, #9AF198, #74e08f)',
+              color: colors.navy,
+              fontWeight: 600,
+              fontSize: '0.82rem',
+              lineHeight: 1.45,
+              borderRadius: '14px 14px 6px 14px',
+              padding: '12px 14px',
+              maxWidth: '90%',
+              boxShadow: '0 10px 24px rgba(154,241,152,.18)',
+            }}>
+              Add nutrition to the 6-week challenge and send it to all my clients.
+            </div>
+          </div>
+
+          {/* Milton response */}
+          <div style={{ display: 'flex' }}>
+            <div style={{
+              background: 'rgba(19,36,59,.85)',
+              color: colors.cream,
+              fontSize: '0.82rem',
+              lineHeight: 1.45,
+              borderRadius: '14px 14px 14px 6px',
+              padding: '12px 14px',
+              maxWidth: '95%',
+              border: '1px solid rgba(43,191,170,.22)',
+              boxShadow: '0 10px 28px rgba(0,0,0,.35)',
+            }}>
+              <span style={{ color: colors.mint, fontWeight: 600 }}>Done.</span> Built the nutrition track and pushed it to your 6-week challenge.
+              
+              {/* Result chips */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 10 }}>
+                {['Macros set', 'Plan attached', '12 clients notified'].map((chip, i) => (
+                  <span key={i} style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 5,
+                    fontFamily: fonts.mono,
+                    fontSize: '0.62rem',
+                    letterSpacing: '0.3px',
+                    color: colors.cream,
+                    background: 'rgba(43,191,170,.10)',
+                    border: '1px solid rgba(43,191,170,.22)',
+                    borderRadius: 6,
+                    padding: '5px 8px',
+                  }}>
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#9AF198" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                    {chip}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Input composer */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 10,
+          background: 'rgba(11,22,40,.7)',
+          border: '1px solid rgba(43,191,170,.22)',
+          borderRadius: 12,
+          padding: '10px 10px 10px 14px',
+          boxShadow: '0 12px 32px rgba(0,0,0,.3)',
+          position: 'relative',
+          zIndex: 1,
+        }}>
+          <div style={{ flex: 1, fontSize: '0.8rem', color: 'rgba(247,244,237,.62)', fontWeight: 500, display: 'flex', alignItems: 'center' }}>
+            Tell Milton what you need
+            <span style={{
+              display: 'inline-block',
+              width: 2,
+              height: 16,
+              background: colors.mint,
+              marginLeft: 3,
+              animation: 'blink 1.05s steps(1) infinite',
+            }} />
+          </div>
+          <div style={{
+            width: 32,
+            height: 32,
+            borderRadius: 8,
+            background: 'linear-gradient(150deg, #2BBFAA, #1f9d8c)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: '0 6px 16px rgba(43,191,170,.4)',
+          }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0B1628" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12h13"/><path d="m13 6 6 6-6 6"/>
+            </svg>
+          </div>
+        </div>
+
+        {/* Card label */}
+        <div style={{ marginTop: 16, position: 'relative', zIndex: 1 }}>
+          <span style={{
+            fontFamily: fonts.mono,
+            fontSize: '0.75rem',
+            letterSpacing: '0.18em',
+            color: colors.teal,
+          }}>01</span>
+          
+          <h3 style={{
+            fontFamily: fonts.display,
+            fontWeight: 800,
+            fontStretch: '125%',
+            fontSize: '1.55rem',
+            margin: '12px 0 12px',
+            lineHeight: 1.04,
+            letterSpacing: '-0.005em',
+            color: colors.cream,
+          }}>Just talk to it</h3>
+
+          <p style={{ color: colors.creamDim, fontSize: '1.06rem' }}>
+            Say what you need. Milton gets it done. <b style={{ color: colors.cream, fontWeight: 500 }}>No setup. No learning curve.</b>
+          </p>
+        </div>
+      </div>
+    </Reveal>
+  )
+}
+
