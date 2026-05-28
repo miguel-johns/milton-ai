@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import SharedNav from './SharedNav';
-import SharedFooter from './SharedFooter';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 const colors = {
   navy: '#0B1628',
@@ -138,7 +138,7 @@ export default function ForGymsPage() {
 
   return (
     <div style={{ background: colors.navy, color: colors.cream, fontFamily: fonts.sans, fontSize: 18, lineHeight: 1.6, overflowX: 'hidden' }}>
-      <SharedNav />
+      <Header />
 
       {/* HERO */}
       <header style={{
@@ -348,7 +348,7 @@ export default function ForGymsPage() {
         </div>
       </section>
 
-      <SharedFooter />
+      <Footer />
     </div>
   );
 }
