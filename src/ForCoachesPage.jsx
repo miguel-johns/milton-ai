@@ -446,9 +446,7 @@ export default function ForCoachesPage() {
         </div>
       </section>
 
-      <div style={{ background: '#FAFBFC' }}>
-        <Footer />
-      </div>
+      <Footer />
     </div>
   )
 }
