@@ -260,15 +260,16 @@ export default function NewHomePage() {
               </div>
             </div>
 
-            <Reveal>
+            <Reveal style={{ height: '100%', minHeight: mobile ? 480 : 560 }}>
               <iframe
                 src="/hero-loop.html"
                 title="Milton AI Demo"
                 style={{
                   width: '100%',
-                  height: mobile ? 420 : 520,
+                  height: '100%',
+                  minHeight: mobile ? 480 : 560,
                   border: 'none',
-                  borderRadius: 16,
+                  borderRadius: 20,
                 }}
               />
             </Reveal>
