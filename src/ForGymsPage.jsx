@@ -184,7 +184,7 @@ export default function ForGymsPage() {
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
               <a href="https://coach.getmilton.com/auth" style={btnStyle} onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = colors.teal; e.target.style.borderColor = colors.teal; e.target.style.boxShadow = '0 16px 40px rgba(43,191,170,0.32)'; }} onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = colors.mint; e.target.style.borderColor = colors.mint; e.target.style.boxShadow = '0 10px 30px rgba(154,241,152,0.18)'; }}>
-                Try 7 Days Free
+                Try 3 Days Free
               </a>
               <button onClick={() => setShowCalendly(true)} style={{ ...btnStyle, background: 'transparent', borderColor: colors.cream, color: colors.cream, boxShadow: 'none', cursor: 'pointer' }} onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = 'rgba(255,255,255,0.1)'; }} onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = 'transparent'; }}>
                 Book a free call
@@ -378,7 +378,7 @@ export default function ForGymsPage() {
           </p>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16, flexWrap: 'wrap' }}>
             <a href="https://coach.getmilton.com/auth" style={btnStyle} onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = colors.teal; e.target.style.borderColor = colors.teal; e.target.style.boxShadow = '0 16px 40px rgba(43,191,170,0.32)'; }} onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = colors.mint; e.target.style.borderColor = colors.mint; e.target.style.boxShadow = '0 10px 30px rgba(154,241,152,0.18)'; }}>
-              Try 7 Days Free
+              Try 3 Days Free
             </a>
             <button onClick={() => setShowCalendly(true)} style={{ ...btnStyle, background: 'transparent', borderColor: colors.cream, color: colors.cream, boxShadow: 'none', cursor: 'pointer' }} onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = 'rgba(255,255,255,0.1)'; }} onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = 'transparent'; }}>
               Book a free call

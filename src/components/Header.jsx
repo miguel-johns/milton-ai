@@ -179,7 +179,7 @@ export default function Header({ currentPage = 'home' }) {
                 letterSpacing: '0.01em',
               }}
             >
-              7-Day Free Trial
+              3-Day Free Trial
             </a>
           </div>
         )}
@@ -367,7 +367,7 @@ export default function Header({ currentPage = 'home' }) {
                 fontFamily: fonts.sans,
               }}
             >
-              7-Day Free Trial
+              3-Day Free Trial
             </a>
           </div>
         </>
