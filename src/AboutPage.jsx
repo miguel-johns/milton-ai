@@ -31,8 +31,9 @@ const colors = {
 }
 
 const fonts = {
-  serif: "'Cormorant Garamond', Georgia, serif",
+  display: "'Archivo', 'Archivo Black', sans-serif",
   sans: "'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+  mono: "'JetBrains Mono', monospace",
 }
 
 const logoImage = "/images/milton-logo.png"
@@ -77,7 +78,7 @@ export default function AboutPage() {
           </div>
 
           <h1 style={{
-            fontFamily: fonts.serif,
+            fontFamily: fonts.display,
             fontSize: mobile ? 32 : tablet ? 48 : 60,
             fontWeight: 400,
             lineHeight: 1.1,
@@ -109,7 +110,7 @@ export default function AboutPage() {
             boxShadow: '0 4px 24px rgba(11, 22, 40, 0.04)',
           }}>
             <p style={{
-              fontFamily: fonts.serif,
+              fontFamily: fonts.display,
               fontSize: mobile ? 18 : 24,
               fontStyle: 'italic',
               lineHeight: 1.45,
@@ -150,7 +151,7 @@ export default function AboutPage() {
             </div>
 
             <h2 style={{
-              fontFamily: fonts.serif,
+              fontFamily: fonts.display,
               fontSize: mobile ? 28 : 44,
               fontWeight: 400,
               lineHeight: 1.15,
@@ -213,7 +214,7 @@ export default function AboutPage() {
               borderLeft: mobile ? 'none' : `3px solid ${colors.accentSoft}`,
             }}>
               <p style={{
-                fontFamily: fonts.serif,
+                fontFamily: fonts.display,
                 fontSize: mobile ? 17 : 20,
                 fontStyle: 'italic',
                 lineHeight: 1.5,
@@ -254,7 +255,7 @@ export default function AboutPage() {
             </div>
 
             <h2 style={{
-              fontFamily: fonts.serif,
+              fontFamily: fonts.display,
               fontSize: mobile ? 28 : 44,
               fontWeight: 400,
               lineHeight: 1.15,
@@ -339,7 +340,7 @@ export default function AboutPage() {
             </div>
 
             <h2 style={{
-              fontFamily: fonts.serif,
+              fontFamily: fonts.display,
               fontSize: mobile ? 28 : 44,
               fontWeight: 400,
               lineHeight: 1.15,
@@ -595,7 +596,7 @@ export default function AboutPage() {
             </div>
 
             <h2 style={{
-              fontFamily: fonts.serif,
+              fontFamily: fonts.display,
               fontSize: mobile ? 28 : 44,
               fontWeight: 400,
               lineHeight: 1.15,
@@ -684,7 +685,7 @@ export default function AboutPage() {
               padding: mobile ? '22px 18px' : '28px 32px',
             }}>
               <div style={{
-                fontFamily: fonts.serif,
+                fontFamily: fonts.display,
                 fontSize: mobile ? 17 : 20,
                 fontStyle: 'italic',
                 color: colors.inkSoft,
@@ -740,7 +741,7 @@ export default function AboutPage() {
         }}>
           <div style={{ maxWidth: 700, margin: '0 auto' }}>
             <h2 style={{
-              fontFamily: fonts.serif,
+              fontFamily: fonts.display,
               fontSize: mobile ? 28 : 44,
               fontWeight: 400,
               lineHeight: 1.15,

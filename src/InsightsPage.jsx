@@ -30,8 +30,9 @@ const colors = {
 }
 
 const fonts = {
-  serif: "'Cormorant Garamond', Georgia, serif",
+  display: "'Archivo', 'Archivo Black', sans-serif",
   sans: "'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+  mono: "'JetBrains Mono', monospace",
 }
 
 const logoImage = "/images/milton-logo.png"
@@ -195,7 +196,7 @@ function ArticleCard({ article, featured = false, mobile }) {
         {/* Content */}
         <div style={{ padding: mobile ? '28px 22px' : '40px 40px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
           <h2 style={{
-            fontFamily: fonts.serif,
+            fontFamily: fonts.display,
             fontSize: mobile ? 24 : 30,
             fontWeight: 500,
             lineHeight: 1.25,
@@ -334,7 +335,7 @@ export default function InsightsPage() {
         {/* Hero Section */}
         <section style={{ padding: mobile ? '48px 0 32px' : '80px 0 56px' }}>
           <h1 style={{
-            fontFamily: fonts.serif,
+            fontFamily: fonts.display,
             fontSize: mobile ? 36 : tablet ? 48 : 56,
             fontWeight: 500,
             lineHeight: 1.12,
@@ -445,7 +446,7 @@ export default function InsightsPage() {
             }}>Free Consultation</p>
 
             <h2 style={{
-              fontFamily: fonts.serif,
+              fontFamily: fonts.display,
               fontSize: mobile ? 26 : 36,
               fontWeight: 500,
               color: colors.ink,

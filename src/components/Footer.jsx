@@ -16,8 +16,9 @@ const colors = {
 }
 
 const fonts = {
-  serif: "'Cormorant Garamond', Georgia, serif",
+  display: "'Archivo', 'Archivo Black', sans-serif",
   sans: "'DM Sans', system-ui, -apple-system, sans-serif",
+  mono: "'JetBrains Mono', monospace",
 }
 
 // Milton logo image
@@ -91,7 +92,7 @@ export default function Footer({ mobile, onOpenChat }) {
             }}
           />
           <p style={{
-            fontFamily: fonts.serif,
+            fontFamily: fonts.display,
             fontStyle: 'italic',
             fontSize: mobile ? 16 : 18,
             lineHeight: 1.4,

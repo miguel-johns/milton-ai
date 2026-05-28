@@ -518,7 +518,7 @@ function AIBrandingMockup({ mobile }) {
           width: 48, height: 48, borderRadius: 10,
           background: "linear-gradient(135deg, #0d9aa5, #2BBFAA)",
           display: "flex", alignItems: "center", justifyContent: "center",
-          fontFamily: "'Cormorant Garamond', serif",
+          fontFamily: "'Archivo', 'Archivo Black', sans-serif",
           fontSize: 20, fontWeight: 700, color: "#0B1628",
           flexShrink: 0,
         }}>EP</div>
@@ -1053,7 +1053,7 @@ function CaseStudyCard({ metric, title, description, mobile }) {
       }}
     >
       <div style={{
-        fontFamily: "'Cormorant Garamond', serif",
+        fontFamily: "'Archivo', 'Archivo Black', sans-serif",
         fontSize: mobile ? 40 : 48,
         fontWeight: 400,
         color: "#9af198",
@@ -1201,7 +1201,7 @@ export default function MiltonHomepage() {
 
   const Headline = ({ children, style = {} }) => (
     <h2 style={{
-      fontFamily: "'Cormorant Garamond', serif",
+      fontFamily: "'Archivo', 'Archivo Black', sans-serif",
       fontSize: mobile ? 32 : tablet ? 40 : "clamp(40px, 4.5vw, 56px)",
       fontWeight: 400, lineHeight: 1.15, color: "#fff",
       margin: "0 0 28px 0", ...style,
@@ -1344,7 +1344,7 @@ export default function MiltonHomepage() {
           paddingTop: mobile ? 80 : 100, paddingBottom: mobile ? 40 : 60,
         }}>
           <h1 style={{
-            fontFamily: "'Cormorant Garamond', serif",
+            fontFamily: "'Archivo', 'Archivo Black', sans-serif",
             fontSize: mobile ? 36 : tablet ? 48 : "clamp(40px, 5vw, 64px)",
             fontWeight: 400, lineHeight: 1.12, color: "#fff",
             margin: "0 0 24px 0", maxWidth: 850,

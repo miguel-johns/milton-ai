@@ -31,8 +31,9 @@ const colors = {
 }
 
 const fonts = {
-  serif: "'Cormorant Garamond', Georgia, serif",
+  display: "'Archivo', 'Archivo Black', sans-serif",
   sans: "'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+  mono: "'JetBrains Mono', monospace",
 }
 
 // Mockup components for feature cards
@@ -285,7 +286,7 @@ function FeatureCard({ title, description, children, mobile }) {
         {children}
       </div>
       <h3 style={{
-        fontFamily: fonts.serif,
+        fontFamily: fonts.display,
         fontSize: mobile ? 18 : 20,
         fontWeight: 500,
         color: colors.ink,
@@ -450,7 +451,7 @@ export default function ForCoachesPage() {
                 YOUR AI ASSISTANT COACH
               </p>
               <h1 style={{
-                fontFamily: fonts.serif,
+                fontFamily: fonts.display,
                 fontSize: mobile ? 36 : 48,
                 fontWeight: 500,
                 color: colors.ink,
@@ -544,7 +545,7 @@ export default function ForCoachesPage() {
         }}>
           <div style={{ maxWidth: 800, margin: '0 auto', textAlign: 'center' }}>
             <blockquote style={{
-              fontFamily: fonts.serif,
+              fontFamily: fonts.display,
               fontSize: mobile ? 24 : 32,
               fontWeight: 400,
               fontStyle: 'italic',
@@ -576,7 +577,7 @@ export default function ForCoachesPage() {
             textAlign: 'center',
           }}>
             <h2 style={{
-              fontFamily: fonts.serif,
+              fontFamily: fonts.display,
               fontSize: mobile ? 32 : 40,
               fontWeight: 500,
               color: colors.paper,

@@ -16,8 +16,9 @@ const colors = {
 }
 
 const fonts = {
-  serif: "'Cormorant Garamond', Georgia, serif",
+  display: "'Archivo', 'Archivo Black', sans-serif",
   sans: "'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+  mono: "'JetBrains Mono', monospace",
 }
 
 // Testimonial data - videos will be added as they become available
@@ -86,10 +87,10 @@ export default function TestimonialVideos({ mobile }) {
         }}>
           <span style={{
             display: 'inline-block',
-            fontFamily: fonts.sans,
+            fontFamily: fonts.mono,
             fontSize: 12,
-            fontWeight: 600,
-            letterSpacing: '0.12em',
+            fontWeight: 500,
+            letterSpacing: '0.18em',
             textTransform: 'uppercase',
             color: colors.accent,
             marginBottom: 16,
@@ -97,10 +98,13 @@ export default function TestimonialVideos({ mobile }) {
             Hear from coaches
           </span>
           <h2 style={{
-            fontFamily: fonts.serif,
+            fontFamily: fonts.display,
             fontSize: mobile ? 28 : 40,
-            lineHeight: 1.15,
-            fontWeight: 500,
+            lineHeight: 1.0,
+            fontWeight: 900,
+            fontStretch: '125%',
+            fontVariationSettings: '"wdth" 125',
+            letterSpacing: '-0.005em',
             color: colors.ink,
           }}>
             What coaches are saying

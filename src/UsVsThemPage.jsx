@@ -31,8 +31,9 @@ const colors = {
 }
 
 const fonts = {
-  serif: "'Cormorant Garamond', Georgia, serif",
+  display: "'Archivo', 'Archivo Black', sans-serif",
   sans: "'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+  mono: "'JetBrains Mono', monospace",
 }
 
 // Calendly booking URL
@@ -387,7 +388,7 @@ function ComparisonCard({ number, title, themContent, miltonContent, themMedia, 
                     </span>
                   </div>
                   <p style={{
-                    fontFamily: fonts.serif,
+                    fontFamily: fonts.display,
                     fontSize: mobile ? 14 : 16,
                     fontStyle: 'italic',
                     color: colors.ink,
@@ -403,7 +404,7 @@ function ComparisonCard({ number, title, themContent, miltonContent, themMedia, 
 
           {/* Milton one-liner */}
           <p style={{
-            fontFamily: fonts.serif,
+            fontFamily: fonts.display,
             fontSize: mobile ? 15 : 17,
             fontStyle: 'italic',
             lineHeight: 1.5,
@@ -439,7 +440,7 @@ function RevenueCard({ number, title, amount, description, mobile }) {
         {number}
       </div>
       <h3 style={{
-        fontFamily: fonts.serif,
+        fontFamily: fonts.display,
         fontSize: mobile ? 20 : 24,
         fontWeight: 500,
         color: colors.ink,
@@ -518,7 +519,7 @@ export default function UsVsThemPage() {
 
           {/* Headline */}
           <h1 style={{
-            fontFamily: fonts.serif,
+            fontFamily: fonts.display,
             fontSize: mobile ? 32 : 56,
             lineHeight: 1.1,
             letterSpacing: '-0.02em',
@@ -614,7 +615,7 @@ export default function UsVsThemPage() {
                 </span>
               </div>
               <p style={{
-                fontFamily: fonts.serif,
+                fontFamily: fonts.display,
                 fontSize: mobile ? 20 : 26,
                 fontStyle: 'italic',
                 color: colors.ink,
@@ -650,7 +651,7 @@ export default function UsVsThemPage() {
 
             {/* Headline */}
             <h2 style={{
-              fontFamily: fonts.serif,
+              fontFamily: fonts.display,
               fontSize: mobile ? 28 : 44,
               lineHeight: 1.15,
               fontWeight: 500,
@@ -749,7 +750,7 @@ export default function UsVsThemPage() {
 
             {/* Headline */}
             <h2 style={{
-              fontFamily: fonts.serif,
+              fontFamily: fonts.display,
               fontSize: mobile ? 28 : 44,
               lineHeight: 1.15,
               fontWeight: 500,
@@ -796,7 +797,7 @@ export default function UsVsThemPage() {
 
             {/* Headline */}
             <h2 style={{
-              fontFamily: fonts.serif,
+              fontFamily: fonts.display,
               fontSize: mobile ? 28 : 44,
               lineHeight: 1.15,
               fontWeight: 500,
@@ -883,7 +884,7 @@ export default function UsVsThemPage() {
 
             {/* Headline */}
             <h2 style={{
-              fontFamily: fonts.serif,
+              fontFamily: fonts.display,
               fontSize: mobile ? 28 : 48,
               lineHeight: 1.12,
               fontWeight: 500,

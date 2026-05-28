@@ -38,8 +38,9 @@ const colors = {
 }
 
 const fonts = {
-  serif: "'Cormorant Garamond', Georgia, serif",
+  display: "'Archivo', 'Archivo Black', sans-serif",
   sans: "'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+  mono: "'JetBrains Mono', monospace",
 }
 
 // Milton logo image
@@ -122,10 +123,10 @@ export default function NewHomePage() {
           {/* Eyebrow */}
           <span style={{
             display: 'inline-block',
-            fontFamily: fonts.sans,
+            fontFamily: fonts.mono,
             fontSize: 12,
-            fontWeight: 600,
-            letterSpacing: '0.12em',
+            fontWeight: 500,
+            letterSpacing: '0.18em',
             textTransform: 'uppercase',
             color: colors.accent,
             marginBottom: 20,
@@ -135,18 +136,20 @@ export default function NewHomePage() {
 
           {/* Headline */}
           <h1 style={{
-            fontFamily: fonts.serif,
+            fontFamily: fonts.display,
             fontSize: mobile ? 38 : 56,
-            lineHeight: 1.1,
-            letterSpacing: '-0.02em',
-            fontWeight: 500,
+            lineHeight: 1.0,
+            letterSpacing: '-0.005em',
+            fontWeight: 900,
+            fontStretch: '125%',
+            fontVariationSettings: '"wdth" 125',
             marginBottom: 24,
             color: colors.ink,
           }}>
             Three ways to make more per member.{' '}
-            <em style={{ fontStyle: 'italic', color: colors.inkSoft }}>
+            <span style={{ color: colors.inkSoft }}>
               No new staff. No new members.
-            </em>
+            </span>
           </h1>
 
           {/* Sub */}
@@ -245,10 +248,10 @@ export default function NewHomePage() {
         }}>
           <span style={{
             display: 'inline-block',
-            fontFamily: fonts.sans,
+            fontFamily: fonts.mono,
             fontSize: 12,
-            fontWeight: 600,
-            letterSpacing: '0.12em',
+            fontWeight: 500,
+            letterSpacing: '0.18em',
             textTransform: 'uppercase',
             color: colors.accent,
             marginBottom: 20,
@@ -257,16 +260,18 @@ export default function NewHomePage() {
           </span>
 
           <h2 style={{
-            fontFamily: fonts.serif,
+            fontFamily: fonts.display,
             fontSize: mobile ? 32 : 44,
-            lineHeight: 1.15,
-            letterSpacing: '-0.02em',
-            fontWeight: 500,
+            lineHeight: 1.0,
+            letterSpacing: '-0.005em',
+            fontWeight: 900,
+            fontStretch: '125%',
+            fontVariationSettings: '"wdth" 125',
             marginBottom: 16,
             color: colors.ink,
           }}>
             Same gym. Same coaches.{' '}
-            <em style={{ fontStyle: 'italic' }}>More revenue per member.</em>
+            <span>More revenue per member.</span>
           </h2>
 
           <p style={{
@@ -355,10 +360,10 @@ export default function NewHomePage() {
             <div style={{ textAlign: 'center', marginBottom: mobile ? 48 : 64 }}>
               <span style={{
                 display: 'inline-block',
-                fontFamily: fonts.sans,
+                fontFamily: fonts.mono,
                 fontSize: 12,
-                fontWeight: 600,
-                letterSpacing: '0.12em',
+                fontWeight: 500,
+                letterSpacing: '0.18em',
                 textTransform: 'uppercase',
                 color: colors.accent,
                 marginBottom: 20,
@@ -367,16 +372,18 @@ export default function NewHomePage() {
               </span>
 
               <h2 style={{
-                fontFamily: fonts.serif,
+                fontFamily: fonts.display,
                 fontSize: mobile ? 32 : 44,
-                lineHeight: 1.15,
-                letterSpacing: '-0.02em',
-                fontWeight: 500,
+                lineHeight: 1.0,
+                letterSpacing: '-0.005em',
+                fontWeight: 900,
+                fontStretch: '125%',
+                fontVariationSettings: '"wdth" 125',
                 marginBottom: 16,
                 color: colors.ink,
               }}>
                 You don&apos;t set up Milton.{' '}
-                <em style={{ fontStyle: 'italic' }}>You just talk to it.</em>
+                <span>You just talk to it.</span>
               </h2>
 
               <p style={{
@@ -431,10 +438,10 @@ export default function NewHomePage() {
           <div style={{ maxWidth: 600, margin: '0 auto' }}>
             <span style={{
               display: 'inline-block',
-              fontFamily: fonts.sans,
+              fontFamily: fonts.mono,
               fontSize: 12,
-              fontWeight: 600,
-              letterSpacing: '0.12em',
+              fontWeight: 500,
+              letterSpacing: '0.18em',
               textTransform: 'uppercase',
               color: colors.accent,
               marginBottom: 20,
@@ -443,11 +450,13 @@ export default function NewHomePage() {
             </span>
 
             <h2 style={{
-              fontFamily: fonts.serif,
+              fontFamily: fonts.display,
               fontSize: mobile ? 36 : 48,
-              lineHeight: 1.1,
-              letterSpacing: '-0.02em',
-              fontWeight: 500,
+              lineHeight: 1.0,
+              letterSpacing: '-0.005em',
+              fontWeight: 900,
+              fontStretch: '125%',
+              fontVariationSettings: '"wdth" 125',
               marginBottom: 16,
               color: colors.ink,
             }}>
@@ -571,14 +580,15 @@ export default function NewHomePage() {
             {!chatSubmitted ? (
               <>
                 <h3 style={{
-                  fontFamily: fonts.serif,
+                  fontFamily: fonts.display,
                   fontSize: 28,
-                  fontWeight: 500,
-                  fontStyle: 'italic',
+                  fontWeight: 800,
+                  fontStretch: '125%',
+                  fontVariationSettings: '"wdth" 125',
                   color: colors.ink,
-                  lineHeight: 1.2,
+                  lineHeight: 1.0,
                   marginBottom: 12,
-                  letterSpacing: '-0.01em',
+                  letterSpacing: '-0.005em',
                 }}>
                   Let&apos;s talk.
                 </h3>
@@ -764,13 +774,15 @@ export default function NewHomePage() {
                   </svg>
                 </div>
                 <h4 style={{
-                  fontFamily: fonts.serif,
-                  fontStyle: 'italic',
-                  fontWeight: 500,
+                  fontFamily: fonts.display,
+                  fontWeight: 800,
+                  fontStretch: '125%',
+                  fontVariationSettings: '"wdth" 125',
                   fontSize: 26,
                   color: colors.ink,
                   marginBottom: 8,
-                  letterSpacing: '-0.01em',
+                  letterSpacing: '-0.005em',
+                  lineHeight: 1.0,
                 }}>Talk soon.</h4>
                 <p style={{
                   fontSize: 14,
@@ -1024,20 +1036,21 @@ function WaySection({ mobile, number, label, headline, body, revenueLabel, reven
             marginBottom: 20,
           }}>
             <span style={{
-              fontFamily: fonts.serif,
-              fontStyle: 'italic',
+              fontFamily: fonts.display,
               fontSize: 32,
-              fontWeight: 500,
+              fontWeight: 900,
+              fontStretch: '125%',
+              fontVariationSettings: '"wdth" 125',
               color: colors.accent,
               lineHeight: 1,
             }}>
               {number}
             </span>
             <span style={{
-              fontFamily: fonts.sans,
+              fontFamily: fonts.mono,
               fontSize: 12,
-              fontWeight: 600,
-              letterSpacing: '0.12em',
+              fontWeight: 500,
+              letterSpacing: '0.18em',
               textTransform: 'uppercase',
               color: colors.inkMute,
             }}>
@@ -1047,11 +1060,13 @@ function WaySection({ mobile, number, label, headline, body, revenueLabel, reven
 
           {/* Headline */}
           <h3 style={{
-            fontFamily: fonts.serif,
+            fontFamily: fonts.display,
             fontSize: mobile ? 28 : 36,
-            lineHeight: 1.15,
-            letterSpacing: '-0.02em',
-            fontWeight: 500,
+            lineHeight: 1.0,
+            letterSpacing: '-0.005em',
+            fontWeight: 900,
+            fontStretch: '125%',
+            fontVariationSettings: '"wdth" 125',
             marginBottom: 16,
             color: colors.ink,
           }}>
@@ -1078,10 +1093,10 @@ function WaySection({ mobile, number, label, headline, body, revenueLabel, reven
           }}>
             <span style={{
               display: 'block',
-              fontFamily: fonts.sans,
+              fontFamily: fonts.mono,
               fontSize: 11,
-              fontWeight: 600,
-              letterSpacing: '0.1em',
+              fontWeight: 500,
+              letterSpacing: '0.18em',
               textTransform: 'uppercase',
               color: colors.accent,
               marginBottom: 6,
@@ -1090,12 +1105,13 @@ function WaySection({ mobile, number, label, headline, body, revenueLabel, reven
             </span>
             <span style={{
               display: 'block',
-              fontFamily: fonts.serif,
-              fontStyle: 'italic',
+              fontFamily: fonts.display,
               fontSize: mobile ? 28 : 34,
-              fontWeight: 500,
+              fontWeight: 900,
+              fontStretch: '125%',
+              fontVariationSettings: '"wdth" 125',
               color: colors.accentDeep,
-              lineHeight: 1.1,
+              lineHeight: 1.0,
               marginBottom: 4,
             }}>
               {revenueAmount}
@@ -1162,9 +1178,11 @@ function HowItWorksStep({ number, title, description, mobile }) {
         }}>
         <span style={{
           display: 'block',
-          fontFamily: fonts.serif,
+          fontFamily: fonts.display,
           fontSize: mobile ? 48 : 56,
-          fontWeight: 700,
+          fontWeight: 900,
+          fontStretch: '125%',
+          fontVariationSettings: '"wdth" 125',
           color: colors.accent,
           lineHeight: 1,
           marginBottom: 16,
@@ -1172,11 +1190,15 @@ function HowItWorksStep({ number, title, description, mobile }) {
           {number}
         </span>
         <h4 style={{
-          fontFamily: fonts.sans,
+          fontFamily: fonts.display,
           fontSize: 18,
-          fontWeight: 600,
+          fontWeight: 800,
+          fontStretch: '125%',
+          fontVariationSettings: '"wdth" 125',
           color: colors.ink,
           marginBottom: 10,
+          lineHeight: 1.05,
+          letterSpacing: '-0.005em',
         }}>
           {title}
         </h4>
