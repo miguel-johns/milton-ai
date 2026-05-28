@@ -13,8 +13,15 @@ function useBreakpoint() {
   return { mobile: w < 640, tablet: w >= 640 && w < 1024, desktop: w >= 1024, w }
 }
 
-// CSS variables as constants
+// Design tokens matching new dark theme
 const colors = {
+  // Dark theme (hero)
+  navy: '#0B1628',
+  cream: '#F5F4F1',
+  creamDim: 'rgba(245,244,241,0.65)',
+  teal: '#2BBFAA',
+  mint: '#9AF198',
+  // Light theme (content sections)
   bg: '#FAFBFC',
   bg2: '#F0F7F5',
   paper: '#FFFFFF',
@@ -26,7 +33,6 @@ const colors = {
   accent: '#2BBFAA',
   accentDeep: '#08455E',
   accentSoft: '#E6F8F4',
-  mint: '#9AF198',
   mintSoft: '#ECFAEA',
 }
 
@@ -477,92 +483,122 @@ export default function UsVsThemPage() {
   return (
     <div style={{
       minHeight: '100vh',
-      background: colors.bg,
+      background: colors.navy,
       fontFamily: fonts.sans,
-      color: colors.ink,
+      color: colors.cream,
     }}>
       <style>{`
         .cta-primary:hover {
-          background: #0a1220 !important;
-          transform: translateY(-1px);
+          background: ${colors.teal} !important;
+          color: ${colors.ink} !important;
+          transform: translateY(-2px);
         }
         .cta-secondary:hover {
-          background: ${colors.lineSoft} !important;
-          border-color: ${colors.inkMute} !important;
+          background: rgba(245,244,241,0.1) !important;
         }
       `}</style>
-      <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
       <Header currentPage="us-vs-them" />
 
       <main>
         {/* Hero Section */}
         <section style={{
-          padding: mobile ? '48px 16px 64px' : '100px 24px 120px',
-          maxWidth: 900,
-          margin: '0 auto',
-          textAlign: 'center',
+          position: 'relative',
+          padding: mobile ? '72px 16px 64px' : '92px 24px 100px',
+          background: `
+            radial-gradient(900px 420px at 78% -8%, rgba(43,191,170,.20), transparent 60%),
+            radial-gradient(700px 380px at 8% 16%, rgba(154,241,152,.10), transparent 60%),
+            ${colors.navy}
+          `,
+          overflow: 'hidden',
         }}>
-          {/* Eyebrow */}
-          <span style={{
-            display: 'inline-block',
-            fontFamily: fonts.sans,
-            fontSize: 12,
-            fontWeight: 600,
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            color: colors.accent,
-            marginBottom: 20,
-          }}>
-            Us vs them
-          </span>
-
-          {/* Headline */}
-          <h1 style={{
-            fontFamily: fonts.display,
-            fontSize: mobile ? 32 : 56,
-            lineHeight: 1.1,
-            letterSpacing: '-0.02em',
-            fontWeight: 500,
-            marginBottom: 24,
-            color: colors.ink,
-          }}>
-            They built software.{' '}
-            <em style={{ fontStyle: 'italic', color: colors.inkSoft }}>
-              We built an assistant.
-            </em>
-          </h1>
-
-          {/* Sub */}
-          <p style={{
-            fontFamily: fonts.sans,
-            fontSize: mobile ? 16 : 18,
-            lineHeight: 1.6,
-            color: colors.inkSoft,
-            maxWidth: 600,
-            margin: '0 auto 32px',
-          }}>
-            One you have to learn. One you just talk to.
-          </p>
-
-          {/* CTAs */}
+          {/* Dot pattern overlay */}
           <div style={{
-            display: 'flex',
-            flexDirection: mobile ? 'column' : 'row',
-            gap: 12,
-            justifyContent: 'center',
-            alignItems: 'center',
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: 'radial-gradient(rgba(247,244,237,.05) 1px, transparent 1px)',
+            backgroundSize: '26px 26px',
+            pointerEvents: 'none',
+          }} />
+
+          <div style={{
+            maxWidth: 900,
+            margin: '0 auto',
+            textAlign: 'center',
+            position: 'relative',
+            zIndex: 2,
           }}>
-            <CTA href="/for-coaches">For Coaches</CTA>
-            <CTA variant="secondary" href="/for-gyms">For Gyms</CTA>
+            <div style={{ height: 20 }} />
+
+            {/* Headline */}
+            <h1 style={{
+              fontFamily: fonts.display,
+              fontSize: mobile ? 38 : 64,
+              lineHeight: 0.98,
+              letterSpacing: '-0.005em',
+              fontWeight: 900,
+              fontStretch: '125%',
+              marginBottom: 24,
+              color: colors.cream,
+            }}>
+              They built software.<br/><span style={{ color: colors.mint }}>We built an assistant.</span>
+            </h1>
+
+            {/* Sub */}
+            <p style={{
+              fontFamily: fonts.sans,
+              fontSize: mobile ? 17 : 20,
+              lineHeight: 1.6,
+              color: colors.creamDim,
+              maxWidth: 600,
+              margin: '0 auto 40px',
+            }}>
+              One you have to learn. One you just talk to.
+            </p>
+
+            {/* CTAs */}
+            <div style={{
+              display: 'flex',
+              flexDirection: mobile ? 'column' : 'row',
+              gap: 16,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
+              <a href="/for-coaches" style={{
+                fontFamily: fonts.sans,
+                fontSize: 15,
+                fontWeight: 600,
+                padding: '14px 32px',
+                borderRadius: 50,
+                background: colors.cream,
+                color: colors.ink,
+                textDecoration: 'none',
+                transition: 'all 0.2s ease',
+              }}>For Coaches</a>
+              <a href="/for-gyms" style={{
+                fontFamily: fonts.sans,
+                fontSize: 15,
+                fontWeight: 600,
+                padding: '14px 32px',
+                borderRadius: 50,
+                background: 'transparent',
+                color: colors.cream,
+                textDecoration: 'none',
+                border: `1px solid rgba(245,244,241,0.3)`,
+                transition: 'all 0.2s ease',
+              }}>For Gyms</a>
+            </div>
           </div>
         </section>
+
+        {/* Light background wrapper for content */}
+        <div style={{ background: colors.bg, color: colors.ink }}>
 
         {/* Hero media - Milton chat bubble visual */}
         <section style={{
           maxWidth: 800,
           margin: '0 auto',
-          padding: mobile ? '0 16px 48px' : '0 24px 100px',
+          padding: mobile ? '48px 16px 48px' : '80px 24px 100px',
         }}>
           <div style={{
             background: colors.accentSoft,
@@ -914,10 +950,12 @@ export default function UsVsThemPage() {
               alignItems: 'center',
             }}>
               <CTA href="/for-coaches">For Coaches</CTA>
-              <CTA variant="secondary" href="/for-gyms">For Gyms</CTA>
-            </div>
+            <CTA variant="secondary" href="/for-gyms">For Gyms</CTA>
           </div>
+        </div>
         </section>
+        </div>
+        {/* End light background wrapper */}
 
         <Footer />
       </main>
