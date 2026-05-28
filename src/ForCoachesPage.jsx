@@ -227,7 +227,17 @@ export default function ForCoachesPage() {
               </div>
             </div>
             <Reveal>
-              <VideoPlaceholder subtitle="Coach demo goes here" />
+              <img
+                src={mobile ? '/images/product-hero-mobile.png' : '/images/product-hero-desktop.png'}
+                alt="Milton AI coaching assistant interface"
+                style={{
+                  width: '100%',
+                  maxWidth: mobile ? 400 : '100%',
+                  height: 'auto',
+                  display: 'block',
+                  margin: mobile ? '0 auto' : undefined,
+                }}
+              />
             </Reveal>
           </div>
         </div>

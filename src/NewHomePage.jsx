@@ -261,14 +261,15 @@ export default function NewHomePage() {
             </div>
 
             <Reveal>
-              <iframe
-                src="/hero-loop.html"
-                title="Milton AI Demo"
+              <img
+                src={mobile ? '/images/product-hero-mobile.png' : '/images/product-hero-desktop.png'}
+                alt="Milton AI coaching assistant interface"
                 style={{
                   width: '100%',
-                  height: mobile ? 500 : 580,
-                  border: 'none',
+                  maxWidth: mobile ? 400 : '100%',
+                  height: 'auto',
                   display: 'block',
+                  margin: mobile ? '0 auto' : undefined,
                 }}
               />
             </Reveal>

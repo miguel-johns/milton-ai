@@ -194,11 +194,17 @@ export default function ForGymsPage() {
               </div>
             </div>
             <Reveal>
-              <div style={{ ...phStyle, aspectRatio: '16/9', width: '100%', boxShadow: '0 30px 70px rgba(0,0,0,0.45)' }}>
-                <svg style={{ width: 60, height: 60, color: colors.teal }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9" /><path d="M10 8.3l6 3.7-6 3.7z" fill="currentColor" stroke="none" /></svg>
-                <span style={{ fontFamily: fonts.mono, fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: colors.teal }}>Video</span>
-                <span style={{ fontFamily: fonts.mono, fontSize: '0.6rem', letterSpacing: '0.12em', color: colors.creamDim, opacity: 0.75 }}>Hero demo goes here</span>
-              </div>
+              <img
+                src={mobile ? '/images/product-hero-mobile.png' : '/images/product-hero-desktop.png'}
+                alt="Milton AI coaching assistant interface"
+                style={{
+                  width: '100%',
+                  maxWidth: mobile ? 400 : '100%',
+                  height: 'auto',
+                  display: 'block',
+                  margin: mobile ? '0 auto' : undefined,
+                }}
+              />
             </Reveal>
           </div>
         </div>
