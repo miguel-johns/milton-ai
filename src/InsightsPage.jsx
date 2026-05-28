@@ -472,24 +472,15 @@ export default function InsightsPage() {
             boxShadow: '0 4px 24px rgba(11, 22, 40, 0.06)',
             textAlign: 'center',
           }}>
-            <p style={{
-              fontFamily: fonts.sans,
-              fontSize: 12,
-              fontWeight: 600,
-              letterSpacing: 1.5,
-              textTransform: 'uppercase',
-              color: colors.accent,
-              margin: '0 0 12px 0',
-            }}>Free Consultation</p>
-
             <h2 style={{
               fontFamily: fonts.display,
               fontSize: mobile ? 26 : 36,
-              fontWeight: 500,
+              fontWeight: 900,
+              fontStretch: '125%',
               color: colors.ink,
               margin: '0 0 14px 0',
             }}>
-              Not sure where AI fits for your gym?
+              Ready to get started?
             </h2>
 
             <p style={{
@@ -500,23 +491,46 @@ export default function InsightsPage() {
               maxWidth: 520,
               margin: '0 auto 28px auto',
             }}>
-              {"Book a free AI Readiness Snapshot call. We'll assess your current operations and give you a clear picture of where AI can (and can't) help."}
+              See how Milton can help you coach more clients while doing less busywork.
             </p>
 
-            <a href="/" style={{
-              fontFamily: fonts.sans,
-              fontSize: 15,
-              fontWeight: 600,
-              padding: '14px 32px',
-              borderRadius: 100,
-              background: colors.ink,
-              color: colors.paper,
-              textDecoration: 'none',
-              display: 'inline-block',
-              transition: 'transform 0.15s ease, box-shadow 0.15s ease',
+            <div style={{
+              display: 'flex',
+              flexDirection: mobile ? 'column' : 'row',
+              gap: 12,
+              justifyContent: 'center',
+              alignItems: 'center',
             }}>
-              Get Started with Milton
-            </a>
+              <a href="/for-coaches" style={{
+                fontFamily: fonts.sans,
+                fontSize: 15,
+                fontWeight: 600,
+                padding: '14px 32px',
+                borderRadius: 100,
+                background: colors.ink,
+                color: colors.paper,
+                textDecoration: 'none',
+                display: 'inline-block',
+                transition: 'transform 0.15s ease, box-shadow 0.15s ease',
+              }}>
+                For Coaches
+              </a>
+              <a href="/for-gyms" style={{
+                fontFamily: fonts.sans,
+                fontSize: 15,
+                fontWeight: 600,
+                padding: '14px 32px',
+                borderRadius: 100,
+                background: 'transparent',
+                color: colors.ink,
+                textDecoration: 'none',
+                display: 'inline-block',
+                border: `1px solid ${colors.line}`,
+                transition: 'transform 0.15s ease, background 0.15s ease',
+              }}>
+                For Gyms
+              </a>
+            </div>
         </div>
       </section>
       </main>
