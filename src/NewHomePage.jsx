@@ -388,18 +388,21 @@ export default function NewHomePage() {
               num="01"
               title="Just talk to it"
               description={<>Say what you need. Milton gets it done. <b style={{ color: colors.cream, fontWeight: 500 }}>No setup. No learning curve.</b></>}
+              image="/images/home-card-1.png"
             />
             <FeatureCard
               num="02"
               title="It learns your way"
               description={<>Give Milton your style and your programs. <b style={{ color: colors.cream, fontWeight: 500 }}>It coaches the way you do, every time.</b></>}
               delay={90}
+              image="/images/home-card-2.png"
             />
             <FeatureCard
               num="03"
               title="It grows your business"
               description={<>More clients, more revenue, less busy work. <b style={{ color: colors.cream, fontWeight: 500 }}>That is the whole point.</b></>}
               delay={180}
+              image="/images/home-card-3.png"
             />
           </div>
         </div>
@@ -596,29 +599,43 @@ function PathCard({ eyebrow, title, items, href, buttonText }) {
 }
 
 // Feature Card Component
-function FeatureCard({ num, title, description, delay = 0 }) {
+function FeatureCard({ num, title, description, delay = 0, image }) {
   const [hovered, setHovered] = useState(false)
-
+  
   return (
-    <Reveal delay={delay}>
-      <div
-        style={{
-          background: colors.navySoft,
-          border: `1px solid ${hovered ? colors.teal : 'rgba(43,191,170,.22)'}`,
-          borderRadius: 20,
-          padding: '34px 30px',
-          transition: 'transform 0.2s ease, border-color 0.2s ease',
-          transform: hovered ? 'translateY(-5px)' : 'none',
-        }}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-      >
-        <MediaPlaceholder
-          type="image"
-          text="Image"
-          aspectRatio="16/10"
-          style={{ width: '100%', marginBottom: 18 }}
-        />
+  <Reveal delay={delay}>
+  <div
+  style={{
+  background: colors.navySoft,
+  border: `1px solid ${hovered ? colors.teal : 'rgba(43,191,170,.22)'}`,
+  borderRadius: 20,
+  padding: '34px 30px',
+  transition: 'transform 0.2s ease, border-color 0.2s ease',
+  transform: hovered ? 'translateY(-5px)' : 'none',
+  }}
+  onMouseEnter={() => setHovered(true)}
+  onMouseLeave={() => setHovered(false)}
+  >
+  {image ? (
+    <img 
+      src={image} 
+      alt={title}
+      style={{ 
+        width: '100%', 
+        aspectRatio: '16/10', 
+        objectFit: 'cover', 
+        borderRadius: 12, 
+        marginBottom: 18 
+      }}
+    />
+  ) : (
+    <MediaPlaceholder
+      type="image"
+      text="Image"
+      aspectRatio="16/10"
+      style={{ width: '100%', marginBottom: 18 }}
+    />
+  )}
 
         <span style={{
           fontFamily: fonts.mono,
