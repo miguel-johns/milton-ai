@@ -348,7 +348,9 @@ export default function ForGymsPage() {
         </div>
       </section>
 
-      <Footer />
+      <div style={{ background: '#FAFBFC' }}>
+        <Footer />
+      </div>
     </div>
   );
 }
