@@ -261,24 +261,16 @@ export default function NewHomePage() {
             </div>
 
             <Reveal>
-              <div style={{
-                width: '100%',
-                aspectRatio: '9/16',
-                maxHeight: mobile ? 480 : 520,
-                borderRadius: 24,
-                overflow: 'hidden',
-                boxShadow: '0 30px 70px rgba(0,0,0,.45)',
-              }}>
-                <iframe
-                  src="/hero-loop.html"
-                  title="Milton AI Demo"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    border: 'none',
-                  }}
-                />
-              </div>
+              <iframe
+                src="/hero-loop.html"
+                title="Milton AI Demo"
+                style={{
+                  width: '100%',
+                  height: mobile ? 420 : 520,
+                  border: 'none',
+                  borderRadius: 16,
+                }}
+              />
             </Reveal>
           </div>
         </div>
