@@ -337,7 +337,7 @@ export default function ForCoachesPage() {
             </div>
             <Reveal>
               <div style={{ boxShadow: '0 26px 60px rgba(11,22,40,.16)' }}>
-                <VideoPlaceholder subtitle="Coaching clip goes here" />
+                <ImagePlaceholder subtitle="Coaching image goes here" />
               </div>
             </Reveal>
           </div>

@@ -307,9 +307,9 @@ export default function ForGymsPage() {
             </div>
             <Reveal>
               <div style={{ ...phStyle, aspectRatio: '16/9', width: '100%', boxShadow: '0 26px 60px rgba(0,0,0,0.4)' }}>
-                <svg style={{ width: 60, height: 60, color: colors.teal }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9" /><path d="M10 8.3l6 3.7-6 3.7z" fill="currentColor" stroke="none" /></svg>
-                <span style={{ fontFamily: fonts.mono, fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: colors.teal }}>Video</span>
-                <span style={{ fontFamily: fonts.mono, fontSize: '0.6rem', letterSpacing: '0.12em', color: colors.creamDim, opacity: 0.75 }}>Group session clip goes here</span>
+                <svg style={{ width: 48, height: 48, color: colors.teal }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none" /><path d="M21 15l-5-5L5 21" /></svg>
+                <span style={{ fontFamily: fonts.mono, fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: colors.teal }}>Image</span>
+                <span style={{ fontFamily: fonts.mono, fontSize: '0.6rem', letterSpacing: '0.12em', color: colors.creamDim, opacity: 0.75 }}>Group session image goes here</span>
               </div>
             </Reveal>
           </div>
