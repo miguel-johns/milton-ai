@@ -261,12 +261,24 @@ export default function NewHomePage() {
             </div>
 
             <Reveal>
-              <MediaPlaceholder
-                type="video"
-                text="Video"
-                subtext="Brand video goes here"
-                style={{ width: '100%', boxShadow: '0 30px 70px rgba(0,0,0,.45)' }}
-              />
+              <div style={{
+                width: '100%',
+                aspectRatio: '9/16',
+                maxHeight: mobile ? 480 : 520,
+                borderRadius: 24,
+                overflow: 'hidden',
+                boxShadow: '0 30px 70px rgba(0,0,0,.45)',
+              }}>
+                <iframe
+                  src="/hero-loop.html"
+                  title="Milton AI Demo"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    border: 'none',
+                  }}
+                />
+              </div>
             </Reveal>
           </div>
         </div>
