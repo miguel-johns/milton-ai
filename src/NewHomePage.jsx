@@ -384,23 +384,9 @@ export default function NewHomePage() {
             gridTemplateColumns: mobile ? '1fr' : 'repeat(3, 1fr)',
             gap: 22,
           }}>
-            <FeatureCard
-              num="01"
-              title="Just talk to it"
-              description={<>Say what you need. Milton gets it done. <b style={{ color: colors.cream, fontWeight: 500 }}>No setup. No learning curve.</b></>}
-            />
-            <FeatureCard
-              num="02"
-              title="It learns your way"
-              description={<>Give Milton your style and your programs. <b style={{ color: colors.cream, fontWeight: 500 }}>It coaches the way you do, every time.</b></>}
-              delay={90}
-            />
-            <FeatureCard
-              num="03"
-              title="It grows your business"
-              description={<>More clients, more revenue, less busy work. <b style={{ color: colors.cream, fontWeight: 500 }}>That is the whole point.</b></>}
-              delay={180}
-            />
+            <JustTalkCard />
+            <LearnsYourWayCard delay={90} />
+            <GrowsBusinessCard delay={180} />
           </div>
         </div>
       </section>
@@ -643,3 +629,368 @@ function FeatureCard({ num, title, description, delay = 0 }) {
     </Reveal>
   )
 }
+
+// Card 01 - Chat conversation visual for "Just talk to it"
+function JustTalkCard({ delay = 0 }) {
+  const [hovered, setHovered] = useState(false)
+  
+  return (
+    <Reveal delay={delay}>
+      <style>{`
+        @keyframes blink { 50% { opacity: 0; } }
+      `}</style>
+      <div
+        style={{
+          background: `
+            radial-gradient(120% 90% at 78% 8%, rgba(43,191,170,.16) 0%, transparent 46%),
+            radial-gradient(90% 80% at 8% 100%, rgba(154,241,152,.10) 0%, transparent 50%),
+            ${colors.navySoft}
+          `,
+          border: `1px solid ${hovered ? colors.teal : 'rgba(43,191,170,.22)'}`,
+          borderRadius: 20,
+          padding: '24px 20px 20px',
+          transition: 'transform 0.2s ease, border-color 0.2s ease',
+          transform: hovered ? 'translateY(-5px)' : 'none',
+          overflow: 'hidden',
+          position: 'relative',
+        }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        {/* Grid texture */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: `linear-gradient(rgba(43,191,170,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(43,191,170,.05) 1px, transparent 1px)`,
+          backgroundSize: '32px 32px',
+          maskImage: 'radial-gradient(100% 100% at 70% 0%, #000 0%, transparent 75%)',
+          WebkitMaskImage: 'radial-gradient(100% 100% at 70% 0%, #000 0%, transparent 75%)',
+          opacity: 0.6,
+          pointerEvents: 'none',
+        }} />
+
+        {/* Conversation thread */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 16, position: 'relative', zIndex: 1 }}>
+          {/* Coach message */}
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <div style={{
+              background: 'linear-gradient(160deg, #9AF198, #74e08f)',
+              color: colors.navy,
+              fontWeight: 600,
+              fontSize: '0.82rem',
+              lineHeight: 1.45,
+              borderRadius: '14px 14px 6px 14px',
+              padding: '12px 14px',
+              maxWidth: '90%',
+              boxShadow: '0 10px 24px rgba(154,241,152,.18)',
+            }}>
+              Add nutrition to the 6-week challenge and send it to all my clients.
+            </div>
+          </div>
+
+          {/* Milton response */}
+          <div style={{ display: 'flex' }}>
+            <div style={{
+              background: 'rgba(19,36,59,.85)',
+              color: colors.cream,
+              fontSize: '0.82rem',
+              lineHeight: 1.45,
+              borderRadius: '14px 14px 14px 6px',
+              padding: '12px 14px',
+              maxWidth: '95%',
+              border: '1px solid rgba(43,191,170,.22)',
+              boxShadow: '0 10px 28px rgba(0,0,0,.35)',
+            }}>
+              <span style={{ color: colors.mint, fontWeight: 600 }}>Done.</span> Built the nutrition track and pushed it to your 6-week challenge.
+              
+              {/* Result chips */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 10 }}>
+                {['Macros set', 'Plan attached', '12 clients notified'].map((chip, i) => (
+                  <span key={i} style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 5,
+                    fontFamily: fonts.mono,
+                    fontSize: '0.62rem',
+                    letterSpacing: '0.3px',
+                    color: colors.cream,
+                    background: 'rgba(43,191,170,.10)',
+                    border: '1px solid rgba(43,191,170,.22)',
+                    borderRadius: 6,
+                    padding: '5px 8px',
+                  }}>
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#9AF198" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                    {chip}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Input composer */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 10,
+          background: 'rgba(11,22,40,.7)',
+          border: '1px solid rgba(43,191,170,.22)',
+          borderRadius: 12,
+          padding: '10px 10px 10px 14px',
+          boxShadow: '0 12px 32px rgba(0,0,0,.3)',
+          position: 'relative',
+          zIndex: 1,
+        }}>
+          <div style={{ flex: 1, fontSize: '0.8rem', color: 'rgba(247,244,237,.62)', fontWeight: 500, display: 'flex', alignItems: 'center' }}>
+            Tell Milton what you need
+            <span style={{
+              display: 'inline-block',
+              width: 2,
+              height: 16,
+              background: colors.mint,
+              marginLeft: 3,
+              animation: 'blink 1.05s steps(1) infinite',
+            }} />
+          </div>
+          <div style={{
+            width: 32,
+            height: 32,
+            borderRadius: 8,
+            background: 'linear-gradient(150deg, #2BBFAA, #1f9d8c)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: '0 6px 16px rgba(43,191,170,.4)',
+          }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0B1628" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12h13"/><path d="m13 6 6 6-6 6"/>
+            </svg>
+          </div>
+        </div>
+
+        {/* Card label */}
+        <div style={{ marginTop: 16, position: 'relative', zIndex: 1 }}>
+          <span style={{ fontFamily: fonts.mono, fontSize: '0.75rem', letterSpacing: '0.18em', color: colors.teal }}>01</span>
+          <h3 style={{ fontFamily: fonts.display, fontWeight: 800, fontStretch: '125%', fontSize: '1.55rem', margin: '12px 0 12px', lineHeight: 1.04, letterSpacing: '-0.005em', color: colors.cream }}>Just talk to it</h3>
+          <p style={{ color: colors.creamDim, fontSize: '1.06rem' }}>Say what you need. Milton gets it done. <b style={{ color: colors.cream, fontWeight: 500 }}>No setup. No learning curve.</b></p>
+        </div>
+      </div>
+    </Reveal>
+  )
+}
+
+// Card 02 - Learning visual for "It learns your way"
+function LearnsYourWayCard({ delay = 0 }) {
+  const [hovered, setHovered] = useState(false)
+  
+  const nodes = [
+    { icon: <svg viewBox="0 0 24 24" fill="none" stroke="#2BBFAA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>, label: 'Your programs' },
+    { icon: <svg viewBox="0 0 24 24" fill="none" stroke="#2BBFAA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>, label: 'Your messages' },
+    { icon: <svg viewBox="0 0 24 24" fill="none" stroke="#2BBFAA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>, label: 'Your notes' },
+  ]
+
+  return (
+    <Reveal delay={delay}>
+      <style>{`
+        @keyframes wire-flow { to { stroke-dashoffset: -160; } }
+        @keyframes glyph-spin { to { transform: rotate(360deg); } }
+      `}</style>
+      <div
+        style={{
+          background: `
+            radial-gradient(120% 90% at 70% 12%, rgba(43,191,170,.17) 0%, transparent 48%),
+            radial-gradient(90% 80% at 4% 100%, rgba(154,241,152,.10) 0%, transparent 50%),
+            ${colors.navySoft}
+          `,
+          border: `1px solid ${hovered ? colors.teal : 'rgba(43,191,170,.22)'}`,
+          borderRadius: 20,
+          padding: '20px',
+          transition: 'transform 0.2s ease, border-color 0.2s ease',
+          transform: hovered ? 'translateY(-5px)' : 'none',
+          overflow: 'hidden',
+          position: 'relative',
+        }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        {/* Grid texture */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: `linear-gradient(rgba(43,191,170,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(43,191,170,.05) 1px, transparent 1px)`,
+          backgroundSize: '32px 32px',
+          maskImage: 'radial-gradient(110% 110% at 70% 10%, #000 0%, transparent 75%)',
+          WebkitMaskImage: 'radial-gradient(110% 110% at 70% 10%, #000 0%, transparent 75%)',
+          opacity: 0.6,
+          pointerEvents: 'none',
+        }} />
+
+        {/* Visual content */}
+        <div style={{ position: 'relative', height: 200, marginBottom: 16 }}>
+          {/* Animated wires */}
+          <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', zIndex: 1 }} viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
+            <path d="M100 40 C 160 40, 170 100, 230 100" fill="none" stroke="rgba(43,191,170,.22)" strokeWidth="2" strokeDasharray="7 9" style={{ animation: 'wire-flow 2.4s linear infinite' }}/>
+            <path d="M100 100 C 160 100, 180 100, 230 100" fill="none" stroke="rgba(43,191,170,.22)" strokeWidth="2" strokeDasharray="7 9" style={{ animation: 'wire-flow 2.4s linear infinite' }}/>
+            <path d="M100 160 C 160 160, 170 100, 230 100" fill="none" stroke="rgba(43,191,170,.22)" strokeWidth="2" strokeDasharray="7 9" style={{ animation: 'wire-flow 2.4s linear infinite' }}/>
+          </svg>
+
+          {/* Input nodes */}
+          <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', zIndex: 2, padding: '10px 0' }}>
+            {nodes.map((node, i) => (
+              <div key={i} style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+                background: 'rgba(15,30,51,.78)',
+                border: '1px solid rgba(43,191,170,.22)',
+                borderRadius: 10,
+                padding: '8px 12px',
+                boxShadow: '0 8px 20px rgba(0,0,0,.32)',
+              }}>
+                <div style={{ width: 28, height: 28, borderRadius: 7, background: 'rgba(43,191,170,.12)', border: '1px solid rgba(43,191,170,.22)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div style={{ width: 14, height: 14 }}>{node.icon}</div>
+                </div>
+                <span style={{ color: colors.cream, fontSize: '0.72rem', fontWeight: 600 }}>{node.label}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Fingerprint glyph */}
+          <div style={{ position: 'absolute', right: 0, top: '50%', transform: 'translateY(-50%)', zIndex: 2 }}>
+            <svg width="100" height="100" viewBox="0 0 328 328">
+              <defs><radialGradient id="bloom2" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="rgba(43,191,170,.28)"/><stop offset="100%" stopColor="rgba(43,191,170,0)"/></radialGradient></defs>
+              <circle cx="164" cy="164" r="150" fill="url(#bloom2)"/>
+              <circle cx="164" cy="164" r="138" fill="rgba(11,22,40,.55)" stroke="rgba(43,191,170,.18)" strokeWidth="1"/>
+              <circle cx="164" cy="164" r="138" fill="none" stroke="#2BBFAA" strokeWidth="2" strokeDasharray="3 11" opacity=".75" style={{ animation: 'glyph-spin 14s linear infinite', transformOrigin: '164px 164px' }}/>
+              <g transform="translate(164,150)" fill="none" strokeWidth="3.4" strokeLinecap="round" opacity=".95">
+                <path d="M -10 21 A 20 24 0 1 1 10 21" stroke="#2BBFAA"/>
+                <path d="M -15 31 A 30 36 0 1 1 15 31" stroke="#9AF198"/>
+                <path d="M -20 42 A 40 48 0 1 1 20 42" stroke="#2BBFAA"/>
+                <path d="M -25 50 A 50 58 0 1 1 25 50" stroke="#9AF198"/>
+                <path d="M -6 7 C -9 -7, 9 -7, 6 7" stroke="#9AF198"/>
+              </g>
+              <circle cx="246" cy="246" r="26" fill="#9AF198" stroke="#0B1628" strokeWidth="4"/>
+              <path d="M236 246 l7 7 12 -14" fill="none" stroke="#0B1628" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <div style={{ fontFamily: fonts.mono, fontSize: '0.58rem', letterSpacing: '0.25em', color: colors.mint, textTransform: 'uppercase', textAlign: 'center', marginTop: 4 }}>Learned</div>
+          </div>
+        </div>
+
+        {/* Card label */}
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <span style={{ fontFamily: fonts.mono, fontSize: '0.75rem', letterSpacing: '0.18em', color: colors.teal }}>02</span>
+          <h3 style={{ fontFamily: fonts.display, fontWeight: 800, fontStretch: '125%', fontSize: '1.55rem', margin: '12px 0 12px', lineHeight: 1.04, letterSpacing: '-0.005em', color: colors.cream }}>It learns your way</h3>
+          <p style={{ color: colors.creamDim, fontSize: '1.06rem' }}>Milton studies your history. <b style={{ color: colors.cream, fontWeight: 500 }}>Programs, messages, and notes become its playbook.</b></p>
+        </div>
+      </div>
+    </Reveal>
+  )
+}
+
+// Card 03 - Growth visual for "It grows your business"
+function GrowsBusinessCard({ delay = 0 }) {
+  const [hovered, setHovered] = useState(false)
+  
+  const metrics = [
+    { label: 'Clients', value: '24', change: '+8', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> },
+    { label: 'Revenue', value: '$12.4k', change: '+32%', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> },
+    { label: 'Hours saved', value: '18', change: '/week', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> },
+  ]
+
+  return (
+    <Reveal delay={delay}>
+      <style>{`
+        @keyframes bar-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+        @keyframes pulse-glow { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+      `}</style>
+      <div
+        style={{
+          background: `
+            radial-gradient(120% 90% at 80% 8%, rgba(154,241,152,.18) 0%, transparent 46%),
+            radial-gradient(90% 80% at 8% 100%, rgba(43,191,170,.12) 0%, transparent 50%),
+            ${colors.navySoft}
+          `,
+          border: `1px solid ${hovered ? colors.teal : 'rgba(43,191,170,.22)'}`,
+          borderRadius: 20,
+          padding: '20px',
+          transition: 'transform 0.2s ease, border-color 0.2s ease',
+          transform: hovered ? 'translateY(-5px)' : 'none',
+          overflow: 'hidden',
+          position: 'relative',
+        }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        {/* Grid texture */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: `linear-gradient(rgba(43,191,170,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(43,191,170,.05) 1px, transparent 1px)`,
+          backgroundSize: '32px 32px',
+          maskImage: 'radial-gradient(100% 100% at 80% 0%, #000 0%, transparent 75%)',
+          WebkitMaskImage: 'radial-gradient(100% 100% at 80% 0%, #000 0%, transparent 75%)',
+          opacity: 0.6,
+          pointerEvents: 'none',
+        }} />
+
+        {/* Dashboard visual */}
+        <div style={{ position: 'relative', marginBottom: 16, zIndex: 1 }}>
+          {/* Metrics row */}
+          <div style={{ display: 'flex', gap: 10, marginBottom: 16 }}>
+            {metrics.map((m, i) => (
+              <div key={i} style={{
+                flex: 1,
+                background: 'rgba(15,30,51,.78)',
+                border: '1px solid rgba(43,191,170,.22)',
+                borderRadius: 12,
+                padding: '12px 10px',
+                textAlign: 'center',
+              }}>
+                <div style={{ width: 24, height: 24, color: colors.teal, margin: '0 auto 6px' }}>{m.icon}</div>
+                <div style={{ fontFamily: fonts.display, fontSize: '1.3rem', fontWeight: 800, color: colors.cream }}>{m.value}</div>
+                <div style={{ fontFamily: fonts.mono, fontSize: '0.6rem', letterSpacing: '0.1em', color: colors.mint }}>{m.change}</div>
+                <div style={{ fontFamily: fonts.mono, fontSize: '0.55rem', letterSpacing: '0.15em', color: colors.creamDim, marginTop: 4, textTransform: 'uppercase' }}>{m.label}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Bar chart */}
+          <div style={{
+            background: 'rgba(15,30,51,.78)',
+            border: '1px solid rgba(43,191,170,.22)',
+            borderRadius: 12,
+            padding: '16px 14px 12px',
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+              <span style={{ fontFamily: fonts.mono, fontSize: '0.6rem', letterSpacing: '0.15em', color: colors.creamDim, textTransform: 'uppercase' }}>Monthly growth</span>
+              <span style={{ fontFamily: fonts.mono, fontSize: '0.65rem', color: colors.mint, display: 'flex', alignItems: 'center', gap: 4 }}>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9AF198" strokeWidth="2.5"><path d="m18 15-6-6-6 6"/></svg>
+                Trending up
+              </span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'flex-end', gap: 6, height: 60 }}>
+              {[35, 45, 40, 55, 50, 65, 80, 75, 90, 85, 100].map((h, i) => (
+                <div key={i} style={{
+                  flex: 1,
+                  height: `${h}%`,
+                  background: i >= 8 ? 'linear-gradient(to top, #2BBFAA, #9AF198)' : 'rgba(43,191,170,.35)',
+                  borderRadius: 4,
+                  transformOrigin: 'bottom',
+                  animation: `bar-grow 0.5s ease ${i * 0.05}s both`,
+                }} />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Card label */}
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <span style={{ fontFamily: fonts.mono, fontSize: '0.75rem', letterSpacing: '0.18em', color: colors.teal }}>03</span>
+          <h3 style={{ fontFamily: fonts.display, fontWeight: 800, fontStretch: '125%', fontSize: '1.55rem', margin: '12px 0 12px', lineHeight: 1.04, letterSpacing: '-0.005em', color: colors.cream }}>It grows your business</h3>
+          <p style={{ color: colors.creamDim, fontSize: '1.06rem' }}>More clients, more revenue, less busy work. <b style={{ color: colors.cream, fontWeight: 500 }}>That is the whole point.</b></p>
+        </div>
+      </div>
+    </Reveal>
+  )
+}
+
