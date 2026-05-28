@@ -106,7 +106,7 @@ function MediaPlaceholder({ type = 'image', text, subtext, style = {} }) {
 }
 
 // Way card component
-function WayCard({ number, title, body, mobile, delay = 0 }) {
+function WayCard({ number, title, body, mobile, delay = 0, image }) {
   return (
     <Reveal delay={delay}>
       <div style={{
@@ -129,11 +129,25 @@ function WayCard({ number, title, body, mobile, delay = 0 }) {
         e.currentTarget.style.boxShadow = '0 12px 30px rgba(11,22,40,.06)'
       }}
       >
-        <MediaPlaceholder 
-          type="image" 
-          text="Image" 
-          style={{ aspectRatio: '16/10', width: '100%', marginBottom: 18 }} 
-        />
+        {image ? (
+          <img 
+            src={image} 
+            alt={title}
+            style={{ 
+              width: '100%', 
+              aspectRatio: '16/10', 
+              objectFit: 'cover', 
+              borderRadius: 12, 
+              marginBottom: 18 
+            }}
+          />
+        ) : (
+          <MediaPlaceholder 
+            type="image" 
+            text="Image" 
+            style={{ aspectRatio: '16/10', width: '100%', marginBottom: 18 }} 
+          />
+        )}
         <span style={{ fontFamily: fonts.mono, fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: colors.tealDeep }}>{number}</span>
         <h3 style={{
           fontFamily: fonts.display,
@@ -324,6 +338,7 @@ export default function AIAssistantCoach() {
               body="Milton helps you look pro and wow new people. Happy clients tell their friends. You get more clients without chasing them."
               mobile={mobile}
               delay={0}
+              image="/images/money-page-1.png"
             />
             <WayCard
               number="02"
@@ -331,6 +346,7 @@ export default function AIAssistantCoach() {
               body="Want to run a challenge? Just ask. Milton builds it, signs people up, and runs it for you. A fun, fast way to bring in cash."
               mobile={mobile}
               delay={90}
+              image="/images/money-page-2.png"
             />
             <WayCard
               number="03"
@@ -338,6 +354,7 @@ export default function AIAssistantCoach() {
               body="Help more people in less time. Milton does the work between check-ins. You meet once a month, Milton handles the rest."
               mobile={mobile}
               delay={180}
+              image="/images/money-page-3.png"
             />
             <WayCard
               number="04"
@@ -345,6 +362,7 @@ export default function AIAssistantCoach() {
               body="Treat every member like a VIP. Custom plans, check-ins, and reports. People stay longer and happily pay more."
               mobile={mobile}
               delay={270}
+              image="/images/money-page-4.png"
             />
           </div>
         </div>
@@ -407,10 +425,16 @@ export default function AIAssistantCoach() {
               </p>
             </div>
             <Reveal>
-              <MediaPlaceholder 
-                text="Image" 
-                subtext="Payoff image goes here"
-                style={{ aspectRatio: '16/9', width: '100%', boxShadow: '0 26px 60px rgba(11,22,40,.16)' }}
+              <img 
+                src="/images/money-page-5.png" 
+                alt="Gym owner with thriving facility"
+                style={{ 
+                  width: '100%', 
+                  aspectRatio: '16/9', 
+                  objectFit: 'cover', 
+                  borderRadius: 16, 
+                  boxShadow: '0 26px 60px rgba(11,22,40,.16)' 
+                }}
               />
             </Reveal>
           </div>
