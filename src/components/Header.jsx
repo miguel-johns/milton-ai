@@ -147,6 +147,24 @@ export default function Header({ currentPage = 'home' }) {
               Insights
             </a>
             <a 
+              href="https://coach.getmilton.com/"
+              className="header-cta-btn"
+              style={{
+                background: 'transparent',
+                color: colors.cream,
+                padding: '14px 28px',
+                borderRadius: 50,
+                fontFamily: fonts.sans,
+                fontSize: 15,
+                fontWeight: 600,
+                textDecoration: 'none',
+                letterSpacing: '0.01em',
+                border: `1px solid ${colors.cream}`,
+              }}
+            >
+              Login
+            </a>
+            <a 
               href={FREE_TRIAL_URL}
               className="header-cta-btn"
               style={{
@@ -307,6 +325,28 @@ export default function Header({ currentPage = 'home' }) {
               }}
             >
               Insights
+            </a>
+            <a 
+              href="https://coach.getmilton.com/"
+              onClick={() => setMobileMenuOpen(false)}
+              className="header-mobile-cta"
+              style={{
+                display: 'block',
+                padding: '14px 16px',
+                fontSize: 16,
+                fontWeight: 600,
+                color: colors.cream,
+                textDecoration: 'none',
+                borderRadius: 50,
+                background: 'transparent',
+                border: `1px solid ${colors.cream}`,
+                textAlign: 'center',
+                marginTop: 8,
+                transition: 'background 0.2s ease',
+                fontFamily: fonts.sans,
+              }}
+            >
+              Login
             </a>
             <a 
               href={FREE_TRIAL_URL}
