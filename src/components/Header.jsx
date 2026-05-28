@@ -148,14 +148,18 @@ export default function Header({ currentPage = 'home' }) {
             </a>
             <a 
               href="https://coach.getmilton.com/"
-              className="header-nav-link"
+              className="header-cta-btn"
               style={{
+                background: 'transparent',
+                color: colors.cream,
+                padding: '14px 28px',
+                borderRadius: 50,
                 fontFamily: fonts.sans,
                 fontSize: 15,
-                fontWeight: 500,
-                color: colors.muted,
+                fontWeight: 600,
                 textDecoration: 'none',
                 letterSpacing: '0.01em',
+                border: `1px solid ${colors.cream}`,
               }}
             >
               Login
