@@ -179,62 +179,139 @@ function TypingCursor() {
   )
 }
 
+// Send icon SVG
+const SendIcon = ({ size = 20, color = 'currentColor' }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill={color} stroke="none">
+    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+  </svg>
+)
+
+// Chat bubble component for phone-style messaging
+function ChatBubble({ message, mobile, showInput = true }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      {/* Message bubble - sent style (right aligned, teal) */}
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <div style={{
+          background: colors.teal,
+          borderRadius: 20,
+          borderBottomRightRadius: 6,
+          padding: mobile ? '14px 18px' : '16px 20px',
+          fontSize: mobile ? '1rem' : '1.15rem',
+          lineHeight: 1.45,
+          color: '#fff',
+          fontWeight: 500,
+          maxWidth: '90%',
+        }}>
+          {message}
+        </div>
+      </div>
+      
+      {/* Input bar */}
+      {showInput && (
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 10,
+          background: 'rgba(11,22,40,.04)',
+          borderRadius: 24,
+          padding: '10px 12px 10px 18px',
+          border: '1px solid rgba(11,22,40,.08)',
+        }}>
+          <span style={{ 
+            flex: 1, 
+            color: 'rgba(11,22,40,.35)', 
+            fontSize: '0.95rem' 
+          }}>Message Milton...</span>
+          <div style={{
+            width: 36,
+            height: 36,
+            borderRadius: '50%',
+            background: colors.teal,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+            <SendIcon size={18} color="#fff" />
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
 // Command Card component for hero
 function CommandCard({ mobile }) {
   return (
     <Reveal>
       <div style={{
         background: '#fff',
-        borderRadius: 24,
-        padding: mobile ? '28px 24px' : '34px 32px',
+        borderRadius: 28,
+        padding: mobile ? '24px 20px' : '28px 26px',
         boxShadow: '0 34px 80px rgba(0,0,0,.45)',
         color: colors.ink,
+        maxWidth: 420,
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 22 }}>
-          <div style={{
-            width: 52,
-            height: 52,
-            borderRadius: '50%',
-            background: colors.mint,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexShrink: 0,
-            boxShadow: '0 8px 22px rgba(154,241,152,.5)',
-          }}>
-            <TextIcon size={24} color={colors.ink} />
+        {/* Phone header bar */}
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'space-between',
+          marginBottom: 20,
+          paddingBottom: 14,
+          borderBottom: '1px solid rgba(11,22,40,.06)',
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <div style={{
+              width: 40,
+              height: 40,
+              borderRadius: '50%',
+              background: colors.mint,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontFamily: fonts.display,
+              fontWeight: 800,
+              fontSize: '1.1rem',
+              color: colors.ink,
+            }}>M</div>
+            <div>
+              <div style={{ 
+                fontWeight: 600, 
+                fontSize: '0.95rem',
+                color: colors.ink,
+              }}>Milton</div>
+              <div style={{ 
+                fontSize: '0.72rem', 
+                color: 'rgba(11,22,40,.5)',
+              }}>Online</div>
+            </div>
           </div>
-          <TypingCursor />
           <span style={{
             fontFamily: fonts.mono,
-            fontSize: '0.7rem',
-            letterSpacing: '0.2em',
+            fontSize: '0.65rem',
+            letterSpacing: '0.18em',
             textTransform: 'uppercase',
             color: colors.tealDeep,
-            marginLeft: 'auto',
-          }}>Just type it</span>
+          }}>Just text it</span>
         </div>
+        
+        {/* Chat area */}
+        <ChatBubble 
+          message="Build Sarah a 4-week program for her shoulder rehab. She can train 3 days a week."
+          mobile={mobile}
+        />
+        
+        {/* Tagline */}
         <div style={{
-          background: '#f3f1ea',
-          border: '1px solid rgba(11,22,40,.07)',
-          borderRadius: 18,
-          borderTopLeftRadius: 6,
-          padding: '22px 24px',
-          fontSize: mobile ? '1.1rem' : '1.32rem',
-          lineHeight: 1.4,
-          color: colors.ink,
-          fontWeight: 500,
-        }}>
-          "Build Sarah a 4-week program for her shoulder rehab. She can train 3 days a week."
-        </div>
-        <div style={{
-          marginTop: 16,
+          marginTop: 18,
           fontFamily: fonts.mono,
-          fontSize: '0.7rem',
+          fontSize: '0.68rem',
           letterSpacing: '0.14em',
           textTransform: 'uppercase',
           color: colors.tealDeep,
-        }}>One sentence. Done.</div>
+          textAlign: 'center',
+        }}>One message. Done.</div>
       </div>
     </Reveal>
   )
@@ -305,58 +382,107 @@ function VSItem({ item, mobile }) {
             </ul>
           </div>
 
-          {/* Milton column */}
+          {/* Milton column - chat style */}
           <div style={{
             background: `radial-gradient(120% 120% at 100% 0%, rgba(43,191,170,.16), transparent 60%), ${colors.navySoft}`,
             border: '1.5px solid',
             borderColor: colors.teal,
             boxShadow: '0 22px 50px rgba(43,191,170,.16)',
             borderRadius: 20,
-            padding: '30px 30px',
+            padding: '24px 24px',
             display: 'flex',
             flexDirection: 'column',
           }}>
+            {/* Chat header */}
             <div style={{
-              fontFamily: fonts.mono,
-              fontSize: '0.72rem',
-              letterSpacing: '0.18em',
-              textTransform: 'uppercase',
-              color: colors.teal,
-              marginBottom: 16,
               display: 'flex',
               alignItems: 'center',
-              gap: 9,
+              gap: 10,
+              marginBottom: 16,
+              paddingBottom: 12,
+              borderBottom: '1px solid rgba(43,191,170,.2)',
             }}>
-              <TextIcon size={16} color={colors.mint} />
-              Milton
+              <div style={{
+                width: 32,
+                height: 32,
+                borderRadius: '50%',
+                background: colors.mint,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontFamily: fonts.display,
+                fontWeight: 800,
+                fontSize: '0.85rem',
+                color: colors.ink,
+              }}>M</div>
+              <span style={{
+                fontFamily: fonts.mono,
+                fontSize: '0.68rem',
+                letterSpacing: '0.16em',
+                textTransform: 'uppercase',
+                color: colors.teal,
+              }}>Milton</span>
             </div>
-            <div style={{
-              fontFamily: fonts.mono,
-              fontSize: '0.64rem',
-              letterSpacing: '0.16em',
-              textTransform: 'uppercase',
-              color: colors.creamDim,
-              opacity: 0.8,
-              marginBottom: 8,
-            }}>Text command</div>
-            <div style={{
-              fontFamily: fonts.display,
-              fontWeight: 700,
-              fontStretch: '110%',
-              fontSize: mobile ? '1.25rem' : '1.5rem',
-              lineHeight: 1.12,
-              letterSpacing: '-0.01em',
-              color: colors.cream,
-            }}>{item.miltonCommand}</div>
+            
+            {/* Sent message bubble */}
+            <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 14 }}>
+              <div style={{
+                background: colors.teal,
+                borderRadius: 16,
+                borderBottomRightRadius: 4,
+                padding: '12px 16px',
+                maxWidth: '95%',
+              }}>
+                <div style={{
+                  fontFamily: fonts.display,
+                  fontWeight: 600,
+                  fontStretch: '105%',
+                  fontSize: mobile ? '1rem' : '1.15rem',
+                  lineHeight: 1.25,
+                  color: '#fff',
+                }}>{item.miltonCommand}</div>
+              </div>
+            </div>
+            
+            {/* Input bar */}
             <div style={{
               marginTop: 'auto',
-              paddingTop: 20,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 8,
+              background: 'rgba(247,244,237,.06)',
+              borderRadius: 20,
+              padding: '8px 10px 8px 14px',
+              border: '1px solid rgba(247,244,237,.1)',
+            }}>
+              <span style={{ 
+                flex: 1, 
+                color: 'rgba(247,244,237,.3)', 
+                fontSize: '0.8rem',
+                fontFamily: fonts.sans,
+              }}>Message...</span>
+              <div style={{
+                width: 28,
+                height: 28,
+                borderRadius: '50%',
+                background: colors.teal,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+                <SendIcon size={14} color="#fff" />
+              </div>
+            </div>
+            
+            <div style={{
+              marginTop: 12,
               fontFamily: fonts.mono,
-              fontSize: '0.74rem',
-              letterSpacing: '0.14em',
+              fontSize: '0.68rem',
+              letterSpacing: '0.12em',
               textTransform: 'uppercase',
               color: colors.mint,
-            }}>One sentence. Done.</div>
+              textAlign: 'center',
+            }}>One message. Done.</div>
           </div>
         </div>
       </div>
