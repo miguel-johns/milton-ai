@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Footer from './components/Footer'
 import Header from './components/Header'
 
@@ -10,1026 +10,551 @@ function useBreakpoint() {
     window.addEventListener('resize', h)
     return () => window.removeEventListener('resize', h)
   }, [])
-  return { mobile: w < 640, tablet: w >= 640 && w < 1024, desktop: w >= 1024, w }
+  return { mobile: w < 760, tablet: w >= 760 && w < 1024, desktop: w >= 1024, w }
 }
 
-// Design tokens matching new dark theme
+// Design tokens
 const colors = {
-  // Dark theme (hero)
   navy: '#0B1628',
-  cream: '#F5F4F1',
-  creamDim: 'rgba(245,244,241,0.65)',
+  navySoft: '#13233d',
+  cream: '#F7F4ED',
+  creamDim: '#d9d4c7',
   teal: '#2BBFAA',
+  tealDeep: '#0E8C7A',
   mint: '#9AF198',
-  // Light theme (content sections)
-  bg: '#FAFBFC',
-  bg2: '#F0F7F5',
-  paper: '#FFFFFF',
   ink: '#0B1628',
-  inkSoft: '#475569',
-  inkMute: '#94A3B8',
-  line: '#E2E8F0',
-  lineSoft: '#F1F5F9',
-  accent: '#2BBFAA',
-  accentDeep: '#08455E',
-  accentSoft: '#E6F8F4',
-  mintSoft: '#ECFAEA',
+  inkSoft: '#39414f',
+  muted: 'rgba(247,244,237,.5)',
+  line: 'rgba(247,244,237,.08)',
 }
 
 const fonts = {
   display: "'Archivo', 'Archivo Black', sans-serif",
-  sans: "'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+  sans: "'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif",
   mono: "'JetBrains Mono', monospace",
 }
 
-// Calendly booking URL
-const CALENDLY_URL = "https://calendly.com/miguel-getmilton/30min"
-// Stripe checkout URL
-const STRIPE_URL = "https://buy.stripe.com/8x2eVe0mT1bT6nueDUeUU0X"
+const brandwash = `
+  radial-gradient(900px 640px at 9% 24%, rgba(43,191,170,.20), transparent 60%),
+  radial-gradient(840px 600px at 97% 30%, rgba(255,176,92,.22), transparent 58%),
+  radial-gradient(780px 580px at 84% 106%, rgba(154,241,152,.24), transparent 60%),
+  radial-gradient(640px 540px at -5% 98%, rgba(120,198,255,.16), transparent 60%),
+  #ffffff
+`
 
-// Reusable CTA Button component
-function CTA({ children, href, variant = 'primary', onClick, style = {} }) {
-  const isPrimary = variant === 'primary'
-  
-  const baseStyle = {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontFamily: fonts.sans,
-    fontSize: 15,
-    fontWeight: 600,
-    padding: '14px 28px',
-    borderRadius: 10,
-    textDecoration: 'none',
-    cursor: 'pointer',
-    border: 'none',
-    transition: 'all 0.2s ease',
-    ...style,
-  }
+// Reveal animation component
+function Reveal({ children, delay = 0 }) {
+  const ref = useRef(null)
+  const [visible, setVisible] = useState(false)
 
-  const primaryStyle = {
-    ...baseStyle,
-    background: colors.ink,
-    color: colors.paper,
-  }
-
-  const secondaryStyle = {
-    ...baseStyle,
-    background: 'transparent',
-    color: colors.ink,
-    border: `1px solid ${colors.line}`,
-  }
-
-  const buttonStyle = isPrimary ? primaryStyle : secondaryStyle
-
-  if (onClick) {
-    return (
-      <button onClick={onClick} style={buttonStyle} className={isPrimary ? 'cta-primary' : 'cta-secondary'}>
-        {children}
-      </button>
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setVisible(true), delay)
+          observer.unobserve(entry.target)
+        }
+      },
+      { threshold: 0.12 }
     )
-  }
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [delay])
 
   return (
-    <a href={href} target={href?.startsWith('http') ? '_blank' : undefined} rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined} style={buttonStyle} className={isPrimary ? 'cta-primary' : 'cta-secondary'}>
+    <div
+      ref={ref}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'none' : 'translateY(24px)',
+        transition: 'opacity 0.7s ease, transform 0.7s ease',
+      }}
+    >
       {children}
-    </a>
-  )
-}
-
-// Comparison Card component for the "Us vs Them" sections - Visual version
-function ComparisonCard({ number, title, themContent, miltonContent, themMedia, miltonMedia, mobile }) {
-  return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      gap: mobile ? 24 : 32,
-      paddingTop: mobile ? 48 : 80,
-    }}>
-      {/* Section header */}
-      <div style={{
-        fontFamily: fonts.sans,
-        fontSize: 12,
-        fontWeight: 600,
-        letterSpacing: '0.1em',
-        textTransform: 'uppercase',
-        color: colors.accent,
-        textAlign: 'center',
-      }}>
-        {number} — {title}
-      </div>
-
-      {/* Visual comparison grid */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: mobile ? '1fr' : '1fr 1fr',
-        gap: mobile ? 20 : 32,
-      }}>
-        {/* Them side */}
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 16,
-        }}>
-          {/* Them label */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 8,
-          }}>
-            <div style={{
-              width: 8,
-              height: 8,
-              borderRadius: '50%',
-              background: colors.inkMute,
-            }} />
-            <span style={{
-              fontFamily: fonts.sans,
-              fontSize: 13,
-              fontWeight: 600,
-              letterSpacing: '0.05em',
-              textTransform: 'uppercase',
-              color: colors.inkMute,
-            }}>
-              Them
-            </span>
-          </div>
-
-          {/* Them media container */}
-          <div style={{
-            background: colors.paper,
-            border: `1px solid ${colors.line}`,
-            borderRadius: 16,
-            overflow: 'hidden',
-            aspectRatio: '16/10',
-            position: 'relative',
-          }}>
-            {themMedia?.type === 'video' ? (
-              <video
-                src={themMedia.src}
-                autoPlay
-                loop
-                muted
-                playsInline
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                }}
-              />
-            ) : themMedia?.type === 'loom' ? (
-              <iframe
-                src={themMedia.src}
-                frameBorder="0"
-                allowFullScreen
-                style={{
-                  width: '100%',
-                  height: '100%',
-                }}
-                title={`Them - ${title}`}
-              />
-            ) : themMedia?.type === 'iframe' ? (
-              <iframe
-                src={themMedia.src}
-                frameBorder="0"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  border: 'none',
-                }}
-                title={`Them - ${title}`}
-              />
-            ) : themMedia?.type === 'image' ? (
-              <img
-                src={themMedia.src}
-                alt={`Traditional software - ${title}`}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                }}
-              />
-            ) : (
-              /* Placeholder */
-              <div style={{
-                width: '100%',
-                height: '100%',
-                background: `linear-gradient(135deg, ${colors.lineSoft} 0%, #E8EAED 100%)`,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 12,
-              }}>
-                {/* Fake UI elements */}
-                <div style={{
-                  width: '80%',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: 8,
-                }}>
-                  <div style={{ height: 8, background: colors.line, borderRadius: 4, width: '60%' }} />
-                  <div style={{ height: 6, background: colors.line, borderRadius: 3, width: '80%' }} />
-                  <div style={{ height: 6, background: colors.line, borderRadius: 3, width: '70%' }} />
-                  <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
-                    <div style={{ height: 24, background: colors.line, borderRadius: 6, width: 60 }} />
-                    <div style={{ height: 24, background: colors.line, borderRadius: 6, width: 60 }} />
-                    <div style={{ height: 24, background: colors.line, borderRadius: 6, width: 60 }} />
-                  </div>
-                </div>
-                <span style={{
-                  fontFamily: fonts.sans,
-                  fontSize: 11,
-                  color: colors.inkMute,
-                  marginTop: 8,
-                }}>
-                  Complex UI walkthrough
-                </span>
-              </div>
-            )}
-          </div>
-
-          {/* Them description */}
-          <p style={{
-            fontFamily: fonts.sans,
-            fontSize: mobile ? 13 : 14,
-            lineHeight: 1.6,
-            color: colors.inkSoft,
-            margin: 0,
-          }}>
-            {themContent}
-          </p>
-        </div>
-
-        {/* Milton side */}
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 16,
-        }}>
-          {/* Milton label */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 8,
-          }}>
-            <div style={{
-              width: 8,
-              height: 8,
-              borderRadius: '50%',
-              background: colors.accent,
-            }} />
-            <span style={{
-              fontFamily: fonts.sans,
-              fontSize: 13,
-              fontWeight: 600,
-              letterSpacing: '0.05em',
-              textTransform: 'uppercase',
-              color: colors.accent,
-            }}>
-              Milton
-            </span>
-          </div>
-
-          {/* Milton media container */}
-          <div style={{
-            background: colors.accentSoft,
-            border: `1px solid ${colors.accent}30`,
-            borderRadius: 16,
-            overflow: 'hidden',
-            aspectRatio: '16/10',
-            position: 'relative',
-          }}>
-            {miltonMedia?.type === 'video' ? (
-              <video
-                src={miltonMedia.src}
-                autoPlay
-                loop
-                muted
-                playsInline
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                }}
-              />
-            ) : miltonMedia?.type === 'loom' ? (
-              <iframe
-                src={miltonMedia.src}
-                frameBorder="0"
-                allowFullScreen
-                style={{
-                  width: '100%',
-                  height: '100%',
-                }}
-                title={`Milton - ${title}`}
-              />
-            ) : miltonMedia?.type === 'iframe' ? (
-              <iframe
-                src={miltonMedia.src}
-                frameBorder="0"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  border: 'none',
-                }}
-                title={`Milton - ${title}`}
-              />
-            ) : miltonMedia?.type === 'image' ? (
-              <img
-                src={miltonMedia.src}
-                alt={`Milton - ${title}`}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                }}
-              />
-            ) : (
-              /* Placeholder - chat bubble style */
-              <div style={{
-                width: '100%',
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: mobile ? 16 : 24,
-              }}>
-                {/* Chat message mockup */}
-                <div style={{
-                  background: colors.paper,
-                  borderRadius: 12,
-                  padding: mobile ? '12px 16px' : '16px 20px',
-                  maxWidth: '90%',
-                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
-                }}>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 8,
-                    marginBottom: 8,
-                  }}>
-                    <div style={{
-                      width: 24,
-                      height: 24,
-                      borderRadius: '50%',
-                      background: colors.accent,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                    }}>
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
-                        <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
-                        <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
-                      </svg>
-                    </div>
-                    <span style={{
-                      fontFamily: fonts.sans,
-                      fontSize: 11,
-                      fontWeight: 600,
-                      color: colors.inkMute,
-                    }}>
-                      Voice command
-                    </span>
-                  </div>
-                  <p style={{
-                    fontFamily: fonts.display,
-                    fontSize: mobile ? 14 : 16,
-                    fontStyle: 'italic',
-                    color: colors.ink,
-                    margin: 0,
-                    lineHeight: 1.4,
-                  }}>
-                    {`"${miltonContent}"`}
-                  </p>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Milton one-liner */}
-          <p style={{
-            fontFamily: fonts.display,
-            fontSize: mobile ? 15 : 17,
-            fontStyle: 'italic',
-            lineHeight: 1.5,
-            color: colors.ink,
-            margin: 0,
-          }}>
-            One sentence. Done.
-          </p>
-        </div>
-      </div>
     </div>
   )
 }
 
-// Revenue card component
-function RevenueCard({ number, title, amount, description, mobile }) {
+// Mic icon SVG
+const MicIcon = ({ size = 24, color = 'currentColor' }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="9" y="3" width="6" height="11" rx="3"/>
+    <path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>
+  </svg>
+)
+
+// VS comparison items data
+const vsItems = [
+  {
+    num: '01',
+    category: 'Program building',
+    themSteps: [
+      'Open the builder.',
+      'Pick a template.',
+      'Drag in exercises.',
+      'Set reps, sets, tempo, rest.',
+      'Save it as a block.',
+      'Build a week. Duplicate. Adjust.',
+      'Assign to the client.',
+      'Hope they open it.',
+    ],
+    miltonCommand: '"Build Omar a 4-week strength program with basketball mixed in."',
+  },
+  {
+    num: '02',
+    category: 'Client check-ins',
+    themSteps: [
+      'Open the dashboard.',
+      'Filter by client.',
+      'Read their last check-in.',
+      'Open their messages.',
+      'Type a reply.',
+      'Pull up their progress.',
+      'Copy a stat. Paste it in.',
+      'Send.',
+    ],
+    miltonCommand: '"How\'s Sarah doing this week?"',
+  },
+  {
+    num: '03',
+    category: 'Nutrition',
+    themSteps: [
+      'Set up macro targets.',
+      'Build a meal template.',
+      'Assign it to the client.',
+      'Show them how to log.',
+      'Remind them to log.',
+      'Review their log.',
+      'Adjust. Reassign.',
+    ],
+    miltonCommand: '"Set Jenna up on a 1,800 calorie cut and check her meals daily."',
+  },
+  {
+    num: '04',
+    category: 'Challenges',
+    themSteps: [
+      'Create a program.',
+      'Build the marketing.',
+      'Set the pricing.',
+      'Build a sign-up flow.',
+      'Set up the messages.',
+      'Track who\'s in, out, and winning, by hand.',
+    ],
+    miltonCommand: '"Run a 30-day nutrition challenge for my members."',
+  },
+  {
+    num: '05',
+    category: 'Reporting',
+    themSteps: [
+      'Export the data.',
+      'Open a spreadsheet.',
+      'Build a chart.',
+      'Format it.',
+      'Write the takeaways.',
+      'Send the email.',
+    ],
+    miltonCommand: '"Send Collins his 30-day progress report."',
+  },
+]
+
+// Equalizer animation bars
+function Equalizer() {
   return (
-    <div style={{
-      background: colors.paper,
-      border: `1px solid ${colors.line}`,
-      borderRadius: 16,
-      padding: mobile ? 20 : 28,
-      display: 'flex',
-      flexDirection: 'column',
-      gap: 12,
-    }}>
+    <div style={{ display: 'flex', alignItems: 'flex-end', gap: 3, height: 24 }}>
+      {[0, 0.18, 0.36, 0.12, 0.3].map((delay, i) => (
+        <i
+          key={i}
+          style={{
+            width: 4,
+            background: colors.tealDeep,
+            borderRadius: 3,
+            animation: `eq 1s ease-in-out infinite`,
+            animationDelay: `${delay}s`,
+          }}
+        />
+      ))}
+      <style>{`
+        @keyframes eq {
+          0%, 100% { height: 6px; }
+          50% { height: 22px; }
+        }
+      `}</style>
+    </div>
+  )
+}
+
+// Command Card component for hero
+function CommandCard({ mobile }) {
+  return (
+    <Reveal>
       <div style={{
-        fontFamily: fonts.sans,
-        fontSize: 12,
-        fontWeight: 600,
-        color: colors.accent,
-      }}>
-        {number}
-      </div>
-      <h3 style={{
-        fontFamily: fonts.display,
-        fontSize: mobile ? 20 : 24,
-        fontWeight: 500,
+        background: '#fff',
+        borderRadius: 24,
+        padding: mobile ? '28px 24px' : '34px 32px',
+        boxShadow: '0 34px 80px rgba(0,0,0,.45)',
         color: colors.ink,
-        margin: 0,
-        lineHeight: 1.3,
       }}>
-        {title}
-      </h3>
-      <div style={{
-        fontFamily: fonts.sans,
-        fontSize: mobile ? 14 : 15,
-        fontWeight: 600,
-        color: colors.accent,
-      }}>
-        {amount}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 22 }}>
+          <div style={{
+            width: 52,
+            height: 52,
+            borderRadius: '50%',
+            background: colors.mint,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexShrink: 0,
+            boxShadow: '0 8px 22px rgba(154,241,152,.5)',
+          }}>
+            <MicIcon size={24} color={colors.ink} />
+          </div>
+          <Equalizer />
+          <span style={{
+            fontFamily: fonts.mono,
+            fontSize: '0.7rem',
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            color: colors.tealDeep,
+            marginLeft: 'auto',
+          }}>Just say it</span>
+        </div>
+        <div style={{
+          background: '#f3f1ea',
+          border: '1px solid rgba(11,22,40,.07)',
+          borderRadius: 18,
+          borderTopLeftRadius: 6,
+          padding: '22px 24px',
+          fontSize: mobile ? '1.1rem' : '1.32rem',
+          lineHeight: 1.4,
+          color: colors.ink,
+          fontWeight: 500,
+        }}>
+          "Build Sarah a 4-week program for her shoulder rehab. She can train 3 days a week."
+        </div>
+        <div style={{
+          marginTop: 16,
+          fontFamily: fonts.mono,
+          fontSize: '0.7rem',
+          letterSpacing: '0.14em',
+          textTransform: 'uppercase',
+          color: colors.tealDeep,
+        }}>One sentence. Done.</div>
       </div>
-      <p style={{
-        fontFamily: fonts.sans,
-        fontSize: mobile ? 13 : 14,
-        lineHeight: 1.6,
-        color: colors.inkSoft,
-        margin: 0,
-      }}>
-        {description}
-      </p>
-    </div>
+    </Reveal>
+  )
+}
+
+// VS Item component
+function VSItem({ item, mobile }) {
+  return (
+    <Reveal>
+      <div style={{ marginBottom: 48 }}>
+        {/* Category header */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 18 }}>
+          <span style={{
+            fontFamily: fonts.mono,
+            fontSize: '0.74rem',
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            color: colors.teal,
+            whiteSpace: 'nowrap',
+          }}>{item.num} · {item.category}</span>
+          <span style={{ flex: 1, height: 1, background: 'rgba(43,191,170,.22)' }} />
+        </div>
+
+        {/* Grid */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: mobile ? '1fr' : '1fr 1fr',
+          gap: 22,
+          alignItems: 'stretch',
+        }}>
+          {/* Them column */}
+          <div style={{
+            background: '#101d31',
+            border: '1px solid rgba(247,244,237,.08)',
+            borderRadius: 20,
+            padding: '30px 30px',
+          }}>
+            <div style={{
+              fontFamily: fonts.mono,
+              fontSize: '0.72rem',
+              letterSpacing: '0.18em',
+              textTransform: 'uppercase',
+              color: colors.muted,
+              marginBottom: 16,
+            }}>Them</div>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+              {item.themSteps.map((step, i) => (
+                <li key={i} style={{
+                  display: 'flex',
+                  gap: 10,
+                  alignItems: 'flex-start',
+                  fontSize: '0.98rem',
+                  color: colors.muted,
+                  padding: '7px 0',
+                  borderBottom: i < item.themSteps.length - 1 ? '1px solid rgba(247,244,237,.05)' : 'none',
+                }}>
+                  <span style={{
+                    flexShrink: 0,
+                    width: 5,
+                    height: 5,
+                    borderRadius: '50%',
+                    background: 'rgba(247,244,237,.3)',
+                    marginTop: 9,
+                  }} />
+                  {step}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Milton column */}
+          <div style={{
+            background: `radial-gradient(120% 120% at 100% 0%, rgba(43,191,170,.16), transparent 60%), ${colors.navySoft}`,
+            border: '1.5px solid',
+            borderColor: colors.teal,
+            boxShadow: '0 22px 50px rgba(43,191,170,.16)',
+            borderRadius: 20,
+            padding: '30px 30px',
+            display: 'flex',
+            flexDirection: 'column',
+          }}>
+            <div style={{
+              fontFamily: fonts.mono,
+              fontSize: '0.72rem',
+              letterSpacing: '0.18em',
+              textTransform: 'uppercase',
+              color: colors.teal,
+              marginBottom: 16,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 9,
+            }}>
+              <MicIcon size={16} color={colors.mint} />
+              Milton
+            </div>
+            <div style={{
+              fontFamily: fonts.mono,
+              fontSize: '0.64rem',
+              letterSpacing: '0.16em',
+              textTransform: 'uppercase',
+              color: colors.creamDim,
+              opacity: 0.8,
+              marginBottom: 8,
+            }}>Voice command</div>
+            <div style={{
+              fontFamily: fonts.display,
+              fontWeight: 700,
+              fontStretch: '110%',
+              fontSize: mobile ? '1.25rem' : '1.5rem',
+              lineHeight: 1.12,
+              letterSpacing: '-0.01em',
+              color: colors.cream,
+            }}>{item.miltonCommand}</div>
+            <div style={{
+              marginTop: 'auto',
+              paddingTop: 20,
+              fontFamily: fonts.mono,
+              fontSize: '0.74rem',
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              color: colors.mint,
+            }}>One sentence. Done.</div>
+          </div>
+        </div>
+      </div>
+    </Reveal>
   )
 }
 
 export default function UsVsThemPage() {
   const { mobile } = useBreakpoint()
-  const [calendlyModalOpen, setCalendlyModalOpen] = useState(false)
+  const [chatModalOpen, setChatModalOpen] = useState(false)
+
+  const labelStyle = {
+    fontFamily: fonts.mono,
+    fontSize: '0.72rem',
+    letterSpacing: '0.22em',
+    textTransform: 'uppercase',
+    color: colors.teal,
+  }
+
+  const displayStyle = {
+    fontFamily: fonts.display,
+    fontWeight: 900,
+    fontStretch: '125%',
+    lineHeight: 0.98,
+    letterSpacing: '-0.005em',
+  }
+
+  const btnStyle = {
+    display: 'inline-block',
+    fontFamily: fonts.sans,
+    fontWeight: 700,
+    fontSize: '1.05rem',
+    color: colors.ink,
+    background: colors.mint,
+    padding: '18px 38px',
+    borderRadius: 100,
+    textDecoration: 'none',
+    border: `2px solid ${colors.mint}`,
+    transition: 'transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease, border-color 0.18s ease',
+    boxShadow: '0 10px 30px rgba(154,241,152,.18)',
+    cursor: 'pointer',
+  }
 
   return (
-    <div style={{
-      minHeight: '100vh',
-      background: colors.navy,
-      fontFamily: fonts.sans,
-      color: colors.cream,
-    }}>
-      <style>{`
-        .cta-primary:hover {
-          background: ${colors.teal} !important;
-          color: ${colors.ink} !important;
-          transform: translateY(-2px);
-        }
-        .cta-secondary:hover {
-          background: rgba(245,244,241,0.1) !important;
-        }
-      `}</style>
-
+    <div style={{ minHeight: '100vh', background: colors.navy, fontFamily: fonts.sans, color: colors.cream }}>
       <Header currentPage="us-vs-them" />
 
-      <main>
-        {/* Hero Section */}
-        <section style={{
-          position: 'relative',
-          padding: mobile ? '72px 16px 64px' : '92px 24px 100px',
-          background: `
-            radial-gradient(900px 420px at 78% -8%, rgba(43,191,170,.20), transparent 60%),
-            radial-gradient(700px 380px at 8% 16%, rgba(154,241,152,.10), transparent 60%),
-            ${colors.navy}
-          `,
-          overflow: 'hidden',
-        }}>
-          {/* Dot pattern overlay */}
-          <div style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage: 'radial-gradient(rgba(247,244,237,.05) 1px, transparent 1px)',
-            backgroundSize: '26px 26px',
-            pointerEvents: 'none',
-          }} />
-
-          <div style={{
-            maxWidth: 900,
-            margin: '0 auto',
-            textAlign: 'center',
-            position: 'relative',
-            zIndex: 2,
-          }}>
-            <div style={{ height: 20 }} />
-
-            {/* Headline */}
-            <h1 style={{
-              fontFamily: fonts.display,
-              fontSize: mobile ? 38 : 64,
-              lineHeight: 0.98,
-              letterSpacing: '-0.005em',
-              fontWeight: 900,
-              fontStretch: '125%',
-              marginBottom: 24,
-              color: colors.cream,
-            }}>
-              They built software.<br/><span style={{ color: colors.mint }}>We built an assistant.</span>
-            </h1>
-
-            {/* Sub */}
-            <p style={{
-              fontFamily: fonts.sans,
-              fontSize: mobile ? 17 : 20,
-              lineHeight: 1.6,
-              color: colors.creamDim,
-              maxWidth: 600,
-              margin: '0 auto 40px',
-            }}>
-              One you have to learn. One you just talk to.
-            </p>
-
-            {/* CTAs */}
-            <div style={{
-              display: 'flex',
-              flexDirection: mobile ? 'column' : 'row',
-              gap: 16,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-              <a href="/for-coaches" style={{
-                fontFamily: fonts.sans,
-                fontSize: 15,
-                fontWeight: 600,
-                padding: '14px 32px',
-                borderRadius: 50,
-                background: colors.cream,
-                color: colors.ink,
-                textDecoration: 'none',
-                transition: 'all 0.2s ease',
-              }}>For Coaches</a>
-              <a href="/for-gyms" style={{
-                fontFamily: fonts.sans,
-                fontSize: 15,
-                fontWeight: 600,
-                padding: '14px 32px',
-                borderRadius: 50,
-                background: 'transparent',
-                color: colors.cream,
-                textDecoration: 'none',
-                border: `1px solid rgba(245,244,241,0.3)`,
-                transition: 'all 0.2s ease',
-              }}>For Gyms</a>
-            </div>
-          </div>
-        </section>
-
-        {/* Light background wrapper for content */}
-        <div style={{ background: colors.bg, color: colors.ink }}>
-
-        {/* Hero media - Milton chat bubble visual */}
-        <section style={{
-          maxWidth: 800,
-          margin: '0 auto',
-          padding: mobile ? '48px 16px 48px' : '80px 24px 100px',
-        }}>
-          <div style={{
-            background: colors.accentSoft,
-            border: `1px solid ${colors.accent}30`,
-            borderRadius: 20,
-            padding: mobile ? 32 : 56,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: mobile ? 20 : 28,
-          }}>
-            {/* Chat message mockup */}
-            <div style={{
-              background: colors.paper,
-              borderRadius: 16,
-              padding: mobile ? '20px 24px' : '28px 36px',
-              maxWidth: 500,
-              width: '100%',
-              boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
-            }}>
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 12,
-                marginBottom: 16,
-              }}>
-                <div style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: '50%',
-                  background: colors.accent,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-                    <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
-                    <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
-                  </svg>
-                </div>
-                <span style={{
-                  fontFamily: fonts.sans,
-                  fontSize: 13,
-                  fontWeight: 600,
-                  color: colors.inkMute,
-                  letterSpacing: '0.02em',
-                }}>
-                  Just say it
-                </span>
-              </div>
-              <p style={{
-                fontFamily: fonts.display,
-                fontSize: mobile ? 20 : 26,
-                fontStyle: 'italic',
-                color: colors.ink,
-                margin: 0,
-                lineHeight: 1.35,
-              }}>
-                {`"Build Sarah a 4-week program for her shoulder rehab. She can train 3 days a week."`}
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Intro Section */}
-        <section style={{
-          padding: mobile ? '48px 16px' : '100px 40px',
-          textAlign: 'center',
-          background: colors.bg2,
-        }}>
-          <div style={{ maxWidth: 800, margin: '0 auto' }}>
-            {/* Eyebrow */}
-            <span style={{
-              display: 'inline-block',
-              fontFamily: fonts.sans,
-              fontSize: 12,
-              fontWeight: 600,
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: colors.accent,
-              marginBottom: 20,
-            }}>
-              The difference
-            </span>
-
-            {/* Headline */}
-            <h2 style={{
-              fontFamily: fonts.display,
-              fontSize: mobile ? 28 : 44,
-              lineHeight: 1.15,
-              fontWeight: 500,
-              color: colors.ink,
-              marginBottom: 20,
-            }}>
-              The juice isn&apos;t worth the squeeze.
-            </h2>
-
-            {/* Sub */}
-            <p style={{
-              fontFamily: fonts.sans,
-              fontSize: mobile ? 15 : 17,
-              lineHeight: 1.7,
-              color: colors.inkSoft,
-              maxWidth: 700,
-              margin: '0 auto',
-            }}>
-              Traditional coaching software promises a lot. Then it asks you to learn it, set it up, teach your members, and click around forever to actually use it. Milton just listens.
-            </p>
-          </div>
-        </section>
-
-        {/* Comparison Sections */}
+      {/* ═══════ HERO (DARK) ═══════ */}
+      <header style={{
+        position: 'relative',
+        padding: mobile ? '72px 0 80px' : '92px 0 100px',
+        background: `
+          radial-gradient(900px 420px at 78% -8%, rgba(43,191,170,.20), transparent 60%),
+          radial-gradient(700px 380px at 8% 16%, rgba(154,241,152,.10), transparent 60%),
+          ${colors.navy}
+        `,
+        overflow: 'hidden',
+      }}>
+        {/* Dot pattern */}
         <div style={{
-          maxWidth: 1000,
-          margin: '0 auto',
-          padding: mobile ? '0 16px 48px' : '0 40px 100px',
-        }}>
-          <ComparisonCard
-            number="01"
-            title="PROGRAM BUILDING"
-            themContent="Open the builder. Pick a template. Drag in exercises. Set reps, sets, tempo, rest. Save as a block. Build a week. Duplicate. Adjust. Assign to client. Hope they open it."
-            themMedia={{ type: 'iframe', src: '/animations/them-program-building.html' }}
-            miltonContent="Build Omar a 4-week strength program with basketball mixed in."
-            mobile={mobile}
-          />
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: 'radial-gradient(rgba(247,244,237,.05) 1px, transparent 1px)',
+          backgroundSize: '26px 26px',
+          pointerEvents: 'none',
+        }} />
 
-          <ComparisonCard
-            number="02"
-            title="CLIENT CHECK-INS"
-            themContent="Open the dashboard. Filter by client. Read their last check-in. Open their messages. Type a reply. Pull up their progress. Copy a stat. Paste it in. Send."
-            themMedia={{ type: 'iframe', src: '/animations/them-client-checkins.html' }}
-            miltonContent="How's Sarah doing this week?"
-            mobile={mobile}
-          />
-
-          <ComparisonCard
-            number="03"
-            title="NUTRITION"
-            themContent="Set up macro targets. Build a meal template. Assign to client. Show them how to log. Remind them to log. Review their log. Adjust. Reassign."
-            themMedia={{ type: 'iframe', src: '/animations/them-nutrition.html' }}
-            miltonContent="Set Jenna up on a 1,800 calorie cut and check her meals daily."
-            mobile={mobile}
-          />
-
-          <ComparisonCard
-            number="04"
-            title="CHALLENGES"
-            themContent="Create a program. Build the marketing. Set the pricing. Build a sign-up flow. Set up the messaging cadence. Manually track who's in, who's out, who's winning."
-            themMedia={{ type: 'iframe', src: '/animations/them-challenges.html' }}
-            miltonContent="Run a 30-day nutrition challenge for my members."
-            mobile={mobile}
-          />
-
-          <ComparisonCard
-            number="05"
-            title="REPORTING"
-            themContent="Export the data. Open a spreadsheet. Build a chart. Format it. Write the takeaways. Send the email."
-            themMedia={{ type: 'iframe', src: '/animations/them-reporting.html' }}
-            miltonContent="Send Collins his 30-day progress report."
-            mobile={mobile}
-          />
-        </div>
-
-        {/* The Pattern Section */}
-        <section style={{
-          padding: mobile ? '48px 16px' : '100px 40px',
-          textAlign: 'center',
-          background: colors.bg2,
-        }}>
-          <div style={{ maxWidth: 800, margin: '0 auto' }}>
-            {/* Eyebrow */}
-            <span style={{
-              display: 'inline-block',
-              fontFamily: fonts.sans,
-              fontSize: 12,
-              fontWeight: 600,
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: colors.accent,
-              marginBottom: 20,
-            }}>
-              The pattern
-            </span>
-
-            {/* Headline */}
-            <h2 style={{
-              fontFamily: fonts.display,
-              fontSize: mobile ? 28 : 44,
-              lineHeight: 1.15,
-              fontWeight: 500,
-              color: colors.ink,
-              marginBottom: 20,
-            }}>
-              One sentence in. Work done.
-            </h2>
-
-            {/* Sub */}
-            <p style={{
-              fontFamily: fonts.sans,
-              fontSize: mobile ? 15 : 17,
-              lineHeight: 1.7,
-              color: colors.inkSoft,
-              maxWidth: 700,
-              margin: '0 auto',
-            }}>
-              That&apos;s it. That&apos;s the whole product. The reason coaches stay on Milton is the reason they leave everyone else: they don&apos;t have to think about the software. They just coach.
-            </p>
-          </div>
-        </section>
-
-        {/* Revenue Section */}
-        <section style={{
-          maxWidth: 1000,
-          margin: '0 auto',
-          padding: mobile ? '48px 16px' : '100px 40px',
-        }}>
-          <div style={{ textAlign: 'center', marginBottom: mobile ? 32 : 48 }}>
-            {/* Eyebrow */}
-            <span style={{
-              display: 'inline-block',
-              fontFamily: fonts.sans,
-              fontSize: 12,
-              fontWeight: 600,
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: colors.accent,
-              marginBottom: 20,
-            }}>
-              While you&apos;re here
-            </span>
-
-            {/* Headline */}
-            <h2 style={{
-              fontFamily: fonts.display,
-              fontSize: mobile ? 28 : 44,
-              lineHeight: 1.15,
-              fontWeight: 500,
-              color: colors.ink,
-              marginBottom: 12,
-            }}>
-              And once you stop fighting your software, here&apos;s what it pays for.
-            </h2>
-          </div>
-
-          {/* Revenue cards grid */}
+        <div style={{ maxWidth: 1040, margin: '0 auto', padding: '0 28px', position: 'relative', zIndex: 2 }}>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: mobile ? '1fr' : 'repeat(3, 1fr)',
-            gap: mobile ? 16 : 24,
-            marginBottom: mobile ? 32 : 48,
-          }}>
-            <RevenueCard
-              number="01"
-              title="Run an AI-powered challenge."
-              amount="$17,880 / year"
-              description="30 members at $149, run quarterly."
-              mobile={mobile}
-            />
-            <RevenueCard
-              number="02"
-              title="Sell AI personal training as a new service."
-              amount="$4,950 / month"
-              description="50 members at $99, from your existing base."
-              mobile={mobile}
-            />
-            <RevenueCard
-              number="03"
-              title="Make every offer you already sell worth more."
-              amount="1 extra month"
-              description="of retention from one member covers Milton."
-              mobile={mobile}
-            />
-          </div>
-
-          {/* See how it works link */}
-          <div style={{ textAlign: 'center' }}>
-            <a 
-              href="/"
-              style={{
-                fontFamily: fonts.sans,
-                fontSize: 15,
-                fontWeight: 600,
-                color: colors.accent,
-                textDecoration: 'none',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 6,
-              }}
-            >
-              See how it works
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8h10m0 0L9 4m4 4l-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </a>
-          </div>
-        </section>
-
-        {/* Final CTA Section */}
-        <section style={{
-          background: colors.bg2,
-          padding: mobile ? '48px 16px 64px' : '100px 40px 120px',
-          textAlign: 'center',
-        }}>
-          <div style={{ maxWidth: 700, margin: '0 auto' }}>
-            {/* Eyebrow */}
-            <span style={{
-              display: 'inline-block',
-              fontFamily: fonts.sans,
-              fontSize: 12,
-              fontWeight: 600,
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: colors.accent,
-              marginBottom: 20,
-            }}>
-              Get started
-            </span>
-
-            {/* Headline */}
-            <h2 style={{
-              fontFamily: fonts.display,
-              fontSize: mobile ? 28 : 48,
-              lineHeight: 1.12,
-              fontWeight: 500,
-              color: colors.ink,
-              marginBottom: 20,
-            }}>
-              Stop learning software. Start talking.
-            </h2>
-
-            {/* Sub */}
-            <p style={{
-              fontFamily: fonts.sans,
-              fontSize: mobile ? 15 : 17,
-              lineHeight: 1.7,
-              color: colors.inkSoft,
-              marginBottom: 32,
-            }}>
-              Try Milton free or have us walk you through it. Either way, you&apos;ll be running it in minutes.
-            </p>
-
-            {/* CTAs */}
-            <div style={{
-              display: 'flex',
-              flexDirection: mobile ? 'column' : 'row',
-              gap: 12,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-              <CTA href="/for-coaches">For Coaches</CTA>
-            <CTA variant="secondary" href="/for-gyms">For Gyms</CTA>
-          </div>
-        </div>
-        </section>
-        </div>
-        {/* End light background wrapper */}
-
-        <Footer />
-      </main>
-
-      {/* Calendly Modal */}
-      {calendlyModalOpen && (
-        <div
-          style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 100,
-            display: 'flex',
+            gridTemplateColumns: mobile ? '1fr' : '1.02fr 0.98fr',
+            gap: mobile ? 40 : 54,
             alignItems: 'center',
-            justifyContent: 'center',
-            padding: mobile ? 16 : 20,
-          }}
-        >
-          <div
-            onClick={() => setCalendlyModalOpen(false)}
-            style={{
-              position: 'absolute',
-              inset: 0,
-              background: 'rgba(11, 22, 40, 0.42)',
-              backdropFilter: 'blur(6px)',
-            }}
-          />
-          <div style={{
-            position: 'relative',
-            width: '100%',
-            maxWidth: 700,
-            height: mobile ? 'calc(100vh - 32px)' : 750,
-            maxHeight: 'calc(100vh - 40px)',
-            background: colors.paper,
-            borderRadius: 20,
-            boxShadow: '0 24px 64px rgba(11, 22, 40, 0.18), 0 4px 16px rgba(11, 22, 40, 0.08)',
-            overflow: 'hidden',
-            display: 'flex',
-            flexDirection: 'column',
           }}>
-            <button 
-              onClick={() => setCalendlyModalOpen(false)}
-              style={{
-                position: 'absolute',
-                top: 14,
-                right: 14,
-                width: 32,
-                height: 32,
-                borderRadius: 8,
-                border: 'none',
-                background: 'rgba(255,255,255,0.9)',
-                color: colors.inkMute,
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                zIndex: 10,
-              }}
-            >
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                <path d="M18 6L6 18M6 6l12 12"/>
-              </svg>
-            </button>
-            <iframe 
-              src="https://calendly.com/miguel-johns/milton-demo?hide_gdpr_banner=1&primary_color=006c55"
-              style={{
-                width: '100%',
-                height: '100%',
-                border: 'none',
-              }}
-              title="Schedule a call with Milton"
-            />
+            {/* Hero copy */}
+            <div style={{ maxWidth: mobile ? 'none' : 600 }}>
+              <span style={labelStyle}>Milton vs the rest</span>
+              <h1 style={{
+                ...displayStyle,
+                fontSize: mobile ? '2.6rem' : 'clamp(2.6rem,5.6vw,4.8rem)',
+                margin: '22px 0 22px',
+                color: colors.cream,
+              }}>
+                They built software.<br />We built an <em style={{ fontStyle: 'normal', color: colors.mint }}>assistant.</em>
+              </h1>
+              <p style={{
+                fontSize: mobile ? '1.15rem' : 'clamp(1.15rem,2.4vw,1.5rem)',
+                maxWidth: 560,
+                color: colors.creamDim,
+                marginBottom: 34,
+              }}>One you have to learn. One you just talk to.</p>
+              <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+                <a href="/for-coaches" style={btnStyle}
+                  onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = colors.teal; e.target.style.borderColor = colors.teal; }}
+                  onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = colors.mint; e.target.style.borderColor = colors.mint; }}
+                >For Coaches</a>
+                <a href="/for-gyms" style={{ ...btnStyle, background: 'transparent', color: colors.cream, border: `2px solid rgba(43,191,170,.7)`, boxShadow: 'none' }}
+                  onMouseEnter={e => { e.target.style.background = colors.teal; e.target.style.color = colors.ink; e.target.style.borderColor = colors.teal; }}
+                  onMouseLeave={e => { e.target.style.background = 'transparent'; e.target.style.color = colors.cream; e.target.style.borderColor = 'rgba(43,191,170,.7)'; }}
+                >For Gyms</a>
+              </div>
+            </div>
+
+            {/* Command card */}
+            <CommandCard mobile={mobile} />
           </div>
         </div>
-      )}
+      </header>
+
+      {/* ═══════ DIFFERENCE (LIGHT) ═══════ */}
+      <section style={{ background: brandwash, color: colors.ink, padding: mobile ? '64px 0' : '92px 0' }}>
+        <div style={{ maxWidth: 1040, margin: '0 auto', padding: '0 28px' }}>
+          <span style={{ ...labelStyle, color: colors.tealDeep }}>The difference</span>
+          <h2 style={{
+            ...displayStyle,
+            fontSize: mobile ? '2.2rem' : 'clamp(2.2rem,5.2vw,3.6rem)',
+            margin: '14px 0 22px',
+            maxWidth: 760,
+            color: colors.ink,
+          }}>{"The juice isn't worth the squeeze."}</h2>
+          <p style={{ fontSize: '1.22rem', color: colors.inkSoft, maxWidth: 680 }}>
+            Other coaching software promises a lot. Then it asks you to learn it, set it up, teach your members, and click around forever to actually use it. <b style={{ color: colors.ink, fontWeight: 600 }}>Milton just listens.</b>
+          </p>
+        </div>
+      </section>
+
+      {/* ═══════ VS (DARK) ═══════ */}
+      <section style={{ padding: mobile ? '64px 0 56px' : '96px 0 90px', background: colors.navy }}>
+        <div style={{ maxWidth: 1040, margin: '0 auto', padding: '0 28px' }}>
+          {/* Header */}
+          <div style={{ textAlign: 'center', marginBottom: 56 }}>
+            <span style={labelStyle}>Side by side</span>
+            <h2 style={{
+              ...displayStyle,
+              fontSize: mobile ? '2.3rem' : 'clamp(2.3rem,5.4vw,3.6rem)',
+              margin: '14px 0 0',
+              color: colors.cream,
+            }}>Ten steps, or <em style={{ fontStyle: 'normal', color: colors.mint }}>one sentence.</em></h2>
+          </div>
+
+          {/* VS Items */}
+          {vsItems.map((item, i) => (
+            <VSItem key={i} item={item} mobile={mobile} />
+          ))}
+        </div>
+      </section>
+
+      {/* ═══════ PATTERN (LIGHT) ═══════ */}
+      <section style={{ background: brandwash, color: colors.ink, padding: mobile ? '72px 0' : '100px 0', textAlign: 'center' }}>
+        <div style={{ maxWidth: 780, margin: '0 auto', padding: '0 28px' }}>
+          <span style={{ ...labelStyle, color: colors.tealDeep }}>The pattern</span>
+          <h2 style={{
+            ...displayStyle,
+            fontSize: mobile ? '2.6rem' : 'clamp(2.6rem,6vw,4.4rem)',
+            margin: '16px auto 22px',
+            color: colors.ink,
+          }}>One sentence in.<br />Work <em style={{ fontStyle: 'normal', color: colors.tealDeep }}>done.</em></h2>
+          <p style={{ fontSize: '1.24rem', color: colors.inkSoft, maxWidth: 620, margin: '0 auto' }}>
+            That is the whole product. Coaches stay on Milton for the same reason they leave everyone else. <b style={{ color: colors.ink, fontWeight: 600 }}>{"They don't have to think about the software. They just coach."}</b>
+          </p>
+        </div>
+      </section>
+
+      {/* ═══════ FINAL CTA (DARK) ═══════ */}
+      <section style={{
+        padding: mobile ? '80px 0 88px' : '108px 0 116px',
+        textAlign: 'center',
+        background: `radial-gradient(700px 380px at 50% 0%, rgba(43,191,170,.22), transparent 62%), ${colors.navy}`,
+      }}>
+        <div style={{ maxWidth: 1040, margin: '0 auto', padding: '0 28px' }}>
+          <span style={labelStyle}>See it for yourself</span>
+          <h2 style={{
+            ...displayStyle,
+            fontSize: mobile ? '2.6rem' : 'clamp(2.6rem,6.4vw,4.6rem)',
+            margin: '16px 0 18px',
+            color: colors.cream,
+          }}>Just coach. <em style={{ fontStyle: 'normal', color: colors.mint }}>Milton listens.</em></h2>
+          <p style={{ fontSize: '1.25rem', color: colors.creamDim, maxWidth: 520, margin: '0 auto 36px' }}>
+            Pick your path and see how simple coaching software should feel.
+          </p>
+          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
+            <a href="/for-coaches" style={btnStyle}
+              onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = colors.teal; e.target.style.borderColor = colors.teal; }}
+              onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = colors.mint; e.target.style.borderColor = colors.mint; }}
+            >For Coaches</a>
+            <a href="/for-gyms" style={{ ...btnStyle, background: 'transparent', color: colors.cream, border: `2px solid rgba(43,191,170,.7)`, boxShadow: 'none' }}
+              onMouseEnter={e => { e.target.style.background = colors.teal; e.target.style.color = colors.ink; e.target.style.borderColor = colors.teal; }}
+              onMouseLeave={e => { e.target.style.background = 'transparent'; e.target.style.color = colors.cream; e.target.style.borderColor = 'rgba(43,191,170,.7)'; }}
+            >For Gyms</a>
+          </div>
+        </div>
+      </section>
+
+      <Footer mobile={mobile} onOpenChat={() => setChatModalOpen(true)} />
     </div>
   )
 }
