@@ -197,39 +197,50 @@ export default function ForCoachesPage() {
           pointerEvents: 'none',
         }} />
         <div style={{ maxWidth: 1040, margin: '0 auto', padding: '0 28px' }}>
-          <div style={{
+          {/* Text content - centered */}
+          <div style={{ 
             position: 'relative',
             zIndex: 2,
-            display: 'grid',
-            gridTemplateColumns: mobile ? '1fr' : '1.05fr .95fr',
-            gap: 56,
-            alignItems: 'center',
+            maxWidth: 720, 
+            margin: '0 auto',
+            textAlign: 'center',
           }}>
-            <div style={{ maxWidth: mobile ? 'none' : 600 }}>
-              <div style={{ height: 20 }} />
-              <h1 style={{
-                fontFamily: fonts.display,
-                fontWeight: 900,
-                fontStretch: '125%',
-                lineHeight: 0.98,
-                letterSpacing: '-0.005em',
-                fontSize: 'clamp(2.6rem, 5.6vw, 4.8rem)',
-                margin: '22px 0 26px',
-              }}>
-                Get more clients.<br />Look like a <span style={{ color: colors.mint }}>pro.</span>
-              </h1>
-              <p style={{ fontSize: 'clamp(1.15rem, 2.4vw, 1.5rem)', maxWidth: 600, color: colors.creamDim, marginBottom: 36 }}>
-                Milton is one simple app for coaches. You just talk to it. It helps you win new clients, charge more, and make more money. <b style={{ color: colors.cream, fontWeight: 500 }}>Brand new or 20 years in, Milton works for you.</b>
-              </p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap' }}>
-                <Button href="https://coach.getmilton.com/auth">Try 7 Days Free</Button>
-                <span style={{ fontFamily: fonts.mono, fontSize: '0.74rem', letterSpacing: '0.04em', color: colors.creamDim }}>No card required.</span>
-              </div>
+            <div style={{ height: 20 }} />
+            <h1 style={{
+              fontFamily: fonts.display,
+              fontWeight: 900,
+              fontStretch: '125%',
+              lineHeight: 0.98,
+              letterSpacing: '-0.005em',
+              fontSize: 'clamp(2.6rem, 5.6vw, 4.8rem)',
+              margin: '22px 0 26px',
+            }}>
+              Get more clients.<br />Look like a <span style={{ color: colors.mint }}>pro.</span>
+            </h1>
+            <p style={{ fontSize: 'clamp(1.15rem, 2.4vw, 1.5rem)', maxWidth: 600, margin: '0 auto 36px', color: colors.creamDim }}>
+              Milton is one simple app for coaches. You just talk to it. It helps you win new clients, charge more, and make more money. <b style={{ color: colors.cream, fontWeight: 500 }}>Brand new or 20 years in, Milton works for you.</b>
+            </p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap', justifyContent: 'center' }}>
+              <Button href="https://coach.getmilton.com/auth">Try 7 Days Free</Button>
+              <span style={{ fontFamily: fonts.mono, fontSize: '0.74rem', letterSpacing: '0.04em', color: colors.creamDim }}>No card required.</span>
             </div>
-            <Reveal>
-              <VideoPlaceholder subtitle="Coach demo goes here" />
-            </Reveal>
           </div>
+
+          {/* Hero product image - large, below content */}
+          <Reveal>
+            <img
+              src={mobile ? '/images/product-hero-mobile.png' : '/images/product-hero-desktop.png'}
+              alt="Milton AI coaching assistant interface"
+              style={{
+                width: '100%',
+                maxWidth: mobile ? 400 : 900,
+                height: 'auto',
+                display: 'block',
+                margin: mobile ? '48px auto 0' : '64px auto 0',
+                borderRadius: 20,
+              }}
+            />
+          </Reveal>
         </div>
       </header>
 

@@ -1361,10 +1361,31 @@ export default function MiltonHomepage() {
             AI tools, co-pilots, and expert guidance for every part of your operation.
           </p>
 
-<div style={{ display: "flex", gap: 12, marginBottom: mobile ? 48 : 64, flexWrap: "wrap", justifyContent: "center" }}>
+<div style={{ display: "flex", gap: 12, marginBottom: mobile ? 32 : 40, flexWrap: "wrap", justifyContent: "center" }}>
   <CTA variant="primary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }} onClick={() => setDemoOpen(true)}>See it in action</CTA>
   <CTA variant="secondary" style={{ fontSize: mobile ? 14 : 15, padding: mobile ? "12px 28px" : "14px 32px" }} href="#/book">AI Consultation</CTA>
   </div>
+
+          {/* Hero Animation - Phone Chat Demo */}
+          <div style={{
+            width: "100%",
+            maxWidth: mobile ? 340 : 480,
+            aspectRatio: mobile ? "9/16" : "16/9",
+            borderRadius: mobile ? 28 : 20,
+            overflow: "hidden",
+            marginBottom: mobile ? 40 : 56,
+            boxShadow: "0 40px 80px rgba(0,0,0,0.4)",
+          }}>
+            <iframe
+              src="/hero-loop.html"
+              title="Milton AI Demo"
+              style={{
+                width: "100%",
+                height: "100%",
+                border: "none",
+              }}
+            />
+          </div>
 
           {/* Logo Carousel */}
           <div style={{ width: "100%", marginTop: 20 }}>

@@ -224,51 +224,56 @@ export default function NewHomePage() {
         }} />
 
         <div style={{ maxWidth: 1040, margin: '0 auto', padding: '0 28px', position: 'relative', zIndex: 2 }}>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: mobile ? '1fr' : '1.05fr 0.95fr',
-            gap: 56,
-            alignItems: 'center',
+          {/* Text content - centered */}
+          <div style={{ 
+            maxWidth: 720, 
+            margin: '0 auto',
+            textAlign: 'center',
           }}>
-            <div style={{ maxWidth: mobile ? 'none' : 600 }}>
-              <div style={{ height: 20 }} />
+            <div style={{ height: 20 }} />
 
-              <h1 style={{
-                fontFamily: fonts.display,
-                fontWeight: 900,
-                fontStretch: '125%',
-                lineHeight: 0.98,
-                letterSpacing: '-0.005em',
-                fontSize: 'clamp(2.6rem, 5.6vw, 4.8rem)',
-                margin: '22px 0 26px',
-              }}>
-                Grow your fitness business.<br/>Just by <em style={{ fontStyle: 'normal', color: colors.mint }}>talking.</em>
-              </h1>
+            <h1 style={{
+              fontFamily: fonts.display,
+              fontWeight: 900,
+              fontStretch: '125%',
+              lineHeight: 0.98,
+              letterSpacing: '-0.005em',
+              fontSize: 'clamp(2.6rem, 5.6vw, 4.8rem)',
+              margin: '22px 0 26px',
+            }}>
+              Grow your fitness business.<br/>Just by <em style={{ fontStyle: 'normal', color: colors.mint }}>talking.</em>
+            </h1>
 
-              <p style={{
-                fontSize: 'clamp(1.15rem, 2.4vw, 1.5rem)',
-                maxWidth: 600,
-                color: colors.creamDim,
-                marginBottom: 36,
-              }}>
-                Milton is one simple app for the fitness world. You just talk to it. It does the busy work, makes you look pro, and helps you make more money. <b style={{ color: colors.cream, fontWeight: 500 }}>Pick your path to get started.</b>
-              </p>
+            <p style={{
+              fontSize: 'clamp(1.15rem, 2.4vw, 1.5rem)',
+              maxWidth: 600,
+              margin: '0 auto 36px',
+              color: colors.creamDim,
+            }}>
+              Milton is one simple app for the fitness world. You just talk to it. It does the busy work, makes you look pro, and helps you make more money. <b style={{ color: colors.cream, fontWeight: 500 }}>Pick your path to get started.</b>
+            </p>
 
-              <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-                <Button href="/for-coaches">For Coaches</Button>
-                <Button href="/for-gyms" variant="outline">For Gyms</Button>
-              </div>
+            <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
+              <Button href="/for-coaches">For Coaches</Button>
+              <Button href="/for-gyms" variant="outline">For Gyms</Button>
             </div>
-
-            <Reveal>
-              <MediaPlaceholder
-                type="video"
-                text="Video"
-                subtext="Brand video goes here"
-                style={{ width: '100%', boxShadow: '0 30px 70px rgba(0,0,0,.45)' }}
-              />
-            </Reveal>
           </div>
+
+          {/* Hero product image - large, below content */}
+          <Reveal>
+            <img
+              src={mobile ? '/images/product-hero-mobile.png' : '/images/product-hero-desktop.png'}
+              alt="Milton AI coaching assistant interface"
+              style={{
+                width: '100%',
+                maxWidth: mobile ? 400 : 900,
+                height: 'auto',
+                display: 'block',
+                margin: mobile ? '48px auto 0' : '64px auto 0',
+                borderRadius: 20,
+              }}
+            />
+          </Reveal>
         </div>
       </header>
 

@@ -169,38 +169,45 @@ export default function ForGymsPage() {
           pointerEvents: 'none',
         }} />
         <div style={{ ...wrapStyle, position: 'relative', zIndex: 2 }}>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: mobile ? '1fr' : '1.05fr 0.95fr',
-            gap: 56,
-            alignItems: 'center',
+          {/* Text content - centered */}
+          <div style={{ 
+            maxWidth: 720, 
+            margin: '0 auto',
+            textAlign: 'center',
           }}>
-            <div style={{ maxWidth: mobile ? 'none' : 600 }}>
-              <div style={{ height: 20 }} />
-              <h1 style={{ ...displayStyle, fontSize: mobile ? '2.6rem' : 'clamp(2.6rem,5.6vw,4.8rem)', margin: '22px 0 26px' }}>
-                Run your whole gym<br />by just <em style={{ fontStyle: 'normal', color: colors.mint }}>talking.</em>
-              </h1>
-              <p style={{ fontSize: mobile ? '1.15rem' : 'clamp(1.15rem,2.4vw,1.5rem)', maxWidth: 660, color: colors.creamDim, marginBottom: 38 }}>
-                Milton is one app for your gym. You don&apos;t click around or set things up. You just <b style={{ color: colors.cream, fontWeight: 500 }}>talk to it, like texting a friend.</b> It learns how you coach. Then it does the boring work for you.
-              </p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
-                <a href="https://coach.getmilton.com/auth" style={btnStyle} onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = colors.teal; e.target.style.borderColor = colors.teal; e.target.style.boxShadow = '0 16px 40px rgba(43,191,170,0.32)'; }} onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = colors.mint; e.target.style.borderColor = colors.mint; e.target.style.boxShadow = '0 10px 30px rgba(154,241,152,0.18)'; }}>
-                  Try 7 Days Free
-                </a>
-                <button onClick={() => setShowCalendly(true)} style={{ ...btnStyle, background: 'transparent', borderColor: colors.cream, color: colors.cream, boxShadow: 'none', cursor: 'pointer' }} onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = 'rgba(255,255,255,0.1)'; }} onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = 'transparent'; }}>
-                  Book a free call
-                </button>
-                <span style={{ fontFamily: fonts.mono, fontSize: '0.74rem', letterSpacing: '0.04em', color: colors.creamDim }}>No card required.</span>
-              </div>
+            <div style={{ height: 20 }} />
+            <h1 style={{ ...displayStyle, fontSize: mobile ? '2.6rem' : 'clamp(2.6rem,5.6vw,4.8rem)', margin: '22px 0 26px' }}>
+              Run your whole gym<br />by just <em style={{ fontStyle: 'normal', color: colors.mint }}>talking.</em>
+            </h1>
+            <p style={{ fontSize: mobile ? '1.15rem' : 'clamp(1.15rem,2.4vw,1.5rem)', maxWidth: 600, margin: '0 auto 38px', color: colors.creamDim }}>
+              Milton is one app for your gym. You don&apos;t click around or set things up. You just <b style={{ color: colors.cream, fontWeight: 500 }}>talk to it, like texting a friend.</b> It learns how you coach. Then it does the boring work for you.
+            </p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
+              <a href="https://coach.getmilton.com/auth" style={btnStyle} onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = colors.teal; e.target.style.borderColor = colors.teal; e.target.style.boxShadow = '0 16px 40px rgba(43,191,170,0.32)'; }} onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = colors.mint; e.target.style.borderColor = colors.mint; e.target.style.boxShadow = '0 10px 30px rgba(154,241,152,0.18)'; }}>
+                Try 7 Days Free
+              </a>
+              <button onClick={() => setShowCalendly(true)} style={{ ...btnStyle, background: 'transparent', borderColor: colors.cream, color: colors.cream, boxShadow: 'none', cursor: 'pointer' }} onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = 'rgba(255,255,255,0.1)'; }} onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = 'transparent'; }}>
+                Book a free call
+              </button>
+              <span style={{ fontFamily: fonts.mono, fontSize: '0.74rem', letterSpacing: '0.04em', color: colors.creamDim }}>No card required.</span>
             </div>
-            <Reveal>
-              <div style={{ ...phStyle, aspectRatio: '16/9', width: '100%', boxShadow: '0 30px 70px rgba(0,0,0,0.45)' }}>
-                <svg style={{ width: 60, height: 60, color: colors.teal }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9" /><path d="M10 8.3l6 3.7-6 3.7z" fill="currentColor" stroke="none" /></svg>
-                <span style={{ fontFamily: fonts.mono, fontSize: '0.68rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: colors.teal }}>Video</span>
-                <span style={{ fontFamily: fonts.mono, fontSize: '0.6rem', letterSpacing: '0.12em', color: colors.creamDim, opacity: 0.75 }}>Hero demo goes here</span>
-              </div>
-            </Reveal>
           </div>
+
+          {/* Hero product image - large, below content */}
+          <Reveal>
+            <img
+              src={mobile ? '/images/product-hero-mobile.png' : '/images/product-hero-desktop.png'}
+              alt="Milton AI coaching assistant interface"
+              style={{
+                width: '100%',
+                maxWidth: mobile ? 400 : 900,
+                height: 'auto',
+                display: 'block',
+                margin: mobile ? '48px auto 0' : '64px auto 0',
+                borderRadius: 20,
+              }}
+            />
+          </Reveal>
         </div>
       </header>
 
