@@ -102,34 +102,34 @@ export default function Header({ currentPage = 'home' }) {
 
         {/* Desktop nav links */}
         {!mobile && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
             <a 
-              href="/for-coaches"
+              href="/milton-makes-money"
               className="header-nav-link"
               style={{
                 fontFamily: fonts.sans,
                 fontSize: 14,
-                fontWeight: currentPage === 'for-coaches' ? 600 : 500,
-                color: currentPage === 'for-coaches' ? colors.ink : colors.muted,
+                fontWeight: currentPage === 'milton-makes-money' ? 600 : 500,
+                color: currentPage === 'milton-makes-money' ? colors.ink : colors.muted,
                 textDecoration: 'none',
                 letterSpacing: '0.01em',
               }}
             >
-              For Coaches
+              Milton Makes Money
             </a>
             <a 
-              href="/for-gyms"
+              href="/us-vs-them"
               className="header-nav-link"
               style={{
                 fontFamily: fonts.sans,
                 fontSize: 14,
-                fontWeight: currentPage === 'for-gyms' ? 600 : 500,
-                color: currentPage === 'for-gyms' ? colors.ink : colors.muted,
+                fontWeight: currentPage === 'us-vs-them' ? 600 : 500,
+                color: currentPage === 'us-vs-them' ? colors.ink : colors.muted,
                 textDecoration: 'none',
                 letterSpacing: '0.01em',
               }}
             >
-              For Gym Owners
+              Us vs. Them
             </a>
             <a 
               href="/insights"
@@ -144,6 +144,20 @@ export default function Header({ currentPage = 'home' }) {
               }}
             >
               Insights
+            </a>
+            <a 
+              href="/about"
+              className="header-nav-link"
+              style={{
+                fontFamily: fonts.sans,
+                fontSize: 14,
+                fontWeight: currentPage === 'about' ? 600 : 500,
+                color: currentPage === 'about' ? colors.ink : colors.muted,
+                textDecoration: 'none',
+                letterSpacing: '0.01em',
+              }}
+            >
+              About
             </a>
             <a 
               href={FREE_TRIAL_URL}
@@ -258,38 +272,38 @@ export default function Header({ currentPage = 'home' }) {
             gap: 4,
           }}>
             <a 
-              href="/for-coaches"
+              href="/milton-makes-money"
               onClick={() => setMobileMenuOpen(false)}
               className="header-mobile-link"
               style={{
                 display: 'block',
                 padding: '14px 16px',
                 fontSize: 16,
-                fontWeight: currentPage === 'for-coaches' ? 600 : 500,
+                fontWeight: currentPage === 'milton-makes-money' ? 600 : 500,
                 color: colors.ink,
                 textDecoration: 'none',
                 borderRadius: 10,
                 fontFamily: fonts.sans,
               }}
             >
-              For Coaches
+              Milton Makes Money
             </a>
             <a 
-              href="/for-gyms"
+              href="/us-vs-them"
               onClick={() => setMobileMenuOpen(false)}
               className="header-mobile-link"
               style={{
                 display: 'block',
                 padding: '14px 16px',
                 fontSize: 16,
-                fontWeight: currentPage === 'for-gyms' ? 600 : 500,
+                fontWeight: currentPage === 'us-vs-them' ? 600 : 500,
                 color: colors.ink,
                 textDecoration: 'none',
                 borderRadius: 10,
                 fontFamily: fonts.sans,
               }}
             >
-              For Gym Owners
+              Us vs. Them
             </a>
             <a 
               href="/insights"
@@ -307,6 +321,23 @@ export default function Header({ currentPage = 'home' }) {
               }}
             >
               Insights
+            </a>
+            <a 
+              href="/about"
+              onClick={() => setMobileMenuOpen(false)}
+              className="header-mobile-link"
+              style={{
+                display: 'block',
+                padding: '14px 16px',
+                fontSize: 16,
+                fontWeight: currentPage === 'about' ? 600 : 500,
+                color: colors.ink,
+                textDecoration: 'none',
+                borderRadius: 10,
+                fontFamily: fonts.sans,
+              }}
+            >
+              About
             </a>
             <a 
               href={FREE_TRIAL_URL}
