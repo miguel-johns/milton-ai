@@ -270,6 +270,7 @@ export default function NewHomePage() {
                   height: 'auto',
                   display: 'block',
                   margin: mobile ? '0 auto' : undefined,
+                  borderRadius: 20,
                 }}
               />
             </Reveal>

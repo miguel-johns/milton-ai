@@ -203,6 +203,7 @@ export default function ForGymsPage() {
                   height: 'auto',
                   display: 'block',
                   margin: mobile ? '0 auto' : undefined,
+                  borderRadius: 20,
                 }}
               />
             </Reveal>
