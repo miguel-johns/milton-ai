@@ -164,8 +164,8 @@ export default function Header({ currentPage = 'home' }) {
               href={FREE_TRIAL_URL}
               className="header-cta-btn"
               style={{
-                background: colors.ink,
-                color: colors.cream,
+                background: colors.cream,
+                color: colors.ink,
                 padding: '14px 28px',
                 borderRadius: 50,
                 fontFamily: fonts.sans,
@@ -173,7 +173,6 @@ export default function Header({ currentPage = 'home' }) {
                 fontWeight: 600,
                 textDecoration: 'none',
                 letterSpacing: '0.01em',
-                border: '1px solid rgba(245, 244, 241, 0.1)',
               }}
             >
               7-Day Free Trial
