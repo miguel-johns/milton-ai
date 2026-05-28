@@ -302,10 +302,10 @@ export default function ForCoachesPage() {
           <p style={{ color: colors.creamDim, maxWidth: 620, marginBottom: 52, fontSize: '1.15rem' }}>You just talk to Milton. It does the heavy lifting, so you can focus on coaching.</p>
           <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : '1fr 1fr', gap: 22 }}>
             {[
-              { num: '01', title: 'Look like a pro', desc: 'Clean programs, check-ins, and reports, every time.', bold: 'New clients trust you right away.', image: '/images/coaches-card-1.png' },
-              { num: '02', title: 'Charge more', desc: 'When you look sharp and get results,', bold: 'you can raise your prices.', after: ' Milton helps you back it up.', image: '/images/coaches-card-2.png' },
-              { num: '03', title: 'Get referrals', desc: 'Happy clients bring friends. Milton keeps every client feeling cared for,', bold: 'so they spread the word.', image: '/images/coaches-card-3.png' },
-              { num: '04', title: 'New ways to earn', desc: 'Run challenges and group programs.', bold: 'Make money without trading more hours.', after: ' Your time stays yours.', image: '/images/coaches-card-4.png' },
+              { num: '01', title: 'Look like a pro', desc: 'Clean programs, check-ins, and reports, every time.', bold: 'New clients trust you right away.' },
+              { num: '02', title: 'Charge more', desc: 'When you look sharp and get results,', bold: 'you can raise your prices.', after: ' Milton helps you back it up.' },
+              { num: '03', title: 'Get referrals', desc: 'Happy clients bring friends. Milton keeps every client feeling cared for,', bold: 'so they spread the word.' },
+              { num: '04', title: 'New ways to earn', desc: 'Run challenges and group programs.', bold: 'Make money without trading more hours.', after: ' Your time stays yours.' },
             ].map((card, i) => (
               <Reveal key={card.num} delay={i * 90}>
                 <HowCard {...card} />
@@ -452,37 +452,23 @@ export default function ForCoachesPage() {
 }
 
 // How card component
-function HowCard({ num, title, desc, bold, after = '', image }) {
+function HowCard({ num, title, desc, bold, after = '' }) {
   const [hovered, setHovered] = useState(false)
   return (
-  <div
-  style={{
-  background: colors.navySoft,
-  border: `1px solid ${hovered ? colors.teal : 'rgba(43,191,170,.22)'}`,
-  borderRadius: 20,
-  padding: '34px 32px',
-  transition: 'transform .2s ease, border-color .2s ease',
-  transform: hovered ? 'translateY(-5px)' : 'none',
-  }}
-  onMouseEnter={() => setHovered(true)}
-  onMouseLeave={() => setHovered(false)}
-  >
-  {image ? (
-    <img 
-      src={image} 
-      alt={title}
-      style={{ 
-        width: '100%', 
-        aspectRatio: '16/10', 
-        objectFit: 'cover', 
-        borderRadius: 12, 
-        marginBottom: 18 
+    <div
+      style={{
+        background: colors.navySoft,
+        border: `1px solid ${hovered ? colors.teal : 'rgba(43,191,170,.22)'}`,
+        borderRadius: 20,
+        padding: '34px 32px',
+        transition: 'transform .2s ease, border-color .2s ease',
+        transform: hovered ? 'translateY(-5px)' : 'none',
       }}
-    />
-  ) : (
-    <ImagePlaceholder />
-  )}
-  <span style={{ fontFamily: fonts.mono, fontSize: '0.75rem', letterSpacing: '0.18em', color: colors.teal }}>{num}</span>
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <ImagePlaceholder />
+      <span style={{ fontFamily: fonts.mono, fontSize: '0.75rem', letterSpacing: '0.18em', color: colors.teal }}>{num}</span>
       <h3 style={{
         fontFamily: fonts.display,
         fontWeight: 800,
