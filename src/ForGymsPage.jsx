@@ -1,6 +1,4 @@
 import { useState, useEffect, useRef } from 'react'
-import SharedNav from './SharedNav'
-import SharedFooter from './SharedFooter'
 
 // Custom hook for responsive breakpoints
 function useBreakpoint() {
@@ -54,277 +52,553 @@ const fonts = {
   mono: "'JetBrains Mono', monospace",
 }
 
-const brandwash = `
-  radial-gradient(900px 640px at 9% 24%, rgba(43,191,170,.20), transparent 60%),
-  radial-gradient(840px 600px at 97% 30%, rgba(255,176,92,.22), transparent 58%),
-  radial-gradient(780px 580px at 84% 106%, rgba(154,241,152,.24), transparent 60%),
-  radial-gradient(640px 540px at -5% 98%, rgba(120,198,255,.16), transparent 60%),
-  #ffffff
-`
-
-// Calendly booking URL
-const CALENDLY_URL = "https://calendly.com/miguel-johns/milton-demo?hide_gdpr_banner=1&primary_color=1aa4a4"
-
-// Label component
-function Label({ children, dark = true, center = false }) {
+// Header Component
+function Header({ mobile }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  
   return (
-    <span style={{
-      display: center ? 'block' : 'inline-block',
-      textAlign: center ? 'center' : 'left',
-      fontFamily: fonts.mono,
-      fontSize: '0.72rem',
-      letterSpacing: '0.22em',
-      textTransform: 'uppercase',
-      color: dark ? colors.teal : colors.tealDeep,
-    }}>
-      {children}
-    </span>
-  )
-}
-
-// Button component
-function Button({ children, href = '#book', style = {} }) {
-  return (
-    <a
-      href={href}
-      style={{
-        display: 'inline-block',
-        fontFamily: fonts.sans,
-        fontWeight: 700,
-        fontSize: '1.05rem',
-        color: colors.navy,
-        background: colors.mint,
-        padding: '18px 38px',
-        borderRadius: 100,
-        textDecoration: 'none',
-        border: `2px solid ${colors.mint}`,
-        transition: 'transform .18s ease, box-shadow .18s ease, background .18s ease',
-        boxShadow: '0 10px 30px rgba(154,241,152,.18)',
-        ...style,
-      }}
-      onMouseEnter={e => {
-        e.currentTarget.style.transform = 'translateY(-3px)'
-        e.currentTarget.style.background = colors.teal
-        e.currentTarget.style.borderColor = colors.teal
-        e.currentTarget.style.boxShadow = '0 16px 40px rgba(43,191,170,.32)'
-      }}
-      onMouseLeave={e => {
-        e.currentTarget.style.transform = 'none'
-        e.currentTarget.style.background = colors.mint
-        e.currentTarget.style.borderColor = colors.mint
-        e.currentTarget.style.boxShadow = '0 10px 30px rgba(154,241,152,.18)'
-      }}
-    >
-      {children}
-    </a>
-  )
-}
-
-// Media placeholder component
-function MediaPlaceholder({ type = 'image', label, sublabel, style = {} }) {
-  const isVideo = type === 'video'
-  return (
-    <div style={{
-      position: 'relative',
-      borderRadius: 16,
-      overflow: 'hidden',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: 12,
-      textAlign: 'center',
-      padding: 20,
-      background: `radial-gradient(130% 130% at 50% 0%, rgba(43,191,170,.18), transparent 60%), ${colors.navySoft}`,
-      border: '1.5px dashed rgba(43,191,170,.5)',
-      color: colors.creamDim,
-      ...style,
-    }}>
-      {isVideo ? (
-        <svg width={60} height={60} viewBox="0 0 24 24" fill="none" stroke={colors.teal} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="9"/>
-          <path d="M10 8.3l6 3.7-6 3.7z" fill={colors.teal} stroke="none"/>
-        </svg>
-      ) : (
-        <svg width={42} height={42} viewBox="0 0 24 24" fill="none" stroke={colors.teal} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="3" y="3" width="18" height="18" rx="2"/>
-          <circle cx="8.5" cy="8.5" r="1.6"/>
-          <path d="M21 15l-5-5L5 21"/>
-        </svg>
-      )}
-      <span style={{
-        fontFamily: fonts.mono,
-        fontSize: '0.68rem',
-        letterSpacing: '0.2em',
-        textTransform: 'uppercase',
-        color: colors.teal,
-      }}>
-        {label || (isVideo ? 'Video' : 'Image')}
-      </span>
-      {sublabel && (
-        <span style={{
-          fontFamily: fonts.mono,
-          fontSize: '0.6rem',
-          letterSpacing: '0.12em',
-          color: colors.creamDim,
-          opacity: 0.75,
-        }}>
-          {sublabel}
-        </span>
-      )}
-    </div>
-  )
-}
-
-// Reveal wrapper component
-function Reveal({ children, delay = 0 }) {
-  const { ref, isVisible } = useReveal()
-  return (
-    <div
-      ref={ref}
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'none' : 'translateY(24px)',
-        transition: `opacity .7s ease ${delay}ms, transform .7s ease ${delay}ms`,
-      }}
-    >
-      {children}
-    </div>
-  )
-}
-
-// Pain item component
-function PainItem({ children, delay = 0 }) {
-  return (
-    <Reveal delay={delay}>
-      <div style={{
-        display: 'flex',
-        gap: 14,
-        alignItems: 'flex-start',
-        background: 'rgba(255,255,255,.66)',
-        border: '1px solid rgba(11,22,40,.08)',
-        borderRadius: 16,
-        padding: '22px 24px',
-        fontSize: '1.12rem',
-        backdropFilter: 'blur(10px)',
-        WebkitBackdropFilter: 'blur(10px)',
-        boxShadow: '0 12px 30px rgba(11,22,40,.06)',
-      }}>
-        <span style={{
-          flex: '0 0 auto',
-          width: 26,
-          height: 26,
-          borderRadius: '50%',
-          background: colors.navy,
-          color: colors.mint,
-          display: 'grid',
-          placeItems: 'center',
-          fontWeight: 700,
-          fontSize: '0.95rem',
-          marginTop: 2,
-        }}>
-          ✕
-        </span>
-        <span>{children}</span>
-      </div>
-    </Reveal>
-  )
-}
-
-// Card component
-function Card({ num, title, children, mobile, delay = 0 }) {
-  const [hovered, setHovered] = useState(false)
-  return (
-    <Reveal delay={delay}>
-      <div
-        style={{
-          background: colors.navySoft,
-          border: `1px solid ${hovered ? colors.teal : 'rgba(43,191,170,.22)'}`,
-          borderRadius: 20,
-          padding: '34px 32px',
-          transition: 'transform .2s ease, border-color .2s ease',
-          transform: hovered ? 'translateY(-5px)' : 'none',
-        }}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-      >
-        <MediaPlaceholder 
-          type="image" 
-          style={{ 
-            aspectRatio: '16/10', 
-            width: '100%', 
-            marginBottom: 20 
-          }} 
-        />
-        <span style={{
-          fontFamily: fonts.mono,
-          fontSize: '0.75rem',
-          letterSpacing: '0.18em',
-          color: colors.teal,
-        }}>
-          {num}
-        </span>
-        <h3 style={{
-          fontFamily: fonts.display,
-          fontWeight: 800,
-          fontStretch: '125%',
-          fontVariationSettings: '"wdth" 125',
-          fontSize: '1.7rem',
-          margin: '12px 0',
-          lineHeight: 1.02,
-          letterSpacing: '-0.005em',
-          color: colors.cream,
-        }}>
-          {title}
-        </h3>
-        <p style={{
-          color: colors.creamDim,
-          fontSize: '1.08rem',
-          margin: 0,
-          lineHeight: 1.6,
-        }}>
-          {children}
-        </p>
-      </div>
-    </Reveal>
-  )
-}
-
-// Risk card component
-function RiskCard({ big, children, delay = 0 }) {
-  return (
-    <Reveal delay={delay}>
-      <div style={{
-        textAlign: 'center',
-        border: '1px solid rgba(11,22,40,.10)',
-        borderRadius: 18,
-        padding: '34px 24px',
-        background: 'rgba(255,255,255,.6)',
-        backdropFilter: 'blur(10px)',
-        WebkitBackdropFilter: 'blur(10px)',
-        boxShadow: '0 12px 30px rgba(11,22,40,.06)',
+    <>
+      <style>{`
+        .header-nav-link {
+          transition: color 0.2s ease;
+        }
+        .header-nav-link:hover {
+          color: ${colors.teal} !important;
+        }
+        .header-cta-btn {
+          transition: background 0.2s ease, transform 0.15s ease;
+        }
+        .header-cta-btn:hover {
+          background: #0a1220 !important;
+          transform: translateY(-1px);
+        }
+        .header-mobile-link {
+          transition: background 0.2s ease, color 0.2s ease;
+        }
+        .header-mobile-link:hover {
+          background: rgba(43, 191, 170, 0.08);
+          color: ${colors.teal} !important;
+        }
+        .header-mobile-cta:hover {
+          background: #0a1220 !important;
+        }
+      `}</style>
+      
+      <header style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 1000,
+        background: 'rgba(11, 22, 40, 0.95)',
+        backdropFilter: 'blur(12px)',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
       }}>
         <div style={{
-          fontFamily: fonts.display,
-          fontWeight: 900,
-          fontStretch: '125%',
-          fontVariationSettings: '"wdth" 125',
-          fontSize: '2.8rem',
-          color: colors.tealDeep,
-          lineHeight: 1,
-          marginBottom: 10,
+          maxWidth: 1200,
+          margin: '0 auto',
+          padding: mobile ? '16px 20px' : '18px 40px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
         }}>
-          {big}
+          {/* Logo */}
+          <a href="/" style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 10,
+            textDecoration: 'none',
+          }}>
+            <div style={{
+              width: 32,
+              height: 32,
+              borderRadius: '50%',
+              background: `linear-gradient(135deg, ${colors.teal}, ${colors.mint})`,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+              <span style={{
+                fontFamily: fonts.display,
+                fontWeight: 900,
+                fontSize: 18,
+                color: colors.navy,
+              }}>M</span>
+            </div>
+            <span style={{
+              fontFamily: fonts.display,
+              fontWeight: 800,
+              fontStretch: '125%',
+              fontSize: 20,
+              color: '#fff',
+              letterSpacing: '-0.01em',
+            }}>Milton</span>
+          </a>
+
+          {/* Desktop Navigation */}
+          {!mobile && (
+            <nav style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 32,
+            }}>
+              <a href="/for-coaches" className="header-nav-link" style={{
+                fontFamily: fonts.sans,
+                fontSize: 14,
+                fontWeight: 500,
+                color: 'rgba(255, 255, 255, 0.7)',
+                textDecoration: 'none',
+              }}>For Coaches</a>
+              <a href="/for-gyms" className="header-nav-link" style={{
+                fontFamily: fonts.sans,
+                fontSize: 14,
+                fontWeight: 500,
+                color: colors.teal,
+                textDecoration: 'none',
+              }}>For Gym Owners</a>
+              <a href="/insights" className="header-nav-link" style={{
+                fontFamily: fonts.sans,
+                fontSize: 14,
+                fontWeight: 500,
+                color: 'rgba(255, 255, 255, 0.7)',
+                textDecoration: 'none',
+              }}>Insights</a>
+            </nav>
+          )}
+
+          {/* Desktop CTA */}
+          {!mobile && (
+            <a
+              href="#book-demo"
+              className="header-cta-btn"
+              style={{
+                fontFamily: fonts.sans,
+                fontSize: 14,
+                fontWeight: 600,
+                color: '#fff',
+                background: colors.navy,
+                border: `1px solid rgba(43, 191, 170, 0.3)`,
+                borderRadius: 100,
+                padding: '10px 24px',
+                textDecoration: 'none',
+              }}
+            >
+              Book a Demo
+            </a>
+          )}
+
+          {/* Mobile Menu Button */}
+          {mobile && (
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              style={{
+                background: 'transparent',
+                border: 'none',
+                padding: 8,
+                cursor: 'pointer',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 5,
+              }}
+            >
+              <span style={{
+                width: 22,
+                height: 2,
+                background: '#fff',
+                borderRadius: 1,
+                transition: 'transform 0.2s ease',
+                transform: mobileMenuOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none',
+              }} />
+              <span style={{
+                width: 22,
+                height: 2,
+                background: '#fff',
+                borderRadius: 1,
+                opacity: mobileMenuOpen ? 0 : 1,
+                transition: 'opacity 0.2s ease',
+              }} />
+              <span style={{
+                width: 22,
+                height: 2,
+                background: '#fff',
+                borderRadius: 1,
+                transition: 'transform 0.2s ease',
+                transform: mobileMenuOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none',
+              }} />
+            </button>
+          )}
         </div>
-        <p style={{
-          color: colors.inkSoft,
-          fontSize: '1.05rem',
-          margin: 0,
+
+        {/* Mobile Menu */}
+        {mobile && mobileMenuOpen && (
+          <div style={{
+            position: 'absolute',
+            top: '100%',
+            left: 0,
+            right: 0,
+            background: 'rgba(11, 22, 40, 0.98)',
+            backdropFilter: 'blur(12px)',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.06)',
+            padding: '20px',
+          }}>
+            <nav style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 4,
+            }}>
+              <a href="/for-coaches" onClick={() => setMobileMenuOpen(false)} className="header-mobile-link" style={{
+                fontFamily: fonts.sans,
+                fontSize: 16,
+                fontWeight: 500,
+                color: 'rgba(255, 255, 255, 0.7)',
+                textDecoration: 'none',
+                padding: '12px 16px',
+                borderRadius: 8,
+              }}>For Coaches</a>
+              <a href="/for-gyms" onClick={() => setMobileMenuOpen(false)} className="header-mobile-link" style={{
+                fontFamily: fonts.sans,
+                fontSize: 16,
+                fontWeight: 500,
+                color: colors.teal,
+                textDecoration: 'none',
+                padding: '12px 16px',
+                borderRadius: 8,
+              }}>For Gym Owners</a>
+              <a href="/insights" onClick={() => setMobileMenuOpen(false)} className="header-mobile-link" style={{
+                fontFamily: fonts.sans,
+                fontSize: 16,
+                fontWeight: 500,
+                color: 'rgba(255, 255, 255, 0.7)',
+                textDecoration: 'none',
+                padding: '12px 16px',
+                borderRadius: 8,
+              }}>Insights</a>
+              <div style={{ height: 12 }} />
+              <a
+                href="#book-demo"
+                onClick={() => setMobileMenuOpen(false)}
+                className="header-mobile-cta"
+                style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 15,
+                  fontWeight: 600,
+                  color: '#fff',
+                  background: colors.navy,
+                  border: `1px solid rgba(43, 191, 170, 0.3)`,
+                  borderRadius: 100,
+                  padding: '14px 24px',
+                  textDecoration: 'none',
+                  textAlign: 'center',
+                }}
+              >
+                Book a Demo
+              </a>
+            </nav>
+          </div>
+        )}
+      </header>
+    </>
+  )
+}
+
+// Footer Component
+function Footer({ mobile }) {
+  return (
+    <footer style={{
+      background: colors.navy,
+      borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+      padding: mobile ? '48px 20px 32px' : '64px 40px 40px',
+    }}>
+      <div style={{
+        maxWidth: 1200,
+        margin: '0 auto',
+      }}>
+        <div style={{
+          display: 'flex',
+          flexDirection: mobile ? 'column' : 'row',
+          justifyContent: 'space-between',
+          alignItems: mobile ? 'flex-start' : 'flex-start',
+          gap: mobile ? 40 : 60,
+          marginBottom: mobile ? 40 : 48,
         }}>
-          {children}
-        </p>
+          {/* Brand */}
+          <div style={{ maxWidth: 280 }}>
+            <a href="/" style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 10,
+              textDecoration: 'none',
+              marginBottom: 16,
+            }}>
+              <div style={{
+                width: 28,
+                height: 28,
+                borderRadius: '50%',
+                background: `linear-gradient(135deg, ${colors.teal}, ${colors.mint})`,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+                <span style={{
+                  fontFamily: fonts.display,
+                  fontWeight: 900,
+                  fontSize: 16,
+                  color: colors.navy,
+                }}>M</span>
+              </div>
+              <span style={{
+                fontFamily: fonts.display,
+                fontWeight: 800,
+                fontStretch: '125%',
+                fontSize: 18,
+                color: '#fff',
+                letterSpacing: '-0.01em',
+              }}>Milton</span>
+            </a>
+            <p style={{
+              fontFamily: fonts.sans,
+              fontSize: 14,
+              lineHeight: 1.6,
+              color: 'rgba(255, 255, 255, 0.5)',
+            }}>
+              AI-powered coaching that helps gyms increase revenue per member without adding staff.
+            </p>
+          </div>
+
+          {/* Links */}
+          <div style={{
+            display: 'flex',
+            gap: mobile ? 48 : 80,
+          }}>
+            <div>
+              <h4 style={{
+                fontFamily: fonts.mono,
+                fontSize: 11,
+                fontWeight: 500,
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
+                color: colors.teal,
+                marginBottom: 16,
+              }}>Product</h4>
+              <nav style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 12,
+              }}>
+                <a href="/for-coaches" style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 14,
+                  color: 'rgba(255, 255, 255, 0.6)',
+                  textDecoration: 'none',
+                }}>For Coaches</a>
+                <a href="/for-gyms" style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 14,
+                  color: 'rgba(255, 255, 255, 0.6)',
+                  textDecoration: 'none',
+                }}>For Gym Owners</a>
+                <a href="/insights" style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 14,
+                  color: 'rgba(255, 255, 255, 0.6)',
+                  textDecoration: 'none',
+                }}>Insights</a>
+              </nav>
+            </div>
+            <div>
+              <h4 style={{
+                fontFamily: fonts.mono,
+                fontSize: 11,
+                fontWeight: 500,
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
+                color: colors.teal,
+                marginBottom: 16,
+              }}>Company</h4>
+              <nav style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 12,
+              }}>
+                <a href="/about" style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 14,
+                  color: 'rgba(255, 255, 255, 0.6)',
+                  textDecoration: 'none',
+                }}>About</a>
+                <a href="/privacy" style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 14,
+                  color: 'rgba(255, 255, 255, 0.6)',
+                  textDecoration: 'none',
+                }}>Privacy</a>
+                <a href="/terms" style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 14,
+                  color: 'rgba(255, 255, 255, 0.6)',
+                  textDecoration: 'none',
+                }}>Terms</a>
+              </nav>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom */}
+        <div style={{
+          borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+          paddingTop: 24,
+          display: 'flex',
+          flexDirection: mobile ? 'column' : 'row',
+          justifyContent: 'space-between',
+          alignItems: mobile ? 'flex-start' : 'center',
+          gap: 16,
+        }}>
+          <p style={{
+            fontFamily: fonts.sans,
+            fontSize: 13,
+            color: 'rgba(255, 255, 255, 0.4)',
+          }}>
+            © 2025 Milton AI. All rights reserved.
+          </p>
+          <p style={{
+            fontFamily: fonts.display,
+            fontWeight: 800,
+            fontStretch: '125%',
+            fontSize: 13,
+            color: 'rgba(255, 255, 255, 0.5)',
+          }}>
+            Still the coach. Just with superpowers.
+          </p>
+        </div>
       </div>
-    </Reveal>
+    </footer>
+  )
+}
+
+// Pain Point Card Component
+function PainCard({ icon, title, description, mobile }) {
+  return (
+    <div style={{
+      background: 'rgba(255, 255, 255, 0.03)',
+      border: '1px solid rgba(255, 255, 255, 0.06)',
+      borderRadius: 16,
+      padding: mobile ? '24px 20px' : '28px 24px',
+    }}>
+      <div style={{
+        width: 48,
+        height: 48,
+        borderRadius: 12,
+        background: 'rgba(43, 191, 170, 0.1)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 16,
+        fontSize: 24,
+      }}>
+        {icon}
+      </div>
+      <h3 style={{
+        fontFamily: fonts.display,
+        fontWeight: 800,
+        fontStretch: '125%',
+        fontSize: mobile ? 18 : 20,
+        color: '#fff',
+        marginBottom: 8,
+        lineHeight: 1.1,
+      }}>{title}</h3>
+      <p style={{
+        fontFamily: fonts.sans,
+        fontSize: 14,
+        lineHeight: 1.6,
+        color: 'rgba(255, 255, 255, 0.6)',
+      }}>{description}</p>
+    </div>
+  )
+}
+
+// How Milton Helps Card Component
+function HelpCard({ number, title, description, highlight, mobile }) {
+  return (
+    <div style={{
+      background: colors.cream,
+      borderRadius: 20,
+      padding: mobile ? '28px 24px' : '32px 28px',
+      height: '100%',
+    }}>
+      <span style={{
+        fontFamily: fonts.mono,
+        fontSize: 12,
+        fontWeight: 500,
+        letterSpacing: '0.15em',
+        color: colors.teal,
+        marginBottom: 16,
+        display: 'block',
+      }}>{number}</span>
+      <h3 style={{
+        fontFamily: fonts.display,
+        fontWeight: 800,
+        fontStretch: '125%',
+        fontSize: mobile ? 22 : 26,
+        color: colors.ink,
+        marginBottom: 12,
+        lineHeight: 1.1,
+      }}>{title}</h3>
+      <p style={{
+        fontFamily: fonts.sans,
+        fontSize: 15,
+        lineHeight: 1.6,
+        color: colors.inkSoft,
+        marginBottom: 16,
+      }}>{description}</p>
+      <p style={{
+        fontFamily: fonts.sans,
+        fontSize: 14,
+        fontWeight: 600,
+        color: colors.tealDeep,
+      }}>{highlight}</p>
+    </div>
+  )
+}
+
+// Risk Free Card Component
+function RiskCard({ icon, title, description, mobile }) {
+  return (
+    <div style={{
+      background: 'rgba(255, 255, 255, 0.04)',
+      border: '1px solid rgba(255, 255, 255, 0.08)',
+      borderRadius: 16,
+      padding: mobile ? '24px 20px' : '28px 24px',
+      textAlign: 'center',
+    }}>
+      <div style={{
+        width: 56,
+        height: 56,
+        borderRadius: '50%',
+        background: 'rgba(43, 191, 170, 0.1)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: '0 auto 16px',
+        fontSize: 28,
+      }}>
+        {icon}
+      </div>
+      <h3 style={{
+        fontFamily: fonts.display,
+        fontWeight: 800,
+        fontStretch: '125%',
+        fontSize: mobile ? 18 : 20,
+        color: '#fff',
+        marginBottom: 8,
+        lineHeight: 1.1,
+      }}>{title}</h3>
+      <p style={{
+        fontFamily: fonts.sans,
+        fontSize: 14,
+        lineHeight: 1.6,
+        color: 'rgba(255, 255, 255, 0.6)',
+      }}>{description}</p>
+    </div>
   )
 }
 
@@ -333,392 +607,622 @@ export default function ForGymsPage() {
   
   // Load Calendly script
   useEffect(() => {
-    if (!document.querySelector('script[src*="calendly"]')) {
-      const script = document.createElement('script')
-      script.src = 'https://assets.calendly.com/assets/external/widget.js'
-      script.async = true
-      document.body.appendChild(script)
+    const script = document.createElement('script')
+    script.src = 'https://assets.calendly.com/assets/external/widget.js'
+    script.async = true
+    document.body.appendChild(script)
+    return () => {
+      document.body.removeChild(script)
     }
   }, [])
-
-  const wrap = {
-    maxWidth: 1040,
-    margin: '0 auto',
-    padding: '0 28px',
-  }
-
+  
+  const heroReveal = useReveal()
+  const painReveal = useReveal()
+  const helpReveal = useReveal()
+  const stillReveal = useReveal()
+  const groupReveal = useReveal()
+  const riskReveal = useReveal()
+  const ctaReveal = useReveal()
+  
   return (
     <div style={{
       background: colors.navy,
-      color: colors.cream,
-      fontFamily: fonts.sans,
-      fontSize: 18,
-      lineHeight: 1.6,
-      WebkitFontSmoothing: 'antialiased',
-      overflowX: 'hidden',
+      minHeight: '100vh',
     }}>
-      <SharedNav />
-
-      {/* HERO */}
-      <header style={{
-        position: 'relative',
-        padding: mobile ? '60px 0 80px' : '74px 0 96px',
-        background: `
-          radial-gradient(900px 420px at 78% -8%, rgba(43,191,170,.20), transparent 60%),
-          radial-gradient(700px 380px at 8% 16%, rgba(154,241,152,.10), transparent 60%),
-          ${colors.navy}
-        `,
-        overflow: 'hidden',
-      }}>
-        {/* Dot pattern overlay */}
+      <style>{`
+        .cta-primary {
+          transition: background 0.2s ease, transform 0.15s ease;
+        }
+        .cta-primary:hover {
+          background: ${colors.tealDeep} !important;
+          transform: translateY(-2px);
+        }
+        .cta-secondary {
+          transition: border-color 0.2s ease, color 0.2s ease;
+        }
+        .cta-secondary:hover {
+          border-color: ${colors.teal} !important;
+          color: ${colors.teal} !important;
+        }
+      `}</style>
+      
+      <Header mobile={mobile} />
+      
+      {/* Hero Section */}
+      <section
+        ref={heroReveal.ref}
+        style={{
+          paddingTop: mobile ? 120 : 160,
+          paddingBottom: mobile ? 60 : 100,
+          paddingLeft: mobile ? 20 : 40,
+          paddingRight: mobile ? 20 : 40,
+          opacity: heroReveal.isVisible ? 1 : 0,
+          transform: heroReveal.isVisible ? 'translateY(0)' : 'translateY(30px)',
+          transition: 'opacity 0.8s ease, transform 0.8s ease',
+        }}
+      >
         <div style={{
-          position: 'absolute',
-          inset: 0,
-          backgroundImage: 'radial-gradient(rgba(247,244,237,.05) 1px, transparent 1px)',
-          backgroundSize: '26px 26px',
-          pointerEvents: 'none',
-        }} />
-        
-        <div style={wrap}>
-          <div style={{
-            position: 'relative',
-            zIndex: 2,
-            display: 'grid',
-            gridTemplateColumns: mobile ? '1fr' : '1.05fr .95fr',
-            gap: mobile ? 40 : 56,
-            alignItems: 'center',
-          }}>
-            <div style={{ maxWidth: mobile ? 'none' : 600 }}>
-              <Label>For gym owners</Label>
-              <h1 style={{
-                fontFamily: fonts.display,
-                fontWeight: 900,
-                fontStretch: '125%',
-                fontVariationSettings: '"wdth" 125',
-                fontSize: mobile ? 'clamp(2.4rem, 8vw, 2.8rem)' : 'clamp(2.6rem, 5.6vw, 4.8rem)',
-                lineHeight: 0.98,
-                letterSpacing: '-0.005em',
-                margin: '22px 0 26px',
-                color: colors.cream,
-              }}>
-                Run your whole gym<br />by just <em style={{ fontStyle: 'normal', color: colors.mint }}>talking.</em>
-              </h1>
-              <p style={{
-                fontSize: mobile ? '1.1rem' : 'clamp(1.15rem, 2.4vw, 1.5rem)',
-                maxWidth: 660,
-                color: colors.creamDim,
-                marginBottom: 38,
-                lineHeight: 1.5,
-              }}>
-                Milton is one app for your gym. You don&apos;t click around or set things up. You just <b style={{ color: colors.cream, fontWeight: 500 }}>talk to it, like texting a friend.</b> It learns how you coach. Then it does the boring work for you.
-              </p>
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 26,
-                flexWrap: 'wrap',
-              }}>
-                <Button href="#book">Book a free call</Button>
-                <span style={{
-                  fontFamily: fonts.mono,
-                  fontSize: '0.74rem',
-                  letterSpacing: '0.04em',
-                  color: colors.creamDim,
-                }}>
-                  30 minutes. See it work. No pressure.
-                </span>
-              </div>
-            </div>
-            <Reveal>
-              <MediaPlaceholder 
-                type="video" 
-                label="Video"
-                sublabel="Hero demo goes here"
-                style={{
-                  aspectRatio: '16/9',
-                  width: '100%',
-                  boxShadow: '0 30px 70px rgba(0,0,0,.45)',
-                }}
-              />
-            </Reveal>
-          </div>
-        </div>
-      </header>
-
-      {/* PAIN */}
-      <section style={{
-        background: brandwash,
-        color: colors.ink,
-        padding: mobile ? '70px 0' : '92px 0',
-      }}>
-        <div style={wrap}>
-          <Label dark={false}>Does this sound like you?</Label>
-          <h2 style={{
-            fontFamily: fonts.display,
-            fontWeight: 900,
-            fontStretch: '125%',
-            fontVariationSettings: '"wdth" 125',
-            fontSize: mobile ? 'clamp(1.8rem, 6vw, 2.2rem)' : 'clamp(2.2rem, 5vw, 3.4rem)',
-            lineHeight: 0.98,
-            letterSpacing: '-0.005em',
-            margin: '14px 0 40px',
-            maxWidth: 720,
-            color: colors.ink,
-          }}>
-            You run a gym. You&apos;re busy. You&apos;re tired.
-          </h2>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: mobile ? '1fr' : '1fr 1fr',
-            gap: 16,
-          }}>
-            <PainItem delay={0}>You pay for too many apps. None of them talk to each other.</PainItem>
-            <PainItem delay={90}>Your trainers all do their own thing. Nothing looks the same.</PainItem>
-            <PainItem delay={180}>You spend hours chasing new leads and following up.</PainItem>
-            <PainItem delay={270}>People quit your gym, and you didn&apos;t see it coming.</PainItem>
-            <PainItem delay={360}>You want every member to feel special, even in a big class.</PainItem>
-            <PainItem delay={450}>You work all the time. The gym runs you, not the other way around.</PainItem>
-          </div>
-          <p style={{
-            marginTop: 34,
-            fontSize: '1.25rem',
+          maxWidth: 900,
+          margin: '0 auto',
+          textAlign: 'center',
+        }}>
+          <span style={{
+            fontFamily: fonts.mono,
+            fontSize: 12,
             fontWeight: 500,
-            color: colors.ink,
-          }}>
-            If you nodded at even one of these, <span style={{ color: colors.tealDeep, fontWeight: 700 }}>Milton was built for you.</span>
-          </p>
-        </div>
-      </section>
-
-      {/* HOW */}
-      <section style={{
-        padding: mobile ? '70px 0' : '96px 0 90px',
-        background: colors.navy,
-      }}>
-        <div style={wrap}>
-          <Label>Here&apos;s how Milton helps</Label>
-          <h2 style={{
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase',
+            color: colors.teal,
+            marginBottom: 24,
+            display: 'block',
+          }}>For Gym Owners</span>
+          
+          <h1 style={{
             fontFamily: fonts.display,
             fontWeight: 900,
             fontStretch: '125%',
-            fontVariationSettings: '"wdth" 125',
-            fontSize: mobile ? 'clamp(1.9rem, 6vw, 2.3rem)' : 'clamp(2.3rem, 5.2vw, 3.6rem)',
-            lineHeight: 0.98,
-            letterSpacing: '-0.005em',
-            margin: '14px 0 14px',
-            color: colors.cream,
+            fontSize: mobile ? 36 : 64,
+            lineHeight: 1.0,
+            letterSpacing: '-0.02em',
+            color: '#fff',
+            marginBottom: 24,
           }}>
-            One app. You just talk to it.
-          </h2>
+            Run your whole gym<br />
+            <span style={{ color: colors.teal }}>by just talking.</span>
+          </h1>
+          
           <p style={{
-            color: colors.creamDim,
-            maxWidth: 620,
-            marginBottom: 52,
-            fontSize: '1.15rem',
+            fontFamily: fonts.sans,
+            fontSize: mobile ? 17 : 20,
+            lineHeight: 1.6,
+            color: 'rgba(255, 255, 255, 0.7)',
+            maxWidth: 600,
+            margin: '0 auto 40px',
           }}>
-            No new system to learn. No clicking around. You tell Milton what you need, and it gets to work.
+            Milton is the AI assistant that handles scheduling, member communication, and coaching support - so you can focus on what matters.
           </p>
+          
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: mobile ? '1fr' : '1fr 1fr',
-            gap: 22,
+            display: 'flex',
+            flexDirection: mobile ? 'column' : 'row',
+            gap: 16,
+            justifyContent: 'center',
           }}>
-            <Card num="01" title="Just talk to it" mobile={mobile} delay={0}>
-              Say <b style={{ color: colors.cream, fontWeight: 500 }}>&quot;help me prep for today,&quot;</b> and Milton gets you ready in seconds. It pulls up your client, their last workout, and what to focus on. No setup needed.
-            </Card>
-            <Card num="02" title="It learns your way" mobile={mobile} delay={90}>
-              Hand Milton your old workouts and notes. <b style={{ color: colors.cream, fontWeight: 500 }}>It learns how you coach.</b> Now all six trainers coach the same way, with no clunky tools to manage.
-            </Card>
-            <Card num="03" title="It does the busy work" mobile={mobile} delay={180}>
-              Milton writes the workouts, sends the check-ins, and <b style={{ color: colors.cream, fontWeight: 500 }}>remembers every client.</b> You just say &quot;yes,&quot; or change it. Done in minutes, not hours.
-            </Card>
-            <Card num="04" title="It helps you grow" mobile={mobile} delay={270}>
-              Milton makes it easy to run challenges, follow up with leads, and keep members happy. <b style={{ color: colors.cream, fontWeight: 500 }}>More money. Less stress. Less time in the weeds.</b>
-            </Card>
+            <a
+              href="#book-demo"
+              className="cta-primary"
+              style={{
+                fontFamily: fonts.sans,
+                fontSize: 15,
+                fontWeight: 600,
+                color: colors.navy,
+                background: colors.teal,
+                borderRadius: 100,
+                padding: '16px 32px',
+                textDecoration: 'none',
+                display: 'inline-block',
+              }}
+            >
+              Book a Demo
+            </a>
+            <a
+              href="/for-coaches"
+              className="cta-secondary"
+              style={{
+                fontFamily: fonts.sans,
+                fontSize: 15,
+                fontWeight: 600,
+                color: 'rgba(255, 255, 255, 0.7)',
+                background: 'transparent',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+                borderRadius: 100,
+                padding: '16px 32px',
+                textDecoration: 'none',
+                display: 'inline-block',
+              }}
+            >
+              For Coaches
+            </a>
           </div>
         </div>
       </section>
-
-      {/* STILL THE COACH */}
-      <section style={{
-        padding: mobile ? '80px 0' : '108px 0',
-        textAlign: 'center',
-        background: brandwash,
-        color: colors.ink,
-        borderTop: '1px solid rgba(11,22,40,.08)',
-        borderBottom: '1px solid rgba(11,22,40,.08)',
-      }}>
-        <div style={{ ...wrap, maxWidth: 760 }}>
-          <Reveal>
-            <Label dark={false}>You&apos;re still the coach</Label>
-          </Reveal>
-          <Reveal delay={100}>
+      
+      {/* Pain Points Section */}
+      <section
+        ref={painReveal.ref}
+        style={{
+          padding: mobile ? '60px 20px' : '100px 40px',
+          background: 'rgba(0, 0, 0, 0.2)',
+          opacity: painReveal.isVisible ? 1 : 0,
+          transform: painReveal.isVisible ? 'translateY(0)' : 'translateY(30px)',
+          transition: 'opacity 0.8s ease 0.1s, transform 0.8s ease 0.1s',
+        }}
+      >
+        <div style={{
+          maxWidth: 1100,
+          margin: '0 auto',
+        }}>
+          <div style={{ textAlign: 'center', marginBottom: mobile ? 40 : 56 }}>
+            <span style={{
+              fontFamily: fonts.mono,
+              fontSize: 12,
+              fontWeight: 500,
+              letterSpacing: '0.18em',
+              textTransform: 'uppercase',
+              color: colors.teal,
+              marginBottom: 16,
+              display: 'block',
+            }}>The Problem</span>
             <h2 style={{
               fontFamily: fonts.display,
               fontWeight: 900,
               fontStretch: '125%',
-              fontVariationSettings: '"wdth" 125',
-              fontSize: mobile ? 'clamp(1.9rem, 6vw, 2.3rem)' : 'clamp(2.3rem, 5.4vw, 3.6rem)',
-              lineHeight: 0.98,
-              letterSpacing: '-0.005em',
-              margin: '18px auto 22px',
-              maxWidth: 680,
-              color: colors.ink,
+              fontSize: mobile ? 28 : 44,
+              lineHeight: 1.05,
+              color: '#fff',
             }}>
-              Milton helps you. It does <em style={{ fontStyle: 'normal', color: colors.tealDeep }}>not</em> replace you.
+              Sound familiar?
             </h2>
-          </Reveal>
-          <Reveal delay={200}>
-            <p style={{
-              fontSize: '1.22rem',
-              color: colors.inkSoft,
-              maxWidth: 620,
-              margin: '0 auto',
-              lineHeight: 1.6,
-            }}>
-              You are the boss. Milton never sends anything until you say so. We believe the best coaching is still human. <b style={{ color: colors.ink, fontWeight: 500 }}>Milton just hands you back the time to do it.</b>
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* GROUP */}
-      <section style={{
-        padding: mobile ? '70px 0' : '90px 0',
-        color: colors.cream,
-        background: `
-          radial-gradient(720px 400px at 88% 6%, rgba(43,191,170,.15), transparent 60%),
-          ${colors.navy}
-        `,
-      }}>
-        <div style={wrap}>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: mobile ? '1fr' : '1.1fr .9fr',
-            gap: 48,
-            alignItems: 'center',
-          }}>
-            <div>
-              <Label>Big classes, personal feel</Label>
-              <h2 style={{
-                fontFamily: fonts.display,
-                fontWeight: 900,
-                fontStretch: '125%',
-                fontVariationSettings: '"wdth" 125',
-                fontSize: mobile ? 'clamp(1.8rem, 5.5vw, 2.1rem)' : 'clamp(2.1rem, 4.8vw, 3.2rem)',
-                lineHeight: 0.98,
-                letterSpacing: '-0.005em',
-                margin: '14px 0 18px',
-                maxWidth: 520,
-                color: colors.cream,
-              }}>
-                Group fitness with a personal touch.
-              </h2>
-              <p style={{
-                fontSize: '1.18rem',
-                color: colors.creamDim,
-                lineHeight: 1.6,
-              }}>
-                Run a class with 20 people? Milton helps every single one feel like they get one-on-one care. It remembers their goals, their progress, and their wins. Happy members stay longer and bring their friends.
-              </p>
-            </div>
-            <Reveal>
-              <MediaPlaceholder 
-                type="video" 
-                label="Video"
-                sublabel="Group session clip goes here"
-                style={{
-                  aspectRatio: '16/9',
-                  width: '100%',
-                  boxShadow: '0 26px 60px rgba(0,0,0,.4)',
-                }}
-              />
-            </Reveal>
           </div>
-        </div>
-      </section>
-
-      {/* RISK */}
-      <section style={{
-        padding: mobile ? '70px 0' : '88px 0',
-        background: brandwash,
-        color: colors.ink,
-      }}>
-        <div style={wrap}>
-          <Label dark={false} center>Try it with zero risk</Label>
-          <h2 style={{
-            fontFamily: fonts.display,
-            fontWeight: 900,
-            fontStretch: '125%',
-            fontVariationSettings: '"wdth" 125',
-            fontSize: mobile ? 'clamp(1.7rem, 5vw, 2rem)' : 'clamp(2rem, 4.6vw, 3rem)',
-            lineHeight: 0.98,
-            letterSpacing: '-0.005em',
-            margin: '14px 0 44px',
-            textAlign: 'center',
-            color: colors.ink,
-          }}>
-            Easy to start. Easy to <em style={{ fontStyle: 'normal', color: colors.tealDeep }}>stop.</em>
-          </h2>
+          
           <div style={{
             display: 'grid',
             gridTemplateColumns: mobile ? '1fr' : 'repeat(3, 1fr)',
-            gap: 20,
+            gap: mobile ? 16 : 24,
           }}>
-            <RiskCard big="$0" delay={0}>No setup fee. We help you get going.</RiskCard>
-            <RiskCard big="30" delay={100}>Try it 30 days. Don&apos;t love it? Get every dollar back. No questions.</RiskCard>
-            <RiskCard big="∞" delay={200}>No long contract. Cancel any month you want.</RiskCard>
+            <PainCard
+              mobile={mobile}
+              icon="📱"
+              title="Drowning in messages"
+              description="Members texting at all hours. Questions about schedules, billing, class times. You're always on."
+            />
+            <PainCard
+              mobile={mobile}
+              icon="📋"
+              title="Manual everything"
+              description="Scheduling, check-ins, program updates. Hours of admin work that doesn't grow the business."
+            />
+            <PainCard
+              mobile={mobile}
+              icon="💸"
+              title="Leaving money on the table"
+              description="Members who could upgrade, PT sessions going unsold, retention issues you catch too late."
+            />
           </div>
         </div>
       </section>
-
-      {/* FINAL CTA */}
-      <section id="book" style={{
-        padding: mobile ? '90px 0 100px' : '110px 0 120px',
-        textAlign: 'center',
-        background: `
-          radial-gradient(700px 380px at 50% 0%, rgba(43,191,170,.22), transparent 62%),
-          ${colors.navy}
-        `,
-      }}>
-        <div style={wrap}>
-          <Label>Let&apos;s talk</Label>
+      
+      {/* How Milton Helps Section */}
+      <section
+        ref={helpReveal.ref}
+        style={{
+          padding: mobile ? '60px 20px' : '100px 40px',
+          opacity: helpReveal.isVisible ? 1 : 0,
+          transform: helpReveal.isVisible ? 'translateY(0)' : 'translateY(30px)',
+          transition: 'opacity 0.8s ease 0.1s, transform 0.8s ease 0.1s',
+        }}
+      >
+        <div style={{
+          maxWidth: 1100,
+          margin: '0 auto',
+        }}>
+          <div style={{ textAlign: 'center', marginBottom: mobile ? 40 : 56 }}>
+            <span style={{
+              fontFamily: fonts.mono,
+              fontSize: 12,
+              fontWeight: 500,
+              letterSpacing: '0.18em',
+              textTransform: 'uppercase',
+              color: colors.teal,
+              marginBottom: 16,
+              display: 'block',
+            }}>How Milton Helps</span>
+            <h2 style={{
+              fontFamily: fonts.display,
+              fontWeight: 900,
+              fontStretch: '125%',
+              fontSize: mobile ? 28 : 44,
+              lineHeight: 1.05,
+              color: '#fff',
+            }}>
+              Three ways to make more per member
+            </h2>
+          </div>
+          
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: mobile ? '1fr' : 'repeat(3, 1fr)',
+            gap: mobile ? 16 : 24,
+          }}>
+            <HelpCard
+              mobile={mobile}
+              number="01"
+              title="24/7 member support"
+              description="Milton answers questions, handles scheduling, and manages communication - instantly, any time."
+              highlight="→ Save 15+ hours per week"
+            />
+            <HelpCard
+              mobile={mobile}
+              number="02"
+              title="Smart upsell detection"
+              description="Milton identifies members ready for PT, nutrition coaching, or premium plans - and warms them up."
+              highlight="→ 23% increase in upgrades"
+            />
+            <HelpCard
+              mobile={mobile}
+              number="03"
+              title="Retention radar"
+              description="Spot at-risk members before they cancel. Milton flags engagement drops and suggests interventions."
+              highlight="→ 31% reduction in churn"
+            />
+          </div>
+        </div>
+      </section>
+      
+      {/* Still The Coach Section */}
+      <section
+        ref={stillReveal.ref}
+        style={{
+          padding: mobile ? '60px 20px' : '100px 40px',
+          background: colors.cream,
+          opacity: stillReveal.isVisible ? 1 : 0,
+          transform: stillReveal.isVisible ? 'translateY(0)' : 'translateY(30px)',
+          transition: 'opacity 0.8s ease 0.1s, transform 0.8s ease 0.1s',
+        }}
+      >
+        <div style={{
+          maxWidth: 800,
+          margin: '0 auto',
+          textAlign: 'center',
+        }}>
+          <span style={{
+            fontFamily: fonts.mono,
+            fontSize: 12,
+            fontWeight: 500,
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase',
+            color: colors.tealDeep,
+            marginBottom: 16,
+            display: 'block',
+          }}>Your Gym, Your Way</span>
+          
           <h2 style={{
             fontFamily: fonts.display,
             fontWeight: 900,
             fontStretch: '125%',
-            fontVariationSettings: '"wdth" 125',
-            fontSize: mobile ? 'clamp(2.2rem, 7vw, 2.8rem)' : 'clamp(2.8rem, 7vw, 5rem)',
-            lineHeight: 0.98,
-            letterSpacing: '-0.005em',
-            margin: '16px 0 22px',
-            color: colors.cream,
+            fontSize: mobile ? 32 : 48,
+            lineHeight: 1.05,
+            color: colors.ink,
+            marginBottom: 24,
           }}>
-            See Milton work in <em style={{ fontStyle: 'normal', color: colors.mint }}>30 minutes.</em>
+            Still the coach.<br />
+            <span style={{ color: colors.tealDeep }}>Just with superpowers.</span>
           </h2>
+          
           <p style={{
-            fontSize: '1.25rem',
-            color: colors.creamDim,
-            maxWidth: 560,
-            margin: '0 auto 40px',
-            lineHeight: 1.6,
+            fontFamily: fonts.sans,
+            fontSize: mobile ? 16 : 18,
+            lineHeight: 1.7,
+            color: colors.inkSoft,
+            maxWidth: 600,
+            margin: '0 auto 32px',
           }}>
-            Hop on a quick call. We&apos;ll show you exactly how Milton fits your gym, your trainers, and the way you already coach.
+            Milton learns your coaching philosophy, your gym&apos;s voice, your way of doing things. 
+            It&apos;s not a replacement - it&apos;s an amplifier. Every interaction still feels like you, 
+            just available 24/7.
           </p>
-          <Button>Book a free call</Button>
-          <p style={{
-            fontFamily: fonts.mono,
-            fontSize: '0.74rem',
-            letterSpacing: '0.06em',
-            color: colors.creamDim,
-            marginTop: 22,
+          
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 8,
+            background: 'rgba(14, 140, 122, 0.1)',
+            borderRadius: 100,
+            padding: '12px 20px',
           }}>
-            Milton. Better coaching, for more people. Slow and steady.
-          </p>
+            <span style={{ fontSize: 20 }}>✓</span>
+            <span style={{
+              fontFamily: fonts.sans,
+              fontSize: 14,
+              fontWeight: 600,
+              color: colors.tealDeep,
+            }}>Milton learns your voice in 48 hours</span>
+          </div>
         </div>
       </section>
-
-      <SharedFooter />
+      
+      {/* Group Fitness Section */}
+      <section
+        ref={groupReveal.ref}
+        style={{
+          padding: mobile ? '60px 20px' : '100px 40px',
+          opacity: groupReveal.isVisible ? 1 : 0,
+          transform: groupReveal.isVisible ? 'translateY(0)' : 'translateY(30px)',
+          transition: 'opacity 0.8s ease 0.1s, transform 0.8s ease 0.1s',
+        }}
+      >
+        <div style={{
+          maxWidth: 1000,
+          margin: '0 auto',
+          display: 'flex',
+          flexDirection: mobile ? 'column' : 'row',
+          alignItems: 'center',
+          gap: mobile ? 40 : 80,
+        }}>
+          <div style={{ flex: 1 }}>
+            <span style={{
+              fontFamily: fonts.mono,
+              fontSize: 12,
+              fontWeight: 500,
+              letterSpacing: '0.18em',
+              textTransform: 'uppercase',
+              color: colors.teal,
+              marginBottom: 16,
+              display: 'block',
+            }}>Perfect For</span>
+            
+            <h2 style={{
+              fontFamily: fonts.display,
+              fontWeight: 900,
+              fontStretch: '125%',
+              fontSize: mobile ? 28 : 40,
+              lineHeight: 1.05,
+              color: '#fff',
+              marginBottom: 20,
+            }}>
+              Group fitness facilities
+            </h2>
+            
+            <p style={{
+              fontFamily: fonts.sans,
+              fontSize: mobile ? 16 : 17,
+              lineHeight: 1.7,
+              color: 'rgba(255, 255, 255, 0.7)',
+              marginBottom: 24,
+            }}>
+              CrossFit boxes, boutique studios, F45s, OrangeTheory locations - 
+              any gym where community matters and personal touch drives retention.
+            </p>
+            
+            <ul style={{
+              listStyle: 'none',
+              padding: 0,
+              margin: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 12,
+            }}>
+              {['Handles class bookings and waitlists', 'Sends personalized workout recaps', 'Manages billing questions automatically', 'Coordinates coach schedules'].map((item, i) => (
+                <li key={i} style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 15,
+                  color: 'rgba(255, 255, 255, 0.8)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 12,
+                }}>
+                  <span style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: '50%',
+                    background: 'rgba(43, 191, 170, 0.2)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: 12,
+                    color: colors.teal,
+                  }}>✓</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          <div style={{
+            flex: 1,
+            background: 'rgba(255, 255, 255, 0.03)',
+            border: '1px solid rgba(255, 255, 255, 0.08)',
+            borderRadius: 24,
+            padding: mobile ? 24 : 32,
+          }}>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 12,
+              marginBottom: 20,
+            }}>
+              <div style={{
+                width: 40,
+                height: 40,
+                borderRadius: '50%',
+                background: `linear-gradient(135deg, ${colors.teal}, ${colors.mint})`,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+                <span style={{
+                  fontFamily: fonts.display,
+                  fontWeight: 900,
+                  fontSize: 18,
+                  color: colors.navy,
+                }}>M</span>
+              </div>
+              <div>
+                <p style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 14,
+                  fontWeight: 600,
+                  color: '#fff',
+                }}>Milton</p>
+                <p style={{
+                  fontFamily: fonts.sans,
+                  fontSize: 12,
+                  color: 'rgba(255, 255, 255, 0.5)',
+                }}>Just now</p>
+              </div>
+            </div>
+            <div style={{
+              background: 'rgba(43, 191, 170, 0.1)',
+              borderRadius: 16,
+              borderTopLeftRadius: 4,
+              padding: '16px 20px',
+            }}>
+              <p style={{
+                fontFamily: fonts.sans,
+                fontSize: 15,
+                lineHeight: 1.6,
+                color: 'rgba(255, 255, 255, 0.9)',
+              }}>
+                &quot;Hey Sarah! Great work in today&apos;s 6am class - you hit a new PR on your clean! 
+                I noticed you&apos;ve been crushing it lately. Want me to book you into Coach Mike&apos;s 
+                Oly lifting clinic next Saturday? Only 2 spots left.&quot;
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Risk Free Section */}
+      <section
+        ref={riskReveal.ref}
+        style={{
+          padding: mobile ? '60px 20px' : '100px 40px',
+          background: 'rgba(0, 0, 0, 0.2)',
+          opacity: riskReveal.isVisible ? 1 : 0,
+          transform: riskReveal.isVisible ? 'translateY(0)' : 'translateY(30px)',
+          transition: 'opacity 0.8s ease 0.1s, transform 0.8s ease 0.1s',
+        }}
+      >
+        <div style={{
+          maxWidth: 1100,
+          margin: '0 auto',
+        }}>
+          <div style={{ textAlign: 'center', marginBottom: mobile ? 40 : 56 }}>
+            <span style={{
+              fontFamily: fonts.mono,
+              fontSize: 12,
+              fontWeight: 500,
+              letterSpacing: '0.18em',
+              textTransform: 'uppercase',
+              color: colors.teal,
+              marginBottom: 16,
+              display: 'block',
+            }}>Risk-Free Trial</span>
+            <h2 style={{
+              fontFamily: fonts.display,
+              fontWeight: 900,
+              fontStretch: '125%',
+              fontSize: mobile ? 28 : 44,
+              lineHeight: 1.05,
+              color: '#fff',
+            }}>
+              Try Milton free for 30 days
+            </h2>
+          </div>
+          
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: mobile ? '1fr' : 'repeat(3, 1fr)',
+            gap: mobile ? 16 : 24,
+          }}>
+            <RiskCard
+              mobile={mobile}
+              icon="🚀"
+              title="Live in 48 hours"
+              description="We'll have Milton trained on your gym's voice and ready to go in two days."
+            />
+            <RiskCard
+              mobile={mobile}
+              icon="💳"
+              title="No credit card required"
+              description="Start your trial without any payment info. No surprise charges."
+            />
+            <RiskCard
+              mobile={mobile}
+              icon="🤝"
+              title="White-glove setup"
+              description="Our team handles everything. You just tell us how you coach."
+            />
+          </div>
+        </div>
+      </section>
+      
+      {/* Final CTA Section */}
+      <section
+        id="book-demo"
+        ref={ctaReveal.ref}
+        style={{
+          padding: mobile ? '80px 20px' : '120px 40px',
+          opacity: ctaReveal.isVisible ? 1 : 0,
+          transform: ctaReveal.isVisible ? 'translateY(0)' : 'translateY(30px)',
+          transition: 'opacity 0.8s ease 0.1s, transform 0.8s ease 0.1s',
+        }}
+      >
+        <div style={{
+          maxWidth: 700,
+          margin: '0 auto',
+          textAlign: 'center',
+        }}>
+          <h2 style={{
+            fontFamily: fonts.display,
+            fontWeight: 900,
+            fontStretch: '125%',
+            fontSize: mobile ? 32 : 48,
+            lineHeight: 1.05,
+            color: '#fff',
+            marginBottom: 20,
+          }}>
+            Ready to scale your gym<br />
+            <span style={{ color: colors.teal }}>without the headcount?</span>
+          </h2>
+          
+          <p style={{
+            fontFamily: fonts.sans,
+            fontSize: mobile ? 16 : 18,
+            lineHeight: 1.6,
+            color: 'rgba(255, 255, 255, 0.7)',
+            maxWidth: 500,
+            margin: '0 auto 40px',
+          }}>
+            Book a 15-minute call. We&apos;ll show you exactly how Milton 
+            can work for your gym - no pressure, no pitch deck.
+          </p>
+          
+          {/* Calendly Embed */}
+          <div
+            className="calendly-inline-widget"
+            data-url="https://calendly.com/migueljohns/quick-intro?hide_gdpr_banner=1&primary_color=2bbfaa"
+            style={{
+              minWidth: 320,
+              height: 700,
+              borderRadius: 16,
+              overflow: 'hidden',
+            }}
+          />
+        </div>
+      </section>
+      
+      <Footer mobile={mobile} />
     </div>
   )
 }
