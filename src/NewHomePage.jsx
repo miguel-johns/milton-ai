@@ -390,12 +390,7 @@ export default function NewHomePage() {
             gap: 22,
           }}>
             <ChatConversationCard />
-            <FeatureCard
-              num="02"
-              title="It learns your way"
-              description={<>Give Milton your style and your programs. <b style={{ color: colors.cream, fontWeight: 500 }}>It coaches the way you do, every time.</b></>}
-              delay={90}
-            />
+            <LearnsYourWayCard delay={90} />
             <FeatureCard
               num="03"
               title="It grows your business"
@@ -805,6 +800,162 @@ function ChatConversationCard({ delay = 0 }) {
 
           <p style={{ color: colors.creamDim, fontSize: '1.06rem' }}>
             Say what you need. Milton gets it done. <b style={{ color: colors.cream, fontWeight: 500 }}>No setup. No learning curve.</b>
+          </p>
+        </div>
+      </div>
+    </Reveal>
+  )
+}
+
+// Learns your way card for card 02
+function LearnsYourWayCard({ delay = 0 }) {
+  const [hovered, setHovered] = useState(false)
+  
+  const nodes = [
+    { icon: <svg viewBox="0 0 24 24" fill="none" stroke="#2BBFAA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>, label: 'Your programs' },
+    { icon: <svg viewBox="0 0 24 24" fill="none" stroke="#2BBFAA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>, label: 'Your messages' },
+    { icon: <svg viewBox="0 0 24 24" fill="none" stroke="#2BBFAA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>, label: 'Your notes' },
+  ]
+
+  return (
+    <Reveal delay={delay}>
+      <style>{`
+        @keyframes wire-flow { to { stroke-dashoffset: -160; } }
+        @keyframes glyph-spin { to { transform: rotate(360deg); } }
+      `}</style>
+      <div
+        style={{
+          background: `
+            radial-gradient(120% 90% at 70% 12%, rgba(43,191,170,.17) 0%, transparent 48%),
+            radial-gradient(90% 80% at 4% 100%, rgba(154,241,152,.10) 0%, transparent 50%),
+            linear-gradient(160deg, #0C1A2E 0%, #0B1628 60%, #091221 100%)
+          `,
+          border: `1px solid ${hovered ? colors.teal : 'rgba(43,191,170,.22)'}`,
+          borderRadius: 20,
+          padding: '20px',
+          transition: 'transform 0.2s ease, border-color 0.2s ease',
+          transform: hovered ? 'translateY(-5px)' : 'none',
+          overflow: 'hidden',
+          position: 'relative',
+        }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+      >
+        {/* Grid texture overlay */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: `
+            linear-gradient(rgba(43,191,170,.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(43,191,170,.05) 1px, transparent 1px)
+          `,
+          backgroundSize: '32px 32px',
+          maskImage: 'radial-gradient(110% 110% at 70% 10%, #000 0%, transparent 75%)',
+          WebkitMaskImage: 'radial-gradient(110% 110% at 70% 10%, #000 0%, transparent 75%)',
+          opacity: 0.6,
+          pointerEvents: 'none',
+        }} />
+
+        {/* Visual content area */}
+        <div style={{ position: 'relative', height: 200, marginBottom: 16 }}>
+          {/* Animated wires SVG */}
+          <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', zIndex: 1 }} viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
+            <path d="M100 40 C 160 40, 170 100, 230 100" fill="none" stroke="rgba(43,191,170,.22)" strokeWidth="2" strokeDasharray="7 9" style={{ animation: 'wire-flow 2.4s linear infinite' }}/>
+            <path d="M100 100 C 160 100, 180 100, 230 100" fill="none" stroke="rgba(43,191,170,.22)" strokeWidth="2" strokeDasharray="7 9" style={{ animation: 'wire-flow 2.4s linear infinite' }}/>
+            <path d="M100 160 C 160 160, 170 100, 230 100" fill="none" stroke="rgba(43,191,170,.22)" strokeWidth="2" strokeDasharray="7 9" style={{ animation: 'wire-flow 2.4s linear infinite' }}/>
+          </svg>
+
+          {/* Input nodes */}
+          <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', zIndex: 2, padding: '10px 0' }}>
+            {nodes.map((node, i) => (
+              <div key={i} style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+                background: 'rgba(15,30,51,.78)',
+                border: '1px solid rgba(43,191,170,.22)',
+                borderRadius: 10,
+                padding: '8px 12px',
+                boxShadow: '0 8px 20px rgba(0,0,0,.32)',
+                backdropFilter: 'blur(6px)',
+              }}>
+                <div style={{
+                  width: 28,
+                  height: 28,
+                  borderRadius: 7,
+                  background: 'rgba(43,191,170,.12)',
+                  border: '1px solid rgba(43,191,170,.22)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}>
+                  <div style={{ width: 14, height: 14 }}>{node.icon}</div>
+                </div>
+                <span style={{ color: colors.cream, fontSize: '0.72rem', fontWeight: 600 }}>{node.label}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Fingerprint glyph */}
+          <div style={{ position: 'absolute', right: 0, top: '50%', transform: 'translateY(-50%)', zIndex: 2 }}>
+            <svg width="100" height="100" viewBox="0 0 328 328">
+              <defs>
+                <radialGradient id="bloom2" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="rgba(43,191,170,.28)"/>
+                  <stop offset="100%" stopColor="rgba(43,191,170,0)"/>
+                </radialGradient>
+              </defs>
+              <circle cx="164" cy="164" r="150" fill="url(#bloom2)"/>
+              <circle cx="164" cy="164" r="138" fill="rgba(11,22,40,.55)" stroke="rgba(43,191,170,.18)" strokeWidth="1"/>
+              <circle cx="164" cy="164" r="138" fill="none" stroke="#2BBFAA" strokeWidth="2" strokeDasharray="3 11" opacity=".75" style={{ animation: 'glyph-spin 14s linear infinite', transformOrigin: '164px 164px' }}/>
+              
+              {/* Fingerprint ridges */}
+              <g transform="translate(164,150)" fill="none" strokeWidth="3.4" strokeLinecap="round" opacity=".95">
+                <path d="M -10 21 A 20 24 0 1 1 10 21" stroke="#2BBFAA"/>
+                <path d="M -15 31 A 30 36 0 1 1 15 31" stroke="#9AF198"/>
+                <path d="M -20 42 A 40 48 0 1 1 20 42" stroke="#2BBFAA"/>
+                <path d="M -25 50 A 50 58 0 1 1 25 50" stroke="#9AF198"/>
+                <path d="M -6 7 C -9 -7, 9 -7, 6 7" stroke="#9AF198"/>
+              </g>
+
+              {/* Learned check badge */}
+              <circle cx="246" cy="246" r="26" fill="#9AF198" stroke="#0B1628" strokeWidth="4"/>
+              <path d="M236 246 l7 7 12 -14" fill="none" stroke="#0B1628" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            <div style={{
+              fontFamily: fonts.mono,
+              fontSize: '0.58rem',
+              letterSpacing: '0.25em',
+              color: colors.mint,
+              textTransform: 'uppercase',
+              textAlign: 'center',
+              marginTop: 4,
+            }}>Learned</div>
+          </div>
+        </div>
+
+        {/* Card label */}
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <span style={{
+            fontFamily: fonts.mono,
+            fontSize: '0.75rem',
+            letterSpacing: '0.18em',
+            color: colors.teal,
+          }}>02</span>
+          
+          <h3 style={{
+            fontFamily: fonts.display,
+            fontWeight: 800,
+            fontStretch: '125%',
+            fontSize: '1.55rem',
+            margin: '12px 0 12px',
+            lineHeight: 1.04,
+            letterSpacing: '-0.005em',
+            color: colors.cream,
+          }}>It learns your way</h3>
+
+          <p style={{ color: colors.creamDim, fontSize: '1.06rem' }}>
+            Milton studies your history. <b style={{ color: colors.cream, fontWeight: 500 }}>Programs, messages, and notes become its playbook.</b>
           </p>
         </div>
       </div>
