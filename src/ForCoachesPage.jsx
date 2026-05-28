@@ -222,7 +222,7 @@ export default function ForCoachesPage() {
                 Milton is one simple app for coaches. You just talk to it. It helps you win new clients, charge more, and make more money. <b style={{ color: colors.cream, fontWeight: 500 }}>Brand new or 20 years in, Milton works for you.</b>
               </p>
               <div style={{ display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap' }}>
-                <Button href="#start">Try 7 Days Free</Button>
+                <Button href="https://coach.getmilton.com/auth">Try 7 Days Free</Button>
                 <span style={{ fontFamily: fonts.mono, fontSize: '0.74rem', letterSpacing: '0.04em', color: colors.creamDim }}>No card required.</span>
               </div>
             </div>
@@ -441,7 +441,7 @@ export default function ForCoachesPage() {
             Win your next client <span style={{ color: colors.mint }}>this week.</span>
           </h2>
           <p style={{ fontSize: '1.25rem', color: colors.creamDim, maxWidth: 560, margin: '0 auto 38px' }}>Start free today. See how Milton helps you get more clients, charge more, and get your time back.</p>
-          <Button href="#">Try 7 Days Free</Button>
+          <Button href="https://coach.getmilton.com/auth">Try 7 Days Free</Button>
           <p style={{ fontFamily: fonts.mono, fontSize: '0.78rem', letterSpacing: '0.06em', color: colors.creamDim, marginTop: 20 }}>No card required.</p>
         </div>
       </section>
