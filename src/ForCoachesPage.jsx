@@ -301,16 +301,10 @@ export default function ForCoachesPage() {
           </h2>
           <p style={{ color: colors.creamDim, maxWidth: 620, marginBottom: 52, fontSize: '1.15rem' }}>You just talk to Milton. It does the heavy lifting, so you can focus on coaching.</p>
           <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : '1fr 1fr', gap: 22 }}>
-            {[
-              { num: '01', title: 'Look like a pro', desc: 'Clean programs, check-ins, and reports, every time.', bold: 'New clients trust you right away.' },
-              { num: '02', title: 'Charge more', desc: 'When you look sharp and get results,', bold: 'you can raise your prices.', after: ' Milton helps you back it up.' },
-              { num: '03', title: 'Get referrals', desc: 'Happy clients bring friends. Milton keeps every client feeling cared for,', bold: 'so they spread the word.' },
-              { num: '04', title: 'New ways to earn', desc: 'Run challenges and group programs.', bold: 'Make money without trading more hours.', after: ' Your time stays yours.' },
-            ].map((card, i) => (
-              <Reveal key={card.num} delay={i * 90}>
-                <HowCard {...card} />
-              </Reveal>
-            ))}
+            <Reveal><LookLikeProCard /></Reveal>
+            <Reveal delay={90}><ChargeMoreCard /></Reveal>
+            <Reveal delay={180}><GetReferralsCard /></Reveal>
+            <Reveal delay={270}><NewWaysToEarnCard /></Reveal>
           </div>
         </div>
       </section>
@@ -455,33 +449,367 @@ export default function ForCoachesPage() {
 function HowCard({ num, title, desc, bold, after = '' }) {
   const [hovered, setHovered] = useState(false)
   return (
+  <div
+  style={{
+  background: colors.navySoft,
+  border: `1px solid ${hovered ? colors.teal : 'rgba(43,191,170,.22)'}`,
+  borderRadius: 20,
+  padding: '34px 32px',
+  transition: 'transform .2s ease, border-color .2s ease',
+  transform: hovered ? 'translateY(-5px)' : 'none',
+  }}
+  onMouseEnter={() => setHovered(true)}
+  onMouseLeave={() => setHovered(false)}
+  >
+  <ImagePlaceholder />
+  <span style={{ fontFamily: fonts.mono, fontSize: '0.75rem', letterSpacing: '0.18em', color: colors.teal }}>{num}</span>
+  <h3 style={{
+  fontFamily: fonts.display,
+  fontWeight: 800,
+  fontStretch: '125%',
+  fontSize: '1.7rem',
+  margin: '12px 0',
+  lineHeight: 1.02,
+  letterSpacing: '-0.005em',
+  color: colors.cream,
+  }}>{title}</h3>
+  <p style={{ color: colors.creamDim, fontSize: '1.08rem' }}>
+  {desc} <b style={{ color: colors.cream, fontWeight: 500 }}>{bold}</b>{after}
+  </p>
+  </div>
+  )
+}
+
+// Card 01 - Look like a pro visual
+function LookLikeProCard() {
+  const [hovered, setHovered] = useState(false)
+  return (
     <div
       style={{
-        background: colors.navySoft,
+        background: `radial-gradient(120% 90% at 78% 8%, rgba(43,191,170,.16) 0%, transparent 46%), ${colors.navySoft}`,
         border: `1px solid ${hovered ? colors.teal : 'rgba(43,191,170,.22)'}`,
         borderRadius: 20,
-        padding: '34px 32px',
+        padding: '24px 24px 28px',
         transition: 'transform .2s ease, border-color .2s ease',
         transform: hovered ? 'translateY(-5px)' : 'none',
+        position: 'relative',
+        overflow: 'hidden',
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <ImagePlaceholder />
-      <span style={{ fontFamily: fonts.mono, fontSize: '0.75rem', letterSpacing: '0.18em', color: colors.teal }}>{num}</span>
-      <h3 style={{
-        fontFamily: fonts.display,
-        fontWeight: 800,
-        fontStretch: '125%',
-        fontSize: '1.7rem',
-        margin: '12px 0',
-        lineHeight: 1.02,
-        letterSpacing: '-0.005em',
-        color: colors.cream,
-      }}>{title}</h3>
-      <p style={{ color: colors.creamDim, fontSize: '1.08rem' }}>
-        {desc} <b style={{ color: colors.cream, fontWeight: 500 }}>{bold}</b>{after}
-      </p>
+      {/* Grid texture */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        backgroundImage: `linear-gradient(rgba(43,191,170,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(43,191,170,.05) 1px, transparent 1px)`,
+        backgroundSize: '32px 32px',
+        maskImage: 'radial-gradient(100% 100% at 70% 0%, #000 0%, transparent 75%)',
+        WebkitMaskImage: 'radial-gradient(100% 100% at 70% 0%, #000 0%, transparent 75%)',
+        opacity: 0.6, pointerEvents: 'none',
+      }} />
+
+      {/* Professional program preview */}
+      <div style={{ position: 'relative', zIndex: 1, marginBottom: 20 }}>
+        <div style={{
+          background: 'rgba(15,30,51,.78)',
+          border: '1px solid rgba(43,191,170,.22)',
+          borderRadius: 14,
+          padding: '16px',
+          boxShadow: '0 12px 32px rgba(0,0,0,.3)',
+        }}>
+          {/* Header */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 14 }}>
+            <div style={{ width: 36, height: 36, borderRadius: 10, background: 'linear-gradient(135deg, #2BBFAA, #9AF198)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B1628" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
+            </div>
+            <div>
+              <div style={{ fontFamily: fonts.display, fontWeight: 700, fontSize: '0.9rem', color: colors.cream }}>6-Week Strength</div>
+              <div style={{ fontFamily: fonts.mono, fontSize: '0.6rem', letterSpacing: '0.1em', color: colors.creamDim }}>CUSTOM PROGRAM</div>
+            </div>
+            <div style={{ marginLeft: 'auto', background: 'rgba(154,241,152,.15)', border: '1px solid rgba(154,241,152,.3)', borderRadius: 6, padding: '4px 8px' }}>
+              <span style={{ fontFamily: fonts.mono, fontSize: '0.58rem', color: colors.mint, fontWeight: 600 }}>SENT</span>
+            </div>
+          </div>
+          
+          {/* Mini workout preview */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+            {['Week 1: Foundation', 'Week 2: Build', 'Week 3: Push'].map((week, i) => (
+              <div key={i} style={{
+                display: 'flex', alignItems: 'center', gap: 8,
+                background: 'rgba(43,191,170,.08)',
+                borderRadius: 8,
+                padding: '8px 10px',
+              }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={colors.teal} strokeWidth="2"><path d="M20 6 9 17l-5-5"/></svg>
+                <span style={{ fontSize: '0.72rem', color: colors.cream }}>{week}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Card label */}
+      <span style={{ fontFamily: fonts.mono, fontSize: '0.75rem', letterSpacing: '0.18em', color: colors.teal }}>01</span>
+      <h3 style={{ fontFamily: fonts.display, fontWeight: 800, fontStretch: '125%', fontSize: '1.7rem', margin: '12px 0', lineHeight: 1.02, letterSpacing: '-0.005em', color: colors.cream }}>Look like a pro</h3>
+      <p style={{ color: colors.creamDim, fontSize: '1.08rem' }}>Clean programs, check-ins, and reports, every time. <b style={{ color: colors.cream, fontWeight: 500 }}>New clients trust you right away.</b></p>
+    </div>
+  )
+}
+
+// Card 02 - Charge more visual
+function ChargeMoreCard() {
+  const [hovered, setHovered] = useState(false)
+  return (
+    <div
+      style={{
+        background: `radial-gradient(120% 90% at 20% 12%, rgba(154,241,152,.14) 0%, transparent 48%), ${colors.navySoft}`,
+        border: `1px solid ${hovered ? colors.teal : 'rgba(43,191,170,.22)'}`,
+        borderRadius: 20,
+        padding: '24px 24px 28px',
+        transition: 'transform .2s ease, border-color .2s ease',
+        transform: hovered ? 'translateY(-5px)' : 'none',
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Grid texture */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        backgroundImage: `linear-gradient(rgba(43,191,170,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(43,191,170,.05) 1px, transparent 1px)`,
+        backgroundSize: '32px 32px',
+        maskImage: 'radial-gradient(100% 100% at 20% 0%, #000 0%, transparent 75%)',
+        WebkitMaskImage: 'radial-gradient(100% 100% at 20% 0%, #000 0%, transparent 75%)',
+        opacity: 0.6, pointerEvents: 'none',
+      }} />
+
+      {/* Pricing visual */}
+      <div style={{ position: 'relative', zIndex: 1, marginBottom: 20 }}>
+        <div style={{
+          background: 'rgba(15,30,51,.78)',
+          border: '1px solid rgba(43,191,170,.22)',
+          borderRadius: 14,
+          padding: '16px',
+          boxShadow: '0 12px 32px rgba(0,0,0,.3)',
+        }}>
+          <div style={{ textAlign: 'center', marginBottom: 12 }}>
+            <div style={{ fontFamily: fonts.mono, fontSize: '0.58rem', letterSpacing: '0.2em', color: colors.creamDim, marginBottom: 6 }}>YOUR RATE</div>
+            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: 4 }}>
+              <span style={{ fontFamily: fonts.display, fontSize: '2.4rem', fontWeight: 900, color: colors.mint }}>$150</span>
+              <span style={{ fontFamily: fonts.mono, fontSize: '0.7rem', color: colors.creamDim }}>/session</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, marginTop: 8 }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9AF198" strokeWidth="2.5"><path d="m18 15-6-6-6 6"/></svg>
+              <span style={{ fontFamily: fonts.mono, fontSize: '0.68rem', color: colors.mint }}>+25% from last year</span>
+            </div>
+          </div>
+          
+          {/* Value indicators */}
+          <div style={{ display: 'flex', gap: 8 }}>
+            {[
+              { label: 'Results', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg> },
+              { label: 'Service', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> },
+            ].map((item, i) => (
+              <div key={i} style={{ flex: 1, background: 'rgba(43,191,170,.08)', borderRadius: 8, padding: '10px', textAlign: 'center' }}>
+                <div style={{ width: 20, height: 20, color: colors.teal, margin: '0 auto 4px' }}>{item.icon}</div>
+                <div style={{ fontFamily: fonts.mono, fontSize: '0.58rem', letterSpacing: '0.1em', color: colors.creamDim }}>{item.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Card label */}
+      <span style={{ fontFamily: fonts.mono, fontSize: '0.75rem', letterSpacing: '0.18em', color: colors.teal }}>02</span>
+      <h3 style={{ fontFamily: fonts.display, fontWeight: 800, fontStretch: '125%', fontSize: '1.7rem', margin: '12px 0', lineHeight: 1.02, letterSpacing: '-0.005em', color: colors.cream }}>Charge more</h3>
+      <p style={{ color: colors.creamDim, fontSize: '1.08rem' }}>When you look sharp and get results, <b style={{ color: colors.cream, fontWeight: 500 }}>you can raise your prices.</b> Milton helps you back it up.</p>
+    </div>
+  )
+}
+
+// Card 03 - Get referrals visual
+function GetReferralsCard() {
+  const [hovered, setHovered] = useState(false)
+  return (
+    <div
+      style={{
+        background: `radial-gradient(120% 90% at 75% 10%, rgba(43,191,170,.16) 0%, transparent 46%), ${colors.navySoft}`,
+        border: `1px solid ${hovered ? colors.teal : 'rgba(43,191,170,.22)'}`,
+        borderRadius: 20,
+        padding: '24px 24px 28px',
+        transition: 'transform .2s ease, border-color .2s ease',
+        transform: hovered ? 'translateY(-5px)' : 'none',
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Grid texture */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        backgroundImage: `linear-gradient(rgba(43,191,170,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(43,191,170,.05) 1px, transparent 1px)`,
+        backgroundSize: '32px 32px',
+        maskImage: 'radial-gradient(100% 100% at 75% 0%, #000 0%, transparent 75%)',
+        WebkitMaskImage: 'radial-gradient(100% 100% at 75% 0%, #000 0%, transparent 75%)',
+        opacity: 0.6, pointerEvents: 'none',
+      }} />
+
+      {/* Referral network visual */}
+      <div style={{ position: 'relative', zIndex: 1, marginBottom: 20 }}>
+        <div style={{
+          background: 'rgba(15,30,51,.78)',
+          border: '1px solid rgba(43,191,170,.22)',
+          borderRadius: 14,
+          padding: '20px 16px',
+          boxShadow: '0 12px 32px rgba(0,0,0,.3)',
+        }}>
+          {/* Network visualization */}
+          <div style={{ position: 'relative', height: 100 }}>
+            {/* Center node - you */}
+            <div style={{
+              position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)',
+              width: 44, height: 44, borderRadius: '50%',
+              background: 'linear-gradient(135deg, #2BBFAA, #9AF198)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              boxShadow: '0 8px 24px rgba(43,191,170,.4)',
+              zIndex: 3,
+            }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B1628" strokeWidth="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            
+            {/* Connected clients */}
+            {[
+              { x: '15%', y: '30%' },
+              { x: '85%', y: '30%' },
+              { x: '25%', y: '80%' },
+              { x: '75%', y: '80%' },
+            ].map((pos, i) => (
+              <div key={i} style={{
+                position: 'absolute', left: pos.x, top: pos.y, transform: 'translate(-50%, -50%)',
+                width: 28, height: 28, borderRadius: '50%',
+                background: 'rgba(43,191,170,.15)',
+                border: '2px solid rgba(43,191,170,.4)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                zIndex: 2,
+              }}>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke={colors.teal} strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+            ))}
+            
+            {/* New referral with glow */}
+            <div style={{
+              position: 'absolute', right: '5%', top: '50%', transform: 'translateY(-50%)',
+              width: 32, height: 32, borderRadius: '50%',
+              background: 'rgba(154,241,152,.2)',
+              border: '2px dashed rgba(154,241,152,.6)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              animation: 'pulse 2s ease-in-out infinite',
+              zIndex: 2,
+            }}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={colors.mint} strokeWidth="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            </div>
+          </div>
+          
+          {/* Referral message */}
+          <div style={{
+            marginTop: 12,
+            background: 'rgba(154,241,152,.1)',
+            border: '1px solid rgba(154,241,152,.25)',
+            borderRadius: 10,
+            padding: '10px 12px',
+            display: 'flex', alignItems: 'center', gap: 10,
+          }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={colors.mint} strokeWidth="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <span style={{ fontSize: '0.72rem', color: colors.cream }}>&quot;My friend wants to train with you!&quot;</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Card label */}
+      <span style={{ fontFamily: fonts.mono, fontSize: '0.75rem', letterSpacing: '0.18em', color: colors.teal }}>03</span>
+      <h3 style={{ fontFamily: fonts.display, fontWeight: 800, fontStretch: '125%', fontSize: '1.7rem', margin: '12px 0', lineHeight: 1.02, letterSpacing: '-0.005em', color: colors.cream }}>Get referrals</h3>
+      <p style={{ color: colors.creamDim, fontSize: '1.08rem' }}>Happy clients bring friends. Milton keeps every client feeling cared for, <b style={{ color: colors.cream, fontWeight: 500 }}>so they spread the word.</b></p>
+    </div>
+  )
+}
+
+// Card 04 - New ways to earn visual
+function NewWaysToEarnCard() {
+  const [hovered, setHovered] = useState(false)
+  return (
+    <div
+      style={{
+        background: `radial-gradient(120% 90% at 30% 8%, rgba(154,241,152,.15) 0%, transparent 46%), ${colors.navySoft}`,
+        border: `1px solid ${hovered ? colors.teal : 'rgba(43,191,170,.22)'}`,
+        borderRadius: 20,
+        padding: '24px 24px 28px',
+        transition: 'transform .2s ease, border-color .2s ease',
+        transform: hovered ? 'translateY(-5px)' : 'none',
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Grid texture */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        backgroundImage: `linear-gradient(rgba(43,191,170,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(43,191,170,.05) 1px, transparent 1px)`,
+        backgroundSize: '32px 32px',
+        maskImage: 'radial-gradient(100% 100% at 30% 0%, #000 0%, transparent 75%)',
+        WebkitMaskImage: 'radial-gradient(100% 100% at 30% 0%, #000 0%, transparent 75%)',
+        opacity: 0.6, pointerEvents: 'none',
+      }} />
+
+      {/* Revenue streams visual */}
+      <div style={{ position: 'relative', zIndex: 1, marginBottom: 20 }}>
+        <div style={{
+          background: 'rgba(15,30,51,.78)',
+          border: '1px solid rgba(43,191,170,.22)',
+          borderRadius: 14,
+          padding: '16px',
+          boxShadow: '0 12px 32px rgba(0,0,0,.3)',
+        }}>
+          {/* Revenue cards */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            {[
+              { title: '6-Week Challenge', amount: '$1,200', clients: '8 clients', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>, accent: true },
+              { title: 'Group Program', amount: '$800', clients: '12 clients', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> },
+              { title: 'Nutrition Add-on', amount: '$400', clients: '10 clients', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><path d="M6 1v3"/><path d="M10 1v3"/><path d="M14 1v3"/></svg> },
+            ].map((item, i) => (
+              <div key={i} style={{
+                display: 'flex', alignItems: 'center', gap: 10,
+                background: item.accent ? 'rgba(154,241,152,.12)' : 'rgba(43,191,170,.08)',
+                border: `1px solid ${item.accent ? 'rgba(154,241,152,.25)' : 'rgba(43,191,170,.15)'}`,
+                borderRadius: 10,
+                padding: '10px 12px',
+              }}>
+                <div style={{ width: 28, height: 28, borderRadius: 8, background: item.accent ? 'rgba(154,241,152,.2)' : 'rgba(43,191,170,.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div style={{ width: 14, height: 14, color: item.accent ? colors.mint : colors.teal }}>{item.icon}</div>
+                </div>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: '0.72rem', fontWeight: 600, color: colors.cream }}>{item.title}</div>
+                  <div style={{ fontFamily: fonts.mono, fontSize: '0.58rem', color: colors.creamDim }}>{item.clients}</div>
+                </div>
+                <div style={{ fontFamily: fonts.display, fontSize: '1rem', fontWeight: 800, color: item.accent ? colors.mint : colors.cream }}>{item.amount}</div>
+              </div>
+            ))}
+          </div>
+          
+          {/* Total */}
+          <div style={{ marginTop: 10, paddingTop: 10, borderTop: '1px solid rgba(43,191,170,.15)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span style={{ fontFamily: fonts.mono, fontSize: '0.6rem', letterSpacing: '0.15em', color: colors.creamDim }}>THIS MONTH</span>
+            <span style={{ fontFamily: fonts.display, fontSize: '1.2rem', fontWeight: 900, color: colors.mint }}>$2,400</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Card label */}
+      <span style={{ fontFamily: fonts.mono, fontSize: '0.75rem', letterSpacing: '0.18em', color: colors.teal }}>04</span>
+      <h3 style={{ fontFamily: fonts.display, fontWeight: 800, fontStretch: '125%', fontSize: '1.7rem', margin: '12px 0', lineHeight: 1.02, letterSpacing: '-0.005em', color: colors.cream }}>New ways to earn</h3>
+      <p style={{ color: colors.creamDim, fontSize: '1.08rem' }}>Run challenges and group programs. <b style={{ color: colors.cream, fontWeight: 500 }}>Make money without trading more hours.</b> Your time stays yours.</p>
     </div>
   )
 }
