@@ -29,7 +29,8 @@ const colors = {
 
 const fonts = {
   sans: "'DM Sans', system-ui, sans-serif",
-  serif: "'Cormorant Garamond', Georgia, serif",
+  display: "'Archivo', 'Archivo Black', sans-serif",
+  mono: "'JetBrains Mono', monospace",
 };
 
 const logoImage = "/images/milton-logo.png";
@@ -260,7 +261,7 @@ export default function Privacy() {
           }}>Legal</p>
           
           <h1 style={{
-            fontFamily: fonts.serif,
+            fontFamily: fonts.display,
             fontSize: mobile ? 36 : 48,
             fontWeight: 400,
             color: colors.ink,

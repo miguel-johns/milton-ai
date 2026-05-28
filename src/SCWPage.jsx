@@ -32,9 +32,9 @@ const colors = {
 };
 
 const fonts = {
-  serif: "'Cormorant Garamond', Georgia, serif",
+  display: "'Archivo', 'Archivo Black', sans-serif",
   sans: "'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-  mono: "'DM Mono', 'SF Mono', monospace",
+  mono: "'JetBrains Mono', monospace",
 };
 
 const logoImage = "/images/milton-logo.png";
@@ -790,7 +790,7 @@ export default function SCWPage() {
               }}
             />
             <p style={{
-              fontFamily: fonts.serif,
+              fontFamily: fonts.display,
               fontStyle: 'italic',
               fontSize: mobile ? 16 : 18,
               lineHeight: 1.4,

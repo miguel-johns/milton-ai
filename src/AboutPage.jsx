@@ -13,8 +13,15 @@ function useBreakpoint() {
   return { mobile: w < 640, tablet: w >= 640 && w < 1024, desktop: w >= 1024 }
 }
 
-// Design tokens matching the new light theme
+// Design tokens matching new dark theme
 const colors = {
+  // Dark theme (hero)
+  navy: '#0B1628',
+  cream: '#F5F4F1',
+  creamDim: 'rgba(245,244,241,0.65)',
+  teal: '#2BBFAA',
+  mint: '#9AF198',
+  // Light theme (content sections)
   bg: '#FAFBFC',
   bg2: '#F0F7F5',
   paper: '#FFFFFF',
@@ -26,13 +33,13 @@ const colors = {
   accent: '#2BBFAA',
   accentDeep: '#08455E',
   accentSoft: '#E6F8F4',
-  mint: '#9AF198',
   mintSoft: '#ECFAEA',
 }
 
 const fonts = {
-  serif: "'Cormorant Garamond', Georgia, serif",
+  display: "'Archivo', 'Archivo Black', sans-serif",
   sans: "'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+  mono: "'JetBrains Mono', monospace",
 }
 
 const logoImage = "/images/milton-logo.png"
@@ -44,61 +51,103 @@ export default function AboutPage() {
   return (
     <div style={{
       minHeight: '100vh',
-      background: colors.bg,
+      background: colors.navy,
       fontFamily: fonts.sans,
-      color: colors.ink,
+      color: colors.cream,
     }}>
       <Header currentPage="about" />
 
       <main>
         {/* ═══════ HERO ═══════ */}
         <section style={{
-          padding: mobile ? '60px 20px 48px' : '100px 40px 80px',
-          maxWidth: 1000,
-          margin: '0 auto',
-          textAlign: 'center',
+          position: 'relative',
+          padding: mobile ? '72px 20px 48px' : '92px 40px 80px',
+          background: `
+            radial-gradient(900px 420px at 78% -8%, rgba(43,191,170,.20), transparent 60%),
+            radial-gradient(700px 380px at 8% 16%, rgba(154,241,152,.10), transparent 60%),
+            ${colors.navy}
+          `,
+          overflow: 'hidden',
         }}>
+          {/* Dot pattern overlay */}
           <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 8,
-            background: colors.accentSoft,
-            border: `1px solid ${colors.accent}20`,
-            borderRadius: 100,
-            padding: mobile ? '6px 16px' : '8px 20px',
-            marginBottom: 28,
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: 'radial-gradient(rgba(247,244,237,.05) 1px, transparent 1px)',
+            backgroundSize: '26px 26px',
+            pointerEvents: 'none',
+          }} />
+
+          <div style={{
+            maxWidth: 1000,
+            margin: '0 auto',
+            textAlign: 'center',
+            position: 'relative',
+            zIndex: 2,
           }}>
-            <span style={{
+            <div style={{ height: 20 }} />
+
+            <h1 style={{
+              fontFamily: fonts.display,
+              fontSize: mobile ? 36 : tablet ? 52 : 64,
+              fontWeight: 900,
+              fontStretch: '125%',
+              lineHeight: 0.98,
+              letterSpacing: '-0.005em',
+              color: colors.cream,
+              margin: '0 0 24px 0',
+            }}>
+              Empowering the humans on the front lines of the global{' '}
+              <span style={{ color: colors.mint }}>metabolic health crisis</span>.
+            </h1>
+
+            <p style={{
               fontFamily: fonts.sans,
-              fontSize: mobile ? 12 : 14,
-              fontWeight: 500,
-              color: colors.accent,
-            }}>About Milton AI</span>
+              fontSize: mobile ? 16 : 19,
+              lineHeight: 1.65,
+              color: colors.creamDim,
+              maxWidth: 640,
+              margin: '0 auto 36px auto',
+            }}>
+              700 million people live with obesity. 500 million with diabetes. The real frontline isn&apos;t hospitals — it&apos;s the coaches who show up every morning to change lives one session at a time.
+            </p>
+
+            <div style={{ display: 'flex', justifyContent: 'center', gap: 16, flexWrap: 'wrap' }}>
+              <a href="/for-coaches" style={{
+                fontFamily: fonts.sans,
+                fontSize: 15,
+                fontWeight: 600,
+                padding: '14px 32px',
+                borderRadius: 50,
+                background: colors.cream,
+                color: colors.ink,
+                textDecoration: 'none',
+                transition: 'all 0.2s ease',
+              }}>For Coaches</a>
+              <a href="/for-gyms" style={{
+                fontFamily: fonts.sans,
+                fontSize: 15,
+                fontWeight: 600,
+                padding: '14px 32px',
+                borderRadius: 50,
+                background: 'transparent',
+                color: colors.cream,
+                textDecoration: 'none',
+                border: `1px solid rgba(245,244,241,0.3)`,
+                transition: 'all 0.2s ease',
+              }}>For Gyms</a>
+            </div>
           </div>
+        </section>
 
-          <h1 style={{
-            fontFamily: fonts.serif,
-            fontSize: mobile ? 32 : tablet ? 48 : 60,
-            fontWeight: 400,
-            lineHeight: 1.1,
-            color: colors.ink,
-            margin: '0 0 24px 0',
+        {/* Light background wrapper */}
+        <div style={{ background: colors.bg, color: colors.ink }}>
+
+          {/* Quote Section */}
+          <section style={{
+            padding: mobile ? '48px 20px' : '72px 40px',
+            textAlign: 'center',
           }}>
-            Empowering the humans on the front lines of the global{' '}
-            <span style={{ color: colors.accent, fontStyle: 'italic' }}>metabolic health crisis</span>.
-          </h1>
-
-          <p style={{
-            fontFamily: fonts.sans,
-            fontSize: mobile ? 16 : 19,
-            lineHeight: 1.65,
-            color: colors.inkSoft,
-            maxWidth: 640,
-            margin: '0 auto 36px auto',
-          }}>
-            700 million people live with obesity. 500 million with diabetes. The real frontline isn't hospitals — it's the coaches who show up every morning to change lives one session at a time.
-          </p>
-
           <div style={{
             background: colors.paper,
             border: `1px solid ${colors.line}`,
@@ -109,7 +158,7 @@ export default function AboutPage() {
             boxShadow: '0 4px 24px rgba(11, 22, 40, 0.04)',
           }}>
             <p style={{
-              fontFamily: fonts.serif,
+              fontFamily: fonts.display,
               fontSize: mobile ? 18 : 24,
               fontStyle: 'italic',
               lineHeight: 1.45,
@@ -150,7 +199,7 @@ export default function AboutPage() {
             </div>
 
             <h2 style={{
-              fontFamily: fonts.serif,
+              fontFamily: fonts.display,
               fontSize: mobile ? 28 : 44,
               fontWeight: 400,
               lineHeight: 1.15,
@@ -213,7 +262,7 @@ export default function AboutPage() {
               borderLeft: mobile ? 'none' : `3px solid ${colors.accentSoft}`,
             }}>
               <p style={{
-                fontFamily: fonts.serif,
+                fontFamily: fonts.display,
                 fontSize: mobile ? 17 : 20,
                 fontStyle: 'italic',
                 lineHeight: 1.5,
@@ -254,7 +303,7 @@ export default function AboutPage() {
             </div>
 
             <h2 style={{
-              fontFamily: fonts.serif,
+              fontFamily: fonts.display,
               fontSize: mobile ? 28 : 44,
               fontWeight: 400,
               lineHeight: 1.15,
@@ -339,7 +388,7 @@ export default function AboutPage() {
             </div>
 
             <h2 style={{
-              fontFamily: fonts.serif,
+              fontFamily: fonts.display,
               fontSize: mobile ? 28 : 44,
               fontWeight: 400,
               lineHeight: 1.15,
@@ -595,7 +644,7 @@ export default function AboutPage() {
             </div>
 
             <h2 style={{
-              fontFamily: fonts.serif,
+              fontFamily: fonts.display,
               fontSize: mobile ? 28 : 44,
               fontWeight: 400,
               lineHeight: 1.15,
@@ -684,7 +733,7 @@ export default function AboutPage() {
               padding: mobile ? '22px 18px' : '28px 32px',
             }}>
               <div style={{
-                fontFamily: fonts.serif,
+                fontFamily: fonts.display,
                 fontSize: mobile ? 17 : 20,
                 fontStyle: 'italic',
                 color: colors.inkSoft,
@@ -740,7 +789,7 @@ export default function AboutPage() {
         }}>
           <div style={{ maxWidth: 700, margin: '0 auto' }}>
             <h2 style={{
-              fontFamily: fonts.serif,
+              fontFamily: fonts.display,
               fontSize: mobile ? 28 : 44,
               fontWeight: 400,
               lineHeight: 1.15,
@@ -781,12 +830,14 @@ export default function AboutPage() {
                 textDecoration: 'none',
                 display: 'inline-block',
               }}>AI Consultation</a>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <Footer mobile={mobile} onOpenChat={() => setChatModalOpen(true)} />
+  </div>
+  </div>
+  </section>
+  </div>
+  {/* End light background wrapper */}
+  </main>
+  
+  <Footer mobile={mobile} onOpenChat={() => setChatModalOpen(true)} />
 
       {/* Chat Modal */}
       {chatModalOpen && (

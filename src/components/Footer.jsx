@@ -1,23 +1,19 @@
 import { useState } from 'react'
 
-// Design tokens
+// Design tokens - dark theme matching new branding
 const colors = {
-  bg: '#FAFBFC',
-  bg2: '#F1F5F9',
-  paper: '#FFFFFF',
-  ink: '#0B1628',
-  inkSoft: '#475569',
-  inkMute: '#94A3B8',
+  navy: '#0B1628',
+  cream: '#F5F4F1',
+  creamDim: 'rgba(245, 244, 241, 0.5)',
   accent: '#2BBFAA',
-  accentSoft: 'rgba(43, 191, 170, 0.12)',
-  accentDeep: '#08455E',
-  mint: '#9AF198',
-  line: '#E2E8F0',
+  accentSoft: 'rgba(43, 191, 170, 0.15)',
+  line: 'rgba(245, 244, 241, 0.12)',
 }
 
 const fonts = {
-  serif: "'Cormorant Garamond', Georgia, serif",
+  display: "'Archivo', 'Archivo Black', sans-serif",
   sans: "'DM Sans', system-ui, -apple-system, sans-serif",
+  mono: "'JetBrains Mono', monospace",
 }
 
 // Milton logo image
@@ -45,7 +41,7 @@ export default function Footer({ mobile, onOpenChat }) {
         transition: color 0.2s ease;
       }
       .footer-link:hover {
-        color: ${colors.accent} !important;
+        color: ${colors.cream} !important;
       }
       .footer-social {
         transition: color 0.2s ease, background 0.2s ease;
@@ -55,17 +51,16 @@ export default function Footer({ mobile, onOpenChat }) {
         background: ${colors.accentSoft};
       }
       .footer-chat-btn {
-        transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+        transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
       }
       .footer-chat-btn:hover {
-        background: ${colors.accentSoft} !important;
-        border-color: ${colors.accent} !important;
+        background: ${colors.accent} !important;
+        color: ${colors.ink} !important;
       }
     `}</style>
     <footer style={{
       padding: mobile ? '48px 20px 32px' : '64px 40px 48px',
-      borderTop: `1px solid ${colors.line}`,
-      background: 'linear-gradient(180deg, transparent 0%, rgba(43, 191, 170, 0.02) 100%)',
+      background: colors.navy,
     }}>
       <div style={{
         maxWidth: 760,
@@ -83,19 +78,18 @@ export default function Footer({ mobile, onOpenChat }) {
             src={logoImage}
             alt="Milton"
             style={{
-              width: 44,
-              height: 44,
+              width: 56,
+              height: 56,
               borderRadius: '50%',
               objectFit: 'cover',
-              boxShadow: '0 0 0 1px rgba(11, 22, 40, 0.04), 0 1px 3px rgba(11, 22, 40, 0.06)',
             }}
           />
           <p style={{
-            fontFamily: fonts.serif,
+            fontFamily: fonts.display,
             fontStyle: 'italic',
-            fontSize: mobile ? 16 : 18,
+            fontSize: mobile ? 18 : 22,
             lineHeight: 1.4,
-            color: colors.inkSoft,
+            color: colors.creamDim,
             maxWidth: 380,
           }}>
             <em>Milton learns your way of coaching. It does not replace it.</em>
@@ -118,10 +112,10 @@ export default function Footer({ mobile, onOpenChat }) {
               display: 'inline-flex',
               alignItems: 'center',
               gap: 8,
-              background: colors.paper,
-              border: `1px solid ${colors.line}`,
+              background: colors.cream,
+              border: 'none',
               color: colors.ink,
-              padding: '10px 16px',
+              padding: '14px 24px',
               borderRadius: 100,
               fontFamily: fonts.sans,
               fontSize: 14,
@@ -159,7 +153,7 @@ export default function Footer({ mobile, onOpenChat }) {
                   width: 36,
                   height: 36,
                   borderRadius: 8,
-                  color: colors.inkSoft,
+                  color: colors.creamDim,
                 }}
               >
                 <SocialIcon name={social.name} />
@@ -181,13 +175,14 @@ export default function Footer({ mobile, onOpenChat }) {
           justifyContent: 'center',
           gap: mobile ? 8 : 12,
           fontSize: mobile ? 12 : 13,
-          color: colors.inkMute,
+          fontFamily: fonts.sans,
+          color: colors.creamDim,
         }}>
           <span>© 2026 Milton AI</span>
           <span style={{ opacity: 0.5 }}>·</span>
-          <a href="/terms" className="footer-link" style={{ color: colors.inkMute, textDecoration: 'none' }}>Terms of Service</a>
+          <a href="/terms" className="footer-link" style={{ color: colors.creamDim, textDecoration: 'none' }}>Terms of Service</a>
           <span style={{ opacity: 0.5 }}>·</span>
-          <a href="/privacy" className="footer-link" style={{ color: colors.inkMute, textDecoration: 'none' }}>Privacy Policy</a>
+          <a href="/privacy" className="footer-link" style={{ color: colors.creamDim, textDecoration: 'none' }}>Privacy Policy</a>
         </div>
       </div>
     </footer>
