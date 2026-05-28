@@ -55,12 +55,26 @@ function Reveal({ children, style }) {
 
 export default function ForGymsPage() {
   const [mobile, setMobile] = useState(window.innerWidth < 760);
+  const [showCalendly, setShowCalendly] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setMobile(window.innerWidth < 760);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // Load Calendly script when modal opens
+  useEffect(() => {
+    if (showCalendly) {
+      const script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      document.body.appendChild(script);
+      return () => {
+        document.body.removeChild(script);
+      };
+    }
+  }, [showCalendly]);
 
   const painPoints = [
     "You pay for too many apps. None of them talk to each other.",
@@ -173,9 +187,9 @@ export default function ForGymsPage() {
                 <a href="https://coach.getmilton.com/auth" style={btnStyle} onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = colors.teal; e.target.style.borderColor = colors.teal; e.target.style.boxShadow = '0 16px 40px rgba(43,191,170,0.32)'; }} onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = colors.mint; e.target.style.borderColor = colors.mint; e.target.style.boxShadow = '0 10px 30px rgba(154,241,152,0.18)'; }}>
                   Try 7 Days Free
                 </a>
-                <a href="#book" style={{ ...btnStyle, background: 'transparent', borderColor: colors.cream, color: colors.cream, boxShadow: 'none' }} onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = 'rgba(255,255,255,0.1)'; }} onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = 'transparent'; }}>
+                <button onClick={() => setShowCalendly(true)} style={{ ...btnStyle, background: 'transparent', borderColor: colors.cream, color: colors.cream, boxShadow: 'none', cursor: 'pointer' }} onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = 'rgba(255,255,255,0.1)'; }} onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = 'transparent'; }}>
                   Book a free call
-                </a>
+                </button>
                 <span style={{ fontFamily: fonts.mono, fontSize: '0.74rem', letterSpacing: '0.04em', color: colors.creamDim }}>No card required.</span>
               </div>
             </div>
@@ -346,9 +360,9 @@ export default function ForGymsPage() {
             <a href="https://coach.getmilton.com/auth" style={btnStyle} onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = colors.teal; e.target.style.borderColor = colors.teal; e.target.style.boxShadow = '0 16px 40px rgba(43,191,170,0.32)'; }} onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = colors.mint; e.target.style.borderColor = colors.mint; e.target.style.boxShadow = '0 10px 30px rgba(154,241,152,0.18)'; }}>
               Try 7 Days Free
             </a>
-            <a href="#" style={{ ...btnStyle, background: 'transparent', borderColor: colors.cream, color: colors.cream, boxShadow: 'none' }} onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = 'rgba(255,255,255,0.1)'; }} onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = 'transparent'; }}>
+            <button onClick={() => setShowCalendly(true)} style={{ ...btnStyle, background: 'transparent', borderColor: colors.cream, color: colors.cream, boxShadow: 'none', cursor: 'pointer' }} onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = 'rgba(255,255,255,0.1)'; }} onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = 'transparent'; }}>
               Book a free call
-            </a>
+            </button>
           </div>
           <p style={{ fontFamily: fonts.mono, fontSize: '0.74rem', letterSpacing: '0.06em', color: colors.creamDim, marginTop: 22 }}>
             No card required.
@@ -357,6 +371,68 @@ export default function ForGymsPage() {
       </section>
 
       <Footer />
+
+      {/* Calendly Modal */}
+      {showCalendly && (
+        <div 
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(11, 22, 40, 0.85)',
+            backdropFilter: 'blur(8px)',
+            zIndex: 100,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 20,
+          }}
+          onClick={() => setShowCalendly(false)}
+        >
+          <div 
+            style={{
+              background: colors.cream,
+              borderRadius: 20,
+              width: '100%',
+              maxWidth: 600,
+              maxHeight: '90vh',
+              overflow: 'hidden',
+              position: 'relative',
+            }}
+            onClick={e => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setShowCalendly(false)}
+              style={{
+                position: 'absolute',
+                top: 16,
+                right: 16,
+                width: 36,
+                height: 36,
+                borderRadius: '50%',
+                border: 'none',
+                background: colors.navy,
+                color: colors.cream,
+                fontSize: 20,
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                zIndex: 10,
+              }}
+            >
+              ×
+            </button>
+            <div 
+              className="calendly-inline-widget" 
+              data-url="https://calendly.com/miguel-johns/milton-demo?hide_gdpr_banner=1&primary_color=00987c" 
+              style={{ minWidth: 320, height: 700 }}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
