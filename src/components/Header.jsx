@@ -329,15 +329,20 @@ export default function Header({ currentPage = 'home' }) {
             <a 
               href="https://coach.getmilton.com/"
               onClick={() => setMobileMenuOpen(false)}
-              className="header-mobile-link"
+              className="header-mobile-cta"
               style={{
                 display: 'block',
                 padding: '14px 16px',
                 fontSize: 16,
-                fontWeight: 500,
+                fontWeight: 600,
                 color: colors.cream,
                 textDecoration: 'none',
-                borderRadius: 10,
+                borderRadius: 50,
+                background: 'transparent',
+                border: `1px solid ${colors.cream}`,
+                textAlign: 'center',
+                marginTop: 8,
+                transition: 'background 0.2s ease',
                 fontFamily: fonts.sans,
               }}
             >
