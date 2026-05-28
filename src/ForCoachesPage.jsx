@@ -302,10 +302,10 @@ export default function ForCoachesPage() {
           <p style={{ color: colors.creamDim, maxWidth: 620, marginBottom: 52, fontSize: '1.15rem' }}>You just talk to Milton. It does the heavy lifting, so you can focus on coaching.</p>
           <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : '1fr 1fr', gap: 22 }}>
             {[
-              { num: '01', title: 'Look like a pro', desc: 'Clean programs, check-ins, and reports, every time.', bold: 'New clients trust you right away.' },
-              { num: '02', title: 'Charge more', desc: 'When you look sharp and get results,', bold: 'you can raise your prices.', after: ' Milton helps you back it up.' },
-              { num: '03', title: 'Get referrals', desc: 'Happy clients bring friends. Milton keeps every client feeling cared for,', bold: 'so they spread the word.' },
-              { num: '04', title: 'New ways to earn', desc: 'Run challenges and group programs.', bold: 'Make money without trading more hours.', after: ' Your time stays yours.' },
+              { num: '01', title: 'Look like a pro', desc: 'Clean programs, check-ins, and reports, every time.', bold: 'New clients trust you right away.', image: '/images/coach-page-1.png' },
+              { num: '02', title: 'Charge more', desc: 'When you look sharp and get results,', bold: 'you can raise your prices.', after: ' Milton helps you back it up.', image: '/images/coach-page-2.png' },
+              { num: '03', title: 'Get referrals', desc: 'Happy clients bring friends. Milton keeps every client feeling cared for,', bold: 'so they spread the word.', image: '/images/coach-page-3.png' },
+              { num: '04', title: 'New ways to earn', desc: 'Run challenges and group programs.', bold: 'Make money without trading more hours.', after: ' Your time stays yours.', image: '/images/coach-page-4.png' },
             ].map((card, i) => (
               <Reveal key={card.num} delay={i * 90}>
                 <HowCard {...card} />
@@ -337,7 +337,16 @@ export default function ForCoachesPage() {
             </div>
             <Reveal>
               <div style={{ boxShadow: '0 26px 60px rgba(11,22,40,.16)' }}>
-                <ImagePlaceholder subtitle="Coaching image goes here" />
+                <img 
+                  src="/images/coach-page-5.png" 
+                  alt="Coach with clients in gym"
+                  style={{ 
+                    width: '100%', 
+                    aspectRatio: '16/10', 
+                    objectFit: 'cover', 
+                    borderRadius: 16 
+                  }}
+                />
               </div>
             </Reveal>
           </div>
@@ -452,7 +461,7 @@ export default function ForCoachesPage() {
 }
 
 // How card component
-function HowCard({ num, title, desc, bold, after = '' }) {
+function HowCard({ num, title, desc, bold, after = '', image }) {
   const [hovered, setHovered] = useState(false)
   return (
     <div
@@ -467,7 +476,21 @@ function HowCard({ num, title, desc, bold, after = '' }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <ImagePlaceholder />
+      {image ? (
+        <img 
+          src={image} 
+          alt={title}
+          style={{ 
+            width: '100%', 
+            aspectRatio: '16/10', 
+            objectFit: 'cover', 
+            borderRadius: 12, 
+            marginBottom: 20 
+          }}
+        />
+      ) : (
+        <ImagePlaceholder />
+      )}
       <span style={{ fontFamily: fonts.mono, fontSize: '0.75rem', letterSpacing: '0.18em', color: colors.teal }}>{num}</span>
       <h3 style={{
         fontFamily: fonts.display,
