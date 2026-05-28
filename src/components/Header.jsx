@@ -11,7 +11,7 @@ function useBreakpoint() {
   return { mobile: w < 640, tablet: w >= 640 && w < 1024, desktop: w >= 1024, w }
 }
 
-// CSS variables as constants
+// Colors matching new branding
 const colors = {
   bg: '#FAFBFC',
   paper: '#FFFFFF',
@@ -19,6 +19,7 @@ const colors = {
   muted: '#64748B',
   line: '#E2E8F0',
   accent: '#2BBFAA',
+  mint: '#9AF198',
 }
 
 const fonts = {
@@ -26,8 +27,7 @@ const fonts = {
 }
 
 const logoImage = "/images/milton-logo.png"
-const CALENDLY_URL = "https://calendly.com/miguel-getmilton/30min"
-const STRIPE_URL = "https://buy.stripe.com/8x2eVe0mT1bT6nueDUeUU0X"
+const FREE_TRIAL_URL = "https://coach.getmilton.com/auth"
 
 export default function Header({ currentPage = 'home' }) {
   const { mobile } = useBreakpoint()
@@ -43,11 +43,12 @@ export default function Header({ currentPage = 'home' }) {
           color: ${colors.accent} !important;
         }
         .header-cta-btn {
-          transition: background 0.2s ease, transform 0.15s ease;
+          transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
         }
         .header-cta-btn:hover {
-          background: #0a1220 !important;
-          transform: translateY(-1px);
+          background: ${colors.accent} !important;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(43, 191, 170, 0.3) !important;
         }
         .header-mobile-link {
           transition: background 0.2s ease, color 0.2s ease;
@@ -57,13 +58,12 @@ export default function Header({ currentPage = 'home' }) {
           color: ${colors.accent} !important;
         }
         .header-mobile-cta:hover {
-          background: #0a1220 !important;
+          background: ${colors.accent} !important;
         }
       `}</style>
-      <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       
       <header style={{
-        padding: mobile ? '20px' : '28px 40px',
+        padding: mobile ? '16px 20px' : '20px 48px',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -104,32 +104,32 @@ export default function Header({ currentPage = 'home' }) {
         {!mobile && (
           <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
             <a 
-              href="/milton-makes-money"
+              href="/for-coaches"
               className="header-nav-link"
               style={{
                 fontFamily: fonts.sans,
                 fontSize: 14,
-                fontWeight: currentPage === 'milton-makes-money' ? 600 : 500,
-                color: currentPage === 'milton-makes-money' ? colors.ink : colors.muted,
+                fontWeight: currentPage === 'for-coaches' ? 600 : 500,
+                color: currentPage === 'for-coaches' ? colors.ink : colors.muted,
                 textDecoration: 'none',
                 letterSpacing: '0.01em',
               }}
             >
-              Milton Makes Money
+              For Coaches
             </a>
             <a 
-              href="/us-vs-them"
+              href="/for-gyms"
               className="header-nav-link"
               style={{
                 fontFamily: fonts.sans,
                 fontSize: 14,
-                fontWeight: currentPage === 'us-vs-them' ? 600 : 500,
-                color: currentPage === 'us-vs-them' ? colors.ink : colors.muted,
+                fontWeight: currentPage === 'for-gyms' ? 600 : 500,
+                color: currentPage === 'for-gyms' ? colors.ink : colors.muted,
                 textDecoration: 'none',
                 letterSpacing: '0.01em',
               }}
             >
-              Us vs. Them
+              For Gym Owners
             </a>
             <a 
               href="/insights"
@@ -146,21 +146,7 @@ export default function Header({ currentPage = 'home' }) {
               Insights
             </a>
             <a 
-              href="/about"
-              className="header-nav-link"
-              style={{
-                fontFamily: fonts.sans,
-                fontSize: 14,
-                fontWeight: currentPage === 'about' ? 600 : 500,
-                color: currentPage === 'about' ? colors.ink : colors.muted,
-                textDecoration: 'none',
-                letterSpacing: '0.01em',
-              }}
-            >
-              About
-            </a>
-            <a 
-              href="/for-coaches"
+              href={FREE_TRIAL_URL}
               className="header-cta-btn"
               style={{
                 background: colors.ink,
@@ -172,27 +158,10 @@ export default function Header({ currentPage = 'home' }) {
                 fontWeight: 600,
                 textDecoration: 'none',
                 letterSpacing: '0.01em',
+                boxShadow: '0 4px 12px rgba(11, 22, 40, 0.15)',
               }}
             >
-              For Coaches
-            </a>
-            <a 
-              href="/for-gyms"
-              className="header-cta-btn"
-              style={{
-                background: 'transparent',
-                color: colors.ink,
-                padding: '12px 24px',
-                borderRadius: 10,
-                fontFamily: fonts.sans,
-                fontSize: 14,
-                fontWeight: 500,
-                textDecoration: 'none',
-                letterSpacing: '0.01em',
-                border: `1px solid ${colors.line}`,
-              }}
-            >
-              For Gyms
+              7-Day Free Trial
             </a>
           </div>
         )}
@@ -273,9 +242,9 @@ export default function Header({ currentPage = 'home' }) {
           {/* Menu */}
           <div style={{
             position: 'fixed',
-            top: 80,
-            left: 20,
-            right: 20,
+            top: 72,
+            left: 16,
+            right: 16,
             maxHeight: 'calc(100vh - 100px)',
             overflowY: 'auto',
             background: colors.paper,
@@ -289,36 +258,38 @@ export default function Header({ currentPage = 'home' }) {
             gap: 4,
           }}>
             <a 
-              href="/milton-makes-money"
+              href="/for-coaches"
               onClick={() => setMobileMenuOpen(false)}
               className="header-mobile-link"
               style={{
                 display: 'block',
                 padding: '14px 16px',
                 fontSize: 16,
-                fontWeight: currentPage === 'milton-makes-money' ? 600 : 500,
+                fontWeight: currentPage === 'for-coaches' ? 600 : 500,
                 color: colors.ink,
                 textDecoration: 'none',
                 borderRadius: 10,
+                fontFamily: fonts.sans,
               }}
             >
-              Milton Makes Money
+              For Coaches
             </a>
             <a 
-              href="/us-vs-them"
+              href="/for-gyms"
               onClick={() => setMobileMenuOpen(false)}
               className="header-mobile-link"
               style={{
                 display: 'block',
                 padding: '14px 16px',
                 fontSize: 16,
-                fontWeight: currentPage === 'us-vs-them' ? 600 : 500,
+                fontWeight: currentPage === 'for-gyms' ? 600 : 500,
                 color: colors.ink,
                 textDecoration: 'none',
                 borderRadius: 10,
+                fontFamily: fonts.sans,
               }}
             >
-              Us vs. Them
+              For Gym Owners
             </a>
             <a 
               href="/insights"
@@ -332,28 +303,13 @@ export default function Header({ currentPage = 'home' }) {
                 color: colors.ink,
                 textDecoration: 'none',
                 borderRadius: 10,
+                fontFamily: fonts.sans,
               }}
             >
               Insights
             </a>
             <a 
-              href="/about"
-              onClick={() => setMobileMenuOpen(false)}
-              className="header-mobile-link"
-              style={{
-                display: 'block',
-                padding: '14px 16px',
-                fontSize: 16,
-                fontWeight: currentPage === 'about' ? 600 : 500,
-                color: colors.ink,
-                textDecoration: 'none',
-                borderRadius: 10,
-              }}
-            >
-              About
-            </a>
-            <a 
-              href="/for-coaches"
+              href={FREE_TRIAL_URL}
               onClick={() => setMobileMenuOpen(false)}
               className="header-mobile-cta"
               style={{
@@ -366,32 +322,12 @@ export default function Header({ currentPage = 'home' }) {
                 borderRadius: 10,
                 background: colors.ink,
                 textAlign: 'center',
-                marginTop: 4,
-                transition: 'background 0.2s ease',
-              }}
-            >
-              For Coaches
-            </a>
-            <a 
-              href="/for-gyms"
-              onClick={() => setMobileMenuOpen(false)}
-              className="header-mobile-cta-secondary"
-              style={{
-                display: 'block',
-                padding: '14px 16px',
-                fontSize: 16,
-                fontWeight: 500,
-                color: colors.ink,
-                textDecoration: 'none',
-                borderRadius: 10,
-                background: colors.paper,
-                border: `1px solid ${colors.ink}`,
-                textAlign: 'center',
                 marginTop: 8,
                 transition: 'background 0.2s ease',
+                fontFamily: fonts.sans,
               }}
             >
-              For Gyms
+              7-Day Free Trial
             </a>
           </div>
         </>
