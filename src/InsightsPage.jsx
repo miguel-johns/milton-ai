@@ -12,8 +12,15 @@ function useBreakpoint() {
   return { mobile: w < 640, tablet: w >= 640 && w < 1024, desktop: w >= 1024, w }
 }
 
-// CSS variables as constants - matching new design
+// CSS variables as constants - matching new dark theme
 const colors = {
+  // Dark theme (hero)
+  navy: '#0B1628',
+  cream: '#F5F4F1',
+  creamDim: 'rgba(245,244,241,0.65)',
+  teal: '#2BBFAA',
+  mint: '#9AF198',
+  // Light theme (content sections)
   bg: '#FAFBFC',
   bg2: '#F0F7F5',
   paper: '#FFFFFF',
@@ -25,7 +32,6 @@ const colors = {
   accent: '#2BBFAA',
   accentDeep: '#08455E',
   accentSoft: '#E6F8F4',
-  mint: '#9AF198',
   mintSoft: '#ECFAEA',
 }
 
@@ -320,10 +326,67 @@ export default function InsightsPage() {
   return (
     <div style={{
       minHeight: '100vh',
-      background: colors.bg,
+      background: colors.navy,
       fontFamily: fonts.sans,
     }}>
       <Header currentPage="insights" />
+
+      {/* Hero Section - Dark */}
+      <section style={{
+        position: 'relative',
+        padding: mobile ? '72px 20px 48px' : '92px 40px 64px',
+        background: `
+          radial-gradient(900px 420px at 78% -8%, rgba(43,191,170,.20), transparent 60%),
+          radial-gradient(700px 380px at 8% 16%, rgba(154,241,152,.10), transparent 60%),
+          ${colors.navy}
+        `,
+        overflow: 'hidden',
+      }}>
+        {/* Dot pattern overlay */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          backgroundImage: 'radial-gradient(rgba(247,244,237,.05) 1px, transparent 1px)',
+          backgroundSize: '26px 26px',
+          pointerEvents: 'none',
+        }} />
+        
+        <div style={{
+          maxWidth: 1100,
+          margin: '0 auto',
+          position: 'relative',
+          zIndex: 2,
+        }}>
+          <div style={{ height: 20 }} />
+          <h1 style={{
+            fontFamily: fonts.display,
+            fontSize: mobile ? 38 : tablet ? 52 : 64,
+            fontWeight: 900,
+            fontStretch: '125%',
+            lineHeight: 0.98,
+            letterSpacing: '-0.005em',
+            color: colors.cream,
+            margin: '0 0 16px 0',
+          }}>
+            AI, training, and the business of{' '}
+            <span style={{ color: colors.mint }}>building coaches</span>.
+          </h1>
+
+          <p style={{
+            fontFamily: fonts.sans,
+            fontSize: mobile ? 16 : 19,
+            lineHeight: 1.6,
+            color: colors.creamDim,
+            maxWidth: 600,
+            margin: 0,
+          }}>
+            Expert perspectives on AI in fitness, trainer development, and running a personal training business that actually retains its people.
+          </p>
+        </div>
+      </section>
+
+      {/* Light background wrapper */}
+      <div style={{ background: colors.bg, color: colors.ink }}>
 
       {/* ═══════ MAIN CONTENT ═══════ */}
       <main style={{
@@ -332,35 +395,9 @@ export default function InsightsPage() {
         padding: mobile ? '0 20px' : '0 40px',
       }}>
 
-        {/* Hero Section */}
-        <section style={{ padding: mobile ? '48px 0 32px' : '80px 0 56px' }}>
-          <h1 style={{
-            fontFamily: fonts.display,
-            fontSize: mobile ? 36 : tablet ? 48 : 56,
-            fontWeight: 500,
-            lineHeight: 1.12,
-            color: colors.ink,
-            margin: '0 0 16px 0',
-          }}>
-            AI, training, and the business of{' '}
-            <span style={{ fontStyle: 'italic', color: colors.accent }}>building coaches</span>.
-          </h1>
-
-          <p style={{
-            fontFamily: fonts.sans,
-            fontSize: mobile ? 16 : 18,
-            lineHeight: 1.65,
-            color: colors.inkSoft,
-            maxWidth: 600,
-            margin: 0,
-          }}>
-            Expert perspectives on AI in fitness, trainer development, and running a personal training business that actually retains its people.
-          </p>
-        </section>
-
         {/* Featured Article */}
         {featuredArticle && activeCategory === "all" && (
-          <section style={{ paddingBottom: mobile ? 40 : 56 }}>
+          <section style={{ paddingTop: mobile ? 40 : 56, paddingBottom: mobile ? 40 : 56 }}>
             <ArticleCard article={featuredArticle} featured mobile={mobile} />
           </section>
         )}
@@ -480,9 +517,11 @@ export default function InsightsPage() {
             }}>
               Get Started with Milton
             </a>
-          </div>
-        </section>
+        </div>
+      </section>
       </main>
+      </div>
+      {/* End light background wrapper */}
 
       <Footer mobile={mobile} onOpenChat={() => setChatModalOpen(true)} />
 
