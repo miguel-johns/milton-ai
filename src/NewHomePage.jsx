@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
 
@@ -186,14 +185,14 @@ function Button({ href, variant = 'primary', children, style = {} }) {
   } : {}
 
   return (
-    <Link
-      to={href}
+    <a
+      href={href}
       style={{ ...baseStyle, ...variants[variant], ...hoverStyle, ...style }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       {children}
-    </Link>
+    </a>
   )
 }
 
