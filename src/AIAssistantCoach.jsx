@@ -268,12 +268,29 @@ export default function AIAssistantCoach() {
 
             {/* Hero Media */}
             <Reveal>
-              <MediaPlaceholder 
-                type="video" 
-                text="Video" 
-                subtext="Money story goes here"
-                style={{ aspectRatio: '16/9', width: '100%', boxShadow: '0 30px 70px rgba(0,0,0,.45)' }}
-              />
+              <div style={{
+                position: 'relative',
+                width: '100%',
+                paddingBottom: '56.25%',
+                borderRadius: 16,
+                overflow: 'hidden',
+                boxShadow: '0 30px 70px rgba(0,0,0,.45)',
+              }}>
+                <iframe
+                  src="https://www.youtube.com/embed/v8umQMr6F3U?si=JUODoVBrR4xQC20R"
+                  title="Milton AI - Make More Money"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                  }}
+                />
+              </div>
             </Reveal>
           </div>
         </div>
