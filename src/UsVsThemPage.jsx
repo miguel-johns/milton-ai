@@ -75,11 +75,12 @@ function Reveal({ children, delay = 0 }) {
   )
 }
 
-// Mic icon SVG
-const MicIcon = ({ size = 24, color = 'currentColor' }) => (
+// Text input icon SVG
+const TextIcon = ({ size = 24, color = 'currentColor' }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="9" y="3" width="6" height="11" rx="3"/>
-    <path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>
+    <path d="M4 7V4h16v3"/>
+    <path d="M9 20h6"/>
+    <path d="M12 4v16"/>
   </svg>
 )
 
@@ -157,29 +158,24 @@ const vsItems = [
   },
 ]
 
-// Equalizer animation bars
-function Equalizer() {
+// Typing cursor animation
+function TypingCursor() {
   return (
-    <div style={{ display: 'flex', alignItems: 'flex-end', gap: 3, height: 24 }}>
-      {[0, 0.18, 0.36, 0.12, 0.3].map((delay, i) => (
-        <i
-          key={i}
-          style={{
-            width: 4,
-            background: colors.tealDeep,
-            borderRadius: 3,
-            animation: `eq 1s ease-in-out infinite`,
-            animationDelay: `${delay}s`,
-          }}
-        />
-      ))}
+    <span style={{
+      display: 'inline-block',
+      width: 2,
+      height: 20,
+      background: colors.tealDeep,
+      marginLeft: 4,
+      animation: 'blink 1s step-end infinite',
+    }}>
       <style>{`
-        @keyframes eq {
-          0%, 100% { height: 6px; }
-          50% { height: 22px; }
+        @keyframes blink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
         }
       `}</style>
-    </div>
+    </span>
   )
 }
 
@@ -206,9 +202,9 @@ function CommandCard({ mobile }) {
             flexShrink: 0,
             boxShadow: '0 8px 22px rgba(154,241,152,.5)',
           }}>
-            <MicIcon size={24} color={colors.ink} />
+            <TextIcon size={24} color={colors.ink} />
           </div>
-          <Equalizer />
+          <TypingCursor />
           <span style={{
             fontFamily: fonts.mono,
             fontSize: '0.7rem',
@@ -216,7 +212,7 @@ function CommandCard({ mobile }) {
             textTransform: 'uppercase',
             color: colors.tealDeep,
             marginLeft: 'auto',
-          }}>Just say it</span>
+          }}>Just type it</span>
         </div>
         <div style={{
           background: '#f3f1ea',
@@ -331,7 +327,7 @@ function VSItem({ item, mobile }) {
               alignItems: 'center',
               gap: 9,
             }}>
-              <MicIcon size={16} color={colors.mint} />
+              <TextIcon size={16} color={colors.mint} />
               Milton
             </div>
             <div style={{
@@ -342,7 +338,7 @@ function VSItem({ item, mobile }) {
               color: colors.creamDim,
               opacity: 0.8,
               marginBottom: 8,
-            }}>Voice command</div>
+            }}>Text command</div>
             <div style={{
               fontFamily: fonts.display,
               fontWeight: 700,
