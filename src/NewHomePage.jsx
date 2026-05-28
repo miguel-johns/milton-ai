@@ -452,12 +452,29 @@ export default function NewHomePage() {
             </div>
 
             <Reveal>
-              <MediaPlaceholder
-                type="video"
-                text="Video"
-                subtext="Outcome clip goes here"
-                style={{ width: '100%', boxShadow: '0 26px 60px rgba(11,22,40,.16)' }}
-              />
+              <div style={{
+                position: 'relative',
+                width: '100%',
+                paddingBottom: '56.25%',
+                borderRadius: 16,
+                overflow: 'hidden',
+                boxShadow: '0 26px 60px rgba(11,22,40,.16)',
+              }}>
+                <iframe
+                  src="https://www.youtube.com/embed/v8umQMr6F3U?si=CXXGTvJSxhELXWae"
+                  title="Milton AI - The Payoff"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                  }}
+                />
+              </div>
             </Reveal>
           </div>
         </div>
