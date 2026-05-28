@@ -16,8 +16,9 @@ const colors = {
   bg: '#FAFBFC',
   paper: '#FFFFFF',
   ink: '#0B1628',
-  muted: '#64748B',
-  line: '#E2E8F0',
+  cream: '#F5F4F1',
+  muted: 'rgba(245, 244, 241, 0.7)',
+  line: 'rgba(245, 244, 241, 0.15)',
   accent: '#2BBFAA',
   mint: '#9AF198',
 }
@@ -40,25 +41,26 @@ export default function Header({ currentPage = 'home' }) {
           transition: color 0.2s ease;
         }
         .header-nav-link:hover {
-          color: ${colors.accent} !important;
+          color: ${colors.cream} !important;
         }
         .header-cta-btn {
           transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
         }
         .header-cta-btn:hover {
           background: ${colors.accent} !important;
+          color: ${colors.ink} !important;
           transform: translateY(-2px);
-          box-shadow: 0 8px 20px rgba(43, 191, 170, 0.3) !important;
         }
         .header-mobile-link {
           transition: background 0.2s ease, color 0.2s ease;
         }
         .header-mobile-link:hover {
-          background: rgba(43, 191, 170, 0.08);
-          color: ${colors.accent} !important;
+          background: rgba(245, 244, 241, 0.1);
+          color: ${colors.cream} !important;
         }
         .header-mobile-cta:hover {
           background: ${colors.accent} !important;
+          color: ${colors.ink} !important;
         }
       `}</style>
       
@@ -67,12 +69,12 @@ export default function Header({ currentPage = 'home' }) {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        position: 'sticky',
+        position: 'absolute',
         top: 0,
-        background: 'rgba(250, 251, 252, 0.92)',
-        backdropFilter: 'blur(12px)',
+        left: 0,
+        right: 0,
+        background: 'transparent',
         zIndex: 40,
-        borderBottom: `1px solid ${colors.line}`,
       }}>
         {/* Logo */}
         <a href="/" style={{
@@ -80,7 +82,7 @@ export default function Header({ currentPage = 'home' }) {
           fontSize: 20,
           fontWeight: 600,
           letterSpacing: '-0.02em',
-          color: colors.ink,
+          color: colors.cream,
           textDecoration: 'none',
           display: 'flex',
           alignItems: 'center',
@@ -94,7 +96,6 @@ export default function Header({ currentPage = 'home' }) {
               height: 36,
               borderRadius: '50%',
               objectFit: 'cover',
-              boxShadow: '0 0 0 1px rgba(11, 22, 40, 0.04), 0 1px 3px rgba(11, 22, 40, 0.06)',
             }}
           />
           <span>Milton</span>
@@ -102,15 +103,15 @@ export default function Header({ currentPage = 'home' }) {
 
         {/* Desktop nav links */}
         {!mobile && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
             <a 
               href="/milton-makes-money"
               className="header-nav-link"
               style={{
                 fontFamily: fonts.sans,
-                fontSize: 14,
-                fontWeight: currentPage === 'milton-makes-money' ? 600 : 500,
-                color: currentPage === 'milton-makes-money' ? colors.ink : colors.muted,
+                fontSize: 15,
+                fontWeight: 500,
+                color: currentPage === 'milton-makes-money' ? colors.cream : colors.muted,
                 textDecoration: 'none',
                 letterSpacing: '0.01em',
               }}
@@ -122,9 +123,9 @@ export default function Header({ currentPage = 'home' }) {
               className="header-nav-link"
               style={{
                 fontFamily: fonts.sans,
-                fontSize: 14,
-                fontWeight: currentPage === 'us-vs-them' ? 600 : 500,
-                color: currentPage === 'us-vs-them' ? colors.ink : colors.muted,
+                fontSize: 15,
+                fontWeight: 500,
+                color: currentPage === 'us-vs-them' ? colors.cream : colors.muted,
                 textDecoration: 'none',
                 letterSpacing: '0.01em',
               }}
@@ -136,9 +137,9 @@ export default function Header({ currentPage = 'home' }) {
               className="header-nav-link"
               style={{
                 fontFamily: fonts.sans,
-                fontSize: 14,
-                fontWeight: currentPage === 'insights' ? 600 : 500,
-                color: currentPage === 'insights' ? colors.ink : colors.muted,
+                fontSize: 15,
+                fontWeight: 500,
+                color: currentPage === 'insights' ? colors.cream : colors.muted,
                 textDecoration: 'none',
                 letterSpacing: '0.01em',
               }}
@@ -150,9 +151,9 @@ export default function Header({ currentPage = 'home' }) {
               className="header-nav-link"
               style={{
                 fontFamily: fonts.sans,
-                fontSize: 14,
-                fontWeight: currentPage === 'about' ? 600 : 500,
-                color: currentPage === 'about' ? colors.ink : colors.muted,
+                fontSize: 15,
+                fontWeight: 500,
+                color: currentPage === 'about' ? colors.cream : colors.muted,
                 textDecoration: 'none',
                 letterSpacing: '0.01em',
               }}
@@ -164,15 +165,15 @@ export default function Header({ currentPage = 'home' }) {
               className="header-cta-btn"
               style={{
                 background: colors.ink,
-                color: colors.paper,
-                padding: '12px 24px',
-                borderRadius: 10,
+                color: colors.cream,
+                padding: '14px 28px',
+                borderRadius: 50,
                 fontFamily: fonts.sans,
-                fontSize: 14,
+                fontSize: 15,
                 fontWeight: 600,
                 textDecoration: 'none',
                 letterSpacing: '0.01em',
-                boxShadow: '0 4px 12px rgba(11, 22, 40, 0.15)',
+                border: '1px solid rgba(245, 244, 241, 0.1)',
               }}
             >
               7-Day Free Trial
@@ -188,8 +189,8 @@ export default function Header({ currentPage = 'home' }) {
             style={{
               width: 40,
               height: 40,
-              border: `1px solid ${colors.line}`,
-              background: colors.paper,
+              border: `1px solid rgba(245, 244, 241, 0.2)`,
+              background: 'rgba(11, 22, 40, 0.5)',
               borderRadius: 10,
               cursor: 'pointer',
               display: 'flex',
@@ -205,7 +206,7 @@ export default function Header({ currentPage = 'home' }) {
                 left: 0,
                 width: 18,
                 height: 1.5,
-                background: colors.ink,
+                background: colors.cream,
                 borderRadius: 1,
                 top: mobileMenuOpen ? 6 : 0,
                 transform: mobileMenuOpen ? 'rotate(45deg)' : 'none',
@@ -216,7 +217,7 @@ export default function Header({ currentPage = 'home' }) {
                 left: 0,
                 width: 18,
                 height: 1.5,
-                background: mobileMenuOpen ? 'transparent' : colors.ink,
+                background: mobileMenuOpen ? 'transparent' : colors.cream,
                 borderRadius: 1,
                 top: 6,
                 transition: 'all 0.3s',
@@ -226,7 +227,7 @@ export default function Header({ currentPage = 'home' }) {
                 left: 0,
                 width: 18,
                 height: 1.5,
-                background: colors.ink,
+                background: colors.cream,
                 borderRadius: 1,
                 top: mobileMenuOpen ? 6 : 12,
                 transform: mobileMenuOpen ? 'rotate(-45deg)' : 'none',
@@ -261,10 +262,10 @@ export default function Header({ currentPage = 'home' }) {
             right: 16,
             maxHeight: 'calc(100vh - 100px)',
             overflowY: 'auto',
-            background: colors.paper,
+            background: colors.ink,
             borderRadius: 16,
-            border: `1px solid ${colors.line}`,
-            boxShadow: '0 1px 2px rgba(11, 22, 40, 0.04), 0 16px 40px rgba(11, 22, 40, 0.10)',
+            border: `1px solid rgba(245, 244, 241, 0.1)`,
+            boxShadow: '0 16px 40px rgba(0, 0, 0, 0.3)',
             zIndex: 55,
             padding: '8px 8px 16px 8px',
             display: 'flex',
@@ -280,7 +281,7 @@ export default function Header({ currentPage = 'home' }) {
                 padding: '14px 16px',
                 fontSize: 16,
                 fontWeight: currentPage === 'milton-makes-money' ? 600 : 500,
-                color: colors.ink,
+                color: colors.cream,
                 textDecoration: 'none',
                 borderRadius: 10,
                 fontFamily: fonts.sans,
@@ -297,7 +298,7 @@ export default function Header({ currentPage = 'home' }) {
                 padding: '14px 16px',
                 fontSize: 16,
                 fontWeight: currentPage === 'us-vs-them' ? 600 : 500,
-                color: colors.ink,
+                color: colors.cream,
                 textDecoration: 'none',
                 borderRadius: 10,
                 fontFamily: fonts.sans,
@@ -314,7 +315,7 @@ export default function Header({ currentPage = 'home' }) {
                 padding: '14px 16px',
                 fontSize: 16,
                 fontWeight: currentPage === 'insights' ? 600 : 500,
-                color: colors.ink,
+                color: colors.cream,
                 textDecoration: 'none',
                 borderRadius: 10,
                 fontFamily: fonts.sans,
@@ -331,7 +332,7 @@ export default function Header({ currentPage = 'home' }) {
                 padding: '14px 16px',
                 fontSize: 16,
                 fontWeight: currentPage === 'about' ? 600 : 500,
-                color: colors.ink,
+                color: colors.cream,
                 textDecoration: 'none',
                 borderRadius: 10,
                 fontFamily: fonts.sans,
@@ -348,10 +349,10 @@ export default function Header({ currentPage = 'home' }) {
                 padding: '14px 16px',
                 fontSize: 16,
                 fontWeight: 600,
-                color: colors.paper,
+                color: colors.ink,
                 textDecoration: 'none',
-                borderRadius: 10,
-                background: colors.ink,
+                borderRadius: 50,
+                background: colors.cream,
                 textAlign: 'center',
                 marginTop: 8,
                 transition: 'background 0.2s ease',
