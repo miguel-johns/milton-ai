@@ -51,12 +51,11 @@ export default function Footer({ mobile, onOpenChat }) {
         background: ${colors.accentSoft};
       }
       .footer-chat-btn {
-        transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
+        transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
       }
       .footer-chat-btn:hover {
-        background: ${colors.accentSoft} !important;
-        border-color: ${colors.accent} !important;
-        color: ${colors.cream} !important;
+        background: ${colors.accent} !important;
+        color: ${colors.ink} !important;
       }
     `}</style>
     <footer style={{
@@ -113,10 +112,10 @@ export default function Footer({ mobile, onOpenChat }) {
               display: 'inline-flex',
               alignItems: 'center',
               gap: 8,
-              background: 'transparent',
-              border: `1px solid ${colors.line}`,
-              color: colors.cream,
-              padding: '12px 20px',
+              background: colors.cream,
+              border: 'none',
+              color: colors.ink,
+              padding: '14px 24px',
               borderRadius: 100,
               fontFamily: fonts.sans,
               fontSize: 14,
