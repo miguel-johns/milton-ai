@@ -147,20 +147,6 @@ export default function Header({ currentPage = 'home' }) {
               Insights
             </a>
             <a 
-              href="/about"
-              className="header-nav-link"
-              style={{
-                fontFamily: fonts.sans,
-                fontSize: 15,
-                fontWeight: 500,
-                color: currentPage === 'about' ? colors.cream : colors.muted,
-                textDecoration: 'none',
-                letterSpacing: '0.01em',
-              }}
-            >
-              About
-            </a>
-            <a 
               href={FREE_TRIAL_URL}
               className="header-cta-btn"
               style={{
@@ -321,23 +307,6 @@ export default function Header({ currentPage = 'home' }) {
               }}
             >
               Insights
-            </a>
-            <a 
-              href="/about"
-              onClick={() => setMobileMenuOpen(false)}
-              className="header-mobile-link"
-              style={{
-                display: 'block',
-                padding: '14px 16px',
-                fontSize: 16,
-                fontWeight: currentPage === 'about' ? 600 : 500,
-                color: colors.cream,
-                textDecoration: 'none',
-                borderRadius: 10,
-                fontFamily: fonts.sans,
-              }}
-            >
-              About
             </a>
             <a 
               href={FREE_TRIAL_URL}
