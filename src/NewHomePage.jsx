@@ -259,20 +259,35 @@ export default function NewHomePage() {
             </div>
           </div>
 
-          {/* Hero product image - large, below content */}
+          {/* Hero video - large, below content */}
           <Reveal>
-            <img
-              src={mobile ? '/images/product-hero-mobile.png' : '/images/product-hero-desktop.png'}
-              alt="Milton AI coaching assistant interface"
-              style={{
-                width: '100%',
-                maxWidth: mobile ? 400 : 900,
-                height: 'auto',
-                display: 'block',
-                margin: mobile ? '48px auto 0' : '64px auto 0',
-                borderRadius: 20,
-              }}
-            />
+            <div style={{
+              position: 'relative',
+              paddingBottom: '56.25%',
+              height: 0,
+              width: '100%',
+              maxWidth: mobile ? 400 : 900,
+              margin: mobile ? '48px auto 0' : '64px auto 0',
+              borderRadius: 20,
+              overflow: 'hidden',
+              boxShadow: '0 30px 70px rgba(0,0,0,.45)',
+            }}>
+              <iframe
+                src="https://www.loom.com/embed/a22f3d9f0648454e95100e7cc762ac07?autoplay=1&hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
+                frameBorder="0"
+                webkitallowfullscreen="true"
+                mozallowfullscreen="true"
+                allowFullScreen
+                allow="autoplay"
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                }}
+              />
+            </div>
           </Reveal>
         </div>
       </header>
