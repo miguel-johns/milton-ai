@@ -56,6 +56,8 @@ function Reveal({ children, style }) {
 export default function ForGymsPage() {
   const [mobile, setMobile] = useState(window.innerWidth < 760);
   const [showCalendly, setShowCalendly] = useState(false);
+  const [phone, setPhone] = useState('');
+  const [textSent, setTextSent] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setMobile(window.innerWidth < 760);
@@ -76,26 +78,18 @@ export default function ForGymsPage() {
     }
   }, [showCalendly]);
 
-  const painPoints = [
-    "You pay for too many apps. None of them talk to each other.",
-    "Your trainers all do their own thing. Nothing looks the same.",
-    "You spend hours chasing new leads and following up.",
-    "People quit your gym, and you didn't see it coming.",
-    "You want every member to feel special, even in a big class.",
-    "You work all the time. The gym runs you, not the other way around.",
+  const denials = [
+    'Milton is not another dashboard your team has to learn.',
+    'It is not another system you have to manage.',
+    'It is not another tool that creates more work before it creates value.',
   ];
 
-  const cards = [
-    { num: '01', title: 'Just talk to it', text: <>Say <b style={{ color: colors.cream, fontWeight: 500 }}>"help me prep for today,"</b> and Milton gets you ready in seconds. It pulls up your client, their last workout, and what to focus on. No setup needed.</>, image: '/images/gym-page-1.png' },
-    { num: '02', title: 'It learns your way', text: <>Hand Milton your old workouts and notes. <b style={{ color: colors.cream, fontWeight: 500 }}>It learns how you coach.</b> Now all six trainers coach the same way, with no clunky tools to manage.</>, image: '/images/gym-page-2.png' },
-    { num: '03', title: 'It does the busy work', text: <>Milton writes the workouts, sends the check-ins, and <b style={{ color: colors.cream, fontWeight: 500 }}>remembers every client.</b> You just say "yes," or change it. Done in minutes, not hours.</>, image: '/images/gym-page-3.png' },
-    { num: '04', title: 'It helps you grow', text: <>Milton makes it easy to run challenges, follow up with leads, and keep members happy. <b style={{ color: colors.cream, fontWeight: 500 }}>More money. Less stress. Less time in the weeds.</b></>, image: '/images/gym-page-4.png' },
-  ];
-
-  const riskCards = [
-    { big: '$0', text: 'No setup fee. We help you get going.' },
-    { big: '30', text: "Try it 30 days. Don't love it? Get every dollar back. No questions." },
-    { big: '∞', text: 'No long contract. Cancel any month you want.' },
+  const demoPoints = [
+    'Make every member feel more personally coached',
+    'Give coaches instant context on every client',
+    'Create workouts, check-ins, reports, and follow-ups just by talking',
+    'Support members through SMS and the app between sessions',
+    'Launch challenges and new coaching offers without adding more work',
   ];
 
   const wrapStyle = { maxWidth: 1040, margin: '0 auto', padding: '0 28px' };
@@ -177,19 +171,18 @@ export default function ForGymsPage() {
           }}>
             <div style={{ height: 20 }} />
             <h1 style={{ ...displayStyle, fontSize: mobile ? '2.6rem' : 'clamp(2.6rem,5.6vw,4.8rem)', margin: '22px 0 26px' }}>
-              Run your whole gym<br />by just <em style={{ fontStyle: 'normal', color: colors.mint }}>talking.</em>
+              Technology has fallen short.<br /><em style={{ fontStyle: 'normal', color: colors.mint }}>So why would AI be any different?</em>
             </h1>
-            <p style={{ fontSize: mobile ? '1.15rem' : 'clamp(1.15rem,2.4vw,1.5rem)', maxWidth: 600, margin: '0 auto 38px', color: colors.creamDim }}>
-              Milton is one app for your gym. You don&apos;t click around or set things up. You just <b style={{ color: colors.cream, fontWeight: 500 }}>talk to it, like texting a friend.</b> It learns how you coach. Then it does the boring work for you.
+            <p style={{ fontSize: mobile ? '1.15rem' : 'clamp(1.15rem,2.4vw,1.5rem)', maxWidth: 620, margin: '0 auto 38px', color: colors.creamDim }}>
+              You&apos;ve seen the AI tools promising to answer your phones, nurture your leads, and magically fix your business. Most of it is the same thing with a new label. <b style={{ color: colors.cream, fontWeight: 500 }}>Milton is different. You just talk to it.</b>
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
-              <a href="https://coach.getmilton.com/auth" style={btnStyle} onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = colors.teal; e.target.style.borderColor = colors.teal; e.target.style.boxShadow = '0 16px 40px rgba(43,191,170,0.32)'; }} onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = colors.mint; e.target.style.borderColor = colors.mint; e.target.style.boxShadow = '0 10px 30px rgba(154,241,152,0.18)'; }}>
-                Try 3 Days Free
+              <a href="#book" style={btnStyle} onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = colors.teal; e.target.style.borderColor = colors.teal; e.target.style.boxShadow = '0 16px 40px rgba(43,191,170,0.32)'; }} onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = colors.mint; e.target.style.borderColor = colors.mint; e.target.style.boxShadow = '0 10px 30px rgba(154,241,152,0.18)'; }}>
+                Want the demo?
               </a>
               <button onClick={() => setShowCalendly(true)} style={{ ...btnStyle, background: 'transparent', borderColor: colors.cream, color: colors.cream, boxShadow: 'none', cursor: 'pointer' }} onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = 'rgba(255,255,255,0.1)'; }} onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = 'transparent'; }}>
                 Book a free call
               </button>
-              <span style={{ fontFamily: fonts.mono, fontSize: '0.74rem', letterSpacing: '0.04em', color: colors.creamDim }}>No card required.</span>
             </div>
           </div>
 
@@ -226,15 +219,18 @@ export default function ForGymsPage() {
         </div>
       </header>
 
-      {/* PAIN */}
+      {/* MILTON IS DIFFERENT */}
       <section style={{ background: brandwash, color: colors.ink, padding: '92px 0' }}>
-        <div style={wrapStyle}>
-          <span style={{ ...labelStyle, color: colors.tealDeep }}>Does this sound like you?</span>
-          <h2 style={{ ...displayStyle, fontSize: mobile ? '2.2rem' : 'clamp(2.2rem,5vw,3.4rem)', margin: '14px 0 40px', maxWidth: 720 }}>
-            You run a gym. You&apos;re busy. You&apos;re tired.
+        <div style={{ ...wrapStyle, maxWidth: 820 }}>
+          <span style={{ ...labelStyle, color: colors.tealDeep }}>Milton is different</span>
+          <h2 style={{ ...displayStyle, fontSize: mobile ? '2.2rem' : 'clamp(2.2rem,5vw,3.4rem)', margin: '14px 0 26px', maxWidth: 720 }}>
+            Most of it feels like the same thing with a new label slapped on it.
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : '1fr 1fr', gap: 16 }}>
-            {painPoints.map((text, i) => (
+          <p style={{ fontSize: '1.2rem', color: colors.inkSoft, maxWidth: 640, marginBottom: 40 }}>
+            Another confusing, high-effort piece of software thrown in your face. Milton isn&apos;t that.
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 14 }}>
+            {denials.map((text, i) => (
               <Reveal key={i} style={{
                 display: 'flex',
                 gap: 14,
@@ -252,52 +248,40 @@ export default function ForGymsPage() {
               </Reveal>
             ))}
           </div>
-          <p style={{ marginTop: 34, fontSize: '1.25rem', fontWeight: 500 }}>
-            If you nodded at even one of these, <span style={{ color: colors.tealDeep, fontWeight: 700 }}>Milton was built for you.</span>
+          <p style={{ marginTop: 36, fontSize: '1.4rem', fontWeight: 500, maxWidth: 640 }}>
+            Milton brings a completely new experience to your gym. <span style={{ color: colors.tealDeep, fontWeight: 700 }}>You just talk to it.</span>
           </p>
         </div>
       </section>
 
-      {/* HOW */}
+      {/* SEE MILTON IN ACTION */}
       <section style={{ padding: '96px 0 90px', background: colors.navy }}>
         <div style={wrapStyle}>
-          <span style={labelStyle}>Here&apos;s how Milton helps</span>
+          <span style={labelStyle}>See Milton in action</span>
           <h2 style={{ ...displayStyle, fontSize: mobile ? '2.3rem' : 'clamp(2.3rem,5.2vw,3.6rem)', margin: '14px 0 14px' }}>
-            One app. You just talk to it.
+            In the demo, you&apos;ll see how Milton helps gym owners:
           </h2>
-          <p style={{ color: colors.creamDim, maxWidth: 620, marginBottom: 52, fontSize: '1.15rem' }}>
-            No new system to learn. No clicking around. You tell Milton what you need, and it gets to work.
-          </p>
-          <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : '1fr 1fr', gap: 22 }}>
-            {cards.map((card, i) => (
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 14, marginTop: 44, maxWidth: 760 }}>
+            {demoPoints.map((text, i) => (
               <Reveal key={i} style={{
+                display: 'flex',
+                gap: 16,
+                alignItems: 'flex-start',
                 background: colors.navySoft,
                 border: '1px solid rgba(43,191,170,0.22)',
-                borderRadius: 20,
-                padding: '34px 32px',
-                transition: 'transform 0.2s ease, border-color 0.2s ease',
+                borderRadius: 16,
+                padding: '22px 24px',
+                fontSize: '1.14rem',
               }}>
-                <img 
-                  src={card.image} 
-                  alt={card.title}
-                  style={{ 
-                    width: '100%', 
-                    aspectRatio: '16/10', 
-                    objectFit: 'cover', 
-                    borderRadius: 12, 
-                    marginBottom: 20 
-                  }}
-                />
-                <span style={{ fontFamily: fonts.mono, fontSize: '0.75rem', letterSpacing: '0.18em', color: colors.teal }}>{card.num}</span>
-                <h3 style={{ fontFamily: fonts.display, fontWeight: 800, fontStretch: '125%', fontSize: '1.7rem', margin: '12px 0 12px', lineHeight: 1.02, letterSpacing: '-0.005em' }}>{card.title}</h3>
-                <p style={{ color: colors.creamDim, fontSize: '1.08rem' }}>{card.text}</p>
+                <span style={{ flex: '0 0 auto', width: 28, height: 28, borderRadius: '50%', background: colors.mint, color: colors.navy, display: 'grid', placeItems: 'center', fontWeight: 800, fontSize: '0.95rem', marginTop: 2 }}>✓</span>
+                <span style={{ color: colors.cream }}>{text}</span>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* STILL THE COACH */}
+      {/* NOT AI HYPE */}
       <section style={{
         padding: '108px 0',
         textAlign: 'center',
@@ -307,73 +291,13 @@ export default function ForGymsPage() {
         borderBottom: '1px solid rgba(11,22,40,0.08)',
       }}>
         <div style={{ ...wrapStyle, maxWidth: 760 }}>
-          <Reveal><span style={{ ...labelStyle, color: colors.tealDeep }}>You&apos;re still the coach</span></Reveal>
+          <Reveal><span style={{ ...labelStyle, color: colors.tealDeep }}>This is not AI hype</span></Reveal>
           <Reveal><h2 style={{ ...displayStyle, fontSize: mobile ? '2.3rem' : 'clamp(2.3rem,5.4vw,3.6rem)', margin: '18px auto 22px', maxWidth: 680 }}>
-            Milton helps you. It does <em style={{ fontStyle: 'normal', color: colors.tealDeep }}>not</em> replace you.
+            A practical way to create a <em style={{ fontStyle: 'normal', color: colors.tealDeep }}>better member experience.</em>
           </h2></Reveal>
           <Reveal><p style={{ fontSize: '1.22rem', color: colors.inkSoft, maxWidth: 620, margin: '0 auto' }}>
-            You are the boss. Milton never sends anything until you say so. We believe the best coaching is still human. <b style={{ color: colors.ink, fontWeight: 500 }}>Milton just hands you back the time to do it.</b>
+            Support your coaches and generate new revenue, <b style={{ color: colors.ink, fontWeight: 500 }}>without hiring more staff.</b>
           </p></Reveal>
-        </div>
-      </section>
-
-      {/* GROUP */}
-      <section style={{
-        padding: '90px 0',
-        color: colors.cream,
-        background: `radial-gradient(720px 400px at 88% 6%, rgba(43,191,170,0.15), transparent 60%), ${colors.navy}`,
-      }}>
-        <div style={wrapStyle}>
-          <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : '1.1fr 0.9fr', gap: 48, alignItems: 'center' }}>
-            <div>
-              <span style={labelStyle}>Big classes, personal feel</span>
-              <h2 style={{ ...displayStyle, fontSize: mobile ? '2.1rem' : 'clamp(2.1rem,4.8vw,3.2rem)', margin: '14px 0 18px', maxWidth: 520 }}>
-                Group fitness with a personal touch.
-              </h2>
-              <p style={{ fontSize: '1.18rem', color: colors.creamDim }}>
-                Run a class with 20 people? Milton helps every single one feel like they get one-on-one care. It remembers their goals, their progress, and their wins. Happy members stay longer and bring their friends.
-              </p>
-            </div>
-            <Reveal>
-              <img 
-                src="/images/gym-page-5.png" 
-                alt="Group fitness class with personal coaching"
-                style={{ 
-                  width: '100%', 
-                  aspectRatio: '16/9', 
-                  objectFit: 'cover', 
-                  borderRadius: 16, 
-                  boxShadow: '0 26px 60px rgba(0,0,0,0.4)' 
-                }}
-              />
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* RISK */}
-      <section style={{ padding: '88px 0', background: brandwash, color: colors.ink }}>
-        <div style={wrapStyle}>
-          <span style={{ ...labelStyle, color: colors.tealDeep, display: 'block', textAlign: 'center' }}>Try it with zero risk</span>
-          <h2 style={{ ...displayStyle, fontSize: mobile ? '2rem' : 'clamp(2rem,4.6vw,3rem)', margin: '14px 0 44px', textAlign: 'center' }}>
-            Easy to start. Easy to <em style={{ fontStyle: 'normal', color: colors.tealDeep }}>stop.</em>
-          </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : 'repeat(3,1fr)', gap: 20 }}>
-            {riskCards.map((card, i) => (
-              <Reveal key={i} style={{
-                textAlign: 'center',
-                border: '1px solid rgba(11,22,40,0.10)',
-                borderRadius: 18,
-                padding: '34px 24px',
-                background: 'rgba(255,255,255,0.6)',
-                backdropFilter: 'blur(10px)',
-                boxShadow: '0 12px 30px rgba(11,22,40,0.06)',
-              }}>
-                <div style={{ fontFamily: fonts.display, fontWeight: 900, fontStretch: '125%', fontSize: '2.8rem', color: colors.tealDeep, lineHeight: 1, marginBottom: 10 }}>{card.big}</div>
-                <p style={{ color: colors.inkSoft, fontSize: '1.05rem' }}>{card.text}</p>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -384,23 +308,57 @@ export default function ForGymsPage() {
         background: `radial-gradient(700px 380px at 50% 0%, rgba(43,191,170,0.22), transparent 62%), ${colors.navy}`,
       }}>
         <div style={wrapStyle}>
-          <span style={labelStyle}>Let&apos;s talk</span>
+          <span style={labelStyle}>Want the demo?</span>
           <h2 style={{ ...displayStyle, fontSize: mobile ? '2.8rem' : 'clamp(2.8rem,7vw,5rem)', margin: '16px 0 22px' }}>
-            See Milton work in <em style={{ fontStyle: 'normal', color: colors.mint }}>30 minutes.</em>
+            Book a call, or we&apos;ll <em style={{ fontStyle: 'normal', color: colors.mint }}>text it to you.</em>
           </h2>
           <p style={{ fontSize: '1.25rem', color: colors.creamDim, maxWidth: 560, margin: '0 auto 40px' }}>
-            Hop on a quick call. We&apos;ll show you exactly how Milton fits your gym, your trainers, and the way you already coach.
+            See exactly how Milton fits your gym, your coaches, and the way you already work. Pick whichever is easier for you.
           </p>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16, flexWrap: 'wrap' }}>
-            <a href="https://coach.getmilton.com/auth" style={btnStyle} onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = colors.teal; e.target.style.borderColor = colors.teal; e.target.style.boxShadow = '0 16px 40px rgba(43,191,170,0.32)'; }} onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = colors.mint; e.target.style.borderColor = colors.mint; e.target.style.boxShadow = '0 10px 30px rgba(154,241,152,0.18)'; }}>
-              Try 3 Days Free
-            </a>
-            <button onClick={() => setShowCalendly(true)} style={{ ...btnStyle, background: 'transparent', borderColor: colors.cream, color: colors.cream, boxShadow: 'none', cursor: 'pointer' }} onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = 'rgba(255,255,255,0.1)'; }} onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = 'transparent'; }}>
-              Book a free call
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16, flexWrap: 'wrap', marginBottom: 28 }}>
+            <button onClick={() => setShowCalendly(true)} style={btnStyle} onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = colors.teal; e.target.style.borderColor = colors.teal; e.target.style.boxShadow = '0 16px 40px rgba(43,191,170,0.32)'; }} onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = colors.mint; e.target.style.borderColor = colors.mint; e.target.style.boxShadow = '0 10px 30px rgba(154,241,152,0.18)'; }}>
+              Book a call
             </button>
           </div>
+          <form
+            onSubmit={(e) => { e.preventDefault(); if (phone.trim()) setTextSent(true); }}
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, flexWrap: 'wrap', maxWidth: 520, margin: '0 auto' }}
+          >
+            <input
+              type="tel"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder="Your phone number"
+              aria-label="Your phone number"
+              style={{
+                flex: mobile ? '1 1 100%' : '1 1 240px',
+                fontFamily: fonts.sans,
+                fontSize: 16,
+                color: colors.cream,
+                background: 'rgba(255,255,255,0.06)',
+                border: '1.5px solid rgba(247,244,237,0.25)',
+                borderRadius: 100,
+                padding: '16px 24px',
+                outline: 'none',
+                minHeight: 44,
+              }}
+            />
+            <button
+              type="submit"
+              style={{ ...btnStyle, padding: '16px 32px', minHeight: 44 }}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.background = colors.teal; e.currentTarget.style.borderColor = colors.teal; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = colors.mint; e.currentTarget.style.borderColor = colors.mint; }}
+            >
+              Text me the demo
+            </button>
+          </form>
+          {textSent && (
+            <p style={{ fontFamily: fonts.sans, fontSize: '1rem', color: colors.mint, marginTop: 18 }}>
+              Done. We&apos;ll text the demo to that number shortly.
+            </p>
+          )}
           <p style={{ fontFamily: fonts.mono, fontSize: '0.74rem', letterSpacing: '0.06em', color: colors.creamDim, marginTop: 22 }}>
-            No card required.
+            No spam. Just the demo.
           </p>
         </div>
       </section>
