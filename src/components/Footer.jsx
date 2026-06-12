@@ -105,30 +105,6 @@ export default function Footer({ mobile, onOpenChat }) {
           flexWrap: 'wrap',
           flexDirection: mobile ? 'column' : 'row',
         }}>
-          <button 
-            className="footer-chat-btn"
-            onClick={onOpenChat}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 8,
-              background: colors.cream,
-              border: 'none',
-              color: colors.ink,
-              padding: '14px 24px',
-              borderRadius: 100,
-              fontFamily: fonts.sans,
-              fontSize: 14,
-              fontWeight: 500,
-              cursor: 'pointer',
-            }}
-          >
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-            </svg>
-            <span>Talk to a human</span>
-          </button>
-
           <nav style={{ display: 'flex', gap: 4, alignItems: 'center' }}>
             {[
               { name: 'Facebook', url: 'https://www.facebook.com/people/Milton-AI/61577932761346/' },
