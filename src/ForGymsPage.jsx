@@ -56,8 +56,6 @@ function Reveal({ children, style }) {
 export default function ForGymsPage() {
   const [mobile, setMobile] = useState(window.innerWidth < 760);
   const [showCalendly, setShowCalendly] = useState(false);
-  const [phone, setPhone] = useState('');
-  const [textSent, setTextSent] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setMobile(window.innerWidth < 760);
@@ -177,10 +175,7 @@ export default function ForGymsPage() {
               You&apos;ve seen the AI tools promising to answer your phones, nurture your leads, and magically fix your business. Most of it is the same thing with a new label. <b style={{ color: colors.cream, fontWeight: 500 }}>Milton is different. You just talk to it.</b>
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap', justifyContent: 'center' }}>
-              <a href="#book" style={btnStyle} onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = colors.teal; e.target.style.borderColor = colors.teal; e.target.style.boxShadow = '0 16px 40px rgba(43,191,170,0.32)'; }} onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = colors.mint; e.target.style.borderColor = colors.mint; e.target.style.boxShadow = '0 10px 30px rgba(154,241,152,0.18)'; }}>
-                Want the demo?
-              </a>
-              <button onClick={() => setShowCalendly(true)} style={{ ...btnStyle, background: 'transparent', borderColor: colors.cream, color: colors.cream, boxShadow: 'none', cursor: 'pointer' }} onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = 'rgba(255,255,255,0.1)'; }} onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = 'transparent'; }}>
+              <button onClick={() => setShowCalendly(true)} style={{ ...btnStyle, cursor: 'pointer' }} onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = colors.teal; e.target.style.borderColor = colors.teal; e.target.style.boxShadow = '0 16px 40px rgba(43,191,170,0.32)'; }} onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = colors.mint; e.target.style.borderColor = colors.mint; e.target.style.boxShadow = '0 10px 30px rgba(154,241,152,0.18)'; }}>
                 Book a free call
               </button>
             </div>
@@ -310,56 +305,16 @@ export default function ForGymsPage() {
         <div style={wrapStyle}>
           <span style={labelStyle}>Want the demo?</span>
           <h2 style={{ ...displayStyle, fontSize: mobile ? '2.8rem' : 'clamp(2.8rem,7vw,5rem)', margin: '16px 0 22px' }}>
-            Book a call, or we&apos;ll <em style={{ fontStyle: 'normal', color: colors.mint }}>text it to you.</em>
+            Book a call and see <em style={{ fontStyle: 'normal', color: colors.mint }}>Milton in action.</em>
           </h2>
           <p style={{ fontSize: '1.25rem', color: colors.creamDim, maxWidth: 560, margin: '0 auto 40px' }}>
-            See exactly how Milton fits your gym, your coaches, and the way you already work. Pick whichever is easier for you.
+            See exactly how Milton fits your gym, your coaches, and the way you already work.
           </p>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16, flexWrap: 'wrap', marginBottom: 28 }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 16, flexWrap: 'wrap' }}>
             <button onClick={() => setShowCalendly(true)} style={btnStyle} onMouseEnter={e => { e.target.style.transform = 'translateY(-3px)'; e.target.style.background = colors.teal; e.target.style.borderColor = colors.teal; e.target.style.boxShadow = '0 16px 40px rgba(43,191,170,0.32)'; }} onMouseLeave={e => { e.target.style.transform = 'none'; e.target.style.background = colors.mint; e.target.style.borderColor = colors.mint; e.target.style.boxShadow = '0 10px 30px rgba(154,241,152,0.18)'; }}>
               Book a call
             </button>
           </div>
-          <form
-            onSubmit={(e) => { e.preventDefault(); if (phone.trim()) setTextSent(true); }}
-            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, flexWrap: 'wrap', maxWidth: 520, margin: '0 auto' }}
-          >
-            <input
-              type="tel"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              placeholder="Your phone number"
-              aria-label="Your phone number"
-              style={{
-                flex: mobile ? '1 1 100%' : '1 1 240px',
-                fontFamily: fonts.sans,
-                fontSize: 16,
-                color: colors.cream,
-                background: 'rgba(255,255,255,0.06)',
-                border: '1.5px solid rgba(247,244,237,0.25)',
-                borderRadius: 100,
-                padding: '16px 24px',
-                outline: 'none',
-                minHeight: 44,
-              }}
-            />
-            <button
-              type="submit"
-              style={{ ...btnStyle, padding: '16px 32px', minHeight: 44 }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.background = colors.teal; e.currentTarget.style.borderColor = colors.teal; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.background = colors.mint; e.currentTarget.style.borderColor = colors.mint; }}
-            >
-              Text me the demo
-            </button>
-          </form>
-          {textSent && (
-            <p style={{ fontFamily: fonts.sans, fontSize: '1rem', color: colors.mint, marginTop: 18 }}>
-              Done. We&apos;ll text the demo to that number shortly.
-            </p>
-          )}
-          <p style={{ fontFamily: fonts.mono, fontSize: '0.74rem', letterSpacing: '0.06em', color: colors.creamDim, marginTop: 22 }}>
-            No spam. Just the demo.
-          </p>
         </div>
       </section>
 
