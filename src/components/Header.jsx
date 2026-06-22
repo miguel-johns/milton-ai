@@ -28,7 +28,7 @@ const fonts = {
 }
 
 const logoImage = "/images/milton-logo.png"
-const FREE_TRIAL_URL = "https://coach.getmilton.com/auth"
+  const FREE_TRIAL_URL = "https://buy.stripe.com/7sYbJ2d9F5s93bi8fweUU14"
 
 export default function Header({ currentPage = 'home' }) {
   const { mobile } = useBreakpoint()
@@ -179,7 +179,7 @@ export default function Header({ currentPage = 'home' }) {
                 letterSpacing: '0.01em',
               }}
             >
-              3-Day Free Trial
+              30-Day Free Trial
             </a>
           </div>
         )}
@@ -367,7 +367,7 @@ export default function Header({ currentPage = 'home' }) {
                 fontFamily: fonts.sans,
               }}
             >
-              3-Day Free Trial
+              30-Day Free Trial
             </a>
           </div>
         </>
