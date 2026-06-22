@@ -221,7 +221,7 @@ export default function ForCoachesPage() {
               Milton is one simple app for coaches. You just talk to it. It helps you win new clients, charge more, and make more money. <b style={{ color: colors.cream, fontWeight: 500 }}>Brand new or 20 years in, Milton works for you.</b>
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap', justifyContent: 'center' }}>
-              <Button href="https://coach.getmilton.com/auth">Try 3 Days Free</Button>
+              <Button href="https://buy.stripe.com/7sYbJ2d9F5s93bi8fweUU14">Try 30 Days Free</Button>
               <span style={{ fontFamily: fonts.mono, fontSize: '0.74rem', letterSpacing: '0.04em', color: colors.creamDim }}>No card required.</span>
             </div>
           </div>
@@ -432,7 +432,7 @@ export default function ForCoachesPage() {
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : 'repeat(3, 1fr)', gap: 20 }}>
             {[
-              { big: '3', text: 'Free for 3 days. Try everything Milton can do.' },
+              { big: '30', text: 'Free for 30 days. Try everything Milton can do.' },
               { big: '$0', text: 'No card needed to start. No catch.' },
               { big: '∞', text: 'Cancel anytime. It really is that simple.' },
             ].map((item, i) => (
@@ -476,7 +476,7 @@ export default function ForCoachesPage() {
             Win your next client <span style={{ color: colors.mint }}>this week.</span>
           </h2>
           <p style={{ fontSize: '1.25rem', color: colors.creamDim, maxWidth: 560, margin: '0 auto 38px' }}>Start free today. See how Milton helps you get more clients, charge more, and get your time back.</p>
-          <Button href="https://coach.getmilton.com/auth">Try 3 Days Free</Button>
+          <Button href="https://buy.stripe.com/7sYbJ2d9F5s93bi8fweUU14">Try 30 Days Free</Button>
           <p style={{ fontFamily: fonts.mono, fontSize: '0.78rem', letterSpacing: '0.06em', color: colors.creamDim, marginTop: 20 }}>No card required.</p>
         </div>
       </section>
