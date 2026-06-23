@@ -433,7 +433,7 @@ export default function ForCoachesPage() {
           <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : 'repeat(3, 1fr)', gap: 20 }}>
             {[
               { big: '30', text: 'Free for 30 days. Try everything Milton can do.' },
-              { big: '$0', text: 'No card needed to start. No catch.' },
+              { big: '$0', text: "Pay nothing for 30 days. Cancel before it ends and you won't be charged." },
               { big: '∞', text: 'Cancel anytime. It really is that simple.' },
             ].map((item, i) => (
               <Reveal key={item.big} delay={i * 90}>
