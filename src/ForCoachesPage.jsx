@@ -222,7 +222,7 @@ export default function ForCoachesPage() {
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: 24, flexWrap: 'wrap', justifyContent: 'center' }}>
               <Button href="https://buy.stripe.com/7sYbJ2d9F5s93bi8fweUU14">Try 30 Days Free</Button>
-              <span style={{ fontFamily: fonts.mono, fontSize: '0.74rem', letterSpacing: '0.04em', color: colors.creamDim }}>No card required.</span>
+              <span style={{ fontFamily: fonts.mono, fontSize: '0.74rem', letterSpacing: '0.04em', color: colors.creamDim }}>No charge for 30 days.</span>
             </div>
           </div>
 
@@ -477,7 +477,7 @@ export default function ForCoachesPage() {
           </h2>
           <p style={{ fontSize: '1.25rem', color: colors.creamDim, maxWidth: 560, margin: '0 auto 38px' }}>Start free today. See how Milton helps you get more clients, charge more, and get your time back.</p>
           <Button href="https://buy.stripe.com/7sYbJ2d9F5s93bi8fweUU14">Try 30 Days Free</Button>
-          <p style={{ fontFamily: fonts.mono, fontSize: '0.78rem', letterSpacing: '0.06em', color: colors.creamDim, marginTop: 20 }}>No card required.</p>
+          <p style={{ fontFamily: fonts.mono, fontSize: '0.78rem', letterSpacing: '0.06em', color: colors.creamDim, marginTop: 20 }}>No charge for 30 days.</p>
         </div>
       </section>
 
